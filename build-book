@@ -1,0 +1,9 @@
+#!/bin/bash
+
+pdflatex Mathematical_Methods_for_Engineers
+bibtex Mathematical_Methods_for_Engineers
+texindy --language english Mathematical_Methods_for_Engineers.idx
+makeindex Mathematical_Methods_for_Engineers
+pdflatex Mathematical_Methods_for_Engineers
+pdflatex Mathematical_Methods_for_Engineers
+pdflatex Mathematical_Methods_for_Engineers
