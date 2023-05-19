@@ -1,0 +1,106 @@
+\chapter{Lecture 2 - Separable and Linear 1st order Equations}
+\label{ch:lec2}
+\section{Objectives}
+The objectives of this lecture are:
+\begin{itemize}
+\item Define and describe the solution procedure for \emph{separable} first order equations
+\item Define and demonstrate the solution procedure for \emph{linear} first order equations
+\end{itemize}
+
+\section{Separable Equations}
+A first order differential equation of the form shown below
+\begin{equation}
+\frac{du}{dx} = g(u)h(x)
+\label{eq:separable}
+\end{equation}
+is said to be \emph{separable} or have \emph{separable variables.}\marginnote[-1.5cm]{\textbf{Note:} there is \textbf{no} requirement that the 1st order equation be \emph{linear}.  This is one of the few techniques that we will study in this course that can be applied to nonlinear equations.} 
+
+\newthought{The solution method} for separable equations is, in princple simple.  For the separable differential equation given in Equation \ref{eq:separable} we would separate and integrate:
+
+\begin{align*}
+\frac{du}{dx} &= g(u)h(x) \\
+\frac{du}{g(u)} &= h(x) dx \\
+\int \frac{1}{g(u)} \ du &= \int h(x) \ dx 
+\end{align*}
+\marginnote[-3.5cm]{\textbf{Note:} there are at least two complications here.
+\begin{enumerate}
+\item The solution you thus derive may be either implicit or explicit.  An implicit solution is, as a practical matter, fairly inconvenient to deal with; and
+\item It may not be possible to actually carry out the integrals analytically. 
+\end{enumerate}
+}
+Generally speaking, one of your first checks for a first order equation should be: is it separable?  If so, you should separate the variables and solve.  The examples below are intended to illustrate the method.  Note that in the final example, the integral cannot be done analytically.
+\begin{example}[h!]
+Solve the following separable, first order differential equations
+.
+\textbf{Example 1:} 
+\begin{align*}
+\frac{du}{dx} &= \frac{u}{1 + x} \\
+\frac{du}{u} &= \frac{dx}{1+x} \\
+\int \frac{d}{u} &= \int \frac{dx}{1+x} \\
+\ln{|u|} + c_1 &= \ln{|1+x|} + c_2 \\
+|u| &= e^{\left[\ln{|1+x|} + c_3\right]}\\
+    u(x)&= c|1+x|
+\end{align*}
+
+\end{example}
+
+\begin{example}[h!]
+\textbf{Example 2:}
+\begin{align*}
+\frac{du}{dx} &= -\frac{x}{u} \\
+\int u \ du &= -\int x \ dx \\
+\frac{u^2}{2} &= -\frac{x^2}{2}+c \\
+u(x) &= \sqrt{c - x^2}
+\end{align*}
+\end{example}
+
+\begin{example}[h!]
+\textbf{Example 3:}
+Solve the first order initial value problem shown below:
+\begin{equation}
+\frac{du}{dx} = e^{-x^2}, \ \ u(2) = 6, \ \ 2 \le x < \infty
+\end{equation}
+\begin{align*}
+du &= e^{-x^2}\ dx \\
+\int_2^{x} \frac{du}{dt} \ dt &= \int_{2}^{x} e^{-t^2} \ dt \\
+u(x) - u(2) &= \int_{2}^{x} e^{-t^2} \ dt \\
+u(x) &= 6 + \int_{2}^{x} e^{-t^2} \ dt
+\end{align*}
+where we have used the dummy variable $t$ in the integrals; the last integral will need to be evaluated numerically.
+
+\end{example}
+\section{Linear Equations}
+A first-order differential equation of the form:
+\begin{equation}
+a_1(x)\frac{du}{dx} + a_0(x)u = g(x)
+\label{eq:lin_first_order}
+\end{equation}
+is said to be a first order \emph{linear equation} in the dependent variable $u$.\marginnote[-2.0cm]{\textbf{Note:} it is sometimes customary to write the differential equation in \emph{operator form} where the differential operator, $\mathcal{L}=a_1(x) \frac{d}{dx} + a_0(x)$, is applied to the function $u(x)$ to get $g(x)$; $\mathcal{L}u(x) = g(x)$ }
+When $g(x) = 0$, the first-order linear equation is said to be \emph{homogeneous}; otherwise it is \emph{nonhomogeneous}.\marginnote{Notice that $g(x)$ is the only term in Equation \ref{eq:lin_first_order} that does \underline{\textbf{not}} include $u$ or any of its derivatives.}
+
+\newthought{When solving} equations of this type it is useful to express it in the \textbf{standard form}:
+\begin{equation}
+\frac{du}{dx}+P(x)u = f(x)
+\label{eq:first-order-linear-standard-form}
+\end{equation}  
+The method for solving this equation makes use of the \underline{\emph{linearity}} property\marginnote{When we say an operator is \textbf{linear}, what we mean is that the following relationships must hold:
+\begin{enumerate}
+\item $\mathcal{L}(\alpha u) = \alpha \mathcal{L}(u)$
+\item $\mathcal{L}(u + v) = \mathcal{L}(u) + \mathcal{L}(v)$
+\end{enumerate}
+for functions $u$,$v$ and scalar constant $\alpha$.  Think of this as a \emph{definition} of linearity.} and express the solution in the following way: $u(x) = u_c(x) + u_p(x)$; plugging this into Equation \ref{eq:first-order-linear-standard-form} gives us:
+
+\begin{multline*}
+\frac{d}{dx}[u_c + u_p] + P(x)[u_c + u_p] = \\
+\left[\frac{du_c}{dx}+P(x)u_c \right] + \left[\frac{du_p}{dx}+P(x)u_p \right] = f(x) 
+\end{multline*}
+where $u_c(x)$ is the solution to the \emph{associated homogeneous problem} 
+\begin{equation}
+\frac{du_c}{dx}+P(x)u_c = 0
+\label{eq:fol_complementary}
+\end{equation}
+and $u_p(x)$ is the solution to:
+\begin{equation}
+\frac{du_p}{dx}+P(x)u_p = f(x)
+\label{eq:fol_particular}
+\end{equation}

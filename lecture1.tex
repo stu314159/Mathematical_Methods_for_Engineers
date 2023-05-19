@@ -43,5 +43,21 @@ A lot of students struggle with discriminating between linear and nonlinear ODEs
 \label{eq:nonlin_2}
 \end{equation}
 \section{Verification of an Explicit Solution} 
+A solution in which the dependent variable is expressed solely in terms of the independent variable and constants is said to be an \emph{explicit} solution.\marginnote{\textbf{Example explicit solution:} $u(x) = f(x)$.} Otherwise, the solution is \emph{implicit}.\marginnote{\textbf{Example implicit solution:} $G(x,u) = 0$} 
 
+\newthought{In this class} we will mainly be interested in finding explicit solutions to differential equations that we are given or have derived.  There are some cases, however, where we are given a function and we wish to verify that it is a solution to a given differential equation.  To do this, we simply ``plug'' the equation into the differential operator and verify that an identity is derived.
+
+\begin{example}
+\textbf{Example:} Verify that $u = \frac{6}{5} - \frac{6}{5}e^{-20t}$ is a solution to:
+$$\frac{du}{dt} + 20u = 24$$
+\vspace{0.5cm}
+\textbf{Solution:}
+Since $\frac{du}{dt} = \frac{d}{dt}(\frac{6}{5} - \frac{6}{5}e^{-20t}) = 24e^{-20t}$, we can see that:
+\begin{align*}
+\frac{du}{dt} + 20u &= 24e^{-20t} + 20(\frac{6}{5} - \frac{6}{5}e^{-20t}) \\
+&= 24e^{-20t} + 24 - 24e^{-20t} \\
+&=24
+\end{align*} 
+which is the expected identity.
+\end{example} 
 
