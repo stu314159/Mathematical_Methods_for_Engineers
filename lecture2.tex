@@ -27,6 +27,7 @@ is said to be \emph{separable} or have \emph{separable variables.}\marginnote[-1
 \item The solution you thus derive may be either implicit or explicit.  An implicit solution is, as a practical matter, fairly inconvenient to deal with; and
 \item It may not be possible to actually carry out the integrals analytically. 
 \end{enumerate}
+Nonetheless, we shall carry on and give it a try anyway.  
 }
 Generally speaking, one of your first checks for a first order equation should be: is it separable?  If so, you should separate the variables and solve.  The examples below are intended to illustrate the method.  Note that in the final example, the integral cannot be done analytically.
 \begin{example}[h!]
@@ -69,6 +70,7 @@ u(x) &= 6 + \int_{2}^{x} e^{-t^2} \ dt
 where we have used the dummy variable $t$ in the integrals; the last integral will need to be evaluated numerically.
 
 \end{example}
+
 \section{Linear Equations}
 A first-order differential equation of the form:
 \begin{equation}
@@ -90,11 +92,14 @@ The method for solving this equation makes use of the \underline{\emph{linearity
 \end{enumerate}
 for functions $u$,$v$ and scalar constant $\alpha$.  Think of this as a \emph{definition} of linearity.} and express the solution in the following way: $u(x) = u_c(x) + u_p(x)$; plugging this into Equation \ref{eq:first-order-linear-standard-form} gives us:
 
-\begin{multline*}
+\begin{multline}
 \frac{d}{dx}[u_c + u_p] + P(x)[u_c + u_p] = \\
 \left[\frac{du_c}{dx}+P(x)u_c \right] + \left[\frac{du_p}{dx}+P(x)u_p \right] = f(x) 
-\end{multline*}
-where $u_c(x)$ is the solution to the \emph{associated homogeneous problem} 
+\label{eq:lin-first-order1}
+\end{multline}
+where $u_c(x)$ is the solution to the \emph{associated homogeneous problem}\marginnote{The linear operator here is: $\mathcal{L}=\frac{d}{dx} + P(x)$.  Equation \ref{eq:fol_complementary} says $\mathcal{L}u_c = 0$; Equation \ref{eq:fol_particular} says $\mathcal{L}u_p = f(x)$; Equation \ref{eq:lin-first-order1} says that $\mathcal{L}(u_c+u_p) = 0+f(x) = f(x)$.}
+\marginnote[0.25cm]{What might trouble you now is: if we have $u_p$, is this not a solution to Equation \ref{eq:first-order-linear-standard-form}?  Why do we need $u_c$?  The next thing that should trouble you is that if $u_p$ is a solution, by the linearity property of $\mathcal{L}$, so is $u_p$ plus \emph{any} constant multiple of $u_c$.  The solution is not \emph{unique}}
+\marginnote[0.25cm]{This will all be resolved when we recall that $u_c$ will have an arbitrary constant through which we will be able to say that $u = u_c + u_p$ is a function describing \emph{all} possible solutions of Equation \ref{eq:first-order-linear-standard-form} and the arbitrary constant in $u_c$ will be set so as to uniquely satisfy a given initial/boundary condition.}
 \begin{equation}
 \frac{du_c}{dx}+P(x)u_c = 0
 \label{eq:fol_complementary}
@@ -104,3 +109,87 @@ and $u_p(x)$ is the solution to:
 \frac{du_p}{dx}+P(x)u_p = f(x)
 \label{eq:fol_particular}
 \end{equation}
+We can see that Equation \ref{eq:fol_complementary} is separable:
+\begin{align*}
+\frac{du_c}{dx}+P(x)u_c &= 0 \\
+\frac{du_c}{u_c} &= -P(x) \ dx \\
+\ln{u_c} + C &= -\int_{P(x) \ dx} \\
+u_c(x) &= e^{-\int P(x) \ dx + C_1} \\
+u_c(x) &= e^{-\int P(x) \ dx}e^{C_1}
+u_c(x) &=Ce^{-\int P(x) \ dx}
+\end{align*}
+where $C = e^{C_1}$.\marginnote{\textbf{Note:} At some point in time, I will desist in making such piddling distinctions between constants.  $C_1$ is an arbitrary constant, $e^{C_1}$ is still an arbitrary constant; there is no real difference between $C_1$ and $C$ and, in this author's humble opinion, they do not rate different symbols.}
+
+\newthought{We need to find} a solution $u_p(x)$ to Equation \ref{eq:fol_particular}.  The technique we will use is called \emph{variation of parameters}.  It consists of looking for a solution in the form $y_p(x) = v(x)u_1(x)$, where $u_1(x) = e^{-\int P(x) \ dx}$ which is $u_c(x)$ with the arbitrary constant set to 1 and $v(x)$ might be thought of as some kind of weighting or \emph{variational} function.
+
+\newthought{We will insert} this proposed form of $y_p(x)$ into Equation \ref{eq:fol_particular}:
+\begin{equation*}
+\frac{d(vu_1)}{dx} + P(x)(v(x)u_1(x))=f(x)
+\end{equation*}
+We apply the product rule to the first term and re-arrange terms:
+\begin{align*}
+u_1(x)\frac{dv}{dx}+ v(x)\frac{du_1}{dx} + P(x)(v(x)u_1(x)) &= f(x) \\
+v(x)\underbrace{\left[\frac{du_1}{dx}+P(x)u_1(x) \right]}_{\textbf{= 0}}+u_1(x)\frac{dv}{dx} &= f(x) \\
+u_1(x)\frac{dv}{dx} &= f(x)
+\end{align*}
+In the last line we can observe that the equation is \emph{separable} and thus solve:
+\begin{align*}
+v(x) &= \int \frac{f(x)}{u_1(x)} \ dx \\
+     &= \int e^{\int P(x) \ dx}f(x) \ dx
+\end{align*}
+Now that we know what $v(x)$ must be, we can combine this with $u_1(x)$ to get $u_p(x)$:
+\begin{equation}
+u_p(x) = e^{-\int P(x) \ dx}\left[\int e^{\int P(x) \ dx}f(x) \ dx \right]
+\label{eq:fol-particular-sol}
+\end{equation}
+Equation \ref{eq:fol-particular-sol} is messy and perhaps a bit scary but given definitions of $P(x)$ and $f(x)$ we might hope we can solve it anyway.  We now have expressions for both $u_c$ and $u_p$; they can be combined into the solution for the first-order linear equation:
+\begin{equation}
+u(x) = Ce^{-\int P(x) \ dx} + e^{-\int P(x) \ dx} \left[e^{\int P(x) \ dx} f(x) \ dx \right]
+\label{eq:fol-solution}
+\end{equation}
+
+\section{Method of Solution}
+Once we have identified a problem to be first-order and linear, we will solve the problem using the following steps:
+\begin{enumerate}
+\item Write the equation in standard form (Equation \ref{eq:first-order-linear-standard-form})
+\item Determine the integrating factor $\mu = e^{-\int P(x) \ dx}$.
+\item Solve for the general solution $u(x)$ using Equation \ref{eq:fol-solution}.
+\item Apply initial/boundary condition if given.
+\end{enumerate}
+
+\vspace{1cm}
+\underline{\textbf{Example:}}
+Solve the problem:
+$$\frac{du}{dx}+u=x, \ \ u(0) = 4$$
+
+\textbf{Solution:}
+
+\textbf{Step 1:}
+The equation is already in standard form, so this step is easy.
+
+\vspace{0.25cm}
+\textbf{Step 2:} Find the integrating factor $\mu$.
+
+$$mu = e^{-\int P(x) \ dx} = e^{-\int 1 \ dx} = e^{-x}$$
+
+\vspace{0.25cm}
+\textbf{Step 3:} Solve for the general solution $u(x)$ using Equation \ref{eq:fol-solution}
+\marginnote[1.25cm]{$\leftarrow$ For the integral $\int e^x x \ dx$ we need to use integration by parts.}
+\begin{align*}
+u(x) &= Ce^{-x}+e^{-x}\int e^{x}x \ dx \\
+&= Ce^{-x} + e^{-x}\left[xe^{x}-e^{x} \right] \\
+&= Ce^{-x} + x - 1
+\end{align*}
+
+\vspace{0.25cm}
+\textbf{Step 4:} Apply initial/boundary conditions if given
+
+\begin{align*}
+u(0) &= Ce^{0} + 0 -1 \\
+ &=C-1 = 4 \\
+ \Rightarrow C &= 5 \\
+ u(x) &= 5e^x+x-1
+\end{align*}
+
+
+
