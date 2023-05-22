@@ -1,0 +1,131 @@
+\chapter{Lecture 3 - Theory of Linear Equations}
+\label{ch:lec3}
+\section{Objectives}
+The objectives of this lecture are:
+\begin{itemize}
+\item Introduce several theoretical concepts relevant to initial value problems and boundary value problems.
+\item Demonstrate use of the Wronskian to determine linear independence of solutions.
+\end{itemize}
+
+\section{Initial Value Problems}
+
+For a linear differential equation, an n\textsuperscript{th}-order initial value problem (IVP) is given by the following governing equation and initial conditions:
+\begin{equation}
+\text{Governing Equation: }a_n(x)\frac{d^n u}{dx^n}+a_{n-1}\frac{d^{n-1}u}{dx^{n-1}}+\cdots+a_1(x)\frac{du}{dx}+a_0(x)u=g(x)
+\label{eq:ivp-ge}
+\end{equation}
+\begin{equation}
+\text{Initial Conditions: }u(x_0)=u_0, \ u^{\prime}(x_0)=u_1,\dots,u^{(n-1)}(x_0)=u_{n-1}
+\label{eq:ivp-ics}
+\end{equation}
+\marginnote[-2.0cm]{\textbf{Note:} for an initial value problem, all of the initial conditions are provided at the same value of $x$; in accordance to custom we call this $x_0$.  The name \emph{initial} condition gives the implication that these conditions are at some ``end'' of the interval (beginnig, left side, whatever) and in most all examples and exercises this is indeed the case.  It is \underline{not} a requirement, however.}
+\noindent \newthought{We seek a} function defined on some interval containing $x_0$ that satisfies the differential equation with $n$ conditions applied.\marginnote{Generally for an n\textsuperscript{th}-order IVP you will need $n$ conditions.} The theorem below, which we will use by \emph{citing} rather than \emph{proving} gives us assurance that, subject some fairly reasonable assumptions, such a solution will exist.  
+
+\begin{theorem}[Existence and Uniqueness for IVPs]
+If $a_n(x),a_{n-1}(x),\dots,a_1(x),a_0(x)$ and $g(x)$ are continuous on an interval $\mathcal{I}$, and if $a_n(x) \ne 0$ for every $x \in \mathcal{I}$, and if $x_0$ is any point in this interval, then a solution $u(x)$ of the IVP exists on the interval and it is unique.
+\label{thm:IVP-exist-and-unique}
+\end{theorem}
+\newthought{For this class} we will adopt a mostly operational definition of continuity: if you can draw the function throughout the specified interval without picking up your pencil or without diverging to infinity, then the function is continuous.  
+
+Consider, as an example, the following initial value problem:
+\begin{equation}
+u^{\prime \prime}-4u = 12x, \ \ u(0)=4, \ u^{\prime}(0)=1
+\end{equation}
+This IVP satisfies the conditions of Theorem \ref{thm:IVP-exist-and-unique} since all of the coefficients and $g(x)$ are continuous and $a_1$ is constant and nonzero; hence a unique solution exists on any interval and that solution is unique.\marginnote[-1.5cm]{Take a moment to verify that $u(x)=3e^{2x}+e^{-2x}-3x$ satisfies both the governing equation and initial conditions and thus is \emph{the} unique solution to this IVP.}
+
+Here is an IVP that does \emph{not} satisfiy the criteria of Theorem \ref{thm:IVP-exist-and-unique}:
+\begin{equation}
+x^2u^{\prime \prime} - 2xu^{\prime}+2u=6, \ \ u(0)=3, \ u^{\prime}(0)=1
+\end{equation}
+\noindent In this case, the coefficients and $g(x)$ are all continuous but $a_2(x)$ is equal to zero at $x=0$.  This might not be a problem---i.e. if $x=0$ is not in the interval of interest for the IVP then we are okay---but since $x_0=0$, $x=0$ \emph{must} be in the domain for the theorem to apply.  So we have no assurances that a solution exists or, if a solution does exist, it may not be unique.\marginnote[-1.5cm]{You should take a moment to verify that $u=cx^2+x+3$ is a solution for \emph{any} choice of parameter $c$.}
+
+\section{Boundary Value Problems}
+For this section let us, without undue loss of generality, consider a 2\textsuperscript{nd}-order boundary value problem (BVP):
+\begin{equation}
+\text{Govering Equation: }a_2(x)\frac{d^2u}{dx^2}+a_1(x)\frac{du}{dx}+a_0(x)u=g(x) 
+\end{equation}
+\begin{equation}
+\text{Boundary Conditions: } y(a)=y_0, \ \ y(b)=y_1, \ \ a \ne b
+\end{equation}
+
+\newthought{Depending on the} boundary conditions, BVPs may have no solutions, one unique solution, or infinitely many solutions.
+
+\vspace{1.0cm}
+\noindent \underline{\textbf{Example:}} The equation $u^{\prime \prime}+16u = 0$ has the general solution $u(t) = c_1 \cos{(4t)}+c_2 \sin{(4t)}$.  Consider the three different sets of boundary conditions provided below.
+\begin{enumerate}[label=\alph*)]
+\item $x(0)=0, \ \ x(\pi/2)=0$
+Application of the first boundary condition gives us $c_1(1)+c_2(0)=0 \Rightarrow c_1 = 0$.  The second boundary condition is $c_2\sin{(2 \pi)} = 0,$ which is true for \emph{any} value of $c_2$.  Therefore there problem has infinitely many solutions.
+\item $x(0)=0, \ \ x(\pi/8)=0$
+The first boundary condition again gives us $c_1=0$; the second condition $c_2\sin{(4 \frac{\pi}{8})}$ is only satisfied if $c_2=0$.  Thus $c_1 = c_2 = 0$; only the trivial solution, $u=0$, satisfies both the differential equation and boundary conditions.  This is not a very interesting solution but at least it \emph{is a solution} so we will take this as an example of a BVP having a unique solution.
+\item $x(0)=0, \ \ x(\pi/2)=1$
+In this case, again $c_1=0$ from the first boundary condition.  This leaves the second boundary condition: $c_2 \sin{\left(4 \frac{\pi}{2}\right)} = c_2(0) = 1$ which cannot be satisfied for any value of $c_2$.  In this case \emph{no} solution exists.
+
+\end{enumerate}
+
+\section{Superposition and Linear Dependence}
+In this section some important theorems regarding IVPs and BVPs will be presented.  No attempt will be made to prove these theorems; we will simply take these theorems as facts that are relevant for this course that you should try to understand as best you can.
+
+\begin{theorem}[Superposition Principle for Homogeneous Equations]
+Let $u_1,u_2,\dots,u_k$ be solutions of a homogeneous n\textsuperscript{th}-order linear differential equation.  Then any linear combination of those solutions 
+$$u = c_1u_1+c_2u_2+\cdots+c_ku_k$$where $c_1,c_2,\dots,c_k$ are arbitrary constants, is also a solution.
+\end{theorem}
+\marginnote[-3.0cm]{\textbf{Note:} It is essential that \emph{both} the govering equation and conditions (boundary or initial) for the linear differential equation are homogeneous.  As a reminder, this means that \emph{all} terms in the governing equation must either a) involve the dependent variable or one of its derivatives; or b) be equal to zero.} 
+As an example, If I denote the linear homogeneous differential equation as $\mathcal{L}$, then $\mathcal{L}(u_i) = 0$ for any $i \in [1,2,\dots,k]$.  By the linearity property of $\mathcal{L}$, for any constants $\alpha$ and $\beta$:
+\begin{align*}
+\mathcal{L}(\alpha u_i + \beta u_j) &=  \alpha \mathcal{L}(u_i) + \beta \mathcal{L}(u_j)\\
+&= \alpha(0) + \beta(0) \\
+&= 0
+\end{align*}
+
+\begin{theorem}[Linear Dependence / Independence of Functions]
+A set of functions $f_1(x),f_2(x),\dots,f_k(x)$ is said to be \emph{linearly dependent} on an interval $\mathcal{I}$ if there exist constants $c_1,c_2,\dots,c_k$, \emph{not \underline{all} of which are zero}, such that
+$$c_1f_1(x) + c_2f_2(x)+\cdots+c_kf_k(x) = 0$$
+\noindent for every $x \in \mathcal{I}$.  If the set of functions is \emph{not} linearly dependent, it is linearly independent.
+\label{th:linear-dep}
+\end{theorem} 
+\marginnote[-1.75cm]{What if a member of the set of function is $f(x)=0$?}
+Repeatedly throughout this course we will want to clarify whether or not, say, two functions are linearly independent of each other.  I think most engineers have a general idea of what it is we \emph{mean} when we say two functions are linearly independent or dependent but Theorem \ref{th:linear-dep} specifies what these things mean \emph{mathematically}.  
+\newthought{We need a test} to help us determine if the members of a set of functions are linearly independent or not. This will be especially important as we evaluate solutions to a linear homogeneous differential equation.  Even if you are the sort of savant who can, by inspection, always detect linear dependence, you might have a hard time convincing your friends that your assessment is always correct.  Luckily, there is a theorem that provides a suitable test that can serve as irrefutable evidence of the state of linear dependence/independence of functions.
+
+\begin{theorem}[Criterion for Linearly Independent Solutions]
+Let $u_1,u_2,\dots,u_n$ be solutions of a homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$.  Then the set of solutions is linearly indepenent on the interval if and only if the Wronskian of the solution is non-zero for every $x \in \mathcal{I}$.  
+\end{theorem}
+The Wronskian is a function that takes functions as arguments and returns a scalar numeric quantity.\sidenote{Sometimes such functions are referred to as \emph{functionals}.}
+\begin{equation}
+W(u_1,u_2,\dots,u_n)=
+\begin{vmatrix}
+u_1 & u_2 & \cdots & u_n \\
+u^{\prime}_1 & u^{\prime}_2 & \cdots & u^{\prime}_n \\
+\vdots & \vdots & \vdots & \vdots \\
+u^{(n-1)}_1 & u^{(n-1)}_2 & \cdots & u^{(n-1)}_n
+\end{vmatrix}
+\label{eq:Wronskian-def}
+\end{equation}
+where $|\cdot|$ donetes the matrix determinant.  For large values of $n$ this is also difficult to calculate but, for the case $n=2$, engineering students should be familiar with the formula:
+\begin{equation}
+W(u_1,u_2) = 
+\begin{vmatrix}
+u_1 & u_2 \\
+u^{\prime}_1 & u^{\prime}_2 \\
+\end{vmatrix}
+= u_1 u^{\prime}_2 - u^{\prime}_1 u_2
+\end{equation}
+
+\begin{definition}[Fundamental Set of Solutions]
+Any set $u_1,u_2,\dots,u_n$ of $n$ linearly independent solutions of the homogeneous linear n\textsuperscript{th}-order differential equation on an interval is said to be a fundamental set of solutions on an interval $\mathcal{I}$.  
+\end{definition}
+\begin{theorem}[Existence of a Fundamental Set]
+There exists a fundamental set of solutions for the homogeneous linear n\textsuperscript{th}-order differential equation on an interval $\mathcal{I}$.
+\end{theorem}
+
+\begin{definition}[General Solution---Homogeneous Equation]
+Let $u_1,u_2,\dots,u_n$ be a fundamental set of solutions to the homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$, then the general solution is:
+$$u(x) = c_1u_1(x)+c_2u_2(x)+\cdots+c_nu_n(x)$$
+\end{definition}
+
+\newthought{It is important} to understand from the above that:
+\begin{itemize}
+\item \emph{any} possible solution to the homogeneous, linear, n\textsuperscript{th}-order differential equation can be constructed by setting the coefficients of the general solution; and
+\item there is \textbf{no} solution that \underline{cannot} be constructed from the general solution.
+\end{itemize}
+
