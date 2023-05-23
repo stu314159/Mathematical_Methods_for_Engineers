@@ -40,7 +40,7 @@ x^2u^{\prime \prime} - 2xu^{\prime}+2u=6, \ \ u(0)=3, \ u^{\prime}(0)=1
 \noindent In this case, the coefficients and $g(x)$ are all continuous but $a_2(x)$ is equal to zero at $x=0$.  This might not be a problem---i.e. if $x=0$ is not in the interval of interest for the IVP then we are okay---but since $x_0=0$, $x=0$ \emph{must} be in the domain for the theorem to apply.  So we have no assurances that a solution exists or, if a solution does exist, it may not be unique.\marginnote[-1.5cm]{You should take a moment to verify that $u=cx^2+x+3$ is a solution for \emph{any} choice of parameter $c$.}
 
 \section{Boundary Value Problems}
-For this section let us, without undue loss of generality, consider a 2\textsuperscript{nd}-order boundary value problem (BVP):
+For this section let us, without undue loss of generality, consider a 2\textsuperscript{nd}-order boundary value problem (BVP):\marginnote{Almost all of the applications we will consider for this class will involve 2\textsuperscript{nd}-order operators.  The way we derive important boundary-value problems from underlying physical laws like conservation of mass and consdervation of energy lead to them being 2\textsuperscript{nd}-order.  Probably the most obvious counterexample is beam theory which involves a 4\textsuperscript{th}-order operator.}
 \begin{equation}
 \text{Govering Equation: }a_2(x)\frac{d^2u}{dx^2}+a_1(x)\frac{du}{dx}+a_0(x)u=g(x) 
 \end{equation}
@@ -56,7 +56,7 @@ For this section let us, without undue loss of generality, consider a 2\textsupe
 \item $x(0)=0, \ \ x(\pi/2)=0$
 Application of the first boundary condition gives us $c_1(1)+c_2(0)=0 \Rightarrow c_1 = 0$.  The second boundary condition is $c_2\sin{(2 \pi)} = 0,$ which is true for \emph{any} value of $c_2$.  Therefore there problem has infinitely many solutions.
 \item $x(0)=0, \ \ x(\pi/8)=0$
-The first boundary condition again gives us $c_1=0$; the second condition $c_2\sin{(4 \frac{\pi}{8})}$ is only satisfied if $c_2=0$.  Thus $c_1 = c_2 = 0$; only the trivial solution, $u=0$, satisfies both the differential equation and boundary conditions.  This is not a very interesting solution but at least it \emph{is a solution} so we will take this as an example of a BVP having a unique solution.
+The first boundary condition again gives us $c_1=0$; the second condition $c_2\sin{(4 \frac{\pi}{8})}$ is only satisfied if $c_2=0$.  Thus $c_1 = c_2 = 0$; only the trivial solution, $u=0$, satisfies both the differential equation and boundary conditions.  This is not a very interesting solution but at least it \emph{is a solution} so we will take this as an example of a BVP having a unique solution.\marginnote{For applications, we will generally be only interested in \emph{non-trivial} solutions; that is, solutions that are not identically equal to zero.}
 \item $x(0)=0, \ \ x(\pi/2)=1$
 In this case, again $c_1=0$ from the first boundary condition.  This leaves the second boundary condition: $c_2 \sin{\left(4 \frac{\pi}{2}\right)} = c_2(0) = 1$ which cannot be satisfied for any value of $c_2$.  In this case \emph{no} solution exists.
 
@@ -69,7 +69,7 @@ In this section some important theorems regarding IVPs and BVPs will be presente
 Let $u_1,u_2,\dots,u_k$ be solutions of a homogeneous n\textsuperscript{th}-order linear differential equation.  Then any linear combination of those solutions 
 $$u = c_1u_1+c_2u_2+\cdots+c_ku_k$$where $c_1,c_2,\dots,c_k$ are arbitrary constants, is also a solution.
 \end{theorem}
-\marginnote[-3.0cm]{\textbf{Note:} It is essential that \emph{both} the govering equation and conditions (boundary or initial) for the linear differential equation are homogeneous.  As a reminder, this means that \emph{all} terms in the governing equation must either a) involve the dependent variable or one of its derivatives; or b) be equal to zero.} 
+\marginnote[-3.0cm]{\textbf{Note:} It is essential that \emph{both} the govering equation and given conditions (boundary or initial) for the linear differential equation are homogeneous.  As a reminder, this means that \emph{all} terms in the governing equation and boundary conditions must either a) involve the dependent variable or one of its derivatives; or b) be equal to zero.} 
 As an example, If I denote the linear homogeneous differential equation as $\mathcal{L}$, then $\mathcal{L}(u_i) = 0$ for any $i \in [1,2,\dots,k]$.  By the linearity property of $\mathcal{L}$, for any constants $\alpha$ and $\beta$:
 \begin{align*}
 \mathcal{L}(\alpha u_i + \beta u_j) &=  \alpha \mathcal{L}(u_i) + \beta \mathcal{L}(u_j)\\
@@ -83,13 +83,17 @@ $$c_1f_1(x) + c_2f_2(x)+\cdots+c_kf_k(x) = 0$$
 \noindent for every $x \in \mathcal{I}$.  If the set of functions is \emph{not} linearly dependent, it is linearly independent.
 \label{th:linear-dep}
 \end{theorem} 
-\marginnote[-1.75cm]{What if a member of the set of function is $f(x)=0$?}
+\marginnote[-1.75cm]{What if a member of the set of functions is $f(x)=0$? 
+
+\vspace{0.25cm}
+
+\noindent\textbf{Answer:} The set will no longer be linearly independent.  The trivial function $f(x)=0$ is not linearly independent from \emph{anything}.}
 Repeatedly throughout this course we will want to clarify whether or not, say, two functions are linearly independent of each other.  I think most engineers have a general idea of what it is we \emph{mean} when we say two functions are linearly independent or dependent but Theorem \ref{th:linear-dep} specifies what these things mean \emph{mathematically}.  
 \newthought{We need a test} to help us determine if the members of a set of functions are linearly independent or not. This will be especially important as we evaluate solutions to a linear homogeneous differential equation.  Even if you are the sort of savant who can, by inspection, always detect linear dependence, you might have a hard time convincing your friends that your assessment is always correct.  Luckily, there is a theorem that provides a suitable test that can serve as irrefutable evidence of the state of linear dependence/independence of functions.
 
 \begin{theorem}[Criterion for Linearly Independent Solutions]
 Let $u_1,u_2,\dots,u_n$ be solutions of a homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$.  Then the set of solutions is linearly indepenent on the interval if and only if the Wronskian of the solution is non-zero for every $x \in \mathcal{I}$.  
-\end{theorem}
+\end{theorem}\index{Wronskian}
 The Wronskian is a function that takes functions as arguments and returns a scalar numeric quantity.\sidenote{Sometimes such functions are referred to as \emph{functionals}.}
 \begin{equation}
 W(u_1,u_2,\dots,u_n)=
@@ -111,12 +115,31 @@ u^{\prime}_1 & u^{\prime}_2 \\
 = u_1 u^{\prime}_2 - u^{\prime}_1 u_2
 \end{equation}
 
+\vspace{0.5cm}
+
+\noindent\textbf{\underline{Example:}} show that the functions $u_1 = e^{3x}$ and $u_2=e^{-3x}$ are linearly independent solutions to the homogeneous linear equation $u^{\prime \prime}-9u=0$ for every $x \in (-\infty,\infty)$.
+
+\noindent\textbf{\underline{Solution:}} The Wronskian is given by:\marginnote{The reader should verify that both $u_1 = e^{3x}$ and $u_2=e^{-3x}$ satisfy the given differential equation.}
+\begin{align*}
+W &= 
+\begin{vmatrix}
+e^{3x} & e^{-3x} \\
+3e^{3x} & -3e^{-3x}
+\end{vmatrix} \\
+&= e^{3x}\left(-3e^{-3x}\right) - 3e^{3x}\left(e^{-3x}\right) \\
+&= 3e^{3x-3x} - 3e^{3x-3x} \\
+&= 3 - 3 \\
+&= 6
+\end{align*}
+\noindent Since $6 \ne 0$ for all $x \in (-\infty,\infty)$ the solutions are linearly independent.
+
 \begin{definition}[Fundamental Set of Solutions]
 Any set $u_1,u_2,\dots,u_n$ of $n$ linearly independent solutions of the homogeneous linear n\textsuperscript{th}-order differential equation on an interval is said to be a fundamental set of solutions on an interval $\mathcal{I}$.  
 \end{definition}
 \begin{theorem}[Existence of a Fundamental Set]
 There exists a fundamental set of solutions for the homogeneous linear n\textsuperscript{th}-order differential equation on an interval $\mathcal{I}$.
 \end{theorem}
+\marginnote[-1.0cm]{\textbf{Note:} This is different than saying that a BVP or IVP has a solution.  This theorem is only refering to the differential equation; not the boundary or initial conditions.}
 
 \begin{definition}[General Solution---Homogeneous Equation]
 Let $u_1,u_2,\dots,u_n$ be a fundamental set of solutions to the homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$, then the general solution is:
@@ -126,6 +149,20 @@ $$u(x) = c_1u_1(x)+c_2u_2(x)+\cdots+c_nu_n(x)$$
 \newthought{It is important} to understand from the above that:
 \begin{itemize}
 \item \emph{any} possible solution to the homogeneous, linear, n\textsuperscript{th}-order differential equation can be constructed by setting the coefficients of the general solution; and
-\item there is \textbf{no} solution that \underline{cannot} be constructed from the general solution.
+\item there is \textbf{no} solution that can be constructed from functions that are linearly independent from the general solution.
 \end{itemize}
+
+\section{General Solution for a Nonhomogeneous Problem}
+Recall: ``nonhomogeneous'' for a linear n\textsuperscript{th}-order differential equation means that $g(x)\ne 0$.  if $u_p$ is any particular solution to the nonhomogeneous, linear, n\textsuperscript{th}-order ODE on an interval $\mathcal{I}$ and $u_c = c_1u_1(x) + c_2u_2(x)+\cdots c_nu_n(x)$ is the general solution to the associated homogeneous ODE (called the \emph{complementary} solution) then the general solution to the nonhomogeneous ODE is:
+\begin{equation*}
+u = u_c + u_p
+\end{equation*}
+
+\vspace{0.25cm}
+
+\noindent\textbf{\underline{Example:}} By substitution it can be seen that $u_p = -\frac{11}{12}-\frac{1}{2}x$ is a particular solution to $u^{\prime \prime \prime}-6u^{\prime \prime} + 11u^{\prime} - 6u=3x$.  The general solution to the associated homogeneous problem is $u_c = c_1e^{x}+c_2e^{2x}+c_3e^{3x}$.\marginnote{You are, again, strongly encouraged to verify that $u_p$ satisfies the given equation and that $u_c$ satisfies the associated homogeneous equation.}  Consequently, the general solution to the linear nonhomogeneous problem is:
+\begin{align*}
+u(x) &= u_c + u_p \\
+&=c_1e^{x}+c_2e^{2x}+c_3e^{3x}-\frac{11}{12}-\frac{1}{2}x
+\end{align*}
 
