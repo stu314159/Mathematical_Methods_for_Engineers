@@ -1,0 +1,71 @@
+\chapter{Lecture 7 - Reveiw of Power Series}
+\label{ch:lec7}
+\section{Objectives}
+The objectives of this lecture are:
+\begin{itemize}
+\item Review definitions and basic properties of power series.
+\item Illustrate important basic operations on power series
+\end{itemize}
+
+\section{Introduction and Review}
+The methods that we have discussed so far have largely been a review of differential equations class.  Sadly, even in the handful of lectures that we have had, our methods for solving equations are largely exhausted.  We can solve constant coefficient linear equations, and variable coefficient linear equations \emph{if} they happen to be Cauchy-Euler equations.  We can solve many first-order linear equations but if the equation is nonlinear we are sunk unless they happen to be separable.  This leaves out a lot of interesting equations.  In this sequence of lectures we will discuss how to solve linear equations with variable coefficients (other than Cauchy-Euler equations).  To do this we will need to use power series. 
+
+\newthought{You learned about} power series back in calculus class, but you weren't ready to use them for this imporant application.  Now you are and now this is what we will do.  We will begin this section with some definitions that will be needed as we describe the use power series in the solution of differential equations.
+
+\subsection{Definitions}
+\begin{definition}[Sequence]
+A \emph{sequence} is a list of numbers (or other mathematical objects, like functions) written in a definite order.
+
+\begin{equation*}
+\left\{c_0, c_1, c_2, c_3, \dots , c_n\right\}
+\end{equation*}
+\end{definition}
+
+\index{limit}
+\index{convergence}
+\index{divergence}
+\begin{definition}[Limit of a Sequence, convergence, divergence]
+A sequence has a \emph{limit} $(L)$ if we can make the terms $c_n$ arbitrarily close to $L$ by taking $n$ sufficiently large.  If $\lim_{n\to \infty} c_n$ exists, we say the sequence \emph{converges}; otherwise, we say the sequence \emph{diverges} or is \emph{divergence}.
+\end{definition}
+
+There are various mathematical tools available for determining if an infinite sequence converges or diverges without needing to examine every element.
+
+\index{series}
+\index{infinite series}
+\begin{definition}[Series, infinite series]
+A \emph{series} is the sum of a sequence. For example, $S_0 = c_0$; $S_1 = c_0+c_1$; $S_n = c_0+c_1+\cdots+c_n$.  If the sequence is infinite, we call the sum an infinite series.
+\end{definition}
+
+\begin{definition}[Series Convergence]
+Given a series $\sum\limits_{n=0}^{\infty}s_i=s_1+s_2+\cdots+s_n+\cdots$, let $s_n$ denote its $n$\textsuperscript{th} partial sum.  If the sequence $\left\{s_n \right\}$ is convergent then the series is convergent to the same limit.  Otherwise the series is divergent.\marginnote{We will usually use notation such as $s_n\to \infty$ to indicate that the partial sum is unbounded.}
+\end{definition}
+
+\index{power series}
+\begin{definition}[Power Series]
+A series of the form $\sum\limits_{n=0}^{\infty}c_n(x-a)^n=c_0+c_1(x-a)+\cdots$ is called a Power Series. The constant $a$ is referred to as the ``center'' of the power series.\marginnote{For almost all of the power series we will work with in this class, the series will be centered on $a=0$ and will be denoted $\sum\limits_{n=0}^{\infty} c_nx^n$.}
+\end{definition}
+
+
+\index{convergence, interval of}
+\index{convergence, radius of}
+\begin{definition}[Interval of Convergence, Radius of Convergence]
+The set of all real numbers $x$ for which the series converges.  This interval can also be expressed as a \emph{radius of convergence.} ($R$); the series converges for all $a-R < x < a+R$.
+\end{definition}
+
+\subsection{Ratio Test}
+We should have at least one test that we can use to decide whether or not a series, at least a power series, converges.  The test we will use is called the \emph{Ratio Test}; so named because it involves the ratio of the $n$\textsuperscript{th} and $(n+1)$\textsuperscript{th} term in a power series.  The Ratio Test is shown in Equation \ref{eq:ratio-test}.
+
+\begin{equation}
+\lim_{n \to \infty}\left|\frac{c_{n+1}(x-a)^{(n+1)}}{c_n(x-a)^n} \right| = \left|x-a \right| \lim_{n \to \infty} \left|\frac{c_{n+1}}{c_n} \right| = L
+\label{eq:ratio-test}
+\end{equation}
+The following cases are considered:
+\begin{itemize}
+\item if $L<1$ then the series converges absolutely.\marginnote{\textbf{Note:} \underline{absolute convergence} means that the series converges irrespective of the signs of each term. (i.e. whether or not all terms are positive, negative, or a mix of both positive and negative.)}
+\item if $L = 1$ then the test is inconclusive; some other test must be used; and
+\item if $L > 1$ then the series diverges.
+\end{itemize}
+
+
+
+
