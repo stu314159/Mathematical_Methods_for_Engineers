@@ -1,0 +1,123 @@
+\chapter{Lecture 6 - Cauchy-Euler Equations}
+\label{ch:lec6}
+\section{Objectives}
+The objectives of this lecture are:
+\begin{itemize}
+\item Introduce Cauchy-Euler equations and demonstrate a method of solution
+\item Carry out some examples to illustrate the methods for 2\textsuperscript{nd}-order, homogeneous Cauchy-Euler equations.
+\end{itemize}
+
+\section{Cauchy-Euler Equations}
+
+A linear differential equation of the form
+\begin{equation}
+a_nx^n\frac{d^n u}{dx^n}+a_{n-1}x^{n-1}\frac{d^{n-1}u}{dx^{n-1}}+\cdots+a_1x\frac{du}{dx}+a_0u=g(x)
+\label{eq:cauchy-euler-eqn}
+\end{equation}
+is called a Cauch-Euler equation.
+
+\newthought{Note the relationship} between the exponent of $x$ is the coeffiicents and the order of the differential operators.  This correspondence between the decreasing power of $x$ in the coefficient and the decreasing order of the differential operator is characteristic of this type of equation and is the way you should recongize it.\marginnote[-2.0cm]{It is the corresponding change in power/order that matters.  $a\frac{d^2u}{dx^2}+\frac{1}{x^2}u=0$ is also a Cauchy-Euler equation since the power of $x$ in the coefficient goes from 0 to -2 while the order of the differential operator goes from 2\textsuperscript{nd} to 0.} 
+
+\newthought{Note that} this equation is \emph{linear}; if $g(x)=0$ it is homogeneous, otherwise it is nonhomogeneous.  For this lecture we will focus our attention on the homogeneous, 2\textsuperscript{nd}-order Cauchy-Euler equation:
+\begin{equation}
+ax^2\frac{d^2u}{dx^2}+bx\frac{du}{dx}+cu=0
+\end{equation}
+
+\newthought{Note that} the coefficient for the highest order derivative is 0 at $x=0$; consequently we will restrict the interval of interest for these equations to $x \in \left(0,\infty\right)$.
+
+\newthought{The basic strategy} in solving these equations is to try a solution in the form $u(x)=x^m$.  When we substitute this solution into the equation we get:
+\begin{align*}
+am(m-1)x^2x^{m-2}+bmxx^{m-1}+cx^m &=0 \\
+x^m\left[am(m-1)+bm+c \right]&=0
+\end{align*}
+That last part in the brackets is referred to as the ``auxiliary equation'':
+\begin{equation}
+am^2+(b-a)m+c=0
+\label{eq:CE-aux}
+\end{equation}
+We will look for values of $m$ that satisfy this quadratic equation; that will be the exponent for our solution.
+
+\newthought{As is the case} for quadratic equation, there are three possible outcomes: 
+
+\begin{enumerate}
+\item \textbf{Distinct Real Roots.} In this case $m_1 \ne m_2$ and the general soltuion is of the form
+\begin{equation}
+u(x)=c_1x^{m_1}+c_2x^{m_2}
+\end{equation}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Example:} find the general solution for $x^2\frac{d^2u}{dx^2}-2x\frac{du}{dx}-4u=0$
+
+\vspace{0.25cm}
+
+\noindent Referring to Equation \ref{eq:CE-aux}, $a=1,\ b=-2, \ c=-4$\marginnote{Be careful with these coefficients; in contrast to the case with constant coefficient linear equations we do not plug these coefficients directly into the quadratic equation; we put them in the auxiliary equation and then solve \emph{that} with the quadratic equation.} so the auxiliary equation is:
+\begin{align*}
+m^2-3m-4 &= 0
+(m-4)(m+1) &=0
+\end{align*}
+By inspection the roots are $m_1=4$ and $m_2=-1$.  The general solution is $u(x)=c_1x^4+c_2x^{-1}$
+
+\vspace{0.5cm}
+
+\item \textbf{Real Repeated Roots.} In this case, $m_1 = m_2$.  We have one solution, $u_1(x)=c_1x^{m_1}$; clearly we need to take some kind of action if we hope to get another linearly independent solution.  It can be shown that if we form the second solution by multiplying the first solution by $\ln{x}$---$u_2(x)=\ln{(x)}u_1(x)$---then $u_2(x)$ will satisfy the governing equation and also be linearly independent from $u_1(x)$.\marginnote{The first one or two times you solve these problems, you should verify both of those assertions.}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Example:} find the general solution for $4x^2 \frac{d^2u}{dx^2}+8x\frac{du}{dx}+u=0$.
+
+\vspace{0.25cm}
+
+\noindent The auxiliary equation in this case is: $4m^2+4m+1=0$.  This can be factored to give $(2m+1)^2=0$ so we have a case of repeated roots where $m_1=m_2=-\frac{1}{2}$.
+
+The solution is: $u(x)=c_1x^{-1/2}+c_2x^{-1/2}\ln{x}$.
+
+\vspace{0.5cm}
+
+\item \textbf{Complex Conjugate Roots.}  This case is completely analogous with the previous cases vis-\`a-vis linear constant coefficient equations.  The roots are $m_{1,2} = \alpha \pm i\beta$ and the general solution is:
+\begin{equation}
+u(x) = x^{\alpha}\left[c_1 \cos{(\beta \ln{x})} + c_2 \sin{(\beta \ln{x})} \right]
+\end{equation}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Example:} Solve: $4x^2 u^{\prime \prime} +17u=0, \ \ u(1)=-1, \ u^{\prime}(1)=-1/2$
+
+\vspace{0.25cm}
+
+\noindent The auxiliary equation is $4m^2-4m+17=0$.  Using the quadratic formula the roots are found to be: 
+\begin{align*}
+m_{1,2} &= \frac{4 \pm \sqrt{16-4(4)(17)}}{8} \\
+&=\frac{1}{2} \pm \frac{\sqrt{-256}}{8} \\
+&=\frac{1}{2} \pm \frac{16i}{8} \\
+&=\underbracket{\frac{1}{2}}_{\alpha} \pm \underbracket{2}_{\beta}i
+\end{align*}
+
+\noindent So the general solution is:
+\begin{equation*}
+u(x)=x^{1/2}\left[c_1 \cos{(2 \ln{x})}+c_2 \sin{(2 \ln{x})} \right]
+\end{equation*}
+We can apply the first boundary condition, $u(1)=-1$:
+\begin{align*}
+u(1) &= 1 \left[c_1 \cos{0} + c_2 \sin{0} \right] \\
+&= c_1(1) + c_2(0) = -1 \\
+\Rightarrow c_1&=-1
+\end{align*}
+The calculus is a bit more tedius for the second boundary condition:
+
+\begin{multline*}
+u^{\prime}(x) = -\frac{1}{2}x^{-1/2}\cos{(2 \ln{x})} + 2x^{-1/2}\sin{(2 \ln{x})} + ...\\
+c_2\left[ \frac{1}{2} x^{-1/2} \sin{(2 \ln{x})} + 2x^{-1/2}\cos{(2 \ln{x})} \right]
+\end{multline*}
+Evaluating this at $x=1$:
+\begin{align*}
+u^{\prime}(1)&=-\frac{1}{2}(1)(1)+2(1)(0)+c_2[0+2(1)(1)] \\
+&=-\frac{1}{2}+2c_2 = -\frac{1}{2} \\
+\Rightarrow c_2&=0
+\end{align*}
+So the solution is: $u(x) = -x^{1/2}\cos{(2 \ln{x})}$
+
+\end{enumerate}
+
+\section{Nonhomogeneous Cauchy-Euler Equations}
+Sadly, the Method of Undetermined Coefficients will not work with Cauchy-Euler equations; a limitation of that method is that the coefficients need to be constant. Interested students can investigate the method of Variation of Parameters that can be used to address this problem analytically.  Otherwise, we will plan to use numerical methods to solve nonhomogeneous problems of this type.
