@@ -174,11 +174,13 @@ u_c(x) = c_1e^{4x}+c_2e^{x}
 
 \noindent\textbf{Answer: } invoke the Modification Rule---this is, after all, the reason why the rule exists---and multiply $u_p$ by $x$.  We now have $u_p(x) = Axe^x$.
 
-We insert this proposed function for $u_p(x)$ into the equation and we get:
+\vspace{0.25cm}
+
+\noindent We insert this proposed function for $u_p(x)$ into the equation and we get:
 \begin{equation*}
 2Ae^x+Axe^x - 5(Ae^x+Axe^x) + 4Axe^x = 8e^x
 \end{equation*} 
-Combine terms and we get:
+Combine terms and solve for $A$:
 \begin{align*}
 2Ae^x-5Ae^x &= 8e^x \\
 -3Ae^x &= 8e^x \\
@@ -188,9 +190,92 @@ So the particular solution is:
 \begin{equation*}
 u_p(x) = -\frac{8}{3}xe^x
 \end{equation*}
-and the general solution to the differential equation is:
-\marginnote{\textbf{Note:} If any of this seems at all sketchy to you, the good news is that you need not worry if your proposed $u_p(x)$ is any good; you can just plug it into the differential equation and find out!  Another way of looking at this is: there's no excuse for a wrong answer.}
+
+\vspace{0.25cm}
+\noindent\textbf{Step \#3:} construct the general solution: $u(x)=u_c(x)+u_p(x)$
+\marginnote{\textbf{Note:} If any of this seems at all sketchy to you, the good news is that you need not worry if your proposed $u_p(x)$ is any good; you can just plug it into the differential equation and find out!}
 \begin{align*}
 u(x) &= u_c(x)+u_p(x) \\
 &=c_1e^{4x}+c_2e^x - \frac{8}{3}xe^{x}
 \end{align*}
+
+\newthought{This last example} illustrates the use of the Sum Rule; it also includes initial condition so the unique solution to the initial value problem can be found.
+
+\vspace{0.25cm}
+
+\noindent\textbf{Example:} solve the initial value problem: $u^{\prime \prime}+u=4x+10\sin{x}$ with initial conditions $u(\pi)=0, \ u^{\prime}(\pi)=2$.
+
+\vspace{0.25cm}
+
+\noindent\textbf{Step \#1:} find the general solution to the associated homogeneous problem.
+
+\vspace{0.25cm}
+
+\noindent The auxiliary equation is: $m^2+1=0$, therefore $m=\pm i$ and $u_c(x)$ can be found as:
+\begin{equation*}
+u_c(x) = c_1\cos{x}+c_2\sin{x}
+\end{equation*}
+
+\vspace{0.25cm}
+
+\noindent\textbf{Step \#2:} Apply the method of undetermined coefficients to construct $u_p(x)$.
+
+\vspace{0.25cm}
+
+\noindent For this problem, $g(x) = 4x+10\sin{x}$ has two terms; so we will construct $u_p(x)$ using one term at a time; $u_{p_1}(x)$ using $4x$ and $u_{p_2}(x)$ using $10\sin{x}$\marginnote[-1.0cm]{It's the linearity property of $\mathcal{L} = \frac{d^2}{dx}+1$ that makes this possible. If $\mathcal{L}(u_{p_1})=4x$ and $\mathcal{L}(u_{p_2})=10\sin{x}$ then $\mathcal{L}(u_{p_1}+u_{p_2})=4x+10\sin{x}$.}  
+
+\vspace{0.25cm}
+
+\noindent\textbf{Step \#2.a:} find $u_{p_1}(x)$.
+
+\vspace{0.25cm}
+
+\noindent From Table \ref{tab:method-of-guessing-table}, for $g(x)=4x$ we should select $u_{p_1} = K_1x+K_0$.  Inserting this into the differential equation gives us: $K_1x + K_0 = 4x$.  By inspection we can see that $K_0 = 0$ and $K_1 = 4$ so $u_{p_1}(x) = 4x$.  
+
+\vspace{0.25cm}
+
+\noindent\textbf{Step \#2.b: } find $u_{p_2}(x)$.
+
+\vspace{0.25cm}
+
+\noindent From Table \ref{tab:method-of-guessing-table}, for $g(x)=10\sin{x}$ we should select $u_{p_2} =  K\cos{x}+M\sin{x}$. Now that we have done this a couple of times we should be on the alert for portions of the complementary solution cropping up in our guesses for $u_p(x)$ so we immediately see that we must multiply $u_{p_2}$ by $x$.  If we do this and insert $Kx\cos{x}+Mx\sin{x}$ into the differential equation we get:
+\begin{multline*}
+\left(-2K-Mx\right)\sin{x}+\left(2M-Kx\right)\cos{x} + \dots \\ Kx\cos{x}+Mx\sin{x} = 10\sin{x}
+\end{multline*}
+
+\vspace{0.25cm}
+
+\noindent Matching coefficients for $\sin{x}$ and $\cos{x}$ on both sides of the above equation leads us to conclude that $M=0$ and $-2K = 10$.  Therefore $K = -5$ and $u_{p_2}(x)=-5x\cos{x}$.\marginnote{Again, there is no harm in testing your proposed $u_{p_2}(x)$ to see if it does indeed produce the expected result.}
+
+\vspace{0.25cm}
+
+\noindent\textbf{Step \#3:} construct the general solution: $u(x)=u_c(x)+u_p(x)$
+
+\begin{align*}
+u(x) &= u_c(x) + u_p(x) \\ 
+&= u_c(x) + u_{p_1}(x)+u_{p_2}(x) \\
+&= c_1\cos{x}+c_2\sin{x}+4x-5x\cos{x}
+\end{align*}
+
+\newthought{All that remains} is to apply the initial conditions.  
+
+\begin{align*}
+u(\pi) &= c_1(-1)+c_2(0)+4\pi -5(\pi)(-1) \\
+&=-c_1+9\pi = 0 \\
+\Rightarrow &= c_1 = 9\pi
+\end{align*}
+
+\vspace{0.25cm}
+
+\noindent Applying the initial condition $u^{\prime}=2$:
+\begin{equation*}
+u^{\prime}(\pi)=-9\pi(0)+c_2(-1)+4-5(-1)+5\pi(0)=2
+\end{equation*}
+
+\vspace{0.25cm}
+
+\noindent Solving for $c_2$ gives us: $c_2 = 7$; folding this into the general solution:
+
+\begin{equation*}
+u(x) = 9\pi \cos{x}+7\sin{x}+4x-5x\cos{x}
+\end{equation*}
