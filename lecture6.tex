@@ -121,3 +121,53 @@ So the solution is: $u(x) = -x^{1/2}\cos{(2 \ln{x})}$
 
 \section{Nonhomogeneous Cauchy-Euler Equations}
 Sadly, the Method of Undetermined Coefficients will not work with Cauchy-Euler equations; a limitation of that method is that the coefficients need to be constant. Interested students can investigate the method of Variation of Parameters that can be used to address this problem analytically.  Otherwise, we will plan to use numerical methods to solve nonhomogeneous problems of this type.
+
+\section{Derivation of the Solution to Cauchy-Euler Equations}
+It would be hard not to notice the similarity in the solution methods of Cauchy-Euler equations and constant coefficient linear equations.  This is not a coincidence.  In this section I want to briefly show you that, through a change of variables, Cauchy-Euler equations are, in some sense, equivalent to constant coefficient equations.
+
+\subsection{Change of Independent Variable}
+What we will do, is change the independent variable from $x$ to $e^t$.\sidenote{Think of this as ``streching'' the $x$-axis.}  If $x = e^t$, that means that $t = \ln{x}$ and $\frac{dt}{dx} = \frac{1}{x} = e^{-t}$.
+
+If we consider, again, the 2\textsuperscript{nd}-order Cauchy-Euler equation,
+\begin{equation*}
+ax^2\frac{d^2u}{dx^2}+bx\frac{du}{dx}+cu = 0
+\end{equation*}
+every appearance of $x$ needs to be converted into its equivalent in terms of $t$ and every derivative with respect to $x$ needs to be converted into derivatives with respect to $t$.
+
+It's easy enough to replace $x$ with $e^t$; converting the derivatives takes a bit more work.  We will use the chain rule as shown below:
+\begin{align*}
+\frac{du}{dx} &= \frac{du}{dt} \frac{dt}{dx} \\
+&=u_t e^{-t}
+\end{align*}
+where we use the subscript notation to denote derivatives with respect to $t$ and use the substitution $\frac{dt}{dx}=e^{-t}$ as determined above.
+
+We do it again, to convert the second derivatives:
+\begin{align*}
+\frac{d^2u}{dx^2} &= \frac{d}{dx}\left(\frac{du}{dx}\right) \\
+&= \frac{d}{dt}\left(\frac{du}{dx}\right)\frac{dt}{dx} \\
+&=\frac{d}{dt}\left(u_t e^{-t}\right)e^{-t} \\
+&= \left(u_{tt}e^{-t}-u_te^{-t}\right)e^{-t} \\
+&= e^{-2t}\left(u_{tt} - u_{t} \right)
+\end{align*}
+
+We are now ready to make our substitutions into the differential equation:
+
+\begin{equation*}
+a\underbracket{e^{2t}}_{x^2}\overbracket{e^{-2t}\left(u_{tt}-u_t\right)}^{\frac{d^2u}{dx^2}}+b\underbracket{e^{t}}_{x}\overbracket{u_te^{-t}}^{\frac{du}{dx}}+cu=0
+\end{equation*}
+Combining terms to simplify gives us Equation \ref{eq:ce-conv} which is now, under this change of variables, a 2\textsuperscript{nd}-order linear constant coefficient equation.
+
+\begin{equation}
+au_{tt} + (b-a)u_t + cy = 0
+\label{eq:ce-conv}
+\end{equation}
+If I solve this using our standard method, the resulting auxiliary equation is the same as what is shown in Equation \ref{eq:CE-aux}.
+
+\newthought{In the case} of constant coefficient linear equations, the solutions were of the form $u = e^{mx}$ which, according to the exponentiation rules, the same as $u = e^{x^m}$.  But now, our independent variable is $t$, where $t=\ln{x}$. With this substitution:
+\begin{align*}
+u(t) &= e^{(\ln{x})^m} \\
+&= x^m
+\end{align*}
+which is the assumed form of solution for Cauchy-Euler equations.
+
+
