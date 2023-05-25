@@ -37,7 +37,7 @@ A \emph{series} is the sum of a sequence. For example, $S_0 = c_0$; $S_1 = c_0+c
 \end{definition}
 
 \begin{definition}[Series Convergence]
-Given a series $\sum\limits_{n=0}^{\infty}s_i=s_1+s_2+\cdots+s_n+\cdots$, let $s_n$ denote its $n$\textsuperscript{th} partial sum.  If the sequence $\left\{s_n \right\}$ is convergent then the series is convergent to the same limit.  Otherwise the series is divergent.\marginnote{We will usually use notation such as $s_n\to \infty$ to indicate that the partial sum is unbounded.}
+Given a series $\sum\limits_{n=0}^{\infty}s_i=s_1+s_2+\cdots+s_n+\cdots$, let $s_n$ denote its $n$\textsuperscript{th} partial sum.  If the sequence $\left\{s_n \right\}$ is convergent then the series is convergent to the same limit.  Otherwise the series is divergent.\marginnote{We will use notation such as $s_n\to \infty$ to indicate that the partial sum is unbounded.}
 \end{definition}
 
 \index{power series}
@@ -66,6 +66,137 @@ The following cases are considered:
 \item if $L > 1$ then the series diverges.
 \end{itemize}
 
+\vspace{0.5cm}
+
+\noindent\textbf{Example: } Find the radius of convergence and associated interval of convergence for the following power series:
+
+\begin{enumerate}
+\item $\sum\limits_{n=0}^{\infty} (-1)^nx^n$
+\begin{align*}
+\lim_{n \to\infty} \left|\frac{c_{n+1}(x-a)^{n+1}}{c_n(x-a)^n} \right| = |x-a| \lim_{n \to\infty} \left|\frac{c_{n+1}}{c_n} \right| = L &< 1, \ \ a=0, \ c_n=(-1)^n \\
+\lim_{n\to\infty}\left|\frac{x^{n+1}}{x^n}\right| &< 1 \\
+\left| x \right| \lim_{n\to\infty} \left| 1 \right| &< 1 \\
+\Rightarrow |x| &< 1
+\end{align*}
+The radius of convergence $R=1$ and the interval of convergence is $x\in(-1,1)$.\marginnote[-1.0cm]{Here I have purposely avoided analyzing the end-points to see if we could use a closed or partially-closed interval instead.  Since we limited $L<1$, that only gives the radius of absolute convergence.  If we wanted to be picky, we could allow $L=1$ and use some other test to determine if the series converges.  If we did that in this case we would find that the series diverges at both endpoints.}  
+
+\vspace{4.0cm}
+
+\item $\sum\limits_{n=0}^{\infty} \frac{(-1)^n x^n}{n(n+1)}$
+\begin{align*}
+\lim_{n \to\infty} \left|\frac{c_{n+1}(x-a)^{n+1}}{c_n(x-a)^n} \right| = |x-a| \lim_{n \to\infty} \left|\frac{c_{n+1}}{c_n} \right| = L &< 1, \ \ a=0, \ c_n=\frac{(-1)^n}{n(n+1)} \\
+\lim_{n \to \infty} \left|\frac{x^{n+1}}{(n+1)(n+1+1)}\frac{n(n+1)}{x^n}  \right|&<1 \\
+|x| \lim_{n \to\infty}\left|\frac{n}{n+2} \right| &<1 \\
+|x| \cancelto{1}{\lim_{n \to\infty}\left|\frac{n}{n+2} \right|}&<1 \\
+|x| &< 1
+\end{align*}
+Once again, the radius of convergence $R=1$ and the interval of convergence is $x\in(-1,1)$.
+
+\vspace{4.0cm}
+
+\item $\sum\limits_{n=1}^{\infty} \frac{x^{2n}}{2^nn^2}$
+
+\begin{align*}
+\lim_{n \to\infty} \left|\frac{c_{n+1}(x-a)^{n+1}}{c_n(x-a)^n} \right| = |x-a| \lim_{n \to\infty} \left|\frac{c_{n+1}}{c_n} \right| = L &< 1, \ \ a=0, \ c_n=\frac{1}{2^n n^2} \\
+\lim_{n \to\infty}\left|\frac{x^{2n+2}}{2^{n+1}(n+1)^2} \frac{2^n n^2}{x^{2n}} \right| &< 1 \\
+\lim_{n \to\infty} \left|\frac{x^2}{2} \frac{n^2}{(n+1)^2} \right| &< 1 \\
+\frac{\left|x^2 \right|}{2} \cancelto{1}{\lim_{n \to\infty}\left|\frac{n^2}{(n+1)^2} \right|} &< 1 \\
+\left|x^2\right| &< 2 \\
+|x| &< \sqrt{2}
+\end{align*}
+In this case the radius of convergence $R=\sqrt{2}$ and the interval of convergence is $x\in(-\sqrt{2},\sqrt{2})$.\marginnote{In this case, more detailed analysis shows that this series converges at both endpoints; a closed interval could be used instead.}
+
+\vspace{2.0cm}
+
+\item $\sum\limits_{n=1}^{\infty} \frac{\left(x-2 \right)^n}{3^n}$ 
+\begin{align*}
+\lim_{n \to\infty} \left|\frac{c_{n+1}(x-a)^{n+1}}{c_n(x-a)^n} \right| = |x-a| \lim_{n \to\infty} \left|\frac{c_{n+1}}{c_n} \right| = L &< 1, \ \ a=2, \ c_n=\frac{1}{3^n} \\
+\lim_{n \to\infty} \left|\frac{\left(x-2\right)^{n+1}}{3^{n+1}} \frac{3^n}{\left(x-2 \right)^n}\right| = L &< 1 \\
+\frac{\left|x-2 \right|}{3} \lim_{n \to\infty}\left|1 \right| &< 1 \\
+|x-2| &< 3
+\end{align*}
+So for this example the radius of convergence is $R=3$ about the center at $x=2$; and the interval of convergence is $x \in (-1,5)$\marginnote{For the interested reader, it can be shown that this series is divergent at both endpoints so it should remain an open interval.}
+\end{enumerate}
+
+\section{Properties of Convergent Series}
+Within the radius of convergence, a power series defines a function.  Within the interval of convergence the function so defined is:\marginnote{If $x$ is not within the interval of convergence for a series or if the series is divergent then \emph{\textbf{none}} of these are true.  This is why it is important to be able to find the interval/radius of convergence.}
+\begin{itemize}
+\item continuous 
+\item differentiable (term-by-term); and
+\item integrable (term-by-term)
+\end{itemize}
 
 
+\begin{definition}[Identity Property for a Power Series]
+If $\sum\limits_{n=0}^{\infty}c_n(x-a)^n=0, \ \ \text{R}>0$, for all numbers $x$ in the interval of convergence then $c_n=0$ for all $n$.
+\end{definition}
+\marginnote[-1.75cm]{Hopefully this definition seems obvious to you.  You will find that most of what we do when using power series to solve homogeneous linear differential equations is carry out the necessary algebra to ensure that the coefficients for some series all are equal to zero. }
+
+
+\begin{definition}[Analytic Function]
+a function $f$ is \emph{analytic} at a point $a$ if it can be represented by a power series in $x-a$ with a positive radius of convergence.
+\end{definition}
+\marginnote[-0.75cm]{This is just a vocabulary term that you should know.}
+
+\subsection{Some Common Power Series}
+You have probably had some exposure to power series in your previous mathematical courses.  As a reminder, I've included the power series representations of some important/common functions.
+
+\begin{enumerate}
+
+\item $\sin{x} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots$
+
+\item $\cos{x} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots$
+
+\item $\ln{x} = \frac{x-1}{x} + \frac{(x-1)^2}{2x^2} + \frac{(x-1)^3}{3x^3} + \cdots$ 
+
+\item $e^x = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \cdots$
+\end{enumerate}
+
+
+\subsection{Combining Power Series}
+This is a, sort of, practical ``utility skill'' that you will need to master in order to be successful at this portion of the course.  What we need to be able to do is combine multiple power series into a single expression.  
+
+\newthought{For example}, consider the two power series below that we want to write as a single power series:
+
+\begin{equation*}
+\sum\limits_{n=2}^{\infty} n(n-1)c_n x^{n-2} - \sum\limits_{n=0}^{\infty} c_n x^{n+1}
+\end{equation*}
+
+If I want to combine these series, I need to overcome two issues:
+\begin{enumerate}
+
+\item the powers of $x$ in each term in both summations need to be ``in phase'' -- that is the corresponding terms need to have the same power of $x$.  The first term in the first summation is constant ($x^0$) while the first term in the second summation is linear ($x^1$). \marginnote[-1.5cm]{It is not only the first term that is important but if you can get the summations in phase for the first term, and if the power of $x$ increases by one with each consecutive term, then if the first term is correct, they will all be correct.}
+
+
+\item the first summation index starts at $n=2$ while the second summation index starts at $n=0$; and
+
+\end{enumerate}
+
+
+\newthought{We will address} these issues one at a time, starting with the first one.  We will leave the summation whose first term is highest order as-is; for all other summations (i.e. if there are more than two) we will ``peel-off'' any lower-order summation terms.
+
+In this case that means we will ``peel-off'; the constant term from the first summation:
+
+$$\underbrace{(2)(1)c_2x^0}_{\text{constant term}} + \underbrace{\sum\limits_{n=3}^{\infty}}_{\text{now }n=3} n(n-1)c_nx^{n-2} + \sum\limits_{n=0}^{\infty}c_nx^{n+1}$$
+Notice that now the summation index for the first summation starts at $n=3$; this is because we've separated out the first term corresponding to $n=2$.  The two remaining summations are ``in phase'' since all of the terms now have the same power of $x$.
+
+\newthought{The second problem} will be fixed by establishing a new common index, $k$, and re-write the existing indices ($n$ for both summations) in terms of $k$.  In each case we will set $k$ equal to the exponent of $x$ appearing in the summation.
+\begin{itemize}
+\item For the first summation---$\sum\limits_{n=3}^{\infty} n(n-1)c_nx^{n-2}$---we set $k=n-2$ because that is the exponent for $x$. We need to eliminate each occurance of $n$ in the summation and replace it with it's equivalent expression in terms of $k$.  From our definition of $k$ for this summation, $n=k+2$. Our summation now can be written:\marginnote{Everywere you see an $n$ in the original summation, replace it with a $k+2$ and simplify.}
+$$\sum\limits_{k=1}^{\infty} (k+2)(k+2-1)c_{k+2}x^k$$ 
+
+\item For the second summation---$\sum\limits_{n=0}^{\infty} c_n x^{n+1}$---we set $k=n+1$ because that is the exponent for $x$ in this summation.  This means $n=k-1$; substituting that expression in our summation gives us:
+$$\sum\limits_{k=1}^{\infty}c_{k-1}x^{k}$$
+\end{itemize}
+
+With these changes our original summation can be written:\marginnote{Notice that I've made some obvious simplifications in the constant term and first summation.}
+\begin{equation}
+2c_2 + \sum\limits_{k=1}^{\infty} (k+2)(k+1)c_{k+2}x^k + \sum\limits_{k=1}^{\infty}c_{k-1}x^{k}
+\end{equation}
+
+The two summations are now ready to be joined into one as shown in Equation \ref{eq:summation-joined}
+\begin{equation}
+2c_2 + \sum\limits_{k=1}^{\infty} \left[(k+2)(k+1)c_{k+2} + c_{k-1}\right] x^{k}
+\label{eq:summation-joined}
+\end{equation}
 
