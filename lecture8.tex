@@ -81,6 +81,7 @@ $c_3 = \frac{-c_1}{(2)(3)}$ & $c_5 = \frac{-c_3}{(4)(5)}=\frac{c_1}{5!}$ & $c_7=
 Each cell in the table above is a formula for the $k$\textsuperscript{th}-coefficient of our power series solution.  Organizing this into a formula for our power series solution gives us:\marginnote{Notice how the even-numbered coefficients are all dependent on $c_0$ and all of the odd-numbered coefficients are dependent on $c_1$.}
 \begin{align*}
 u(x) &= c_0 + c_1x + c_2x^2+c_3x^3+c_4x^4+c_5x^5+c_6x^6+c_7x^7 + \cdots \\
+u(x) &= c_0\left(1 + \frac{c_2}{c_0}x^2 + \frac{c_4}{c_0}x^4 + \frac{c_6}{c_0}x^6 + \cdots \right) + c_1\left(x + \frac{c_3}{c_1}x^3 + \frac{c_5}{c_1}x^5 + \frac{c_7}{c_1}x^7 + \cdots \right) \\
 u(x)&=c_0\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!} + \cdots  \right) + c_1\left(x -\frac{x^3}{3!}+\frac{x^5}{5!} - \frac{x^7}{7!} + \cdots \right)
 \end{align*}
 where in the last line we have substituted the formulas for coefficents $c_2$ through $c_7$ in terms of $c_0$ and $c_1$.
@@ -135,10 +136,15 @@ $c_9 = \frac{c_6}{(9)(8)} = \frac{c_0}{(2)(3)(5)(6)(8)(9)}$ & $c_{10}=\frac{c_7}
 \end{tabular}
 \end{table}
 Organizing the coefficients from the table into an equation we get:
+
+\vspace{1.0cm}
+
 \begin{fullwidth}
-\begin{equation*}
-u(x) = c_0 + c_1x + c_2x^2 + c_3x^3 + c_4x^4 + c_5x^5 + c_6x^6 + c_7x^7+c_8x^8 + c_9x^9 + c_{10}x^{10} + \cdots
-\end{equation*}
+\begin{align*}
+u(x) &= c_0 + c_1x + c_2x^2 + c_3x^3 + c_4x^4 + c_5x^5 + c_6x^6 + c_7x^7+c_8x^8 + c_9x^9 + c_{10}x^{10} + \cdots \\
+u(x) &= c_0\left(1 + \frac{c_3}{c_0}x^3 + \frac{c_6}{c_0}x^6 + \frac{c_9}{c_0}x^9 + \cdots \right) + c_1\left(x + \frac{c_4}{c_1}x^4 + \frac{c_7}{c_1}x^7 + \frac{c_{10}}{c_1}x^{10}+\cdots \right)
+\end{align*}
+which can be written:
 \begin{multline*}
 u(x) = c_0\left(1 + \frac{x^3}{(2)(3)} + \frac{x^6}{(2)(3)(5)(6)} + \frac{x^9}{(2)(3)(5)(6)(8)(9)} + \cdots \right) + \\
 c_1\left(x + \frac{x^4}{(3)(4)} + \frac{x^7}{(3)(4)(6)(7)}+\frac{x^{10}}{(3)(4)(6)(7)(9)(10)} + \cdots \right)
