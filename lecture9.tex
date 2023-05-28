@@ -9,3 +9,99 @@ The objectives of this lecture are:
 \end{itemize}
 
 \section{Solution of an IVP using Power Series}
+
+\newthought{Consider the following} IVP:\marginnote{As before, we will assume $u = \sum\limits_{n=0}^{\infty}c_n x^n$.  This means that $u^{\prime} = \sum\limits_{n=1}^\infty n c_n x^{n-1}$, and $u^{\prime \prime} = \sum\limits_{n=2}^{\infty} n(n-1)c_nx^{n-2}$.}
+\begin{align*}
+\text{Governing Equation:   }& u^{\prime \prime}-(1+x)u = 0, \ \ u\in[0,5]\\
+\text{Initial Conditions:   }& u(0) = 5, \ \ u^{\prime}(0) = 1
+\end{align*}
+Inserting our assumed power series solution into the governing equation gives us:
+\begin{align*}
+\sum\limits_{n=2}^{\infty}n(n-1)c_nx^{n-2} - (1+x)\sum\limits_{n=0}^{\infty}c_nx^n &= 0 \\
+\sum\limits_{n=2}^{\infty}n(n-1)c_nx^{n-2} - \sum\limits_{n=0}^{\infty}c_nx^{n} - \sum\limits_{n=0}^{\infty}c_nx^{n+1} &= 0
+\end{align*}
+\marginnote[-1.0cm]{Note the effect of distributing $-(1-x)$ through the second summation.}
+\noindent We need to evaluate the order of $x$ for the first term in each summation to determine if the summations are in phase:
+\begin{equation*}
+\underbrace{\sum\limits_{n=2}^{\infty}n(n-1)c_nx^{n-2}}_{x^0} - \underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n}}_{x^0} - \underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n+1}}_{x^1} = 0
+\end{equation*}
+To get the three summations in phase we need to strip off the first terms in the first and second summations so that all three summations start at $x^{1}$.  This gives us:
+\begin{equation*}
+2c_2 + \sum\limits_{n=3}^{\infty}n(n-1)c_nx^{n-2} - c_0 - \sum\limits_{n=1}^{\infty} c_nx^n -\sum\limits_{n=0}^{\infty}c_nx^{n+1} = 0
+\end{equation*}
+
+\begin{equation*}
+2c_2 - c_0 + \underbrace{\sum\limits_{n=3}^{\infty}n(n-1)c_nx^{n-2}}_{\substack{k=n-2 \\ n=k+2}} - \underbrace{\sum\limits_{n=1}^{\infty} c_nx^n}_{\substack{k=n \\ n=k}} -\underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n+1}}_{\substack{k=n+1 \\ n=k-1}} = 0
+\end{equation*}
+Substituting within each summation and combining the terms gives us:
+\begin{equation*}
+(2c_2-c_0)x^0 + \sum\limits_{k=1}^{\infty}\left[(k+2)(k+1)c_{k+2} - c_k - c_{k-1} \right]x^k = 0
+\end{equation*}
+As usual, in order to satisfy this equation the coefficients for each power of $x$ must be equal to zero.  For $x^0$ this means $2c_2 - c_0 = 0$;  For all the other powers of $x$, a \emph{three-term recurrance} involving $c_{k-1}$, $c_k$, and $c_{k+2}$ must be satisfied:
+\begin{equation*}
+c_{k+2} = \frac{c_k + c_{k-1}}{(k+2)(k+1)}
+\end{equation*}
+We will help manage the complexity by adopting the following strategy:
+\begin{itemize}
+\item Case 1: Arbitrarily set $c_0 \ne 0$, set $c_1 = 0$ and derive a solution;
+\item Case 2: Arbitrarily set $c_0 = 0$, set $c_1 \ne 0$ and derive a second solution.
+\end{itemize}
+\marginnote[-1.75cm]{These two solutions are sure to be linearly independent since the first will not have a linear term (proportional to $x$) and the second equation will not have a constant term (proportional to $1$).}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Case 1: $c_0 \ne 0, \ \ c_1=0$}
+
+\noindent Since $c_0 \ne 0$, we get $c_2 = \frac{c_0}{2}$. The coefficients derived for the first few values of $k$ are shown in the table to the right.
+\begin{margintable}
+\begin{tabular}{l|l}
+\multicolumn{2}{l}{\textbf{Case 1:}} \\
+$k=1$ & $k=2$ \\
+$c_3 = \frac{c_0 + \cancelto{0}{c_1}}{(2)(3)} = \frac{c_0}{6}$ & $c_4 = \frac{\cancelto{0}{c_1}+c_2}{(3)(4)} = \frac{c_2/2}{12} = \frac{c_0}{24}$\\\hline
+\multicolumn{2}{l}{$k=3$} \\
+\multicolumn{2}{l}{$c_5 = \frac{c_2 + c_3}{(4)(5)} = \frac{c_0/2 + c_0/6}{20} = \frac{c_0}{30}$} \\
+\end{tabular}
+\end{margintable}
+The solution we thus derive is shown below.
+\begin{align*}
+u_1 &= c_0 + c_1x + c_2x^2 + c_3x^3 + c_4x^4 + c_5x^5 + \cdots \\
+u_1 &= c_0\left(1 + \frac{\cancelto{0}{c_1}}{c_0}x + \frac{c_2}{c_0}x^2 + \frac{c_3}{c_0}x^3 + \frac{c_4}{c_0}x^4 + \frac{c_5}{c_0}x^5 + \cdots \right) \\
+u_1 &= c_0\left(1 + \frac{1}{2}x^2 + \frac{1}{6}x^3 + \frac{1}{24}x^4 + \frac{1}{30}x^5 + \cdots \right)
+\end{align*}
+
+\vspace{1.0cm}
+
+\noindent\textbf{Case 2: $c_0 = 0, \ \ c_1 \ne 0$}
+
+Since $c_1 = 0$ and $c_2 = \frac{c_0}{2}$, $c_2 = 0$.  The coefficients derived for the first few values of $k$ are shown in the table.
+
+\begin{margintable}
+\begin{tabular}{l | l}
+\multicolumn{2}{l}{\textbf{Case 2:}} \\
+$k=1$ & $k=2$ \\
+$c_3 = \frac{\cancelto{0}{c_0}+c_1}{(2)(3)} = \frac{c_1}{6}$ & $c_4 = \frac{c_1 + \cancelto{0}{c_2}}{(3)(4)} = \frac{c_1}{12}$\\\hline
+\multicolumn{2}{l}{$k=3$} \\
+\multicolumn{2}{l}{$c_5 = \frac{\cancelto{0}{c_2}+c_3}{(4)(5)} = \frac{c_1/6}{20} = \frac{c_1}{120}$}\\
+\end{tabular}
+\end{margintable}
+The solution we thus derive is shown below:
+\begin{align*}
+u_2 &= \cancelto{0}{c_0} + c_1x + c_2x^2 + c_3x^3 + c_4x^4 + c_5x^5 + \cdots \\
+u_2 &= c_1 \left(x + \frac{\cancelto{0}{c_2}}{c_1}x^2 + \frac{c_3}{c_1}x^3 + \frac{c_4}{c_1}x^4 + \frac{c_5}{c_1}x^5 \cdots \right) \\
+u_2 &= c_1 \left(x+\frac{1}{6}x^3 + \frac{1}{12}x^4 + \frac{1}{120}x^5 + \cdots \right)
+\end{align*}
+We now have two linearly independent solutions to the governing equation:
+\begin{multline*}
+u(x) = u_1(x) + u_2(x) = c_0\left(1 + \frac{1}{2}x^2 + \frac{1}{6}x^3 + \frac{1}{24}x^4 + \frac{1}{30}x^5 + \cdots \right) + \\ 
+c_1\left(x + \frac{1}{6}x^3 + \frac{1}{12}x^4 + \frac{1}{120}x^5 + \cdots \right)
+\end{multline*}
+We are now ready to apply the initial conditions.  
+\begin{align*}
+u(0) &= c_0 = 5 \\
+u^{\prime}(0) &= c_1 = 1
+\end{align*}
+So the final solution is:
+\begin{multline*}
+u(x)= 5\left(1 + \frac{1}{2}x^2 + \frac{1}{6}x^3 + \frac{1}{24}x^4 + \frac{1}{30}x^5 + \cdots \right) + \\ 
+\left(x + \frac{1}{6}x^3 + \frac{1}{12}x^4 + \frac{1}{120}x^5 + \cdots \right)
+\end{multline*}

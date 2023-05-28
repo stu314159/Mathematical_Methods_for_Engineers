@@ -47,6 +47,10 @@ u^{\prime \prime} + u &= 0 \\
 
 \noindent We need to combine the two summations.  It is clear that the summation indexes start at different values but we are lucky in that the summations are already ``in phase'' since the first term in each summation is a constant $(x^0)$ term.
 
+\begin{equation*}
+\underbrace{\sum\limits_{n=2}^{\infty} n(n-1)c_nx^{n-2}}_{\substack{k=n-2 \\ n=k+2}} + \underbrace{\sum\limits_{n=0}^{\infty} c_n x^n}_{\substack{k=n \\ n=k}} = 0
+\end{equation*}
+
 \noindent For the first summation $k=n-2$, so $n=k+2$; we will use these defintions to re-write the first summation.  For the second summation, $k=n$ so all we need to do for the second summation is replace all the $n$'s with $k$'s.  The results of these substitutions and the combined summation are shown below:
 
 \begin{align*}
@@ -110,7 +114,11 @@ So we must separate out the first term in the first summation to get the summati
 \begin{equation*}
 (2)(1)c_2x^0 + \sum\limits_{n=3}^{\infty}n(n-1)c_n x^{n-2} - \sum\limits_{n=0}^{\infty}c_n x^{n+1} = 0
 \end{equation*}
-Next we must combine our indices using $k=n-2$ for the first summation and $k=n+1$ for the second summation respectively.\marginnote[-0.5cm]{\textbf{Reminder:} we take our definition of $k$ from the \underline{exponent for $x$} in each summation term.}  Doing this gives us:\marginnote[0.5cm]{Do not forget the minus sign in front of the second summation.  It is easy to miss.}
+Next we must combine our indices using $k=n-2$ for the first summation and $k=n+1$ for the second summation respectively.\marginnote[-0.5cm]{\textbf{Reminder:} we take our definition of $k$ from the \underline{exponent for $x$} in each summation term.}  
+\begin{equation*}
+2c_2x^0 + \underbrace{\sum\limits_{n=3}^{\infty}n(n-1)c_n x^{n-2}}_{\substack{k=n-2 \\n=k+2}} - \underbrace{\sum\limits_{n=0}^{\infty}c_n x^{n+1}}_{\substack{k=n+1 \\ n=k-1}} = 0
+\end{equation*}
+Doing this gives us:\marginnote[0.5cm]{Do not forget the minus sign in front of the second summation.  It is easy to miss.}
 \begin{equation*}
 2c_2 + \sum\limits_{k=1}^{\infty} \left[(k+2)(k+1)c_{k+2} - c_{k-1}\right]x^k = 0
 \end{equation*}
