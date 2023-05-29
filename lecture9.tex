@@ -105,3 +105,111 @@ So the final solution is:
 u(x)= 5\left(1 + \frac{1}{2}x^2 + \frac{1}{6}x^3 + \frac{1}{24}x^4 + \frac{1}{30}x^5 + \cdots \right) + \\ 
 \left(x + \frac{1}{6}x^3 + \frac{1}{12}x^4 + \frac{1}{120}x^5 + \cdots \right)
 \end{multline*}
+
+\section{Generating and Plotting Solutions with MATLAB}
+The point of doing all of this math is to gain insight.  In many cases systems of interest are subject to physical laws that are expressed in the form of differential equations; we solve these differential equations to better understand how the systems will perform.  
+
+\newthought{There are two problems} that I hope to address with this section.  
+\begin{enumerate}
+\item It is both tedious and error-prone to generate the coefficients for the series solution.  we worked hard to constuct a small portion of the power series solutions and we hope that we did it without any errors.  With a modest amount of programming, we will construct a script that can build a series solution with as many terms as we would like.  With conscientious debugging we can be sure that, floating point roundoff errors aside, the calculations are done quickly and correctly.  
+
+\item We may gain considerably more insight from the solution if we can create a plot.  If the plot can easily be made with the same computing tools used to generate the solution, we can get this insight with very little extra work.
+\end{enumerate}
+
+We will use MATLAB to generate and plot the solutions.  We start our MATLAB script in the same way we will start \emph{all} of our MATLAB scripts: with the following three lines:\marginnote{This is done in accordance with the MATLAB Style Rules for this course.  These rules are listed in the Appendices and I will try to exemplify the rules in the code I provide as examples in the lectures.}
+\begin{lstlisting}[name=lec9_ex1]
+clear
+clc
+close 'all'
+\end{lstlisting}
+Next we will specify the order of the solution we will construct, and thus the number of coefficients that we need to compute for each solution and construct arrays to store the coefficients.\marginnote{We will use two arrays to store the coefficients; one for $u_1(x)$ and the other for $u_2(x)$.}
+\begin{lstlisting}[name=lec9_ex1]
+n=25;
+C1 = nan(1,n);
+C2 = nan(1,n);
+\end{lstlisting}
+Recall that for $u_1(x)$ we applied our strategy for ``case 1'' in which we assumed that $c_0 \ne 0$ and $c_1 = 0$.  This implied that $c_2 = c_1/2$ while the recurrence relation was used for all of the other coefficients.  When we applied the initial conditions we found that $c_0=5$ for $u_1(x)$.  The code snippet below accomplishes these tasks.\marginnote{Note how each line of MATLAB in this listing is terminated with a semicolon.  This is to suppress the output to the commandline that would otherwise happen each time we make an assignment to a variable.  While this output might be helpful during debugging, during any other time it is distracting (drowning out other, more useful output) and slows code execution.}
+\begin{lstlisting}[name=lec9_ex1]
+C1_0 = 5; % special case since MATLAB array indices start at 1
+C1(1) = 0;
+C1(2) = C1_0/2;
+
+% handle the k=1 case separately since it involves the term C1_0
+k = 1;
+C1(k+2) = (C1(k) + C1_0)/((k+1)*(k+2));
+
+for k=2:(n-2)
+  C1(k+2) = (C1(k) + C1(k-1))/((k+1)*(k+2));
+end
+\end{lstlisting} 
+Now we have calculated all of the desired coefficients, we are ready to construct the first solution.\marginnote{Here $u_1(x)$ is created as an \emph{anonymous} function.  We begin with the constant term on line 28 and build up the function term-by-term within the \emph{for} loop on line 30. }
+\begin{lstlisting}[name=lec9_ex1]
+u1 = @(x) C1_0;
+for k = 1:n
+  u1 = @(x) u1(x) + C1(k)*x.^k;
+end
+\end{lstlisting}
+We continue in this same vein to construct $u_2(x)$ as we did in our ``case 2'' strategy and construct the solution $u(x) = u_1(x) + u_2(x)$.
+\begin{lstlisting}[name=lec9_ex1]
+C2_0 = 0;
+C2(1) = 1; % from the initial condition
+C2(2) = C2_0/2; % just adding for consistency's sake
+
+k=1;
+C2(k+2) = (C2(k) + C2_0)/((k+1)*(k+2));
+for k = 2:(n-2)
+  C2(k+2) = (C2(k) + C2(k-1))/((k+1)*(k+2));
+end
+
+u2 = @(x) C2_0;
+for k = 1:n
+  u2 = @(x) u2(x) + C2(k)*x.^k;
+end
+
+u = @(x) u1(x) + u2(x);
+\end{lstlisting}
+
+\newthought{Now that we} have a MATLAB representation of the solution, let us create a plot.  One way to make such a plot is shown in the listing below; the output is shown in Figure \ref{fig:lec9_fig1}.:
+\begin{marginfigure}
+\includegraphics{lec9_fig1.png}
+\caption{Power series solution to $u^{\prime \prime}-(1+x)u=0, \ u(0)=5,\ u^{\prime}(0)=1$.}
+\label{fig:lec9_fig1}
+\end{marginfigure}
+\begin{lstlisting}[name=lec9_ex1]
+xMin = 0; xMax = 5;
+figure(1)
+fplot(u,[xMin, xMax],'linewidth',2);
+title_str = sprintf('Lecture 9 Series n = %d',n);
+title(title_str,'fontsize',18,'fontweight','bold');
+xlabel('X','fontsize',16,'fontweight','bold');
+ylabel('U(X)','fontsize',16,'fontweight','bold');
+set(gca,'fontsize',12,'fontweight','bold');
+grid on
+\end{lstlisting}
+\marginnote{\textbf{Note:} pay particular attention to the formatting details of the plot.  There is a title along with axis-labels for both the x- and y-axis; fonts are bold and sized in a particular way and gridlines are used.  These details have all been added in observence of MATLAB Style rule \#4.} 
+\newthought{A few more} details are worth noting.  
+\begin{enumerate}
+\item We know our solution is wrong since we truncated the infinite power series and used finite-precision arithmetic while calculating the coefficients for those terms we \emph{did} bother to include.  Still, we might want to know \emph{how wrong} the solution is.
+\item Taking a more positive tack, we might ask how much \emph{better} the solution gets when we add more terms to our solution.
+\end{enumerate}
+To answer either of these questions, we will need access to the solution of the IVP.  For this lecture, we will take a numeric solution generated using MATLAB's built-in IVP-solving tool \emph{ODE45} as ``the solution.''\marginnote[-1.0cm]{Use of tools such as \emph{ODE45} will be treated in the numerical methods section.}
+\begin{marginfigure}
+\includegraphics{lec9_ps_compare.png}
+\caption{Power series solution with different values of $n$.}
+\label{fig:lec9_ps_compare}
+\end{marginfigure}
+
+Power series results for various values of $n$ are compared to the numerical solution in Figure \ref{fig:lec9_ps_compare}.  Some things to notice:
+\begin{enumerate}
+\item The solution gets worse the further one gets from zero; and
+\item The solution gets better for larger values of $n$.  
+\end{enumerate}
+Neither of these observations should be particularly surprising but there is value to seeing it in your results; it adds confidence to the proposition that your (approximate) solution is correct.
+
+\newthought{As a last note} it should be pointed out that, while plots like that shown in Figure \ref{fig:lec9_ps_compare} gives a good qualitative feel for how the solution is improving as the number of power series terms increases, a quantitative measure for correctness is preferable.  In Figure \ref{fig:lec9_ps_converge} a quantitative measure---the relative error in the 2-norm---is used to quantify the difference between different power series solutions and the solution generated using \emph{ODE45}. 
+\begin{marginfigure}
+\includegraphics{lec9_ps_converge.png}
+\caption{Convergence of the power series solution to the numeric solution.}
+\label{fig:lec9_ps_converge}
+\end{marginfigure}   
+
