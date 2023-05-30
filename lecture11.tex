@@ -1,0 +1,40 @@
+\chapter{Lecture 11 - Solutions about Singular Points}
+\label{ch:lec11}
+\section{Objectives}
+The objectives of this lecture are:
+\begin{itemize}
+\item Define regular and irregular singular points and give examples of their classification.
+\item Describe the Extended Powre Series Method (Method of Frobenius)
+\item Do an example problem
+\end{itemize}
+
+\section{Definitions}
+Consider a linear, homogeneous, second-order differential equation in standard form as shown below:
+\begin{equation*}
+u^{\prime \prime} + P(x)u^{\prime} + Q(x)u = 0
+\end{equation*}
+
+\begin{definition}[Singular Point]
+A \emph{singular point}, $x_0$, is a point where $P(x)$ or $Q(x)$ are not analytic.
+\end{definition}
+
+\begin{definition}[Regular/Irregular Singular Point]
+A singular point $x_0$ is said to be a \emph{regular} singular point of the differential equation if the functions $p(x)=(x-x_0)P(x)$ and $q(x)=(x-x_0)^2Q(x)$ are both analytic at $x_0$.  If a singular point is not regular, it is \emph{irregular}.
+\end{definition}
+
+\noindent\textbf{Example:} Classify the singular points of $(x^2-4)^2u^{\prime\prime}+3(x-2)u^{\prime}+5u = 0$
+
+\vspace{0.5cm}
+
+\noindent In standard form, $P(x) = \frac{3(x-2)}{(x^2-4)^2} = \frac{(3(x-2)}{(x+2)^2(x-2)^2}$; and $Q(x) = \frac{5}{(x+2)^2(x-2)^2}$.  There are two singular points: -2 and 2.\marginnote{$x_0=2:\ \ p(x) = \frac{\cancel{(x-2)}3\cancel{(x-2)}}{(x+2)^2 \cancel{(x-2)^2}}$, so $p(x) = \frac{3}{(x+2)^2}$ which is analytic at $x=2$.
+
+\vspace{0.25cm}
+
+$x_0=-2: \ \ p(x) = \frac{(x+2)3(x-2)}{(x+2)^2(x-2)^2}$ so $p(x) = \frac{3(x-2)}{(x+2)(x-2)}$.}
+Work is shown in the margin for $p(x)$.  From the work in the margin it should be clear for this problem that $q(x)$ is analytic at both $x=-2$ and $x=2$ but since $p(x)$ is not analytic at $x_0=-2$, $x_0=-2$ is an irregular singular point and $x_0=2$ is a regular singular point.
+
+\begin{theorem}[Frobenius' Theorem]
+If $x=x_0$ is a \emph{regular} singular point then at least one non-zero solution of the form:
+$$u(x) = (x-x_0)^r\sum\limits_{n=0}^{\infty}c_n(x-x_0)^n = \sum\limits_{n=0}^{\infty}c_n(x-x_0)^{n+r}$$
+where $r$ is to be determined.  The series will converge at least on some radius of convergence defined by: $0<x-x_0<R$.
+\end{theorem}
