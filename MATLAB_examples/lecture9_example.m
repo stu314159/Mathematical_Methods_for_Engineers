@@ -56,7 +56,7 @@ title('Relative Error','fontsize',14,'fontweight','bold');
 xlabel('X','FontSize',12,'FontWeight','bold');
 ylabel('Relative Error','FontSize',12,'FontWeight','bold');
 sol_rel_err_norm = norm(sol_rel_err,2);
-fprintf('The 2-norm of the relative error = %g',...
+fprintf('The 2-norm of the relative error = %g \n',...
     sol_rel_err_norm);
 
 %%
