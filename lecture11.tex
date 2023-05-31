@@ -37,4 +37,190 @@ Work is shown in the margin for $p(x)$.  From the work in the margin it should b
 If $x=x_0$ is a \emph{regular} singular point then at least one non-zero solution of the form:
 $$u(x) = (x-x_0)^r\sum\limits_{n=0}^{\infty}c_n(x-x_0)^n = \sum\limits_{n=0}^{\infty}c_n(x-x_0)^{n+r}$$
 where $r$ is to be determined.  The series will converge at least on some radius of convergence defined by: $0<x-x_0<R$.
+\label{thm:frobenius}
 \end{theorem}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Example:} find a series solution to: $3xu^{\prime \prime} + u^{\prime} - u = 0$\marginnote{You should verify that this equation has a regular singularity at $x_0=0$.}
+
+\noindent Per Theorem \ref{thm:frobenius} this equation should have a solution of the form $u = \sum_{n=0}^{\infty}c_nx^{n+r}$ where $r$ is constant. Taking the first and second derivatives we get:\marginnote{Notice in this case that the summations for $u^{\prime}$ and $u^{\prime \prime}$ start at $n=0$ while for the power series solution method the starting index for $u^{\prime}$ was $n=1$ and the starting index for $u^{\prime \prime}$ was $n=2$.  The reason for the difference is the factor $x^r$; there most likely are not any constant terms to the series so taking derivatives does not make any terms zero.}
+\begin{align*}
+u^{\prime} &= \sum\limits_{n=0}^{\infty}(n+r)c_nx^{n+r-1} \\
+u^{\prime\prime} &= \sum\limits_{n=0}^{\infty}(n+r)(n+r-1)c_nx^{n+r-2}
+\end{align*}
+
+\noindent We insert these expressions into the differential equation and will combine the summations to derive recurrence relations.
+
+%\begin{fullwidth}
+\begin{align*}
+3x\sum\limits_{n=0}^{\infty}(n+r)(n+r-1)c_nx^{n+r-2} + \sum\limits_{n=0}^{\infty}(n+r)c_nx^{n+r-1} - \sum\limits_{n=0}^{\infty}c_nx^{n+r} &= 0 \\
+\sum\limits_{n=0}^{\infty}3(n+r)(n+r-1)c_nx^{n+r-1} + \sum\limits_{n=0}^{\infty}(n+r)c_nx^{n+r-1} - \sum\limits_{n=0}^{\infty}c_nx^{n+r} &= 0 \\
+\end{align*}
+%\end{fullwidth}
+\begin{align*}
+x^r\left[\underbrace{\sum\limits_{n=0}^{\infty}3(n+r)(n+r-1)c_nx^{n-1}}_{\substack{\text{for }n=0 \\ x^{-1}}} + \underbrace{\sum\limits_{n=0}^{\infty}(n+r)c_nx^{n-1}}_{\substack{\text{for }n=0 \\ x^{-1}}} - \underbrace{\sum\limits_{n=0}^{\infty}c_nx^n}_{\substack{\text{for }n=0 \\ x^{0}}} \right] &= 0 \\
+\end{align*}
+We can see now that one term must be ``peeled off'' from the first two summations in order to get the summations in phase. 
+
+
+\begin{multline}
+x^r \left[\sum\limits_{n=1}^{\infty} 3(n+r)(n+r-1)c_nx^{n-1} + \sum\limits_{n=1}^{\infty} (n+r)c_nx^{n-1} - \sum\limits_{n=0}^{\infty}c_nx^n \right] + \cdots \\
+\underbrace{x^r\left[3r(r-1) + r \right]c_ox^{-1}}_{\substack{\text{first terms from} \\ \text{first two summations}}} = 0
+\label{eq:lec11_ex1_e1}
+\end{multline}
+Let us focus for a moment on the last term on the left-hand side of Equation \ref{eq:lec11_ex1_e1}.\marginnote{$x^{r}\left[3r(r-1)+r \right]c_ox^{-1}=0$
+
+\vspace{0.5cm}
+
+\noindent\textbf{Option \#1} set $c_0 = 0$; 
+
+\vspace{0.25cm}
+
+\noindent\textbf{Option \#2} set $r$ to a root of $3r(r-1)+r = 0$.}  We know from our experience with the power series solution process that, in order to \emph{solve} the equation, the coefficient for each power of $x$ needs to be zero.  Consider now specifically the coefficient for $x^{r-1}$.  It needs to be zero; there are a couple of ways that can happen which are shown in the margin note.
+
+\newthought{The customary procedure} for Method of Frobenius dictates that we go with option \#2.  We refer to---$3r(r-1)+r = 0$---as the \emph{indicial equation} and the roots of the indicial equation are known as the \emph{indicial roots.}\sidenote[][-0.5cm]{For second-order problems, the form of the indicial equation will be a quadratic.  The details will be different for different problems but the indicial equation will always be second-order.} 
+
+\newthought{For this case,} the indicial equation can be factored:
+\begin{align*}
+f(x) &= 3r(r-1)+r \\
+&=3r^2-3r+r \\
+&=3r^2-2r \\
+&=r(3r-2) = 0
+\end{align*}
+so the roots are $r_1=0$, and $r_2 = \frac{2}{3}$. So long as $r$ is chosen to be one of those values, the coefficient for $x^{r-1}$ will be zero.  Let us refocus our attention on the remaining terms:
+
+\begin{equation*}
+x^r \left[\sum\limits_{n=1}^{\infty} 3(n+r)(n+r-1)c_nx^{n-1} + \sum\limits_{n=1}^{\infty} (n+r)c_nx^{n-1} - \sum\limits_{n=0}^{\infty}c_nx^n \right] = 0
+\end{equation*}
+The summations are all in phase---recall that is how we obtained the indicial equation---but we need to combine the three summations under a common index.
+\begin{equation*}
+x^r \left[\underbrace{\sum\limits_{n=1}^{\infty} 3(n+r)(n+r-1)c_nx^{n-1}}_{\substack{k=n-1 \\ n=k+1}} + \underbrace{\sum\limits_{n=1}^{\infty} (n+r)c_nx^{n-1}}_{\substack{k=n-1 \\ n=k+1}} - \underbrace{\sum\limits_{n=0}^{\infty}c_nx^n}_{\substack{k=n \\n=k}} \right] = 0
+\end{equation*}
+Making the indicated substitution in each summation gives us:
+\begin{equation*}
+x^r\left\{\sum\limits_{k=0}^{\infty} \underbrace{\left[\underbrace{3(k+1+r)(k+r)c_{k+1}+(k+1+r)c_{k+1}}_{(k+1+r)(3(k+r)+1)c_{k+1}} - c_k\right]}_{(k+1+r)(3(k+r)+1)c_{k+1} - c_k = 0}x^k\right\} = 0
+\end{equation*}
+The resulting two-term recurrence relation for the coefficient for $x^{k+r}$ is:
+\begin{equation*}
+c_{k+1}=\frac{c_k}{(k+1+r)(3k+3r+1)}
+\end{equation*}
+We have two cases: one for $r=0$; the other for $r = \sfrac{2}{3}$.
+
+\vspace{0.25cm}
+\noindent$r=0:$
+\begin{equation*}
+c_{k+1} = \frac{c_k}{(k+1)(3k+1)}
+\end{equation*}
+\noindent Coefficients are shown in the table in the margin; the resulting solution is:
+\begin{margintable}
+\begin{tabular}{|l|} 
+\hline
+\textbf{case 1, } $\mathbf{r = 0}$ \\\hline
+$k = 0$ \\
+$c_1 = \frac{c_0}{(1)(1)} = c_0$ \\\hline
+$k = 1$ \\
+$c_2 = \frac{c_1}{(2)(4)} = \frac{c_0}{8}$ \\\hline
+$k=2$ \\
+$c_3 = \frac{c_2}{(3)(7)} = \frac{c_0}{(3)(7)(8)}$\\\hline
+\end{tabular}
+\end{margintable}
+
+\begin{align*}
+u_1(x) &= x^0\left(c_0 + c_1x + c_2x^2 + c_3x^3 + \cdots \right) \\
+&= c_0\left(1 + \frac{c_1}{c_0}x + \frac{c_2}{c_0}x^2 + \frac{c_3}{c_0}x^3 + \cdots \right) \\
+&= c_0\left(1+x+\frac{1}{8}x^2+\frac{1}{168}x^3+\cdots \right)
+\end{align*}
+\vspace{0.25cm}
+\noindent$r=\sfrac{2}{3}:$
+\begin{align*}
+c_{k+1} &=\frac{c_k}{(k+1+\frac{2}{3})(3k+3\left(\frac{2}{3}\right)+1)}\\
+&=\frac{c_k}{\left(k+\frac{5}{3}\right)(3k+3)} \\
+&=\frac{c_k}{(3k+5)(k+1)}
+\end{align*}
+\noindent Coefficients are shown in the table inthe margin; the resulting solution is:
+\begin{margintable}
+\begin{tabular}{|l|}
+\hline
+\textbf{case 2, } $\mathbf{r=\sfrac{2}{3}}$ \\\hline
+$k=0$ \\
+$c_1 = \frac{c_0}{(5)(1)} = \frac{c_0}{5}$ \\\hline
+$k=1$ \\
+$c_2 = \frac{c_1}{(8)(2)} = \frac{c_0}{(2)(5)(8)}$ \\\hline
+$k=2$ \\
+$c_3 = \frac{c_2}{(11)(3)} = \frac{c_0}{(2)(3)(5)(8)(11)}$\\\hline
+\end{tabular}
+\end{margintable}
+\begin{align*}
+u_2(x) &= x^{\sfrac{2}{3}}\left(c_0 + c_1x + c_2x^2 + c_3x^3 + \cdots \right) \\
+&= c_0x^{\sfrac{2}{3}}\left(1 + \frac{c_1}{c_0}x+\frac{c_2}{c_0}x^2+\frac{c_3}{c_0}x^3 + \cdots \right) \\
+&= c_0x^{\sfrac{2}{3}}\left(1+\frac{1}{5}x + \frac{1}{80}x^2+\frac{1}{264}x^3 + \cdots  \right)
+\end{align*}
+
+\newthought{A quick inspection} of $u_1(x)$ and $u_2(x)$ should be sufficient to convince you that the solutions are linearly independent.  The general solution to the differential equation comprises a linear combination of $u_1(x)$ and $u_2(x)$.
+
+\section{Indicial Equation}
+It turns out that we could have determined the indicial roots before set out upon the Method of Frobenius.  Recall that we use the Method of Frobenius on differential equations with regular singular points; also recall that a regular singular point is one where $p(x)=xP(x)$ and $q(x)=x^2Q(x)$ are both analytic.  If $p(x)$ and $q(x)$ are analytic, that means that they can be represented as a convergent power series.  Suppose we did that, and expressed $p(x)$ and $q(x)$ as a power series; if we did they could be written as:
+\begin{align*}
+p(x) &= \sum\limits_{n=0}^{\infty} a_nx^n = a_0 + a_1x + a_2x^2 + \cdots \\
+q(x) &= \sum\limits_{n=0}^{\infty} b_nx^n = b_0 + b_1x + b_2x^2 + \cdots
+\end{align*}
+It can be shown that the indicial equation that we derive from the Method of Frobenius will be equal to:
+\begin{equation*}
+r(r-1)+a_0r + b_0 = 0
+\end{equation*}
+where $a_0 = p(0)$ and $b_0 = q(0)$.  Applying this equation to our last example where $p(x)=xP(x) = \sfrac{1}{3}$ and $q(x) = x^2 Q(x) = -\sfrac{x}{3}$.  We can see $a_0 = p(0) = \sfrac{1}{3}$ and $b_0 = q(0) = 0$.  Inserting these numbers into the indicial equation gives us:
+\begin{align*}
+r(r-1)+\frac{1}{3}r + 0 &= 0 \\
+r^2-r + \frac{1}{3}r &= 0 \\
+r^2 - \frac{2}{3}r &= 0 \\
+r(r-\frac{2}{3}) &=0
+\end{align*}
+which has the roots: $r = 0$, and $r = \sfrac{2}{3}$.
+
+\vspace{0.5cm}
+
+\noindent\textbf{Example:}  Use the indicial equation to determine the indicial roots to:
+\begin{equation*}
+2xu^{\prime \prime} - (3+2x)u^{\prime} + u = 0
+\end{equation*}
+
+\vspace{0.25cm}
+
+\noindent We see that $P(x) = -\frac{(3 - 2x)}{2x}$, so $p(x) = xP(x) = -\frac{(3-2x)}{2}$, and $p(0) = -\sfrac{3}{2}$.  By inspection $q(x) = x^2Q(x) = \frac{x}{2}$, so $q(0) = 0$.  The indicial equation is:
+\begin{align*}
+r(r-1)-\frac{3}{2}r + 0 &= 0 \\
+r^2-r - \frac{3}{2}r &= 0 \\
+r^2 - \frac{5}{2}r &= 0 \\
+r\left(r-\frac{5}{2}\right) &= 0
+\end{align*}
+so the indicial roots are: $r = 0$, and $r = \sfrac{5}{2}$.
+
+
+\newthought{In general, of course} the indicial equation is just a quadratic equation, so the roots may be real and repeated, real and distinct and complex conjugates.  There are three cases that will be of immediate interest to us:
+\begin{enumerate}
+\item Two distinct roots that do \emph{not} differ by an integer.  In this case it can be shown that there exist two linearly independent solutions: $u_1 = \sum_{n=0}^{\infty}c_nx^{n+r_1}$, and $u_2 = \sum_{n=0}^{\infty}c_nx^{n+r_2}$.\marginnote{In both of these cases we implicitly assume that $c_0 \ne 0$.}
+\item Two distinct roots that differ by an integer.  In this case there exists two linearly independent solutions of the form:
+\begin{align*}
+u_1(x) &= \sum\limits_{n=0}^{\infty}c_nx^{n+r_1}, \ \ c_0 \ne 0 \\
+u_2(x) &= C u_1(x) \ln{x} + \sum\limits_{n=0}^{\infty}b_nx^{n+r_2}, \ \ b_0 \ne 0 
+\end{align*}
+In this case, the constant $C$ \emph{might} be zero.
+\item If $r_1 = r_2$ then there exist two linearly independent solutions of the form:
+\begin{align*}
+u_1(x) &= \sum\limits_{n=0}^{\infty}c_nx^{n+r_1}, \ \ c_0 \ne 0 \\
+u_2(x) &= u_1(x) \ln{x} + \sum\limits_{n=0}^{\infty}b_nx^{n+r_2}, \ \ b_0 \ne 0
+\end{align*}
+\end{enumerate}
+\marginnote[-6.0cm]{\textbf{Note:} The goal in this treatment of Method of Frobenius is not to make you a ``Frobenius Genius''.  The goal is to provide a sufficiently thorough introduction so that you can understand where Bessel functions and other such mathematical objects come from.  For this reason, we will emphasize systems that fall into case 1.}
+
+\noindent Additional Notes:
+
+\begin{itemize}
+\item When the difference between the indicial roots is equal to an integer, find the solution with the smaller root first.
+
+\item The indicial equation could, in principle, have complex roots.  We will avoid those cases for this class.
+
+\item If $x_0$ is an irregular singular point, the Frobenius theorem does not apply and we may not be able to find any solution to the differential equation using this method.
+\end{itemize}
+For ordinary differential equations that fall into the last two categories, do not fret: numerical methods are always available that are more than adequate for finding solutions to the equations.
