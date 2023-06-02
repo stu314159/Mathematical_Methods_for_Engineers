@@ -1,12 +1,12 @@
-\chapter{Lecture 5 - Nonhomogeneous Linear Equations with Constant Coefficients}
+\chapter{Lecture 5 - Non-homogeneous Linear Equations with Constant Coefficients}
 \label{ch:lec5}
 \section{Objectives}
 The objectives of this lecture are:
 \begin{itemize}
-\item Describe the Method of Undetermined Coefficients for solving nonhomogeneous linear equations with constant coefficients.
+\item Describe the Method of Undetermined Coefficients for solving non-homogeneous linear equations with constant coefficients.
 \item Carry out some examples to illustrate the methods.
 \end{itemize}
-In this lecture we will review \emph{a} method for finding solutions to nonhomogeneous linear equations with constant coefficients.\marginnote{To be perfectly honest, we spend very little time in this class dealing with nonhomogeneous equations of any kind; many of those types of equations are beyond our ability to solve analytically so we turn to numerical methods instead. Nonetheless there is value in reminding ourselves how to construct solutions for those cases where we can.}
+In this lecture we will review \emph{a} method for finding solutions to non-homogeneous linear equations with constant coefficients.\marginnote{To be perfectly honest, we spend very little time in this class dealing with non-homogeneous equations of any kind; many of those types of equations are beyond our ability to solve analytically so we turn to numerical methods instead. Nonetheless there is value in reminding ourselves how to construct solutions for those cases where we can.}
 \section{Background}
 \newthought{Consider the equation} 
 \begin{equation}
@@ -95,7 +95,7 @@ $x$:& $8K_2 - 2K_1$ &$= -3$ \\
 $1$:&$2K_2+4K_1-2K_0$ &$= 6$
 \end{tabular}
 \end{table*}
-Luckily for us, this system of equations is structured such that it can easily be solved.  We see by inspection that $K_2 = 2/-2 = -1$; this can be plugged into th esecond equation to find $K_1 = -5/2$ and then we can solve the last equation to find that $K_0 = -9$.\marginnote[-4.0cm]{In general you cannot expect this to go so nicely.  What you \emph{can} hope for is that the, in this case, three equations you derive will have a unique solution.  We could re-write the system in the form of a matrix-vector equation:
+Luckily for us, this system of equations is structured such that it can easily be solved.  We see by inspection that $K_2 = 2/-2 = -1$; this can be plugged into the second equation to find $K_1 = -5/2$ and then we can solve the last equation to find that $K_0 = -9$.\marginnote[-4.0cm]{In general you cannot expect this to go so nicely.  What you \emph{can} hope for is that the, in this case, three equations you derive will have a unique solution.  We could re-write the system in the form of a matrix-vector equation:
 \begin{equation*}
 \begin{bmatrix}
 0 & 0 & -2 \\
@@ -147,7 +147,7 @@ u(x) &= u_c(x)+u_p(x) \\
 
 \vspace{0.25cm}
 
-\noindent The auxiliary equation is $m^2-m+4=0$ the left side of which can easily be factored to give $(m-4)(m-1)=0$; the roots of which are $m_1=4$, $m_2=1$.  The comlementary solution is:
+\noindent The auxiliary equation is $m^2-m+4=0$ the left side of which can easily be factored to give $(m-4)(m-1)=0$; the roots of which are $m_1=4$, $m_2=1$.  The complementary solution is:
 \begin{equation*}
 u_c(x) = c_1e^{4x}+c_2e^{x}
 \end{equation*} 

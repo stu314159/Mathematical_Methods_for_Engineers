@@ -14,11 +14,11 @@ A linear differential equation of the form
 a_nx^n\frac{d^n u}{dx^n}+a_{n-1}x^{n-1}\frac{d^{n-1}u}{dx^{n-1}}+\cdots+a_1x\frac{du}{dx}+a_0u=g(x)
 \label{eq:cauchy-euler-eqn}
 \end{equation}
-is called a Cauch-Euler equation.
+is called a Cauchy-Euler equation.
 
-\newthought{Note the relationship} between the exponent of $x$ is the coeffiicents and the order of the differential operators.  This correspondence between the decreasing power of $x$ in the coefficient and the decreasing order of the differential operator is characteristic of this type of equation and is the way you should recongize it.\marginnote[-2.0cm]{It is the corresponding change in power/order that matters.  $a\frac{d^2u}{dx^2}+\frac{1}{x^2}u=0$ is also a Cauchy-Euler equation since the power of $x$ in the coefficient goes from 0 to -2 while the order of the differential operator goes from 2\textsuperscript{nd} to 0.} 
+\newthought{Note the relationship} between the exponent of $x$ is the coefficients and the order of the differential operators.  This correspondence between the decreasing power of $x$ in the coefficient and the decreasing order of the differential operator is characteristic of this type of equation and is the way you should recognize it.\marginnote[-2.0cm]{It is the corresponding change in power/order that matters.  $a\frac{d^2u}{dx^2}+\frac{1}{x^2}u=0$ is also a Cauchy-Euler equation since the power of $x$ in the coefficient goes from 0 to -2 while the order of the differential operator goes from 2\textsuperscript{nd} to 0.} 
 
-\newthought{Note that} this equation is \emph{linear}; if $g(x)=0$ it is homogeneous, otherwise it is nonhomogeneous.  For this lecture we will focus our attention on the homogeneous, 2\textsuperscript{nd}-order Cauchy-Euler equation:
+\newthought{Note that} this equation is \emph{linear}; if $g(x)=0$ it is homogeneous, otherwise it is non-homogeneous.  For this lecture we will focus our attention on the homogeneous, 2\textsuperscript{nd}-order Cauchy-Euler equation:
 \begin{equation}
 ax^2\frac{d^2u}{dx^2}+bx\frac{du}{dx}+cu=0
 \end{equation}
@@ -40,7 +40,7 @@ We will look for values of $m$ that satisfy this quadratic equation; that will b
 \newthought{As is the case} for quadratic equation, there are three possible outcomes: 
 
 \begin{enumerate}
-\item \textbf{Distinct Real Roots.} In this case $m_1 \ne m_2$ and the general soltuion is of the form
+\item \textbf{Distinct Real Roots.} In this case $m_1 \ne m_2$ and the general solution is of the form
 \begin{equation}
 u(x)=c_1x^{m_1}+c_2x^{m_2}
 \end{equation}
@@ -103,7 +103,7 @@ u(1) &= 1 \left[c_1 \cos{0} + c_2 \sin{0} \right] \\
 &= c_1(1) + c_2(0) = -1 \\
 \Rightarrow c_1&=-1
 \end{align*}
-The calculus is a bit more tedius for the second boundary condition:
+The calculus is a bit more tedious for the second boundary condition:
 
 \begin{multline*}
 u^{\prime}(x) = -\frac{1}{2}x^{-1/2}\cos{(2 \ln{x})} + 2x^{-1/2}\sin{(2 \ln{x})} + ...\\
@@ -119,14 +119,14 @@ So the solution is: $u(x) = -x^{1/2}\cos{(2 \ln{x})}$
 
 \end{enumerate}
 
-\section{Nonhomogeneous Cauchy-Euler Equations}
-Sadly, the Method of Undetermined Coefficients will not work with Cauchy-Euler equations; a limitation of that method is that the coefficients need to be constant. Interested students can investigate the method of Variation of Parameters that can be used to address this problem analytically.  Otherwise, we will plan to use numerical methods to solve nonhomogeneous problems of this type.
+\section{Non-homogeneous Cauchy-Euler Equations}
+Sadly, the Method of Undetermined Coefficients will not work with Cauchy-Euler equations; a limitation of that method is that the coefficients need to be constant. Interested students can investigate the method of Variation of Parameters that can be used to address this problem analytically.  Otherwise, we will plan to use numerical methods to solve non-homogeneous problems of this type.
 
 \section{Derivation of the Solution to Cauchy-Euler Equations}
 It would be hard not to notice the similarity in the solution methods of Cauchy-Euler equations and constant coefficient linear equations.  This is not a coincidence.  In this section I want to briefly show you that, through a change of variables, Cauchy-Euler equations are, in some sense, equivalent to constant coefficient equations.
 
 \subsection{Change of Independent Variable}
-What we will do, is change the independent variable from $x$ to $e^t$.\sidenote{Think of this as ``streching'' the $x$-axis.}  If $x = e^t$, that means that $t = \ln{x}$ and $\frac{dt}{dx} = \frac{1}{x} = e^{-t}$.
+What we will do, is change the independent variable from $x$ to $e^t$.\sidenote{Think of this as ``stretching'' the $x$-axis.}  If $x = e^t$, that means that $t = \ln{x}$ and $\frac{dt}{dx} = \frac{1}{x} = e^{-t}$.
 
 If we consider, again, the 2\textsuperscript{nd}-order Cauchy-Euler equation,
 \begin{equation*}

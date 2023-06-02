@@ -37,7 +37,7 @@ Substituting within each summation and combining the terms gives us:
 \begin{equation*}
 (2c_2-c_0)x^0 + \sum\limits_{k=1}^{\infty}\left[(k+2)(k+1)c_{k+2} - c_k - c_{k-1} \right]x^k = 0
 \end{equation*}
-As usual, in order to satisfy this equation the coefficients for each power of $x$ must be equal to zero.  For $x^0$ this means $2c_2 - c_0 = 0$;  For all the other powers of $x$, a \emph{three-term recurrance} involving $c_{k-1}$, $c_k$, and $c_{k+2}$ must be satisfied:
+As usual, in order to satisfy this equation the coefficients for each power of $x$ must be equal to zero.  For $x^0$ this means $2c_2 - c_0 = 0$;  For all the other powers of $x$, a \emph{three-term recurrence} involving $c_{k-1}$, $c_k$, and $c_{k+2}$ must be satisfied:
 \begin{equation*}
 c_{k+2} = \frac{c_k + c_{k-1}}{(k+2)(k+1)}
 \end{equation*}
@@ -111,7 +111,7 @@ The point of doing all of this math is to gain insight.  In many cases systems o
 
 \newthought{There are two problems} that I hope to address with this section.  
 \begin{enumerate}
-\item It is both tedious and error-prone to generate the coefficients for the series solution.  we worked hard to constuct a small portion of the power series solutions and we hope that we did it without any errors.  With a modest amount of programming, we will construct a script that can build a series solution with as many terms as we would like.  With conscientious debugging we can be sure that, floating point roundoff errors aside, the calculations are done quickly and correctly.  
+\item It is both tedious and error-prone to generate the coefficients for the series solution.  we worked hard to construct a small portion of the power series solutions and we hope that we did it without any errors.  With a modest amount of programming, we will construct a script that can build a series solution with as many terms as we would like.  With conscientious debugging we can be sure that, floating point round-off errors aside, the calculations are done quickly and correctly.  
 
 \item We may gain considerably more insight from the solution if we can create a plot.  If the plot can easily be made with the same computing tools used to generate the solution, we can get this insight with very little extra work.
 \end{enumerate}
@@ -128,7 +128,7 @@ n=25;
 C1 = nan(1,n); % coefficients for u1(x)
 C2 = nan(1,n); % coefficients for u2(x)
 \end{lstlisting}
-Recall that for $u_1(x)$ we applied our strategy for ``case 1'' in which we assumed that $c_0 \ne 0$ and $c_1 = 0$.  This implied that $c_2 = c_1/2$ while the recurrence relation was used for all of the other coefficients.  When we applied the initial conditions we found that $c_0=5$ for $u_1(x)$.  The code snippet below accomplishes these tasks.\marginnote{Note how each line of MATLAB in this listing is terminated with a semicolon.  This is to suppress the output to the commandline that would otherwise happen each time we make an assignment to a variable.  While this output might be helpful during debugging, during any other time it is distracting (drowning out other, more useful output) and slows code execution.}
+Recall that for $u_1(x)$ we applied our strategy for ``case 1'' in which we assumed that $c_0 \ne 0$ and $c_1 = 0$.  This implied that $c_2 = c_1/2$ while the recurrence relation was used for all of the other coefficients.  When we applied the initial conditions we found that $c_0=5$ for $u_1(x)$.  The code snippet below accomplishes these tasks.\marginnote{Note how each line of MATLAB in this listing is terminated with a semicolon.  This is to suppress the output to the command line that would otherwise happen each time we make an assignment to a variable.  While this output might be helpful during debugging, during any other time it is distracting (drowning out other, more useful output) and slows code execution.}
 \begin{lstlisting}[name=lec9_ex1]
 C1_0 = 5; % c_0 for u1(x), handled separatly since MATLAB array 
 % indices start at 1
@@ -187,7 +187,7 @@ ylabel('U(X)','fontsize',16,'fontweight','bold');
 set(gca,'fontsize',12,'fontweight','bold');
 grid on
 \end{lstlisting}
-\marginnote{\textbf{Note:} pay particular attention to the formatting details of the plot.  There is a title along with axis-labels for both the x- and y-axis; fonts are bold and sized in a particular way and gridlines are used.  These details have all been added in observence of MATLAB Style rule \#4.} 
+\marginnote{\textbf{Note:} pay particular attention to the formatting details of the plot.  There is a title along with axis-labels for both the x- and y-axis; fonts are bold and sized in a particular way and grid-lines are used.  These details have all been added in observance of MATLAB Style rule \#4.} 
 \newthought{A few more} details are worth noting.  
 \begin{enumerate}
 \item We know our solution is inexact since we truncated the infinite power series and used finite-precision arithmetic while calculating the coefficients for those terms we \emph{did} bother to include.  Still, we might want to know \emph{how wrong} the solution is.

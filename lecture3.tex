@@ -5,7 +5,7 @@ The objectives of this lecture are:
 \begin{itemize}
 \item Introduce several theoretical concepts relevant to initial value problems and boundary value problems.
 \item Demonstrate use of the Wronskian to determine linear independence of solutions.
-\item Present some important theorems and definitions relevant to the theory of linear orinary differential equations.
+\item Present some important theorems and definitions relevant to the theory of linear ordinary differential equations.
 \end{itemize}
 
 \section{Initial Value Problems}
@@ -19,7 +19,7 @@ For a linear differential equation, an n\textsuperscript{th}-order initial value
 \text{Initial Conditions: }u(x_0)=u_0, \ u^{\prime}(x_0)=u_1,\dots,u^{(n-1)}(x_0)=u_{n-1}
 \label{eq:ivp-ics}
 \end{equation}
-\marginnote[-2.0cm]{\textbf{Note:} for an initial value problem, all of the initial conditions are provided at the same value of $x$; in accordance to custom we call this $x_0$.  The name \emph{initial} condition gives the implication that these conditions are at some ``end'' of the interval (beginnig, left side, whatever) and in most all examples and exercises this is indeed the case.  It is \underline{not} a requirement, however.}
+\marginnote[-2.0cm]{\textbf{Note:} for an initial value problem, all of the initial conditions are provided at the same value of $x$; in accordance to custom we call this $x_0$.  The name \emph{initial} condition gives the implication that these conditions are at some ``end'' of the interval (beginning, left side, whatever) and in most all examples and exercises this is indeed the case.  It is \underline{not} a requirement, however.}
 \noindent \newthought{We seek a} function defined on some interval containing $x_0$ that satisfies the differential equation with $n$ conditions applied.\marginnote{Generally for an n\textsuperscript{th}-order IVP you will need $n$ conditions.} The theorem below, which we will use by \emph{citing} rather than \emph{proving} gives us assurance that, subject some fairly reasonable assumptions, such a solution will exist.  
 
 \begin{theorem}[Existence and Uniqueness for IVPs]
@@ -34,16 +34,16 @@ u^{\prime \prime}-4u = 12x, \ \ u(0)=4, \ u^{\prime}(0)=1
 \end{equation}
 This IVP satisfies the conditions of Theorem \ref{thm:IVP-exist-and-unique} since all of the coefficients and $g(x)$ are continuous and $a_1$ is constant and nonzero; hence a unique solution exists on any interval and that solution is unique.\marginnote[-1.5cm]{Take a moment to verify that $u(x)=3e^{2x}+e^{-2x}-3x$ satisfies both the governing equation and initial conditions and thus is \emph{the} unique solution to this IVP.}
 
-Here is an IVP that does \emph{not} satisfiy the criteria of Theorem \ref{thm:IVP-exist-and-unique}:
+Here is an IVP that does \emph{not} satisfy the criteria of Theorem \ref{thm:IVP-exist-and-unique}:
 \begin{equation}
 x^2u^{\prime \prime} - 2xu^{\prime}+2u=6, \ \ u(0)=3, \ u^{\prime}(0)=1
 \end{equation}
 \noindent In this case, the coefficients and $g(x)$ are all continuous but $a_2(x)$ is equal to zero at $x=0$.  This might not be a problem---i.e. if $x=0$ is not in the interval of interest for the IVP then we are okay---but since $x_0=0$, $x=0$ \emph{must} be in the domain for the theorem to apply.  So we have no assurances that a solution exists or, if a solution does exist, it may not be unique.\marginnote[-1.5cm]{You should take a moment to verify that $u=cx^2+x+3$ is a solution for \emph{any} choice of parameter $c$.}
 
 \section{Boundary Value Problems}
-For this section let us, without undue loss of generality, consider a 2\textsuperscript{nd}-order boundary value problem (BVP):\marginnote{Almost all of the applications we will consider for this class will involve 2\textsuperscript{nd}-order operators.  The way we derive important boundary-value problems from underlying physical laws like conservation of mass and consdervation of energy lead to them being 2\textsuperscript{nd}-order.  Probably the most obvious counterexample is beam theory which involves a 4\textsuperscript{th}-order operator.}
+For this section let us, without undue loss of generality, consider a 2\textsuperscript{nd}-order boundary value problem (BVP):\marginnote{Almost all of the applications we will consider for this class will involve 2\textsuperscript{nd}-order operators.  The way we derive important boundary-value problems from underlying physical laws like conservation of mass and conservation of energy lead to them being 2\textsuperscript{nd}-order.  Probably the most obvious counterexample is beam theory which involves a 4\textsuperscript{th}-order operator.}
 \begin{equation}
-\text{Govering Equation: }a_2(x)\frac{d^2u}{dx^2}+a_1(x)\frac{du}{dx}+a_0(x)u=g(x) 
+\text{Governing Equation: }a_2(x)\frac{d^2u}{dx^2}+a_1(x)\frac{du}{dx}+a_0(x)u=g(x) 
 \end{equation}
 \begin{equation}
 \text{Boundary Conditions: } y(a)=y_0, \ \ y(b)=y_1, \ \ a \ne b
@@ -70,7 +70,7 @@ In this section some important theorems regarding IVPs and BVPs will be presente
 Let $u_1,u_2,\dots,u_k$ be solutions of a homogeneous n\textsuperscript{th}-order linear differential equation.  Then any linear combination of those solutions 
 $$u = c_1u_1+c_2u_2+\cdots+c_ku_k$$where $c_1,c_2,\dots,c_k$ are arbitrary constants, is also a solution.
 \end{theorem}
-\marginnote[-3.0cm]{\textbf{Note:} It is essential that \emph{both} the govering equation and given conditions (boundary or initial) for the linear differential equation are homogeneous.  As a reminder, this means that \emph{all} terms in the governing equation and boundary conditions must either a) involve the dependent variable or one of its derivatives; or b) be equal to zero.} 
+\marginnote[-3.0cm]{\textbf{Note:} It is essential that \emph{both} the governing equation and given conditions (boundary or initial) for the linear differential equation are homogeneous.  As a reminder, this means that \emph{all} terms in the governing equation and boundary conditions must either a) involve the dependent variable or one of its derivatives; or b) be equal to zero.} 
 As an example, If I denote the linear homogeneous differential equation as $\mathcal{L}$, then $\mathcal{L}(u_i) = 0$ for any $i \in [1,2,\dots,k]$.  By the linearity property of $\mathcal{L}$, for any constants $\alpha$ and $\beta$:
 \begin{align*}
 \mathcal{L}(\alpha u_i + \beta u_j) &=  \alpha \mathcal{L}(u_i) + \beta \mathcal{L}(u_j)\\
@@ -93,7 +93,7 @@ Repeatedly throughout this course we will want to clarify whether or not, say, t
 \newthought{We need a test} to help us determine if the members of a set of functions are linearly independent or not. This will be especially important as we evaluate solutions to a linear homogeneous differential equation.  Even if you are the sort of savant who can, by inspection, always detect linear dependence, you might have a hard time convincing your friends that your assessment is always correct.  Luckily, there is a theorem that provides a suitable test that can serve as irrefutable evidence of the state of linear dependence/independence of functions.
 
 \begin{theorem}[Criterion for Linearly Independent Solutions]
-Let $u_1,u_2,\dots,u_n$ be solutions of a homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$.  Then the set of solutions is linearly indepenent on the interval if and only if the Wronskian of the solution is non-zero for every $x \in \mathcal{I}$.  
+Let $u_1,u_2,\dots,u_n$ be solutions of a homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$.  Then the set of solutions is linearly independent on the interval if and only if the Wronskian of the solution is non-zero for every $x \in \mathcal{I}$.  
 \end{theorem}\index{Wronskian}
 The Wronskian is a function that takes functions as arguments and returns a scalar numeric quantity.\sidenote{Sometimes such functions are referred to as \emph{functionals}.}
 \begin{equation}
@@ -106,7 +106,7 @@ u^{(n-1)}_1 & u^{(n-1)}_2 & \cdots & u^{(n-1)}_n
 \end{vmatrix}
 \label{eq:Wronskian-def}
 \end{equation}
-where $|\cdot|$ donetes the matrix determinant.  For large values of $n$ this is also difficult to calculate but, for the case $n=2$, engineering students should be familiar with the formula:
+where $|\cdot|$ denotes the matrix determinant.  For large values of $n$ this is also difficult to calculate but, for the case $n=2$, engineering students should be familiar with the formula:
 \begin{equation}
 W(u_1,u_2) = 
 \begin{vmatrix}
@@ -140,7 +140,7 @@ Any set $u_1,u_2,\dots,u_n$ of $n$ linearly independent solutions of the homogen
 \begin{theorem}[Existence of a Fundamental Set]
 There exists a fundamental set of solutions for the homogeneous linear n\textsuperscript{th}-order differential equation on an interval $\mathcal{I}$.
 \end{theorem}
-\marginnote[-1.0cm]{\textbf{Note:} This is different than saying that a BVP or IVP has a solution.  This theorem is only refering to the differential equation; not the boundary or initial conditions.}
+\marginnote[-1.0cm]{\textbf{Note:} This is different than saying that a BVP or IVP has a solution.  This theorem is only referring to the differential equation; not the boundary or initial conditions.}
 
 \begin{definition}[General Solution---Homogeneous Equation]
 Let $u_1,u_2,\dots,u_n$ be a fundamental set of solutions to the homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$, then the general solution is:
@@ -153,15 +153,15 @@ $$u(x) = c_1u_1(x)+c_2u_2(x)+\cdots+c_nu_n(x)$$
 \item there is \textbf{no} solution that can be constructed from functions that are linearly independent from the general solution.
 \end{itemize}
 
-\section{General Solution for a Nonhomogeneous Problem}
-Recall: ``nonhomogeneous'' for a linear n\textsuperscript{th}-order differential equation means that $g(x)\ne 0$.  if $u_p$ is any particular solution to the nonhomogeneous, linear, n\textsuperscript{th}-order ODE on an interval $\mathcal{I}$ and $u_c = c_1u_1(x) + c_2u_2(x)+\cdots c_nu_n(x)$ is the general solution to the associated homogeneous ODE (called the \emph{complementary} solution) then the general solution to the nonhomogeneous ODE is:
+\section{General Solution for a Non-homogeneous Problem}
+Recall: ``non-homogeneous'' for a linear n\textsuperscript{th}-order differential equation means that $g(x)\ne 0$.  if $u_p$ is any particular solution to the non-homogeneous, linear, n\textsuperscript{th}-order ODE on an interval $\mathcal{I}$ and $u_c = c_1u_1(x) + c_2u_2(x)+\cdots c_nu_n(x)$ is the general solution to the associated homogeneous ODE (called the \emph{complementary} solution) then the general solution to the non-homogeneous ODE is:
 \begin{equation*}
 u = u_c + u_p
 \end{equation*}
 
 \vspace{0.25cm}
 
-\noindent\textbf{\underline{Example:}} By substitution it can be seen that $u_p = -\frac{11}{12}-\frac{1}{2}x$ is a particular solution to $u^{\prime \prime \prime}-6u^{\prime \prime} + 11u^{\prime} - 6u=3x$.  The general solution to the associated homogeneous problem is $u_c = c_1e^{x}+c_2e^{2x}+c_3e^{3x}$.\marginnote{You are, again, strongly encouraged to verify that $u_p$ satisfies the given equation and that $u_c$ satisfies the associated homogeneous equation.}  Consequently, the general solution to the linear nonhomogeneous problem is:
+\noindent\textbf{\underline{Example:}} By substitution it can be seen that $u_p = -\frac{11}{12}-\frac{1}{2}x$ is a particular solution to $u^{\prime \prime \prime}-6u^{\prime \prime} + 11u^{\prime} - 6u=3x$.  The general solution to the associated homogeneous problem is $u_c = c_1e^{x}+c_2e^{2x}+c_3e^{3x}$.\marginnote{You are, again, strongly encouraged to verify that $u_p$ satisfies the given equation and that $u_c$ satisfies the associated homogeneous equation.}  Consequently, the general solution to the linear non-homogeneous problem is:
 \begin{align*}
 u(x) &= u_c + u_p \\
 &=c_1e^{x}+c_2e^{2x}+c_3e^{3x}-\frac{11}{12}-\frac{1}{2}x

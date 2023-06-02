@@ -32,7 +32,7 @@ The basic strategy we will use to find power series solutions for linear differe
 \begin{enumerate}
 \item Find solutions in the form of a power series by substituting $u = \sum\limits_{n=0}^{\infty} c_n x^n$ into the differential equation.
 \item Solve for the values of the coefficients by equating the coefficients on the left with those on the right (e.g. zero for homogeneous equations); and
-\item The equations (often 2- or 3-term recurrence relations) for the series coefficents \emph{defines} the function that is the solution of the differential equation.\marginnote[-1.05cm]{\textbf{Important:} the series ``solution'' is only valid if the series so-derived has a non-zero radius of convergence.}
+\item The equations (often 2- or 3-term recurrence relations) for the series coefficients \emph{defines} the function that is the solution of the differential equation.\marginnote[-1.05cm]{\textbf{Important:} the series ``solution'' is only valid if the series so-derived has a non-zero radius of convergence.}
 \end{enumerate}
 
 \section{Examples}
@@ -52,7 +52,7 @@ u^{\prime \prime} + u &= 0 \\
 \underbrace{\sum\limits_{n=2}^{\infty} n(n-1)c_nx^{n-2}}_{\substack{k=n-2 \\ n=k+2}} + \underbrace{\sum\limits_{n=0}^{\infty} c_n x^n}_{\substack{k=n \\ n=k}} = 0
 \end{equation*}
 
-\noindent For the first summation $k=n-2$, so $n=k+2$; we will use these defintions to re-write the first summation.  For the second summation, $k=n$ so all we need to do for the second summation is replace all the $n$'s with $k$'s.  The results of these substitutions and the combined summation are shown below:
+\noindent For the first summation $k=n-2$, so $n=k+2$; we will use these definitions to re-write the first summation.  For the second summation, $k=n$ so all we need to do for the second summation is replace all the $n$'s with $k$'s.  The results of these substitutions and the combined summation are shown below:
 
 \begin{align*}
 \sum\limits_{k=0}^{\infty} (k+2)(k+1)c_{k+2}x^k + \sum\limits_{k=0}^{\infty} c_k x^k &= 0 \\
@@ -61,13 +61,13 @@ u^{\prime \prime} + u &= 0 \\
 
 \newthought{The expression} $\left[(k+2)(k+1)c_{k+2}+c_k \right]$ is now a formula for the coefficients of a new power series; this power series, according to the equation, is equal to \emph{zero} so that means all of the coefficients must be equal to zero:
 
-\marginnote[1.0cm]{This is called a \emph{two-term recurrance} since the expression involves \emph{two} terms; $c_{k-2}$ and $c_k$.}
+\marginnote[1.0cm]{This is called a \emph{two-term recurrence} since the expression involves \emph{two} terms; $c_{k-2}$ and $c_k$.}
 \begin{equation*}
 (k+2)(k+1)c_{k+2} + c_{k} = 0, \ \ \text{for all } k \in [0,2,3,\dots]
 \end{equation*} 
 
 
-By convention, we will re-write this recurrance relation to solve for the \emph{higher}-index coefficients in terms of the \emph{lower}-index coefficients.  We do this in Equation \ref{eq:ex1-l8-rec}
+By convention, we will re-write this recurrence relation to solve for the \emph{higher}-index coefficients in terms of the \emph{lower}-index coefficients.  We do this in Equation \ref{eq:ex1-l8-rec}
 
 \begin{equation}
 c_{k+2}=-\frac{c_k}{(k+2)(k+1)}
@@ -89,7 +89,7 @@ u(x) &= c_0 + c_1x + c_2x^2+c_3x^3+c_4x^4+c_5x^5+c_6x^6+c_7x^7 + \cdots \\
 u(x) &= c_0\left(1 + \frac{c_2}{c_0}x^2 + \frac{c_4}{c_0}x^4 + \frac{c_6}{c_0}x^6 + \cdots \right) + c_1\left(x + \frac{c_3}{c_1}x^3 + \frac{c_5}{c_1}x^5 + \frac{c_7}{c_1}x^7 + \cdots \right) \\
 u(x)&=c_0\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!} + \cdots  \right) + c_1\left(x -\frac{x^3}{3!}+\frac{x^5}{5!} - \frac{x^7}{7!} + \cdots \right)
 \end{align*}
-where in the last line we have substituted the formulas for coefficents $c_2$ through $c_7$ in terms of $c_0$ and $c_1$.
+where in the last line we have substituted the formulas for coefficients $c_2$ through $c_7$ in terms of $c_0$ and $c_1$.
 
 Recalling from the last lecture the power series representations of $\cos{x}$ and $\sin{x}$ and we should be able to see them again here.\marginnote{In general you are not expected to, nor will you be able to, identify common functions from a power series solution. This is a special case.}
 \begin{align*}

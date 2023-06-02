@@ -8,7 +8,7 @@ Demonstrate reducing and ODE to Bessel's Equation by:
 \item changing both the dependent and independent variables
 \end{itemize}
 
-If we have learned one thing over the course of the last couple of lectures it is that using the method of Frobenius---whether we are solving Bessel's equation or some other differential equation with regular singular points---is tedius and error-prone.  The good news, at least for Bessel's equation, is that if we see that it is Bessel's equation we are trying to solve, we can simply write down the solution in terms of Bessel functions.\sidenote{Let me reiterate that this was \underline{the point} to learning how to solve Bessel's equation.}
+If we have learned one thing over the course of the last couple of lectures it is that using the method of Frobenius---whether we are solving Bessel's equation or some other differential equation with regular singular points---is tedious and error-prone.  The good news, at least for Bessel's equation, is that if we see that it is Bessel's equation we are trying to solve, we can simply write down the solution in terms of Bessel functions.\sidenote{Let me reiterate that this was \underline{the point} to learning how to solve Bessel's equation.}
 
 In this and the next lecture we will learn some techniques by which a broad range of differential equations can be transformed into or expressed as Bessel's equation.  The best way to learn is by doing, so we will simply start with the examples.
 
@@ -55,7 +55,7 @@ u(x) = \frac{v(x)}{x^2} = \frac{1}{x^2}\left[ c_1J_2(x) + c_2Y_2(x)\right]
 \begin{equation*}
 4xu^{\prime \prime} + 4u^{\prime} + u = 0
 \end{equation*}
-In this case we need to change occurances of $x$ into its equivalent in terms of $z$ and we need to change all derivatives with respect to $x$ to derivatives with respect to $z$.  We are given $\sqrt{x}=z$ which is, of course, equivalent to $x = z^2$.  For the derivatives we have:\marginnote{\textbf{Note:} it is important that you purge all expressions including $x$ out of these derivatives.  For example, when computing the equivalent of $u^{\prime}$ it was essential that we make the substitution $x^{-\sfrac{1}{2}} = z^{-1}$.  When we used that result in calculating $u^{\prime \prime}$ and took derivatives with respect to $z$, any occurance of $x$ needs to be replaed with its equivalent in $z$ or the derivative would have been wrong.}
+In this case we need to change occurrences of $x$ into its equivalent in terms of $z$ and we need to change all derivatives with respect to $x$ to derivatives with respect to $z$.  We are given $\sqrt{x}=z$ which is, of course, equivalent to $x = z^2$.  For the derivatives we have:\marginnote{\textbf{Note:} it is important that you purge all expressions including $x$ out of these derivatives.  For example, when computing the equivalent of $u^{\prime}$ it was essential that we make the substitution $x^{-\sfrac{1}{2}} = z^{-1}$.  When we used that result in calculating $u^{\prime \prime}$ and took derivatives with respect to $z$, any occurrence of $x$ needs to be replaced with its equivalent in $z$ or the derivative would have been wrong.}
 \begin{align*}
 u^{\prime} &= \frac{du}{dx} = \frac{du}{dz}{dz}{dx} = u_z\frac{d}{dx}\left(x^{\sfrac{1}{2}}\right) = \frac{1}{2}\underbracket{x^{-\sfrac{1}{2}}}_{z^{-1}}u_z  \\
 &=\frac{1}{2z}u_z \\
@@ -97,7 +97,7 @@ and inserting into our equation gives us:
 \begin{equation*}
 x^2\left[x^{\sfrac{1}{2}}v^{\prime \prime}+x^{-\sfrac{1}{2}}v^{\prime}-\frac{1}{4}x^{-\sfrac{3}{2}}v \right] + \frac{1}{4}\left[x+\frac{3}{4}\right]x^{\sfrac{1}{2}}v = 0
 \end{equation*}
-Now we transform the independent variable $sqrt{x} = z$, which is the same transformation that we did for the last example so we will not repeat the work.\marginnote{From the last example:
+Now we transform the independent variable $\sqrt{x} = z$, which is the same transformation that we did for the last example so we will not repeat the work.\marginnote{From the last example:
 \begin{align*}
 v^{\prime} &= \frac{1}{2z}v_z \\
 v^{\prime \prime} &= \frac{1}{4z^2}v_{zz} - \frac{1}{4z^3}v_z 

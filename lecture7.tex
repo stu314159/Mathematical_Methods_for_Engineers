@@ -1,4 +1,4 @@
-\chapter{Lecture 7 - Reveiw of Power Series}
+\chapter{Lecture 7 - Review of Power Series}
 \label{ch:lec7}
 \section{Objectives}
 The objectives of this lecture are:
@@ -10,7 +10,7 @@ The objectives of this lecture are:
 \section{Introduction and Review}
 The methods that we have discussed so far have largely been a review of differential equations class.  Sadly, even in the handful of lectures that we have had, our methods for solving equations are largely exhausted.  We can solve constant coefficient linear equations, and variable coefficient linear equations \emph{if} they happen to be Cauchy-Euler equations.  We can solve many first-order linear equations but if the equation is nonlinear we are sunk unless they happen to be separable.  This leaves out a lot of interesting equations.  In this sequence of lectures we will discuss how to solve linear equations with variable coefficients (other than Cauchy-Euler equations).  To do this we will need to use power series. 
 
-\newthought{You learned about} power series back in calculus class, but you weren't ready to use them for this imporant application.  Now you are and now this is what we will do.  We will begin this section with some definitions that will be needed as we describe the use power series in the solution of differential equations.
+\newthought{You learned about} power series back in calculus class, but you weren't ready to use them for this important application.  Now you are and now this is what we will do.  We will begin this section with some definitions that will be needed as we describe the use power series in the solution of differential equations.
 
 \subsection{Definitions}
 \begin{definition}[Sequence]
@@ -182,7 +182,7 @@ Notice that now the summation index for the first summation starts at $n=3$; thi
 
 \newthought{The second problem} will be fixed by establishing a new common index, $k$, and re-write the existing indices ($n$ for both summations) in terms of $k$.  In each case we will set $k$ equal to the exponent of $x$ appearing in the summation.
 \begin{itemize}
-\item For the first summation---$\sum\limits_{n=3}^{\infty} n(n-1)c_nx^{n-2}$---we set $k=n-2$ because that is the exponent for $x$. We need to eliminate each occurance of $n$ in the summation and replace it with it's equivalent expression in terms of $k$.  From our definition of $k$ for this summation, $n=k+2$. Our summation now can be written:\marginnote{Everywere you see an $n$ in the original summation, replace it with a $k+2$ and simplify.}
+\item For the first summation---$\sum\limits_{n=3}^{\infty} n(n-1)c_nx^{n-2}$---we set $k=n-2$ because that is the exponent for $x$. We need to eliminate each occurrence of $n$ in the summation and replace it with it's equivalent expression in terms of $k$.  From our definition of $k$ for this summation, $n=k+2$. Our summation now can be written:\marginnote{Everywhere you see an $n$ in the original summation, replace it with a $k+2$ and simplify.}
 $$\sum\limits_{k=1}^{\infty} (k+2)(k+2-1)c_{k+2}x^k$$ 
 
 \item For the second summation---$\sum\limits_{n=0}^{\infty} c_n x^{n+1}$---we set $k=n+1$ because that is the exponent for $x$ in this summation.  This means $n=k-1$; substituting that expression in our summation gives us:

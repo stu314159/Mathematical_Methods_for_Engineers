@@ -39,12 +39,12 @@ Combining terms outside of the summations and making the indicated substitutions
 \sum\limits_{k=2}^{\infty}[(k+2)(k+1)c_{k+2} \underbrace{- k(k-1)c_k - 2kc_k + m(m+1)c_k}_{(m-k)(m+k+1)c_k}]x^k = 0
 \end{multline*}
 \end{fullwidth}
-Applying the indicated algebraic simplifications leads us finally to:\marginnote{\textbf{Note:} Obviously this is a tedious business.  Be carefull and make sure you understand each manipulation.}
+Applying the indicated algebraic simplifications leads us finally to:\marginnote{\textbf{Note:} Obviously this is a tedious business.  Be careful and make sure you understand each manipulation.}
 \begin{multline*}
 [m(m+1)c_0+2c_2] + [(m+1)(m+2)c_1 + 6c_3]x + \cdots \\
 \sum\limits_{k=2}^{\infty}[(k+2)(k+1)c_{k+2} + (m-k)(m+k+1)c_k]x^k=0
 \end{multline*}
-The next steps are to find formulas for the power series coefficiencts $c_n$ so that the combined coefficient for each power of $x$ in the equation above equals zero. For the constant term $(x^0)$ we have:
+The next steps are to find formulas for the power series coefficients $c_n$ so that the combined coefficient for each power of $x$ in the equation above equals zero. For the constant term $(x^0)$ we have:
 \begin{equation*}
 c_2 = \frac{-m(m+1)c_0}{2}
 \end{equation*}
@@ -52,7 +52,7 @@ For the linear term $(x^1)$ we get
 \begin{equation*}
 c_3 = \frac{-(m-1)(m+2)}{6}c_1
 \end{equation*}
-For all other powers of $x$, we get a 2-term recurrance:
+For all other powers of $x$, we get a 2-term recurrence:
 \begin{equation*}
 c_{k+1} = \frac{-(m-k)(m+k+1)}{(k+2)(k+1)}c_k
 \end{equation*}
@@ -78,7 +78,7 @@ One way that we can permanently leave these questions to the side is if $m$ is a
 \newthought{These polynomial solutions}, where $m$ is an integer, are referred to as Legendre Polynomials.  Legendre Polynomials have several important applications; we will need to use them when solving equations in spherical coordinate systems.
 
 \section{Important Properties of Legendre Polynomials}
-As a recap, Legendre polynomials are solutions to Legendres's equation where $m$ is an integer:
+As a recap, Legendre polynomials are solutions to Legendre's equation where $m$ is an integer:
 \begin{equation*}
 \left(1-x^2 \right)u^{\prime \prime} - 2xu^{\prime} + m(m+1)u = 0
 \end{equation*}
@@ -93,7 +93,7 @@ $P_2(x) = \frac{1}{2}(3x^2-1)$ & $P_3(x) = \frac{1}{2}(5x^3-3x)$ \\
 \label{tab:Legendre-poly}
 \caption{The first four Legendre Polynomials}
 \end{margintable}
-The first few Legendre Polynomials are shown in the table. Higher order Legendre polynomials can be constructed using a three-term recurrance relation shown in Equation \ref{eq:legendre-three-term}
+The first few Legendre Polynomials are shown in the table. Higher order Legendre polynomials can be constructed using a three-term recurrence relation shown in Equation \ref{eq:legendre-three-term}
 \begin{equation}
 (n+1)P_{n+1}(x) - (2n+1)xP_n(x) + nP_{n-1}(x) = 0
 \label{eq:legendre-three-term}
@@ -116,7 +116,7 @@ P_n^{\prime}(0) &=0 \text{ for } n\in{\text{even}}
 A plot of the first several Legendre Polynomials is shown in Figure \ref{fig:legendre-poly-plot}
 
 
-\newthought{The last property} that we will mention here, and that we will make use of extensively in this course, is the \emph{orthogonality} property of Legendre Polynomials.\marginnote[1.0cm]{Orthogonality of functions is analagous to orthogonality of vectors.  Two functions, $f_1(x)$ and $f_2(x)$ are orthogonal on an interval $x\in[a,b]$ if $\int_a^b f_1(x)f_2(x) \ dx = 0$.}
+\newthought{The last property} that we will mention here, and that we will make use of extensively in this course, is the \emph{orthogonality} property of Legendre Polynomials.\marginnote[1.0cm]{Orthogonality of functions is analogous to orthogonality of vectors.  Two functions, $f_1(x)$ and $f_2(x)$ are orthogonal on an interval $x\in[a,b]$ if $\int_a^b f_1(x)f_2(x) \ dx = 0$.}
 Legendre Polynomials are orthogonal over the interval $x \in [-1,1]$.  This mean that Equation \ref{eq:legendre-orthogonality} holds:
 \begin{equation}
 \int_{-1}^{1} P_n(x) P_m(x) \ dx = 

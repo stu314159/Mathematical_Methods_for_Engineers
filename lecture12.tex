@@ -3,7 +3,7 @@
 \section{Objectives}
 The objectives of this lecture are:
 \begin{itemize}
-\item Introduce Bessel's equation and solve it using the method fo Frobenius.
+\item Introduce Bessel's equation and solve it using the method of Frobenius.
 \item Discuss Bessel Functions of the 1\textsuperscript{st} and 2\textsuperscript{nd} Kind and use them to solve instances of Bessel's Equation.
 \end{itemize}
 
@@ -15,7 +15,7 @@ Bessel's equation is given in Equation \ref{eq:bessels}
 x^{2}u^{\prime \prime} + x u^{\prime} + \left(x^2 - \nu^2\right)u = 0
 \label{eq:bessels}
 \end{equation}
-where $\nu$ is a constant.\sidenote{Let me warn you for the first time here that, if $\nu=0$, Bessel's equation bears a striking resemblence to the Cauchy-Euler equation.  Notice the difference and try not to fall into that trap.}  You should spend a moment to verify that this equation has a singular point at $x_0 = 0$ and that it is a regular singular point.  Therefore we should use the method of Frobenius to find solutions; that is what we will do.
+where $\nu$ is a constant.\sidenote{Let me warn you for the first time here that, if $\nu=0$, Bessel's equation bears a striking resemblance to the Cauchy-Euler equation.  Notice the difference and try not to fall into that trap.}  You should spend a moment to verify that this equation has a singular point at $x_0 = 0$ and that it is a regular singular point.  Therefore we should use the method of Frobenius to find solutions; that is what we will do.
 
 \newthought{As a reminder}, we will make the following substitutions into Equation \ref{eq:bessels}:
 \begin{align*}
@@ -40,7 +40,7 @@ Let us inspect the first term in each summation and see what needs to be done to
 \underbrace{\sum\limits_{n=0}^{\infty}(n+r)(n+r-1)c_nx^{n+r}}_{n=0, \ x^r} + \underbrace{\sum\limits_{n=0}^{\infty}(n+r)c_nx^{n+r}}_{n=0, \ x^r} + \underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n+r+2}}_{n=0, \ x^{r+2}} - \underbrace{\sum\limits_{n=0}^{\infty}\nu^2c_n x^{n+r}}_{n=0, \ x^r} = 0
 \end{equation*}
 %\end{fullwidth}
-For reasons that (hopefully) will become apparant, we are going to go through this process in two steps.  For $n=0$, we will separate out all terms that are proportional to $x^r$.
+For reasons that (hopefully) will become apparent, we are going to go through this process in two steps.  For $n=0$, we will separate out all terms that are proportional to $x^r$.
 %\begin{fullwidth}
 \begin{multline*}
 r(r-1)c_0x^r + x^r\sum\limits_{n=1}^{\infty}(n+r)(n+r-1)c_nx^n + rc_0x^r + x^r\sum\limits_{n=1}^{\infty}(n+r)c_nx^n + \cdots \\
@@ -58,7 +58,7 @@ r^2 - r + r - \nu^2 &= 0 \\
 r^2 - \nu^2 &= 0 \\
 (r - \nu)(r+\nu) &= 0
 \end{align*}
-we see that, to ensure the coefficient for $x^r = 0$, $r = \pm \nu$.\marginnote[-2.5cm]{Reminder: we need to ensure the coeficient for $x^r$ is equal to zero.  By convention we assume $c_0 \ne 0.$  We \emph{could} allow $c_0 = 0$ but then we would just need to derive another indicial equation for some other power of $x$.  We adopt the convention $c_0=0$ so that our choices for indicial roots will be unique.}
+we see that, to ensure the coefficient for $x^r = 0$, $r = \pm \nu$.\marginnote[-2.5cm]{Reminder: we need to ensure the coefficient for $x^r$ is equal to zero.  By convention we assume $c_0 \ne 0.$  We \emph{could} allow $c_0 = 0$ but then we would just need to derive another indicial equation for some other power of $x$.  We adopt the convention $c_0 \ne 0$ so that our choices for indicial roots will be unique.}
 To simplify the discussion to follow, let us take $r = \nu$ and continue with the solution.  Our equation is now: 
 \begin{align*}
 x^{\nu}\sum\limits_{n=1}^{\infty}\left[\underbrace{(n+\nu)(n+\nu-1) + (n+\nu)-\nu^2}_{n^2+2n\nu+\nu^2 - \nu^2} \right]c_nx^n + x^{\nu}\sum\limits_{n=0}^{\infty}c_n x^{n+2} &= 0 \\
@@ -75,12 +75,12 @@ The summations in the equation above are in-phase so we need to combine under a 
 x^{\nu}\underbrace{\sum\limits_{n=2}^{\infty}c_n[n(n+2\nu)]x^n}_{\substack{k=n \\ n=k}} + x^{\nu}\underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n+2}}_{\substack{k=n+2 \\ n=k-2}} &= 0 \\
 x^{\nu}\sum\limits_{k=2}^{\infty}\underbrace{\left[k(k+2\nu)c_k + c_{k-2}\right]}_{\text{coefficient for } x^{\nu+k}}x^{k} &= 0
 \end{align*}
-In order to set the coefficients for $x^{\nu+k}$ to zero, we derive the following two-term recurrance:
+In order to set the coefficients for $x^{\nu+k}$ to zero, we derive the following two-term recurrence:
 \begin{equation}
 c_k = \frac{-c_{k-2}}{k(k+2\nu)}, \ \ k=2,3,4,\dots
 \label{eq:bessel-recurrance}
 \end{equation}
-Since we have already determined that $c_1=0$, Equation \ref{eq:bessel-recurrance} tells us that $c_3=c_5=\cdots=0$; all the odd-numbered coefficients must be zero. To simplify the notation further, we will thus assume that $k=2n$ and re-write our recurrance as:
+Since we have already determined that $c_1=0$, Equation \ref{eq:bessel-recurrance} tells us that $c_3=c_5=\cdots=0$; all the odd-numbered coefficients must be zero. To simplify the notation further, we will thus assume that $k=2n$ and re-write our recurrence as:
 \begin{align*}
 c_{2n} &= \frac{-c_{2n-2}}{2n(2n+2\nu)}, \ \ n=1,2,3,\dots \\
 &=\frac{-c_{2n-2}}{2^2n(n+\nu)}, \ \ n=1,2,3,\dots
@@ -103,7 +103,7 @@ $c_6 = \frac{-c_4}{2^2 (3)(3+\nu)} = \frac{-c_0}{2^6(1)(2)(3)(1+\nu)(2+\nu)(3+\n
 c_{2n} = \frac{(-1)^n c_0}{2^{2n}n!(1+\nu)(2+\nu)\cdots(n+\nu)}, \ \ n=1,2,3,\dots
 \label{eq:bessel-coef}
 \end{equation}
-\newthought{It may be worthwhile} to take a setep back and summarize what we have found so far.  We are solving Bessel's equation; we looked for solutions of the form $u(x)=\sum_{n=0}^{\infty} c_n x^{n+r}$.  We found that $r$ must be equal to $\pm \nu$ and, for the case $r = \nu$, derived a perfectly acceptable expression for the coefficients in this solution in Equation \ref{eq:bessel-coef}.\marginnote{We will deal with the case $r = -\nu$, albeit in a perfunctuary manner, below.} What follows is a bit of, what we will call, ``mathematical grooming'' which we will do so that we can derive solutions to Bessel's equation in a form that appears elsewhere in the literature and that, indeed, you will use for the remainder of this course.
+\newthought{It may be worthwhile} to take a step back and summarize what we have found so far.  We are solving Bessel's equation; we looked for solutions of the form $u(x)=\sum_{n=0}^{\infty} c_n x^{n+r}$.  We found that $r$ must be equal to $\pm \nu$ and, for the case $r = \nu$, derived a perfectly acceptable expression for the coefficients in this solution in Equation \ref{eq:bessel-coef}.\marginnote{We will deal with the case $r = -\nu$, albeit in a perfunctory manner, below.} What follows is a bit of, what we will call, ``mathematical grooming'' which we will do so that we can derive solutions to Bessel's equation in a form that appears elsewhere in the literature and that, indeed, you will use for the remainder of this course.
 \subsection{Gamma Function}\index{Gamma function}
 The Gamma function is defined in Equation \ref{eq:gamma-def}.
 \begin{equation}
@@ -182,7 +182,7 @@ which is linearly independent of $J_{\nu}$ even if $\nu$ is an integer.  The sol
 u(x) = c_1J_{\nu}(x) + c_2Y_{\nu}(x)
 \end{equation*}
 
-\newthought{Now that we know} a pair of linearly independent solutions to Bessel's equation, we no longer need to go through the rigamarole of \emph{actually solving} the equation; we can simply \emph{\underline{use}} the solution we have derived.
+\newthought{Now that we know} a pair of linearly independent solutions to Bessel's equation, we no longer need to go through the rigmarole of \emph{actually solving} the equation; we can simply \emph{\underline{use}} the solution we have derived.
 
 \vspace{1.0cm}
 
