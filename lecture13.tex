@@ -1,0 +1,133 @@
+\chapter{Lecture 13 - Solving ODEs Reducible to Bessel's Equation}
+\label{ch:lec13}
+\section{Objectives}
+Demonstrate reducing and ODE to Bessel's Equation by:
+\begin{itemize}
+\item changing the dependent variable;
+\item changing the independent variable; and
+\item changing both the dependent and independent variables
+\end{itemize}
+
+If we have learned one thing over the course of the last couple of lectures it is that using the method of Frobenius---whether we are solving Bessel's equation or some other differential equation with regular singular points---is tedius and error-prone.  The good news, at least for Bessel's equation, is that if we see that it is Bessel's equation we are trying to solve, we can simply write down the solution in terms of Bessel functions.\sidenote{Let me reiterate that this was \underline{the point} to learning how to solve Bessel's equation.}
+
+In this and the next lecture we will learn some techniques by which a broad range of differential equations can be transformed into or expressed as Bessel's equation.  The best way to learn is by doing, so we will simply start with the examples.
+
+\vspace{0.5cm}
+
+\noindent\textbf{Example:} Find the general solution to the following differential equation by applying the given transformation to the dependent variable: $u = \sfrac{v}{x^2}$.\marginnote{You can think of this as cleverly distorting the $y$-axis in order to make the problem easier.}
+\begin{equation*}
+xu^{\prime \prime} + 5u^{\prime} + xu = 0
+\end{equation*}
+We need to replace all appearances of $u$ with the equivalent in terms of $v$.\marginnote{
+Using the product rule:
+\begin{align*}
+u &= \frac{v}{x^2} \\
+u^{\prime} &= \frac{-2v}{x^3} + \frac{v^{\prime}}{x^2} \\
+u^{\prime \prime} &= \frac{6v}{x^4} \underbracket{-\frac{2v^{\prime}}{x^3}-\frac{2v^{\prime}}{x^2}}_{\frac{-4v^{\prime}}{x^3}} + \frac{v^{\prime \prime}}{x^2}
+\end{align*}
+where $\sfrac{dv}{dx} = v^{\prime}$.
+}
+\begin{align*}
+xu^{\prime \prime} &= \frac{v^{\prime \prime}}{x} - \frac{4v^{\prime}}{x^2} + \frac{6v}{x^3} \\
+5u^{\prime} &= \frac{5v^{\prime}}{x^2} - \frac{10v}{x^{3}} \\
+xu &= \frac{v}{x}
+\end{align*}
+
+Combining these terms together gives us:\marginnote{Seeing the necessary transformations comes with practice; that is what homework is for.}
+\begin{align*}
+xu^{\prime \prime} + 5u^{\prime} + xu &= 0 \\
+\frac{v^{\prime \prime}}{x} - \frac{4v^{\prime}}{x^2} + \frac{6v}{x^3} + \frac{5v^{\prime}}{x^2} - \frac{10v}{x^{3}} + \frac{v}{x} &= 0, \ \ \text{ combine like terms}\\
+\frac{v^{\prime \prime}}{x}+\frac{v^{\prime}}{x^2} + \left(\frac{1}{x}-\frac{4}{x^3} \right)v &= 0, \ \ \ \text{multiply by }x^3 \\
+x^2v^{\prime \prime} + xv^{\prime} + \left(x^2 - 4 \right)v &= 0
+\end{align*}
+where on the last line we recognize the ODE as Bessel's equation of order $\nu = 2$.  The solution is:
+\begin{equation*}
+v(x) = c_1J_2(x) + c_2Y_2(x)
+\end{equation*}
+Of course, we were trying to solve for $u(x)$ so we must undo the transformation to the dependent variable:
+\begin{equation*}
+u(x) = \frac{v(x)}{x^2} = \frac{1}{x^2}\left[ c_1J_2(x) + c_2Y_2(x)\right]
+\end{equation*}
+
+\vspace{1.0cm}
+
+\noindent\textbf{Example:} Find the general solution to the following differential equation by applying the given transformation to the independent variable: $\sqrt{x} = z$:\marginnote{This is like cleverly distorting the $x$-axis with the goal of making the problem easier.}
+\begin{equation*}
+4xu^{\prime \prime} + 4u^{\prime} + u = 0
+\end{equation*}
+In this case we need to change occurances of $x$ into its equivalent in terms of $z$ and we need to change all derivatives with respect to $x$ to derivatives with respect to $z$.  We are given $\sqrt{x}=z$ which is, of course, equivalent to $x = z^2$.  For the derivatives we have:\marginnote{\textbf{Note:} it is important that you purge all expressions including $x$ out of these derivatives.  For example, when computing the equivalent of $u^{\prime}$ it was essential that we make the substitution $x^{-\sfrac{1}{2}} = z^{-1}$.  When we used that result in calculating $u^{\prime \prime}$ and took derivatives with respect to $z$, any occurance of $x$ needs to be replaed with its equivalent in $z$ or the derivative would have been wrong.}
+\begin{align*}
+u^{\prime} &= \frac{du}{dx} = \frac{du}{dz}{dz}{dx} = u_z\frac{d}{dx}\left(x^{\sfrac{1}{2}}\right) = \frac{1}{2}\underbracket{x^{-\sfrac{1}{2}}}_{z^{-1}}u_z  \\
+&=\frac{1}{2z}u_z \\
+u^{\prime \prime} &= \frac{d}{dx}\left(\frac{du}{dx} \right) = \frac{d}{dz}\left(\frac{du}{dx}\right)\frac{dz}{dx} \\
+&=\frac{d}{dz}\left[\frac{1}{2z}u_z\right]\frac{1}{2z} = \left[-\frac{1}{2z^2}u_z + \frac{1}{2z}u_{zz} \right] \frac{1}{2z} \\
+&=\frac{1}{4z^2}u_{zz}-\frac{1}{4z^3}u_z
+\end{align*}
+We now use these results to make substitutions in the original equation:
+\begin{align*}
+4xu^{\prime \prime} &= 4z^2\left[\frac{1}{4z^2}u_{zz}-\frac{1}{4z^3}u_z \right] \\
+4u^{\prime} &= 4\left[\frac{1}{2z}u_z\right]
+\end{align*}
+So the transformed equation is:
+\begin{align*}
+u_{zz}-\frac{1}{z}u_z + \frac{2}{z}u_z + u &= 0, \ \ \ \text{ combine like terms}\\
+u_{zz} + \frac{1}{z}u_z + u &= 0, \ \ \ \text{ multiply by }z^2 \\
+z^2u_{zz} + zu_{z} + \underbracket{z^2}_{\left(z^2-0^2\right)}u &= 0
+\end{align*}
+and we can immediately recognize this as Bessel's equation of order $\nu = 0$ and the general solution is:
+\begin{align*}
+u(z) &= c_1J_0(z) + c_2Y_0(z), \ \ \ \text{ undo transformation: }z\to x \\
+u(x) &= c_1J_0(\sqrt{x}) + c_2Y_0(\sqrt{x})
+\end{align*}
+
+\vspace{1.0cm}
+
+\noindent\textbf{Example: }Find the general solution to the equation below by transforming the dependent variable $u = v\sqrt{x}$, and the independent variable $\sqrt{x} = z$.\marginnote{In this case we are distorting \emph{both} the $x$- and $y$-axis to ``simplify'' the problem.}
+
+\begin{equation*}
+x^2u^{\prime \prime}+\frac{1}{4}\left(x+\frac{3}{4}\right)u = 0
+\end{equation*}
+\noindent We will first transform the dependent variable: $u=v\sqrt{x} = x^{\sfrac{1}{2}}v$.  As before we will replace all appearances of $u$ with the equivalent in terms of $v$.  Using the product rule:
+\begin{align*}
+u &= x^{\sfrac{1}{2}}v \\
+u^{\prime} &= \frac{1}{2}x^{-\sfrac{1}{2}}v + x^{\sfrac{1}{2}}v^{\prime} \\
+u^{\prime \prime} &= -\frac{1}{4}x^{-\sfrac{3}{2}}v+\underbracket{\frac{1}{2}x^{-\sfrac{1}{2}}v^{\prime} + \frac{1}{2}x^{-\sfrac{1}{2}}v^{\prime}}_{x^{-\sfrac{1}{2}}v^{\prime}}+x^{\sfrac{1}{2}}v^{\prime \prime}
+\end{align*}
+and inserting into our equation gives us:
+\begin{equation*}
+x^2\left[x^{\sfrac{1}{2}}v^{\prime \prime}+x^{-\sfrac{1}{2}}v^{\prime}-\frac{1}{4}x^{-\sfrac{3}{2}}v \right] + \frac{1}{4}\left[x+\frac{3}{4}\right]x^{\sfrac{1}{2}}v = 0
+\end{equation*}
+Now we transform the independent variable $sqrt{x} = z$, which is the same transformation that we did for the last example so we will not repeat the work.\marginnote{From the last example:
+\begin{align*}
+v^{\prime} &= \frac{1}{2z}v_z \\
+v^{\prime \prime} &= \frac{1}{4z^2}v_{zz} - \frac{1}{4z^3}v_z 
+\end{align*}
+} and we will substitute variously in the equation: $x^{\sfrac{1}{2}}=z, \ x=z^2, \ \text{and }x^2=z^4$. 
+
+\begin{multline*}
+z^4\left[ z\left(\frac{1}{4z^2}v_{zz}-\frac{1}{4z^3}v_z\right) + \frac{1}{z}\left(\frac{1}{2z}v_z \right)-\frac{1}{4}z^{-3}v\right]+ \cdots \\
+\cdots \frac{1}{4}\left(z^3+\frac{3}{4}\right)zv = 0 
+\end{multline*}
+Distributing the $z$'s and grouping terms gives us:
+\begin{align*}
+\frac{z^3}{4}v_{zz}+\left(-\frac{z^2}{4}+\frac{z^2}{2} \right)v_z + \left(-\frac{z}{4}+\frac{z^3}{4}+\frac{3z}{16}\right)v &= 0, \text{ combining like terms}\\
+\frac{z^3}{4}v_{zz}+\frac{z^2}{4}v_z + \left(\frac{z^3}{4}-\frac{z}{16} \right) &= 0, \ \text{ multiply by }\sfrac{4}{z} \\
+z^2v_{zz}+zv_z+\left(z^2-\frac{1}{4}\right)v &= 0
+\end{align*}
+which, at long last, we recognize as Bessel's equation of order $\nu = \sfrac{1}{2}$.
+
+The solution, by inspection, is:
+\begin{align*}
+v(z) &= c_1J_{\sfrac{1}{2}}(z) + c_2 Y_{\sfrac{1}{2}}(z), \ \ \text{un-transform the dependent variable.} \\
+u(z) &= \sqrt{x}\left(c_1J_{\sfrac{1}{2}}(z) + c_2 Y_{\sfrac{1}{2}}(z) \right), \ \ \text{un-transform the independent variable.} \\
+u(x) &= \sqrt{x}\left(c_1J_{\sfrac{1}{2}}(\sqrt{x}) + c_2Y_{\sfrac{1}{2}}(\sqrt{x})\right)
+\end{align*}
+
+\vspace{1.0cm}
+
+\noindent\textbf{Notes:}
+\begin{itemize}
+\item Obviously, one would need to have spectacular insight to know in advance what transformations should be made in order to convert a given differential equation into Bessel's equation.  
+\item In the next lecture we will make use of some tools that have been developed to simplify these transformations.
+\end{itemize}
+
