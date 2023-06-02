@@ -1,0 +1,53 @@
+\chapter{Lecture 12 - Bessel's Equation and Bessel Functions}
+\label{ch:lec12}
+\section{Objectives}
+The objectives of this lecture are:
+\begin{itemize}
+\item Introduce Bessel's equation and solve it using the method fo Frobenius.
+\item Discuss Bessel Functions of the 1\textsuperscript{st} and 2\textsuperscript{nd} Kind and use them to solve instances of Bessel's Equation.
+\end{itemize}
+
+\section{Bessel's Equation}
+
+Bessel's equation is given in Equation \ref{eq:bessels}
+\index{Bessel's Equation}
+\begin{equation}
+x^{2}u^{\prime \prime} + x u^{\prime} + \left(x^2 - \nu^2\right)u = 0
+\label{eq:bessels}
+\end{equation}
+where $\nu$ is a constant.\sidenote{Let me warn you for the first time here that, if $\nu=0$, Bessel's equation bears a striking resemblence to the Cauchy-Euler equation.  Notice the difference and try not to fall into that trap.}  You should spend a moment to verify that this equation has a singular point at $x_0 = 0$ and that it is a regular singular point.  Therefore we should use the method of Frobenius to find solutions; that is what we will do.
+
+\newthought{As a reminder}, we will make the following substitutions into Equation \ref{eq:bessels}:
+\begin{align*}
+u(x) &= \sum\limits_{n=0}^{\infty}c_n x^{n+r} \\
+u^{\prime}(x) &= \sum\limits_{n=0}^{\infty} (n+r)c_nx^{n+r-1} \\
+u^{\prime \prime}(x) &= \sum\limits_{n=0}^{\infty}(n+r)(n+r-1)c_nx^{n+r-2}
+\end{align*}
+which gives us:
+%\begin{fullwidth}
+\begin{equation*}
+x^2\sum\limits_{n=0}^{\infty}(n+r)(n+r-1)c_nx^{n+r-2} + x\sum\limits_{n=0}^{\infty}(n+r)c_nx^{n+r-1} + \left(x^2-\nu^2 \right)\sum\limits_{n=0}^{\infty}c_nx^{n+r} = 0 
+\end{equation*}
+\noindent or, if we distribute terms through the sums:
+\begin{equation*}
+\sum\limits_{n=0}^{\infty}(n+r)(n+r-1)c_nx^{n+r} + \sum\limits_{n=0}^{\infty}(n+r)c_nx^{n+r} + \sum\limits_{n=0}^{\infty}c_nx^{n+r+2} - \sum\limits_{n=0}^{\infty}\nu^2c_nx^{n+r} = 0 
+\end{equation*}
+
+%\end{fullwidth}
+Let us inspect the first term in each summation and see what needs to be done to get the summations in phase.
+%\begin{fullwidth}
+\begin{equation*}
+\underbrace{\sum\limits_{n=0}^{\infty}(n+r)(n+r-1)c_nx^{n+r}}_{n=0, \ x^r} + \underbrace{\sum\limits_{n=0}^{\infty}(n+r)c_nx^{n+r}}_{n=0, \ x^r} + \underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n+r+2}}_{n=0, \ x^{r+2}} - \underbrace{\sum\limits_{n=0}^{\infty}\nu^2c_n x^{n+r}}_{n=0, \ x^r} = 0
+\end{equation*}
+%\end{fullwidth}
+For reasons that (hopefully) will become apparant, we are going to go through this process in two steps.  For $n=0$, we will separate out all terms that are proportional to $x^r$.
+%\begin{fullwidth}
+\begin{multline*}
+r(r-1)c_0x^r + x^r\sum\limits_{n=1}^{\infty}(n+r)(n+r-1)c_nx^n + rc_0x^r + x^r\sum\limits_{n=1}^{\infty}(n+r)c_nx^n + \cdots \\
+x^r\sum\limits_{n=0}^{\infty}c_nx^{n+2} - \nu^2c_0x^r - x^r\sum\limits_{n=1}^{\infty}\nu^2c_nx^{n} = 0
+\end{multline*}
+%\end{fullwidth}
+Now let us collect the terms outside of the summations and re-write the equation:\marginnote{The first line of the equation is the indicial equation for this problem; we use it to determine allowable values of $\nu$.  In the second line of the equation we have combined the first, second, and fourth summation because they were in phase and had a common index.  The remaining summation needs to be put in phase yet before we can combine everything under a single summation.}
+\begin{multline*}
+\overbrace{\left[r(r-1)+r - \nu^2 \right]}^{\text{indicial equation}}c_ox^r + \cdots \\ x^r\sum\limits_{n=1}^{\infty}\underbrace{\left[(n+r)(n+r-1) + (n+r) - \nu^2\right]}_{\text{combined 3 of 4 summations}}c_nx^n +  x^r\sum\limits_{n=0}^{\infty}c_nx^{n+2} = 0
+\end{multline*}
