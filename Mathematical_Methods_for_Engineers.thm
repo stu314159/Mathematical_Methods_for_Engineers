@@ -1,20 +1,20 @@
-\contentsline {theorem}{{Theorem}{1}{Existence and Uniqueness for IVPs}}{27}{theorem.1}%
-\contentsline {theorem}{{Theorem}{2}{Superposition Principle for Homogeneous Equations}}{29}{theorem.2}%
-\contentsline {theorem}{{Theorem}{3}{Linear Dependence / Independence of Functions}}{29}{theorem.3}%
-\contentsline {theorem}{{Theorem}{4}{Criterion for Linearly Independent Solutions}}{30}{theorem.4}%
-\contentsline {definition}{{Definition}{1}{Fundamental Set of Solutions}}{31}{definition.1}%
-\contentsline {theorem}{{Theorem}{5}{Existence of a Fundamental Set}}{31}{theorem.5}%
-\contentsline {definition}{{Definition}{2}{General Solution---Homogeneous Equation}}{31}{definition.2}%
-\contentsline {definition}{{Definition}{3}{Sequence}}{57}{definition.3}%
-\contentsline {definition}{{Definition}{4}{Limit of a Sequence, convergence, divergence}}{58}{definition.4}%
-\contentsline {definition}{{Definition}{5}{Series, infinite series}}{58}{definition.5}%
-\contentsline {definition}{{Definition}{6}{Series Convergence}}{58}{definition.6}%
-\contentsline {definition}{{Definition}{7}{Power Series}}{58}{definition.7}%
-\contentsline {definition}{{Definition}{8}{Interval of Convergence, Radius of Convergence}}{58}{definition.8}%
-\contentsline {definition}{{Definition}{9}{Identity Property for a Power Series}}{61}{definition.9}%
-\contentsline {definition}{{Definition}{10}{Analytic Function}}{61}{definition.10}%
-\contentsline {definition}{{Definition}{11}{Ordinary Points and Singular Points}}{63}{definition.11}%
-\contentsline {theorem}{{Theorem}{6}{Existence of Power Series Solutions}}{63}{theorem.6}%
-\contentsline {definition}{{Definition}{12}{Singular Point}}{81}{definition.12}%
-\contentsline {definition}{{Definition}{13}{Regular/Irregular Singular Point}}{81}{definition.13}%
-\contentsline {theorem}{{Theorem}{7}{Frobenius' Theorem}}{82}{theorem.7}%
+\contentsline {theorem}{{Theorem}{1}{Existence and Uniqueness for IVPs}}{29}{theorem.1}%
+\contentsline {theorem}{{Theorem}{2}{Superposition Principle for Homogeneous Equations}}{31}{theorem.2}%
+\contentsline {theorem}{{Theorem}{3}{Linear Dependence / Independence of Functions}}{31}{theorem.3}%
+\contentsline {theorem}{{Theorem}{4}{Criterion for Linearly Independent Solutions}}{32}{theorem.4}%
+\contentsline {definition}{{Definition}{1}{Fundamental Set of Solutions}}{33}{definition.1}%
+\contentsline {theorem}{{Theorem}{5}{Existence of a Fundamental Set}}{33}{theorem.5}%
+\contentsline {definition}{{Definition}{2}{General Solution---Homogeneous Equation}}{33}{definition.2}%
+\contentsline {definition}{{Definition}{3}{Sequence}}{59}{definition.3}%
+\contentsline {definition}{{Definition}{4}{Limit of a Sequence, convergence, divergence}}{60}{definition.4}%
+\contentsline {definition}{{Definition}{5}{Series, infinite series}}{60}{definition.5}%
+\contentsline {definition}{{Definition}{6}{Series Convergence}}{60}{definition.6}%
+\contentsline {definition}{{Definition}{7}{Power Series}}{60}{definition.7}%
+\contentsline {definition}{{Definition}{8}{Interval of Convergence, Radius of Convergence}}{60}{definition.8}%
+\contentsline {definition}{{Definition}{9}{Identity Property for a Power Series}}{63}{definition.9}%
+\contentsline {definition}{{Definition}{10}{Analytic Function}}{63}{definition.10}%
+\contentsline {definition}{{Definition}{11}{Ordinary Points and Singular Points}}{65}{definition.11}%
+\contentsline {theorem}{{Theorem}{6}{Existence of Power Series Solutions}}{65}{theorem.6}%
+\contentsline {definition}{{Definition}{12}{Singular Point}}{83}{definition.12}%
+\contentsline {definition}{{Definition}{13}{Regular/Irregular Singular Point}}{83}{definition.13}%
+\contentsline {theorem}{{Theorem}{7}{Frobenius' Theorem}}{84}{theorem.7}%
