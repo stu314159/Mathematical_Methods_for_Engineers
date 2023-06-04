@@ -1,0 +1,139 @@
+\chapter{Lecture 15 - Introduction to Orthogonal Functions}
+\label{ch:lec15}
+\section{Objectives}
+\begin{itemize}
+\item Define orthogonal functions, weighted orthogonality, function norms, and complete sets of orthogonal functions.
+\item Provide analogies of these concepts as applied to vectors and functions.
+\end{itemize}
+
+\newthought{In previous lectures} we were able to solve some differential equations by representing the solution  in the form of an infinite series.  For second-order, homogeneous, linear, variable coefficient ODEs where $P(x)$ and $Q(x)$ are analytic throughout the domain of interest, we used power series:\marginnote{Recall that ODEs of this type can be expressed in standard form as:
+\begin{equation*}
+u^{\prime \prime} + P(x)u^{\prime} + Q(x)u = 0
+\end{equation*}
+}
+\begin{equation*}
+u(x) = \sum\limits_{n=0}^{\infty}c_nx^n
+\end{equation*}
+For equations with regular singularities in the domain of interest, we used the method of Frobenius and expressed the solutions:
+\begin{equation*}
+u(x) = \sum\limits_{n=0}^{\infty}c_nx^{n+r}
+\end{equation*}
+It should be stressed that, if you calculate the coefficients $(c_n)$ in exact arithmetic and if you sum \emph{all} of the terms $(n\to \infty)$, the representation is exact.  Each term in the series is linearly independent from all other terms, so as we keep adding terms to the representation of $u(x)$, greater accuracy is achieved.  
+
+\newthought{Our next idea} is to generalize this approach by representing our solution, $u(x)$, as a linear combination of \emph{orthogonal functions.}
+
+\section{Inner Product and Orthogonality of Functions}
+From previous courses in calculus, you should be familiar with the concept of orthogonality of vectors.  We test for orthogonality by taking the ``dot-product''; if the dot-product is equal to zero, the vectors are orthogonal, otherwise they are not.\marginnote{Vector dot product:
+\begin{align*}
+\left(\vec{a},\vec{b}\right) &= \sum\limits_{i=1}^{n}(a_i)(b_i) \\
+\vec{a}\cdot \vec{b} &= a_1b_1 + a_2b_2 + \cdots a_nb_n
+\end{align*}
+}
+
+Orthogonality can also be defined for functions. Consider two functions $u_1(x)$ and $u_2(x)$ defined on an interval $x\in[a,b]$.  The inner product of $u_1(x)$ and $u_2(x)$ is defined in Equation \ref{eq:fun-inner-product}.
+\begin{equation}
+\left(u_1(x),u_2(x)\right) = \int_{a}^{b} \ u_1(x)u_2(x) \ dx
+\label{eq:fun-inner-product}
+\end{equation}
+If $\left(u_1(x),u_2(x)\right)=0$ then $u_1(x)$ and $u_2(x)$ are said to be \emph{orthogonal} on interval $x\in[a,b]$.
+
+\vspace{0.5cm}
+
+\noindent\textbf{Example:} show that the functions $u_1(x)=x^2$ and $u_2(x)=x^3$ are orthogonal on the interval $x \in[-1,1]$.
+
+\vspace{0.5cm}
+
+\begin{align*}
+\left(u_1,u_2\right) &= \int_{-1}^{1} x^2 x^3 \ dx \\
+&= \int_{-1}^1 x^5 \ dx = \frac{1}{6}x^6\Bigr|_{-1}^{1} \\
+&=\frac{1}{6} - \frac{1}{6} = 0
+\end{align*}
+
+\newthought{A slight generalization} is \emph{weighted} orthogonality, where we apply a \emph{weight function} to the inner product:
+\begin{equation}
+\left(u_1,u_2\right) = \int_a^b \ u_1(x)u_2(x)w(x) \ dx
+\label{eq:weighted-inner-product}
+\end{equation}
+where if $\left(u_1,u_2\right)=0$ then we say they are orthogonal with respect to weight function $w(x)$.
+
+\newthought{We can assemble} sets of orthogonal functions on a specified interval.  If $\left\{ \phi_1,\phi_2,\phi_3,\dots,\phi_n\right\}$ is a set of orthogonal functions on the interval $x\in[a,b]$, then:
+\begin{equation*}
+\left(\phi_i, \phi_j\right) = \int_{a}^{b} \phi_i \phi_j \ dx = 0, \ \ \text{if } i \ne j
+\end{equation*}
+
+\newthought{When dealing with} vectors, it is sometimes the case that we want to work with \emph{unit vectors.}\marginnote{Example \emph{unit vectors} include the classic Cartesian basis vectors of $\hat{i} = (1,0,0)$, $\hat{j}=(0,1,0)$ and $\hat{k} = (0,0,1)$.} Even if we are not in need of unit vectors it is often the case that we need some standard definition of the \emph{size} of a vector. Such a measure is referred to as a \emph{norm}.\marginnote{A norm is a functional that assigns a measure to a mathematical object like a vector or a function.  To qualify as a norm, the functional must satisfy three basic properties:
+\begin{enumerate}
+\item $||f||\ge 0$, and $||f||=0$ if and only if $f = 0$
+\item $||\alpha f|| = \alpha||f||$ for any constant $\alpha$; and
+\item $||f+g|| \ge ||f|| + ||g||$
+\end{enumerate}
+where $f$ and $g$ are mathematical objects subject to the norm.
+}  Norms are often denoted $||\cdot||$---i.e. the norm of $f(x)$ is $||f(x)||$---and several types of norms have been defined for vectors, matrices, and functions.  The norm we will use for this class is defined in Equation \ref{eq:norm}
+\begin{equation}
+||f(x)||^2 = \int_{a}^{b} \ f(x)^2 \ dx
+\label{eq:norm}
+\end{equation}  
+
+\vspace{0.5cm}
+
+\noindent\textbf{Example:} find the norm of the functions $f_0(x)=1$ and $f_n(x)=\cos{nx}$ on the interval $[-\pi,\pi]$.
+
+\vspace{0.25cm}
+
+\begin{align*}
+||f_0(x)||^2 &= \int_{-\pi}^{\pi} (1)(1) \ dx = x\Bigr|_{-\pi}^{\pi} \\
+&=2\pi \\
+\Rightarrow ||f_0|| &= \sqrt{2\pi}
+\end{align*}
+
+\vspace{0.25cm}
+\begin{align*}
+||f_n(x)||^2 &= \int_{-\pi}^{\pi} \cos{^2nx} \ dx \\
+&= \frac{1}{2}\int_{-\pi}^{\pi}\left(1+\cos{2nx}\right) \ dx \\
+&= \frac{1}{2}x + \frac{1}{2n}\sin{2nx}\Bigr|_{-\pi}^{\pi} \\
+&= \pi \\
+\Rightarrow ||f_n|| &= \sqrt{\pi}
+\end{align*}\marginnote[-3.0cm]{Recall the ``double-angle'' identity: $\cos{2x}=2\cos{^2x}-1$.}
+
+\newthought{We can apply} norms to define \emph{orthonormal} sets of functions in which $\left\{ \phi_0, \phi_1, \dots \phi_n\right\}$ are orthonormal if the following is true:
+\begin{equation*}
+\left(\phi_n,\phi_m\right) = 
+\begin{cases}
+0 & n\ne m \\
+1 & n=m
+\end{cases}
+\end{equation*}\marginnote{This is analogous to a (possibly) familiar operation in vector analysis.  Suppose the vector $u$ is expanded as a linear combination of three orthogonal vectors $v_1,v_2,$ and $v_3$:
+\begin{equation*}
+u = c_1v_1 + c_2 v_2+ c_3 v_3
+\end{equation*}
+Suppose we know $u$ and know $v_1,v_2,$ and $v_3$; we merely wish to find the coefficients $c_1,c_2,$ and $c_3$.  We can find them by using the inner product for vectors:
+\begin{align*}
+\left(u,v_1\right) &= c_1\overbracket{\left(v_1,v_1\right)}^{||v_1||^2}+c_2\cancelto{0}{\left(v_2,v_1\right)}+c_3\cancelto{0}{\left(v_3,v_1\right)} \\
+\Rightarrow c_1 &= \frac{\left(u,v_1\right)}{||v_1||^2}
+\end{align*}
+Generalizing for all three coefficients:
+\begin{equation*}
+u = \sum\limits_{n=1}^{3}\frac{\left(u,v_n\right)}{||v_n||^2}v_n
+\end{equation*}
+}
+Now, instead of expanding $u(x)$ in a power series or an extended power series, we could expand $u(x)$ in terms of orthonormal functions:
+\begin{equation*}
+u(x) = \sum\limits_{n=0}^{\infty} c_n \phi_n = c_0\phi_0 + c_1\phi_1 + \cdots
+\end{equation*}
+were $\phi_n(x)$ are members of an orthogonal set of functions.\sidenote{The orthogonal set of functions may be---in fact, in many cases \emph{is}---infinite as is indicated here.} Suppose we wished to expand $f(x)$ in terms of an infinite set of orthogonal functions $\left\{\phi_0,\phi_1,\dots,\right\}$ on the interval $x\in[a,b]$:
+\begin{align*}
+u(x) &= c_0\phi_0 + c_1\phi_1 + c_2\phi_2 + \cdots + c_n\phi_n + \cdots \\
+\end{align*}
+to get individual values $c_n$, take the inner product---i.e. multiply both sides by the orthogonal function $c_n$ and integrate:
+\begin{align*}
+\left(u,\phi_n\right) &= \int_{a}^{b}u(x)\phi_n(x) \ dx \\
+&= \int_{a}^{b} c_0 \cancelto{0}{\phi_0 \phi_n} + c_1\cancelto{0}{\phi_1 \phi_n} + \cdots + c_n\overbracket{\phi_n \phi_n}^{||\phi_n||^2} + \cdots \\
+&= c_n||\phi_n||^2 
+\end{align*}
+Therefore we can construct or expansion as shown in Equation \ref{eq:orth-fun-expan}.
+\begin{equation}
+u(x) = \sum\limits_{n=0}^{\infty}\frac{\left(u,\phi_n\right)}{||\phi_n||^2}\phi_n
+\label{eq:orth-fun-expan}
+\end{equation}
+
+\newthought{As was the case} with power series and extended power series: subject to some fairly lenient restrictions on $u(x)$, the expansion shown in Equation \ref{eq:orth-fun-expan} is \emph{exact}.  Sadly, some practical matters will sully this pristine mathematical paradise.  The obvious example is that we will not \emph{actually} be able to sum all of the terms\marginnote{It takes a while to add an infinite number of terms.} and we will not be able to calculate all of the coefficients, $c_n$, exactly.  In particular, we will favor the use of numeric integration to compute the inner products specified in Equation \ref{eq:orth-fun-expan}.   
