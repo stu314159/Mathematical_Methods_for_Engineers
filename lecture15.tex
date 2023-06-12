@@ -60,15 +60,16 @@ where if $\left(u_1,u_2\right)=0$ then we say they are orthogonal with respect t
 \begin{equation*}
 \left(\phi_i, \phi_j\right) = \int_{a}^{b} \phi_i \phi_j \ dx = 0, \ \ \text{if } i \ne j
 \end{equation*}
+We can then use a linear combination of the members of this set of orthogonal functions to represent practically \emph{any} continuous, or piecewise-continuous function on the interval.  This concept will be used \emph{extensively} later in this course.
 
-\newthought{When dealing with} vectors, it is sometimes the case that we want to work with \emph{unit vectors.}\marginnote{Example \emph{unit vectors} include the classic Cartesian basis vectors of $\hat{i} = (1,0,0)$, $\hat{j}=(0,1,0)$ and $\hat{k} = (0,0,1)$.} Even if we are not in need of unit vectors it is often the case that we need some standard definition of the \emph{size} of a vector. Such a measure is referred to as a \emph{norm}.\marginnote{A norm is a functional that assigns a measure to a mathematical object like a vector or a function.  To qualify as a norm, the functional must satisfy three basic properties:
+\newthought{When dealing with} vectors, it is sometimes the case that we want to work with \emph{unit vectors.}\marginnote[-2.0cm]{Example \emph{unit vectors} include the classic Cartesian basis vectors of $\hat{i} = (1,0,0)$, $\hat{j}=(0,1,0)$ and $\hat{k} = (0,0,1)$.} Even if we are not in need of unit vectors it is often the case that we need some standard definition of the \emph{size} of a vector. Such a measure is referred to as a \emph{norm}.\marginnote[-2.0cm]{A norm is a functional that assigns a measure to a mathematical object like a vector or a function.  To qualify as a norm, the functional must satisfy three basic properties:
 \begin{enumerate}
 \item $||f||\ge 0$, and $||f||=0$ if and only if $f = 0$
 \item $||\alpha f|| = \alpha||f||$ for any constant $\alpha$; and
 \item $||f+g|| \ge ||f|| + ||g||$
 \end{enumerate}
 where $f$ and $g$ are mathematical objects subject to the norm.
-}  Norms are often denoted $||\cdot||$---i.e. the norm of $f(x)$ is $||f(x)||$---and several types of norms have been defined for vectors, matrices, and functions.  The norm we will use for this class is defined in Equation \ref{eq:norm}
+}  Norms are often denoted $||\cdot||$---i.e. the norm of $f(x)$ is $||f(x)||$---and several types of norms have been defined for vectors, matrices, and functions.  The norm we will use for this class is defined in Equation \ref{eq:norm}.
 \begin{equation}
 ||f(x)||^2 = \int_{a}^{b} \ f(x)^2 \ dx
 \label{eq:norm}
@@ -102,7 +103,7 @@ where $f$ and $g$ are mathematical objects subject to the norm.
 0 & n\ne m \\
 1 & n=m
 \end{cases}
-\end{equation*}\marginnote{This is analogous to a (possibly) familiar operation in vector analysis.  Suppose the vector $u$ is expanded as a linear combination of three orthogonal vectors $v_1,v_2,$ and $v_3$:
+\end{equation*}\marginnote[-1.5cm]{This is analogous to a (possibly) familiar operation in vector analysis.  Suppose the vector $u$ is expanded as a linear combination of three orthogonal vectors $v_1,v_2,$ and $v_3$:
 \begin{equation*}
 u = c_1v_1 + c_2 v_2+ c_3 v_3
 \end{equation*}

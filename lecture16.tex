@@ -1,0 +1,62 @@
+\chapter{Lecture 16 - Fourier Series}
+\label{ch:lec16}
+\section{Objectives}
+\begin{itemize}
+\item Review trigonometric Series.
+\item Derive/show the formulas for expansion of a function as a Fourier series.
+\item Discuss periodic extensiions of non-periodic functions, sine/cosine expansions, and convergence behavior.
+\end{itemize}
+
+\section{Review of Fourier Series}
+In the last lecture we learned about orthogonal functions and sets of orthogonal functions.  We stated that most functions can be expressed as a linear combination of those orthogonal funcions:
+\begin{equation*}
+u(x) = \sum\limits_{n=0}^{\infty} c_n \phi_n
+\end{equation*}
+where $\phi_n$ are members of a set of orthogonal functions and $c_n$ are determined by:
+\begin{equation*}
+c_n = \frac{(u,\phi_n)}{||\phi_n||^2}\phi_n
+\end{equation*} \index{Fourier Series}
+You should already have experience with expansions such as this from your previous classes in differential equations in the form of Fourier series expansions.  In this case the orthogonal functions, $\phi_n(x)$, are:
+\begin{equation*}
+\left\{1,\cos{\frac{\pi x}{p}},\cos{\frac{2\pi x}{p}},\dots,\sin{\frac{\pi x}{p}}, \sin{\frac{2\pi x}{p}}, \dots \right\}
+\end{equation*}
+\marginnote{The function $\phi(x) = 1$ could also be written: $\cos{\frac{0 \pi x}{p}}$.}where $p$ indicates the \emph{period}.
+
+That members of this set of functions are all mutually orthogonal can be directly shown; we will demonstrate this for the members of the form $\phi_n(x) = \cos{\sfrac{n \pi x}{p}}$; other cases are left for homework exercises.
+
+\vspace{1.0cm}
+
+\noindent\textbf{Example:} Show that functions of the form $\phi_n(x) = \cos{\frac{n\pi x}{p}}$ are orthogonal over the interval $x \in [-p,p]$:
+
+\vspace{0.5cm}
+\noindent Consider two functions, $\phi_n(x)$ and $\phi_m(x)$ where $m,n$ are integers and $m \ne n$.  The functions are orthogonal on the interval $x\in [-p,p]$ if $(\phi_n,\phi_m) = 0$.  From the definition of the inner product:\marginnote[0.5cm]{Here we use the identity: $\cos{(\alpha \pm \beta)} = \cos{\alpha}\cos{\beta} \mp \sin{\alpha}\sin{\beta}$. So that
+\begin{align*}
+\cos{\left(\alpha + \beta\right)} &= \cos{\alpha}\cos{\beta} - \sin{\alpha}\sin{\beta} \\
++\cos{\left(\alpha - \beta\right)} &= \cos{\alpha}\cos{\beta} + \sin{\alpha}\sin{\beta} \\
+&= 2\cos{\alpha}\cos{\beta}
+\end{align*}
+and therefore
+\begin{align*}
+\cos{\alpha}\cos{\beta} &= \frac{1}{2}\left[\cos{\left(\alpha + \beta\right)} + \cos{\left(\alpha - \beta\right)}\right]
+\end{align*}
+}
+\begin{align*}
+(\phi_n,\phi_m) &= \int_{-p}^{p} \cos{\frac{n \pi x}{p}} \cos{\frac{m \pi x}{p}} \ dx \\
+&= \frac{1}{2}\int_{-p}^{p} \cos{(n+m)\frac{\pi x}{p}} + \cos{(n-m)\frac{\pi x}{p}} \ dx \\
+&= \frac{1}{2} \left[\frac{1}{n+m} \frac{p}{\pi}\sin{(n+m)\frac{\pi x}{p}}\Bigl|_{-p}^{p} + \frac{1}{n-m}\frac{p}{\pi}\sin{(n-m)\frac{\pi x}{p}}\Bigl|_{-p}^{p} \right] \\
+&=0
+\end{align*}
+where the last terms are zero since we are evaluating the sine function at integer multiples of $\pi$.  This shows, at least, all of the cosine members are orthogonal.  For the case $m=n$ we get:\marginnote[1.0cm]{Rather than derive this rigorously, we will combine a tabulated result of standard integrals: $\int \cos^2 u \ du = \frac{1}{2}u + \frac{1}{4}\sin{2u}+C$, with $u$ substitution.}
+\begin{align*}
+\left(\phi_n,\phi_n \right) &= \int_{-p}^{p} \cos{\left(\frac{n \pi x}{p} \right)}^2 \\
+&= \frac{p}{n \pi} \left[\frac{1}{2}\frac{n \pi x}{p} + \frac{1}{4} \sin{\frac{2 n \pi x}{p}} \right]\Bigl|_{-p}^{p} \\
+&= \frac{p}{2} - \frac{-p}{2} \\
+&= p
+\end{align*}
+
+\newthought{We can use} this infinite set of orthogonal functions to represent any other continuous function over the interval $[-p,p]$.  In your differential equations class you were taught to do this by using Equation \ref{eq:fourier-exp}.
+
+\begin{equation}
+f(x) = \frac{a_0}{2} + \sum\limits_{n=1}^{\infty}\left[a_n \cos{\frac{n \pi x}{p}} + b_n \sin{\frac{n \pi x}{p}} \right]
+\label{eq:fourier-exp}
+\end{equation}
