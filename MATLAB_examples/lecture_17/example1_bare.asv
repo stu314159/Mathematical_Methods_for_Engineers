@@ -1,0 +1,47 @@
+clear
+clc
+close 'all'
+
+n = 5; 
+
+f = @(x) ex1(x); 
+p = pi;
+
+a0 = (1/p)*integral(f,-p,p);
+FF = @(x) a0/2;
+
+for i = 1:n
+an = (1/p)*integral(@(x) f(x).*cos(i*pi*x/p),-p,p);
+bn = (1/p)*integral(@(x) f(x).*sin(i*pi*x/p),-p,p);
+FF = @(x) FF(x) + an*cos(i*pi*x/p) + bn*sin(i*pi*x/p); 
+end
+
+Nx = 1000;
+X = linspace(-p,p,Nx);
+
+plot(X,f(X),'-b',...
+    X,FF(X),'--r',...
+    'LineWidth',3)
+title_str = sprintf('Example 1, n = %d',n);
+title(title_str,'FontSize',14,...
+    'FontWeight','bold');
+xlabel('X','FontSize',12,...
+    'FontWeight','bold');
+ylabel('f(X)','FontSize',12,...
+    'FontWeight','bold');
+grid on
+legend('f(x)','FF(x)')
+
+
+%% Local functions for examples
+function y = ex1(x)
+[m,n] = size(x); % write your function to expect vector inputs
+y = nan(m,n); % construct y such that it has the same shape as x
+for i = 1:length(x) %<- this implies that x will be a 1-D array
+    if (x(i) > -pi) && (x(i) < 0) %<-- make sure you understand this
+        y(i) = 0;
+    elseif (x(i) >= 0) && (x(i) < pi)
+        y(i) = pi - x(i);
+    end
+end
+end
