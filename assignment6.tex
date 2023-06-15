@@ -1,0 +1,114 @@
+\chapter{Assignment \#6}
+\label{ch:ass6}
+\begin{fullwidth}
+
+Show that the given functions are orthogonal on the given interval.
+\begin{enumerate}
+\item $f_1(x) = e^{x}, \ f_2(x)=xe^{-x}-e^{-x}, \ \ x\in[0,2]$
+
+\vspace{1.0cm}
+
+\item $f_1(x) = x, \ f_2(x)=\cos{2x}, \ \ x\in\left[-\sfrac{\pi}{2},\sfrac{\pi}{2}\right]$
+\end{enumerate}
+
+\vspace{1.50cm}
+
+\noindent Show that the given set of functions is orthogonal on the indicated interval.  Find the norm of each function in the set.
+\begin{enumerate}[resume]
+\item $\left\{\sin{x},\sin{3x},\sin{5x},\dots \right\}, \ \ x\in\left[0,\sfrac{\pi}{2}\right]$
+
+\end{enumerate}
+
+\vspace{1.5cm}
+
+\noindent Use MATLAB to verify by numeric integration that the functions are orthogonal with respect to the indicated weight function on the given interval:
+
+\begin{enumerate}[resume]
+\item $H_0(x) = 1, \ H_1(x) = 2x, \ H_2(x)=4x^2-2; \ \ w(x)=e^{-x^2}, \ \ x\in(-\infty,\infty)$
+
+\noindent\textbf{Note:} use the built-in function \lstinline{integral()} to do the numeric integration.  In MATLAB, $-\infty$ and $\infty$ are represented by \lstinline{-inf} and \lstinline{inf} respectively.
+\end{enumerate}
+
+
+\vspace{1.5cm}
+
+\noindent Use MATLAB to construct the Fourier series expansion of the given function $f(x)$ on the given interval.  For each problem create a plot that shows: a) $f(x)$ along with b) the truncated Fourier series of $f(x)$ with \lstinline{N=5} and c) \lstinline{N=15} terms.  Also give the number to which the Fourier series expansion converges at any point(s) of discontinuity in $f(x)$. 
+
+\begin{enumerate}[resume]
+\item $f(x) = 
+\begin{cases}
+0, & -\pi < x < 0 \\
+1, & 0 \le x < \pi
+\end{cases}$
+
+
+\vspace{1.0cm}
+
+\item $f(x) = 
+\begin{cases}
+0, & -\pi < x < 0 \\
+x^2, & 0 \le x < \pi
+\end{cases}$
+
+\vspace{1.0cm}
+
+\item $f(x) = 
+\begin{cases}
+0, & -2 < x < 0 \\
+-2, & -1 \le x < 0 \\
+1, & 0 \le x < 1 \\
+0, & 1 \le x < 2
+\end{cases}$
+
+\end{enumerate}
+
+\vspace{1.5cm}
+
+\noindent Determine whether the given function is even, odd, or neither.
+\begin{enumerate}[resume]
+\item $f(x) = x^2+x$
+
+\vspace{1.0cm}
+
+\item $f(x) =
+\begin{cases}
+x^2, & -1 < x < 0 \\
+-x^2, & 0 \le x < 1
+\end{cases}$
+\end{enumerate}
+
+\vspace{1.5cm}
+
+\noindent Use MATLAB to expand the given function in an appropriate cosine or sine series.  For each function create a plot showing: a) $f(x)$ along with b) the truncated Fourier series of $f(x)$ with \lstinline{N=5} and; c) \lstinline{N=15} terms.
+
+\begin{enumerate}[resume]
+\item $f(x) = \left| x \right|, \ \ -\pi < x \pi$
+
+\vspace{1.0cm}
+
+\item $f(x) = 
+\begin{cases}
+x-1, & -\pi < x < 0 \\
+x+1, & 0 \le x < \pi
+\end{cases}$
+
+\vspace{1.0cm}
+
+\item $f(x) = 
+\begin{cases}
+1, & -2 < x < -1 \\
+-x, & -1 \le x < 0 \\
+x, & 0 \le x < 1 \\
+1, & 1 \le x < 2
+\end{cases}$
+
+\vspace{1.0cm}
+
+\item $f(x) = 
+\begin{cases}
+x, & 0 < x < \sfrac{\pi}{2} \\
+\pi - x, & \sfrac{\pi}{2} \le x < \pi
+\end{cases}$
+\end{enumerate}
+
+\end{fullwidth}
