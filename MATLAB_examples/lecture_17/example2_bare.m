@@ -4,7 +4,7 @@ clear
 clc
 close 'all'
 
-n = 5; 
+n = 150; 
 
 f = @(x) ex2(x); 
 p = pi;
@@ -35,7 +35,7 @@ figure(2)
 plot(X,f(X),'-b',...
     X,FF(X),'--r',...
     'LineWidth',3)
-title_str = sprintf('Example 2, n = %d',n);
+title_str = sprintf('Example 2, N = %d',n);
 title(title_str,'FontSize',16,...
     'FontWeight','bold');
 xlabel('X','FontSize',14,...

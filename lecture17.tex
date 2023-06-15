@@ -31,21 +31,21 @@ f(x) = \frac{a_0}{2} + \sum\limits_{n=1}^{\infty} \left[a_n \cos{\frac{n \pi x}{
 \end{equation*}
 where, in this case, $p = \pi$.  Even though we are only interested in the function in the interval $[-\pi, \pi]$, since the Fourier series represents the function in terms of a constant and an infinite linear combination of of periodic functions, we should think of the function that we are representing as periodic.\sidenote{This outlook will help us understand the convergence behavior of the Fourier series.}
 
-We have everything we need; it is just a matter of calculating the coefficients from Equation \ref{eq:Fourier-Coeff}.  Rather than carrying out the calculations with pencil and paper we will use MATLAB.  In the listing below I will describe the code necessary to calculate Fourier coefficients through \lstinline{n=5}.
+We have everything we need; it is just a matter of calculating the coefficients from Equation \ref{eq:Fourier-Coeff}.  Rather than carrying out the calculations with pencil and paper we will use MATLAB.  In the listing below I will describe the code necessary to calculate Fourier coefficients through \lstinline{N=5}.
 
 \begin{lstlisting}[name=lec17-ex1]
 clear
 clc
 close 'all'
 
-n = 5; % specify number of coefficients
+N = 5; % specify number of coefficients
 
 f = @(x) ex1(x); 
 p = pi; % specifiy period
 \end{lstlisting}
 We start, as always, by clearing out the workspace memory and command-prompt output and closing any open figures.  We also need to represent $f(x)$ in MATLAB; we will do this with a local function named \lstinline{ex1(x)}.\sidenote{Since inline functions must appear \emph{after} all of the other code in a MATLAB script file, I will provide the code for \lstinline{ex1(x)} last.}  
 
-The integrals needed to determine the Fourier coefficients will be evaluated numerically using the MATLAB built-in function \lstinline{integral()}.\sidenote{This function has default signiature \lstinline{Q = integral(FUN,A,B)} approximates the integral of function \lstinline{FUN} over the interval \lstinline{A} to \lstinline{B} using global adaptive quadrature.  The error tolerances for this numeric integration algorithm can be specified by the user; in most cases we will use default values.  Students interested in how this works should take the Numerical Methods elective.} Let us start with $a_0$ which, as a reminder is computed by:
+The integrals needed to determine the Fourier coefficients will be evaluated numerically using the MATLAB built-in function \lstinline{integral()}.\sidenote{This function has default signature \lstinline{Q = integral(FUN,A,B)} approximates the integral of function \lstinline{FUN} over the interval \lstinline{A} to \lstinline{B} using global adaptive quadrature.  The error tolerances for this numeric integration algorithm can be specified by the user; in most cases we will use default values.  Students interested in how this works should take the Numerical Methods elective.} Let us start with $a_0$ which, as a reminder is computed by:
 \begin{equation*}
 a_0 = \frac{1}{p}\int_{-p}^{p} f(x) \ dx
 \end{equation*}
@@ -64,13 +64,13 @@ bn &= \frac{1}{p}\int_{-p}^p f(x) \sin{\frac{n \pi x}{p}}\ dx
 Note how you can practically read the equation directly from the MATLAB code.
 }
 \begin{lstlisting}[name=lec17-ex1]
-for i = 1:n
-an = (1/p)*integral(@(x) f(x).*cos(i*pi*x/p),-p,p);
-bn = (1/p)*integral(@(x) f(x).*sin(i*pi*x/p),-p,p);
-FF = @(x) FF(x) + an*cos(i*pi*x/p) + bn*sin(i*pi*x/p); 
+for n = 1:N
+an = (1/p)*integral(@(x) f(x).*cos(n*pi*x/p),-p,p);
+bn = (1/p)*integral(@(x) f(x).*sin(n*pi*x/p),-p,p);
+FF = @(x) FF(x) + an*cos(n*pi*x/p) + bn*sin(n*pi*x/p); 
 end
 \end{lstlisting}
-Note in the last line where we append the newly computed terms to the Fourier series expansion \lstinline{FF(x)}.  Now we have a function, $\lstinline{FF(x)}$ that represents the Fourier series expansion with $n=5$ terms.  In the next listing we add the code to plot the function and verify that it makes sense.
+Note in the last line where we append the newly computed terms to the Fourier series expansion \lstinline{FF(x)}.  Now we have a function, $\lstinline{FF(x)}$ that represents the Fourier series expansion with $N=5$ terms.  In the next listing we add the code to plot the function and verify that it makes sense.
 \marginnote{Referring to the annotations:
 
 \vspace{0.25cm}
@@ -114,16 +114,16 @@ legend('f(x)','FF(x)')/*!\annotation{lst:annotation3}!*/
 set(gca,'FontSize',12,...
     'FontWeight','bold');/*!\annotation{lst:annotation4}!*/
 \end{lstlisting} \setcounter{lstannotation}{0}
-The resulting Fourier series expansion is shown in Figure \ref{fig:lec17-ex1-n5}. If I increase the number of Fourier series terms in my expansion, I need only change \lstinline{n}; Figure \ref{fig:lec17-ex1-n15} shows the series expansion with \lstinline{n=15} terms.
+The resulting Fourier series expansion is shown in Figure \ref{fig:lec17-ex1-n5}. If I increase the number of Fourier series terms in my expansion, I need only change \lstinline{N}; Figure \ref{fig:lec17-ex1-n15} shows the series expansion with \lstinline{N=15} terms.
 \begin{marginfigure}
 \includegraphics{lec17_ex1_n5.png}
-\caption{Fourier series expansion with \lstinline{n=5}.}
+\caption{Fourier series expansion with \lstinline{N=5}.}
 \label{fig:lec17-ex1-n5}
 \end{marginfigure}
 
 \begin{marginfigure}
 \includegraphics{lec17_ex1_n15.png}
-\caption{Fourier series expansion with \lstinline{n=15}.}
+\caption{Fourier series expansion with \lstinline{N=15}.}
 \label{fig:lec17-ex1-n15}
 \end{marginfigure} 
 Some things to note about the resulting Fourier series representation of \lstinline{f(x)}:
@@ -133,14 +133,14 @@ Some things to note about the resulting Fourier series representation of \lstinl
 \item The Fourier series representation near the point of discontinuity has ``wiggliness'' that doesn't go away as \lstinline{n} increases.
 \item In particular, note the undershoot and overshoot of $f(x)$ to the left and right respectively of $f(0)$.  This is called ``Gibbs phenomena'' and it does not go away as \lstinline{n} increases but it moves closer to the point of discontinuity.  
 \end{enumerate}
-As Figure \ref{fig:lec17-ex1-n150} shows, as \lstinline{n} is increased, we can make \lstinline{FF(x)} arbitrarily close to \lstinline{f(x)} with the exception of the perturbations at the point of discontinuity.
+As Figure \ref{fig:lec17-ex1-n150} shows, as \lstinline{N} is increased, we can make \lstinline{FF(x)} arbitrarily close to \lstinline{f(x)} with the exception of the perturbations at the point of discontinuity.
 \begin{marginfigure}
 \includegraphics{lec17_ex1_n150.png}
-\caption{Fourier series expansion with \lstinline{n=150}.}
+\caption{Fourier series expansion with \lstinline{N=150}.}
 \label{fig:lec17-ex1-n150}
 \end{marginfigure}
 
-\newthought{An important matter} that we have not yet dealt with is how to represent piecewise continuous functions like $f(x)$ in MATLAB.\sidenote{For whatever reason, piecewise continuous functions are intensively used in \emph{textbooks} on partial differential equations---I am not so sure that they are as important in real-life applications.}  As stated previously, we will use a \emph{local function} to do this.  The code is shown in the listing below.
+\newthought{An important matter} that we have not yet dealt with is how to represent piece-wise continuous functions like $f(x)$ in MATLAB.\sidenote{For whatever reason, piece-wise continuous functions are intensively used in \emph{textbooks} on partial differential equations---I am not so sure that they are as important in real-life applications.}  As stated previously, we will use a \emph{local function} to do this.  The code is shown in the listing below.
 
 \begin{lstlisting}[name=lec17-ex1]
 %% Local functions 
@@ -194,34 +194,34 @@ f(x) =
 Fourier series expansions of this function are shown in Figures \ref{fig:lec17-ex2-n5} through \ref{fig:lec17-ex2-n150}.
 \begin{marginfigure}[-1.0cm]
 \includegraphics{lec17_ex2_n5.png}
-\caption{Fourier series expansion with \lstinline{n=5}.}
+\caption{Fourier series expansion with \lstinline{N=5}.}
 \label{fig:lec17-ex2-n5}
 \end{marginfigure}
 
 \begin{marginfigure}
 \includegraphics{lec17_ex2_n15.png}
-\caption{Fourier series expansion with \lstinline{n=15}.}
+\caption{Fourier series expansion with \lstinline{N=15}.}
 \label{fig:lec17-ex2-n15}
 \end{marginfigure}
 
 \begin{marginfigure}
 \includegraphics{lec17_ex2_n150.png}
-\caption{Fourier series expansion with \lstinline{n=150}.}
+\caption{Fourier series expansion with \lstinline{N=150}.}
 \label{fig:lec17-ex2-n150}
 \end{marginfigure}
 Some notes:
 \begin{enumerate}
 \item As with the first example, the function has the Gibbs phenomena near the discontinuity at $x=0$.  
-\item Also, as with the first example, the Gibbs phenomena does not go away as $n$ increases, but it gets more ``peaked'' and closer to the origin.
+\item Also, as with the first example, the Gibbs phenomena does not go away as $N$ increases, but it gets more ``peaked'' and closer to the origin.
 \item Unlike the first example, we get the Gibbs phenomena and wiggliness at the ends also.  This is because the Fourier series representation is periodic; the periodic extension of this function has discontinuities at the endpoints since $f(-\pi) \ne f(\pi)$.  
 \item You should also note that this function is \emph{even}.  That means we expect $a_0$ and all values of $a_n$ to be equal to zero. If I modify the for-loop to output values for the $a_n$ coefficients I get all zeros.
 
 \begin{lstlisting}
-for i = 1:n
-an = (1/p)*integral(@(x) f(x).*cos(i*pi*x/p),-p,p);
-fprintf('a_%d = %g \n',i,an);
-bn = (1/p)*integral(@(x) f(x).*sin(i*pi*x/p),-p,p);
-FF = @(x) FF(x) + an*cos(i*pi*x/p) + bn*sin(i*pi*x/p); 
+for n = 1:N
+an = (1/p)*integral(@(x) f(x).*cos(n*pi*x/p),-p,p);
+fprintf('a_%d = %g \n',n,an);
+bn = (1/p)*integral(@(x) f(x).*sin(n*pi*x/p),-p,p);
+FF = @(x) FF(x) + an*cos(n*pi*x/p) + bn*sin(n*pi*x/p); 
 end
 \end{lstlisting}
 \end{enumerate}
@@ -250,3 +250,10 @@ This function is not periodic and, unlike the previous examples, does not even s
 \label{fig:lec17-ex3}
 \caption{Even-, odd- and identity-reflection for $f(x)=x^2$.}
 \end{figure}
+
+Note that the convergence behavior for the Fourier expansion is different for each case.\marginnote{As you can see, in cases where you can choose which expansion you use, some choices are good and some are bad.  As we will see in coming chapters, we often do not have a choice in which set of orthogonal functions we will use to do our expansion; so we cannot pick one that we think will be best.  What we \emph{can} do is analyze the expansion that we \emph{do} get and understand the convergence behavior by examining the continuity of the functions and derivatives of functions that we are representing.}
+\begin{itemize}
+\item For the even-reflection Cosine expansion convergence is very rapid.  Both $f(x)$ and $f^{\prime}(x)$ are continuous throughout the interval $x\in (-2,2)$.  The function itself is continuous at the end-points but notice that the derivative is not.  If you were to draw an additional period on the left and right-hand side of the cosine expansion, $f^{\prime}(x)$ would have a discontinuity; that explains the (relatively) poor convergence of the series at the end-points.
+\item For the odd-reflection Sine expansion the function and derivative is continuous throughout the domain.  The derivative of the function is continuous at the periodic end-points but $f(x)$ itself is not.  This explains why the Sine series expansion converges to zero at both end-points.  
+\item The identity-reflection full Fourier series has discontinuities in $f(x)$ and $f^{\prime}(x)$ at both endpoints and at $x=0$.  The convergence behavior is correspondingly bad.
+\end{itemize}
