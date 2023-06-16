@@ -33,7 +33,7 @@ where, in this case, $p = \pi$.  Even though we are only interested in the funct
 
 We have everything we need; it is just a matter of calculating the coefficients from Equation \ref{eq:Fourier-Coeff}.  Rather than carrying out the calculations with pencil and paper we will use MATLAB.  In the listing below I will describe the code necessary to calculate Fourier coefficients through \lstinline{N=5}.
 
-\begin{lstlisting}[name=lec17-ex1]
+\begin{lstlisting}[name=lec17-ex1,style=myMatlab]
 clear
 clc
 close 'all'
@@ -50,7 +50,7 @@ The integrals needed to determine the Fourier coefficients will be evaluated num
 a_0 = \frac{1}{p}\int_{-p}^{p} f(x) \ dx
 \end{equation*}
 
-\begin{lstlisting}[name=lec17-ex1]
+\begin{lstlisting}[name=lec17-ex1,style=myMatlab]
 a0 = (1/p)*integral(f,-p,p);
 FF = @(x) a0/2;
 \end{lstlisting}
@@ -63,7 +63,7 @@ bn &= \frac{1}{p}\int_{-p}^p f(x) \sin{\frac{n \pi x}{p}}\ dx
 \end{align*}
 Note how you can practically read the equation directly from the MATLAB code.
 }
-\begin{lstlisting}[name=lec17-ex1]
+\begin{lstlisting}[name=lec17-ex1,style=myMatlab]
 for n = 1:N
 an = (1/p)*integral(@(x) f(x).*cos(n*pi*x/p),-p,p);
 bn = (1/p)*integral(@(x) f(x).*sin(n*pi*x/p),-p,p);
@@ -75,7 +75,7 @@ Note in the last line where we append the newly computed terms to the Fourier se
 
 \vspace{0.25cm}
 
-\noindent \ref{lst:annotation1} Using \lstinline{sprintf()} allows us to combine the variable \lstinline{n} in the title string.  
+\noindent \ref{lst:annotation1} Using \lstinline[style=myMatlab]{sprintf()} allows us to combine the variable \lstinline{n} in the title string.  
 
 \vspace{0.25cm}
 
@@ -87,7 +87,7 @@ Note in the last line where we append the newly computed terms to the Fourier se
 
 \vspace{0.25cm}
 
-\noindent \ref{lst:annotation4} The keyword \lstinline{gca} means ``get current axis''.  Calling the \lstinline{set()} function with keyword-argument pairs \lstinline{'FontSize',10} and \lstinline{'FontSize','bold'} sets the font size and weight for the axis markings.
+\noindent \ref{lst:annotation4} The keyword \lstinline[style=myMatlab]{gca} means ``get current axis''.  Calling the \lstinline[style=myMatlab]{set()} function with keyword-argument pairs \lstinline{'FontSize',10} and \lstinline{'FontSize','bold'} sets the font size and weight for the axis markings.
 
 \vspace{0.25cm}
 
@@ -95,7 +95,7 @@ Note in the last line where we append the newly computed terms to the Fourier se
 
 }
 
-\begin{lstlisting}[name=lec17-ex1]
+\begin{lstlisting}[name=lec17-ex1,style=myMatlab]
 Nx = 1000;
 X = linspace(-p,p,Nx);
 
@@ -142,7 +142,7 @@ As Figure \ref{fig:lec17-ex1-n150} shows, as \lstinline{N} is increased, we can 
 
 \newthought{An important matter} that we have not yet dealt with is how to represent piece-wise continuous functions like $f(x)$ in MATLAB.\sidenote{For whatever reason, piece-wise continuous functions are intensively used in \emph{textbooks} on partial differential equations---I am not so sure that they are as important in real-life applications.}  As stated previously, we will use a \emph{local function} to do this.  The code is shown in the listing below.
 
-\begin{lstlisting}[name=lec17-ex1]
+\begin{lstlisting}[name=lec17-ex1,style=myMatlab]
 %% Local functions 
 function y = ex1(x) 
 [m,n] = size(x); /*!\annotation{lst:annotation1-1}!*/
@@ -160,7 +160,7 @@ Some notes on the annotations for this listing:
 
 \vspace{0.25cm}
 
-\noindent \ref{lst:annotation1-1}  We use the MATLAB built-in function \lstinline{size()} to get the dimensions of the input vector.  The return values \lstinline{[m,n]} give the number of rows and columns of \lstinline{x} respectively. For this function we are implicitly expecting \lstinline{x} to be a vector, but it can be either a row-vector or a column vector.
+\noindent \ref{lst:annotation1-1}  We use the MATLAB built-in function \lstinline[style=myMatlab]{size()} to get the dimensions of the input vector.  The return values \lstinline{[m,n]} give the number of rows and columns of \lstinline{x} respectively. For this function we are implicitly expecting \lstinline{x} to be a vector, but it can be either a row-vector or a column vector.
 
 \vspace{0.25cm}
 
@@ -169,7 +169,7 @@ Some notes on the annotations for this listing:
 
 \vspace{0.25cm}
 
-\noindent \ref{lst:annotation1-3} We use the built-in function \lstinline{length()} to get the number of elements of \lstinline{x}.  This is a bit of a hack since, if \lstinline{x} were \textbf{\emph{not}} a vector, \lstinline{ex1(x)} would no longer work properly.\sidenote[][-5.0cm]{It would be a good idea to verify that the input \lstinline{x} is actually a vector.  MATLAB, like most other languages, includes features to enforce assumptions like this. The code: \lstinline{assert(min(size(x))==1,'x must be a vector')} would raise an error in MATLAB if the minimum dimension of \lstinline{x} is anything other than 1.  That would be one way to ensure \lstinline{x} is a vector.}
+\noindent \ref{lst:annotation1-3} We use the built-in function \lstinline[style=myMatlab]{length()} to get the number of elements of \lstinline{x}.  This is a bit of a hack since, if \lstinline{x} were \textbf{\emph{not}} a vector, \lstinline{ex1(x)} would no longer work properly.\sidenote[][-5.0cm]{It would be a good idea to verify that the input \lstinline{x} is actually a vector.  MATLAB, like most other languages, includes features to enforce assumptions like this. The code: \lstinline[style=myMatlab]{assert(min(size(x))==1,'x must be a vector')} would raise an error in MATLAB if the minimum dimension of \lstinline{x} is anything other than 1.  That would be one way to ensure \lstinline{x} is a vector.}
 
 \vspace{0.25cm}
 
@@ -216,7 +216,7 @@ Some notes:
 \item Unlike the first example, we get the Gibbs phenomena and wiggliness at the ends also.  This is because the Fourier series representation is periodic; the periodic extension of this function has discontinuities at the endpoints since $f(-\pi) \ne f(\pi)$.  
 \item You should also note that this function is \emph{even}.  That means we expect $a_0$ and all values of $a_n$ to be equal to zero. If I modify the for-loop to output values for the $a_n$ coefficients I get all zeros.
 
-\begin{lstlisting}
+\begin{lstlisting}[style=myMatlab]
 for n = 1:N
 an = (1/p)*integral(@(x) f(x).*cos(n*pi*x/p),-p,p);
 fprintf('a_%d = %g \n',n,an);

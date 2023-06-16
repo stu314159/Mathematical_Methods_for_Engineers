@@ -117,19 +117,19 @@ The point of doing all of this math is to gain insight.  In many cases systems o
 \end{enumerate}
 
 We will use MATLAB to generate and plot the solutions.  We start our MATLAB script in the same way we will start \emph{all} of our MATLAB scripts: with the following three lines:\marginnote{This is done in accordance with the MATLAB Style Rules for this course.  These rules are listed in the Appendices and I will try to exemplify the rules in the code I provide as examples in the lectures.}
-\begin{lstlisting}[name=lec9_ex1]
+\begin{lstlisting}[name=lec9_ex1,style=myMatlab]
 clear
 clc
 close 'all'
 \end{lstlisting}
 Next we will specify the order of the solution we will construct, and thus the number of coefficients that we need to compute for each solution and construct arrays to store the coefficients.\marginnote{We will use two arrays to store the coefficients; one for $u_1(x)$ and the other for $u_2(x)$.}
-\begin{lstlisting}[name=lec9_ex1]
+\begin{lstlisting}[name=lec9_ex1,style=myMatlab]
 n=25;
 C1 = nan(1,n); % coefficients for u1(x)
 C2 = nan(1,n); % coefficients for u2(x)
 \end{lstlisting}
 Recall that for $u_1(x)$ we applied our strategy for ``case 1'' in which we assumed that $c_0 \ne 0$ and $c_1 = 0$.  This implied that $c_2 = c_1/2$ while the recurrence relation was used for all of the other coefficients.  When we applied the initial conditions we found that $c_0=5$ for $u_1(x)$.  The code snippet below accomplishes these tasks.\marginnote{Note how each line of MATLAB in this listing is terminated with a semicolon.  This is to suppress the output to the command line that would otherwise happen each time we make an assignment to a variable.  While this output might be helpful during debugging, during any other time it is distracting (drowning out other, more useful output) and slows code execution.}
-\begin{lstlisting}[name=lec9_ex1]
+\begin{lstlisting}[name=lec9_ex1,style=myMatlab]
 C1_0 = 5; % c_0 for u1(x), handled separatly since MATLAB array 
 % indices start at 1
 C1(1) = 0; % c_1 for u1(x)
@@ -144,14 +144,14 @@ for k=2:(n-2)
 end
 \end{lstlisting} 
 Now we have calculated all of the desired coefficients, we are ready to construct the first solution.\marginnote{Here $u_1(x)$ is created as an \emph{anonymous} function.  We begin with the constant term on line 28 and build up the function term-by-term within the \emph{for} loop on line 30. }
-\begin{lstlisting}[name=lec9_ex1]
+\begin{lstlisting}[name=lec9_ex1,style=myMatlab]
 u1 = @(x) C1_0;
 for k = 1:n
   u1 = @(x) u1(x) + C1(k)*x.^k;
 end
 \end{lstlisting}
 We continue in this same vein to construct $u_2(x)$ as we did in our ``case 2'' strategy and construct the solution $u(x) = u_1(x) + u_2(x)$.
-\begin{lstlisting}[name=lec9_ex1]
+\begin{lstlisting}[name=lec9_ex1,style=myMatlab]
 C2_0 = 0; % c_0 for u2(x)
 C2(1) = 1; % from the initial condition
 C2(2) = C2_0/2; % just adding for consistency's sake
@@ -176,7 +176,7 @@ u = @(x) u1(x) + u2(x);
 \caption{Power series solution to $u^{\prime \prime}-(1+x)u=0, \ u(0)=5,\ u^{\prime}(0)=1$.}
 \label{fig:lec9_fig1}
 \end{marginfigure}
-\begin{lstlisting}[name=lec9_ex1]
+\begin{lstlisting}[name=lec9_ex1,style=myMatlab]
 xMin = 0; xMax = 5;
 figure(1)
 fplot(u,[xMin, xMax],'linewidth',2);
