@@ -1,0 +1,160 @@
+\chapter{Lecture 21 - Introduction to Separable Partial Differential Equations}
+\label{ch:lec21}
+\section{Objectives}
+\begin{itemize}
+\item Review description of linear second-order, Partial Differential Equations (PDEs).
+\item Introduce a classification scheme for second-order linear PDEs.
+\item Illustrate the use of separation of variables to find solutions to some PDEs.
+\end{itemize}
+
+\section{Linear Partial Differential Equations}
+
+Consider the linear, second-order, partial differential equation in two independent variables shown in Equation \ref{eq:lin-second-order-pde}
+\begin{equation}
+A\frac{\partial^2u}{\partial x^2} + B\frac{\partial^2 u}{\partial x \partial y} + C\frac{\partial^2 u}{\partial y^2} + D \frac{\partial u}{\partial x} + E\frac{\partial u}{\partial y} + Fu = G
+\label{eq:lin-second-order-pde}
+\end{equation}
+where $A\rightarrow G$ are constants or functions of the \emph{independent} variables $x$ and/or $y$ only.\sidenote{If the coefficients are functions of the dependent variable $u$ or any of its partial derivatives, the equation would, of course, be non-linear.}  If $G=0$ then the equation is \emph{homogeneous}, otherwise the equation is \emph{non-homogeneous}.
+
+\section{Classification of Linear 2\textsuperscript{nd}-Order PDEs}
+The solution of a PDE is a \emph{function} of two (or more) independent variables that satisfies the PDE in some region of the space defined by the independent variables.  Some important qualitative features of the solutions can be anticipated by using the following classification scheme for linear second-order PDEs.
+
+\vspace{0.5cm}
+
+\noindent\textbf{Hyperbolic:} $B^2 - 4AC > 0$ \marginnote{There is an important first-order PDE that does not conform to this classification scheme but is considered hyperbolic; a typical example is the scalar linear advection equation:
+\begin{equation*}
+u_t + a \cdot \nabla u = f(x,y)
+\end{equation*}
+This equation exhibits similar wave-type behavior.  This and non-linear variations are very important in the modeling a variety of transport phenomena.
+}
+
+Hyperbolic differential equations are characteristic of wave-type phenomena.  In the linear homogeneous case, waves travel through the domain without distortion until a boundary is encountered.  We will examine problems such as vibrating strings and membranes that are governed by hyperbolic PDEs and will exhibit this wave-type behavior.
+
+\vspace{0.5cm}
+
+\noindent\textbf{Parabolic:} $B^2-4AC = 0$
+
+Parabolic differential equations are characteristic of \emph{diffusive} phenomena like transient heat conduction.
+
+\vspace{0.5cm}
+
+\noindent\textbf{Elliptic:} $B^2-4AC < 0$
+
+Elliptic differential equations are characteristic of \emph{steady-state} phenomena like static electrical potential and the steady-state heat equation.
+
+\vspace{0.5cm}
+
+\noindent\textbf{Example:}  Classify the following linear partial differential equations.
+
+\begin{enumerate}
+\item $3\frac{\partial^2 u}{\partial x^2} = \frac{\partial u}{\partial y} $
+
+\vspace{0.5cm}
+
+\item $\frac{\partial^2 u}{\partial x^2} = \frac{\partial^2 u}{\partial y^2}$
+
+\vspace{0.5cm}
+
+\item $\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0$
+\end{enumerate}
+
+\section{Separation of Variables}
+The basic technique we will use to solve second-order, linear, homogeneous PDEs is called separation of variables.  Once again, I will illustrate this method by way of doing an example.
+
+\vspace{0.25cm}
+
+\noindent\textbf{Example:} use separation of variables to find product solutions of:
+\begin{equation}
+\frac{\partial^2 u}{\partial x^2} = 4\frac{\partial u}{\partial y}
+\label{eq:lec21-ex}
+\end{equation}
+
+\noindent\textbf{Step \#1:} Assume a solution can be expressed as a product of functions---one function for each independent variable.  
+\begin{equation*}
+u(x,y) = F(x)G(y)
+\end{equation*}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Step \#2:} Insert the proposed solution into the governing equation.
+\marginnote[1.5cm]{Here we will use subscript notation to denote partial derivatives.}
+\begin{align*}
+\frac{\partial^2}{\partial x^2}\left[F(x)G(y)\right] &= 4 \frac{\partial}{\partial y}\left[F(x)G(y)\right] \\
+F_{xx}G &= 4 FG_{y}
+\end{align*}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Step \#3:} Separate variables and introduce separation constant.  In this example we will separate variables by dividing both sides of the equation by $4FG$.
+
+\begin{align*}
+\frac{F_{xx} G}{4FG} &= \frac{4FG_y}{4FG} \\
+\frac{F_{xx}}{4F} &= \frac{G_y}{G}
+\end{align*}
+In this last equation, the terms on the left are only a function of $x$; the terms on the right are only a function of $y$.  The left- and right-hand side of the equality must be the same for \emph{all} values of $x$ and $y$.  The only way this can be expected to be true is if \emph{both} sides are equal to a \emph{\underline{constant}}.\marginnote[-1cm]{This bit of reasoning is a key element of separation of variables.}  We will denote this constant: $-\lambda$.\marginnote[1.5cm]{You might wonder why we chose $-\lambda$ rather than $\lambda$.  In honesty there is no good answer to this question; let us chalk it up to a bias towards having a plus-sign in the separated equations.}
+\begin{equation*}
+\frac{F_{xx}}{4F} = \frac{G_y}{G} = -\lambda 
+\end{equation*}
+We can now decompose the partial differential equation in two independent variables into two ordinary differential equations:
+\begin{align*}
+F_{xx} + 4\lambda F &= 0 \\
+G_y + \lambda G &= 0
+\end{align*}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Step \#4:} Form product solutions for all possible values of $\lambda$.\marginnote{The ``possible values'' of $\lambda$ can be put into three familiar categories: $\lambda$ can be \emph{positive}, \emph{negative}, or \emph{zero}.}
+
+\vspace{0.25cm}
+
+\noindent\underline{$\lambda = 0$}:
+\marginnote{Note how in this case and the cases to follow, we will simply write down the general solution to the separated ODEs with little/no to-do over deriving that solution.  By this point in the course you \emph{need} to be able to quickly recognize those equations.  In most cases you should be able to write down the solutions by inspection.}
+\begin{align*}
+F_{xx} = 0 &\Rightarrow F(x) = c_1 + c_2x \\
+G_y = 0 &\Rightarrow G(x) = c_3 \\
+& \\
+u(x,y) = F(x)G(x) &= \left(c_1 + c_2x\right) c_3 \\
+ &= A_1 + B_1 x
+\end{align*}
+
+\vspace{0.25cm}
+
+\noindent\underline{$\lambda < 0$}: For this case we will let $\lambda = -\alpha^2, \ \ \alpha > 0$.
+\marginnote{We will assume, for this problem, that the $x$-dimension is bounded and thus it is convenient to use the $\cosh{2\alpha x}$ and $\sinh{2 \alpha x}$ form of the solution.  If the domain is unbounded you would use $e^{2 \alpha x}$ and $e^{-2\alpha x}$.  It will be up to you to make this determination.}
+\begin{align*}
+F_{xx} - 4 \alpha^2 F = 0 &\Rightarrow F(x) = c_1\cosh{2\alpha x} + c_2 \sinh{2\alpha x} \\
+G_y - \alpha^2 G = 0 &\Rightarrow G(y) = c_3e^{\alpha^2 y} \\
+& \\
+u(x,y) = F(x)G(y) &= \left(c_1\cosh{2\alpha x} + c_2 \sinh{2\alpha x}\right) c_3e^{\alpha^2 y} \\
+&= \left(A_2 \cosh{2 \alpha x} + B_2 \sinh{2 \alpha x}\right)e^{\alpha^2 y}
+\end{align*}
+
+\vspace{0.25cm}
+
+\noindent\underline{$\lambda > 0$}: For this case we will let $\lambda = \alpha^2, \ \ \alpha > 0$.
+
+\begin{align*}
+F_{xx} + 4 \alpha^2 F = 0 &\Rightarrow F(x) = c_1 \cos{2\alpha x} + c_2 \sin{2\alpha x} \\
+G_{y} + \alpha^2 G = 0 &\Rightarrow G(y) = c_3e^{-\alpha^2 y} \\
+& \\
+u(x,y) = F(x)G(y) &= \left(c_1 \cos{2\alpha x} + c_2 \sin{2\alpha x} \right)c_3e^{-\alpha^2 y}  \\
+&= \left(A_3 \cos{2\alpha x} + B_3 \sin{2\alpha x} \right)e^{-\alpha^2 y}
+\end{align*}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Notes:}  
+\begin{itemize}
+\item There is no assurance that a linear 2\textsuperscript{nd}-order PDE will be separable.  We will spend a lot of time in this course in dealing with equations that happen to be separable.  In reality, many are not, in particular if the problem is non-homogeneous.  It is a good idea to check to see if an equation is homogeneous before launching down the separation-of-variables path.
+
+\item This example is a bit of an anomaly.  We will usually not attempt to find \emph{general} solutions to PDEs, but only \emph{particular} solutions.  Therefore a problem statement will not be fully meaningful without boundary/initial conditions by which we will be able to derive particular solutions.
+
+\item Specific values of $\lambda$ that result in non-trivial solutions will depend on the boundary conditions.
+
+\item Since the PDEs are linear, the \emph{superposition principle} will apply.  That is, if $u_1,u_2,\dots,u_k$ are solutions of a linear homogeneous PDE (including boundary conditions) then a linear combination:\marginnote{In this equation $c_i$ are constants.}
+\begin{equation*}
+u = c_1 u_1 + c_2 u_2 + \cdots + c_k u_k
+\end{equation*}
+is also a solution.
+\end{itemize}
+

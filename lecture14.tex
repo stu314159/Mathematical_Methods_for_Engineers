@@ -114,9 +114,10 @@ The general solution for equations of this form is given in Equation \ref{eq:bes
 u = x^a\left[c_1 J_{p}\left(bx^c \right)+c_2Y_{p}\left(bx^c \right) \right]
 \label{eq:bessel-tool-sol}
 \end{equation}
-Using this tool requires you to solve four non-linear equations as shown below:\marginnote{Probably the most challenging and error-prone part of this process is writing a given ODE in the form of Equation \ref{eq:bessel-tool}.}
+Using this tool requires you to solve four non-linear equations as shown below:\marginnote{Probably the most challenging or, at least, error-prone part of this process is writing a given ODE in the form of Equation \ref{eq:bessel-tool}.}
 \begin{equation*}
-u^{\prime \prime} + \frac{\overbracket{\fbox{$1-2a$}}^{\textcircled{1}}}{x}u^{\prime} + \left(\underbracket{\fbox{$b^2 c^2$}}_{\textcircled{2}} x^{\overbracket{\fbox{$2c-2$}}^{\textcircled{3}}} + \frac{\overbracket{\fbox{$a^2-p^2c^2$}}^{\textcircled{4}}}{x^2} \right)u = 0, \ \ p \ge 0
+%u^{\prime \prime} + \frac{\overbracket{\fbox{$1-2a$}}^{\textcircled{1}}}{x}u^{\prime} + \left(\underbracket{\fbox{$b^2 c^2$}}_{\textcircled{2}} x^{\overbracket{\fbox{$2c-2$}}^{\textcircled{3}}} + \frac{\overbracket{\fbox{$a^2-p^2c^2$}}^{\textcircled{4}}}{x^2} \right)u = 0, \ \ p \ge 0
+u^{\prime \prime} + \frac{\overset{\textcircled{1}}{\fbox{$1-2a$}}}{x}u^{\prime} + \left(\underset{\textcircled{2}}{\fbox{$b^2 c^2$}} x^{\overset{\textcircled{3}}{\fbox{$2c-2$}}} + \frac{\overset{\textcircled{4}}{\fbox{$a^2-p^2c^2$}}}{x^2} \right)u = 0, \ \ p \ge 0
 \end{equation*}
 
 \vspace{0.5cm}

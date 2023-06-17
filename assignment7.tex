@@ -1,0 +1,81 @@
+\chapter{Assignment \#7}
+\label{ch:ass7}
+\begin{fullwidth}
+\noindent Find the eigenfunctions and the equation that defines the eigenvalues for the boundary-value problem.  Use MATLAB to estimate the first 4 eigenvalues $\lambda_1,\lambda_2,\lambda_3,$ and $\lambda_4.$  Give the eigenfunctions corresponding to these eigenvalues and find the square norm of each eigenfunction.
+
+\begin{enumerate}
+\item $u^{\prime \prime} + \lambda u = 0, \ \ u^{\prime}(0)=0, \ \ u(1)+u^{\prime}(1) = 0$
+
+\end{enumerate}
+
+\vspace{1.0cm}
+
+\begin{enumerate}[resume]
+\item Consider $u^{\prime \prime}+\lambda u = 0$ subject to $u^{\prime}(0)=0, \ u^{\prime}(L)=0$.  Show that the eigenfunctions are:
+\begin{equation*}
+\left\{ 1, \cos{\frac{\pi x}{L}},\cos{\frac{2\pi x}{L}}, \dots \right\}
+\end{equation*}
+This set, which is orthogonal on $x\in [0,L]$, is the basis for the Fourier cosine series.
+\end{enumerate}
+
+\vspace{1.0cm}
+
+\begin{enumerate}[resume]
+\item Consider the following boundary value problem:
+\begin{align*}
+x^2u^{\prime \prime}+xu^{\prime}+\lambda u &= 0, \ \ x\in(1,5) \\
+u(1) = 0, \ \ u(5) &= 0 \\
+\end{align*}
+\begin{enumerate}
+\item Find the (non-trivial) eigenvalues and eigenfunctions of the boundary value problem. Note: this is a Cauchy-Euler equation with solutions of the form $u=x^m$.  
+
+\vspace{0.5cm}
+
+\item Put the differential equation into self-adjoint form.
+
+\vspace{0.5cm}
+
+\item Give the orthogonality relation.  Use MATLAB to verify the orthogonality relation for the first two eigenfunctions.
+\end{enumerate}
+
+\end{enumerate}
+
+\vspace{0.75cm}
+
+\begin{enumerate}[resume]
+\item Consider Laguerre's differential equation defined on the semi-infinite interval $x \in (0,\infty)$:
+\begin{equation*}
+xu^{\prime \prime} + (1-x)u^{\prime} + \overbracket{n}^{\lambda} u = 0, \ \ n = 0,1,2,\dots
+\end{equation*}
+This equation has polynomial solutions $L_{n}(x).$  Put the equation into self-adjoint form and give an orthogonality relation.
+\end{enumerate}
+
+\vspace{1.0cm}
+
+\noindent For the next two problems, please use MATLAB along with the provided function \lstinline[style=myMatlab]{besselzero(nu,n,kind)} as shown in class.
+
+\begin{enumerate}[resume]
+\item Find the first four $\alpha_n > 0$ defined by $J_1(3\alpha) = 0$.
+
+\vspace{1.0cm}
+
+\item Expand $f(x)=1, \ 0<x<2$, in a Fourier-Bessel series using Bessel functions of order zero that satisfy the boundary condition: $J_0(2\alpha) = 0$.  Make a plot in MATLAB of the given function and the Fourier-Bessel expansion of the function with the first four terms.
+
+
+\end{enumerate}
+
+\vspace{1.0cm}
+
+\noindent For the next problem, use the MATLAB built-in function \lstinline[style=myMATLAB]{legendreP(n,x)} to represent Legendre Polynomials for Fourier-Legendre expansions.
+\begin{enumerate}[resume]
+\item Use MATLAB to calculate and print out the value of the first five \underline{non-zero} terms in the Fourier-Legendre expansion of the given function.  Make a plot in MATLAB of the given function and the Fourier-Legendre partial sum with five (non-zero) terms.
+\begin{equation*}
+f(x) = 
+\begin{cases}
+0, & -1 < x < 0 \\
+x, & 0 < x < 1
+\end{cases}
+\end{equation*}
+\end{enumerate}
+
+\end{fullwidth}
