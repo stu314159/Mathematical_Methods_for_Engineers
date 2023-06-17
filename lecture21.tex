@@ -21,20 +21,27 @@ The solution of a PDE is a \emph{function} of two (or more) independent variable
 
 \vspace{0.5cm}
 
-\noindent\textbf{Hyperbolic:} $B^2 - 4AC > 0$ \marginnote{There is an important first-order PDE that does not conform to this classification scheme but is considered hyperbolic; a typical example is the scalar linear advection equation:
+\noindent\textbf{Hyperbolic:} $B^2 - 4AC > 0$ 
+
+Hyperbolic differential equations are characteristic of wave-type phenomena.  In the linear homogeneous case, waves travel through the domain without distortion until a boundary is encountered.  We will examine problems such as vibrating strings and membranes that are governed by hyperbolic PDEs and will exhibit this wave-type behavior.
+\marginnote[-1.5cm]{There is an important first-order PDE that does not conform to this classification scheme but is considered hyperbolic; a typical example is the scalar linear advection equation:
 \begin{equation*}
 u_t + a \cdot \nabla u = f(x,y)
 \end{equation*}
-This equation exhibits similar wave-type behavior.  This and non-linear variations are very important in the modeling a variety of transport phenomena.
-}
+This equation exhibits similar wave-type behavior.  
 
-Hyperbolic differential equations are characteristic of wave-type phenomena.  In the linear homogeneous case, waves travel through the domain without distortion until a boundary is encountered.  We will examine problems such as vibrating strings and membranes that are governed by hyperbolic PDEs and will exhibit this wave-type behavior.
+A common non-linear variation is:
+\begin{equation*}
+u_t + \nabla \cdot f(u) = 0
+\end{equation*}
+where $f(u)$ is called a \emph{flux function}.  This equation plays a role in modeling a variety of physical conservation laws often associated with transport phenomena.  These equations are known for being capable of producing shocks; discontinuities in the solution even when the initial data is smooth.
+}
 
 \vspace{0.5cm}
 
 \noindent\textbf{Parabolic:} $B^2-4AC = 0$
 
-Parabolic differential equations are characteristic of \emph{diffusive} phenomena like transient heat conduction.
+Parabolic differential equations are characteristic of \emph{diffusive} phenomena like transient heat conduction.  The time evolution of the solution of these equations typically has a ``smoothing'' behavior.  Even if the initial data is only piece-wise smooth, as time evolves the solution tends to diffuse into a smooth function.  
 
 \vspace{0.5cm}
 
