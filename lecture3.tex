@@ -19,8 +19,8 @@ For a linear differential equation, an n\textsuperscript{th}-order initial value
 \text{Initial Conditions: }u(x_0)=u_0, \ u^{\prime}(x_0)=u_1,\dots,u^{(n-1)}(x_0)=u_{n-1}
 \label{eq:ivp-ics}
 \end{equation}
-\marginnote[-2.0cm]{\textbf{Note:} for an initial value problem, all of the initial conditions are provided at the same value of $x$; in accordance to custom we call this $x_0$.  The name \emph{initial} condition gives the implication that these conditions are at some ``end'' of the interval (beginning, left side, whatever) and in most all examples and exercises this is indeed the case.  It is \underline{not} a requirement, however.}
-\noindent \newthought{We seek a} function defined on some interval containing $x_0$ that satisfies the differential equation with $n$ conditions applied.\marginnote{Generally for an n\textsuperscript{th}-order IVP you will need $n$ conditions.} The theorem below, which we will use by \emph{citing} rather than \emph{proving} gives us assurance that, subject some fairly reasonable assumptions, such a solution will exist.  
+\marginnote[-1.5cm]{\textbf{Note:} for an initial value problem, all of the initial conditions are provided at the same value of $x$; in accordance to custom we call this $x_0$.  The name \emph{initial} condition gives the implication that these conditions are at some ``end'' of the interval (beginning, left side, whatever) and in most all examples and exercises this is indeed the case.  It is \underline{not}, however, a requirement.}
+\noindent \newthought{We seek a} function defined on some interval containing $x_0$ that satisfies the differential equation with $n$ conditions applied.\marginnote{Generally for an n\textsuperscript{th}-order IVP you will need $n$ conditions.} The theorem below, which we will use by \emph{citing} rather than \emph{proving}, gives us assurance that, subject some fairly reasonable assumptions, such a solution will exist.  
 
 \begin{theorem}[Existence and Uniqueness for IVPs]
 If $a_n(x),a_{n-1}(x),\dots,a_1(x),a_0(x)$ and $g(x)$ are continuous on an interval $\mathcal{I}$, and if $a_n(x) \ne 0$ for every $x \in \mathcal{I}$, and if $x_0$ is any point in this interval, then a solution $u(x)$ of the IVP exists on the interval and it is unique.
@@ -37,11 +37,12 @@ This IVP satisfies the conditions of Theorem \ref{thm:IVP-exist-and-unique} sinc
 Here is an IVP that does \emph{not} satisfy the criteria of Theorem \ref{thm:IVP-exist-and-unique}:
 \begin{equation}
 x^2u^{\prime \prime} - 2xu^{\prime}+2u=6, \ \ u(0)=3, \ u^{\prime}(0)=1
+\label{eq:lec3-ex2}
 \end{equation}
-\noindent In this case, the coefficients and $g(x)$ are all continuous but $a_2(x)$ is equal to zero at $x=0$.  This might not be a problem---i.e. if $x=0$ is not in the interval of interest for the IVP then we are okay---but since $x_0=0$, $x=0$ \emph{must} be in the domain for the theorem to apply.  So we have no assurances that a solution exists or, if a solution does exist, it may not be unique.\marginnote[-1.5cm]{You should take a moment to verify that $u=cx^2+x+3$ is a solution for \emph{any} choice of parameter $c$.}
+\noindent In this case, the coefficients and $g(x)$ are all continuous but $a_2(x)$ is equal to zero at $x=0$.  This might not be a problem---i.e. if $x=0$ is not in the interval of interest for the IVP then we are okay---but since $x_0=0$, $x=0$ \emph{must} be in the domain for the theorem to apply.  So we have no assurances that a solution exists or, if a solution does exist, it may not be unique.\marginnote[-1.5cm]{You should take a moment to verify that $u(x)=cx^2+x+3$ is a solution for the IVP given in Equation \ref{eq:lec3-ex2} for \emph{any} choice of parameter $c$.}
 
 \section{Boundary Value Problems}
-For this section let us, without undue loss of generality, consider a 2\textsuperscript{nd}-order boundary value problem (BVP):\marginnote{Almost all of the applications we will consider for this class will involve 2\textsuperscript{nd}-order operators.  The way we derive important boundary-value problems from underlying physical laws like conservation of mass and conservation of energy lead to them being 2\textsuperscript{nd}-order.  Probably the most obvious counterexample is beam theory which involves a 4\textsuperscript{th}-order operator.}
+For this section let us, without undue loss of generality, consider a 2\textsuperscript{nd}-order boundary value problem (BVP):\marginnote{Almost all of the applications we will consider for this class will involve 2\textsuperscript{nd}-order operators.  The way we derive important boundary-value problems from underlying physical laws like conservation of mass and conservation of energy lead to them being 2\textsuperscript{nd}-order.  You should think about this while you are sitting in your fluid dynamics class and equations are being derived for conservation of mass and momentum for viscous incompressible fluid flow or when you are sitting in heat transfer class and the heat equation is being derived from conservation of energy principles.  Probably the most obvious counterexample is beam theory which involves a 4\textsuperscript{th}-order operator.}
 \begin{equation}
 \text{Governing Equation: }a_2(x)\frac{d^2u}{dx^2}+a_1(x)\frac{du}{dx}+a_0(x)u=g(x) 
 \end{equation}
@@ -57,7 +58,7 @@ For this section let us, without undue loss of generality, consider a 2\textsupe
 \item $x(0)=0, \ \ x(\pi/2)=0$
 Application of the first boundary condition gives us $c_1(1)+c_2(0)=0 \Rightarrow c_1 = 0$.  The second boundary condition is $c_2\sin{(2 \pi)} = 0,$ which is true for \emph{any} value of $c_2$.  Therefore there problem has infinitely many solutions.
 \item $x(0)=0, \ \ x(\pi/8)=0$
-The first boundary condition again gives us $c_1=0$; the second condition $c_2\sin{(4 \frac{\pi}{8})}$ is only satisfied if $c_2=0$.  Thus $c_1 = c_2 = 0$; only the trivial solution, $u=0$, satisfies both the differential equation and boundary conditions.  This is not a very interesting solution but at least it \emph{is a solution} so we will take this as an example of a BVP having a unique solution.\marginnote{For applications, we will generally be only interested in \emph{non-trivial} solutions; that is, solutions that are not identically equal to zero.}
+The first boundary condition again gives us $c_1=0$; the second condition $c_2\sin{(4 \frac{\pi}{8})}=0$ is only satisfied if $c_2=0$.  Thus $c_1 = c_2 = 0$; only the trivial solution, $u=0$, satisfies both the differential equation and boundary conditions.  This is not a very interesting solution but at least it \emph{is a solution} so we will take this as an example of a BVP having a unique solution.\marginnote{For applications, we will generally be only interested in \emph{non-trivial} solutions; that is, solutions that are not identically equal to zero.}
 \item $x(0)=0, \ \ x(\pi/2)=1$
 In this case, again $c_1=0$ from the first boundary condition.  This leaves the second boundary condition: $c_2 \sin{\left(4 \frac{\pi}{2}\right)} = c_2(0) = 1$ which cannot be satisfied for any value of $c_2$.  In this case \emph{no} solution exists.
 
@@ -89,7 +90,7 @@ $$c_1f_1(x) + c_2f_2(x)+\cdots+c_kf_k(x) = 0$$
 \vspace{0.25cm}
 
 \noindent\textbf{Answer:} The set will no longer be linearly independent.  The trivial function $f(x)=0$ is not linearly independent from \emph{anything}.}
-Repeatedly throughout this course we will want to clarify whether or not, say, two functions are linearly independent of each other.  I think most engineers have a general idea of what it is we \emph{mean} when we say two functions are linearly independent or dependent but Theorem \ref{th:linear-dep} specifies what these things mean \emph{mathematically}.  
+Repeatedly throughout this course we will want to clarify whether or not two or more functions are linearly independent of each other.  I think most engineers have a general idea of what it is we \emph{mean} when we say two functions are linearly independent or dependent but Theorem \ref{th:linear-dep} specifies what these things mean \emph{mathematically}.  
 \newthought{We need a test} to help us determine if the members of a set of functions are linearly independent or not. This will be especially important as we evaluate solutions to a linear homogeneous differential equation.  Even if you are the sort of savant who can, by inspection, always detect linear dependence, you might have a hard time convincing your friends that your assessment is always correct.  Luckily, there is a theorem that provides a suitable test that can serve as irrefutable evidence of the state of linear dependence/independence of functions.
 
 \begin{theorem}[Criterion for Linearly Independent Solutions]
