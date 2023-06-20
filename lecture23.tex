@@ -287,7 +287,8 @@ In much the same way as we could improve our resolution of functions represented
 \label{fig:lec23_ex1_discont_n100}
 \end{marginfigure}
 
-\section{One Boundary Insulated}
+\section{Insulated Boundaries}
+%\subsection{One Boundary Insulated}
 As an exercise, let us consider what happens when we change the problem by insulating the boundary at $x=L$.  
 
 \begin{table}
@@ -321,3 +322,8 @@ A plot of the solution when $N=25$, $L=1$, and $\alpha^2=1.5$ is shown in Figure
 \caption{Solution with an insulated boundary at $x=L$.}
 \label{fig:lec23-ex2-n25}
 \end{marginfigure}
+%\subsection{Both Boundaries Insulated}
+
+\newthought{What happens if} both boundaries are insulated?  Physically, when we insulate something, that means we want to keep heat from coming in or out of the domain.  Does this mean heat will not diffuse \emph{within} the domain?  Of course note, heat will simply flow as it must while driven by temperature gradients in the domain.  When will it stop?  When there is no more temperature gradient to drive heat flow and that will happen when the temperature is uniform.  
+
+Mathematically, this means that we again change the boundary conditions so that the temperature gradient is zero at \emph{both} boundaries.  The details of this solution will be left to exercises but it is hoped by this point that you already know what the solution \emph{must} look like; namely that heat will diffuse within the domain until a uniform temperature is reached that is equal to the \emph{average} initial temperature.
