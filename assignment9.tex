@@ -1,0 +1,72 @@
+\chapter{Assignment \#9}
+\label{ch:ass9}
+\begin{fullwidth}
+
+
+\begin{enumerate}
+\item Consider the heat equation given in the following boundary value problem:
+\begin{table}[h]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial u}{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2}, \ \ \alpha>0, \ \ 0<x<L, \ \ t>0$ \\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $& $u(0,t)=0, \ \ u(L,t) = 0, \ \ t>0$\\
+& \\
+$\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,0) = f(x) = 
+\begin{cases}
+1, & 0 < x < \sfrac{L}{2} \\
+0, & \sfrac{L}{2} \le x < L 
+\end{cases}, \ \ 0<x<L $ \\
+\end{tabular}
+\end{table}
+
+Solve this boundary value problem using separation of variables.  Use MATLAB to represent the solution of this equation for $\alpha^2 = 1$ and $L=1$.  Truncate the series solution at $N=25$ terms.  Plot the solution with separate lines for the solution at t=0, t=0.1, and t=0.5. 
+
+
+\vspace{2.0cm}
+
+\item Solve the heat equation using separation of variables and find the temperature $u(x,t)$ in a rod of length $L$ with thermal diffusivity $\alpha^2$, if the initial temperature is $f(x)$ throughout and if the ends $x=0$ and $x=L$ are insulated.
+
+
+\vspace{2.0cm}
+
+\item Suppose heat is lost from the lateral surface of a thin rod of length $L$ into a surrounding medium at temperature zero.  If the linear law of heat transfer applies, then the heat equation takes on the form:
+
+\begin{equation*}
+\alpha^2 \frac{\partial^2 u}{\partial x^2} - hu = \frac{\partial u}{\partial t}, \ \ 0<x<L, \ \ t>0
+\end{equation*}
+where $h$ is a constant.  Use separation of variables and find the temperature $u(x,t)$ if the initial temperature is $f(x)$ throughout and the ends $x=0$ and $x=L$ are insulated. \textbf{Note:} when separating variables, keep $h$ with the time-dependent part of the equation.
+
+
+\vspace{2.0cm}
+
+\item Solve the heat equation using separation of variables subject to the following boundary and initial conditions:
+\begin{align*}
+u(0,t) &= 0, \ \ u(100,t) = 0, \ \ t>0 \\
+u(x,0) &= 
+\begin{cases}
+0.8x, & 0 \le x \le 50 \\
+0.8(100-x), & 50 < x \le 100
+\end{cases}
+\end{align*}
+Use MATLAB to represent the solution of this equation for $\alpha^2 = 1.6352$ and $L=100$.  Truncate the series solution at $N=25$ terms.  Plot the solution with separate data series for the solution at t=0, t=10, and t=50 seconds.  Create a surface plot (use the MATLAB built-in function \lstinline[style=myMatlab]{surf()} with $0 \le x \le 100$ as one dimension and $0 \le t \le 200$ as the other.
+
+\vspace{2.0cm}
+
+\item Solve the wave equation using separation of variables subject to the given conditions:
+\begin{align*}
+u(0,t) &= 0, \ \ u(\pi,t)=0, \ \ t>0 \\
+u(x,0) &=0, \ \ u_{t}(x,0) = \sin{x}, \ \ 0 < x < \pi
+\end{align*}
+
+\vspace{2.0cm}
+
+\item Use separation of variables to solve the wave equation subject to the following conditions:
+\begin{align*}
+u(0,t) &= 0, \ \ u(1,t)=0, \ \ t>0 \\
+u(x,0) &=x(1-x), \ \ u_{t}(x,0) = x(1-x), \ \ 0 < x < 1
+\end{align*}
+Use MATLAB to represent this solution.  Truncate the series solution at $N=25$ terms.  Make a plot that shows the position $u(x,t)$ for t = 0,1,5, and 10.
+\end{enumerate}
+
+
+\end{fullwidth}
