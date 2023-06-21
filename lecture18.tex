@@ -8,7 +8,7 @@
 \end{itemize}
 
 \section{Regular Sturm-Liouville Eigenvalue Problem} \index{Sturm-Liouville Eigenvalue Problem}
-\newthought{We have solved} several differential equations in this class.  All of the problems that we have solved so far are special cases of a more general problem  That is what we wish to discuss in this lecture.
+\newthought{We have solved} several differential equations in this class.  All of the boundary value problems that we have solved so far are special cases of a more general framework called Sturm-Liouville eigenvalue problems. That is what we wish to discuss in this lecture.
 
 For the Regular Sturm-Liouville Eigenvalue problem we hope to solve:\marginnote{\textbf{Note:} for Equation \ref{eq:sturm-liouville-evp}, $r(x)$, $r^{\prime}(x)$, $q(x)$, and $p(x)$ must be real-valued and continuous on the interval $x \in (a,b)$.  Also $p(x)>0$ and $r(x)>0$ for all $x\in(a,b)$.  These are important conditions that should be verified each time you encounter a new problem.  The constant $\lambda$ is referred to as an \emph{eigenvalue}.}
 \begin{equation}
@@ -39,7 +39,7 @@ To obtain values for the coefficients $c_n$, we need only take the inner product
 \end{enumerate}
 
 
-\newthought{If $r(x)$ in} Equation \ref{eq:sturm-liouville-evp} at either boundary the problem is said to be a singular boundary value problem.  If $r(a) = r(b)$, with suitable boundary conditions, the problem is said to be a periodic boundary value problem.
+\newthought{If $r(x)$ in} Equation \ref{eq:sturm-liouville-evp} is zero at either boundary, the problem is said to be a singular boundary value problem.  If $r(a) = r(b)$, with suitable boundary conditions, the problem is said to be a periodic boundary value problem.
 
 \vspace{1.0cm}
 
@@ -94,7 +94,7 @@ This equation can be satisfied simply by setting $c_2 = 0$, but we will resist t
 \caption{Plot of $\sin{\alpha} + \alpha \cos{\alpha}$.}
 \label{fig:lec18-evplot}
 \end{marginfigure}
-We can see from Figure \ref{fig:lec18-evplot} that there are values of $\alpha$ that satisfy this condition; we will denote these eigenvalues $\alpha_1^2 = \lambda_1$, $\alpha_2^2 = \lambda_2$, $\dots$, $\alpha_n^2 = \lambda_n$ and the corresponding eigenfunctions are denoted: $u_n(x) = \sin{\alpha_n x}$.
+We can see from Figure \ref{fig:lec18-evplot} that there are values of $\alpha$ that satisfy this condition;\sidenote{We probably should not assume as much by looking at the plot in Figure \ref{fig:lec18-evplot} but it turns out that there are infinitely many zeros.} we will denote these eigenvalues $\alpha_1^2 = \lambda_1$, $\alpha_2^2 = \lambda_2$, $\dots$, $\alpha_n^2 = \lambda_n$ and the corresponding eigenfunctions are denoted: $u_n(x) = \sin{\alpha_n x}$.
 
 \newthought{We will defer,} for the moment, the problem of finding the roots to Equation \ref{eq:lec18-ex1-ev-eq}. Suffice it to say that there are infinitely many distinct roots yielding the infinitely many eigenvalues to go with the infinitely many eigenfunctions. They can be found with a non-linear equation solver (``root-finder'') for which there are several reliable algorithms.
 
