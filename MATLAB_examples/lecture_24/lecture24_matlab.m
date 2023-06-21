@@ -37,7 +37,8 @@ for n = 1:N
     an = (2/L)*integral(@(x) f(x).*sin(n*pi*x./L),0,L);
     % compute bn
     bn = ...
-        (2/(alpha*n*pi))*integral(@(x) g(x).*sin(n*pi*x./L),0,L);
+        (2/(alpha*n*pi))*...
+        integral(@(x) g(x).*sin(n*pi*x./L),0,L);
     
     % update the approximate solution
     u = @(x,t) u(x,t) + ...
@@ -67,19 +68,22 @@ for n = 1:NT
    pause(Tmax/(NT-1));
 end
 
-%% fixed plot
+%% fixed plot, multiple data series
 figure(2)
 plot(X,u(X,0),'-b',...
     X,u(X,1.0),'-.g',...
     X,u(X,2.0),'--r',...
-    X,u(X,3.0),':k','linewidth',2);
-title('Lecture 24 Example','fontsize',16,'fontweight','bold');
+    X,u(X,3.0),':k','linewidth',3);
+title('Lecture 25 Wave Equation Example',...
+    'fontsize',16,'fontweight','bold');
 xlabel('X','fontsize',14,'fontweight','bold');
-ylabel('u(X,T)','fontsize',14,'fontweight','bold');
+ylabel('u(X,T)','fontsize',14,...
+    'fontweight','bold');
 grid on
 set(gca,'fontsize',12,'fontweight','bold');
-axis([0 L -2.0 2.0]);
-legend('t = 0','t = 1.0','t = 2.0','t = 3.0','location','best');
+axis([0 L -1.0 1.0]);
+legend('t = 0','t = 1.0','t = 2.0','t = 3.0',...
+    'location','best');
 
 %% Fixed Plot, single time step
 ts = 3.0;

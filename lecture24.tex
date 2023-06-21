@@ -190,7 +190,8 @@ for n = 1:N
     an = (2/L)*integral(@(x) f(x).*sin(n*pi*x./L),0,L);
     % compute bn
     bn = ...
-        (2/(alpha*n*pi))*integral(@(x) g(x).*sin(n*pi*x./L),0,L);
+        (2/(alpha*n*pi))*...
+        integral(@(x) g(x).*sin(n*pi*x./L),0,L);
     
     % update the approximate solution
     u = @(x,t) u(x,t) + ...
