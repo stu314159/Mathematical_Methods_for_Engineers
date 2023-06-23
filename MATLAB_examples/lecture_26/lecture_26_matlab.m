@@ -3,12 +3,14 @@ clear
 clc
 close 'all'
 
-%% Laplace's Eqn BVP
+%% Set Parameters
 a = 5;
 b = 3;
-N = 50;
+N = 15;
 
-fx_pick = 2;
+
+
+fx_pick = 1;
 %[1 | 2]
 switch fx_pick
     case 1
@@ -19,11 +21,12 @@ switch fx_pick
         error('Invalid case!');        
 end
 
-% define the eigenvalues and eigenfunctions
+%% define the eigenvalues and eigenfunctions
 alpha = @(n) n.*pi./a;
 F = @(x,n) cos(alpha(n).*x);
 G = @(y,n) sinh(alpha(n).*y);
 
+%% Compute coefficients
 % compute Ao
 Ao = (1/(a*b))*integral(@(x) f(x),0,a);
 
@@ -62,7 +65,7 @@ y = nan(m,n);
 for i = 1:length(x)
     if(x(i)>= 0) && (x(i)<a/2)
         y(i) = x(i).^2;
-    else
+    elseif(x(i) >= a/2) && (x(i)<a)
         y(i) = (a/2).^2;
     end
 end    
