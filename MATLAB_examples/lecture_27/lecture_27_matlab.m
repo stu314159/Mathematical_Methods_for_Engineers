@@ -6,9 +6,9 @@ close 'all'
 %% Define parameters
 L = 1;
 k = 0.5; % thermal diffusivity
-r = 10; % constant heat production in the domain
-u1 = 2; % right-hand boundary condition (time independent)
-f = @(x)  5*x.*(1-x); % initial condition
+r = 150; % constant heat production in the domain
+u1 = 100; % right-hand boundary condition (time independent)
+f = @(x)  300*x.*(1-x); % initial condition
 alpha = @(n) n*pi;
 F = @(x,n) sin(alpha(n).*x);
 G = @(t,n) exp(-k*(alpha(n).^2).*t);
@@ -42,7 +42,7 @@ ylabel('U(X,T)','fontsize',14,'fontweight','bold');
 grid on
 set(gca,'fontsize',12,'fontweight','bold');
 legend('t=0','t=0.1','t=\infty','location','best');
-axis([0 1 0 4])
+%axis([0 1 0 4])
 % %% Time-dependent plot
 % NT = 50;
 % Tmax = 2;
@@ -73,4 +73,4 @@ grid on
 xlabel('X','fontsize',14,'fontweight','bold');
 ylabel('\psi(X)','fontsize',14,'fontweight','bold');
 set(gca,'fontsize',12,'fontweight','bold');
-axis([0 1 0 4])
+%axis([0 1 0 4])

@@ -160,6 +160,6 @@ In this particular case, while we know from the boundary conditions, that $v(x,t
 \begin{equation*}
 u(x,t) = \underbrace{-\frac{r}{2\alpha^2}x^2 + \frac{1}{L}\left(u_1+\frac{rL^2}{2 \alpha^2}\right)x}_{\text{steady state}} + \underbrace{\sum\limits_{n=1}^{\infty} c_n \sin{\frac{n \pi x}{L}}e^{-\left(\alpha \frac{n \pi}{L}\right)^2 t}}_{\text{transient}}
 \end{equation*}
-A plot for the case: $\alpha^2 = 0.5$, $L=1$, $r=10$, $u_1=2$, and $f(x) = 5x(1-x)$ is shown in Figure \ref{fig:lec27-ex-plt}.\marginnote{
-Take note of how, since the initial condition, $f(x)$, does not match the boundary condition at $x=1$ there is ``wiggliness'' in the Fourier series representation that ``diffuses away'' almost immediately.  Note also how $u(x,\infty)$ matches $\psi(x)$ as expected.}
+A plot for the case: $\alpha^2 = 0.5$, $L=1$, $r=150$, $u_1=100$, and $f(x) = 300x(1-x)$ is shown in Figure \ref{fig:lec27-ex-plt}.\marginnote{
+Take note of how, since the initial condition, $f(x)$, does not match the boundary condition at $x=1$ there is ``wiggliness'' in the Fourier series representation that ``diffuses away'' almost immediately.  Note also how $u(x,\infty)$ matches $\psi(x)$ as expected.} Think about the physics for a minute: we have a rod that is heated from a uniform source $r$ which gives the roughly parabolic temperature profile throughout the rod except at the ends; the left-hand side is maintained at 0 degrees and the right-hand side is held steady at 100 degrees. Hopefully the answer you see in the plot matches, more-or-less, your expectations as to what the temperature profile \emph{should} look like. 
 
