@@ -1,0 +1,75 @@
+\chapter{Assignment \#10}
+\label{ch:ass10}
+\begin{fullwidth}
+
+\begin{enumerate}
+\item Solve the boundary value problem below using separation of variables.
+\begin{table}[h]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0, \ \ 0<x<a, \ \ 0<y<b $\\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $ & $\substack{u(x,0)=0  \ \ \ \ \ \ u(0,y) = 0 \\ \\ u(x,b) = f(x) \ \ u(a,y) = 0}$ 
+\end{tabular}
+\end{table} 
+
+
+\vspace{2.0cm}
+
+\item Solve the boundary value problem below using separation of variables.
+\begin{table}[h]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0, \ \ 0<x<1, \ \ 0<y<1 $\\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $ & $\substack{u_y(x,0)=0  \ \ \ \ \ \ u(0,y) = 0 \\ \\ u_y(x,1) = 0 \ \ u(1,y) = 1-y}$ 
+\end{tabular}
+\end{table} 
+
+\noindent Symbolically solve the problem and set up, but do not evaluate analytically, the Fourier coefficients.  Use MATLAB to numerically find the solution using $N=15$ eigenmodes.  Plot the solution using the MATLAB built-in function \lstinline[style=myMatlab]{surf()} and print out the value of the solution at $u(0.5,0.5)$.
+
+\vspace{2.0cm}
+
+\item Solve the non-homogeneous boundary value problem below.
+\begin{table}
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial u}{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2} + Ae^{-\beta x}, \ \ \alpha>0, \ \beta>0, \ \ 0<x<1, \ \ t>0$ \\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $& $u(0,t)=0, \ \ u(1,t) = 0, \ \ t>0$\\
+& \\
+$\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,0) = f(x), \ \ 0<x<L $ \\
+\end{tabular}
+\end{table}
+
+\vspace{2.0cm}
+
+\item Find a steady-state solution $\psi(x)$ of the non-homogeneous boundary value problem below.
+
+\begin{table}
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial u}{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2} -h(u-u_0), \ \ \alpha>0, \ h>0, \ \ 0<x<1, \ \ t>0$ \\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $& $u(0,t)=u_0, \ \ u(1,t) = 0, \ \ t>0$\\
+& \\
+$\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,0) = f(x), \ \ 0<x<L $ \\
+\end{tabular}
+\end{table}
+
+\vspace{2.0cm}
+
+\item Solve the boundary value problem below using separation of variables.
+\begin{table}[h]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0, \ \ 0<x<1, \ \ 0<y<1 $\\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $ & $\substack{u(x,0)=0  \ \ \  \ \ u_x(0,y) = 0 \\ \\ u_y(x,1) = 0 \ \ \ \ u(1,y) = u_0}$ 
+\end{tabular}
+\end{table} 
+
+\vspace{0.25cm}
+
+\noindent Solve the equation symbolically.  Use MATLAB to represent the solution for $N=15$ eigenmodes with $u_0=0.25$.  Plot the solution using MATLAB's built-in function \lstinline[style=myMatlab]{surf()}.
+
+\end{enumerate}
+
+\end{fullwidth}
+
+
