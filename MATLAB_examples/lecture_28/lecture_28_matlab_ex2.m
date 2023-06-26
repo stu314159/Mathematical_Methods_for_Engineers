@@ -4,16 +4,16 @@ clc
 close 'all'
 
 %% Parameters
-a = 5;
+alpha_sq = 5;
 L = 1;
 
 N = 30;
 
-alpha = @(n) (2*n-1)*pi/2;
-Fn = @(x,n) sin(alpha(n).*x);
-Gn = @(t,n) cos(a*alpha(n).*t);
+nu = @(n) (2*n-1)*pi/2;
+Fn = @(x,n) sin(nu(n).*x);
+Gn = @(t,n) cos(alpha_sq*nu(n).*t);
 f = @(x) x; % initial displacement
-u = @(x,t) 0;
+u = @(x,t) 0; % initial velocity
 
 for n = 1:N
    ef_mag = integral(@(x) Fn(x,n).^2,0,L);
@@ -41,6 +41,5 @@ for t = 1:Nt
     grid on
     set(gca,'fontsize',12,'fontweight','bold');
     axis([0 L -L L]);
-    pause(Tmax/(Nt-1));
-    
+    pause(Tmax/(Nt-1));    
 end

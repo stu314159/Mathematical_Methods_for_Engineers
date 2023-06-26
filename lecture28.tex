@@ -189,29 +189,191 @@ end
 \end{marginfigure}
 The solution for the parameters we have selected, plotted at various times, is shown in Figure \ref{fig:lec28-ex1-sol}
 
-Some questions that you should make sure that you can answer:\marginnote{
-Rough answers:
+Some questions that you should make sure that you can answer:%\marginnote{
+%Rough answers:
+%\begin{enumerate}
+%\item The steady-state temperature is $u(x,\infty)=0$.  Heat passes out the left and right boundary by conduction on the left and convection on the right.
+
+%\item This is because the initial condition $f(x)=1$ did not satisfy the boundary condition at $x=0$.  As expected, the ``wiggliness'' quickly diffuses away.
+
+%\item If the thermal diffusivity is increased, the temperature progresses towards its steady-state value more quickly.
+
+%\item If the convective heat transfer coefficient is increased, energy is transferred through the right boundary more quickly.  This can most easily be observed by noting the \emph{slope} of the solution at the boundary.  If $h$ is increased, the slope becomes more negative; if $h$ is decreased, the slope becomes less negative.  The limit of $h=0$ corresponds to $u_x(1,t)=0$ which is insulated boundary conditions.
+
+
+%\end{enumerate}
+%}
 \begin{enumerate}
-\item The steady-state temperature is $u(x,\infty)=0$.  Heat passes out the left and right boundary by conduction on the left and convection on the right.
+\item What is the final steady-state temperature?  Answer: zero since all of the energy from the initial condition is transferred out via the left or right boundaries.
 
-\item This is because the initial condition $f(x)=1$ did not satisfy the boundary condition at $x=0$.  As expected, the ``wiggliness'' quickly diffuses away.
-
-\item If the thermal diffusivity is increased, the temperature progresses towards its steady-state value more quickly.
-
-\item If the convective heat transfer coefficient is increased, energy is transferred through the right boundary more quickly.  This can most easily be observed by noting the \emph{slope} of the solution at the boundary.  If $h$ is increased, the slope becomes more negative; if $h$ is decreased, the slope becomes less negative.  The limit of $h=0$ corresponds to $u_x(1,t)=0$ which is insulated boundary conditions.
-
-
-\end{enumerate}
-}
-\begin{enumerate}
-\item What is the final steady-state temperature?
-
-\item Why is the initial condition so ``wiggly''? 
+\item Why is the initial condition so ``wiggly''? Answer: because the initial condition does not match the boundary condition at $x=0$ and the discontinuity causes perturbations typical of Fourier series.
 
 \item What happens if $\alpha^2$ is increased or decreased?
 
 \item What happens if $h$ is increased or decreased?
+  
 \end{enumerate}
+\begin{figure}[h!]
+\subfloat[]{\includegraphics[width=2in]{lec28-ex1-sol-alpha-high.png}}
+\subfloat[]{\includegraphics[width=2in]{lec28-ex1-sol-alpha-low.png}} \\
+\subfloat[]{\includegraphics[width=2in]{lec28-ex1-sol-h-high.png}}
+\subfloat[]{\includegraphics[width=2in]{lec28-ex1-sol-h-low.png}}
+\label{fig:lec28-ex1-variations}
+\caption{Variations in $\alpha$ and $h$ for example problem.}
+\end{figure}
+Answers to the last two questions are illustrated in Figure \ref{fig:lec28-ex1-variations}.  Images a) and b) illustrate how the solution changes when thermal diffusivity is increased or decreased, respectively.  Images c) and d) illustrate how the solution changes when the convective heat transfer coefficient, $h$, is increased and decreased.
 
-You should think about these questions and make sure you understand the answers.  The answers should all comport well with your intuition for how heat transfer works.
+\vspace{0.5cm}
+
+\noindent\textbf{Example \#2:} The twist angle $\theta(x,t)$ of a torsionally vibrating shaft is given by the wave equation.
+
+\begin{table}[h]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\alpha^2 \frac{\partial^2 \theta}{\partial x^2} =  \frac{\partial^2 \theta}{\partial t^2},  \ \ \alpha>0, \ \ 0<x<1, \ \ t>0$ \\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $& $\theta(0,t)=0, \ \ \theta_x(1,t) = 0, \ \ t>0$\\
+& \\
+$\substack{\text{Initial} \\ \text{Conditions}}: $ & $\theta(x,0) = x, \ \ \theta_t(x,0) = 0, \ \ 0<x<1 $ \\
+\end{tabular}
+\end{table}
+\begin{marginfigure}
+\includegraphics{lec28-ex2-schematic.png}
+\caption{Schematic of Example \#2.}
+\label{fig:lec28-ex2-schematic}
+\end{marginfigure}
+
+
+\newthought{Of course we} will also use separation of variables for this boundary value problem and, again, since we have already carried out the separation process for the wave equation numerous times, we will again skip ahead and write down the separated equations:
+
+\begin{align*}
+\theta(x,t) &= F(x)G(t) \\
+F_{xx} + \lambda F &= 0 \\
+G_{tt} + \alpha^2 \lambda G &= 0
+\end{align*}
+We need to find values of $\lambda$ for which non-trivial solutions to the equations can satisfy the boundary conditions.  As with the first example, $F(x)$ is the spatial variable to which the boundary conditions apply and both boundary conditions are homogeneous.  Thus we will again focus our attention on the equation for $F(x)$.
+
+\vspace{0.25cm}
+
+\noindent\underline{$\lambda = 0$}:
+
+\begin{align*}
+F_{xx} &= 0 \\
+F(x) &= c_1x + c_2 \\
+F(0) &= c_1(0) + c_2 = 0 \\
+\Rightarrow c_2 &= 0 \\
+F_{x}(0) &= c_1 = 0 \\
+\Rightarrow c_1 &= 0
+\end{align*}
+We see that for $\lambda = 0$ only the trivial solution can satisfy the boundary conditions.
+
+\vspace{0.25cm}
+
+\noindent\underline{$\lambda < 0$}: $\ \lambda = \nu^2, \ \nu>0$
+\begin{align*}
+F_{xx} - \nu^2 F &= 0 \\
+F(x) &= c_1 \cosh{\nu x} + c_2 \sinh{\nu x} \\
+F(0) &= c_1(1) + c_2(0) = 0 \\
+\Rightarrow c_1 &= 0 \\
+F_{x}(1) &= \nu c_2 \cosh{\nu} = 0
+\end{align*} \marginnote{By this point in time, this analysis may begin to feel quite repetitive.  That is because it is repetitive.  Nonetheless, resist the tendency to rush and/or become complacent.  It is worth your while to patiently and carefully work through each of these cases every time.}
+For the last conditions, since $\cosh{\nu}$ is always positive for $\nu>0$, $c_2 = 0$ and, again, only the trivial solution can satisfy the boundary conditions.
+
+\vspace{0.25cm}
+
+\noindent\underline{$\lambda > 0$}: $\ \lambda = \nu^2, \ \nu>0$
+\begin{align*}
+F_{xx} + \nu^2 F &= 0 \\
+F(x) &= c_1\cos{\nu x} + c_2 \sin{\nu x} \\
+F(0) &= c_1(1) + c_2(0) = 0 \\
+\Rightarrow c_1 &= 0 \\
+F_{x}(1) &= \nu c_2 \cos{\nu} = 0
+\end{align*}
+We can satisfy this boundary condition for any value of $c_2$ provided that $\nu$ is a root of $\cos(x)$.  This happens when $\nu$ is an odd-integer multiple of $\sfrac{\pi}{2}$.  Thus:
+
+\begin{align*}
+\nu_n &= (2n-1)\frac{\pi}{2}, \ n=1,2,3\dots \\
+F_n(x) &= c_n \sin{\nu_n x}
+\end{align*} 
+The corresponding solution to $G(t)$ is:
+\begin{align*}
+G_{tt} + \alpha^2 \nu_n^2 G &= 0 \\
+G(t) &= a_n \cos{(\alpha \nu_n t)}+b_n\sin{(\alpha \nu_n t)}
+\end{align*}
+and the product solution is:
+\begin{equation*}
+u(x,t) = F(x)G(t) = \sum\limits_{n=1}^{\infty} \left[a_n \cos{(\alpha \nu_n t)}+b_n\sin{(\alpha \nu_n t)} \right]\sin{(\nu_n x)}
+\end{equation*}
+
+\newthought{To solve for} the remaining constants $a_n$ and $b_n$ we need to apply the initial conditions.
+\begin{align*}
+u(x,0) &= \sum\limits_{n=1}^{\infty}\left[a_n(1) + b_n(0) \right]\sin{(\nu_n x)} \\
+&=\sum\limits_{n=1}^{\infty} a_n \sin{(\nu_n x)} = x
+\end{align*}
+To solve for $a_n$, we now only need to multiply both sides by our orthogonal function---$\sin{(\nu_n x)}$---and integrate.  The resulting formula for $a_n$ is:\marginnote[1.0cm]{This really \emph{looks} like a Fourier series, but technically it is not since the expansion functions are not $\sin{(\sfrac{n \pi x}{L})}$ or $\cos{(\sfrac{n \pi x}{L})}$.}
+\begin{equation*}
+a_n = \frac{(x,\sin{(\nu_n x)})}{(\sin{(\nu_nx)},\sin{(\nu_n,x)})} = \frac{\int_{0}^{1}x \sin{(\nu_n x)} \ dx}{\underbrace{\int_0^1 \sin{(\nu_n x)}^2 \ dx}_{\sfrac{1}{2}}}
+\end{equation*}
+
+\vspace{0.25cm}
+
+\noindent The other boundary condition is applied to get $b_n$:
+\begin{align*}
+u_t(x,0) &= \sum\limits_{n=1}^{\infty} \left[-\alpha \nu_n a_n (0) + \alpha \nu_n b_n(1)\right]\sin{(\nu_n x)} = 0 \\
+\Rightarrow b_n &= 0, \ \ n=1,2,3\dots
+\end{align*}
+
+\noindent In summary, the solution is:
+\begin{align*}
+u(x,t) &= \sum\limits_{n=1}^{\infty} a_n \cos{(\alpha \nu_n t)}\sin{(\nu_n x)} \\
+a_n &= 2 \int_0^1 x \sin{(\nu_n x)} \ dx
+\end{align*}
+
+\newthought{The MATLAB code} to construct and visualize the solution for this problem is shown in the listing below.
+
+\begin{lstlisting}[name=lec28-ex2, style=myMatlab]
+clear
+clc
+close 'all'
+
+%% Parameters
+alpha_sq = 5;
+L = 1;
+
+N = 30;
+
+nu = @(n) (2*n-1)*pi/2;
+Fn = @(x,n) sin(nu(n).*x);
+Gn = @(t,n) cos(alpha_sq*nu(n).*t);
+f = @(x) x; % initial displacement
+u = @(x,t) 0; % initial velocity
+
+for n = 1:N
+   ef_mag = integral(@(x) Fn(x,n).^2,0,L);
+   an = integral(@(x) f(x).*Fn(x,n),0,L)./ef_mag;
+   
+   u = @(x,t) u(x,t) + an.*Fn(x,n).*Gn(t,n);
+end
+
+%% Plot the solution
+Nx = 1000;
+X = linspace(0,L,Nx);
+
+Tmax = 5;
+Nt = 50;
+T = linspace(0,Tmax,Nt);
+
+figure(2)
+for t = 1:Nt
+    plot(X,u(X,T(t)),'-b','linewidth',3);
+    title_str = sprintf('Lecture 28 Example 2, t = %g ',T(t));
+    title(title_str,'fontsize',16,'fontweight','bold');
+    xlabel('X','fontsize',14,'fontweight','bold');
+    ylabel('U(X,T) Angular Displacement', 'fontsize',14,...
+        'fontweight','bold');
+    grid on
+    set(gca,'fontsize',12,'fontweight','bold');
+    axis([0 L -L L]);
+    pause(Tmax/(Nt-1));    
+end
+\end{lstlisting}
 

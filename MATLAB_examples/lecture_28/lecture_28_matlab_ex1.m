@@ -53,22 +53,22 @@ end
 %% Plot the solution
 Nx = 1000;
 X = linspace(0,L,Nx);
-
-Tmax = 5;
-Nt = 50;
-T = linspace(0,Tmax,Nt);
-
-figure(2)
-for t = 1:Nt
-    plot(X,u(X,T(t)),'-b','linewidth',3);
-    title_str = sprintf('Lecture 28 Example, t = %g ',T(t));
-    title(title_str,'fontsize',16,'fontweight','bold');
-    grid on
-    set(gca,'fontsize',12,'fontweight','bold');
-    axis([0 L -0.05 1.5]);
-    pause(Tmax/(Nt-1));
-    
-end
+% 
+% Tmax = 5;
+% Nt = 50;
+% T = linspace(0,Tmax,Nt);
+% 
+% figure(2)
+% for t = 1:Nt
+%     plot(X,u(X,T(t)),'-b','linewidth',3);
+%     title_str = sprintf('Lecture 28 Example, t = %g ',T(t));
+%     title(title_str,'fontsize',16,'fontweight','bold');
+%     grid on
+%     set(gca,'fontsize',12,'fontweight','bold');
+%     axis([0 L -0.05 1.5]);
+%     pause(Tmax/(Nt-1));
+%     
+% end
 
 %%
 figure(3)
