@@ -9,13 +9,13 @@
 
 \section{Laplacian Operator in Polar Coordinates}
 
-In past lectures I have introduced the Laplacian operator ($\nabla^2$ or $\bigtriangleup$) which is shown for rectangular coordinates below.
+In past lectures we have used the Laplacian operator ($\nabla^2$ or $\bigtriangleup$) which is shown for rectangular coordinates below.
 \begin{align*}
 \nabla &= \langle \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \rangle \\
 \nabla \cdot \nabla = \nabla^2 &= \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2} \\
 &= \bigtriangleup
 \end{align*}
-The operator notation is convenient insofar as it is agnostic regarding coordinate system.  We can use the Laplacian in a differential equation---e.g.$\nabla^2u = 0$---without immediate regard as to whether the domain will be described in a rectangular (Cartesian) coordinate system, or polar or cylindrical or spherical coordinates.  At some point in time before we can hope to solve such a differential equation, we need to select a coordinate system.\marginnote[-1.5cm]{How do you pick a coordinate system?  The answer is that you select a coordinate system that makes \underline{\emph{the boundary of the domain easy to describe.}}}  Once we have done that, we need to have an expression of the Laplacian available with the appropriate independent variables.  
+The operator notation is convenient insofar as it is agnostic regarding coordinate system.  We can use the Laplacian in a differential equation---e.g.$\nabla^2u = 0$---without immediate regard as to whether the domain will be described in a rectangular (Cartesian) coordinate system, polar, cylindrical or spherical coordinates.  Still, at some point in time before we can hope to solve such a differential equation, we need to select a coordinate system.\marginnote[-1.5cm]{How do you pick a coordinate system?  The answer is that you select a coordinate system that makes \underline{\emph{the boundary of the domain easy to describe.}}}  Once we have done that, we need to have an expression of the Laplacian available with the appropriate independent variables.  
 \begin{marginfigure}
 \includegraphics{lec30-cylindrical-coordinates.png}
 \caption{Cylindrical coordinate system.}
@@ -99,7 +99,7 @@ u_{xx} &= \left(u_{x}\right)_{x} \\
 &= \left(u_x\right)_r r_x + \left(u_x\right)_{\theta} \theta_x \\
 &= \left(u_r \cos{\theta} - u_{\theta}\frac{\sin{\theta}}{r} \right)_r \cos{\theta} - \left( u_r \cos{\theta} - u_{\theta}\frac{\sin{\theta}}{r}\right)_{\theta}\frac{\sin{\theta}}{r}
 \end{align*}
-We would then start all over again to find $u_y$ and $u_{yy}$.  Balancing mathematical tedium with conceptual understanding, we will omit these details.  Readers are encouraged to finish the job.  Like some other hazing rituals, deriving the Laplacian operator for polar coordinates has some (small) redeeming benefits.
+We would then start all over again to find $u_y$ and $u_{yy}$.  Balancing mathematical tedium with conceptual understanding, we will omit these details.  Readers are encouraged to finish the job.\sidenote{Like some other hazing rituals, deriving the Laplacian operator for polar coordinates has some (small) redeeming benefits.}
 
 \newthought{After much tedious} work and simplification you can arrive at the expression of the Laplacian in polar coordinates given in Equation \ref{eq:laplacian-polar}.
 \begin{equation}
