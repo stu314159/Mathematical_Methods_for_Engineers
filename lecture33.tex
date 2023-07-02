@@ -1,0 +1,146 @@
+\chapter{Lecture 33 - Introduction to the Neutron Diffusion Equation in Cylindrical Coordinates}
+\label{ch:lec33}
+\section{Objectives}
+\begin{itemize}
+\item Describe the neutron diffusion equation
+\item Solve the neutron diffusion equation for a bare, homogeneous, finite, cylindrical reactor. 
+\end{itemize}
+\setcounter{lstannotation}{0}
+
+\section{Background and Introduction}
+In a nuclear reactor, power is produced by neutron-induced fission in fuel materials in the core.  To understand this phenomena, we need to have a model of neutron transport and interaction.  The dependent variable in this analysis is the \emph{neutron flux} ($\phi$) which is the product of neutron density---number of neutrons per unit volume---and the average speed of the neutrons.\sidenote{Equivalently, the neutron flux can be understood as the total distance traveled by all neutrons per unit volume and per unit time. The units for flux are: $\frac{\text{neutrons}}{\text{cm}^2-\text{s}}$ although ``neutrons'' are not technically a unit.}  Since almost all operating reactor cores are arranged as a nearly cylindrical array of fuel assemblies, we will idealize the geometry of a reactor core as a smooth finite cylinder.  To make the calculations amenable to analytical methods, we will make the following additional assumptions:
+\begin{enumerate}
+\item The neutron flux is at steady state and equal to zero at the core boundary;\sidenote{This is referred to as a \emph{vacuum boundary condition}.  The flux is not actually zero at the boundary but is \emph{assumed} to be zero a certain distance from the boundary, referred to as the \emph{extrapolation distance} $(d)$.  For students studying reactor physics you will learn that the extrapolation distance is assumed to be proportional to the diffusion coefficient: $d = 2.13D$. } the exterior of the core is assumed to be \emph{bare} with no reflector materials present.  
+\item Since the flux is assumed to be zero at the core boundary it will be natural to also assume that the neutron flux is constant with respect to variations in angular position within the cylinder.
+\item The fuel, cladding, coolant, and surrounding structural materials will be taken as a homogeneous medium.
+\item variation in neutron energy will be ignored and their individual direction of travel will also be ignored; thus neutron flux will be a function of radial and axial position only---$\phi(r,z)$.
+\end{enumerate}
+
+\section{Neutron Diffusion Equation}
+
+Collectively, the above assumptions lead us to use the Diffusion Theory approximation for neutron transport.  The general form of the neutron diffusion equation is given in Equation \ref{eq:lec33-nde}.
+\begin{equation}
+D\nabla^2\phi - \Sigma_a \phi + \nu \Sigma_f = 0
+\label{eq:lec33-nde}
+\end{equation}
+where $D$ is the diffusion coefficient,\sidenote{The diffusion coefficient is a material property that is proportional to the average distance a neutron can travel in a medium without interaction with the atoms of a material. If a neutron is expected to travel only a short distance before interaction then $D$ is small; if a long distance, $D$ is large.} $\Sigma_a$ and $\Sigma_f$ are the macroscopic absorption and fission cross sections for the homogeneous core material,\sidenote{Like $D$, $\Sigma_a$ and $\Sigma_f$ are related to the distance a neutron is expected to travel before an interaction (absorption for $\Sigma_a$ and fission for $\Sigma_f$) except in this case it is an inverse proportionality.  For example, if a neutron is likely to be absorbed after traveling only a short distance, that means $\Sigma_a$ is large.} and $\nu$ is the average number of neutrons released per fission event.
+
+If we specify the form of the Laplacian operator for cylindrical coordinates with angular symmetry and define $B^2 = \frac{\nu \Sigma_f - \Sigma_a}{D}$,\sidenote{$B^2$ is generically referred to as ``buckling'' or, since it is defined in terms of material properties, it is sometimes called ``material buckling.''} the boundary value problem can be expressed as follows:
+\begin{table}[h]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 \phi}{\partial r^2} + \frac{1}{r}\frac{\partial \phi}{\partial r} + \frac{\partial^2 \phi}{\partial z^2} + B^2\phi= 0, \ \ 0<r<R, \ \ -\sfrac{H}{2}<z<\sfrac{H}{2} $\\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $ & $\phi(r,-\sfrac{H}{2}) = \phi(r,\sfrac{H}{2}) = 0, \  \phi(R,z) = 0$  \\ 
+\end{tabular}
+\end{table} 
+In addition to angular symmetry, this problem is symmetric in the axial direction; the top-half and bottom-half are the same.  Thus we will only model the top half of the domain and impose a \emph{symmetry} boundary condition at $z=0$; specifically we will assert: $\phi_z(r,0) = 0$. We will no longer need to enforce the condition $\phi(r,-\sfrac{H}{2})$ for this problem.  
+
+There is another condition that $\phi(r,z)$ needs to satisfy, and that is it must be \emph{non-negative}.  Since flux is the product of neutron speed times the neutron density---two quantities that must be positive to have any physical meaning---the flux itself must be positive everywhere in the domain in order to be physically meaningful.  We will see the impact of this condition as we solve the problem.
+
+\newthought{Let us now} turn ourselves to the task of solving this boundary value problem using, as usual, separation of variables.
+
+\vspace{0.25cm}
+
+\noindent\textbf{Step \#1:} Assume a product solution:
+\begin{equation*}
+\phi(r,z) = F(r)G(z)
+\end{equation*}
+
+\vspace{0.25cm}
+
+\noindent\textbf{Step \#2:} Insert the product solution into the governing equation.
+\begin{align*}
+\frac{\partial^2}{\partial r^2}\left[F(r)G(z)\right] + \frac{1}{r}\frac{\partial}{\partial r}\left[F(r)G(z)\right) + \frac{\partial^2}{\partial z^2}\left[F(r)G(z)\right] + B^2F(r)G(z) &= 0 \\
+F_{rr}G + \frac{1}{r}F_rG + FG_{zz} + B^2FG &= 0
+\end{align*}
+
+\vspace{0.25cm}
+
+\noindent\textbf{Step \#3:} Separate the variables.
+\begin{align*}
+\frac{F_{rr}G}{FG} + \frac{1}{r}\frac{F_r G}{FG} + \frac{FG_{zz}}{FG} + B^2\frac{FG}{FG} &= 0 \\
+\frac{F_{rr}}{F} + \frac{1}{r}\frac{F_r}{F} + \frac{G_{zz}}{G} &= -B^2 = -\lambda_1 -\lambda_2 \\
+\underbracket{\frac{F_{rr}}{F} + \frac{1}{r}\frac{F_r}{F} + \lambda_1}_{\text{function of }r} &= \underbracket{-\frac{G_{zz}}{G} - \lambda_2}_{\substack{\text{function of} \\ z}} = \lambda_3 
+\end{align*}
+\marginnote[-2.0cm]{Here we split up $B^2$ so part of it can be used in each equation.} The separated equations are:\marginnote[1.0cm]{Note that $\nu^2 + \kappa^2 = (\lambda_1 - \lambda_3) + (\lambda_2 + \lambda_3) = \lambda_1 + \lambda_2 = B^2$.}
+\begin{align*}
+\frac{F_{rr}}{F} + \frac{1}{r}\frac{F_r}{F} + \underbracket{\lambda_1 - \lambda_3}_{\nu^2} &= 0 \\
+\frac{G_{zz}}{G} + \underbracket{\lambda_2 + \lambda_3}_{\kappa^2} &= 0 \\
+\end{align*}
+or, equivalently:
+\begin{align*}
+r^2F_{rr} + rF_{r} + \nu^2r^2F &= 0 \\
+G_{zz} + \kappa^2G &= 0
+\end{align*}
+
+\vspace{0.25cm}
+
+\noindent\textbf{Step \#4:} Apply boundary conditions to determine non-trivial product solution(s):
+
+\vspace{0.25cm}
+
+\noindent We actually have homogeneous conditions on \emph{every} boundary for this problem, so it does not matter which equation we start with. Also, some readers may have noticed, by the way we defined the separation constants---$\nu^2$ and $\kappa^2$---we have also quietly implied that they will both be \emph{positive}.  With these boundary conditions, this is indeed what we would have found to be the case anyway.
+
+\newthought{In the $z$-direction} the general solution is:
+\begin{equation*}
+G(z) = c_1\cos{\kappa z} + c_2 \sin{\kappa z}
+\end{equation*}
+
+Applying the boundary condition at $z=0$ gives us:
+\begin{align*}
+G_z(0) = -\kappa c_1 \cancelto{0}{\sin{0}} + \kappa c_2 \cancelto{1}{\cos{0}} &= 0 \\
+\Rightarrow c_2 &= 0 
+\end{align*}
+Applying the boundary condition at $z=\sfrac{H}{2}$ gives us:
+\begin{align*}
+G(\sfrac{H}{2}) = c_1 \cos{\kappa \frac{H}{2}} &= 0 \\
+\Rightarrow \kappa \frac{H}{2} &= \frac{n\pi}{2}, \ n=1,3,5,\dots \\
+\Rightarrow \kappa &= \frac{n \pi}{H}
+\end{align*}
+There are an infinite number of values of $\kappa$ that allow non-trivial solutions to $G(z)$ but, it turns out, \emph{only one} of them---corresponding to $n=1$ and $\kappa = \sfrac{\pi}{H}$---is admissible.  That is because the neutron flux must be non-negative.  If the higher eigenmodes were allowed, then $G(z)$ would become negative in portions of the domain and thus $\phi(r,z)$ would become negative.\sidenote{We will dismiss as unworkable the assumption that $F(r)$ and $G(z)$ could be of opposite signs everywhere in the domain.} Thus $G(z) = c_1\cos{\frac{\pi z}{H}}$.  
+
+\newthought{In the $r$-direction} the general solution is:
+\begin{equation*}
+F(r) = c_3J_0(\nu r) + c_4Y_0(\nu r)
+\end{equation*}
+Since $Y_0(\nu r)$ diverges to negative infinity as $r \to 0$, we must set $c_4 = 0$. The boundary condition at $r=R$ gives us:
+\begin{align*}
+F(c) = c_3 J_0(\nu R) &= 0 \\
+\Rightarrow \nu &= \frac{k_{0,n}}{R}
+\end{align*}
+where $k_{0,n}$ is the $n$\textsuperscript{th} root of $J_0$.  Recalling from previous experience with Bessel functions of the first kind of order zero, $J_0$ oscillates infinitely many times so there are infinitely many roots.  As was the case in the $z$-direction, we really are only interested in the first eigenmodes $\nu_1 \approx \sfrac{2.405}{R}$.  This is because all higher eigenmodes would result in $F(r)$ being negative in some parts of the domain, which owing to the nature of $\phi(r,z)$, we cannot allow.
+
+\newthought{Putting together the} results from the $z$- and $r$-directions gives us the product solution as shown in Equation \ref{eq:nde-sol}.
+\begin{equation}
+\phi(r,z) = A J_0(\frac{2.405 r}{R})\cos{(\frac{\pi z}{H})}
+\label{eq:nde-sol}
+\end{equation}
+
+\vspace{0.25cm}
+
+\noindent\textbf{Step \#5:} Apply the remaining boundary conditions to determine the unknown coefficients.
+
+\vspace{0.25cm}
+
+\noindent On the plus-side, we only have one unknown constant remaining; on the minus-side, we actually do not have any more boundary conditions to apply to determine the unknown constant.  It turns out that a problem of this type---it is not a wave equation, heat equation, or Laplace equation---was destined to have this problem from the start.  We can solve for the flux shape, but we cannot nail down its magnitude.  Luckily, we have a way of specifying the unknown constant.
+
+Let us assume that the purpose of this nuclear reactor is to create power.  Each fission event releases a tiny amount of heat---approximately $3.2\times 10^{-11}$ Joules;\sidenote{This number is specific for fission induced by a thermal neutron incident upon Uranium-235 but the recoverable energy released for other fission reactions is similar.} a quantity we denote $E_R$. The \emph{rate} of fissions $(R_f)$ occurring in the reactor is proportional to the flux---specifically $R_f = \Sigma_f \phi(r,z)$.  If we integrate the fission rate over the volume of the core, we get the total fission rate; multiplying by the energy released per fission, we get the total core power.  Let us take the total reactor power to be a known parameter: $P$.  Converting the words of this paragraph into math gives us:
+\begin{equation}
+P = E_R \Sigma_f 2 \pi \underbrace{\int_{-\sfrac{H}{2}}^{\sfrac{H}{2}} \ \int_0^R AJ_0(\frac{2.405 r}{R})\cos{\frac{\pi z}{H}} \ r dr dz}_{\int \int_{V} \phi \ dV}
+\end{equation}
+Therefore
+\begin{equation}
+A = \frac{P}{E_R \Sigma_f 2\pi \int \int_{V} \phi \ dV}
+\label{eq:lec33-const}
+\end{equation}
+In summary, the solution of the neutron diffusion equation in a finite, homogeneous, bare cylindrical reactor is given by Equation \ref{eq:nde-sol} where the constant is determined by specifying the reactor thermal power and Equation \ref{eq:lec33-const}.
+
+\section{A Note on Buckling}
+In order to neatly wrap up all of the details about solving the neutron diffusion equation for a finite, bare, homogeneous cylinder, we should take a moment to consider what happened to $B^2$.  As you may recall, during the separation of variables process, we parsed out pieces of $B^2$ to the equation both for the $z$-component and the $r$-component.  Ultimately it turned out that $B^2$, which you can easily verify is equal to $\nu^2 + \kappa^2$, was found to be numerically equal to $\left(\frac{2.405}{R} \right)^2 + \left(\frac{\pi}{H} \right)^2$.  Even though the initial definition of $B^2$ in the boundary value problem statement was based on $\Sigma_a$, $\Sigma_f$, and $D$---all of which are \emph{material properties}---we determined in the separation of variables process that $B^2$ must be a numerical value related to the \emph{geometric properties} of the problem.  Indeed, we sometimes denote $B^2$ as $B_g^2$ and call it \emph{geometric buckling} whereas the quantity $\frac{\nu \Sigma_f - \Sigma_a}{D}$ is more often called the ``material buckling''.  For a critical---i.e. steady state---reactor, the two are equal. 
+
+What does this observation tell you?  For one thing, it means that if either $R$ or $H$ is very small---if the reactor is like a thin rod or if it is flat like a pancake---the geometric buckling will be large.  This implies that for a reactor of this geometry to become critical, materials must be loaded in the core that increase $\Sigma_f$ relative to $\Sigma_a$.  The main way this can be done is to increase the concentration of fissile isotopes like $^{235}\text{U}$ or $^{239}\text{Pu}$---an undertaking that is possible albeit expensive and, for sufficiently high fuel enrichment, subject to regulatory hurdles.  On the other hand, a reactor with $R$ and $H$ both larger, the necessary material buckling will be reduced along with geometric buckling.  These considerations should be kept in mind when you are specifying the geometry of a reactor that you are designing.
+
+
+
+
+
