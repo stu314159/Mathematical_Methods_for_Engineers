@@ -95,7 +95,7 @@ Applying the boundary condition at $z=\sfrac{H}{2}$ gives us:
 \begin{align*}
 G(\sfrac{H}{2}) = c_1 \cos{\kappa \frac{H}{2}} &= 0 \\
 \Rightarrow \kappa \frac{H}{2} &= \frac{n\pi}{2}, \ n=1,3,5,\dots \\
-\Rightarrow \kappa &= \frac{n \pi}{H}
+\Rightarrow \kappa &= \frac{n \pi}{H}, \ n=1,3,5,\dots
 \end{align*}
 There are an infinite number of values of $\kappa$ that allow non-trivial solutions to $G(z)$ but, it turns out, \emph{only one} of them---corresponding to $n=1$ and $\kappa = \sfrac{\pi}{H}$---is admissible.  That is because the neutron flux must be non-negative.  If the higher eigenmodes were allowed, then $G(z)$ would become negative in portions of the domain and thus $\phi(r,z)$ would become negative.\sidenote{We will dismiss as unworkable the assumption that $F(r)$ and $G(z)$ could be of opposite signs everywhere in the domain.} Thus $G(z) = c_1\cos{\frac{\pi z}{H}}$.  
 
@@ -108,9 +108,9 @@ Since $Y_0(\nu r)$ diverges to negative infinity as $r \to 0$, we must set $c_4 
 F(c) = c_3 J_0(\nu R) &= 0 \\
 \Rightarrow \nu &= \frac{k_{0,n}}{R}
 \end{align*}
-where $k_{0,n}$ is the $n$\textsuperscript{th} root of $J_0$.  Recalling from previous experience with Bessel functions of the first kind of order zero, $J_0$ oscillates infinitely many times so there are infinitely many roots.  As was the case in the $z$-direction, we really are only interested in the first eigenmodes $\nu_1 \approx \sfrac{2.405}{R}$.  This is because all higher eigenmodes would result in $F(r)$ being negative in some parts of the domain, which owing to the nature of $\phi(r,z)$, we cannot allow.
+where $k_{0,n}$ is the $n$\textsuperscript{th} root of $J_0$.  Recalling from previous experience with Bessel functions of the first kind of order zero, $J_0$ oscillates infinitely many times so there are infinitely many roots.  As was the case in the $z$-direction, we really are only interested in the first eigenmode $\nu_1 \approx \sfrac{2.405}{R}$.  This is because all higher eigenmodes would result in $F(r)$ being negative in some parts of the domain, which owing to the nature of $\phi(r,z)$, we cannot allow.
 
-\newthought{Putting together the} results from the $z$- and $r$-directions gives us the product solution as shown in Equation \ref{eq:nde-sol}.
+\newthought{Putting together the} results from the $z$- and $r$-directions gives us the product solution as shown in Equation \ref{eq:nde-sol}.\marginnote{We combine both constants from $G(z)$ and $F(r)$ into $A$.}
 \begin{equation}
 \phi(r,z) = A J_0(\frac{2.405 r}{R})\cos{(\frac{\pi z}{H})}
 \label{eq:nde-sol}
