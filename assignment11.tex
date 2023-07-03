@@ -1,0 +1,69 @@
+\chapter{Assignment \#11}
+\label{ch:ass11}
+\begin{fullwidth}
+
+\begin{enumerate}
+
+\item Solve the following boundary value problem
+\begin{table}
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial t^2} = \alpha^2 \left(\frac{\partial^2 u}{\partial x^2}+ \frac{\partial^2 u}{\partial y^2}\right), \ \ \alpha > 0, \ \substack{0<x<\pi \\ \\ 0 < y < \pi }$ \\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $& $ \substack{u(0,y,t)=0, \ \ u(\pi,y,t) = 0 \\ \\ u(x,0,t) = 0, \ \ u(x,\pi,t) = 0}, \ \ t>0$\\
+& \\
+$\substack{\text{Initial} \\ \text{Conditions}}: $ & $ \substack{u(x,y,0) = xy(x-\pi)(y-\pi) \\ \\ u_{t}(x,0) = 0}, \ \ 0<x<\pi, \ 0<y<\pi $ \\
+\end{tabular}
+\end{table}
+
+\vspace{0.1cm}
+
+\noindent where $\alpha^2 = 1$. Compute the first 10 modes in $x$ and $y$ with MATLAB.  Create a surface plot of the solution at $t=10$ and save the plot in *.png format.  Include the published version of your MATLAB code and the saved figure in your submission.
+
+\vspace{5.0cm}
+
+\item Solve the following boundary value problem:
+\begin{table}[h!]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial x^2}+ \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} = 0, \ \ \substack{0 < x < a \\ \\ 0 < y < b \\ \\ 0 < z < c}$ \\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $& $ \substack{u(0,y,z)=0, \ \ u(a,y,z) = 0 \\ \\ u(x,0,z) = 0, \ \ u(x,b,z) = 0 \\ \\ u(x,y,0) = 0, \ \ u(x,y,c) = f(x,y)}$\\
+\end{tabular}
+\end{table}
+
+\vspace{2.0cm}
+
+\item If the boundaries $\theta = 0$ and $\theta = \pi$ of a semicircular plate of radius 2 are insulated, we then have:
+\begin{equation*}
+u_{\theta}(r,0) = 0, \ u_{\theta}(r,\pi) = 0, \ 0 < r < 2
+\end{equation*}
+
+\vspace{0.25cm}
+
+\noindent Find the steady-state temperature, $u(r,\theta)$, if:
+\begin{equation*}
+u(2,\theta) = 
+\begin{cases}
+u_0, & 0 < \theta < \sfrac{\pi}{2} \\
+0, & \sfrac{\pi}{2} < \theta < \pi
+\end{cases}
+\end{equation*}
+where $u_0$ is a constant.  Solve the Laplace equation for this case. [\textbf{Note:} contrary to the typical case, the analytic evaluation of the integral for Fourier coefficients is straight-forward in this problem; you should actually do the integration analytically.]
+
+\vspace{2.0cm}
+
+\item Solve the following boundary value problem to find the steady-state temperature in a quarter circular plate.
+\begin{table}[h]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial r^2} + \frac{1}{r}\frac{\partial u}{\partial r} + \frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2}= 0, \ \ 0<r<c, \ \ 0<\theta< \sfrac{\pi}{2} $\\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $ & $\substack{u(r,0) = 0, \ \ u(r,\sfrac{\pi}{2}) = 0, \ \ 0<r<c \\ \\ u(c,\theta) = f(\theta), \ \ 0 < \theta < \sfrac{\pi}{2} }$\\
+\end{tabular}
+\end{table} 
+
+\end{enumerate}
+\end{fullwidth}
+
+
+
+
+
