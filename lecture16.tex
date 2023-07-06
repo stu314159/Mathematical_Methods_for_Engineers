@@ -2,8 +2,8 @@
 \label{ch:lec16}
 \section{Objectives}
 \begin{itemize}
-\item Review trigonometric Series.
-\item Derive/show the formulas for expansion of a function as a Fourier series.
+\item Review trigonometric series.
+\item Derive/show the formulas for expansion of a function as a trigonometric (Fourier) series.
 \item Discuss periodic extensions of non-periodic functions, sine/cosine expansions, and convergence behavior.
 \end{itemize}
 
@@ -89,14 +89,14 @@ b_n &= \frac{1}{p}\int_{-p}^{p} f(x) \sin{\frac{n \pi x}{p}} \ dx
 \label{eq:Fourier-Coeff}
 \end{align}
 Since this is an infinite series, we need to concern ourselves with convergence.  The theorem below provides us assurance of convergence for continuous and piece-wise continuous functions on the interval $[-p,p]$.  \marginnote[1.0cm]{In coming lectures and when doing assignments you will see that issues of continuity of $f$ and $\sfrac{df}{dx}$ have obvious visible influence on the convergence behavior of Fourier Series.}
-\begin{theorem}{Convergence of Fourier Series}
+\begin{theorem}[Convergence of Fourier Series]
 If $f$ and $\sfrac{df}{dx}$ are piece-wise continuous on an interval $[-p,p]$ then for all $x$ in the interval $[-p,p]$ the Fourier Series converges to $f$ at points where the function is continuous; at points of discontinuity, the Fourier series converges to 
 \begin{equation*}
 \frac{f(x^{-}) + f(x^+)}{2}
 \end{equation*}
 where $f(x^-)$ and $f(x^+)$ denote the limit of $f(x)$ from the left and right at the point of discontinuity.
 \end{theorem}
-In the next few lectures we will define other orthogonal function expansions similar to the Fourier Series.  Nonetheless, for periodic functions defined on a finite interval, the Fourier series provides the best representation of a function.\marginnote{When we say ``best'' representation, we (more or less) mean two things:
+In the next few lectures we will define other orthogonal function expansions similar to the Fourier series.  Nonetheless, for periodic functions defined on a finite interval, the Fourier series provides the best representation of a function.\marginnote{When we say ``best'' representation, we (more or less) mean two things:
 \begin{enumerate}
 \item $|| \tilde{f}_n - f||$, where $\tilde{f}_n$ is the power series representation of $f$ up to $n$ terms, gets smaller with fewer terms than other series expansions; and 
 \item calculation of the coefficients $a_n$ and $b_n$ can be carried out with greater numeric stability than for other expansions.
@@ -120,7 +120,7 @@ A function is even if, for all real values $x$, $f(-x) = f(x)$.
 \end{definition}
 An example of an even function is shown in Figure \ref{fig:even-fun}.
 \begin{definition}[Odd Function]
-A function is even if, for all real values $x$, $f(-x) = -f(x)$.
+A function is odd if, for all real values $x$, $f(-x) = -f(x)$.
 \end{definition}
 An example of an odd function is shown in Figure \ref{fig:odd-fun}.
 

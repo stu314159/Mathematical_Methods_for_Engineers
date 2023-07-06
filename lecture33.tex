@@ -2,7 +2,7 @@
 \label{ch:lec33}
 \section{Objectives}
 \begin{itemize}
-\item Describe the neutron diffusion equation
+\item Describe the neutron diffusion equation.
 \item Solve the neutron diffusion equation for a bare, homogeneous, finite, cylindrical reactor. 
 \end{itemize}
 \setcounter{lstannotation}{0}
@@ -13,7 +13,7 @@ In a nuclear reactor, power is produced by neutron-induced fission in fuel mater
 \item The neutron flux is at steady state and equal to zero at the core boundary;\sidenote{This is referred to as a \emph{vacuum boundary condition}.  The flux is not actually zero at the boundary but is \emph{assumed} to be zero a certain distance from the boundary, referred to as the \emph{extrapolation distance} $(d)$.  For students studying reactor physics you will learn that the extrapolation distance is assumed to be proportional to the diffusion coefficient: $d = 2.13D$. } the exterior of the core is assumed to be \emph{bare} with no reflector materials present.  
 \item Since the flux is assumed to be zero at the core boundary it will be natural to also assume that the neutron flux is constant with respect to variations in angular position within the cylinder.
 \item The fuel, cladding, coolant, and surrounding structural materials will be taken as a homogeneous medium.
-\item variation in neutron energy will be ignored and their individual direction of travel will also be ignored; thus neutron flux will be a function of radial and axial position only---$\phi(r,z)$.
+\item Variation in neutron energy will be ignored and their individual direction of travel will also be ignored; thus neutron flux will be a function of radial and axial position only---$\phi(r,z)$.
 \end{enumerate}
 
 \section{Neutron Diffusion Equation}
@@ -33,9 +33,11 @@ $\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 \phi}{\part
 $\substack{\text{Boundary} \\ \text{Conditions}}: $ & $\phi(r,-\sfrac{H}{2}) = \phi(r,\sfrac{H}{2}) = 0, \  \phi(R,z) = 0$  \\ 
 \end{tabular}
 \end{table} 
-In addition to angular symmetry, this problem is symmetric in the axial direction; the top-half and bottom-half are the same.  Thus we will only model the top half of the domain and impose a \emph{symmetry} boundary condition at $z=0$; specifically we will assert: $\phi_z(r,0) = 0$. We will no longer need to enforce the condition $\phi(r,-\sfrac{H}{2})$ for this problem.  
 
-There is another condition that $\phi(r,z)$ needs to satisfy, and that is it must be \emph{non-negative}.  Since flux is the product of neutron speed times the neutron density---two quantities that must be positive to have any physical meaning---the flux itself must be positive everywhere in the domain in order to be physically meaningful.  We will see the impact of this condition as we solve the problem.
+
+In addition to angular symmetry, this problem is symmetric in the axial direction; the top-half and bottom-half are the same.  Thus we will only model the top-half of the domain and impose a \emph{symmetry} boundary condition at $z=0$; specifically we will assert: $\phi_z(r,0) = 0$. We will no longer need to enforce the condition $\phi(r,-\sfrac{H}{2})$ for this problem.  
+
+There is another condition that $\phi(r,z)$ needs to satisfy, and that is it must be \emph{non-negative}.  Since flux is the product of neutron speed times the neutron density---two quantities that must be positive to have any physical meaning---the flux itself must be positive everywhere in the domain.  We will see the impact of this condition as we solve the problem.
 
 \newthought{Let us now} turn ourselves to the task of solving this boundary value problem using, as usual, separation of variables.
 

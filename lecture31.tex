@@ -8,7 +8,7 @@
 \setcounter{lstannotation}{0}
 
 \section{Wave Equation in Polar Coordinates}
-In a few past lectures we have dealt with the wave equation on a line as shown in Equation \ref{eq:lec31-1D-wave}
+In a few past lectures we have dealt with the wave equation on a line as shown in Equation \ref{eq:lec31-1D-wave}.
 \begin{equation}
 \frac{\partial^2 u}{\partial t^2} = \alpha^2 \frac{\partial^2 u}{\partial x^2}
 \label{eq:lec31-1D-wave}
@@ -86,7 +86,7 @@ F(r) &= c_1J_0(\nu r) + c_2 Y_0(\nu r) \\
 G(t) &= c_3\cos(\nu \alpha t) + c_4 \sin(\nu \alpha t)
 \end{align*}
 
-\newthought{In the $r$-coordinate} we have only one explicit boundary condition, but there is another condition of which we must always be mindful, particularly in polar coordinates when $r=0$ is part of the domain; that is that $\lim_{r \to 0} u(r,\theta) < \infty$.  Once again drawing upon our knowledge of Bessel functions, we know that $Y_0(r)$ diverges to negative infinity as $r$ goes to zero; thus the radial equation simplifies to:
+\newthought{In the $r$-coordinate} we have only one explicit boundary condition, but there is another condition of which we must always be mindful, particularly in polar coordinates when $r=0$ is part of the domain; that is that $\lim_{r \to 0} u(r,\theta) < \infty$.  Once again, drawing upon our knowledge of Bessel functions, we know that $Y_0(r)$ diverges to negative infinity as $r$ goes to zero; thus the radial equation simplifies to:
 \begin{equation*}
 F(r) = c_1J_0(\nu r)
 \end{equation*} 
@@ -95,7 +95,7 @@ F(r) = c_1J_0(\nu r)
 \begin{equation*}
 F(c) = c_1J_0(\nu c) = 0
 \end{equation*}
-which implies that $\nu c$ needs to be a positive root of $J_0(r)$.  As we learned in lecture 19, $J_0$ has infinitely many positive roots and we can find them with the assistance of the MATLAB function \lstinline[style=myMatlab]{besselzero()}.  If we denote the $n$-th root of $J_0$ as $k_{0,n}$, then our eigenvalues must be equal to:
+which implies that $\nu c$ needs to be a positive root of $J_0(r)$.  As we learned in lecture 19, $J_0$ has infinitely many positive roots and we can find them with the assistance of the MATLAB function \lstinline[style=myMatlab]{besselzero()}.  If we denote the $n$\textsuperscript{th} root of $J_0$ as $k_{0,n}$, then our eigenvalues must be equal to:
 \begin{equation*}
 \nu_n = \frac{k_{0,n}}{c}
 \end{equation*}
@@ -146,13 +146,12 @@ u(r,t) = \sum\limits_{n=1}^{\infty} \left[a_n \cos{\alpha \nu_n t} + b_n \sin{\a
 \end{equation}
 where $a_n$ and $b_n$ are given by equation \ref{eq:lec31-an} and \ref{eq:lec31-bn} respectively.
 
-section{Implementation in MATLAB}
+\section{Implementation in MATLAB}
 The MATLAB that we will use should begin to look routine by now, but since this is the first time we used Fourier-Bessel expansions in solving a boundary value problem, the code will be listed here.
 
 \vspace{0.25cm}
 
 \noindent We start by clearing the workspace and defining problem parameters.
-
 \begin{lstlisting}[name=lec31-ex1, style=myMatlab]
 clear
 clc
@@ -178,7 +177,6 @@ switch example
         error('Unexpected example number!!');
 end
 \end{lstlisting}
-
 Next we use \lstinline[style=myMatlab]{besselzero()} to get the roots of $J_0$, compute the coefficients $a_n$ and $b_n$ and build the solution $u(r,t)$.
 \marginnote[1.0cm]{
 \ref{lst:ann31-1-1} Reminder that in order to use \lstinline[style=myMatlab]{besselzero()} in a script, you need to have a copy of besselzero.m in the current folder or otherwise on the MATLAB path.
@@ -209,9 +207,6 @@ end
 \vspace{0.25cm}
 
 \noindent We can make a dynamic plot if we like:
-\marginnote[5.75cm]{
-\ref{lst:ann31-1-2} Use of the argument \lstinline[style=myMatlab]{'facecolor'} and value \lstinline[style=myMatlab]{'none'} results in a plot resembling a wire mesh.
-}
 \begin{lstlisting}[name=lec31-ex1, style=myMatlab]
 %% Plot the solution
 NR = 20;
@@ -240,7 +235,12 @@ for t = 1:NT
     
 end
 \end{lstlisting}
-\marginnote[-1.4cm]{
+
+\marginnote[-4.0cm]{
+\ref{lst:ann31-1-2} Use of the argument \lstinline[style=myMatlab]{'facecolor'} and value \lstinline[style=myMatlab]{'none'} results in a plot resembling a wire mesh.
+
+\vspace{1.0cm}
+
 \ref{lst:ann31-1-3} Using the \lstinline[style=myMatlab]{axis} command here allows you to fix the axis size and prevent re-scaling with each time step which would make the wave-like motion harder to see and interpret.
 }
 \vspace{0.25cm}

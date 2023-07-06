@@ -2,8 +2,8 @@
 \label{ch:lec22}
 \section{Objectives}
 \begin{itemize}
-\item Describe three important PDEs: heat equation, wave equation, and Laplace equation
-\item Describe the physical significance of common boundary conditions; and
+\item Describe three important PDEs: heat equation, wave equation, and Laplace equation.
+\item Describe the physical significance of common boundary conditions.
 \item Discuss important modifications to the three equations to incorporate additional physical phenomena.
 \end{itemize}
 
@@ -78,11 +78,11 @@ where $\alpha^2 = \frac{T}{\rho}$ and $T$ is tension and $\rho$ is density.\side
 
 This equation is derived as a mathematical expression of mechanical equilibrium of an elastic string held under tension.  The assumptions built-in to this derivation include:
 \begin{enumerate}
-\item The string is ``perfectly flexible'' 
-\item The string is homogeneous
-\item Displacements in the string are small relative to the string length
+\item The string is ``perfectly flexible.'' 
+\item The string is homogeneous.
+\item Displacements in the string are small relative to the string length.
 \item Tension is constant; and
-\item There are no other forces acting on the string.
+\item there are no other forces acting on the string.
 \end{enumerate}
 A properly stated boundary value problem based on the wave equation will have two boundary conditions.  For this course we will usually apply Dirichlet boundary conditions but others are possible.  Since the equation is second-order in time we also need two temporal boundary conditions.  Typically these are given as the initial displacement, $u(x,0)=f(x)$ and initial velocity $u_t(x,0)=g(x)$.
 
@@ -116,7 +116,7 @@ In all of the above cases, a full statement of the boundary value problem must i
 \begin{enumerate}
 \item the partial differential equation;
 \item all boundary conditions; and
-\item initial conditions for time-dependent problems
+\item initial conditions for time-dependent problems.
 \end{enumerate}
 
 \vspace{0.5cm}
@@ -149,11 +149,11 @@ where $h$ is the convective heat transfer coefficient.
 \label{eq:wave-eq-with-variations}
 \end{equation}
 
-\newthought{An important skill} that an engineer needs to develop is that ability to translate a description of a physical system into a properly formulated boundary value problem that you can solve.  The \emph{point} is be able to describe a system mathematically so that, by solving the math problem, you gain \emph{insight} into the behavior of the physical system.\marginnote{This is something that my students often struggle with.}  Here are a couple of examples to get started.
+\newthought{An important skill} that an engineer needs to develop is that ability to translate a description of a physical system into a properly formulated boundary value problem that you can solve.  The \emph{point} is be able to describe a system mathematically so that, by solving the math problem, you gain \emph{insight} into the behavior of the physical system.\marginnote{This is something that students in this class often struggle with.}  Here are a couple of examples to get started.
 
 \vspace{0.5cm}
 
-\noindent\textbf{Example: } Consider a rod of length $L$ that is insulated along its lateral surfaces.  There is heat transfer from the left end of the rod into a surrounding medium at temperature $20^{\circ}$ degrees and the right end is insulated.  The initial temperature is $f(x)$ throughout.  We would like to know what the temperature distribution is as a function of time and space.  The corresponding BVP is:
+\noindent\textbf{Example: } Consider a rod of length $L$ that is insulated along its lateral surfaces.  There is heat transfer from the left end of the rod into a surrounding medium at temperature $20^{\circ}$ and the right end is insulated.  The initial temperature is $f(x)$ throughout.  We would like to know what the temperature distribution is as a function of time and space.  The corresponding BVP is:
 \begin{table}
 \begin{tabular}{l l}
 PDE: & $\frac{\partial u}{\partial t}, \ \ 0<x<L, \ t>0 $ \\

@@ -8,14 +8,14 @@ The objectives of this lecture are:
 \end{itemize}
 
 \section{Separable Equations}
-A first order differential equation of the form shown below
+A first order differential equation of the form shown below:
 \begin{equation}
 \frac{du}{dx} = g(u)h(x)
 \label{eq:separable}
 \end{equation}
 is said to be \emph{separable} or have \emph{separable variables.}\marginnote[-1.5cm]{\textbf{Note:} there is \textbf{no} requirement that the 1st order equation be \emph{linear}.  This is one of the few techniques that we will study in this course that can be applied to nonlinear equations.} 
 
-\newthought{The solution method} for separable equations is, in principle simple.  For the separable differential equation given in Equation \ref{eq:separable} we would separate and integrate:
+\newthought{The solution method} for separable equations is, in principle, simple.  For the separable differential equation given in Equation \ref{eq:separable} we would separate and integrate:
 
 \begin{align*}
 \frac{du}{dx} &= g(u)h(x) \\
@@ -90,21 +90,21 @@ The method for solving this equation makes use of the \underline{\emph{linearity
 \item $\mathcal{L}(\alpha u) = \alpha \mathcal{L}(u)$
 \item $\mathcal{L}(u + v) = \mathcal{L}(u) + \mathcal{L}(v)$
 \end{enumerate}
-for functions $u$,$v$ and scalar constant $\alpha$.  Think of this as a \emph{definition} of linearity.} and express the solution in the following way: $u(x) = u_c(x) + u_p(x)$; plugging this into Equation \ref{eq:first-order-linear-standard-form} gives us:
+for functions $u$,$v$ and scalar constant $\alpha$.  Think of this as a \emph{definition} of linearity.} and we express the solution in the following way: $u(x) = u_c(x) + u_p(x)$. Plugging this into Equation \ref{eq:first-order-linear-standard-form} gives us:
 
 \begin{multline}
 \frac{d}{dx}[u_c + u_p] + P(x)[u_c + u_p] = \\
 \left[\frac{du_c}{dx}+P(x)u_c \right] + \left[\frac{du_p}{dx}+P(x)u_p \right] = f(x) 
 \label{eq:lin-first-order1}
 \end{multline}
-where $u_c(x)$ is the solution to the \emph{associated homogeneous problem}\marginnote{The linear operator here is: $\mathcal{L}=\frac{d}{dx} + P(x)$.  Equation \ref{eq:fol_complementary} says $\mathcal{L}u_c = 0$; Equation \ref{eq:fol_particular} says $\mathcal{L}u_p = f(x)$; Equation \ref{eq:lin-first-order1} says that $\mathcal{L}(u_c+u_p) = 0+f(x) = f(x)$.}
+where $u_c(x)$ is the solution to the \emph{associated homogeneous problem}:\marginnote{The linear operator here is: $\mathcal{L}=\frac{d}{dx} + P(x)$.  Equation \ref{eq:fol_complementary} says $\mathcal{L}u_c = 0$; Equation \ref{eq:fol_particular} says $\mathcal{L}u_p = f(x)$; Equation \ref{eq:lin-first-order1} says that $\mathcal{L}(u_c+u_p) = 0+f(x) = f(x)$.}
 \marginnote[0.25cm]{What might trouble you now is: if we have $u_p$, is this not a solution to Equation \ref{eq:first-order-linear-standard-form}?  Why do we need $u_c$?  The next thing that should trouble you is that if $u_p$ is a solution, by the linearity property of $\mathcal{L}$, so is $u_p$ plus \emph{any} constant multiple of $u_c$.  The solution is not \emph{unique}}
 \marginnote[0.25cm]{This will all be resolved when we recall that $u_c$ will have an arbitrary constant through which we will be able to say that $u = u_c + u_p$ is a function describing \emph{all} possible solutions of Equation \ref{eq:first-order-linear-standard-form} and the arbitrary constant in $u_c$ will be set so as to uniquely satisfy a given initial/boundary condition.}
 \begin{equation}
 \frac{du_c}{dx}+P(x)u_c = 0
 \label{eq:fol_complementary}
 \end{equation}
-and $u_p(x)$ is the solution to:
+and $u_p(x)$ is a solution to:
 \begin{equation}
 \frac{du_p}{dx}+P(x)u_p = f(x)
 \label{eq:fol_particular}
@@ -113,7 +113,7 @@ We can see that Equation \ref{eq:fol_complementary} is separable:
 \begin{align*}
 \frac{du_c}{dx}+P(x)u_c &= 0 \\
 \frac{du_c}{u_c} &= -P(x) \ dx \\
-\ln{u_c} + C &= -\int_{P(x) \ dx} \\
+\ln{u_c} + C &= -\int P(x) \ dx \\
 u_c(x) &= e^{-\int P(x) \ dx + C_1} \\
 u_c(x) &= e^{-\int P(x) \ dx}e^{C_1}
 u_c(x) &=Ce^{-\int P(x) \ dx}
@@ -126,7 +126,7 @@ where $C = e^{C_1}$.\marginnote{\textbf{Note:} At some point in time, I will des
 \begin{equation*}
 \frac{d(vu_1)}{dx} + P(x)(v(x)u_1(x))=f(x)
 \end{equation*}
-We apply the product rule to the first term and re-arrange terms:
+We apply the product rule to the first term and re-arrange to get:
 \begin{align*}
 u_1(x)\frac{dv}{dx}+ v(x)\frac{du_1}{dx} + P(x)(v(x)u_1(x)) &= f(x) \\
 v(x)\underbrace{\left[\frac{du_1}{dx}+P(x)u_1(x) \right]}_{\textbf{= 0}}+u_1(x)\frac{dv}{dx} &= f(x) \\

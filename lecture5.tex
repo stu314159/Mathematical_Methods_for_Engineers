@@ -20,7 +20,7 @@ where
 \end{itemize}
 The general solution, $u(x)$, can be constructed as $u_c(x)+u_p(x)$ where
 \begin{itemize}
-\item $u_c(x)$ is the complementary solution which, as you should recall, is the general solution to the associated homogeneous problem. (i.e. Equation \ref{eq:cc_nonhomo} with $g(x)=0$); and
+\item $u_c(x)$ is the complementary solution which, as you should recall, is the general solution to the associated homogeneous problem. [i.e. Equation \ref{eq:cc_nonhomo} with $g(x)=0$]; and
 \item $u_p(x)$ is (any) particular solution---that is, a not-necessarily-unique function that satisfies Equation \ref{eq:cc_nonhomo}.
 \end{itemize}
 We spent the last lecture describing, effectively, how to find $u_c(x)$; the question this lecture will hope to answer is: ``How do I find $u_p(x)$?''  
@@ -76,7 +76,7 @@ m &= \frac{-4 \pm \sqrt{16 - (4)(1)(-2)}}{2(1)} \\
 so $u_c(x) = c_1e^{(-2+\sqrt{6})x}+c_2e^{(-2-\sqrt{6})x}$
 
 \vspace{0.25cm}
-\noindent{\textbf{Step \#2:}} Apply the method of undetermined coefficients to construct a candidate $u_p(x)$
+\noindent{\textbf{Step \#2:}} Apply the method of undetermined coefficients to construct a candidate $u_p(x)$.
 
 \vspace{0.25cm}
 
@@ -122,7 +122,7 @@ u_p(x) = -x^2-\frac{5}{2}x -9
 \end{equation*}
 
 \vspace{0.25cm}
-\noindent\textbf{Step \#3:} construct the general solution: $u(x) = u_c(x)+u_p(x)$
+\noindent\textbf{Step \#3:} Construct the general solution: $u(x) = u_c(x)+u_p(x)$.
 
 \vspace{0.25cm}
 
@@ -164,7 +164,7 @@ u_c(x) = c_1e^{4x}+c_2e^{x}
 
 \vspace{0.25cm}
 
-\noindent\textbf{Answer:} you will get 0!  Why? Because $e^{x}$ is one of the two linearly independent solutions to the associated homogeneous problem. 
+\noindent\textbf{Answer:} you will get zero!  Why? Because $e^{x}$ is one of the two linearly independent solutions to the associated homogeneous problem. 
 
 \vspace{0.25cm}
 
@@ -192,7 +192,7 @@ u_p(x) = -\frac{8}{3}xe^x
 \end{equation*}
 
 \vspace{0.25cm}
-\noindent\textbf{Step \#3:} construct the general solution: $u(x)=u_c(x)+u_p(x)$
+\noindent\textbf{Step \#3:} Construct the general solution: $u(x)=u_c(x)+u_p(x)$.
 \marginnote{\textbf{Note:} If any of this seems at all sketchy to you, the good news is that you need not worry if your proposed $u_p(x)$ is any good; you can just plug it into the differential equation and find out!}
 \begin{align*}
 u(x) &= u_c(x)+u_p(x) \\
@@ -207,7 +207,7 @@ u(x) &= u_c(x)+u_p(x) \\
 
 \vspace{0.25cm}
 
-\noindent\textbf{Step \#1:} find the general solution to the associated homogeneous problem.
+\noindent\textbf{Step \#1:} Find the general solution to the associated homogeneous problem.
 
 \vspace{0.25cm}
 
@@ -222,23 +222,23 @@ u_c(x) = c_1\cos{x}+c_2\sin{x}
 
 \vspace{0.25cm}
 
-\noindent For this problem, $g(x) = 4x+10\sin{x}$ has two terms; so we will construct $u_p(x)$ using one term at a time; $u_{p_1}(x)$ using $4x$ and $u_{p_2}(x)$ using $10\sin{x}$\marginnote[-1.0cm]{It's the linearity property of $\mathcal{L} = \frac{d^2}{dx}+1$ that makes this possible. If $\mathcal{L}(u_{p_1})=4x$ and $\mathcal{L}(u_{p_2})=10\sin{x}$ then $\mathcal{L}(u_{p_1}+u_{p_2})=4x+10\sin{x}$.}  
+\noindent For this problem, $g(x) = 4x+10\sin{x}$ has two terms, so we will construct $u_p(x)$ using one term at a time; $u_{p_1}(x)$ using $4x$ and $u_{p_2}(x)$ using $10\sin{x}$.\marginnote[-1.0cm]{It's the linearity property of $\mathcal{L} = \frac{d^2}{dx}+1$ that makes this possible. If $\mathcal{L}(u_{p_1})=4x$ and $\mathcal{L}(u_{p_2})=10\sin{x}$ then $\mathcal{L}(u_{p_1}+u_{p_2})=4x+10\sin{x}$.}  
 
 \vspace{0.25cm}
 
-\noindent\textbf{Step \#2.a:} find $u_{p_1}(x)$.
+\noindent\textbf{Step \#2.a:} Find $u_{p_1}(x)$.
 
 \vspace{0.25cm}
 
-\noindent From Table \ref{tab:method-of-guessing-table}, for $g(x)=4x$ we should select $u_{p_1} = K_1x+K_0$.  Inserting this into the differential equation gives us: $K_1x + K_0 = 4x$.  By inspection we can see that $K_0 = 0$ and $K_1 = 4$ so $u_{p_1}(x) = 4x$.  
+\noindent From Table \ref{tab:method-of-guessing-table}, for $g(x)=4x$, we should select $u_{p_1} = K_1x+K_0$.  Inserting this into the differential equation gives us: $K_1x + K_0 = 4x$.  By inspection we can see that $K_0 = 0$ and $K_1 = 4$ so $u_{p_1}(x) = 4x$.  
 
 \vspace{0.25cm}
 
-\noindent\textbf{Step \#2.b: } find $u_{p_2}(x)$.
+\noindent\textbf{Step \#2.b: } Find $u_{p_2}(x)$.
 
 \vspace{0.25cm}
 
-\noindent From Table \ref{tab:method-of-guessing-table}, for $g(x)=10\sin{x}$ we should select $u_{p_2} =  K\cos{x}+M\sin{x}$. Now that we have done this a couple of times we should be on the alert for portions of the complementary solution cropping up in our guesses for $u_p(x)$ so we immediately see that we must multiply $u_{p_2}$ by $x$.  If we do this and insert $Kx\cos{x}+Mx\sin{x}$ into the differential equation we get:
+\noindent From Table \ref{tab:method-of-guessing-table}, for $g(x)=10\sin{x}$, we should select $u_{p_2} =  K\cos{x}+M\sin{x}$. Now that we have done this a couple of times we should be on the alert for portions of the complementary solution cropping up in our guesses for $u_p(x)$ so we immediately see that we must multiply $u_{p_2}$ by $x$.  If we do this and insert $Kx\cos{x}+Mx\sin{x}$ into the differential equation we get:
 \begin{multline*}
 \left(-2K-Mx\right)\sin{x}+\left(2M-Kx\right)\cos{x} + \dots \\ Kx\cos{x}+Mx\sin{x} = 10\sin{x}
 \end{multline*}
@@ -249,7 +249,7 @@ u_c(x) = c_1\cos{x}+c_2\sin{x}
 
 \vspace{0.25cm}
 
-\noindent\textbf{Step \#3:} construct the general solution: $u(x)=u_c(x)+u_p(x)$
+\noindent\textbf{Step \#3:} Construct the general solution: $u(x)=u_c(x)+u_p(x)$.
 
 \begin{align*}
 u(x) &= u_c(x) + u_p(x) \\ 

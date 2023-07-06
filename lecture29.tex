@@ -9,7 +9,7 @@
 
 \section{Fourier Series Expansion in Two Variables}
 
-Consider the function $f(x,y), \ 0<x<a, \ 0<y<b$.  Suppose I want to represent the function in the form of a \emph{double} Fourier series as follows:
+Consider the function $f(x,y), \ 0<x<a, \ 0<y<b$.  Suppose we want to represent the function in the form of a \emph{double} Fourier series as follows:
 
 \begin{equation}
 f(x,y) = \sum\limits_{m=1}^{\infty}\sum\limits_{n=1}^{\infty} A_{mn}\sin{\frac{m\pi y}{a}} \sin{\frac{n \pi x}{b}}
@@ -42,7 +42,7 @@ Implementing this expansion in MATLAB is mostly straight-forward.  We will start
 
 \vspace{4.0 cm}
 
-\ref{lst:ann29-1-1} Here we use a \lstinline[style=myMatlab]{switch...case} selection structure.  For the in-class demonstration I like to choose between different functions for which the double Fourier expansion will be used.  The parameter \lstinline[style=myMatlab]{ex_select} is set to either 1 or 2; the \lstinline[style=myMatlab]{case} statements allow me to assign a function handle t \lstinline[style=myMatlab]{f} accordingly.  The \lstinline[style=myMatlab]{otherwise} statement allows me to deal gracefully deal with having specified an invalid value for \lstinline[style=myMatlab]{ex_select}.
+\ref{lst:ann29-1-1} Here we use a \lstinline[style=myMatlab]{switch...case} selection structure.  For the in-class demonstration I like to choose between different functions for which the double Fourier expansion will be used.  The parameter \lstinline[style=myMatlab]{ex_select} is set to either 1 or 2; the \lstinline[style=myMatlab]{case} statements allow me to assign a function handle to \lstinline[style=myMatlab]{f} accordingly.  The \lstinline[style=myMatlab]{otherwise} statement allows me to gracefully deal with having specified an invalid value for \lstinline[style=myMatlab]{ex_select}.
 
 }
 \begin{lstlisting}[name=lec29-ex1, style=myMatlab]
@@ -206,7 +206,7 @@ $\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,y,0) = f(x,y), \ \ 0<x
 u(x,y,t) = F(x)G(y)H(t)
 \end{equation*}
 
-\vspace{0.25cm}
+\vspace{3.0cm}
 
 \noindent\textbf{Step \#2:} Insert proposed solution into the governing equation.
 
@@ -238,7 +238,7 @@ H_{t} + \alpha^2\gamma H &= 0, \text{ where: } \gamma = \lambda + \mu
 \end{align*}
 
 \noindent\textbf{Step \#4:} Apply boundary conditions to determine non-trivial product solution(s).
-We have solved problems with these boundary conditions many times so, in the interest of brevity, we will simply state the following:\marginnote{Please do not let me tempt you off the straight-and-narrow course of analyzing these conditions carefully. You will find the analysis to be similar to what you have done before.}
+We have solved problems with these boundary conditions many times so, in the interest of brevity, we will simply state the following:\marginnote{Please do not let me tempt you off the virtuous path of analyzing these conditions carefully. You will find the analysis to be similar to what you have done before.}
 \begin{align*}
 \lambda > 0, \ \ \lambda &= \beta_{m}^2, \ \ \beta_m = \frac{m \pi}{a} \\
 \mu>0, \ \ \mu &= \beta_n^2, \ \ \beta_n = \frac{n \pi}{b} \\

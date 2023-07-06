@@ -11,10 +11,10 @@ The objectives of this lecture are:
 \section{Initial Value Problems}
 
 For a linear differential equation, an n\textsuperscript{th}-order initial value problem (IVP) is given by the following governing equation and initial conditions:
-\begin{equation}
-\text{Governing Equation: }a_n(x)\frac{d^n u}{dx^n}+a_{n-1}\frac{d^{n-1}u}{dx^{n-1}}+\cdots+a_1(x)\frac{du}{dx}+a_0(x)u=g(x)
+\begin{multline}
+\text{Governing Equation: }a_n(x)\frac{d^n u}{dx^n}+a_{n-1}\frac{d^{n-1}u}{dx^{n-1}}+\cdots \\+a_1(x)\frac{du}{dx}+a_0(x)u=g(x)
 \label{eq:ivp-ge}
-\end{equation}
+\end{multline}
 \begin{equation}
 \text{Initial Conditions: }u(x_0)=u_0, \ u^{\prime}(x_0)=u_1,\dots,u^{(n-1)}(x_0)=u_{n-1}
 \label{eq:ivp-ics}
@@ -55,11 +55,11 @@ For this section let us, without undue loss of generality, consider a 2\textsupe
 \vspace{1.0cm}
 \noindent \underline{\textbf{Example:}} The equation $u^{\prime \prime}+16u = 0$ has the general solution $u(t) = c_1 \cos{(4t)}+c_2 \sin{(4t)}$.  Consider the three different sets of boundary conditions provided below.
 \begin{enumerate}[label=\alph*)]
-\item $x(0)=0, \ \ x(\pi/2)=0$
+\item $u(0)=0, \ \ u(\pi/2)=0$
 Application of the first boundary condition gives us $c_1(1)+c_2(0)=0 \Rightarrow c_1 = 0$.  The second boundary condition is $c_2\sin{(2 \pi)} = 0,$ which is true for \emph{any} value of $c_2$.  Therefore there problem has infinitely many solutions.
-\item $x(0)=0, \ \ x(\pi/8)=0$
+\item $u(0)=0, \ \ u(\pi/8)=0$
 The first boundary condition again gives us $c_1=0$; the second condition $c_2\sin{(4 \frac{\pi}{8})}=0$ is only satisfied if $c_2=0$.  Thus $c_1 = c_2 = 0$; only the trivial solution, $u=0$, satisfies both the differential equation and boundary conditions.  This is not a very interesting solution but at least it \emph{is a solution} so we will take this as an example of a BVP having a unique solution.\marginnote{For applications, we will generally be only interested in \emph{non-trivial} solutions; that is, solutions that are not identically equal to zero.}
-\item $x(0)=0, \ \ x(\pi/2)=1$
+\item $u(0)=0, \ \ u(\pi/2)=1$
 In this case, again $c_1=0$ from the first boundary condition.  This leaves the second boundary condition: $c_2 \sin{\left(4 \frac{\pi}{2}\right)} = c_2(0) = 1$ which cannot be satisfied for any value of $c_2$.  In this case \emph{no} solution exists.
 
 \end{enumerate}
@@ -72,7 +72,7 @@ Let $u_1,u_2,\dots,u_k$ be solutions of a homogeneous n\textsuperscript{th}-orde
 $$u = c_1u_1+c_2u_2+\cdots+c_ku_k$$where $c_1,c_2,\dots,c_k$ are arbitrary constants, is also a solution.
 \end{theorem}
 \marginnote[-3.0cm]{\textbf{Note:} It is essential that \emph{both} the governing equation and given conditions (boundary or initial) for the linear differential equation are homogeneous.  As a reminder, this means that \emph{all} terms in the governing equation and boundary conditions must either a) involve the dependent variable or one of its derivatives; or b) be equal to zero.} 
-As an example, If I denote the linear homogeneous differential equation as $\mathcal{L}$, then $\mathcal{L}(u_i) = 0$ for any $i \in [1,2,\dots,k]$.  By the linearity property of $\mathcal{L}$, for any constants $\alpha$ and $\beta$:
+As an example, If we denote the linear homogeneous differential equation as $\mathcal{L}$, then $\mathcal{L}(u_i) = 0$ for any $i \in [1,2,\dots,k]$.  By the linearity property of $\mathcal{L}$, for any constants $\alpha$ and $\beta$:
 \begin{align*}
 \mathcal{L}(\alpha u_i + \beta u_j) &=  \alpha \mathcal{L}(u_i) + \beta \mathcal{L}(u_j)\\
 &= \alpha(0) + \beta(0) \\
@@ -96,7 +96,7 @@ Repeatedly throughout this course we will want to clarify whether or not two or 
 \begin{theorem}[Criterion for Linearly Independent Solutions]
 Let $u_1,u_2,\dots,u_n$ be solutions of a homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$.  Then the set of solutions is linearly independent on the interval if and only if the Wronskian of the solution is non-zero for every $x \in \mathcal{I}$.  
 \end{theorem}\index{Wronskian}
-The Wronskian is a function that takes functions as arguments and returns a scalar numeric quantity.\sidenote{Sometimes such functions are referred to as \emph{functionals}.}
+The Wronskian is a function that takes functions as arguments and returns a scalar numeric quantity.\sidenote{Sometimes such mathematical objects are referred to as \emph{functionals}.}
 \begin{equation}
 W(u_1,u_2,\dots,u_n)=
 \begin{vmatrix}
@@ -155,7 +155,7 @@ $$u(x) = c_1u_1(x)+c_2u_2(x)+\cdots+c_nu_n(x)$$
 \end{itemize}
 
 \section{General Solution for a Non-homogeneous Problem}
-Recall: ``non-homogeneous'' for a linear n\textsuperscript{th}-order differential equation means that $g(x)\ne 0$.  if $u_p$ is any particular solution to the non-homogeneous, linear, n\textsuperscript{th}-order ODE on an interval $\mathcal{I}$ and $u_c = c_1u_1(x) + c_2u_2(x)+\cdots c_nu_n(x)$ is the general solution to the associated homogeneous ODE (called the \emph{complementary} solution) then the general solution to the non-homogeneous ODE is:
+Recall: ``non-homogeneous'' for a linear n\textsuperscript{th}-order differential equation means that $g(x)\ne 0$.  If $u_p$ is any particular solution to the non-homogeneous, linear, n\textsuperscript{th}-order ODE on an interval $\mathcal{I}$ and $u_c = c_1u_1(x) + c_2u_2(x)+\cdots c_nu_n(x)$ is the general solution to the associated homogeneous ODE (called the \emph{complementary} solution) then the general solution to the non-homogeneous ODE is:
 \begin{equation*}
 u = u_c + u_p
 \end{equation*}

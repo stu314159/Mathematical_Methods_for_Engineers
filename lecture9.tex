@@ -3,9 +3,9 @@
 \section{Objectives}
 The objectives of this lecture are:
 \begin{itemize}
-\item Illustrate the solution of a linear IVP (with a 3-term recurrence) using Power Series
+\item Illustrate the solution of a linear IVP (with a 3-term recurrence) using Power Series.
 \item Demonstrate \textbf\underline{a way} to analyze these solutions using MATLAB; and
-\item Demonstrate some expected elements of MATLAB style for this course
+\item demonstrate some expected elements of MATLAB style for this course.
 \end{itemize}
 
 \section{Solution of an IVP using Power Series}
@@ -37,13 +37,13 @@ Substituting within each summation and combining the terms gives us:
 \begin{equation*}
 (2c_2-c_0)x^0 + \sum\limits_{k=1}^{\infty}\left[(k+2)(k+1)c_{k+2} - c_k - c_{k-1} \right]x^k = 0
 \end{equation*}
-As usual, in order to satisfy this equation the coefficients for each power of $x$ must be equal to zero.  For $x^0$ this means $2c_2 - c_0 = 0$;  For all the other powers of $x$, a \emph{three-term recurrence} involving $c_{k-1}$, $c_k$, and $c_{k+2}$ must be satisfied:
+As usual, in order to satisfy this equation, the coefficients for each power of $x$ must be equal to zero.  For $x^0$ this means $2c_2 - c_0 = 0$;  For all the other powers of $x$, a \emph{three-term recurrence} involving $c_{k-1}$, $c_k$, and $c_{k+2}$ must be satisfied:
 \begin{equation*}
 c_{k+2} = \frac{c_k + c_{k-1}}{(k+2)(k+1)}
 \end{equation*}
 We will help manage the complexity by adopting the following strategy:
 \begin{itemize}
-\item Case 1: Arbitrarily set $c_0 \ne 0$, set $c_1 = 0$ and derive a solution;
+\item Case 1: Arbitrarily set $c_0 \ne 0$, set $c_1 = 0$ and derive a solution.
 \item Case 2: Arbitrarily set $c_0 = 0$, set $c_1 \ne 0$ and derive a second solution.
 \end{itemize}
 \marginnote[-1.75cm]{These two solutions are sure to be linearly independent since the first will not have a linear term (proportional to $x$) and the second equation will not have a constant term (proportional to $1$).}
@@ -205,7 +205,7 @@ Power series results for various values of $n$ are compared to the numerical sol
 \item The solution gets worse the further one gets from zero; and
 \item The solution gets better for larger values of $n$.  
 \end{enumerate}
-Neither of these observations should be particularly surprising but there is value to seeing it in your results; it adds confidence to the proposition that your (approximate) solution is correct.
+Neither of these observations should be particularly surprising but there is value to seeing it in your results. It adds confidence to the proposition that your (approximate) solution is correct.
 
 \newthought{As a last note} it should be pointed out that, while plots like that shown in Figure \ref{fig:lec9_ps_compare} gives a good qualitative feel for how the solution is improving as the number of power series terms increases, a quantitative measure for correctness is preferable.  In Figure \ref{fig:lec9_ps_converge} a quantitative measure---the relative error in the 2-norm---is used to quantify the difference between different power series solutions and the solution generated using \emph{ODE45}.  Details of this error measure will be discussed in future lectures.
 \begin{marginfigure}

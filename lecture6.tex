@@ -3,7 +3,7 @@
 \section{Objectives}
 The objectives of this lecture are:
 \begin{itemize}
-\item Introduce Cauchy-Euler equations and demonstrate a method of solution
+\item Introduce Cauchy-Euler equations and demonstrate a method of solution.
 \item Carry out some examples to illustrate the methods for 2\textsuperscript{nd}-order, homogeneous Cauchy-Euler equations.
 \end{itemize}
 
@@ -16,7 +16,7 @@ a_nx^n\frac{d^n u}{dx^n}+a_{n-1}x^{n-1}\frac{d^{n-1}u}{dx^{n-1}}+\cdots+a_1x\fra
 \end{equation}
 is called a Cauchy-Euler equation.
 
-\newthought{Note the relationship} between the exponent of $x$ is the coefficients and the order of the differential operators.  This correspondence between the decreasing power of $x$ in the coefficient and the decreasing order of the differential operator is characteristic of this type of equation and is the way you should recognize it.\marginnote[-2.0cm]{It is the corresponding change in power/order that matters.  $a\frac{d^2u}{dx^2}+\frac{1}{x^2}u=0$ is also a Cauchy-Euler equation since the power of $x$ in the coefficient goes from 0 to -2 while the order of the differential operator goes from 2\textsuperscript{nd} to 0.} 
+\newthought{Note the relationship} between the exponent of $x$ in the coefficients and the order of the differential operators.  This correspondence between the decreasing power of $x$ in the coefficient and the decreasing order of the differential operator is characteristic of this type of equation and is the way you should recognize it.\marginnote[-2.0cm]{It is the corresponding change in power/order that matters.  $a\frac{d^2u}{dx^2}+\frac{1}{x^2}u=0$ is also a Cauchy-Euler equation since the power of $x$ in the coefficient goes from 0 to -2 while the order of the differential operator goes from 2\textsuperscript{nd} to 0.} 
 
 \newthought{Note that} this equation is \emph{linear}; if $g(x)=0$ it is homogeneous, otherwise it is non-homogeneous.  For this lecture we will focus our attention on the homogeneous, 2\textsuperscript{nd}-order Cauchy-Euler equation:
 \begin{equation}
@@ -51,9 +51,9 @@ u(x)=c_1x^{m_1}+c_2x^{m_2}
 
 \vspace{0.25cm}
 
-\noindent Referring to Equation \ref{eq:CE-aux}, $a=1,\ b=-2, \ c=-4$\marginnote{Be careful with these coefficients; in contrast to the case with constant coefficient linear equations we do not plug these coefficients directly into the quadratic equation; we put them in the auxiliary equation and then solve \emph{that} with the quadratic equation.} so the auxiliary equation is:
+\noindent Referring to Equation \ref{eq:CE-aux}, $a=1,\ b=-2, \ c=-4$\marginnote{Be careful with these coefficients. In contrast to the case with constant coefficient linear equations, we do not plug these coefficients directly into the quadratic equation. Instead we put them in the auxiliary equation and then solve \emph{that} with the quadratic equation.} so the auxiliary equation is:
 \begin{align*}
-m^2-3m-4 &= 0
+m^2-3m-4 &= 0 \\
 (m-4)(m+1) &=0
 \end{align*}
 By inspection the roots are $m_1=4$ and $m_2=-1$.  The general solution is $u(x)=c_1x^4+c_2x^{-1}$
@@ -115,12 +115,12 @@ u^{\prime}(1)&=-\frac{1}{2}(1)(1)+2(1)(0)+c_2[0+2(1)(1)] \\
 &=-\frac{1}{2}+2c_2 = -\frac{1}{2} \\
 \Rightarrow c_2&=0
 \end{align*}
-So the solution is: $u(x) = -x^{1/2}\cos{(2 \ln{x})}$
+So the solution is: $u(x) = -x^{1/2}\cos{(2 \ln{x})}$.
 
 \end{enumerate}
 
 \section{Non-homogeneous Cauchy-Euler Equations}
-Sadly, the Method of Undetermined Coefficients will not work with Cauchy-Euler equations; a limitation of that method is that the coefficients need to be constant. Interested students can investigate the method of Variation of Parameters that can be used to address this problem analytically.  Otherwise, we will plan to use numerical methods to solve non-homogeneous problems of this type.
+Sadly, the Method of Undetermined Coefficients will not work with Cauchy-Euler equations; a limitation of that method is that the coefficients need to be constant. Interested students can investigate the method called \emph{variation of parameters} that can be used to address this problem analytically.  Otherwise, we will plan to use numerical methods to solve non-homogeneous problems of this type.
 
 \section{Derivation of the Solution to Cauchy-Euler Equations}
 It would be hard not to notice the similarity in the solution methods of Cauchy-Euler equations and constant coefficient linear equations.  This is not a coincidence.  In this section I want to briefly show you that, through a change of variables, Cauchy-Euler equations are, in some sense, equivalent to constant coefficient equations.

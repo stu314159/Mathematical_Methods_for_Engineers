@@ -3,8 +3,8 @@
 \section{Objectives}
 The objectives of this lecture are:
 \begin{itemize}
-\item Illustrate the use of the power series method to solve Legendre's equation; and 
-\item Introduce some of the properties of Legendre polynomials
+\item Illustrate the use of the power series method to solve Legendre's equation. 
+\item Introduce some of the properties of Legendre polynomials.
 \end{itemize}
 
 \section{Legendre's Equation}
@@ -48,7 +48,7 @@ The next steps are to find formulas for the power series coefficients $c_n$ so t
 \begin{equation*}
 c_2 = \frac{-m(m+1)c_0}{2}
 \end{equation*}
-For the linear term $(x^1)$ we get
+For the linear term $(x^1)$ we get:
 \begin{equation*}
 c_3 = \frac{-(m-1)(m+2)}{6}c_1
 \end{equation*}
@@ -71,11 +71,11 @@ u_1(x) &= c_0\left[1 + \frac{c_2}{c_0}x^2 + \frac{c_4}{c_0}x^4 + \cdots \right] 
 u_2(x) &= c_1\left[x + \frac{c_3}{c_1}x^3 + \frac{c_5}{c_1}x^5 + \cdots \right] \\
 &= c_1\left[x - \frac{(m-1)(m+2)}{3!}x^3+\frac{(m-3)(m+4)(m-1)(m+2)}{5!}x^5 + \cdots \right]
 \end{align*}
-So far what we have is messy but when dealing with power series solutions, messiness is the order of the day.  One point that we have quietly left to the side is whether or not we expect this (so called) power series solution  to converge.\marginnote{\textbf{Reminder:} if the power series that we purport to be a solution to the differential equation is divergent than we really have nothing.}
+So far what we have is messy but when dealing with power series solutions, messiness is the order of the day.  One point that we have quietly left to the side is whether or not we expect this (so called) power series solution  to converge.\marginnote{\textbf{Reminder:} If the power series that we purport to be a solution to the differential equation is divergent than we really have nothing.}
 
 One way that we can permanently leave these questions to the side is if $m$ is an integer.  Notice that if $m=0$ or is an even integer, $u_1(x)$ terminates with a finite number of terms.\marginnote{i.e. if $m$ is even then $u_1(x)$ is a polynomial.} Similarly with $u_2(x)$ in the case that $m$ is an odd integer. 
 
-\newthought{These polynomial solutions}, where $m$ is an integer, are referred to as Legendre Polynomials.  Legendre Polynomials have several important applications; we will need to use them when solving equations in spherical coordinate systems.
+\newthought{These polynomial solutions}, where $m$ is an integer, are referred to as Legendre polynomials.  Legendre polynomials have several important applications; our primary use for them will be when solving equations in spherical coordinate systems.
 
 \section{Important Properties of Legendre Polynomials}
 As a recap, Legendre polynomials are solutions to Legendre's equation where $m$ is an integer:
@@ -99,6 +99,8 @@ The first few Legendre Polynomials are shown in the table. Higher order Legendre
 \label{eq:legendre-three-term}
 \end{equation}
 
+\vspace{4.0cm}
+
 Some other properties include:
 
 \begin{align*}
@@ -113,7 +115,7 @@ P_n^{\prime}(0) &=0 \text{ for } n\in{\text{even}}
 \caption{Legendre Polynomials of order 0 through 5.}
 \label{fig:legendre-poly-plot}
 \end{marginfigure}
-A plot of the first several Legendre Polynomials is shown in Figure \ref{fig:legendre-poly-plot}
+A plot of the first several Legendre Polynomials is shown in Figure \ref{fig:legendre-poly-plot}.
 
 
 \newthought{The last property} that we will mention here, and that we will make use of extensively in this course, is the \emph{orthogonality} property of Legendre Polynomials.\marginnote[1.0cm]{Orthogonality of functions is analogous to orthogonality of vectors.  Two functions, $f_1(x)$ and $f_2(x)$ are orthogonal on an interval $x\in[a,b]$ if $\int_a^b f_1(x)f_2(x) \ dx = 0$.}

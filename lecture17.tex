@@ -45,7 +45,7 @@ p = pi; % specifiy period
 \end{lstlisting}
 We start, as always, by clearing out the workspace memory and command-prompt output and closing any open figures.  We also need to represent $f(x)$ in MATLAB; we will do this with a local function named \lstinline{ex1(x)}.\sidenote{Since inline functions must appear \emph{after} all of the other code in a MATLAB script file, I will provide the code for \lstinline{ex1(x)} last.}  
 
-The integrals needed to determine the Fourier coefficients will be evaluated numerically using the MATLAB built-in function \lstinline{integral()}.\sidenote{This function has default signature \lstinline{Q = integral(FUN,A,B)} approximates the integral of function \lstinline{FUN} over the interval \lstinline{A} to \lstinline{B} using global adaptive quadrature.  The error tolerances for this numeric integration algorithm can be specified by the user; in most cases we will use default values.  Students interested in how this works should take the Numerical Methods elective.} Let us start with $a_0$ which, as a reminder is computed by:
+The integrals needed to determine the Fourier coefficients will be evaluated numerically using the MATLAB built-in function \lstinline{integral()}.\sidenote{This function has default signature \lstinline{Q = integral(FUN,A,B)} approximates the integral of function \lstinline{FUN} over the interval \lstinline{A} to \lstinline{B} using global adaptive quadrature.  The error tolerances for this numeric integration algorithm can be specified by the user; in most cases we will use default values.  There are several standard algorithms for numerically computing integrals---called quadrature---that the interested student can read about in the numerical methods portion of this text.} Let us start with $a_0$ which, as a reminder is computed by:
 \begin{equation*}
 a_0 = \frac{1}{p}\int_{-p}^{p} f(x) \ dx
 \end{equation*}
@@ -79,7 +79,7 @@ Note in the last line where we append the newly computed terms to the Fourier se
 
 \vspace{0.25cm}
 
-\noindent \ref{lst:annotation2} Optional keyword-argument pairs such as \lstinline{'Linewidth',3}, \lstinline{'FontSize',16}, and \lstinline{'FontWeight','bold'} help make the plot and labels more readable.
+\noindent \ref{lst:annotation2} Optional name-value pairs such as \lstinline{'Linewidth',3}, \lstinline{'FontSize',16}, and \lstinline{'FontWeight','bold'} help make the plot and labels more readable.
 
 \vspace{0.25cm}
 
@@ -87,7 +87,7 @@ Note in the last line where we append the newly computed terms to the Fourier se
 
 \vspace{0.25cm}
 
-\noindent \ref{lst:annotation4} The keyword \lstinline[style=myMatlab]{gca} means ``get current axis''.  Calling the \lstinline[style=myMatlab]{set()} function with keyword-argument pairs \lstinline{'FontSize',10} and \lstinline{'FontSize','bold'} sets the font size and weight for the axis markings.
+\noindent \ref{lst:annotation4} The argument \lstinline[style=myMatlab]{gca} means ``get current axis.''  Calling the \lstinline[style=myMatlab]{set()} function with name-value pairs \lstinline{'FontSize',10} and \lstinline{'FontSize','bold'} sets the font size and weight for the axis markings.
 
 \vspace{0.25cm}
 
@@ -251,7 +251,7 @@ This function is not periodic and, unlike the previous examples, does not even s
 \caption{Even-, odd- and identity-reflection for $f(x)=x^2$.}
 \end{figure}
 
-Note that the convergence behavior for the Fourier expansion is different for each case.\marginnote{As you can see, in cases where you can choose which expansion you use, some choices are good and some are bad.  As we will see in coming chapters, we often do not have a choice in which set of orthogonal functions we will use to do our expansion; so we cannot pick one that we think will be best.  What we \emph{can} do is analyze the expansion that we \emph{do} get and understand the convergence behavior by examining the continuity of the functions and derivatives of functions that we are representing.}
+Note that the convergence behavior for the Fourier expansion is different for each case.\marginnote{As you can see, in cases where you can choose which expansion you use, some choices are good and some are bad.  As we will see in coming chapters, we often do not have a choice in which set of orthogonal functions we will use to do our expansion so, sadly, we cannot pick one that we think will be best.  What we \emph{can} do is analyze the expansion that we \emph{do} get and understand the convergence behavior by examining the continuity of the functions and derivatives of functions that we are representing.}
 \begin{itemize}
 \item For the even-reflection Cosine expansion convergence is very rapid.  Both $f(x)$ and $f^{\prime}(x)$ are continuous throughout the interval $x\in (-2,2)$.  The function itself is continuous at the end-points but notice that the derivative is not.  If you were to draw an additional period on the left and right-hand side of the cosine expansion, $f^{\prime}(x)$ would have a discontinuity; that explains the (relatively) poor convergence of the series at the end-points.
 \item For the odd-reflection Sine expansion the function and derivative is continuous throughout the domain.  The derivative of the function is continuous at the periodic end-points but $f(x)$ itself is not.  This explains why the Sine series expansion converges to zero at both end-points.  

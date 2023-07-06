@@ -3,6 +3,7 @@
 \section{Objectives}
 \begin{itemize}
 \item Demonstrate use of separation of variables to solve the heat equation.
+\item Show the code for a MATLAB implementation of an example problem.
 \end{itemize}
 \section{Analytic Solution}
 Consider the following boundary value problem based on the heat equation:
@@ -36,7 +37,7 @@ u(x,t) = F(x)G(t)
 FG_{t} &= \alpha^2 F_{xx}G
 \end{align*}
 
-\vspace{0.5cm}
+\vspace{3.0cm}
 
 \noindent\textbf{Step \#3:} Separate variables: \marginnote{On the last line we see that $\frac{G_t}{\alpha^2 G}$ is only a function of $y$; $\frac{F_{xx}}{F}$ is only a function of $x$ and yet they must be equal to each other for all values of $x$ and $y$.  The only way this makes sense is if they are both in fact constant.  We will denote this constant $-\lambda$.}
 \begin{align*}
@@ -124,7 +125,7 @@ u(x,t) = F(x)G(t) = \sum\limits_{n=1}^{\infty} c_n \sin{\frac{n \pi x}{L}} e^{-(
 u(x,0) &= \sum\limits_{n=1}^{\infty}c_n \sin{\frac{n \pi x}{L}} \cancelto{0}{e^{-(\alpha \frac{n \pi}{L})^2 0}} \\
 &= \sum\limits_{n=1}^{\infty}c_n \sin{\frac{n \pi x}{L}} = f(x)
 \end{align*}
-On the left we have an infinite series of eigenfunctions; on the left we have $f(x)$.  Our job is to find the values of $c_n$ so that they are equal.  This is \emph{exactly} the reason why we spent time learning about Fourier series and orthogonal function expansions.  We will multiply both sides by our (orthogonal) eigenfunctions and integrate.
+On the left we have an infinite series of eigenfunctions; on the right we have $f(x)$.  Our job is to find the values of $c_n$ so that they are equal.  This is \emph{exactly} the reason why we spent time learning about Fourier series and orthogonal function expansions.  We will multiply both sides by our (orthogonal) eigenfunctions and integrate.
 
 For $c_1$ we will do this explicitly:\marginnote[1.5cm]{The only non-zero term on the left will be the one corresponding to $\sin{\frac{\pi x}{L}}$; all others will be zero due to the orthogonality of the set of functions $\sin{\frac{n \pi x}{L}}$.}
 %\begin{fullwidth}
@@ -153,7 +154,7 @@ c_n &= \frac{2}{L} \int_0^L f(x) \sin{\frac{n \pi x}{L}} \ dx
 \begin{enumerate}
 \item Owing to the exponential term in the solution, $u(x,t) \rightarrow \infty$ as $t \rightarrow \infty$.
 
-\item Recalling our experience from Fourier series expansions of functions with discontinuities, the representation will be ``wiggly''.
+\item Recalling our experience from Fourier series expansions of functions with discontinuities, the representation will be ``wiggly.''
 
 \item Since the heat equation is a parabolic equation characteristic of diffusive phenomena, we expect the solution to ``smooth-out'' over time.  This should jibe with our own personal intuition and experience with heat transfer.
 \end{enumerate}
@@ -173,22 +174,7 @@ c_n &= \frac{2}{L} \int_0^L f(x) \sin{\frac{n \pi x}{L}} \ dx
 To demonstrate the answer to these questions and help build more insight into the behavior of the transient 1-D heat equation, let us define $L$, $\alpha^2$, and $f(x)$, compute and plot the solution.
 \setcounter{lstannotation}{0} %hack to try and re-set annotation counter.
 
-\marginnote{
 
-\vspace{0.75cm}
-
-\ref{lst:ann23-1-1} Strictly speaking we should include units for this quantity.  For perspective, the thermal diffusivity of copper at room temperature is approximately 1.20 cm\textsuperscript{2}/s; for steel approximately 0.20 cm\textsuperscript{2}/s; and for adobe brick around 0.003 cm\textsuperscript{2}/s.
-
-\vspace{0.5cm}
-
-\ref{lst:ann23-1-2} We also need to choose the number of Fourier coefficients to calculate; we obviously cannot calculate them all.
-
-
-\vspace{0.25cm}
-
-\ref{lst:ann23-1-3} Be sure you understand how to define anonymous functions with multiple variables.
-
-}
 \begin{lstlisting}[name=lec23_ex1, style=myMatlab]
 clear
 clc
@@ -206,6 +192,22 @@ G = @(t,n) exp(-((n.*pi./L).^2)*alpha_sq.*t);
 f(x) = @(x) x.*(1-x);
 
 \end{lstlisting}
+\marginnote[-6.0cm]{
+
+\vspace{0.75cm}
+
+\ref{lst:ann23-1-1} Strictly speaking we should include units for this quantity.  For perspective, the thermal diffusivity of copper at room temperature is approximately 1.20 cm\textsuperscript{2}/s; for steel approximately 0.20 cm\textsuperscript{2}/s; and for adobe brick around 0.003 cm\textsuperscript{2}/s.
+
+\vspace{0.5cm}
+
+\ref{lst:ann23-1-2} We also need to choose the number of Fourier coefficients to calculate; we obviously cannot calculate them all.
+
+
+\vspace{0.25cm}
+
+\ref{lst:ann23-1-3} Be sure you understand how to define anonymous functions with multiple variables.
+
+}
 Note from Figure \ref{fig:lec23-ex1-smooth-ic} that the initial condition is smooth and satisfies the boundary conditions.
 \begin{marginfigure}
 \includegraphics{lec23_ex1_smooth_ic.png}
@@ -249,12 +251,12 @@ legend('t = 0','t = 0.1','t = 0.5');
 \end{marginfigure}
 \newthought{The plot is shown} in Figure \ref{fig:lec23-ex1-smooth-plot}. As is expected, the temperature is going down over time. As time goes to infinity, the solution will be zero everywhere.  Recalling that the heat equation is simply a mathematical representation of conservation of energy, you should ask yourself the question: where is the energy going?  The answer is that the energy is flowing out of the left and right side of the bar and will continue to do so as long as the temperature of the bar is higher than the temperature at the boundary.
 
+\newthought{What happens if} we increase the thermal diffusivity?  Answer: the heat flows ``faster''.  Since the thermal diffusivity shows up in the equation $G(t)$, the answer should look like time ``sped up''.  Testing this hypothesis out on our MATLAB solution, we change thermal diffusivity to 1.2.  The results are shown in Figure \ref{fig:lec23-ex1-smooth-plot-copper}.
 \begin{marginfigure}
 \includegraphics{lec23_ex1_smooth_ic_n25-copper.png}
 \caption{Solution with high thermal diffusivity.}
 \label{fig:lec23-ex1-smooth-plot-copper}
 \end{marginfigure}
-\newthought{What happens if} we increase the thermal diffusivity?  Answer: the heat flows ``faster''.  Since the thermal diffusivity shows up in the equation $G(t)$, the answer should look like time ``sped up''.  Testing this hypothesis out on our MATLAB solution, we change thermal diffusivity to 1.2.  The results are shown in Figure \ref{fig:lec23-ex1-smooth-plot-copper}.
 
 \newthought{What happens if} we have a much less smooth initial condition?  Admittedly, it would be odd for the initial temperature distribution to be discontinuous, but given our experience with Fourier series expansions, we should have some idea as to what the Fourier series expansions of discontinuous functions should look like.  To test this, suppose the initial temperature distribution were given by:
 \begin{marginfigure}
@@ -324,6 +326,6 @@ A plot of the solution when $N=25$, $L=1$, and $\alpha^2=1.5$ is shown in Figure
 \end{marginfigure}
 %\subsection{Both Boundaries Insulated}
 
-\newthought{What happens if} both boundaries are insulated?  Physically, when we insulate something, that means we want to keep heat from coming in or out of the domain.  Does this mean heat will not diffuse \emph{within} the domain?  Of course note, heat will simply flow as it must while driven by temperature gradients in the domain.  When will it stop?  When there is no more temperature gradient to drive heat flow and that will happen when the temperature is uniform.  
+\newthought{What happens if} both boundaries are insulated?  Physically, when we insulate something, that means we want to keep heat from coming in or out of the domain.  Does this mean heat will not diffuse \emph{within} the domain?  Of course not; heat will simply flow as it must while driven by temperature gradients in the domain.  When will it stop?  When there is no more temperature gradient to drive heat flow and that will happen when the temperature is uniform.  
 
 Mathematically, this means that we again change the boundary conditions so that the temperature gradient is zero at \emph{both} boundaries.  The details of this solution will be left to exercises but it is hoped by this point that you already know what the solution \emph{must} look like; namely that heat will diffuse within the domain until a uniform temperature is reached that is equal to the \emph{average} initial temperature.

@@ -2,7 +2,7 @@
 \label{ch:lec19}
 \section{Objectives}
 \begin{itemize}
-\item Present the Parametric Bessel Equation as a Sturm-Liouville problem and derive the orthogonality relation.
+\item Present the parametric Bessel equation as a Sturm-Liouville problem and derive the orthogonality relation.
 \item Do an example to show expansion of a function in terms of Bessel functions.
 \item Demonstrate use of the MATLAB function \lstinline{besselzero()}.
 \end{itemize}
@@ -69,7 +69,7 @@ where $a$ and $b$ are the bounds of the interval on which orthogonality is expre
 
 \vspace{0.5cm}
 
-\noindent\textbf{Example:} expand $f(x)=x, \ 0<x<3$, in a Fourier-Bessel series, using Bessel functions of order $\nu=1$ that satisfy the boundary condition $J_{1}(3\alpha)=0.$\marginnote[-1.25cm]{Remember that it is the \emph{boundary conditions} that allow us to determine the eigenvalues.}
+\noindent\textbf{Example:} Expand $f(x)=x, \ 0<x<3$, in a Fourier-Bessel series, using Bessel functions of order $\nu=1$ that satisfy the boundary condition $J_{1}(3\alpha)=0.$\marginnote[-1.25cm]{Remember that it is the \emph{boundary conditions} that allow us to determine the eigenvalues.}
 
 \vspace{0.25cm}
 \begin{marginfigure}
@@ -81,7 +81,7 @@ where $a$ and $b$ are the bounds of the interval on which orthogonality is expre
 \begin{equation*}
 f(x) = x = \sum\limits_{n=1}^{\infty}c_n J_{1}\left(\alpha_n x\right)
 \end{equation*}
-Note that we omit Bessel functions of the second kind, $Y_n(x)$, because as is shown in the figure, they diverge to negative infinity as $x$ goes to zero.  This \emph{implicit boundary condition} where one solution of the differential equation diverges at the problem boundary.
+Note that we omit Bessel functions of the second kind, $Y_n(x)$, because as is shown in the figure, they diverge to negative infinity as $x$ goes to zero.  This \emph{implicit boundary condition}, where one solution of the differential equation diverges at the problem boundary, often needs to be considered when solving boundary value problems.
 
 The other boundary condition applies at $x=3$: $J_{1}(3\alpha_n) = 0$ or, put differently, we select the values of $\alpha_n$ such that $3\alpha_n$ is a root of $J_{1}(x)$.  While our plot of $J_1(x)$ does not extend out to infinity, it turns out that $J_1(x)$ has infinitely many roots and we need to find them.
 
@@ -97,7 +97,7 @@ Some options available to you include:
 In this case we will take the last option since, it turns out, someone has already solved this problem for us\marginnote[-0.5cm]{The Fourier-Bessel expansion that we are learning about in this lecture is a standard element in the analytical methods repertoire; \emph{of course} someone else has already figured out how to find the roots of Bessel functions.} and it is a safe bet that they did a better job than what we would be prepared to do.  The MATLAB file exchange is an online repository where people can obtain and share code that they find useful.\sidenote{Note that a (free) MathWorks account is required to use the MATLAB file exchange.}
 
 \newthought{Regarding Open-Source} software:
-We have a lot of experience with proprietary software; from operating systems like Microsoft Windows or Apple's IOs to office productivity tools like Microsoft Word or Excel, to valuable and important engineering tools like MATLAB or COMSOL.  We also have experience with free software, such as many applications that you download onto your smartphones.  I want to write a few words in hopes of dispelling any negative connotations that you may have developed in relation to open-source software in comparison to proprietary software.
+We have a lot of experience with proprietary software. From operating systems like Microsoft Windows or Apple's IOs to office productivity tools like Microsoft Word or Excel, to valuable and important engineering tools like MATLAB or COMSOL.  We also have experience with free software, such as many applications that you download onto your smartphones.  I want to write a few words in hopes of dispelling any negative connotations that you may have developed in relation to open-source software in comparison to proprietary software.
 \begin{itemize}
 \item Scientists and engineers of all types---not just computer scientists---write and share software in an open-source framework.  Online repositories like GitHub and GitLab are meant expressly for developing code in an open and collaborative way and then sharing the results freely.
 \item ``open-source'' ensures the source code is available.  Sometimes the code is also free but that is not the essential part.\sidenote{Think: ``free speech'', not ``free beer.''}
@@ -113,7 +113,7 @@ We have a lot of experience with proprietary software; from operating systems li
 The \LaTeX\ tools and almost all of the other software on the computer used to prepare this manuscript, including the Linux operating system, are free and open-source software.\sidenote{MATLAB is a notable exception to this list.  There is a free and open-source alternative called Octave. \url{https://octave.org/} } If you have any interest in scientific computing, now is a good time to develop an interest in open-source software.
 
 \subsection{Back to the Example}
-We want to expand $f(x)=x$ for $0<x<3$ in a Fourier-Bessel series expansion using Bessel functions of order 1 that satisfy the boundary condition $J_{1}(3\alpha_n)=0$.  We will use MATLAB along with the function \lstinline[style=myMatlab]{besselzero()} that we obtained from the MATLAB file exchange to carry out this task. In particular we will compute the truncated expansion with $N=15$ terms:
+We want to expand $f(x)=x$ for $0<x<3$ in a Fourier-Bessel series expansion using Bessel functions of the first kind of order 1 that satisfy the boundary condition: $J_{1}(3\alpha_n)=0$.  We will use MATLAB along with the function \lstinline[style=myMatlab]{besselzero()} that we obtained from the MATLAB file exchange to carry out this task. In particular we will compute the truncated expansion with $N=15$ terms:
 \begin{equation*}
 f(x) = x = \sum\limits_{n=1}^{15}c_n J_1\left(\alpha_n x\right)
 \end{equation*}
@@ -191,7 +191,7 @@ set(gca,'fontsize',12,'fontweight','bold');
 \includegraphics{lec19_ex1_N15.png}
 \caption{Fourier-Bessel expansion of $f(x)=x$.}
 \end{marginfigure}
-The Fourier-Bessel expansion of $f(x)=x$ with $N=15$ is shown in the figure.  Note that the expansion for $N=15$ looks pretty rough; all of the wiggles through the domain and dropping suddenly to zero as the function approaches $x=3$.  The reason for this is that \emph{it had to.}  We are building the expansion with orthogonal functions that are all equal to zero at $x=3$.  Of course $f(x)=x$ is equal to 3 at $x=3$ so something had to give.  
+The Fourier-Bessel expansion of $f(x)=x$ with $N=15$ is shown in the figure.  Note that the expansion for $N=15$ looks pretty rough. There are many wiggles through the domain and the expansion drops suddenly to zero as the function approaches $x=3$.  The reason for this is that \emph{it had to.}  We are building the expansion with orthogonal functions that are all equal to zero at $x=3$.  Of course $f(x)=x$ is equal to 3 at $x=3$ so something had to give.  
 
 \begin{marginfigure}
 \includegraphics{lec19_ex1_N150.png}

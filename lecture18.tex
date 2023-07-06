@@ -2,7 +2,7 @@
 \label{ch:lec18}
 \section{Objectives}
 \begin{itemize}
-\item Define Regular/Singular Sturm-Liouville eigenvalue problems and give properties of their solutions.
+\item Define regular/singular Sturm-Liouville eigenvalue problems and give properties of their solutions.
 \item Do an example problem for finding eigenvalues and eigenfunctions.
 \item Do an example problem for transforming a linear, second-order, homogeneous boundary value problem into self-adjoint form.
 \end{itemize}
@@ -10,7 +10,7 @@
 \section{Regular Sturm-Liouville Eigenvalue Problem} \index{Sturm-Liouville Eigenvalue Problem}
 \newthought{We have solved} several differential equations in this class.  All of the boundary value problems that we have solved so far are special cases of a more general framework called Sturm-Liouville eigenvalue problems. That is what we wish to discuss in this lecture.
 
-For the Regular Sturm-Liouville Eigenvalue problem we hope to solve:\marginnote{\textbf{Note:} for Equation \ref{eq:sturm-liouville-evp}, $r(x)$, $r^{\prime}(x)$, $q(x)$, and $p(x)$ must be real-valued and continuous on the interval $x \in (a,b)$.  Also $p(x)>0$ and $r(x)>0$ for all $x\in(a,b)$.  These are important conditions that should be verified each time you encounter a new problem.  The constant $\lambda$ is referred to as an \emph{eigenvalue}.}
+For the regular Sturm-Liouville Eigenvalue problem we hope to solve:\marginnote{\textbf{Note:} for Equation \ref{eq:sturm-liouville-evp}, $r(x)$, $r^{\prime}(x)$, $q(x)$, and $p(x)$ must be real-valued and continuous on the interval $x \in (a,b)$.  Also $p(x)>0$ and $r(x)>0$ for all $x\in(a,b)$.  These are important conditions that should be verified each time you encounter a new problem.  The constant $\lambda$ is referred to as an \emph{eigenvalue}.}
 \begin{equation}
 \frac{d}{dx}\left[r(x)u^{\prime}\right] + \left(q(x) + \lambda p(x)\right)u = 0,  \ \ x\in(a,b)
 \label{eq:sturm-liouville-evp}
@@ -29,7 +29,7 @@ Note that these boundary conditions are referred to as \emph{homogeneous}.  The 
 \item There exist an infinite number of real eigenvalues that can be arranged in increasing order. (e.g. $\lambda_1 < \lambda_2 < \lambda_3 < \cdots < \lambda_n < \cdots$)
 \item For each eigenvalue, $\lambda_n$, there is exactly one eigenfunction, $u_n(x)$, that is a solution to the problem.
 
-\item eigenfunctions corresponding to different eigenvalues are linearly independent.
+\item Eigenfunctions corresponding to different eigenvalues are linearly independent.
 
 \item The set of eigenfunctions is orthogonal with respect to $p(x)$ on the interval $[a,b]$.  In other words: $\int_{a}^{b}u_n(x) u_m(x) p(x) \ dx = 0$ if $n \ne m$.
 

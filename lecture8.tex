@@ -25,7 +25,7 @@ A point $x_0$ is said to be an \emph{ordinary point} of a differential equation 
 If $x=x_0$ is an \emph{ordinary point} of the differential equation, we can always find two linearly independent solutions in the form of a power series centered at $x_0$.  A series solution converges at least on some interval defined by $\left| x - x_0 \right|<R$ where $R$ is the distance from $x_0$ to the closest singular point.
 \label{thm:existence-of-power-series-solutions}
 \end{theorem}
-\marginnote[-1.5cm]{To clarify: this theorem applies only to second-order, linear, homogeneous differential equations.}
+\marginnote[-1.5cm]{Let us emphasize: this theorem applies only to second-order, linear, homogeneous differential equations.}
 
 The basic strategy we will use to find power series solutions for linear differential equations with variable coefficients where $P(x)$ and $Q(x)$ are analytic in the domain of interest is:
 
@@ -59,7 +59,7 @@ u^{\prime \prime} + u &= 0 \\
 \sum\limits_{k=0}^{\infty}\underbrace{\left[(k+2)(k+1)c_{k+2} + c_k \right]}_{\text{coefficients for new power series}}x^k&=0
 \end{align*}
 
-\newthought{The expression} $\left[(k+2)(k+1)c_{k+2}+c_k \right]$ is now a formula for the coefficients of a new power series; this power series, according to the equation, is equal to \emph{zero} so that means all of the coefficients must be equal to zero:
+\newthought{The expression} $\left[(k+2)(k+1)c_{k+2}+c_k \right]$ is now a formula for the coefficients of a new power series. This power series, according to the equation, is equal to \emph{zero} so that means all of the coefficients must be equal to zero:
 
 \marginnote[1.0cm]{This is called a \emph{two-term recurrence} since the expression involves \emph{two} terms; $c_{k-2}$ and $c_k$.}
 \begin{equation*}
@@ -74,7 +74,7 @@ c_{k+2}=-\frac{c_k}{(k+2)(k+1)}
 \label{eq:ex1-l8-rec}
 \end{equation}
 
-\newthought{As we should} expect, there are two unknown constants in this general solution.\marginnote[-1.0cm]{As we would expect the general solution for any other second order differential equation would have two unknown constants that can only be resolved by adding initial- or boundary-conditions.}The first value of $k$, from the summation in our solution is $k=0$.  Simplified equations for the first few coefficients are presented in the table below.
+\newthought{As we should} expect, there are two unknown constants in this general solution.\marginnote[-1.0cm]{As we would expect the general solution for any other second order differential equation would have two unknown constants that can only be resolved by adding initial- or boundary-conditions.}  The first value of $k$, from the summation in our solution is $k=0$.  Simplified equations for the first few coefficients are presented in the table below.
 \begin{table*}
 \begin{tabular}{l | l | l}
 $k=0$ & $k=2$ & $k=4$ \\
@@ -98,10 +98,10 @@ u(x)&=c_0\cos{x} + c_1\sin{x}
 \end{align*}
 Which is exactly what we would have determined using our methods for constant coefficient linear equations.
 
-\vspace{1.5cm}
-\noindent\textbf{Example:} find the general solution to $u^{\prime \prime}-xu = 0$
+\vspace{3.0cm}
+\noindent\textbf{Example:} Find the general solution to $u^{\prime \prime}-xu = 0$.
 
-Notice first that while this equation is linear and homogeneous it is not constant-coefficient.  It is also not a Cauchy-Euler equation.\marginnote{The equation is separable but, in this case, the solution is not so easy to obtain using that method either.}  We will use the Power Series method to solve this problem.  Assuming $u=\sum_{n=0}^{\infty}c_n x^n$ and inserting this into the governing equation gives us:
+Notice first that while this equation is linear and homogeneous it is not constant-coefficient.  It is also not a Cauchy-Euler equation.\marginnote{The equation is separable but, in this case, the solution is not so easy to obtain using that method either.}  We will use the power series method to solve this problem.  Assuming $u=\sum_{n=0}^{\infty}c_n x^n$ and inserting this into the governing equation gives us:
 \begin{align*}
 u^{\prime \prime}-xu &= 0 \\
 \sum\limits_{n=2}^{\infty}n(n-1)c_n x^{n-2} - x\sum\limits_{n=0}^{\infty}c_nx^n &= 0 \\

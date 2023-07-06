@@ -4,7 +4,7 @@
 The objectives of this lecture are:
 \begin{itemize}
 \item Review definitions and basic properties of power series.
-\item Illustrate important basic operations on power series
+\item Illustrate important basic operations on power series.
 \end{itemize}
 
 \section{Introduction and Review}
@@ -25,7 +25,7 @@ A \emph{sequence} is a list of numbers (or other mathematical objects, like func
 \index{convergence}
 \index{divergence}
 \begin{definition}[Limit of a Sequence, convergence, divergence]
-A sequence has a \emph{limit} $(L)$ if we can make the terms $c_n$ arbitrarily close to $L$ by taking $n$ sufficiently large.  If $\lim_{n\to \infty} c_n$ exists, we say the sequence \emph{converges}; otherwise, we say the sequence \emph{diverges} or is \emph{divergence}.
+A sequence has a \emph{limit} $(L)$ if we can make the terms $c_n$ arbitrarily close to $L$ by taking $n$ sufficiently large.  If $\lim_{n\to \infty} c_n$ exists, we say the sequence \emph{converges}; otherwise, we say the sequence \emph{diverges} or is \emph{divergent}.
 \end{definition}
 
 There are various mathematical tools available for determining if an infinite sequence converges or diverges without needing to examine every element.
@@ -49,11 +49,11 @@ A series of the form $\sum\limits_{n=0}^{\infty}c_n(x-a)^n=c_0+c_1(x-a)+\cdots$ 
 \index{convergence, interval of}
 \index{convergence, radius of}
 \begin{definition}[Interval of Convergence, Radius of Convergence]
-The set of all real numbers $x$ for which the series converges.  This interval can also be expressed as a \emph{radius of convergence.} ($R$); the series converges for all $a-R < x < a+R$.
+The set of all real numbers $x$ for which the series converges.  This interval can also be expressed as a \emph{radius of convergence ($R$).}  The series converges for all $a-R < x < a+R$.
 \end{definition}
 
 \subsection{Ratio Test}
-We should have at least one test that we can use to decide whether or not a series, at least a power series, converges.  The test we will use is called the \emph{Ratio Test}; so named because it involves the ratio of the $n$\textsuperscript{th} and $(n+1)$\textsuperscript{th} term in a power series.  The Ratio Test is shown in Equation \ref{eq:ratio-test}.
+We should have at least one test that we can use to decide whether or not a series, or at least a power series, converges.  The test we will use is called the \emph{ratio test}; so named because it involves the ratio of the $n$\textsuperscript{th} and $(n+1)$\textsuperscript{th} term in a power series.  The ratio test is shown in Equation \ref{eq:ratio-test}.
 
 \begin{equation}
 \lim_{n \to \infty}\left|\frac{c_{n+1}(x-a)^{(n+1)}}{c_n(x-a)^n} \right| = \left|x-a \right| \lim_{n \to \infty} \left|\frac{c_{n+1}}{c_n} \right| = L
@@ -61,8 +61,8 @@ We should have at least one test that we can use to decide whether or not a seri
 \end{equation}
 The following cases are considered:
 \begin{itemize}
-\item if $L<1$ then the series converges absolutely.\marginnote{\textbf{Note:} \underline{absolute convergence} means that the series converges irrespective of the signs of each term. (i.e. whether or not all terms are positive, negative, or a mix of both positive and negative.)}
-\item if $L = 1$ then the test is inconclusive; some other test must be used; and
+\item If $L<1$ then the series converges absolutely.\marginnote{\textbf{Note:} \underline{Absolute convergence} means that the series converges irrespective of the signs of each term. (i.e. whether or not all terms are positive, negative, or a mix of both positive and negative.)}
+\item If $L = 1$ then the test is inconclusive; some other test must be used; and
 \item if $L > 1$ then the series diverges.
 \end{itemize}
 
@@ -115,15 +115,15 @@ In this case the radius of convergence $R=\sqrt{2}$ and the interval of converge
 \frac{\left|x-2 \right|}{3} \lim_{n \to\infty}\left|1 \right| &< 1 \\
 |x-2| &< 3
 \end{align*}
-So for this example the radius of convergence is $R=3$ about the center at $x=2$; and the interval of convergence is $x \in (-1,5)$\marginnote{For the interested reader, it can be shown that this series is divergent at both endpoints so it should remain an open interval.}
+So for this example the radius of convergence is $R=3$ about the center at $x=2$; and the interval of convergence is $x \in (-1,5)$.\marginnote{For the interested reader, it can be shown that this series is divergent at both endpoints so it should remain an open interval.}
 \end{enumerate}
 
 \section{Properties of Convergent Series}
-Within the radius of convergence, a power series defines a function.  Within the interval of convergence the function so defined is:\marginnote{If $x$ is not within the interval of convergence for a series or if the series is divergent then \emph{\textbf{none}} of these are true.  This is why it is important to be able to find the interval/radius of convergence.}
+Within the radius of convergence, a power series defines a function and the function so defined is:\marginnote{If $x$ is not within the interval of convergence for a series or if the series is divergent then \emph{\textbf{none}} of these are true.  This is why it is important to be able to find the interval/radius of convergence.}
 \begin{itemize}
 \item continuous 
 \item differentiable (term-by-term); and
-\item integrable (term-by-term)
+\item integrable (term-by-term).
 \end{itemize}
 
 
@@ -134,12 +134,12 @@ If $\sum\limits_{n=0}^{\infty}c_n(x-a)^n=0, \ \ \text{R}>0$, for all numbers $x$
 
 
 \begin{definition}[Analytic Function]
-a function $f$ is \emph{analytic} at a point $a$ if it can be represented by a power series in $x-a$ with a positive radius of convergence.
+A function $f$ is \emph{analytic} at a point, $a_0$, if it can be represented by a power series in $x-a_0$ with a positive radius of convergence.
 \end{definition}
 \marginnote[-0.75cm]{This is just a vocabulary term that you should know.}
 
 \subsection{Some Common Power Series}
-You have probably had some exposure to power series in your previous mathematical courses.  As a reminder, I've included the power series representations of some important/common functions.
+You have probably had some exposure to power series in your previous mathematical courses.  As a reminder, the power series representations of some important/common functions are shown below:
 
 \begin{enumerate}
 
@@ -165,10 +165,10 @@ This is a practical ``utility skill'' that you will need to master in order to b
 If I want to combine these series, I need to overcome two issues:
 \begin{enumerate}
 
-\item the powers of $x$ in each term in both summations need to be ``in phase'' -- that is the corresponding terms need to have the same power of $x$.  The first term in the first summation is constant ($x^0$) while the first term in the second summation is linear ($x^1$); and \marginnote[-1.5cm]{It is not only the first term that is important but if you can get the summations in phase for the first term, and if the power of $x$ increases by one with each consecutive term, then if the first term is correct, they will all be correct.}
+\item The powers of $x$ in each term in both summations need to be ``in phase'' -- that is the corresponding terms need to have the same power of $x$.  The first term in the first summation is constant ($x^0$) while the first term in the second summation is linear ($x^1$). \marginnote[-1.5cm]{It is not only the first term that is important but if you can get the summations in phase for the first term, and if the power of $x$ increases by one with each consecutive term, then if the first term is correct, they will all be correct.}
 
 
-\item the first summation index starts at $n=2$ while the second summation index starts at $n=0$.
+\item The first summation index starts at $n=2$ while the second summation index starts at $n=0$.
 
 \end{enumerate}
 

@@ -4,12 +4,12 @@
 The objectives of this lecture are:
 \begin{itemize}
 \item Introduce Bessel's equation and solve it using the method of Frobenius.
-\item Discuss Bessel Functions of the 1\textsuperscript{st} and 2\textsuperscript{nd} Kind and use them to solve instances of Bessel's Equation.
+\item Discuss Bessel functions of the 1\textsuperscript{st} and 2\textsuperscript{nd} Kind and use them to solve instances of Bessel's equation.
 \end{itemize}
 
 \section{Bessel's Equation}
 
-Bessel's equation is given in Equation \ref{eq:bessels}
+Bessel's equation is given in Equation \ref{eq:bessels}:
 \index{Bessel's Equation}
 \begin{equation}
 x^{2}u^{\prime \prime} + x u^{\prime} + \left(x^2 - \nu^2\right)u = 0
@@ -47,7 +47,7 @@ r(r-1)c_0x^r + x^r\sum\limits_{n=1}^{\infty}(n+r)(n+r-1)c_nx^n + rc_0x^r + x^r\s
 x^r\sum\limits_{n=0}^{\infty}c_nx^{n+2} - \nu^2c_0x^r - x^r\sum\limits_{n=1}^{\infty}\nu^2c_nx^{n} = 0
 \end{multline*}
 %\end{fullwidth}
-Now let us collect the terms outside of the summations and re-write the equation:\marginnote{The first line of the equation is the indicial equation for this problem; we use it to determine allowable values of $\nu$.  In the second line of the equation we have combined the first, second, and fourth summation because they were in phase and had a common index.  The remaining summation needs to be put in phase yet before we can combine everything under a single summation.}
+Now let us collect the terms outside of the summations and re-write the equation:\marginnote{The first line of the equation is the indicial equation for this problem; we use it to determine allowable values of $\nu$.  In the second line of the equation we have combined the first, second, and fourth summation because they were in phase and had a common index.  The remaining summation needs to be put in phase before we can combine everything under a single summation.}
 \begin{multline*}
 \overbrace{\left[r(r-1)+r - \nu^2 \right]}^{\text{indicial equation}}c_ox^r + \cdots \\ x^r\sum\limits_{n=1}^{\infty}\underbrace{\left[(n+r)(n+r-1) + (n+r) - \nu^2\right]}_{\text{combined 3 of 4 summations}}c_nx^n +  x^r\sum\limits_{n=0}^{\infty}c_nx^{n+2} = 0
 \end{multline*}
@@ -58,7 +58,7 @@ r^2 - r + r - \nu^2 &= 0 \\
 r^2 - \nu^2 &= 0 \\
 (r - \nu)(r+\nu) &= 0
 \end{align*}
-we see that, to ensure the coefficient for $x^r = 0$, $r = \pm \nu$.\marginnote[-2.5cm]{Reminder: we need to ensure the coefficient for $x^r$ is equal to zero.  By convention we assume $c_0 \ne 0.$  We \emph{could} allow $c_0 = 0$ but then we would just need to derive another indicial equation for some other power of $x$.  We adopt the convention $c_0 \ne 0$ so that our choices for indicial roots will be unique.}
+we see that, to ensure the coefficient for $x^r = 0$, $r = \pm \nu$.\marginnote[-2.5cm]{\textbf{Reminder:} We need to ensure the coefficient for $x^r$ is equal to zero.  By convention we assume $c_0 \ne 0.$  We \emph{could} allow $c_0 = 0$ but then we would just need to derive another indicial equation for some other power of $x$.  We adopt the convention $c_0 \ne 0$ so that our choices for indicial roots will be unique.}
 To simplify the discussion to follow, let us take $r = \nu$ and continue with the solution.  Our equation is now: 
 \begin{align*}
 x^{\nu}\sum\limits_{n=1}^{\infty}\left[\underbrace{(n+\nu)(n+\nu-1) + (n+\nu)-\nu^2}_{n^2+2n\nu+\nu^2 - \nu^2} \right]c_nx^n + x^{\nu}\sum\limits_{n=0}^{\infty}c_n x^{n+2} &= 0 \\
@@ -67,7 +67,7 @@ x^{\nu}\sum\limits_{n=1}^{\infty} \underbrace{\left[n(n+2\nu) \right]c_nx^n}_{n=
 The two summations are out of phase, so we need to separate out the first term of the first summation.
 \begin{equation*}
 \underbrace{(1)(1+2\nu)c_1}_{\text{coefficient for }x^{\nu+1}}x^{\nu+1} + \underbrace{x^{\nu}\sum\limits_{n=2}^{\infty}c_n[n(n+2\nu)]x^n}_{n=2, \ x^{\nu+2}} + \underbrace{x^{\nu}\sum\limits_{n=0}^{\infty}c_nx^{n+2}}_{n=0, \ x^{\nu+2}} = 0
-\end{equation*}to the best of your ability,
+\end{equation*}
 In order to satisfy the equation, we need the coefficient for $x^{\nu+1}$ to be equal to zero; the only way to do this is to set $c_1 = 0$.\sidenote{Remember: we do not control what $\nu$ is; that is part of the equation.}
 
 The summations in the equation above are in-phase so we need to combine under a common index. 
@@ -98,19 +98,19 @@ $c_6 = \frac{-c_4}{2^2 (3)(3+\nu)} = \frac{-c_0}{2^6(1)(2)(3)(1+\nu)(2+\nu)(3+\n
 \caption{First few coefficients in solution to Bessel's Equation.}
 \label{tab:bessel-coef}
 \end{margintable}
-\noindent Expressions for the first few terms is given in Table \ref{tab:bessel-coef}. From this pattern you should be able to see that the general form of the coefficients is as shown in Equation \ref{eq:bessel-coef}
+\noindent Expressions for the first few terms is given in Table \ref{tab:bessel-coef}. From this pattern you should be able to see that the general form of the coefficients is as shown in Equation \ref{eq:bessel-coef}.
 \begin{equation}
 c_{2n} = \frac{(-1)^n c_0}{2^{2n}n!(1+\nu)(2+\nu)\cdots(n+\nu)}, \ \ n=1,2,3,\dots
 \label{eq:bessel-coef}
 \end{equation}
 \newthought{It may be worthwhile} to take a step back and summarize what we have found so far.  We are solving Bessel's equation; we looked for solutions of the form $u(x)=\sum_{n=0}^{\infty} c_n x^{n+r}$.  We found that $r$ must be equal to $\pm \nu$ and, for the case $r = \nu$, derived a perfectly acceptable expression for the coefficients in this solution in Equation \ref{eq:bessel-coef}.\marginnote{We will deal with the case $r = -\nu$, albeit in a perfunctory manner, below.} What follows is a bit of, what we will call, ``mathematical grooming'' which we will do so that we can derive solutions to Bessel's equation in a form that appears elsewhere in the literature and that, indeed, you will use for the remainder of this course.
 \subsection{Gamma Function}\index{Gamma function}
-The Gamma function is defined in Equation \ref{eq:gamma-def}.
+The gamma function is defined in Equation \ref{eq:gamma-def}.
 \begin{equation}
 \Gamma(x) = \int_0^{\infty} t^{x-1}e^{-t} \ dt
 \label{eq:gamma-def}
 \end{equation}
-One property of the Gamma function is that $\Gamma(x+1) = x \Gamma(x)$ for any real argument $x$.\marginnote{\textbf{Note:} the Gamma function is also defined when a complex argument is used, but that is beyond the scope of this class.} If $x$ is an integer, this makes the Gamma function equivalent to a factorial: 
+One property of the gamma function is that $\Gamma(x+1) = x \Gamma(x)$ for any real argument $x$.\marginnote{\textbf{Note:} the gamma function is also defined when a complex argument is used, but that is beyond the scope of this class.} If $x$ is an integer, this makes the gamma function equivalent to a factorial: 
 \begin{align*}
 \Gamma(1) &= \int_0^{\infty}t^{1-1} e^{-t} \ dt \\
 &= \int_0^{\infty}e^{-t} \ dt \\
@@ -126,7 +126,7 @@ One property of the Gamma function is that $\Gamma(x+1) = x \Gamma(x)$ for any r
 \end{align*}
 In general for $x \in \mathcal{I}$, $\Gamma(x) = (x-1)!$. 
 
-\newthought{In the context} of our solution to Bessel's equation, we use the Gamma function to compactly represent the term $(1+\nu)(2+\nu)\cdots(n+\nu)$ in the denominator of Equation \ref{eq:bessel-coef}:
+\newthought{In the context} of our solution to Bessel's equation, we use the gamma function to compactly represent the term $(1+\nu)(2+\nu)\cdots(n+\nu)$ in the denominator of Equation \ref{eq:bessel-coef}:
 \begin{align*}
 \Gamma(1+\nu+1) &= (1+\nu)\Gamma(1+\nu) \\
 \Gamma(1+\nu+2) &= (2+\nu)\Gamma(2+\nu) = (2+\nu)(1+\nu)\Gamma(1+\nu) \\
@@ -136,16 +136,16 @@ In general for $x \in \mathcal{I}$, $\Gamma(x) = (x-1)!$.
 \end{align*}
 
 \subsection{Bessel Function of the First Kind of order $\nu$}
-We will use everything that we have done thus far to define a Bessel Function of the First Kind of order $\nu$.  We will start with our series solution $u(x) = \sum_{n=0}^{\infty}c_n{x^{n+\nu}}$ and the formula for the non-zero (even) coefficients given in Equation \ref{eq:bessel-coef} and take a couple of steps:
+We will use everything that we have done thus far to define a Bessel function of the first kind of order $\nu$.  We will start with our series solution $u(x) = \sum_{n=0}^{\infty}c_n{x^{n+\nu}}$ and the formula for the non-zero (even) coefficients given in Equation \ref{eq:bessel-coef} and take a couple of steps:
 \begin{enumerate}
-\item We will set $c_0 = \frac{1}{2^{\nu}\Gamma(1+\nu)}$.\marginnote{Remember $c_0$ is just an arbitrary constant.  This decision allows us, with the help of Gamma functions, to express the coefficients to the solution in a compact form.  The resulting solution can then be multiplied by \emph{another} arbitrary constant if needed to satisfy a given initial/boundary condition.}
+\item We will set $c_0 = \frac{1}{2^{\nu}\Gamma(1+\nu)}$.\marginnote{Remember $c_0$ is just an arbitrary constant.  This decision allows us, with the help of gamma functions, to express the coefficients to the solution in a compact form.  The resulting solution can then be multiplied by \emph{another} arbitrary constant if needed to satisfy a given initial/boundary condition.}
 \begin{align*}
 c_{2n} &= \frac{(-1)^n c_0}{2^{2n}n!(1+\nu)(2+\nu)\cdots(n+\nu)}, \ \ n=1,2,3,\dots \\
 &= \frac{(-1)^n}{2^{2n}n!(1+\nu)(2+\nu)\cdots(n+\nu)}\frac{1}{2^{\nu}\Gamma(1+\nu)} \\
 &= \frac{(-1)^n}{2^{2n+\nu}n!(1+\nu)\cdots(n+\nu)\Gamma(1+\nu)} \\
 &= \frac{(-1)^n}{2^{2n+\nu}n!\Gamma(1+\nu+n)}
 \end{align*}  
-\item Combining this new expression for $c_{2n}$ into the solution gives us the standard definition for a Bessel Function of the First Kind:
+\item Combining this new expression for $c_{2n}$ into the solution gives us the standard definition for a Bessel function of the first kind:
 \begin{equation}
 J_{\nu}(x) = \sum\limits_{n=0}^{\infty}\frac{(-1)^n}{n!\Gamma(1+\nu+n)}\left(\frac{x}{2}\right)^{2n+\nu}
 \label{eq:beq-first-kind-order-nu}
@@ -172,7 +172,7 @@ u(x) = c_1J_{\nu}(x) + c_2J_{-\nu}(x)
 \end{equation}
 
 \subsection{Bessel Function of the Second Kind of order $\nu$}
-If $\nu \in \mathcal{I}$, then $J_{\nu}(x)$ and $J_{-\nu}(x)$ are \emph{\underline{not}} linearly independent so I need to find another solution to Bessel's equation.  To this end, we define the Bessel Function of the second kind of order $\nu$, given in Equation \ref{eq:beq-second-kind}.
+If $\nu$ is an integer, then $J_{\nu}(x)$ and $J_{-\nu}(x)$ are \emph{\underline{not}} linearly independent so we need to find another solution to Bessel's equation.  To this end, we define the Bessel function of the second kind of order $\nu$, given in Equation \ref{eq:beq-second-kind}:
 \begin{equation}
 Y_{\nu}(x) = \frac{\cos{\nu \pi} J_{\nu}(x) - J_{-\nu}(x)}{\sin{\nu \pi}}
 \label{eq:beq-second-kind}
@@ -186,11 +186,11 @@ u(x) = c_1J_{\nu}(x) + c_2Y_{\nu}(x)
 
 \vspace{1.0cm}
 
-\noindent\textbf{Example:} find the general solution to:
+\noindent\textbf{Example:} Find the general solution to:
 \begin{equation*}
 x^2u^{\prime \prime} + xu^{\prime} + \left(x^2 - \frac{1}{9} \right)u = 0
 \end{equation*}
-We recognize the given equation as Bessel's equation of order $\nu = \sfrac{1}{3}$.  The general solution is: 
+We recognize the given equation as Bessel's equation of order $\nu = \sfrac{1}{3}$.  Therefore the general solution is: 
 \begin{equation*}
 u(x) = c_1J_{\sfrac{1}{3}}(x) + c_2Y_{\sfrac{1}{3}}(x)
 \end{equation*}
@@ -198,7 +198,7 @@ Alternatively we could, of course, have used: $u(x) = c_1J_{\sfrac{1}{3}}(x) + c
 
 \vspace{1.0cm}
 
-\noindent\textbf{Example:} find the general solution to:
+\noindent\textbf{Example:} Find the general solution to:
 \begin{equation*}
 xu^{\prime \prime} + u^{\prime} + xu = 0
 \end{equation*}

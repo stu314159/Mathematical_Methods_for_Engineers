@@ -4,8 +4,8 @@
 The objectives of this lecture are:
 \begin{itemize}
 \item Define regular and irregular singular points and give examples of their classification.
-\item Describe the Extended Power Series Method (Method of Frobenius)
-\item Do an example problem
+\item Describe the Extended Power Series Method (Method of Frobenius).
+\item Do an example problem.
 \end{itemize}
 
 \section{Definitions}
@@ -31,10 +31,10 @@ A singular point $x_0$ is said to be a \emph{regular} singular point of the diff
 \vspace{0.25cm}
 
 $x_0=-2: \ \ p(x) = \frac{(x+2)3(x-2)}{(x+2)^2(x-2)^2}$ so $p(x) = \frac{3(x-2)}{(x+2)(x-2)}$.}
-Work is shown in the margin for $p(x)$.  From the work in the margin it should be clear for this problem that $q(x)$ is analytic at both $x=-2$ and $x=2$ but since $p(x)$ is not analytic at $x_0=-2$, $x_0=-2$ is an irregular singular point and $x_0=2$ is a regular singular point.
+Work is shown in the margin for $p(x)$.  From the work in the margin it should be clear for this problem that $q(x)$ is analytic at both $x=-2$ and $x=2$ but, since $p(x)$ is not analytic at $x_0=-2$, $x_0=-2$ is an irregular singular point and $x_0=2$ is a regular singular point.
 
 \begin{theorem}[Frobenius' Theorem]
-If $x=x_0$ is a \emph{regular} singular point then at least one non-zero solution of the form:
+If $x=x_0$ is a \emph{regular} singular point then there exists at least one non-zero solution of the form:
 $$u(x) = (x-x_0)^r\sum\limits_{n=0}^{\infty}c_n(x-x_0)^n = \sum\limits_{n=0}^{\infty}c_n(x-x_0)^{n+r}$$
 where $r$ is to be determined.  The series will converge at least on some radius of convergence defined by: $0<x-x_0<R$.
 \label{thm:frobenius}
@@ -42,9 +42,9 @@ where $r$ is to be determined.  The series will converge at least on some radius
 
 \vspace{0.5cm}
 
-\noindent\textbf{Example:} find a series solution to: $3xu^{\prime \prime} + u^{\prime} - u = 0$\marginnote{You should verify that this equation has a regular singularity at $x_0=0$.}
+\noindent\textbf{Example:} Find a series solution to: $3xu^{\prime \prime} + u^{\prime} - u = 0$.\marginnote{You should verify that this equation has a regular singularity at $x_0=0$.}
 
-\noindent Per Theorem \ref{thm:frobenius} this equation should have a solution of the form $u = \sum_{n=0}^{\infty}c_nx^{n+r}$ where $r$ is constant. Taking the first and second derivatives we get:\marginnote{Notice in this case that the summations for $u^{\prime}$ and $u^{\prime \prime}$ start at $n=0$ while for the power series solution method the starting index for $u^{\prime}$ was $n=1$ and the starting index for $u^{\prime \prime}$ was $n=2$.  The reason for the difference is the factor $x^r$; there most likely are not any constant terms to the series so taking derivatives does not make any terms zero.}
+\noindent Per Theorem \ref{thm:frobenius}, this equation should have a solution of the form: $u = \sum_{n=0}^{\infty}c_nx^{n+r}$ where $r$ is constant. Taking the first and second derivatives we get:\marginnote{Notice in this case that the summations for $u^{\prime}$ and $u^{\prime \prime}$ start at $n=0$ while for the power series solution method the starting index for $u^{\prime}$ was $n=1$ and the starting index for $u^{\prime \prime}$ was $n=2$.  The reason for the difference is the factor $x^r$; there most likely are not any constant terms to the series so taking derivatives does not make any terms zero.}
 \begin{align*}
 u^{\prime} &= \sum\limits_{n=0}^{\infty}(n+r)c_nx^{n+r-1} \\
 u^{\prime\prime} &= \sum\limits_{n=0}^{\infty}(n+r)(n+r-1)c_nx^{n+r-2}
@@ -79,7 +79,7 @@ Let us focus for a moment on the last term on the left-hand side of Equation \re
 
 \noindent\textbf{Option \#2} set $r$ to a root of $3r(r-1)+r = 0$.}  We know from our experience with the power series solution process that, in order to \emph{solve} the equation, the coefficient for each power of $x$ needs to be zero.  Consider now specifically the coefficient for $x^{r-1}$.  It needs to be zero; there are a couple of ways that can happen which are shown in the margin note.
 
-\newthought{The customary procedure} for Method of Frobenius dictates that we go with option \#2.  We refer to---$3r(r-1)+r = 0$---as the \emph{indicial equation} and the roots of the indicial equation are known as the \emph{indicial roots.}\sidenote[][-0.5cm]{For second-order problems, the form of the indicial equation will be a quadratic.  The details will be different for different problems but the indicial equation will always be second-order.} 
+\newthought{The customary procedure} for the method of Frobenius dictates that we go with option \#2.  We refer to---$3r(r-1)+r = 0$---as the \emph{indicial equation} and the roots of the indicial equation are known as the \emph{indicial roots.}\sidenote[][-0.5cm]{For second-order problems, the form of the indicial equation will be a quadratic.  The details will be different for different problems but the indicial equation will always be second-order.} 
 
 \newthought{For this case,} the indicial equation can be factored:
 \begin{align*}
@@ -160,7 +160,7 @@ u_2(x) &= x^{\sfrac{2}{3}}\left(c_0 + c_1x + c_2x^2 + c_3x^3 + \cdots \right) \\
 \newthought{A quick inspection} of $u_1(x)$ and $u_2(x)$ should be sufficient to convince you that the solutions are linearly independent.  The general solution to the differential equation comprises a linear combination of $u_1(x)$ and $u_2(x)$.
 
 \section{Indicial Equation}
-It turns out that we could have determined the indicial roots before set out upon the Method of Frobenius.  Recall that we use the Method of Frobenius on differential equations with regular singular points; also recall that a regular singular point is one where $p(x)=xP(x)$ and $q(x)=x^2Q(x)$ are both analytic.  If $p(x)$ and $q(x)$ are analytic, that means that they can be represented as a convergent power series.  Suppose we did that, and expressed $p(x)$ and $q(x)$ as a power series; if we did they could be written as:
+It turns out that we could have determined the indicial roots before set out upon the method of Frobenius.  Recall that we use the method of Frobenius on differential equations with regular singular points; also recall that a regular singular point is one where $p(x)=xP(x)$ and $q(x)=x^2Q(x)$ are both analytic.  If $p(x)$ and $q(x)$ are analytic, that means that they can be represented as a convergent power series.  Suppose we did that, and expressed $p(x)$ and $q(x)$ as a power series; if we did they could be written as:
 \begin{align*}
 p(x) &= \sum\limits_{n=0}^{\infty} a_nx^n = a_0 + a_1x + a_2x^2 + \cdots \\
 q(x) &= \sum\limits_{n=0}^{\infty} b_nx^n = b_0 + b_1x + b_2x^2 + \cdots
@@ -197,10 +197,10 @@ r\left(r-\frac{5}{2}\right) &= 0
 so the indicial roots are: $r = 0$, and $r = \sfrac{5}{2}$.
 
 
-\newthought{In general, of course} the indicial equation is just a quadratic equation, so the roots may be real and repeated, real and distinct and complex conjugates.  There are three cases that will be of immediate interest to us:
+\newthought{In general, of course,} the indicial equation is just a quadratic equation, so the roots may be real and repeated, real and distinct and complex conjugates.  There are three cases that will be of immediate interest to us:
 \begin{enumerate}
 \item Two distinct roots that do \emph{not} differ by an integer.  In this case it can be shown that there exist two linearly independent solutions: $u_1 = \sum_{n=0}^{\infty}c_nx^{n+r_1}$, and $u_2 = \sum_{n=0}^{\infty}c_nx^{n+r_2}$.\marginnote{In both of these cases we implicitly assume that $c_0 \ne 0$.}
-\item Two distinct roots that differ by an integer.  In this case there exists two linearly independent solutions of the form:
+\item Two distinct roots that differ by an integer.  In this case there exist two linearly independent solutions of the form:
 \begin{align*}
 u_1(x) &= \sum\limits_{n=0}^{\infty}c_nx^{n+r_1}, \ \ c_0 \ne 0 \\
 u_2(x) &= C u_1(x) \ln{x} + \sum\limits_{n=0}^{\infty}b_nx^{n+r_2}, \ \ b_0 \ne 0 
@@ -212,7 +212,7 @@ u_1(x) &= \sum\limits_{n=0}^{\infty}c_nx^{n+r_1}, \ \ c_0 \ne 0 \\
 u_2(x) &= u_1(x) \ln{x} + \sum\limits_{n=0}^{\infty}b_nx^{n+r_2}, \ \ b_0 \ne 0
 \end{align*}
 \end{enumerate}
-\marginnote[-6.0cm]{\textbf{Note:} The goal in this treatment of Method of Frobenius is not to make you a ``Frobenius Genius''.  The goal is to provide a sufficiently thorough introduction so that you can understand where Bessel functions and other such mathematical objects come from.  For this reason, we will emphasize systems that fall into case 1.}
+\marginnote[-6.0cm]{\textbf{Note:} The goal in this treatment of method of Frobenius is not to make you a ``Frobenius Genius''.  The goal is to provide a sufficiently thorough introduction so that you can understand where Bessel functions and other such mathematical objects come from.  For this reason, we will emphasize systems that fall into case 1.}
 
 \noindent Additional Notes:
 

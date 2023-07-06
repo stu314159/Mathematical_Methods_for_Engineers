@@ -5,10 +5,10 @@ Demonstrate reducing and ODE to Bessel's Equation by:
 \begin{itemize}
 \item changing the dependent variable;
 \item changing the independent variable; and
-\item changing both the dependent and independent variables
+\item changing both the dependent and independent variables.
 \end{itemize}
 
-If we have learned one thing over the course of the last couple of lectures it is that using the method of Frobenius---whether we are solving Bessel's equation or some other differential equation with regular singular points---is tedious and error-prone.  The good news, at least for Bessel's equation, is that if we see that it is Bessel's equation we are trying to solve, we can simply write down the solution in terms of Bessel functions.\sidenote{Let me reiterate that this was \underline{the point} to learning how to solve Bessel's equation.}
+\newthought{If we have learned} one thing over the course of the last couple of lectures it is that using the method of Frobenius---whether we are solving Bessel's equation or some other differential equation with regular singular points---is tedious and error-prone.  The good news, at least for Bessel's equation, is that if we see that it is Bessel's equation we are trying to solve, we can simply write down the solution in terms of Bessel functions.\sidenote{Let me reiterate that this was \underline{the point} to learning how to solve Bessel's equation.}
 
 In this and the next lecture we will learn some techniques by which a broad range of differential equations can be transformed into or expressed as Bessel's equation.  The best way to learn is by doing, so we will simply start with the examples.
 
@@ -51,13 +51,13 @@ u(x) = \frac{v(x)}{x^2} = \frac{1}{x^2}\left[ c_1J_2(x) + c_2Y_2(x)\right]
 
 \vspace{1.0cm}
 
-\noindent\textbf{Example:} Find the general solution to the following differential equation by applying the given transformation to the independent variable: $\sqrt{x} = z$:\marginnote{This is like cleverly distorting the $x$-axis with the goal of making the problem easier.}
+\noindent\textbf{Example:} Find the general solution to the following differential equation by applying the given transformation to the independent variable: $\sqrt{x} = z$.\marginnote{This is like cleverly distorting the $x$-axis with the goal of making the problem easier.}
 \begin{equation*}
 4xu^{\prime \prime} + 4u^{\prime} + u = 0
 \end{equation*}
-In this case we need to change occurrences of $x$ into its equivalent in terms of $z$ and we need to change all derivatives with respect to $x$ to derivatives with respect to $z$.  We are given $\sqrt{x}=z$ which is, of course, equivalent to $x = z^2$.  For the derivatives we have:\marginnote{\textbf{Note:} it is important that you purge all expressions including $x$ out of these derivatives.  For example, when computing the equivalent of $u^{\prime}$ it was essential that we make the substitution $x^{-\sfrac{1}{2}} = z^{-1}$.  When we used that result in calculating $u^{\prime \prime}$ and took derivatives with respect to $z$, any occurrence of $x$ needs to be replaced with its equivalent in $z$ or the derivative would have been wrong.}
+In this case we need to change occurrences of $x$ into its equivalent in terms of $z$ and we need to change all derivatives with respect to $x$ to derivatives with respect to $z$.  We are given $\sqrt{x}=z$ which is, of course, equivalent to $x = z^2$.  For the derivatives we have:\marginnote{\textbf{Note:} it is important that you purge all expressions including $x$ out of these derivatives.  For example, when computing the equivalent of $u^{\prime}$ it was essential that we make the substitution $x^{-\sfrac{1}{2}} = z^{-1}$.  When we used that result in calculating $u^{\prime \prime}$ and took derivatives with respect to $z$, any occurrence of $x$ needed to be replaced with its equivalent in $z$ or the derivative would have been wrong.}
 \begin{align*}
-u^{\prime} &= \frac{du}{dx} = \frac{du}{dz}{dz}{dx} = u_z\frac{d}{dx}\left(x^{\sfrac{1}{2}}\right) = \frac{1}{2}\underbracket{x^{-\sfrac{1}{2}}}_{z^{-1}}u_z  \\
+u^{\prime} &= \frac{du}{dx} = \frac{du}{dz}\frac{dz}{dx} = u_z\frac{d}{dx}\left(x^{\sfrac{1}{2}}\right) = \frac{1}{2}\underbracket{x^{-\sfrac{1}{2}}}_{z^{-1}}u_z  \\
 &=\frac{1}{2z}u_z \\
 u^{\prime \prime} &= \frac{d}{dx}\left(\frac{du}{dx} \right) = \frac{d}{dz}\left(\frac{du}{dx}\right)\frac{dz}{dx} \\
 &=\frac{d}{dz}\left[\frac{1}{2z}u_z\right]\frac{1}{2z} = \left[-\frac{1}{2z^2}u_z + \frac{1}{2z}u_{zz} \right] \frac{1}{2z} \\

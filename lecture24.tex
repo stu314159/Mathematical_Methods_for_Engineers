@@ -2,7 +2,7 @@
 \label{ch:lec24}
 \section{Objectives}
 \begin{itemize}
-\item Use separation of variables method to solve the Wave Equation
+\item Use separation of variables method to solve the Wave Equation.
 \item Illustrate the example solution with MATLAB.
 \end{itemize}
 \setcounter{lstannotation}{0} %hack to try and re-set annotation counter.
@@ -39,15 +39,15 @@ u(x,t) = F(x)G(t)
 FG_{tt} &= \alpha^2 F_{xx}G
 \end{align*}
 
-\vspace{0.5cm}
+\vspace{4.0cm}
 
-\noindent\textbf{Step \#3:} Separate variables: \marginnote{We assume that $F(x)and G(t)$ are no identically zero throughout the domain, thus dividing by $F(x)G(t)$ is mathematically acceptable.}
+\noindent\textbf{Step \#3:} Separate variables: \marginnote{We assume that $F(x)$ and $G(t)$ are no identically zero throughout the domain, thus dividing by $F(x)G(t)$ is mathematically acceptable.}
 \begin{align*}
 \frac{FG_{tt}}{\alpha^2 FG} &= \frac{\alpha^2 F_{xx}G}{\alpha^2 FG} \\
 \frac{G_{tt}}{\alpha^2 G} &= \frac{F_{xx}}{F} = -\lambda \\
 G_{tt} + \alpha^2 \lambda G = 0, \ \ & \ \ F_{xx}+\lambda F = 0
 \end{align*}
-\marginnote[-2.5cm]{On the last line we see that $\frac{G_{tt}}{\alpha^2 G}$ is only a function of $y$; $\frac{F_{xx}}{F}$ is only a function of $x$ and yet they must be equal to each other for all values of $x$ and $y$.  The only way this makes sense is if they are both in fact constant.  We will denote this constant $-\lambda$.}
+\marginnote[-2.0cm]{On the last line we see that $\frac{G_{tt}}{\alpha^2 G}$ is only a function of $y$; $\frac{F_{xx}}{F}$ is only a function of $x$ and yet they must be equal to each other for all values of $x$ and $y$.  The only way this makes sense is if they are both in fact constant.  We will denote this constant $-\lambda$.}
 
 \vspace{0.5cm}
 
