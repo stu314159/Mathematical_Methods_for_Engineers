@@ -8,7 +8,7 @@
 \end{itemize}
 
 \section{Regular Sturm-Liouville Eigenvalue Problem} \index{Sturm-Liouville Eigenvalue Problem}
-\newthought{We have solved} several differential equations in this class.  All of the boundary value problems that we have solved so far are special cases of a more general framework called Sturm-Liouville eigenvalue problems. That is what we wish to discuss in this lecture.
+We have solved several differential equations in this class.  All of the boundary value problems that we have solved so far are special cases of a more general framework called Sturm-Liouville eigenvalue problems. That is what we wish to discuss in this lecture.
 
 For the regular Sturm-Liouville Eigenvalue problem we hope to solve:\marginnote{\textbf{Note:} for Equation \ref{eq:sturm-liouville-evp}, $r(x)$, $r^{\prime}(x)$, $q(x)$, and $p(x)$ must be real-valued and continuous on the interval $x \in (a,b)$.  Also $p(x)>0$ and $r(x)>0$ for all $x\in(a,b)$.  These are important conditions that should be verified each time you encounter a new problem.  The constant $\lambda$ is referred to as an \emph{eigenvalue}.}
 \begin{equation}
@@ -20,9 +20,9 @@ subject to the boundary conditions:
 A_1u(a) + B_1u^{\prime}(a) &= 0, \text{ where }A_1,\text{ and }B_1\text{ are not both zero.} \\
 A_2u(b) + B_2u^{\prime}(b) &= 0, \text{ where }A_2,\text{ and }B_2\text{ are not both zero.}
 \end{align*}
-Note that these boundary conditions are referred to as \emph{homogeneous}.  The same rule that we use to decide if a differential equation is homogeneous apply in the same way to the boundary conditions.\marginnote{For ODEs that we solved in earlier lectures, we routinely dealt with problems having non-homogeneous boundary conditions.  As we go forward to solve linear partial differential equations using separation of variables, it will be \emph{essential} that the boundary conditions are homogeneous.  So you should be sure that you know how to check/verify that condition.}  For a boundary value problem to be homogeneous, \emph{both} the differential equation \emph{and} boundary conditions must be homogeneous.
+Note that these boundary conditions are referred to as \emph{homogeneous}.  The same rule that we use to decide if a differential equation is homogeneous apply in the same way to the boundary conditions.\marginnote[-1.0cm]{For ODEs that we solved in earlier lectures, we routinely dealt with problems having non-homogeneous boundary conditions.  As we go forward to solve linear partial differential equations using separation of variables, it will be \emph{essential} that the boundary conditions are homogeneous.  So you should be sure that you know how to check/verify that condition.}  For a boundary value problem to be homogeneous, \emph{both} the differential equation \emph{and} boundary conditions must be homogeneous.
 
-\vspace{0.5cm}
+\vspace{5.0cm}
 
 \noindent\underline{Properties of the Regular Sturm-Liouville problem:}
 \begin{enumerate}
@@ -33,9 +33,9 @@ Note that these boundary conditions are referred to as \emph{homogeneous}.  The 
 
 \item The set of eigenfunctions is orthogonal with respect to $p(x)$ on the interval $[a,b]$.  In other words: $\int_{a}^{b}u_n(x) u_m(x) p(x) \ dx = 0$ if $n \ne m$.
 
-\item The set of eigenfunctions is complete on the interval $[a,b]$.  In other words, for any (reasonable) $f(x)$, we can represent $f(x)$ as a linear combination of those eigenfunctions: $f(x) = \sum_{n=0}^{\infty} c_n u_n(x)$.\sidenote{Another way of saying this is that no function $v(x)$ can be orthogonal to \emph{all} of the eigenfunctions, $u_n(x)$ on the interval $[a,b]$.
+\item The set of eigenfunctions is complete on the interval $[a,b]$.  In other words, for any (reasonable) $f(x)$, we can represent $f(x)$ as a linear combination of those eigenfunctions: $f(x) = \sum_{n=0}^{\infty} c_n u_n(x)$.\sidenote{Another way of saying this is that no function, $f(x)$, can be orthogonal to \emph{all} of the eigenfunctions, $u_n(x)$, on the interval $[a,b]$.
 
-To obtain values for the coefficients $c_n$, we need only take the inner product with the corresponding eigenfunction, $u_n$.  i.e. multiply both sides by an orthogonal function and integrate.}
+To obtain values for the coefficients, $c_n$, we need only take the inner product with the corresponding eigenfunction, $u_n$.  i.e. multiply both sides by an orthogonal function and integrate.}
 \end{enumerate}
 
 
@@ -43,7 +43,7 @@ To obtain values for the coefficients $c_n$, we need only take the inner product
 
 \vspace{1.0cm}
 
-\noindent\textbf{Example:} find the eigenvalues and eigenfunctions of the following boundary value problem:\marginnote{Note that this problem is not presented in self-adjoint form.  Have faith that it is, indeed, a Sturm-Liouville eigenvalue problem and could be presented in self-adjoint form.  We will practice making this transformation later in the lecture.}
+\noindent\textbf{Example:} Find the eigenvalues and eigenfunctions of the following boundary value problem:\marginnote{Note that this problem is not presented in self-adjoint form.  Have faith that it is, indeed, a Sturm-Liouville eigenvalue problem and could be presented in self-adjoint form.  We will practice making this transformation later in the lecture.}
 \begin{align*}
 \text{Equation: }& & u^{\prime \prime}+\lambda u = 0,  \ \ x\in[0,1] \\
 \text{BCs: }& & u(0) = 0, \ \ u(1) + u^{\prime}(1) = 0
@@ -56,9 +56,9 @@ To fully analyze this problem we will have to consider three cases for $\lambda$
 \begin{equation*}
 u^{\prime \prime} = 0
 \end{equation*}
-with general solution: $u(x) = c_1(x) + c_2$.  If we apply the boundary condition $u(0) = 0$, this implies that $u(0) = c_1(x) + c_2 = c_2 = 0$. So the solution is simplified to $u(x) = c_1(x)$.  The second boundary condition: $u(1) + u^{\prime}(1) = c_1(1) + c_1 = 2c_1 = 0 \Rightarrow c_1 = 0$. The only solution that satisfies the equation and boundary conditions for $\lambda = 0$ is the trivial solution $u(x) = 0$.\sidenote{The trivial solution, $u(x)=0$ will always satisfy a homogeneous boundary value problem and, in general, is of little interest to us.  What we take from this part of the analysis is that we will rule out $\lambda=0$ as there are no \emph{interesting} solutions for that case.}
+with general solution: $u(x) = c_1(x) + c_2$.  If we apply the boundary condition $u(0) = 0$, this implies that $u(0) = c_1(x) + c_2 = c_2 = 0$. So the solution is simplified to $u(x) = c_1(x)$.  The second boundary condition: $u(1) + u^{\prime}(1) = c_1(1) + c_1 = 2c_1 = 0 \Rightarrow c_1 = 0$. The only solution that satisfies the equation and boundary conditions for $\lambda = 0$ is the trivial solution $u(x) = 0$.\sidenote[][-1.5cm]{The trivial solution, $u(x)=0$ will always satisfy a homogeneous boundary value problem and, in general, is of little interest to us.  What we take from this part of the analysis is that we will rule out $\lambda=0$ as there are no \emph{interesting} solutions for that case.}
 
-\vspace{0.5cm}
+\vspace{4.5cm}
 
 \noindent\underline{$\lambda < 0$:}  For this case we will assume $\lambda = -\alpha^2$ where $\alpha > 0$.  The differential equation reduces to:
 \begin{equation*}
@@ -94,16 +94,16 @@ This equation can be satisfied simply by setting $c_2 = 0$, but we will resist t
 \caption{Plot of $\sin{\alpha} + \alpha \cos{\alpha}$.}
 \label{fig:lec18-evplot}
 \end{marginfigure}
-We can see from Figure \ref{fig:lec18-evplot} that there are values of $\alpha$ that satisfy this condition;\sidenote{We probably should not assume as much by looking at the plot in Figure \ref{fig:lec18-evplot} but it turns out that there are infinitely many zeros.} we will denote these eigenvalues $\alpha_1^2 = \lambda_1$, $\alpha_2^2 = \lambda_2$, $\dots$, $\alpha_n^2 = \lambda_n$ and the corresponding eigenfunctions are denoted: $u_n(x) = \sin{\alpha_n x}$.
+We can see from Figure \ref{fig:lec18-evplot} that there are values of $\alpha$ that satisfy this condition.\sidenote{We probably should not assume as much by looking at the plot in Figure \ref{fig:lec18-evplot} but it turns out that there are infinitely many zeros.}  We will denote these eigenvalues $\alpha_1^2 = \lambda_1$, $\alpha_2^2 = \lambda_2$, $\dots$, $\alpha_n^2 = \lambda_n$ and the corresponding eigenfunctions are denoted: $u_n(x) = \sin{\alpha_n x}$.
 
 \newthought{We will defer,} for the moment, the problem of finding the roots to Equation \ref{eq:lec18-ex1-ev-eq}. Suffice it to say that there are infinitely many distinct roots yielding the infinitely many eigenvalues to go with the infinitely many eigenfunctions. They can be found with a non-linear equation solver (``root-finder'') for which there are several reliable algorithms.
 
 \section{Transforming Equations to Self-Adjoint Form}
-\newthought{Apart from sharing} some theoretical tid-bits regarding Sturm-Liouville eigenvalue problems, the \emph{point} of this lecture is to highlight: a) the eigenfunctions that solve the eigenvalue problem; and b) their property of weighted orthogonality.  Recalling the last two lectures where we used an infinite set of trigonometric functions for functional expansion in a Fourier series, we will want to use \emph{other} functions for such expansions. Those other functions will be the set of eigenfunctions associated with a Sturm-Liouville eigenvalue problem.   
+Apart from sharing some theoretical tid-bits regarding Sturm-Liouville eigenvalue problems, the \emph{point} of this lecture is to highlight: a) the eigenfunctions that solve the eigenvalue problem; and b) their property of weighted orthogonality.  Recalling the last two lectures where we used an infinite set of trigonometric functions for functional expansion in a Fourier series, we will want to use \emph{other} functions for such expansions. Those other functions will be the set of eigenfunctions associated with a Sturm-Liouville eigenvalue problem.   
 
 As previously mentioned, the eigenfunction solutions are linearly independent and orthogonal with respect to weight function $p(x)$.  We need to know what that weight function is in order to carry out an orthogonal function expansion like Fourier series.\marginnote{The sines and cosines used in Fourier series fit within this theory.  It turns out that the weight function $p(x)$ in that case is $p(x)=1$.}  
 
-Consider the linear, homogeneous, second-order boundary value problem shown in Equation \ref{eq:lin-homo-bvp}.
+\newthought{Consider the linear,} homogeneous, second-order boundary value problem shown in Equation \ref{eq:lin-homo-bvp}.
 
 \begin{equation}
 a(x)u^{\prime \prime} + b(x)u^{\prime} + (c(x) + \lambda d(x))u = 0
@@ -116,9 +116,9 @@ where $a(x) \ne 0$ and $a(x)$, $b(x)$, $c(x)$, and $d(x)$ are continuous.  We wi
 \item $p(x) = \frac{d(x)}{a(x)}r(x)$
 \end{enumerate}
 
-\vspace{0.5cm}
+\vspace{5.5cm}
 
-\noindent\textbf{Example:} express the following equation, which has solutions $P_n(x)$ in self-adjoint form and give the orthogonality relation.\marginnote{This is Legendre's equation that we solved in a previous lecture.  $P_n(x)$ is standard notation for Legendre polynomials of order $n$.}
+\noindent\textbf{Example:} Express the following equation, which has solutions $P_n(x)$ in self-adjoint form and give the orthogonality relation.\marginnote{This is Legendre's equation that we solved in a previous lecture.  $P_n(x)$ is standard notation for Legendre polynomials of order $n$.}
 
 \begin{equation*}
 \underbracket{\left(1-x^2\right)}_{a(x)}u^{\prime \prime} \underbracket{- 2x}_{b(x)}u^{\prime}+\overbracket{n(n+1)}^{\lambda}u = 0, \ \ x\in(-1,1)
@@ -154,7 +154,7 @@ So the boundary value problem in self-adjoint form is:
 \frac{d}{dx}\left[\left(1-x^2\right)u^{\prime} \right]+\lambda_n u = 0
 \end{equation}
 where $\lambda_n = n(n+1)$.
-As given in the problem statement, the eigenfunctions are $P_n(x)$ and the weight function $p(x) = 1$.  The orthogonality relation is:\marginnote[1.5cm]{\textbf{Note:} you will not be expected to know, by inspection, the value of $\left(P_n,P_n\right)$ but it is provided here for your information.}
+As given in the problem statement, the eigenfunctions are $P_n(x)$ and the weight function $p(x) = 1$.  The orthogonality relation is:\marginnote[1.5cm]{\textbf{Note:} You will not be expected to know, by inspection, the value of $\left(P_n,P_n\right)$ but it is provided here for your information.}
 \begin{equation*}
 \left(P_m,P_n\right) = \int_{-1}^{1} \ P_m(x) P_n(x) (1) \ dx = 
 \begin{cases}

@@ -16,13 +16,13 @@ where $\phi_n$ are members of a set of orthogonal functions and $c_n$ are determ
 \begin{equation*}
 c_n = \frac{(u,\phi_n)}{||\phi_n||^2}\phi_n
 \end{equation*} \index{Fourier Series}
-You should already have experience with expansions such as this from your previous classes in differential equations in the form of Fourier series expansions.  In this case the orthogonal functions, $\phi_n(x)$, are:
+You should already have experience with expansions such as this from your previous classes in differential equations in the form of Fourier series expansions.  In that case the orthogonal functions, $\phi_n(x)$, were:
 \begin{equation*}
 \left\{1,\cos{\frac{\pi x}{p}},\cos{\frac{2\pi x}{p}},\dots,\sin{\frac{\pi x}{p}}, \sin{\frac{2\pi x}{p}}, \dots \right\}
 \end{equation*}
 \marginnote[-1.5cm]{The function $\phi(x) = 1$ could also be written: $\cos{\frac{0 \pi x}{p}}$.}where $p$ indicates the \emph{period}.\sidenote[][-0.5cm]{Reminder that a function, $f(x)$, is periodic with period $p$ if $f(x+p) = f(x)$.} 
 
-That members of this set of functions are all mutually orthogonal can be directly shown; we will demonstrate this for the members of the form $\phi_n(x) = \cos{\sfrac{n \pi x}{p}}$; other cases are left for homework exercises.
+It can be directly shown that members of this set of functions are all mutually orthogonal.  We will demonstrate this for the members of the form $\phi_n(x) = \cos{\sfrac{n \pi x}{p}}$; other cases are left for homework exercises.
 
 \vspace{1.0cm}
 
@@ -79,7 +79,7 @@ Solving for $a_1$ we get:
 &\int_{-p}^{p} f(x)\cos{\frac{\pi x}{p}} \ dx =a_1 p \\
 & \Rightarrow a_1 = \frac{1}{p}\int_{-p}^{p} f(x)\cos{\frac{\pi x}{p}} \ dx
 \end{align*}
-We repeat the process for $b_1$ by multiplying both sides by $\sin{\sfrac{\pi x}{p}}$; for $a_n$ we use $\cos{\sfrac{n \pi x}{p}}$ and for $b_n$, $\sin{\sfrac{n \pi x}{p}}$.  The resulting formulas for the coefficients are given in Equation \ref{eq:Fourier-Coeff}.
+We repeat the process for $b_1$ by multiplying both sides by $\sin{\sfrac{\pi x}{p}}$.  In general, for $a_n$ we use $\cos{\sfrac{n \pi x}{p}}$ and for $b_n$, $\sin{\sfrac{n \pi x}{p}}$.  The resulting formulas for the coefficients are given in Equation \ref{eq:Fourier-Coeff}.
 \begin{align}
 \begin{split}
 a_0 &= \frac{1}{p}\int_{-p}^{p} f(x) \ dx \\
@@ -88,7 +88,10 @@ b_n &= \frac{1}{p}\int_{-p}^{p} f(x) \sin{\frac{n \pi x}{p}} \ dx
 \end{split}
 \label{eq:Fourier-Coeff}
 \end{align}
-Since this is an infinite series, we need to concern ourselves with convergence.  The theorem below provides us assurance of convergence for continuous and piece-wise continuous functions on the interval $[-p,p]$.  \marginnote[1.0cm]{In coming lectures and when doing assignments you will see that issues of continuity of $f$ and $\sfrac{df}{dx}$ have obvious visible influence on the convergence behavior of Fourier Series.}
+Since this is an infinite series, we need to concern ourselves with convergence.  The theorem below provides us assurance of convergence for continuous and piece-wise continuous functions on the interval $[-p,p]$.  
+\vspace{4.0cm}
+
+\marginnote[1.0cm]{In coming lectures and when doing assignments you will see that issues of continuity of $f$ and $\sfrac{df}{dx}$ have obvious visible influence on the convergence behavior of Fourier Series.}
 \begin{theorem}[Convergence of Fourier Series]
 If $f$ and $\sfrac{df}{dx}$ are piece-wise continuous on an interval $[-p,p]$ then for all $x$ in the interval $[-p,p]$ the Fourier Series converges to $f$ at points where the function is continuous; at points of discontinuity, the Fourier series converges to 
 \begin{equation*}
@@ -126,16 +129,15 @@ An example of an odd function is shown in Figure \ref{fig:odd-fun}.
 
 \newthought{Some properties} of even an odd functions include:\sidenote{Students are welcome to prove these assertions.}
 \begin{enumerate}
-\item an even function times an even function results in an even function;
-\item an odd function times an odd function results in an even function;
-\item an even function times an odd function results in an odd function;
-\item adding or subtracting two even functions results in an even function;
-\item adding or subtracting two odd functions results in an odd function;
-\item $\int_{-p}^{p} f_{\text{even}}(x) \ dx = 2\int_{0}^{p} f_{\text{even}}(x) \ dx$
-\item $\int_{-p}^{p} f_{\text{odd}}(x) \ dx = 0$.
+\item An even function times an even function results in an even function.
+\item An odd function times an odd function results in an even function.
+\item An even function times an odd function results in an odd function.
+\item Adding or subtracting two even functions results in an even function.
+\item Adding or subtracting two odd functions results in an odd function.
+\item $\int_{-p}^{p} f_{\text{even}}(x) \ dx = 2\int_{0}^{p} f_{\text{even}}(x) \ dx$ and $\int_{-p}^{p} f_{\text{odd}}(x) \ dx = 0$.
 \end{enumerate}
 
-The ``even-ness'' or ``odd-ness'' of a function is relevant to Fourier series expansions.  If you expand an \emph{even} function in a Fourier series you will find that all of the $b_n$ coefficients are zero;  if you expand an \emph{odd} function in a Fourier series you will find that $a_0$ and $a_n$ terms are all zero.
+The ``even-ness'' or ``odd-ness'' of a function is relevant to Fourier series expansions.  If you expand an \emph{even} function in a Fourier series you will find that all of the $b_n$ coefficients are zero.  If you expand an \emph{odd} function in a Fourier series you will find that $a_0$ and $a_n$ terms are all zero.
 
 You can still use the formulas presented in Equation \ref{eq:Fourier-Coeff} when expanding even or odd functions.  Alternatively, you can use the formulas for the Cosine expansion or Sine expansion below for even or odd functions respectively.
 

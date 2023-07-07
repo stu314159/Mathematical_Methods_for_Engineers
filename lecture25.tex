@@ -9,7 +9,7 @@
 \setcounter{lstannotation}{0} %hack to try and re-set annotation counter.
 
 \section{Introduction}
-In the past two lectures we have invested considerable time in the solution of two boundary value problems using the method of separation of variables.  When I teach this course I find that, during those lectures, there is little time available to spend going into the details of the MATLAB code created, essentially, to visualize the solution. Nonetheless it is often the case that a large fraction of the students have only modest proficiency in using MATLAB.\marginnote{Proficiency levels vary but students have had as much as two semesters under their belt using MATLAB to as little as two or three weeks.}  In this lecture we focus on the MATLAB details.  The hope is that students will come away with at least an introduction to the bare-minimum of MATLAB tools that will allow them to complete homework assignments.
+In the past two lectures we have invested considerable time in the solution of two boundary value problems using the method of separation of variables.  When I teach this course I find that, during those lectures, there is little time available to spend going into the details of the MATLAB code created, essentially, to visualize the solution. Nonetheless it is often the case that a large fraction of the students have only modest proficiency in using MATLAB.\marginnote{Proficiency levels vary but students have had as much as two years under their belt using MATLAB to as little as two or three weeks.}  In this lecture we focus on the MATLAB details.  The hope is that students will come away with at least an introduction to the bare-minimum of MATLAB tools that will allow them to complete homework assignments.
 
 \section{Example Heat Equation}
 
@@ -156,11 +156,11 @@ legend('t = 0','t = 1','t = 10'); /*!\annotation{lst:ann25-1-8}!*/
 
 \vspace{0.15cm}
 
-\noindent \ref{lst:ann25-1-7} The string snippet `...\ \string^\{\string\circ \} C' is \LaTeX mark-up and is rendered by MATLAB as $^{\circ}$C.  While not strictly necessary, use of such mark-up can make a plot more attractive.
+\noindent \ref{lst:ann25-1-7} The string snippet `\string^\{\string\circ \} C' is \LaTeX mark-up and is rendered by MATLAB as $^{\circ}$C.  While not strictly necessary, use of such mark-up can make a plot more attractive.
 
 \vspace{0.15cm}
 
-\noindent \ref{lst:ann25-1-8} Obviously use of a legend makes a plot easier to read.  MATLAB also includes an optional argument named \lstinline{'location'} that can be used with values---for example: \lstinline{'northwest','southwest','northeast','southeast','best'}...etc---that allow you to place a legend such that it does not interfere with reading the plot.  Consult the MATLAB documentation for more information about legends.
+\noindent \ref{lst:ann25-1-8} Obviously use of a legend makes a plot easier to read.  MATLAB also includes an optional argument named \lstinline{'location'} that can be used with values such as: \lstinline{'northwest','southwest','northeast','southeast','best'}...etc---that allow you to place a legend such that it does not interfere with reading the plot.  Consult the MATLAB documentation for more information about legends.
 
 \vspace{0.15cm}
 
@@ -222,11 +222,15 @@ end
 
 \vspace{0.3cm}
 
-\ref{lst:ann25-1-13} This creates an array of structures; each structure has two fields, one for the color-data \lstinline{'cdata'}, and one for the color-map \lstinline{'colormap'}. A structure is a data-type that we use infrequently for this course. If you wanted, for instance, to access the 3\textsuperscript{rd} frame color-data you would use the command \lstinline{FRAMES(3).cdata}. 
+\ref{lst:ann25-1-13} This creates an array of structures; each structure has two fields, one for the color-data \lstinline{'cdata'}, and one for the color-map \lstinline{'colormap'}. A structure is a data-type that we use infrequently for this course. If you wanted, for instance, to access the 3\textsuperscript{rd} frame color-data you would use the command:
+
+\vspace{0.1cm}
+
+ \lstinline{FRAMES(3).cdata} 
 
 \vspace{1.5cm}
 
-\ref{lst:ann25-1-14} the command \lstinline{gcf} means ``get current frame''.  In this line, the n\textsuperscript{th} frame of the animation is saved to the n\textsuperscript{th} FRAMES structure.
+\ref{lst:ann25-1-14} the command \lstinline{gcf} means ``get current frame.''  In this line, the n\textsuperscript{th} frame of the animation is saved to the n\textsuperscript{th} FRAMES structure.
 
 }
 \begin{lstlisting}[style=myMatlab, name=lec25-ex1]
@@ -276,7 +280,7 @@ close(v); /*!\annotation{lst:ann25-1-16}!*/
 
 \vspace{0.15cm}
 
-\noindent Animations are nice but sometimes the splashy graphics is not needed and you just want to see how the temperature across the domain changes over time in a static image.  A surface plot is an excellent way to do this; the MATLAB built-in function that does the job is cunningly named \lstinline[style=myMatlab]{surf()} and is demonstrated in the listing below.
+\noindent Animations are nice but sometimes the splashy graphics is not needed and you just want to see how the temperature across the domain changes over time in a static image.  A surface plot is an excellent way to do this; the MATLAB built-in function that does the job is cunningly named \lstinline[style=myMatlab]{surf()} and is shown in the listing below.
 \marginnote{
 
 \vspace{0.3cm} 
@@ -303,7 +307,7 @@ zlabel('u(X,T)  [^{\circ}C]','fontsize',16,...
 
 \vspace{0.2cm}
 
-\ref{lst:ann25-1-18} The \lstinline[style=myMatlab]{surf(XX,YY,ZZ)} function takes at least three arguments; in this case the first two are used by the output of \lstinline[style=myMatlab]{meshgrid()} and the last is created by supplying the \lstinline{XX} and \lstinline{TT} arrays to our approximate solution---\lstinline{u(x,y)}---which serves as the height (or z-coordinate) of the surface plot at each point. The argument-value pair: \lstinline{'edgecolor','none'} suppresses the (by default) black grid line that delineate the mesh created with \lstinline{XX} and \lstinline{TT}.  For high-resolution meshes the grid lines would obscure the color-map used to highlight the solution. (Try omitting this keyword-argument pair and observe the effect.)
+\ref{lst:ann25-1-18} The \lstinline[style=myMatlab]{surf(XX,YY,ZZ)} function takes at least three arguments; in this case the first two are used by the output of \lstinline[style=myMatlab]{meshgrid()} and the last is created by supplying the \lstinline{XX} and \lstinline{TT} arrays to our approximate solution---\lstinline{u(x,y)}---which serves as the height (or z-coordinate) of the surface plot at each point. The name-value pair: \lstinline{'edgecolor','none'} suppresses the (by default) black grid line that delineate the mesh created with \lstinline{XX} and \lstinline{TT}.  For high-resolution meshes the grid lines would obscure the color-map used to highlight the solution. (Try omitting this name-value pair and observe the effect.)
 
 \vspace{0.2cm}
 
@@ -457,7 +461,7 @@ legend('t = 0','t = 1.0','t = 2.0','t = 3.0',...
 
 \vspace{1.0cm}
 
-\noindent Lest we forget, we also need to define (somewhere) the function \lstinline[style=myMatlab]{ex1(x,L)}.  We choose to do this as a \emph{local function} which means that it has to be placed \emph{at the end} of the script file.
+\noindent Lest we forget, we also need to define the function \lstinline[style=myMatlab]{ex1(x,L)}.  We choose to do this as a \emph{local function} which means that it has to be placed \emph{at the end} of the script file.
 
 \begin{lstlisting}[style=myMatlab, name=lec25-ex2]
 %% Local functions

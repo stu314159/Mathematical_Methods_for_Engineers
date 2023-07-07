@@ -41,7 +41,7 @@ FG_{tt} &= \alpha^2 F_{xx}G
 
 \vspace{4.0cm}
 
-\noindent\textbf{Step \#3:} Separate variables: \marginnote{We assume that $F(x)$ and $G(t)$ are no identically zero throughout the domain, thus dividing by $F(x)G(t)$ is mathematically acceptable.}
+\noindent\textbf{Step \#3:} Separate variables: \marginnote{We assume that $F(x)$ and $G(t)$ are not identically zero throughout the domain, thus dividing by $F(x)G(t)$ is mathematically acceptable.}
 \begin{align*}
 \frac{FG_{tt}}{\alpha^2 FG} &= \frac{\alpha^2 F_{xx}G}{\alpha^2 FG} \\
 \frac{G_{tt}}{\alpha^2 G} &= \frac{F_{xx}}{F} = -\lambda \\
@@ -75,11 +75,11 @@ F(0) &= c_1(0) + c_2 = 0 \\
 F(L) &= c_1(L) = 0 \\
 \Rightarrow & c_1 = 0
 \end{align*}
-So we will disregard $\lambda = 0$ since only the trivial solution satisfies the governing equation and boundary conditions in that case.
+Thus we will disregard $\lambda = 0$ since only the trivial solution satisfies the governing equation and boundary conditions in that case.
 
 \vspace{0.25cm}
 
-\noindent\underline{$\lambda < 0$}:  Here we will set $\lambda = -\nu^2, \ \ \nu>0$ \marginnote[1.5cm]{Note again that we use the $\cosh()$ and $\sinh()$ form of the solution since the domain is bounded.}
+\noindent\underline{$\lambda < 0$}:  Here we will set $\lambda = -\nu^2, \ \ \nu>0$. \marginnote[1.5cm]{Note again that we use the $\cosh()$ and $\sinh()$ form of the solution since the domain is bounded.}
 \begin{align*}
 F_{xx} - \nu^2 F &= 0 \\
 F(x) &= c_1 \cosh{\nu x} + c_2 \sinh{\nu x} \\
@@ -87,11 +87,11 @@ F(0) &= c_1 \cancelto{1}{\cosh{0}} + c_2 \cancelto{0}\sinh{0} \\
 F(0) &= c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
 F(L) &= c_2 \sinh{\nu L} = 0 \\
 \end{align*}
-We once again recall that $\sinh{x}$ is strictly positive for $x>0$.  Thus $c_2 = 0$ and, again, only the trivial solution satisfies the governing equation and boundary conditions for the case $\lambda < 0$ so we will discard this possibility.
+We once again recall that $\sinh{x}$ is strictly positive for $x>0$.  Therefore $c_2 = 0$ and, again, only the trivial solution satisfies the governing equation and boundary conditions for the case $\lambda < 0$ so we will discard this possibility.
 
 \vspace{0.25cm}
 
-\noindent\underline{$\lambda > 0$}:  Here we will set $\lambda = \nu^2, \ \ \nu>0$
+\noindent\underline{$\lambda > 0$}:  Here we will set $\lambda = \nu^2, \ \ \nu>0$.
 \begin{align*}
 F_{xx} + \nu^2 F &= 0 \\
 F(x) &= c_1 \cos{\nu x} + c_2 \sin{\nu x} \\
@@ -162,6 +162,8 @@ a_n &= \frac{2}{L} \int_{0}^{L} f(x) \sin{\alpha_n \frac{n \pi x}{L}} \ dx \\
 b_n &= \frac{2}{\alpha n \pi} \int_{0}^{L} g(x) \sin{\alpha \frac{n \pi x}{L}} \ dx
 \end{align*}
 
+\vspace{4.0cm}
+
 \section{MATLAB Implementation}
 As with the heat equation, we really cannot extract much insight by inspecting the solution formula.  We need to make a plot and to do so we will use MATLAB to represent an approximate solution.\marginnote{For this example we will set the wave speed $\alpha = 1$, the length $L=3$ and the initial conditions as:
 \begin{align*}
@@ -212,7 +214,6 @@ grid on
 set(gca,'fontsize',12,'fontweight','bold');
 axis([0 L -2.0 2.0]);
 
-
 %% Local functions
 function y = ex1(x,L)
 [m,n] = size(x);
@@ -225,8 +226,6 @@ for i = 1:length(x)
    end
 end
 end
-
-
 \end{lstlisting}
 The resulting solution is plotted in Figure \ref{fig:lec24-ex1}.
 \begin{fullwidth}

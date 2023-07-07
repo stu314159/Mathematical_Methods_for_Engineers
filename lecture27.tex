@@ -22,7 +22,8 @@ $\substack{\text{Boundary} \\ \text{Conditions}}: $& $u(0,t)=u_0, \ \ u(L,t) = u
 $\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,0) = f(x), \ \ 0<x<L $ \\
 \end{tabular}
 \end{table}
-where $u_0$ and $u_1$ are constants.  In this boundary value problem both the governing equation and the boundary conditions are non-homogeneous.  
+
+\noindent where $u_0$ and $u_1$ are constants.  In this boundary value problem both the governing equation and the boundary conditions are non-homogeneous.  
 
 Since the governing equation is non-homogeneous, it is not separable.  In order to see why, let us begin the separation process:\marginnote[1.5cm]{Here we carry out the steps of separation of variables just as we did in Lecture 23.}
 \begin{align*}
@@ -92,7 +93,8 @@ $\substack{\text{Boundary} \\ \text{Conditions}}: $& $u(0,t)=0, \ \ u(L,t) = u_1
 $\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,0) = f(x), \ \ 0<x<L $ \\
 \end{tabular}
 \end{table}
-where $S$ and $u_1$ are constants, as are $\alpha^2$ and $L$; and $f(x)$ is a given function.
+
+\noindent where $S$ and $u_1$ are constants, as are $\alpha^2$ and $L$; and $f(x)$ is a given function.
 
 \vspace{0.25cm}
 
@@ -155,7 +157,7 @@ u(x,t) &= -\frac{r}{2\alpha^2}x^2 + \frac{1}{L}\left(u_1+\frac{rL^2}{2 \alpha^2}
 \caption{The solution, $u(x,t)$ at various times and the steady-state solution $\psi(x)$.}
 \label{fig:lec27-ex-plt}
 \end{marginfigure}
-In this particular case, while we know from the boundary conditions, that $v(x,t)$ goes to zero as $t \rightarrow \infty$, but $\phi(x)$ remains constant with time.  Conceptually we can think of $\phi(x)$ as being the \emph{steady state} part of the solution for $u(x,t)$ while $v(x,t)$ is the \emph{transient} part.
+In this particular case, while we know from the boundary conditions, that $v(x,t)$ goes to zero as $t \rightarrow \infty$, the function $\phi(x)$ remains constant with time.  Conceptually we can think of $\phi(x)$ as being the \emph{steady state} part of the solution while $v(x,t)$ is the \emph{transient} part.
 
 \begin{equation*}
 u(x,t) = \underbrace{-\frac{r}{2\alpha^2}x^2 + \frac{1}{L}\left(u_1+\frac{rL^2}{2 \alpha^2}\right)x}_{\text{steady state}} + \underbrace{\sum\limits_{n=1}^{\infty} c_n \sin{\frac{n \pi x}{L}}e^{-\left(\alpha \frac{n \pi}{L}\right)^2 t}}_{\text{transient}}

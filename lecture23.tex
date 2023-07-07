@@ -72,11 +72,11 @@ F(0) &= c_1(0) + c_2 = 0 \\
 F(L) &= c_1(L) = 0 \\
 \Rightarrow & c_1 = 0
 \end{align*}
-So we will disregard $\lambda = 0$ since only the trivial solution satisfies the governing equation and boundary conditions in that case.
+Thus we will disregard $\lambda = 0$ since only the trivial solution satisfies the governing equation and boundary conditions in that case.
 
 \vspace{0.25cm}
 
-\noindent\underline{$\lambda < 0$}:  Here we will set $\lambda = -\nu^2, \ \ \nu>0$ \marginnote[1.5cm]{Note again that we use the $\cosh()$ and $\sinh()$ form of the solution since the domain is bounded.}
+\noindent\underline{$\lambda < 0$}:  Here we will set $\lambda = -\nu^2, \ \ \nu>0$. \marginnote[1.5cm]{Note again that we use the $\cosh()$ and $\sinh()$ form of the solution since the domain is bounded.}
 \begin{align*}
 F_{xx} - \nu^2 F &= 0 \\
 F(x) &= c_1 \cosh{\nu x} + c_2 \sinh{\nu x} \\
@@ -84,11 +84,11 @@ F(0) &= c_1 \cancelto{1}{\cosh{0}} + c_2 \cancelto{0}\sinh{0} \\
 F(0) &= c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
 F(L) &= c_2 \sinh{\nu L} = 0 \\
 \end{align*}
-Here we have to recall that $\sinh{x}$ is strictly positive for $x>0$.  Thus $c_2 = 0$ and, again, only the trivial solution satisfies the governing equation and boundary conditions for the case $\lambda < 0$ so we will discard this possibility.
+Here we have to recall that $\sinh{x}$ is strictly positive for $x>0$.  Therefore $c_2 = 0$ and, again, only the trivial solution satisfies the governing equation and boundary conditions for the case $\lambda < 0$ so we will discard this possibility.
 
 \vspace{0.25cm}
 
-\noindent\underline{$\lambda > 0$}:  Here we will set $\lambda = \nu^2, \ \ \nu>0$
+\noindent\underline{$\lambda > 0$}:  Here we will set $\lambda = \nu^2, \ \ \nu>0$.
 \begin{align*}
 F_{xx} + \nu^2 F &= 0 \\
 F(x) &= c_1 \cos{\nu x} + c_2 \sin{\nu x} \\
@@ -169,6 +169,8 @@ c_n &= \frac{2}{L} \int_0^L f(x) \sin{\frac{n \pi x}{L}} \ dx
 \item What will happen to the solution as time evolves for temperature profiles that are initially discontinuous? 
 
 \end{enumerate}
+
+\vspace{4.0cm}
 
 \section{MATLAB implementation}
 To demonstrate the answer to these questions and help build more insight into the behavior of the transient 1-D heat equation, let us define $L$, $\alpha^2$, and $f(x)$, compute and plot the solution.

@@ -177,7 +177,7 @@ In order to satisfy our other implicit boundary condition, $c_4 = 0$.  So $F(r)=
 
 \vspace{0.15cm}
 
-\noindent\underline{$\lambda < 0$}: where we set $\lambda = -\nu^2, \ \nu>0$
+\noindent\underline{$\lambda < 0$}: where we set $\lambda = -\nu^2, \ \nu>0$.
 
 For $G(\theta)$:
 \begin{align*}
@@ -189,7 +189,7 @@ Neither $\cosh{()}$ nor $\sinh{()}$ are periodic so we must conclude that $c_1 =
 
 \vspace{0.15cm}
 
-\noindent\underline{$\lambda > 0$}: where we set $\lambda = \nu^2, \ \nu>0$
+\noindent\underline{$\lambda > 0$}: where we set $\lambda = \nu^2, \ \nu>0$.
 
 For $G(\theta)$:
 \begin{align*}
@@ -275,7 +275,7 @@ end
 
 \end{lstlisting}
 
-Next we implement the solution using the equations developed above.\marginnote[3.0cm]{
+\noindent Next we find the solution using the equations developed above.\marginnote[3.0cm]{
 
 \ref{lst:ann30-1-1} The built-in function \lstinline[style=myMatlab]{integral()} has some name-value pairs to customize the function behavior.  The name \lstinline[style=myMatlab]{'RelTol'} sets the \emph{relative tolerance} parameter to the value provided.  We will not go into great details here but, suffice it to say, a smaller value for \lstinline[style=myMatlab]{'RelTol'} gives a more precise result for the numeric integration.
 
@@ -300,7 +300,10 @@ for n = 1:N
     
 end
 \end{lstlisting}
-Having constructed a representation of the solution, we make a plot so we can see if the solution makes sense.
+
+\vspace{4.0cm}
+
+\noindent Having constructed a representation of the solution, we make a plot so we can see if the solution makes sense.
 
 \begin{lstlisting}[name=lec30-ex1,style=myMatlab]
 %% Make a Plot

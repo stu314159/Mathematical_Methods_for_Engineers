@@ -53,7 +53,7 @@ This gives us two separated boundary value problems to solve.
 
 \vspace{0.5cm}
 
-\noindent\textbf{Step \#4:} Apply boundary conditions to determine non-trivial product solution(s)
+\noindent\textbf{Step \#4:} Apply boundary conditions to determine non-trivial product solution(s).
 \begin{marginfigure}
 \includegraphics{lec26_bcs.png}
 \caption{Pairs of boundary conditions for Laplace's equation.}
@@ -133,7 +133,7 @@ So the product solution for the case $\lambda = 0$ is: $F(x)G(y) = c_1 c_3y = c_
 G_{yy} - \alpha_n^2 G &= 0 \\
 G(y) &= c_3 \cosh{\alpha_n y} + c_4 \sinh{\alpha_n y} \\
 G(0) &= c_3 (1) + c_4(0) \\
-\Rightarrow c_3 &= 0
+\Rightarrow c_3 &= 0 \\
 \Rightarrow G_n(y) &= c_4 \sinh{\alpha_n y}
 \end{align*}
 Therefore the product solution for the case $\lambda > 0$ is: $F_n(x)G_n(y) = c_n \cos{\alpha_n x} \sinh{\alpha_n y}$.\marginnote{We combine all previous constants for each eigenfunction into $c_n$.}
@@ -145,7 +145,7 @@ Therefore the product solution for the case $\lambda > 0$ is: $F_n(x)G_n(y) = c_
 u(x,y) = c_0y + \sum\limits_{n=1}^{\infty} c_n \cos{\frac{n \pi x}{a}} \sinh{\frac{n \pi y}{a}}
 \end{equation*}
 
-\vspace{0.25cm}
+\vspace{3.0cm}
 
 \noindent\textbf{Step \#5:} Apply (remaining) boundary condition to determine unknown coefficients.
 
@@ -327,7 +327,7 @@ F(a) &= c_1(a) = g(y) \ \ \leftarrow \text{  Problem!!}
 Everything is going fine until we have the condition $c_1(a) = g(y)$.  Unless $g(y)$ is a constant: a) no value of $c_1$ will satisfy $g(y)$ for all values of $y \in [0,b]$; and b) there is nothing we can do about it.  We are simply stuck.  The same problem would occur if $\lambda$ were non-zero or if we did the same analysis on $G(y)$.  We need to do something different.
 
 
-\newthought{What we will do} is this: decompose the problem into two boundary value problems: Problem A and Problem B as is shown in Figure \ref{fig:lec26-ex2-bcs-super}.  Each boundary value problem in this decomposition will have one dimension for which there are homogeneous boundary conditions on each boundary.
+\newthought{What we will do} is this: decompose the problem into two boundary value problems: Problem A and Problem B as is illustrated in Figure \ref{fig:lec26-ex2-bcs-super}.  Each boundary value problem in this decomposition will have one dimension for which there are homogeneous boundary conditions on each boundary.
 \begin{marginfigure}
 \includegraphics{lec26-ex2-bcs-super.png}
 \caption{Superposition of two BVPs each with homogeneous boundary conditions in one dimension.}

@@ -3,7 +3,7 @@
 \section{Objectives}
 \begin{itemize}
 \item Present the parametric Bessel equation as a Sturm-Liouville problem and derive the orthogonality relation.
-\item Do an example to show expansion of a function in terms of Bessel functions.
+\item Do an example to show a Fourier-Bessel expansion of a function.
 \item Demonstrate use of the MATLAB function \lstinline{besselzero()}.
 \end{itemize}
 
@@ -17,7 +17,7 @@ and the general solution is given by:
 u(x) = c_1J_{\nu}(\alpha x) + c_2Y_{\nu}(\alpha x)
 \end{equation*}
 
-\newthought{The solutions,} $J_{\nu}(\alpha x)$ and $Y_{\nu}(\alpha x)$ are, of course, linearly independent but they also are orthogonal with respect to some weight function $p(x)$ and we can use them to construct an orthogonal function expansion in exactly the same way we did with Fourier series.  That is what we will do in this lecture.  To accomplish this we want to put the parametric Bessel equation in self-adjoint form and we will proceed in this effort just as we did in the last lecture.
+\noindent The solutions, $J_{\nu}(\alpha x)$ and $Y_{\nu}(\alpha x)$ are, of course, linearly independent but they also are orthogonal with respect to some weight function $p(x)$.  We can use them to construct an orthogonal function expansion in exactly the same way we did with Fourier series.  That is what we will do in this lecture.  To accomplish this we want to put the parametric Bessel equation in self-adjoint form and we will proceed in this effort just as we did in the last lecture.
 
 \vspace{0.5cm}
 
@@ -100,17 +100,20 @@ In this case we will take the last option since, it turns out, someone has alrea
 We have a lot of experience with proprietary software. From operating systems like Microsoft Windows or Apple's IOs to office productivity tools like Microsoft Word or Excel, to valuable and important engineering tools like MATLAB or COMSOL.  We also have experience with free software, such as many applications that you download onto your smartphones.  I want to write a few words in hopes of dispelling any negative connotations that you may have developed in relation to open-source software in comparison to proprietary software.
 \begin{itemize}
 \item Scientists and engineers of all types---not just computer scientists---write and share software in an open-source framework.  Online repositories like GitHub and GitLab are meant expressly for developing code in an open and collaborative way and then sharing the results freely.
-\item ``open-source'' ensures the source code is available.  Sometimes the code is also free but that is not the essential part.\sidenote{Think: ``free speech'', not ``free beer.''}
+\item ``open-source'' ensures the source code is available.  Sometimes the code is also free but that is not the essential part.\sidenote{Think: ``free speech,'' not ``free beer.''}
 
-\item Open-source software is a \emph{hugely} important contribution to science.  Free and open-source tools like
+\item Open-source software is a \emph{hugely} important contribution to science.  Free and open-source tools like:
 \begin{itemize}
-\item the programming languages that have been a part of the scientific computing landscape for generations.  Examples include Python, C++, Java and FORTRAN among others.
+\item Programming languages that have been a part of the scientific computing landscape for generations.  Examples include Python, C++, Java and FORTRAN among others.
 \item OpenMC\cite{ROMANO201590} - a powerful particle transport simulation tool similar to MCNP.
 \item MOOSE - \underline{M}ulti-physics \underline{O}bject-\underline{O}riented \underline{S}imulation \underline{E}nvironment\cite{lindsay2022moose} combines the open-source finite element library libMesh\cite{kirk2006libmesh} and the \underline{P}ortable, \underline{E}xtensible \underline{T}oolkit for \underline{S}cientific \underline{C}omputation (PETSc)\cite{petsc-user-ref} along with a host of other free, open-source libraries to create an enormously powerful and flexible tool-set that is used to create the majority of all new multi-physics nuclear analysis codes in the United States.\sidenote{For a list of current applications tracked by the MOOSE development team see: \url{https://mooseframework.inl.gov/application_usage/tracked_apps.html}.  Not all of these codes are open-source, but they have all been created with open-source tools.}
 \end{itemize} 
 \item As the previous item should help illustrate, open-source software can be of very high quality.  The developers of MOOSE-based applications at the Department of Energy labs are highly trained scientists following nuclear quality assurance standards to ensure that the resulting software tools work correctly and do what they are supposed to do. 
+
+\item The \LaTeX\ typesetting tools and almost all of the other software installed on the computer used to prepare this manuscript, including the Linux operating system, are free and open-source software.\sidenote{MATLAB is a notable exception to this list.  There is a free and open-source alternative called Octave. \url{https://octave.org/} } 
+
 \end{itemize}
-The \LaTeX\ tools and almost all of the other software on the computer used to prepare this manuscript, including the Linux operating system, are free and open-source software.\sidenote{MATLAB is a notable exception to this list.  There is a free and open-source alternative called Octave. \url{https://octave.org/} } If you have any interest in scientific computing, now is a good time to develop an interest in open-source software.
+If you have any interest in scientific computing, now is a good time to develop an interest in open-source software.
 
 \subsection{Back to the Example}
 We want to expand $f(x)=x$ for $0<x<3$ in a Fourier-Bessel series expansion using Bessel functions of the first kind of order 1 that satisfy the boundary condition: $J_{1}(3\alpha_n)=0$.  We will use MATLAB along with the function \lstinline[style=myMatlab]{besselzero()} that we obtained from the MATLAB file exchange to carry out this task. In particular we will compute the truncated expansion with $N=15$ terms:
@@ -190,8 +193,9 @@ set(gca,'fontsize',12,'fontweight','bold');
 \begin{marginfigure}
 \includegraphics{lec19_ex1_N15.png}
 \caption{Fourier-Bessel expansion of $f(x)=x$.}
+\label{fig:lec19-ex1-n15}
 \end{marginfigure}
-The Fourier-Bessel expansion of $f(x)=x$ with $N=15$ is shown in the figure.  Note that the expansion for $N=15$ looks pretty rough. There are many wiggles through the domain and the expansion drops suddenly to zero as the function approaches $x=3$.  The reason for this is that \emph{it had to.}  We are building the expansion with orthogonal functions that are all equal to zero at $x=3$.  Of course $f(x)=x$ is equal to 3 at $x=3$ so something had to give.  
+The Fourier-Bessel expansion of $f(x)=x$ with $N=15$ is shown in Figure \ref{fig:lec19-ex1-n15}.  Note that the expansion for $N=15$ looks pretty rough. There are many wiggles through the domain and the expansion drops suddenly to zero as the function approaches $x=3$.  The reason for this is that \emph{it had to.}  We are building the expansion with orthogonal functions that are all equal to zero at $x=3$.  Of course $f(x)=x$ is equal to 3 at $x=3$ so something had to give.  
 
 \begin{marginfigure}
 \includegraphics{lec19_ex1_N150.png}
@@ -201,7 +205,7 @@ The Fourier-Bessel expansion of $f(x)=x$ with $N=15$ is shown in the figure.  No
 We can improve the quality of the expansion by taking more terms.  Luckily, since we are using a computer, it is no problem at all to simply increase $N$; the computer does the same thing, just more of it.  The result is shown in Figure \ref{fig:lec19-ex1-n150} where the wiggliness remains---including the Gibbs phenomena we saw with Fourier series---but overall the representation is much more exact.
 
 \section{Measuring Expansion Accuracy}
-There is a straight-forward way to be more precise when we speak of the accuracy of an orthogonal function expansion.  A frequently used relative error measure is shown in Equation \ref{eq:lec19-rel-err}.
+There is a straight-forward way to be more precise when we speak of the accuracy of an orthogonal function expansion.  A frequently used relative error measure is shown in Equation \ref{eq:lec19-rel-err}:
 
 \begin{multline}
 \text{Relative error} = \frac{\left(f(x) - FB(x), f(x)-FB(x)\right)}{\left(f(x),f(x)\right)} = \cdots \\ \frac{\int_a^b \left(f(x)-FB(x)\right)^2 \ dx}{\int_a^b f(x)^2 \ dx}

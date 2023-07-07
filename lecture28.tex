@@ -7,7 +7,7 @@
 \end{itemize}
 \setcounter{lstannotation}{0} %hack to try and re-set annotation counter.
 
-For some sets of boundary conditions, the solution to the heat equation is an infinite series that is not a Fourier series.  I will argue that, apart from details regarding identifying eigenvalues, the implications of this are not large and will have little impact on how you go about computing the solution.  All of this is most easily clarified with a couple of examples.
+For some sets of boundary conditions, the solution to the heat equation is an infinite series that is not a Fourier series.  We will show that, apart from details regarding identifying eigenvalues, the implications of this are not large and will have little impact on how you go about computing the solution.  All of this is most easily clarified with a couple of examples.
 
 \vspace{0.3cm}
 
@@ -27,6 +27,8 @@ $\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,0) = 1, \ \ 0<x<1 $ \\
 \label{fig:lec28-ex1-schematic}
 \end{marginfigure}
 A schematic of this problem is shown in Figure \ref{fig:lec28-ex1-schematic}.  On the right end of the domain we have a type 3 boundary condition representing convective heat transfer to an environment maintained at a temperature of 0$^{\circ}$.\marginnote{Note that we have not established any physical units on this system.  If it helps, consider all temperatures given to be in degrees Celsius.}
+
+\vspace{4.0cm}
 
 \newthought{We will solve} this boundary value problem using separation of variables.  Since we have already carried out the separation process for the heat equation numerous times, we will skip ahead and write down the separated equations:
 \begin{align*}
@@ -110,7 +112,7 @@ The coefficients are given by:
 c_n = \frac{\left(f(x),\sin{(\nu_n x)}\right)}{\left( \sin{(\nu_n x)}, \sin{(\nu_n x)}\right)} = \frac{\int_0^1 f(x) \sin{(\nu x)}\ dx}{\int_0^2 \sin{(\nu x)}^2 \ dx}
 \end{equation*}
 
-\newthought{We will use} MATLAB to solve this boundary value problem.  As usual, we will start by clearing out the MATLAB workspace, specify our constants and initial conditions and determine the number of terms to use in our infinite series for $u(x,t)$.
+\newthought{We will use} MATLAB to construct our solution to this boundary value problem.  As usual, we will start by clearing out the MATLAB workspace, specify our constants and initial conditions and determine the number of terms to use in our infinite series for $u(x,t)$.
 
 \begin{lstlisting}[name=lec28-ex1, style=myMatlab]
 clear
@@ -154,7 +156,7 @@ assert(min(diff(nu))>0,...
     'Error! Something is wrong with your eigenvalues!');/*!\annotation{lst:ann28-1-4}!*/
 
 \end{lstlisting}
-\noindent \ref{lst:ann28-1-3} In this instance \lstinline[style=myMatlab]{fzero()} has two arguments and returns three values.  The variable \lstinline[style=myMatlab]{ev_fun} is a handle\sidenote{A variable that, when evaluated returns a function is often referred to as a \emph{handle} to the function  This is similar to the variable \lstinline[style=myMatlab]{gca} which can be thought of as a handle to the current axis.} to the function to which we are looking for roots and \lstinline[style=myMatlab]{x0} is the interval where we are searching for the roots.  Of the return arguments: \lstinline[style=myMatlab]{x} is the root; \lstinline[style=myMatlab]{fval} is the numeric value of \lstinline[style=myMatlab]{ev_fun} evaluated at the root \lstinline[style=myMatlab]{x}; and \lstinline[style=myMatlab]{exit_flag} is a value returned by \lstinline[style=myMatlab]{fzero()} to indicate if the function was successful or not.\sidenote{See the documentation for a description of the possible values for \lstinline[style=myMatlab]{exit_flag}.  Several built-in MATLAB functions use this and an \lstinline[style=myMatlab]{exit_flag=1} normally indicates success.  As you can see, we do not check the value of \lstinline[style=myMatlab]{exit_flag} in this script (and we also ignore \lstinline[style=myMatlab]{fval}) but readers are encouraged to make use of this kind of feedback available from MATLAB functions.}
+\noindent \ref{lst:ann28-1-3} In this instance \lstinline[style=myMatlab]{fzero()} has two arguments and returns three values.  The variable \lstinline[style=myMatlab]{ev_fun} is a handle\sidenote{A variable that, when evaluated returns a function is often referred to as a \emph{handle} to the function  This is similar to the variable \lstinline[style=myMatlab]{gca} which can be thought of as a handle to the current axis.} to the function to which we are looking for roots and \lstinline[style=myMatlab]{x0} is the interval where we are searching for the roots.  Of the return arguments: \lstinline[style=myMatlab]{x} is the root; \lstinline[style=myMatlab]{fval} is the numeric value of \lstinline[style=myMatlab]{ev_fun} evaluated at the root \lstinline[style=myMatlab]{x}; and \lstinline[style=myMatlab]{exit_flag} is a value returned by \lstinline[style=myMatlab]{fzero()} to indicate if the function was successful or not.\sidenote{See the documentation for a description of the possible values for \lstinline[style=myMatlab]{exit_flag}.  Several built-in MATLAB functions use this output variable and a value of \lstinline[style=myMatlab]{exit_flag=1} normally indicates success.  As you can see, we do not check the value of \lstinline[style=myMatlab]{exit_flag} in this script (and we also ignore \lstinline[style=myMatlab]{fval}) but readers are encouraged to make use of this kind of feedback from MATLAB functions when the reliability of their results is important.}
 
 \vspace{0.25cm}
 
@@ -268,7 +270,7 @@ We see that for $\lambda = 0$ only the trivial solution can satisfy the boundary
 
 \vspace{0.25cm}
 
-\noindent\underline{$\lambda < 0$}: $\ \lambda = \nu^2, \ \nu>0$
+\noindent\underline{$\lambda < 0$}: $\ \lambda = \nu^2, \ \nu>0$.
 \begin{align*}
 F_{xx} - \nu^2 F &= 0 \\
 F(x) &= c_1 \cosh{\nu x} + c_2 \sinh{\nu x} \\
@@ -280,7 +282,7 @@ For the last conditions, since $\cosh{\nu}$ is always positive for $\nu>0$, $c_2
 
 \vspace{0.25cm}
 
-\noindent\underline{$\lambda > 0$}: $\ \lambda = \nu^2, \ \nu>0$
+\noindent\underline{$\lambda > 0$}: $\ \lambda = \nu^2, \ \nu>0$.
 \begin{align*}
 F_{xx} + \nu^2 F &= 0 \\
 F(x) &= c_1\cos{\nu x} + c_2 \sin{\nu x} \\

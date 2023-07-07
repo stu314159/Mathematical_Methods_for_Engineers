@@ -11,7 +11,7 @@ In this lecture, we will illustrate the process of Fourier series expansions wit
 \vspace{0.5cm}
 
 \noindent\textbf{Example \#1:}
-Carry out the Fourier series expansion of the function given in Equation \ref{eq:lec17-ex1}, illustrated in Figure \ref{fig:lec17-ex1-fx}
+Carry out the Fourier series expansion of the function given in Equation \ref{eq:lec17-ex1}, illustrated in Figure \ref{fig:lec17-ex1-fx}:
 \begin{equation}
 f(x) = 
 \begin{cases}
@@ -29,9 +29,9 @@ We wish to represent this function as:
 \begin{equation*}
 f(x) = \frac{a_0}{2} + \sum\limits_{n=1}^{\infty} \left[a_n \cos{\frac{n \pi x}{p}} + b_n \sin{\frac{n \pi x}{p}} \right]
 \end{equation*}
-where, in this case, $p = \pi$.  Even though we are only interested in the function in the interval $[-\pi, \pi]$, since the Fourier series represents the function in terms of a constant and an infinite linear combination of of periodic functions, we should think of the function that we are representing as periodic.\sidenote{This outlook will help us understand the convergence behavior of the Fourier series.}
+where, in this case, $p = \pi$.  Even though we are only interested in the function in the interval $[-\pi, \pi]$, since the Fourier series represents the function in terms of a constant and an infinite linear combination of of periodic functions, we should think of the function that we are representing as periodic.\sidenote{This outlook will help us understand the convergence behavior of the Fourier series; especially at the boundaries.}
 
-We have everything we need; it is just a matter of calculating the coefficients from Equation \ref{eq:Fourier-Coeff}.  Rather than carrying out the calculations with pencil and paper we will use MATLAB.  In the listing below I will describe the code necessary to calculate Fourier coefficients through \lstinline{N=5}.
+We have everything we need; it is just a matter of calculating the coefficients from Equation \ref{eq:Fourier-Coeff}.  Rather than carrying out the calculations with pencil and paper we will use MATLAB.  In the listing below we will step through the code necessary to calculate Fourier coefficients through \lstinline{N=5}.
 
 \begin{lstlisting}[name=lec17-ex1,style=myMatlab]
 clear
@@ -43,9 +43,9 @@ N = 5; % specify number of coefficients
 f = @(x) ex1(x); 
 p = pi; % specifiy period
 \end{lstlisting}
-We start, as always, by clearing out the workspace memory and command-prompt output and closing any open figures.  We also need to represent $f(x)$ in MATLAB; we will do this with a local function named \lstinline{ex1(x)}.\sidenote{Since inline functions must appear \emph{after} all of the other code in a MATLAB script file, I will provide the code for \lstinline{ex1(x)} last.}  
+We start, as always, by clearing out the workspace memory and command-prompt output and closing any open figures.  We also need to represent $f(x)$ in MATLAB; we will do this with a local function named \lstinline{ex1(x)}.\sidenote{Since inline functions must appear \emph{after} all of the other code in a MATLAB script file, the code for \lstinline{ex1(x)} will be presented last.}  
 
-The integrals needed to determine the Fourier coefficients will be evaluated numerically using the MATLAB built-in function \lstinline{integral()}.\sidenote{This function has default signature \lstinline{Q = integral(FUN,A,B)} approximates the integral of function \lstinline{FUN} over the interval \lstinline{A} to \lstinline{B} using global adaptive quadrature.  The error tolerances for this numeric integration algorithm can be specified by the user; in most cases we will use default values.  There are several standard algorithms for numerically computing integrals---called quadrature---that the interested student can read about in the numerical methods portion of this text.} Let us start with $a_0$ which, as a reminder is computed by:
+The integrals needed to determine the Fourier coefficients will be evaluated numerically with the MATLAB built-in function \lstinline{integral()}.\sidenote{This function has default signature \lstinline{Q = integral(FUN,A,B)} and it approximates the integral of function \lstinline{FUN} over the interval \lstinline{A} to \lstinline{B} using global adaptive quadrature.  The error tolerances for this numeric integration algorithm can be specified by the user; in most cases we will use default values.  There are several standard algorithms for numerically computing integrals---called quadrature---that the interested student can read about in the numerical methods portion of this text.} Let us start with $a_0$ which, as a reminder, is computed by:
 \begin{equation*}
 a_0 = \frac{1}{p}\int_{-p}^{p} f(x) \ dx
 \end{equation*}
@@ -65,15 +65,19 @@ Note how you can practically read the equation directly from the MATLAB code.
 }
 \begin{lstlisting}[name=lec17-ex1,style=myMatlab]
 for n = 1:N
-an = (1/p)*integral(@(x) f(x).*cos(n*pi*x/p),-p,p);
-bn = (1/p)*integral(@(x) f(x).*sin(n*pi*x/p),-p,p);
-FF = @(x) FF(x) + an*cos(n*pi*x/p) + bn*sin(n*pi*x/p); 
+    an = (1/p)*integral(@(x) f(x).*cos(n*pi*x/p),-p,p);
+    bn = (1/p)*integral(@(x) f(x).*sin(n*pi*x/p),-p,p);
+    FF = @(x) FF(x) + an*cos(n*pi*x/p) + bn*sin(n*pi*x/p); 
 end
 \end{lstlisting}
-Note in the last line where we append the newly computed terms to the Fourier series expansion \lstinline{FF(x)}.  Now we have a function, $\lstinline{FF(x)}$ that represents the Fourier series expansion with $N=5$ terms.  In the next listing we add the code to plot the function and verify that it makes sense.
-\marginnote{Referring to the annotations:
+Note in the last line where we append the newly computed terms to the Fourier series expansion \lstinline{FF(x)}.  Now we have a function, $\lstinline{FF(x)}$, that represents the Fourier series expansion with $N=5$ terms.  In the next listing we add the code to plot the function and verify that it makes sense.
+\marginnote{
 
-\vspace{0.25cm}
+\vspace{2.25cm}
+
+Referring to the annotations:
+
+
 
 \noindent \ref{lst:annotation1} Using \lstinline[style=myMatlab]{sprintf()} allows us to combine the variable \lstinline{n} in the title string.  
 
@@ -81,17 +85,7 @@ Note in the last line where we append the newly computed terms to the Fourier se
 
 \noindent \ref{lst:annotation2} Optional name-value pairs such as \lstinline{'Linewidth',3}, \lstinline{'FontSize',16}, and \lstinline{'FontWeight','bold'} help make the plot and labels more readable.
 
-\vspace{0.25cm}
 
-\noindent \ref{lst:annotation3} Make a habit of using legends for graphs that include multiple data series. Once again, this makes the plot more readable.
-
-\vspace{0.25cm}
-
-\noindent \ref{lst:annotation4} The argument \lstinline[style=myMatlab]{gca} means ``get current axis.''  Calling the \lstinline[style=myMatlab]{set()} function with name-value pairs \lstinline{'FontSize',10} and \lstinline{'FontSize','bold'} sets the font size and weight for the axis markings.
-
-\vspace{0.25cm}
-
-\noindent In general it is important that your plots look good.
 
 }
 
@@ -113,8 +107,25 @@ grid on
 legend('f(x)','FF(x)')/*!\annotation{lst:annotation3}!*/
 set(gca,'FontSize',12,...
     'FontWeight','bold');/*!\annotation{lst:annotation4}!*/
-\end{lstlisting} \setcounter{lstannotation}{0}
-The resulting Fourier series expansion is shown in Figure \ref{fig:lec17-ex1-n5}. If I increase the number of Fourier series terms in my expansion, I need only change \lstinline{N}; Figure \ref{fig:lec17-ex1-n15} shows the series expansion with \lstinline{N=15} terms.
+\end{lstlisting} \marginnote[-2.5cm]{
+\vspace{0.25cm}
+
+\noindent \ref{lst:annotation3} Make a habit of using legends for graphs that include multiple data series. Once again, this makes the plot more readable.
+
+\vspace{0.25cm}
+
+\noindent \ref{lst:annotation4} The argument \lstinline[style=myMatlab]{gca} means ``get current axis.''  Calling the \lstinline[style=myMatlab]{set()} function with name-value pairs \lstinline{'FontSize',10} and \lstinline{'FontSize','bold'} sets the font size and weight for the axis markings.
+
+\vspace{0.25cm}
+
+\noindent In general it is important that your plots look good.
+
+}
+
+
+
+ \setcounter{lstannotation}{0}
+The resulting Fourier series expansion is shown in Figure \ref{fig:lec17-ex1-n5}. If we want to increase the number of Fourier series terms in the expansion, we need only change \lstinline{N}.  Figure \ref{fig:lec17-ex1-n15} shows the series expansion with \lstinline{N=15} terms.
 \begin{marginfigure}
 \includegraphics{lec17_ex1_n5.png}
 \caption{Fourier series expansion with \lstinline{N=5}.}
@@ -129,7 +140,7 @@ The resulting Fourier series expansion is shown in Figure \ref{fig:lec17-ex1-n5}
 Some things to note about the resulting Fourier series representation of \lstinline{f(x)}:
 \begin{enumerate}
 \item As \lstinline{n} increases, \lstinline{FF(x)} generally ``looks more like'' \lstinline{f(x)}.  
-\item At the discontinuity in \lstinline{f(x)}, the Fourier series representation appears to be converging on the midpoint between $f(x^-)$ and $f(x^+)$ as the theory says it should; and
+\item At the discontinuity in \lstinline{f(x)}, the Fourier series representation appears to be converging on the midpoint between $f(x^-)$ and $f(x^+)$ as the theory says it should.
 \item The Fourier series representation near the point of discontinuity has ``wiggliness'' that doesn't go away as \lstinline{n} increases.
 \item In particular, note the undershoot and overshoot of $f(x)$ to the left and right respectively of $f(0)$.  This is called ``Gibbs phenomena'' and it does not go away as \lstinline{n} increases but it moves closer to the point of discontinuity.  
 \end{enumerate}
@@ -164,7 +175,7 @@ Some notes on the annotations for this listing:
 
 \vspace{0.25cm}
 
-\noindent \ref{lst:annotation1-2} We construct the output vector \lstinline{y} using the \lstinline{nan()} function.  This line creates the vector \lstinline{y} to be the same size and shape as the input vector \lstinline{x}.  
+\noindent \ref{lst:annotation1-2} We construct the output vector \lstinline{y} using the \lstinline{nan()} function.  This line makes the vector \lstinline{y} the same size and shape as the input vector \lstinline{x}.  
 
 
 \vspace{0.25cm}
@@ -173,7 +184,7 @@ Some notes on the annotations for this listing:
 
 \vspace{0.25cm}
 
-\noindent \ref{lst:annotation1-4} The symbol \lstinline{&&} is ``element-wise and''.  Pay attention to use of \lstinline{>=} and \lstinline{<=} operators to get the details of the intended function correct.
+\noindent \ref{lst:annotation1-4} The symbol \lstinline{&&} is ``element-wise and.''  Pay attention to use of \lstinline{>=} and \lstinline{<=} operators to get the details of the intended function correct.
 
 \vspace{0.5cm}
 
@@ -214,14 +225,14 @@ Some notes:
 \item As with the first example, the function has the Gibbs phenomena near the discontinuity at $x=0$.  
 \item Also, as with the first example, the Gibbs phenomena does not go away as $N$ increases, but it gets more ``peaked'' and closer to the origin.
 \item Unlike the first example, we get the Gibbs phenomena and wiggliness at the ends also.  This is because the Fourier series representation is periodic; the periodic extension of this function has discontinuities at the endpoints since $f(-\pi) \ne f(\pi)$.  
-\item You should also note that this function is \emph{even}.  That means we expect $a_0$ and all values of $a_n$ to be equal to zero. If I modify the for-loop to output values for the $a_n$ coefficients I get all zeros.
+\item You should also note that this function is \emph{even}.  That means we expect $a_0$ and all values of $a_n$ to be equal to zero. If we modify the for-loop to output values for the $a_n$ coefficients we get all zeros.
 
 \begin{lstlisting}[style=myMatlab]
 for n = 1:N
-an = (1/p)*integral(@(x) f(x).*cos(n*pi*x/p),-p,p);
-fprintf('a_%d = %g \n',n,an);
-bn = (1/p)*integral(@(x) f(x).*sin(n*pi*x/p),-p,p);
-FF = @(x) FF(x) + an*cos(n*pi*x/p) + bn*sin(n*pi*x/p); 
+    an = (1/p)*integral(@(x) f(x).*cos(n*pi*x/p),-p,p);
+    fprintf('a_%d = %g \n',n,an);
+    bn = (1/p)*integral(@(x) f(x).*sin(n*pi*x/p),-p,p);
+    FF = @(x) FF(x) + an*cos(n*pi*x/p) + bn*sin(n*pi*x/p); 
 end
 \end{lstlisting}
 \end{enumerate}
@@ -230,7 +241,7 @@ end
 %\includegraphics{lec17_ex2_an.png}
 %\end{marginfigure}
 
-\vspace{1.0cm}
+\vspace{5.0cm}
 
 \noindent\textbf{Example \#3:} Construct the Fourier series expansion of the function given in Equation \ref{eq:lec17-ex3-fx}.
 

@@ -3,7 +3,7 @@
 \section{Objectives}
 \begin{itemize}
 \item Solve the steady-state heat equation (Laplace equation) in cylindrical coordinates for two cases.
-\item Re-introduce modified Bessel functions of the first and second kind.
+\item Revisit modified Bessel functions of the first and second kind.
 \end{itemize}
 \setcounter{lstannotation}{0}
 
@@ -47,7 +47,7 @@ u(r,z) = F(r)G(z)
 F_{rr}G + \frac{1}{r}F_rG + FG_{zz} &= 0
 \end{align*}
 
-\vspace{0.25cm}
+\vspace{0.15cm}
 
 \noindent\textbf{Step \#3:} Separate the variables.
 
@@ -57,22 +57,21 @@ F_{rr}G + \frac{1}{r}F_rG + FG_{zz} &= 0
 \frac{F_{rr}}{F} + \frac{1}{r}\frac{F_r}{F} = -\frac{G_{zz}}{G} &= -\lambda
 \end{align*}
 So the separated equations are:\marginnote{Again, here we multiply the equation for $F(r)$ by $r^2$ to render the equation into a familiar form.}
-\begin{align*}
-r^2F_{rr} + rF_r + \lambda r^2 F &= 0 \\
-G_{zz} - \lambda G &= 0
-\end{align*}
+\begin{equation*}
+r^2F_{rr} + rF_r + \lambda r^2 F = 0, \ \ \text{ and } \ \ G_{zz} - \lambda G = 0
+\end{equation*}
 
 \noindent\textbf{Step \#4:} Apply boundary conditions to determine non-trivial product solution(s):
 
-\vspace{0.25cm}
+\vspace{0.05cm}
 
 \noindent In the $z$-direction we have only one homogeneous boundary condition whereas in the $r$-direction, the only boundary condition we have is homogeneous.  Therefore we should analyze the equation of $F(r)$ to determine values of $\lambda$ that will admit non-trivial solutions.
 
-\vspace{0.25cm}
+\vspace{0.15cm}
 
 \noindent\underline{$\lambda = 0$}:
 
-\vspace{0.25cm}
+\vspace{0.05cm}
 
 \noindent In this case the boundary value problem for $F(r)$ is a Cauchy-Euler equation:\marginnote{Reminder: for Cauchy-Euler equations we assume the solution is of the form $F(r)=r^m$.  In this case where the resulting auxiliary equation has a double-root---$m=0,0$---the first solution is a constant ($c_1$) and the second solution is a constant times $\ln r$ so that it is linearly independent.}
 \begin{align*}
@@ -83,9 +82,9 @@ r^m[m(m-1) + m] &= 0 \Rightarrow m^2 = 0\\
 \end{align*}
 We must set $c_2=0$ so that $F(r)$ will remain bounded as $r \to 0$.  Since $u(2,z)=0$, we must stipulate that $F(2)=c_1=0$ so that only the trivial solution will satisfy the boundary conditions if $\lambda = 0$.
 
-\vspace{0.25cm}
+\vspace{0.05cm}
 
-\noindent\underline{$\lambda < 0$} where $\lambda = -\alpha^2, \ \alpha>0$
+\noindent\underline{$\lambda < 0$} where $\lambda = -\alpha^2, \ \alpha>0$.
 
 \noindent In this case the boundary value problem for $F(r)$ is:
 \begin{equation*}
@@ -228,7 +227,7 @@ A cross-section of the temperature distribution is shown in Figure \ref{fig:lec3
 \caption{Cross section of Case I solution for N=25.}
 \label{fig:lec32-ex1-plot-n25}
 \end{marginfigure}
-\newthought{As we have come} to expect, the approximate solution has a certain amount of ``wiggliness'' at points of discontinuity.  In this case, the issue is along the outer rim of the top of the cylinder; on the top of the cylinder, the solution is constant at $u_0 = 5$; on the outer surface of the cylinder the solution is fixed at $u = 0$.  Along the outer rim of the top is where these conflicting solutions come together and the ``wiggliness'' is the result.  If we increase the number of eigenmodes.  A plot with $N=100$ eigenmodes is shown in Figure \ref{fig:lec32-ex1-plot-n100}
+\newthought{As we have come} to expect, the approximate solution has a certain amount of ``wiggliness'' at points of discontinuity.  In this case, the issue is along the outer rim of the top of the cylinder; on the top of the cylinder, the solution is constant at $u_0 = 5$; on the outer surface of the cylinder the solution is fixed at $u = 0$.  Along the outer rim of the top is where these conflicting solutions come together and the ``wiggliness'' is the result.  If we increase the number of eigenmodes.  A plot with $N=100$ eigenmodes is shown in Figure \ref{fig:lec32-ex1-plot-n100}.
 \begin{marginfigure}
 \includegraphics{lec32-ex1-plot-n100.png}
 \caption{Cross section of Case I solution for N=100.}
@@ -236,7 +235,7 @@ A cross-section of the temperature distribution is shown in Figure \ref{fig:lec3
 \end{marginfigure}
 
 \section{Steady-State Temperature in a Circular Cylinder - Case II}
-Consider another boundary value problem similar to the first except, in this case, there are homogeneous boundary conditions on the top and bottom while the side of the cylinder is maintained at a prescribed temperature.  A schematic is shown in Figure \ref{fig:lec32-ex2-schematic}
+Consider another boundary value problem similar to the first except, in this case, there are homogeneous boundary conditions on the top and bottom while the side of the cylinder is maintained at a prescribed temperature.  A schematic is shown in Figure \ref{fig:lec32-ex2-schematic}.
 \begin{table}[h]
 \begin{tabular}{l l}
 $\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial r^2} + \frac{1}{r}\frac{\partial u}{\partial r} + \frac{\partial^2 u}{\partial z^2} + \frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2}= 0, \ \ \substack{0<r<1, \ \ 0<z<1 \\ \\ 0<\theta<2 \pi}$\\
@@ -254,12 +253,14 @@ As with Case I, the boundary conditions are all independent of $\theta$ so we ex
 \frac{\partial^2 u}{\partial r^2} + \frac{1}{r}\frac{\partial u}{\partial r} + \frac{\partial^2 u}{\partial z^2} = 0
 \end{equation*}
 
-\newthought{The details of} Steps \#1 through \#3 of separation of variables are exactly the same for this case; the separated equations are again:
+\vspace{2.0cm}
+
+\newthought{The details of} Steps \#1 through \#3 of separation of variables are exactly the same for this case.  The separated equations are, again:
 \begin{align*}
 r^2F_{rr} + rF_r + \lambda r^2 F &= 0 \\
 G_{zz} - \lambda G &= 0
 \end{align*}
-What makes this case different is the boundary conditions.  Specifically, in the $r$-direction we no longer have a homogeneous boundary condition but in the $z$-direction, we do; therefore we will use the equation for $G(z)$ to determine values of $\lambda$ that admit non-trivial solutions.
+What makes this case different is the boundary conditions.  Specifically, in the $r$-direction we no longer have a homogeneous boundary condition but in the $z$-direction, we do.  Therefore we will use the equation for $G(z)$ to determine values of $\lambda$ that admit non-trivial solutions.
 
 \vspace{0.25cm}
 
@@ -286,7 +287,7 @@ G(0) &= c_1 (1) + c_2 (0) = 0 \\
 \Rightarrow c_1 &= 0 \\ 
 G(1) &= c_2 \sin{\alpha} = 0
 \end{align*}
-The last condition can be satisfied if $\alpha_n = n \pi$ with $n$ a positive integer.  
+The last condition is satisfied if $\alpha_n = n \pi$ with $n$ a positive integer.  
 
 \vspace{0.25cm}
 
@@ -316,13 +317,14 @@ Here again, of course, we need to multiply both sides by an orthogonal function 
 c_n = \frac{\int_0^1 (1-z)\sin{n \pi z} \ dz}{I_0(n \pi) \int_0^1 \sin{(n \pi z)}^2 \ dz}
 \label{eq:lec32-ex2-coeff}
 \end{equation}
-In summary, for Case II, the solution is given by Equation \ref{eq:lec32-ex2-sol} with the coefficients given by Equation \ref{eq:lec32-ex2-coeff}.  A plot of the solution for N=150 is given in Figure \ref{fig:lec32-ex2-plot-n150}
+In summary, for Case II, the solution is given by Equation \ref{eq:lec32-ex2-sol} with the coefficients given by Equation \ref{eq:lec32-ex2-coeff}.  A plot of the solution for N=150 is given in Figure \ref{fig:lec32-ex2-plot-n150}.
 \begin{marginfigure}
 \includegraphics{lec32-ex2-plot-n150.png}
 \caption{Solution for Case II with N=150.}
 \label{fig:lec32-ex2-plot-n150}
 \end{marginfigure}
-The MATLAB code needed to construct this solution is shown in the listing below.
+
+\newthought{The MATLAB code} needed to construct this solution is shown in the listing below.
 \begin{lstlisting}[style=myMatlab, name=lec32-ex2]
 clear
 clc

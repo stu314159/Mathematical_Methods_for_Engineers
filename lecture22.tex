@@ -3,7 +3,7 @@
 \section{Objectives}
 \begin{itemize}
 \item Describe three important PDEs: heat equation, wave equation, and Laplace equation.
-\item Describe the physical significance of common boundary conditions.
+\item Describe the physical meaning of common boundary conditions.
 \item Discuss important modifications to the three equations to incorporate additional physical phenomena.
 \end{itemize}
 
@@ -13,7 +13,7 @@ The time-dependent heat equation in one spatial dimension is given in Equation \
 \frac{\partial u}{\partial t} = \alpha^2\frac{\partial^2 u}{\partial x^2}, \ \ \alpha > 0, \ \ a<x<b
 \label{eq:heat-eq}
 \end{equation}
-where $\alpha^2$ corresponds to thermal diffusivity which, in turn is given in Equation \ref{eq:thermal-diffusivity}
+where $\alpha^2$ corresponds to thermal diffusivity which, in turn is given in Equation \ref{eq:thermal-diffusivity}:
 \begin{equation}
 \alpha^2 = \frac{k}{\rho c_p}
 \label{eq:thermal-diffusivity}
@@ -66,7 +66,7 @@ where, in this case, $u_m$ is a constant reference temperature of the surroundin
 
 \section{Wave Equation}
 
-The wave equation is given by Equation \ref{eq:wave}
+The wave equation is given by Equation \ref{eq:wave}:
 \begin{equation}
 \frac{\partial^2 u}{\partial t^2} = \alpha^2 \frac{\partial^2 u}{\partial x^2}, \ \ \alpha>0, \ \ a<x<b
 \label{eq:wave}
@@ -87,12 +87,12 @@ This equation is derived as a mathematical expression of mechanical equilibrium 
 A properly stated boundary value problem based on the wave equation will have two boundary conditions.  For this course we will usually apply Dirichlet boundary conditions but others are possible.  Since the equation is second-order in time we also need two temporal boundary conditions.  Typically these are given as the initial displacement, $u(x,0)=f(x)$ and initial velocity $u_t(x,0)=g(x)$.
 
 \section{Laplace Equation}
-The Laplace equation in two dimensions in a Cartesian coordinate system is given by Equation \ref{eq:laplace-eq}.
+The Laplace equation in two dimensions in a Cartesian coordinate system is given by Equation \ref{eq:laplace-eq}:
 \begin{equation}
 \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0
 \label{eq:laplace-eq}
 \end{equation}
-The Laplace equation arises in studies of \emph{steady state} phenomena involving potentials such as : electrostatic potential, gravitational potential, velocity, and heat conduction.  The meaning of the dependent variable $u$, of course, depends upon what is being modeled.  
+The Laplace equation arises in studies of \emph{steady state} phenomena involving potentials such as: electrostatic potential, gravitational potential, velocity, and heat conduction.  The meaning of the dependent variable $u$, of course, depends upon what is being modeled.  
 
 Equation \ref{eq:laplace-eq} can more concisely and generically be expressed using the Laplace operator $\nabla^2$.\marginnote[-2.0cm]{The Laplace operator $\nabla^2$ is short-hand for:
 
@@ -114,14 +114,14 @@ So Equation \ref{eq:laplace-eq} could be written $\nabla^2 u = 0$.  This same ex
 \section{Boundary Value Problems}
 In all of the above cases, a full statement of the boundary value problem must include:
 \begin{enumerate}
-\item the partial differential equation;
-\item all boundary conditions; and
+\item The partial differential equation,
+\item All boundary conditions and
 \item initial conditions for time-dependent problems.
 \end{enumerate}
 
 \vspace{0.5cm}
 
-\noindent\textbf{Example:} Wave Equation Boundary Value Problem\marginnote{Note that, technically speaking, the PDE does not apply at the domain boundaries or at $t=0$.}
+\noindent\textbf{Example:} Wave Equation Boundary Value Problem.\marginnote{Note that, technically speaking, the PDE does not apply at the domain boundaries or at $t=0$.}
 \begin{table}
 \begin{tabular}{l l}
 PDE & $ \frac{\partial^2 u}{\partial t^2} = \alpha^2 \frac{\partial^2 u}{\partial x^2}, \ \ 0<x<L, \ t>0$\\
@@ -135,7 +135,7 @@ ICs: & $u(x,0)=f(x), \ \ u_t(x,0)=g(x), \ \ 0<x<L$ \\
 \subsection{Important Variations to Classic BVPs}
 Both the heat equation and the wave equation incorporated several assumptions in the derivation.  If these assumptions are modified or eliminated we can still derive an equation but the form of the equation will change.  Some important variations are described here.
 
-\newthought{In Equation \ref{eq:heat-eq-with-variations}} we show the heat equation in the case where there is an internal heat source and convection from lateral surfaces to a surrounding medium maintained at a constant temperature $u_m$.
+\newthought{In Equation \ref{eq:heat-eq-with-variations}} we show the heat equation in the case where there is an internal heat source and convection from lateral surfaces to a surrounding medium maintained at a constant temperature $u_m$:
 \begin{equation}
 \frac{\partial u}{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2} \underbrace{+ S(x,t)}_{\text{heat source}} \overbrace{- h(u-u_m)}^{\substack{\text{convection from} \\ \text{lateral surfaces}}}
 \label{eq:heat-eq-with-variations}
@@ -149,9 +149,11 @@ where $h$ is the convective heat transfer coefficient.
 \label{eq:wave-eq-with-variations}
 \end{equation}
 
+\vspace{2.0cm}
+
 \newthought{An important skill} that an engineer needs to develop is that ability to translate a description of a physical system into a properly formulated boundary value problem that you can solve.  The \emph{point} is be able to describe a system mathematically so that, by solving the math problem, you gain \emph{insight} into the behavior of the physical system.\marginnote{This is something that students in this class often struggle with.}  Here are a couple of examples to get started.
 
-\vspace{0.5cm}
+\vspace{0.15cm}
 
 \noindent\textbf{Example: } Consider a rod of length $L$ that is insulated along its lateral surfaces.  There is heat transfer from the left end of the rod into a surrounding medium at temperature $20^{\circ}$ and the right end is insulated.  The initial temperature is $f(x)$ throughout.  We would like to know what the temperature distribution is as a function of time and space.  The corresponding BVP is:
 \begin{table}
@@ -164,7 +166,7 @@ IC: & $u(x,0) = f(x), \ \ 0<x<L$ \\
 \end{tabular}
 \end{table}
 
-\vspace{0.5cm}
+\vspace{0.25cm}
 
 \noindent\textbf{Example: } Consider a string of length $L$ held in tension.  The ends are secured to the $x-$axis, and the string is initially at rest on that axis.  An external vertical force proportional to the horizontal distance from the left end acts on the string for $t>0$.  The corresponding BVP is:
 \begin{table}
@@ -177,7 +179,7 @@ ICs: & $u(x,0) = 0, \ u_t(x,0) = 0, \ \ 0<x<L$ \\
 \end{tabular}
 \end{table}
 
-\vspace{0.5cm}
+\vspace{0.25cm}
 
 \noindent\textbf{Example: } Consider a semi-infinite plate coinciding with the region $0 \le x \le \pi, y\ge 0.$  The left end is held at temperature $e^{-y}$, and the right end is held at temperature $100^{\circ}$C for $0 < y \le 1$ and $0^{\circ}$C for $y>1$.  The bottom of the plate is held at temperature $f(x)$.  The corresponding BVP is:
 
