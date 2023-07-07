@@ -32,7 +32,7 @@ Consider, as an example, the following initial value problem:
 \begin{equation}
 u^{\prime \prime}-4u = 12x, \ \ u(0)=4, \ u^{\prime}(0)=1
 \end{equation}
-This IVP satisfies the conditions of Theorem \ref{thm:IVP-exist-and-unique} since all of the coefficients and $g(x)$ are continuous and $a_1$ is constant and nonzero; hence a unique solution exists on any interval and that solution is unique.\marginnote[-1.5cm]{Take a moment to verify that $u(x)=3e^{2x}+e^{-2x}-3x$ satisfies both the governing equation and initial conditions and thus is \emph{the} unique solution to this IVP.}
+This IVP satisfies the conditions of Theorem \ref{thm:IVP-exist-and-unique} since all of the coefficients and $g(x)$ are continuous and $a_2$ is constant and nonzero; hence a unique solution exists on any interval and that solution is unique.\marginnote[-1.5cm]{Take a moment to verify that $u(x)=3e^{2x}+e^{-2x}-3x$ satisfies both the governing equation and initial conditions and thus is \emph{the} unique solution to this IVP.}
 
 Here is an IVP that does \emph{not} satisfy the criteria of Theorem \ref{thm:IVP-exist-and-unique}:
 \begin{equation}
@@ -78,6 +78,7 @@ As an example, If we denote the linear homogeneous differential equation as $\ma
 &= \alpha(0) + \beta(0) \\
 &= 0
 \end{align*}
+thus $\alpha u_i + \beta u_j$ is a solution.
 
 \begin{theorem}[Linear Dependence / Independence of Functions]
 A set of functions $f_1(x),f_2(x),\dots,f_k(x)$ is said to be \emph{linearly dependent} on an interval $\mathcal{I}$ if there exist constants $c_1,c_2,\dots,c_k$, \emph{not \underline{all} of which are zero}, such that
@@ -85,7 +86,7 @@ $$c_1f_1(x) + c_2f_2(x)+\cdots+c_kf_k(x) = 0$$
 \noindent for every $x \in \mathcal{I}$.  If the set of functions is \emph{not} linearly dependent, it is linearly independent.
 \label{th:linear-dep}
 \end{theorem} 
-\marginnote[-1.75cm]{What if a member of the set of functions is $f(x)=0$? 
+\marginnote[-1.75cm]{\textbf{Question: }What if a member of the set of functions is $f(x)=0$? 
 
 \vspace{0.25cm}
 
@@ -107,7 +108,7 @@ u^{(n-1)}_1 & u^{(n-1)}_2 & \cdots & u^{(n-1)}_n
 \end{vmatrix}
 \label{eq:Wronskian-def}
 \end{equation}
-where $|\cdot|$ denotes the matrix determinant.  For large values of $n$ this is also difficult to calculate but, for the case $n=2$, engineering students should be familiar with the formula:
+where $|\cdot|$ denotes the matrix determinant.  For large values of $n$ this is difficult to calculate but, for the case $n=2$, engineering students should be familiar with the formula:\marginnote{Students of this class should also be able to find determinants for 3x3 matrices.  If you have forgotten that formula, consult your favorite textbook or online resource for a reminder.}
 \begin{equation}
 W(u_1,u_2) = 
 \begin{vmatrix}
@@ -119,7 +120,7 @@ u^{\prime}_1 & u^{\prime}_2 \\
 
 \vspace{0.5cm}
 
-\noindent\textbf{\underline{Example:}} show that the functions $u_1 = e^{3x}$ and $u_2=e^{-3x}$ are linearly independent solutions to the homogeneous linear equation $u^{\prime \prime}-9u=0$ for every $x \in (-\infty,\infty)$.
+\noindent\textbf{\underline{Example:}} Show that the functions $u_1 = e^{3x}$ and $u_2=e^{-3x}$ are linearly independent solutions to the homogeneous linear equation $u^{\prime \prime}-9u=0$ for every $x \in (-\infty,\infty)$.
 
 \noindent\textbf{\underline{Solution:}} The Wronskian is given by:\marginnote{The reader should verify that both $u_1 = e^{3x}$ and $u_2=e^{-3x}$ satisfy the given differential equation.}
 \begin{align*}
@@ -150,7 +151,7 @@ $$u(x) = c_1u_1(x)+c_2u_2(x)+\cdots+c_nu_n(x)$$
 
 \newthought{It is important} to understand from the above that:
 \begin{itemize}
-\item \emph{any} possible solution to the homogeneous, linear, n\textsuperscript{th}-order differential equation can be constructed by setting the coefficients of the general solution; and
+\item \emph{Any} possible solution to the homogeneous, linear, n\textsuperscript{th}-order differential equation can be constructed by setting the coefficients of the general solution; and
 \item there is \textbf{no} solution that can be constructed from functions that are linearly independent from the general solution.
 \end{itemize}
 

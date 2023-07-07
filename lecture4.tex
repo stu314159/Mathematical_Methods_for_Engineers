@@ -7,14 +7,14 @@ The objectives of this lecture are:
 \item Illustrate this method with several examples.
 \end{itemize}
 \section{Introduction}
-In this lecture we will review the well-trod ground of your differential equations class and remind ourselves how to solve linear, constant coefficient, homogeneous, n\textsuperscript{th}-order differential equations.  These equations have the general form shown in Equation \ref{eq:lcchnode}
+In this lecture we will review the well-trod ground of your differential equations class and remind ourselves how to solve linear, constant coefficient, homogeneous, n\textsuperscript{th}-order differential equations.  These equations have the general form shown in Equation \ref{eq:lcchnode}:
 \begin{equation}
 c_nu^{(n)}+c_{n-1}u^{(n-1)}+\cdots+c_1u^{\prime}+c_0u=0
 \label{eq:lcchnode}
 \end{equation}
 \noindent where the coefficients are real and constant an $c_n \ne 0$.
 
-\newthought{The basic strategy} is to assume the solution is of the form: $u(x)=e^{mx}$. For the case of 2\textsuperscript{nd}-order equations, we get:
+\newthought{The basic strategy} is to assume the solution is of the form: $u(x)=e^{mx}$. For the case of 2\textsuperscript{nd}-order equations, we get:\marginnote{If $u(x) = e^{mx}$ then, of course, $u^{\prime} = me^{mx}$ and $u^{\prime \prime} = m^2e^{mx}$.}
 \begin{align*}
 c_2m^2e^{mx}+c_1me^{mx}+c_0e^{mx}&=0 \\
 e^{mx}\left(c_2m^2+c_1m+c_0\right)
@@ -53,7 +53,7 @@ u(x) = c_1 e^{-kx} + c_2e^{kx}
 \end{marginfigure}
 
 
-For reasons that will become clear later in the course, it is sometimes useful to re-express the solution shown in Equation \ref{eq:sp-case-1-exp} in terms of the functions $\cosh{()}$ and $\sinh{()}$.  These functions are defined as linear combinations of exponentials as shown below and plotted in Figure \ref{fig:cosh-and-sinh-plot}
+For reasons that will become clear later in the course, it is sometimes useful to re-express the solution shown in Equation \ref{eq:sp-case-1-exp} in terms of the functions $\cosh{()}$ and $\sinh{()}$.  These functions are defined as linear combinations of exponentials as shown below and plotted in Figure \ref{fig:cosh-and-sinh-plot}.\marginnote{When applying boundary conditions and resolving unknown constants in a general solution to a differential equation, it is helpful that $\sinh{0} = 0$.  In contrast, neither $e^{x}$ nor $e^{-x}$ is equal to zero for finite values of $x$.}
 \begin{align*}
 \cosh{x} &= \frac{e^{x} + e^{-x}}{2} \\
 \sinh{x} &= \frac{e^{x} - e^{-x}}{2}
@@ -69,7 +69,7 @@ u_1(x) = e^{m_1x}
 
 The other solution so derived is, of course, the same and thus we do not have two linearly independent solutions as required to form a fundamental set of solutions for a 2\textsuperscript{nd}-order linear homogeneous equation.  
 
-\newthought{It can be shown} that a second linearly independent solution can be formed by multiplying by the independent variable:\marginnote{This is done using a technique referred to as \emph{reduction of order}.  We will not take the time to cover it in this class (or in this book) but is concisely described in section 3.2 of Zill.  At a minimum you might at least confirm for yourself that a) $xu_1(x)$ is a solution to the equation; and b) use the Wronskian to confirm that it is linearly independent from $u_1(x)$.}
+\newthought{It can be shown} that a second linearly independent solution can be formed by multiplying by the independent variable:\marginnote{This result is derived using a technique referred to as \emph{reduction of order}.  We will not take the time to cover it in this class (or in this book) but is concisely described in section 3.2 of Zill.  At a minimum you might at least confirm for yourself that a) $xu_1(x)$ is a solution to the equation; and b) use the Wronskian to confirm that it is linearly independent from $u_1(x)$.}
 \begin{equation*}
 u_2(x) = x u_1(x) = xe^{mx}
 \end{equation*}
@@ -93,7 +93,7 @@ The complex exponentials in the last equation can be re-expressed using the Eule
 e^{i\beta x} &= \cos{\beta x} + i \sin{\beta x} \\
 e^{-i\beta x} &= \cos{\beta x} - i \sin{\beta x}
 \end{align*}
-which is slightly more convenient insofar as the solutions are no longer expressed as complex exponentials but also by breaking each solution down into their real and complex parts. It can be shown that both the real and imaginary parts of the solution must satisfy the differential equation \emph{independently}.  This fact allows us to re-express the solution in a more simple form that does not involve complex numbers:
+which is slightly more convenient insofar as the solutions are no longer expressed as complex exponentials but also by breaking each solution down into their real and complex parts. It can be shown that both the real and imaginary parts of the solution must satisfy the differential equation \emph{independently}.  This fact allows us to re-express the solution in a more simple form that does not involve complex numbers at all:
 \begin{equation}
 u(x) = e^{\alpha x}\left(c_1 \cos{\beta x} + c_2 \sin{\beta x} \right)
 \label{eq:cmplx-conj-roots}
@@ -147,7 +147,7 @@ u(x) = c_1e^{5x} + c_2xe^{5x}
 \noindent\textbf{Example \#3:}
 Find the general solution to $4u^{\prime \prime}+4u^{\prime} + 17u = 0, \ \ u(0)=-1, \ u^{\prime}(0)=2$.
 
-This is an initial value problem\marginnote{We can see that it must be an \emph{initial} value problem because the conditions are both given at the same location, $x_0=0$.} with continuous (and constant) coefficients.  We know from Theorem \ref{thm:IVP-exist-and-unique} that a unique solution exists.  We will first find the general solution, then apply the initial conditions to resolve the unknown coefficients to reveal the solution.
+This is an initial value problem\marginnote{We can see that it must be an \emph{initial} value problem because the conditions are both given at the same location, $x_0=0$.} with continuous (and constant) coefficients and with $a_2(x)\ne 0$ for all values of $x$.  We know from Theorem \ref{thm:IVP-exist-and-unique} that a unique solution exists.  We will first find the general solution, then apply the initial conditions to resolve the unknown coefficients to reveal the solution.
 
 The auxiliary equation is:
 \begin{align*}

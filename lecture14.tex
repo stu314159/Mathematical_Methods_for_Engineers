@@ -10,7 +10,7 @@
 Many differential equations can be solved in terms of Bessel functions.  This lecture will introduce some relatively simple and powerful tools for doing so.
 
 \section{Parametric Bessel Equation of Order $\nu$}
-The parametric Bessel equation of order $\nu$ has the form given in Equation \ref{eq:pbe-form}
+The parametric Bessel equation of order $\nu$ has the form given in Equation \ref{eq:pbe-form}:
 
 \begin{equation}
 x^{2}u^{\prime \prime} + xu^{\prime} + \left(\alpha^2 x^2 - \nu^2 \right)u= 0
@@ -33,7 +33,7 @@ x^{2}u^{\prime \prime} + xu^{\prime} + \left(\alpha^2 x^2 - \nu^2 \right)u &= 0 
 \frac{t^2}{\alpha^2}\alpha^2 u_{tt} + \frac{t}{\alpha}\alpha u_t + \left(\alpha^2 \frac{t^2}{\alpha^2} - \nu^2 \right)u &= 0 \\
 t^2u_{tt} + t u_{t} + \left(t^2 - \nu^2\right)u &= 0
 \end{align*}
-The last line is, of course, Bessel's equation and the solution is:\marginnote{At this point in the course you should be developing a list, of sorts, of differential equations that you recognize and know how to analyze.  Call it something like \emph{``A Field Guide to Differential Equations I Know How To Solve''.}  This list should include:
+The last line is, of course, Bessel's equation and the solution is:\marginnote{At this point in the course you should be developing a list, of sorts, of differential equations that you recognize and know how to analyze.  Call it something like: \emph{``A Field Guide to Differential Equations I Know How To Solve''.}  This list should include:
 \begin{itemize}
 \item first-order linear equations
 \item separable equations
@@ -59,7 +59,7 @@ u(x) = c_1J_{\nu}(\alpha x) + c_2Y_{\nu}(\alpha x)
 
 \vspace{0.5cm}
 
-\noindent\textbf{Example:} us the parametric Bessel equation to find the general solution to:
+\noindent\textbf{Example:} Use the parametric Bessel equation to find the general solution to:
 \begin{equation*}
 x^2u^{\prime \prime} + xu^{\prime} + \left(36x^2 - \frac{1}{4} \right)u = 0
 \end{equation*}
@@ -69,7 +69,7 @@ u(x) = c_1 J_{\sfrac{1}{2}}(6x) + c_2Y_{\sfrac{1}{2}}(6x)
 \end{equation*}
 
 \section{Modified Bessel Equations and Bessel Functions}
-A subtle but non-trivial variation to Bessel's equation is when we flip one crucial sign as shown in Equation \ref{eq:mbeq-form}
+A subtle but non-trivial variation to Bessel's equation is when we flip one crucial sign as shown in Equation \ref{eq:mbeq-form}:
 \begin{equation}
 x^2u^{\prime \prime} + xu^{\prime}-\left(x^2 + \nu^2\right)u = 0
 \label{eq:mbeq-form}
@@ -91,7 +91,7 @@ u(x) = c_1I_{\nu}(x) + c_2K_{\nu}(x)
 \label{eq:mbeq-solution}
 \end{equation}
 
-The modified Bessel's equation also has a parametric form as shown in Equation \ref{eq:mpbeq-form}
+The modified Bessel's equation also has a parametric form as shown in Equation \ref{eq:mpbeq-form}:
 \begin{equation}
 x^2u^{\prime \prime} + xu^{\prime} - \left(\alpha^2 x^2 + \nu^2 \right)u = 0
 \label{eq:mpbeq-form}
@@ -102,8 +102,10 @@ u(x) = c_1I_{\nu}(\alpha x) + c_2 K_{\nu}(\alpha x)
 \label{eq:mpbeq-solution}
 \end{equation}
 
+\vspace{5.0cm}
+
 \section{Tool for Solving Second-Order ODEs}
-A more general-purpose tool for solving linear, homogeneous, second-order ODEs in terms of Bessel functions is presented in \cite{zill2020advanced} and shown below in Equation \ref{eq:bessel-tool}.
+A more general-purpose tool for solving linear, homogeneous, second-order ODEs in terms of Bessel functions is presented in Zill\cite{zill2020advanced} and shown below in Equation \ref{eq:bessel-tool}.
 
 \begin{equation}
 u^{\prime \prime} + \frac{1-2a}{x}u^{\prime} + \left(b^2 c^2 x^{2c-2} + \frac{a^2-p^2c^2}{x^2} \right)u = 0, \ \ p \ge 0
@@ -120,7 +122,7 @@ Using this tool requires you to solve four non-linear equations as shown below:\
 u^{\prime \prime} + \frac{\overset{\textcircled{1}}{\fbox{$1-2a$}}}{x}u^{\prime} + \left(\underset{\textcircled{2}}{\fbox{$b^2 c^2$}} x^{\overset{\textcircled{3}}{\fbox{$2c-2$}}} + \frac{\overset{\textcircled{4}}{\fbox{$a^2-p^2c^2$}}}{x^2} \right)u = 0, \ \ p \ge 0
 \end{equation*}
 
-\vspace{0.5cm}
+%\vspace{0.5cm}
 
 \noindent\textbf{Example:}  Use Equation \ref{eq:bessel-tool} to find the general solution to the following differential equation:
 \begin{equation*}

@@ -118,21 +118,21 @@ u_c(x) &= e^{-\int P(x) \ dx + C_1} \\
 u_c(x) &= e^{-\int P(x) \ dx}e^{C_1} \\
 u_c(x) &=Ce^{-\int P(x) \ dx}
 \end{align*}
-where $C = e^{C_1}$.\marginnote{\textbf{Note:} At some point in time, I will desist in making such piddling distinctions between constants.  $C_1$ is an arbitrary constant, $e^{C_1}$ is still an arbitrary constant; there is no real difference between $C_1$ and $C$ and, in this author's humble opinion, they do not rate different symbols.}
+where $C = e^{C_1}$.\marginnote{\textbf{Note:} Going forward, we will desist in making such piddling distinctions between constants.  $C_1$ is an arbitrary constant, $e^{C_1}$ is still an arbitrary constant; there is no real difference between $C_1$ and $C$ and, in this author's humble opinion, they do not rate different symbols.}
 
 \newthought{We need to find} a solution $u_p(x)$ to Equation \ref{eq:fol_particular}.  The technique we will use is called \emph{variation of parameters}.  It consists of looking for a solution in the form $y_p(x) = v(x)u_1(x)$, where $u_1(x) = e^{-\int P(x) \ dx}$ which is $u_c(x)$ with the arbitrary constant set to 1 and $v(x)$ might be thought of as some kind of weighting or \emph{variational} function.
 
 \newthought{We will insert} this proposed form of $y_p(x)$ into Equation \ref{eq:fol_particular}:
 \begin{equation*}
-\frac{d(vu_1)}{dx} + P(x)(v(x)u_1(x))=f(x)
+\frac{d(vu_1)}{dx} + P(x)\left[v(x)u_1(x)\right]=f(x)
 \end{equation*}
 We apply the product rule to the first term and re-arrange to get:
 \begin{align*}
-u_1(x)\frac{dv}{dx}+ v(x)\frac{du_1}{dx} + P(x)(v(x)u_1(x)) &= f(x) \\
+u_1(x)\frac{dv}{dx}+ v(x)\frac{du_1}{dx} + P(x)\left[v(x)u_1(x)\right] &= f(x) \\
 v(x)\underbrace{\left[\frac{du_1}{dx}+P(x)u_1(x) \right]}_{\textbf{= 0}}+u_1(x)\frac{dv}{dx} &= f(x) \\
 u_1(x)\frac{dv}{dx} &= f(x)
 \end{align*}
-In the last line we can observe that the equation is \emph{separable} and thus solve:
+In the last line we can observe that the equation is \emph{separable} and thus solve accordingly:
 \begin{align*}
 v(x) &= \int \frac{f(x)}{u_1(x)} \ dx \\
      &= \int e^{\int P(x) \ dx}f(x) \ dx

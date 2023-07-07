@@ -44,7 +44,7 @@ Applying the indicated algebraic simplifications leads us finally to:\marginnote
 [m(m+1)c_0+2c_2] + [(m+1)(m+2)c_1 + 6c_3]x + \cdots \\
 \sum\limits_{k=2}^{\infty}[(k+2)(k+1)c_{k+2} + (m-k)(m+k+1)c_k]x^k=0
 \end{multline*}
-The next steps are to find formulas for the power series coefficients $c_n$ so that the combined coefficient for each power of $x$ in the equation above equals zero. For the constant term $(x^0)$ we have:
+The next steps are to find formulas for the power series coefficients, $c_n$, so that the combined coefficient for each power of $x$ in the equation above equals zero. For the constant term $(x^0)$ we have:
 \begin{equation*}
 c_2 = \frac{-m(m+1)c_0}{2}
 \end{equation*}
@@ -64,21 +64,21 @@ $k=3$ \\
 $c_5 = \frac{-(m-3)(m+4)}{(5)(4)}c_3 = \frac{(m-3)(m+4)(m-1)(m+2)}{(5)(4)(3)(2)}c_1$ \\
 \end{tabular}
 \end{margintable}
-Organizing these into two solutions we get:
+\noindent Organizing these into two solutions we get:
 \begin{align*}
 u_1(x) &= c_0\left[1 + \frac{c_2}{c_0}x^2 + \frac{c_4}{c_0}x^4 + \cdots \right] \\
 &= c_0 \left[1-\frac{m(m+1)}{2!}x^2 + \frac{(m-2)(m+3)m(m+1)}{4!}x^4 + \cdots  \right] \\
 u_2(x) &= c_1\left[x + \frac{c_3}{c_1}x^3 + \frac{c_5}{c_1}x^5 + \cdots \right] \\
 &= c_1\left[x - \frac{(m-1)(m+2)}{3!}x^3+\frac{(m-3)(m+4)(m-1)(m+2)}{5!}x^5 + \cdots \right]
 \end{align*}
-So far what we have is messy but when dealing with power series solutions, messiness is the order of the day.  One point that we have quietly left to the side is whether or not we expect this (so called) power series solution  to converge.\marginnote{\textbf{Reminder:} If the power series that we purport to be a solution to the differential equation is divergent than we really have nothing.}
+So far what we have is messy but, when dealing with power series solutions, messiness is the order of the day.  One point that we have quietly left to the side is whether or not we expect this (so called) power series solution  to converge.\marginnote{\textbf{Reminder:} If the power series that we purport to be a solution to the differential equation is divergent than we really have nothing.}
 
-One way that we can permanently leave these questions to the side is if $m$ is an integer.  Notice that if $m=0$ or is an even integer, $u_1(x)$ terminates with a finite number of terms.\marginnote{i.e. if $m$ is even then $u_1(x)$ is a polynomial.} Similarly with $u_2(x)$ in the case that $m$ is an odd integer. 
+One way that we can permanently leave these questions to the side is if $m$ is an integer.  Notice that if $m=0$ or is an even integer,\sidenote{i.e. If $m$ is even then $u_1(x)$ is a polynomial.} $u_1(x)$ terminates with a finite number of terms. Similarly with $u_2(x)$ in the case that $m$ is an odd integer. 
 
 \newthought{These polynomial solutions}, where $m$ is an integer, are referred to as Legendre polynomials.  Legendre polynomials have several important applications; our primary use for them will be when solving equations in spherical coordinate systems.
 
 \section{Important Properties of Legendre Polynomials}
-As a recap, Legendre polynomials are solutions to Legendre's equation where $m$ is an integer:
+Legendre polynomials are solutions to Legendre's equation where $m$ is an integer:
 \begin{equation*}
 \left(1-x^2 \right)u^{\prime \prime} - 2xu^{\prime} + m(m+1)u = 0
 \end{equation*}
@@ -90,10 +90,10 @@ By convention the leading coefficients are chosen such that Legendre polynomials
 $P_0(x) = 1$ & $P_1(x) = x$ \\\hline
 $P_2(x) = \frac{1}{2}(3x^2-1)$ & $P_3(x) = \frac{1}{2}(5x^3-3x)$ \\
 \end{tabular}
-\label{tab:Legendre-poly}
 \caption{The first four Legendre Polynomials}
+\label{tab:Legendre-poly}
 \end{margintable}
-The first few Legendre Polynomials are shown in the table. Higher order Legendre polynomials can be constructed using a three-term recurrence relation shown in Equation \ref{eq:legendre-three-term}
+The first few Legendre Polynomials are shown in the Table \ref{tab:Legendre-poly}. Higher order Legendre polynomials can be constructed using a three-term recurrence relation shown in Equation \ref{eq:legendre-three-term}:
 \begin{equation}
 (n+1)P_{n+1}(x) - (2n+1)xP_n(x) + nP_{n-1}(x) = 0
 \label{eq:legendre-three-term}
@@ -118,8 +118,8 @@ P_n^{\prime}(0) &=0 \text{ for } n\in{\text{even}}
 A plot of the first several Legendre Polynomials is shown in Figure \ref{fig:legendre-poly-plot}.
 
 
-\newthought{The last property} that we will mention here, and that we will make use of extensively in this course, is the \emph{orthogonality} property of Legendre Polynomials.\marginnote[1.0cm]{Orthogonality of functions is analogous to orthogonality of vectors.  Two functions, $f_1(x)$ and $f_2(x)$ are orthogonal on an interval $x\in[a,b]$ if $\int_a^b f_1(x)f_2(x) \ dx = 0$.}
-Legendre Polynomials are orthogonal over the interval $x \in [-1,1]$.  This mean that Equation \ref{eq:legendre-orthogonality} holds:
+\newthought{The last property} that we will mention here, and that we will make use of extensively in this course, is the \emph{orthogonality} property of Legendre polynomials.\marginnote[1.0cm]{Orthogonality of functions is analogous to orthogonality of vectors.  Two functions, $f_1(x)$ and $f_2(x)$ are orthogonal on an interval $x\in[a,b]$ if $\int_a^b f_1(x)f_2(x) \ dx = 0$.}
+Legendre polynomials are orthogonal over the interval $x \in [-1,1]$.  This mean that Equation \ref{eq:legendre-orthogonality} holds:
 \begin{equation}
 \int_{-1}^{1} P_n(x) P_m(x) \ dx = 
 \begin{cases}

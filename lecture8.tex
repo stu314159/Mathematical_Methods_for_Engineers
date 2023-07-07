@@ -59,7 +59,7 @@ u^{\prime \prime} + u &= 0 \\
 \sum\limits_{k=0}^{\infty}\underbrace{\left[(k+2)(k+1)c_{k+2} + c_k \right]}_{\text{coefficients for new power series}}x^k&=0
 \end{align*}
 
-\newthought{The expression} $\left[(k+2)(k+1)c_{k+2}+c_k \right]$ is now a formula for the coefficients of a new power series. This power series, according to the equation, is equal to \emph{zero} so that means all of the coefficients must be equal to zero:
+\newthought{The expression} $\left[(k+2)(k+1)c_{k+2}+c_k \right]$ is now a formula for the coefficients of a new power series. This power series, according to the equation, is equal to \emph{zero} so that means, per Definition \ref{def:ps-identity-property}, all of the coefficients must be equal to zero:
 
 \marginnote[1.0cm]{This is called a \emph{two-term recurrence} since the expression involves \emph{two} terms; $c_{k-2}$ and $c_k$.}
 \begin{equation*}
@@ -67,14 +67,14 @@ u^{\prime \prime} + u &= 0 \\
 \end{equation*} 
 
 
-By convention, we will re-write this recurrence relation to solve for the \emph{higher}-index coefficients in terms of the \emph{lower}-index coefficients.  We do this in Equation \ref{eq:ex1-l8-rec}
+By convention, we will re-write this recurrence relation to solve for the \emph{higher}-index coefficients in terms of the \emph{lower}-index coefficients.  We do this in Equation \ref{eq:ex1-l8-rec}:
 
 \begin{equation}
 c_{k+2}=-\frac{c_k}{(k+2)(k+1)}
 \label{eq:ex1-l8-rec}
 \end{equation}
 
-\newthought{As we should} expect, there are two unknown constants in this general solution.\marginnote[-1.0cm]{As we would expect the general solution for any other second order differential equation would have two unknown constants that can only be resolved by adding initial- or boundary-conditions.}  The first value of $k$, from the summation in our solution is $k=0$.  Simplified equations for the first few coefficients are presented in the table below.
+\newthought{As we should} expect, there are two unknown constants in this general solution---$c_0$ and $c_1$.\marginnote[-1.0cm]{As we would expect the general solution for any other second order differential equation would have two unknown constants that can only be resolved by adding initial- or boundary-conditions.}  The first value of $k$ from the summation in our solution is $k=0$ which gives us an expression for $c_2$ in terms of $c_0$.  The second value, $k=1$, will give us an expression for $c_3$ in terms of $c_1$.  Simplified equations for the first few coefficients are presented in the table below.
 \begin{table*}
 \begin{tabular}{l | l | l}
 $k=0$ & $k=2$ & $k=4$ \\
@@ -107,7 +107,7 @@ u^{\prime \prime}-xu &= 0 \\
 \sum\limits_{n=2}^{\infty}n(n-1)c_n x^{n-2} - x\sum\limits_{n=0}^{\infty}c_nx^n &= 0 \\
 \sum\limits_{n=2}^{\infty}n(n-1)c_n x^{n-2} - \sum\limits_{n=0}^{\infty}c_n x^{n+1} &=0
 \end{align*}
-We want to combine these summations and see that they are both ``out of phase'' as well as have different powers of $x$ for their first terms.
+We want to combine these summations and see that they are both ``out of phase'' and the summation index, $n$, starts at different values for each summation.
 \begin{align*}
 \underbrace{\sum\limits_{n=2}^{\infty}n(n-1)c_n x^{n-2}}_{\text{for }n=2, \ \ x^0} - \underbrace{\sum\limits_{n=0}^{\infty}c_n x^{n+1}}_{\text{for }n=0, \ \ x^1} &=0 \\
 \end{align*}
@@ -115,7 +115,7 @@ So we must separate out the first term in the first summation to get the summati
 \begin{equation*}
 (2)(1)c_2x^0 + \sum\limits_{n=3}^{\infty}n(n-1)c_n x^{n-2} - \sum\limits_{n=0}^{\infty}c_n x^{n+1} = 0
 \end{equation*}
-Next we must combine our indices using $k=n-2$ for the first summation and $k=n+1$ for the second summation respectively.\marginnote[-0.5cm]{\textbf{Reminder:} we take our definition of $k$ from the \underline{exponent for $x$} in each summation term.}  
+Next we must combine our indices using $k=n-2$ for the first summation and $k=n+1$ for the second summation.\marginnote[-0.5cm]{\textbf{Reminder:} we take our definition of $k$ from the \underline{exponent for $x$} in each summation term.}  
 \begin{equation*}
 2c_2x^0 + \underbrace{\sum\limits_{n=3}^{\infty}n(n-1)c_n x^{n-2}}_{\substack{k=n-2 \\n=k+2}} - \underbrace{\sum\limits_{n=0}^{\infty}c_n x^{n+1}}_{\substack{k=n+1 \\ n=k-1}} = 0
 \end{equation*}
@@ -127,7 +127,10 @@ In order to solve the differential equation, the coefficient for \underline{ever
 \begin{equation*}
 \underbracket{2c_2}_{\Rightarrow c_2=0} + \sum\limits_{k=1}^{\infty} [\underbrace{(k+2)(k+1)c_{k+2} - c_{k-1}}_{\text{must equal zero}}]x^k = 0
 \end{equation*}
-Our corresponding, two-term recurrence relation is:\marginnote{\textbf{Reminder:} we should define our recurrence relation to give higher-order coefficients in terms of lower-order coefficients.}
+
+\vspace{4.0cm}
+
+\noindent Our corresponding, two-term recurrence relation is:\marginnote{\textbf{Reminder:} we should define our recurrence relation to give higher-order coefficients in terms of lower-order coefficients.}
 \begin{equation*}
 c_{k+2}=\frac{c_{k-1}}{(k+2)(k+1)}
 \end{equation*}
@@ -144,9 +147,12 @@ $k=7$ & $k=8$ \\
 $c_9 = \frac{c_6}{(9)(8)} = \frac{c_0}{(2)(3)(5)(6)(8)(9)}$ & $c_{10}=\frac{c_7}{(10)(9)} = \frac{c_1}{(3)(4)(6)(7)(9)(10)}$ \\
 \end{tabular}
 \end{table}
-Organizing the coefficients from the table into an equation we get:
 
-\vspace{1.0cm}
+\vspace{0.25cm}
+
+\noindent Organizing the coefficients from the table into an equation we get:
+
+
 
 \begin{fullwidth}
 \begin{align*}

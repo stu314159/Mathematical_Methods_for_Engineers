@@ -4,7 +4,7 @@
 The objectives of this lecture are:
 \begin{itemize}
 \item Introduce Bessel's equation and solve it using the method of Frobenius.
-\item Discuss Bessel functions of the 1\textsuperscript{st} and 2\textsuperscript{nd} Kind and use them to solve instances of Bessel's equation.
+\item Discuss Bessel functions of the 1\textsuperscript{st} and 2\textsuperscript{nd} kind and use them to solve instances of Bessel's equation.
 \end{itemize}
 
 \section{Bessel's Equation}
@@ -15,7 +15,7 @@ Bessel's equation is given in Equation \ref{eq:bessels}:
 x^{2}u^{\prime \prime} + x u^{\prime} + \left(x^2 - \nu^2\right)u = 0
 \label{eq:bessels}
 \end{equation}
-where $\nu$ is a constant.\sidenote{Let me warn you for the first time here that, if $\nu=0$, Bessel's equation bears a striking resemblance to the Cauchy-Euler equation.  Notice the difference and try not to fall into that trap.}  You should spend a moment to verify that this equation has a singular point at $x_0 = 0$ and that it is a regular singular point.  Therefore we should use the method of Frobenius to find solutions; that is what we will do.
+where $\nu$ is a constant.\sidenote{Let me warn you for the first time here that, if $\nu=0$, Bessel's equation bears a striking resemblance to the Cauchy-Euler equation.  Notice the difference and try not to fall into that trap.}  You should spend a moment to verify that this equation has a singular point at $x_0 = 0$ and that it is a regular singular point.  Therefore we should use the method of Frobenius to find solutions and that is what we shall do.
 
 \newthought{As a reminder}, we will make the following substitutions into Equation \ref{eq:bessels}:
 \begin{align*}
@@ -77,13 +77,13 @@ x^{\nu}\sum\limits_{k=2}^{\infty}\underbrace{\left[k(k+2\nu)c_k + c_{k-2}\right]
 \end{align*}
 In order to set the coefficients for $x^{\nu+k}$ to zero, we derive the following two-term recurrence:
 \begin{equation}
-c_k = \frac{-c_{k-2}}{k(k+2\nu)}, \ \ k=2,3,4,\dots
+c_k = \frac{-c_{k-2}}{k(k+2\nu)} \ , \ \ k=2,3,4,\dots
 \label{eq:bessel-recurrance}
 \end{equation}
 Since we have already determined that $c_1=0$, Equation \ref{eq:bessel-recurrance} tells us that $c_3=c_5=\cdots=0$; all the odd-numbered coefficients must be zero. To simplify the notation further, we will thus assume that $k=2n$ and re-write our recurrence as:
 \begin{align*}
-c_{2n} &= \frac{-c_{2n-2}}{2n(2n+2\nu)}, \ \ n=1,2,3,\dots \\
-&=\frac{-c_{2n-2}}{2^2n(n+\nu)}, \ \ n=1,2,3,\dots
+c_{2n} &= \frac{-c_{2n-2}}{2n(2n+2\nu)} \ , \ \ n=1,2,3,\dots \\
+&=\frac{-c_{2n-2}}{2^2n(n+\nu)} \ , \ \ n=1,2,3,\dots
 \end{align*}
 \begin{margintable}
 \begin{tabular}{|l|}
@@ -100,17 +100,17 @@ $c_6 = \frac{-c_4}{2^2 (3)(3+\nu)} = \frac{-c_0}{2^6(1)(2)(3)(1+\nu)(2+\nu)(3+\n
 \end{margintable}
 \noindent Expressions for the first few terms is given in Table \ref{tab:bessel-coef}. From this pattern you should be able to see that the general form of the coefficients is as shown in Equation \ref{eq:bessel-coef}.
 \begin{equation}
-c_{2n} = \frac{(-1)^n c_0}{2^{2n}n!(1+\nu)(2+\nu)\cdots(n+\nu)}, \ \ n=1,2,3,\dots
+c_{2n} = \frac{(-1)^n c_0}{2^{2n}n!(1+\nu)(2+\nu)\cdots(n+\nu)} \ , \ \ n=1,2,3,\dots
 \label{eq:bessel-coef}
 \end{equation}
-\newthought{It may be worthwhile} to take a step back and summarize what we have found so far.  We are solving Bessel's equation; we looked for solutions of the form $u(x)=\sum_{n=0}^{\infty} c_n x^{n+r}$.  We found that $r$ must be equal to $\pm \nu$ and, for the case $r = \nu$, derived a perfectly acceptable expression for the coefficients in this solution in Equation \ref{eq:bessel-coef}.\marginnote{We will deal with the case $r = -\nu$, albeit in a perfunctory manner, below.} What follows is a bit of, what we will call, ``mathematical grooming'' which we will do so that we can derive solutions to Bessel's equation in a form that appears elsewhere in the literature and that, indeed, you will use for the remainder of this course.
+\newthought{It may be worthwhile} to take a step back and summarize what we have found so far.  We are solving Bessel's equation; we looked for solutions of the form $u(x)=\sum_{n=0}^{\infty} c_n x^{n+r}$.  We found that $r$ must be equal to $\pm \nu$ and, for the case $r = \nu$, derived a perfectly acceptable expression for the coefficients in this solution in Equation \ref{eq:bessel-coef}.\marginnote{We will deal with the case $r = -\nu$, albeit in a perfunctory manner, below.} What follows is a bit of, what we will call, ``mathematical grooming'' which we will do so that we can derive solutions to Bessel's equation in a form that appears elsewhere in the literature and that, it turns out, you will use for the remainder of this course.
 \subsection{Gamma Function}\index{Gamma function}
 The gamma function is defined in Equation \ref{eq:gamma-def}.
 \begin{equation}
 \Gamma(x) = \int_0^{\infty} t^{x-1}e^{-t} \ dt
 \label{eq:gamma-def}
 \end{equation}
-One property of the gamma function is that $\Gamma(x+1) = x \Gamma(x)$ for any real argument $x$.\marginnote{\textbf{Note:} the gamma function is also defined when a complex argument is used, but that is beyond the scope of this class.} If $x$ is an integer, this makes the gamma function equivalent to a factorial: 
+One property of the gamma function is that $\Gamma(x+1) = x \Gamma(x)$ for any real argument $x$.\marginnote{\textbf{Note:} The gamma function is also defined when a complex argument is used, but that is beyond the scope of this class.} If $x$ is an integer, this makes the gamma function equivalent to a factorial: 
 \begin{align*}
 \Gamma(1) &= \int_0^{\infty}t^{1-1} e^{-t} \ dt \\
 &= \int_0^{\infty}e^{-t} \ dt \\

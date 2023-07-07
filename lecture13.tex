@@ -8,9 +8,9 @@ Demonstrate reducing and ODE to Bessel's Equation by:
 \item changing both the dependent and independent variables.
 \end{itemize}
 
-\newthought{If we have learned} one thing over the course of the last couple of lectures it is that using the method of Frobenius---whether we are solving Bessel's equation or some other differential equation with regular singular points---is tedious and error-prone.  The good news, at least for Bessel's equation, is that if we see that it is Bessel's equation we are trying to solve, we can simply write down the solution in terms of Bessel functions.\sidenote{Let me reiterate that this was \underline{the point} to learning how to solve Bessel's equation.}
+\newthought{If we have learned} one thing over the course of the last couple of lectures it is that using the method of Frobenius---whether we are solving Bessel's equation or some other differential equation with regular singular points---is tedious and error-prone.  The good news is that if we are trying to solve a problem and recognize that the problem is Bessel's equation of some order, we can simply write down the solution in terms of Bessel functions.\sidenote{Let me reiterate that this was \underline{the point} to learning how to solve Bessel's equation.}  Of course, if the equation is \emph{not} Bessel's equation, this ability offers little benefit.
 
-In this and the next lecture we will learn some techniques by which a broad range of differential equations can be transformed into or expressed as Bessel's equation.  The best way to learn is by doing, so we will simply start with the examples.
+In this and the next lecture we will learn some techniques by which a broad range of differential equations can be transformed into or expressed as Bessel's equation, thereby expanding the range of equations for which we may write the soluton in terms of Bessel functions.  The best way to learn is by doing, so we will simply start with the examples.
 
 \vspace{0.5cm}
 
@@ -18,6 +18,9 @@ In this and the next lecture we will learn some techniques by which a broad rang
 \begin{equation*}
 xu^{\prime \prime} + 5u^{\prime} + xu = 0
 \end{equation*}
+
+\vspace{4.0cm}
+
 We need to replace all appearances of $u$ with the equivalent in terms of $v$.\marginnote{
 Using the product rule:
 \begin{align*}
@@ -55,7 +58,7 @@ u(x) = \frac{v(x)}{x^2} = \frac{1}{x^2}\left[ c_1J_2(x) + c_2Y_2(x)\right]
 \begin{equation*}
 4xu^{\prime \prime} + 4u^{\prime} + u = 0
 \end{equation*}
-In this case we need to change occurrences of $x$ into its equivalent in terms of $z$ and we need to change all derivatives with respect to $x$ to derivatives with respect to $z$.  We are given $\sqrt{x}=z$ which is, of course, equivalent to $x = z^2$.  For the derivatives we have:\marginnote{\textbf{Note:} it is important that you purge all expressions including $x$ out of these derivatives.  For example, when computing the equivalent of $u^{\prime}$ it was essential that we make the substitution $x^{-\sfrac{1}{2}} = z^{-1}$.  When we used that result in calculating $u^{\prime \prime}$ and took derivatives with respect to $z$, any occurrence of $x$ needed to be replaced with its equivalent in $z$ or the derivative would have been wrong.}
+In this case we need to change occurrences of $x$ into its equivalent in terms of $z$ and we need to change all derivatives with respect to $x$ to derivatives with respect to $z$.  We are given $\sqrt{x}=z$ which is, of course, equivalent to $x = z^2$.  For the derivatives we have:\marginnote{\textbf{Note:} It is important that you purge all expressions including $x$ out of these derivatives.  For example, when computing the equivalent of $u^{\prime}$ it was essential that we make the substitution $x^{-\sfrac{1}{2}} = z^{-1}$.  When we used that result in calculating $u^{\prime \prime}$ and took derivatives with respect to $z$, any occurrence of $x$ needed to be replaced with its equivalent in $z$ or the derivative would have been wrong.}
 \begin{align*}
 u^{\prime} &= \frac{du}{dx} = \frac{du}{dz}\frac{dz}{dx} = u_z\frac{d}{dx}\left(x^{\sfrac{1}{2}}\right) = \frac{1}{2}\underbracket{x^{-\sfrac{1}{2}}}_{z^{-1}}u_z  \\
 &=\frac{1}{2z}u_z \\
@@ -74,7 +77,7 @@ u_{zz}-\frac{1}{z}u_z + \frac{2}{z}u_z + u &= 0, \ \ \ \text{ combine like terms
 u_{zz} + \frac{1}{z}u_z + u &= 0, \ \ \ \text{ multiply by }z^2 \\
 z^2u_{zz} + zu_{z} + \underbracket{z^2}_{\left(z^2-0^2\right)}u &= 0
 \end{align*}
-and we can immediately recognize this as Bessel's equation of order $\nu = 0$ and the general solution is:
+and we can immediately recognize this as Bessel's equation of order $\nu = 0$. The general solution is:
 \begin{align*}
 u(z) &= c_1J_0(z) + c_2Y_0(z), \ \ \ \text{ undo transformation: }z\to x \\
 u(x) &= c_1J_0(\sqrt{x}) + c_2Y_0(\sqrt{x})
@@ -97,12 +100,14 @@ and inserting into our equation gives us:
 \begin{equation*}
 x^2\left[x^{\sfrac{1}{2}}v^{\prime \prime}+x^{-\sfrac{1}{2}}v^{\prime}-\frac{1}{4}x^{-\sfrac{3}{2}}v \right] + \frac{1}{4}\left[x+\frac{3}{4}\right]x^{\sfrac{1}{2}}v = 0
 \end{equation*}
-Now we transform the independent variable $\sqrt{x} = z$, which is the same transformation that we did for the last example so we will not repeat the work.\marginnote{From the last example:
+Now we transform the independent variable $\sqrt{x} = z$, which is the same transformation that we did for the last example so we will not repeat the work.\marginnote[-1.5cm]{From the last example:
 \begin{align*}
 v^{\prime} &= \frac{1}{2z}v_z \\
 v^{\prime \prime} &= \frac{1}{4z^2}v_{zz} - \frac{1}{4z^3}v_z 
 \end{align*}
-} and we will substitute variously in the equation: $x^{\sfrac{1}{2}}=z, \ x=z^2, \ \text{and }x^2=z^4$. 
+} 
+
+\noindent Inserting these expressions for $v^{\prime}$ and $v^{\prime \prime}$ into the equation and if we also add the following identities: $x^{\sfrac{1}{2}}=z, \ x=z^2, \ \text{and }x^2=z^4$ we get: 
 
 \begin{multline*}
 z^4\left[ z\left(\frac{1}{4z^2}v_{zz}-\frac{1}{4z^3}v_z\right) + \frac{1}{z}\left(\frac{1}{2z}v_z \right)-\frac{1}{4}z^{-3}v\right]+ \cdots \\
@@ -114,9 +119,7 @@ Distributing the $z$'s and grouping terms gives us:
 \frac{z^3}{4}v_{zz}+\frac{z^2}{4}v_z + \left(\frac{z^3}{4}-\frac{z}{16} \right) &= 0, \ \text{ multiply by }\sfrac{4}{z} \\
 z^2v_{zz}+zv_z+\left(z^2-\frac{1}{4}\right)v &= 0
 \end{align*}
-which, at long last, we recognize as Bessel's equation of order $\nu = \sfrac{1}{2}$.
-
-The solution, by inspection, is:
+which, at long last, we recognize as Bessel's equation of order $\nu = \sfrac{1}{2}$.  The solution, by inspection, is:
 \begin{align*}
 v(z) &= c_1J_{\sfrac{1}{2}}(z) + c_2 Y_{\sfrac{1}{2}}(z), \ \ \text{un-transform the dependent variable.} \\
 u(z) &= \sqrt{x}\left(c_1J_{\sfrac{1}{2}}(z) + c_2 Y_{\sfrac{1}{2}}(z) \right), \ \ \text{un-transform the independent variable.} \\

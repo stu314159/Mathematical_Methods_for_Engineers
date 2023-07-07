@@ -22,11 +22,11 @@ A \emph{singular point}, $x_0$, is a point where $P(x)$ or $Q(x)$ are not analyt
 A singular point $x_0$ is said to be a \emph{regular} singular point of the differential equation if the functions $p(x)=(x-x_0)P(x)$ and $q(x)=(x-x_0)^2Q(x)$ are both analytic at $x_0$.  If a singular point is not regular, it is \emph{irregular}.
 \end{definition}
 
-\noindent\textbf{Example:} Classify the singular points of $(x^2-4)^2u^{\prime\prime}+3(x-2)u^{\prime}+5u = 0$
+\noindent\textbf{Example:} Classify the singular points of $(x^2-4)^2u^{\prime\prime}+3(x-2)u^{\prime}+5u = 0$.
 
 \vspace{0.5cm}
 
-\noindent In standard form, $P(x) = \frac{3(x-2)}{(x^2-4)^2} = \frac{(3(x-2)}{(x+2)^2(x-2)^2}$; and $Q(x) = \frac{5}{(x+2)^2(x-2)^2}$.  There are two singular points: -2 and 2.\marginnote{$x_0=2:\ \ p(x) = \frac{\cancel{(x-2)}3\cancel{(x-2)}}{(x+2)^2 \cancel{(x-2)^2}}$, so $p(x) = \frac{3}{(x+2)^2}$ which is analytic at $x=2$.
+\noindent In standard form, $P(x) = \frac{3(x-2)}{(x^2-4)^2} = \frac{3(x-2)}{(x+2)^2(x-2)^2}$; and $Q(x) = \frac{5}{(x+2)^2(x-2)^2}$.  There are two singular points: -2 and 2.\marginnote{$x_0=2:\ \ p(x) = \frac{\cancel{(x-2)}3\cancel{(x-2)}}{(x+2)^2 \cancel{(x-2)^2}}$, so $p(x) = \frac{3}{(x+2)^2}$ which is analytic at $x=2$.
 
 \vspace{0.25cm}
 
@@ -44,7 +44,11 @@ where $r$ is to be determined.  The series will converge at least on some radius
 
 \noindent\textbf{Example:} Find a series solution to: $3xu^{\prime \prime} + u^{\prime} - u = 0$.\marginnote{You should verify that this equation has a regular singularity at $x_0=0$.}
 
-\noindent Per Theorem \ref{thm:frobenius}, this equation should have a solution of the form: $u = \sum_{n=0}^{\infty}c_nx^{n+r}$ where $r$ is constant. Taking the first and second derivatives we get:\marginnote{Notice in this case that the summations for $u^{\prime}$ and $u^{\prime \prime}$ start at $n=0$ while for the power series solution method the starting index for $u^{\prime}$ was $n=1$ and the starting index for $u^{\prime \prime}$ was $n=2$.  The reason for the difference is the factor $x^r$; there most likely are not any constant terms to the series so taking derivatives does not make any terms zero.}
+\noindent Per Theorem \ref{thm:frobenius}, this equation should have a solution of the form: $u = \sum_{n=0}^{\infty}c_nx^{n+r}$ where $r$ is constant. Taking the first and second derivatives we get:\marginnote{Notice in this case that the summations for $u^{\prime}$ and $u^{\prime \prime}$ start at $n=0$ while for the power series solution method the starting index for $u^{\prime}$ was $n=1$ and the starting index for $u^{\prime \prime}$ was $n=2$.  
+
+The reason for this is that, for the power series method, the constant term of $u$, corresponding to $n=0$, becomes zero for $u^{\prime}$; so we omit that term and start with $n=1$.  Both the constant and linear term in $u$, corresponding to $n=0$ and $n=1$, are zero for $u^{\prime \prime}$.  So the series for $u^{\prime \prime}$ starts at $n=2$.
+
+The factor $x^r$ included in the method of Frobenius means there may not be any constant terms in the series at all.  Therefore there is no reason to omit terms for $u^{\prime}$ or $u^{\prime \prime}$.}
 \begin{align*}
 u^{\prime} &= \sum\limits_{n=0}^{\infty}(n+r)c_nx^{n+r-1} \\
 u^{\prime\prime} &= \sum\limits_{n=0}^{\infty}(n+r)(n+r-1)c_nx^{n+r-2}
@@ -77,9 +81,9 @@ Let us focus for a moment on the last term on the left-hand side of Equation \re
 
 \vspace{0.25cm}
 
-\noindent\textbf{Option \#2} set $r$ to a root of $3r(r-1)+r = 0$.}  We know from our experience with the power series solution process that, in order to \emph{solve} the equation, the coefficient for each power of $x$ needs to be zero.  Consider now specifically the coefficient for $x^{r-1}$.  It needs to be zero; there are a couple of ways that can happen which are shown in the margin note.
+\noindent\textbf{Option \#2} set $r$ to a root of $3r(r-1)+r = 0$.}  We know from our experience with the power series solution process that, in order to \emph{solve} the equation, the coefficient for each power of $x$ needs to be zero.  Consider now specifically the coefficient for $x^{r-1}$.  That coefficient needs to be zero and there are a couple of ways that it can be set to zero which are discussed in the margin note.
 
-\newthought{The customary procedure} for the method of Frobenius dictates that we go with option \#2.  We refer to---$3r(r-1)+r = 0$---as the \emph{indicial equation} and the roots of the indicial equation are known as the \emph{indicial roots.}\sidenote[][-0.5cm]{For second-order problems, the form of the indicial equation will be a quadratic.  The details will be different for different problems but the indicial equation will always be second-order.} 
+\newthought{The customary procedure} for the method of Frobenius dictates that we go with option \#2.  We refer to---$3r(r-1)+r = 0$---as the \emph{indicial equation} and the roots of the indicial equation are known as the \emph{indicial roots.}\sidenote[][-0.5cm]{For second-order problems, the form of the indicial equation will be a quadratic.  The other details will be different for different problems but the indicial equation will always be second-order.} 
 
 \newthought{For this case,} the indicial equation can be factored:
 \begin{align*}
@@ -108,7 +112,7 @@ c_{k+1}=\frac{c_k}{(k+1+r)(3k+3r+1)}
 We have two cases: one for $r=0$; the other for $r = \sfrac{2}{3}$.
 
 \vspace{0.25cm}
-\noindent$r=0:$
+\noindent\underline{$r=0$}:
 \begin{equation*}
 c_{k+1} = \frac{c_k}{(k+1)(3k+1)}
 \end{equation*}
@@ -132,7 +136,7 @@ u_1(x) &= x^0\left(c_0 + c_1x + c_2x^2 + c_3x^3 + \cdots \right) \\
 &= c_0\left(1+x+\frac{1}{8}x^2+\frac{1}{168}x^3+\cdots \right)
 \end{align*}
 \vspace{0.25cm}
-\noindent$r=\sfrac{2}{3}:$
+\noindent\underline{$r=\sfrac{2}{3}$}:
 \begin{align*}
 c_{k+1} &=\frac{c_k}{(k+1+\frac{2}{3})(3k+3\left(\frac{2}{3}\right)+1)}\\
 &=\frac{c_k}{\left(k+\frac{5}{3}\right)(3k+3)} \\
@@ -158,6 +162,8 @@ u_2(x) &= x^{\sfrac{2}{3}}\left(c_0 + c_1x + c_2x^2 + c_3x^3 + \cdots \right) \\
 \end{align*}
 
 \newthought{A quick inspection} of $u_1(x)$ and $u_2(x)$ should be sufficient to convince you that the solutions are linearly independent.  The general solution to the differential equation comprises a linear combination of $u_1(x)$ and $u_2(x)$.
+
+\vspace{5.0cm}
 
 \section{Indicial Equation}
 It turns out that we could have determined the indicial roots before set out upon the method of Frobenius.  Recall that we use the method of Frobenius on differential equations with regular singular points; also recall that a regular singular point is one where $p(x)=xP(x)$ and $q(x)=x^2Q(x)$ are both analytic.  If $p(x)$ and $q(x)$ are analytic, that means that they can be represented as a convergent power series.  Suppose we did that, and expressed $p(x)$ and $q(x)$ as a power series; if we did they could be written as:
@@ -222,5 +228,4 @@ u_2(x) &= u_1(x) \ln{x} + \sum\limits_{n=0}^{\infty}b_nx^{n+r_2}, \ \ b_0 \ne 0
 \item The indicial equation could, in principle, have complex roots.  We will avoid those cases for this class.
 
 \item If $x_0$ is an irregular singular point, the Frobenius theorem does not apply and we may not be able to find any solution to the differential equation using this method.
-\end{itemize}
-For ordinary differential equations that fall into the last two categories, do not fret: numerical methods are always available that are more than adequate for finding solutions to the equations.
+\end{itemize}\marginnote[-2.0cm]{For ordinary differential equations that fall into the last two categories, do not fret: numerical methods are always available that are more than adequate for finding solutions to the equations.}

@@ -16,16 +16,18 @@ a_nx^n\frac{d^n u}{dx^n}+a_{n-1}x^{n-1}\frac{d^{n-1}u}{dx^{n-1}}+\cdots+a_1x\fra
 \end{equation}
 is called a Cauchy-Euler equation.
 
-\newthought{Note the relationship} between the exponent of $x$ in the coefficients and the order of the differential operators.  This correspondence between the decreasing power of $x$ in the coefficient and the decreasing order of the differential operator is characteristic of this type of equation and is the way you should recognize it.\marginnote[-2.0cm]{It is the corresponding change in power/order that matters.  $a\frac{d^2u}{dx^2}+\frac{1}{x^2}u=0$ is also a Cauchy-Euler equation since the power of $x$ in the coefficient goes from 0 to -2 while the order of the differential operator goes from 2\textsuperscript{nd} to 0.} 
+\newthought{Take note of} the relationship between the exponent of $x$ in the coefficients and the order of the differential operators.  This correspondence between the decreasing power of $x$ in the coefficient and the decreasing order of the differential operator is characteristic of this type of equation and is the way you should recognize it.\marginnote[-2.0cm]{It is the corresponding \emph{change} in power/order that matters.  The equation: $a\frac{d^2u}{dx^2}+\frac{1}{x^2}u=0$ is also a Cauchy-Euler equation since the power of $x$ in the coefficient goes from 0 to -2 while the order of the differential operator goes from 2\textsuperscript{nd} to 0.} 
 
-\newthought{Note that} this equation is \emph{linear}; if $g(x)=0$ it is homogeneous, otherwise it is non-homogeneous.  For this lecture we will focus our attention on the homogeneous, 2\textsuperscript{nd}-order Cauchy-Euler equation:
+Also observe that this equation is \emph{linear}; if $g(x)=0$ it is homogeneous, otherwise it is non-homogeneous.  For this lecture we will focus our attention on the homogeneous, 2\textsuperscript{nd}-order Cauchy-Euler equation:
 \begin{equation}
 ax^2\frac{d^2u}{dx^2}+bx\frac{du}{dx}+cu=0
 \end{equation}
 
-\newthought{Note that} the coefficient for the highest order derivative is 0 at $x=0$; consequently we will restrict the interval of interest for these equations to $x \in \left(0,\infty\right)$.
+Lastly you should be alert to the fact that the coefficient for the highest order derivative is 0 at $x=0$; consequently we will restrict the interval of interest for these equations to $x \in \left(0,\infty\right)$.
 
-\newthought{The basic strategy} in solving these equations is to try a solution in the form $u(x)=x^m$.  When we substitute this solution into the equation we get:
+\vspace{4.0cm}
+
+\newthought{The basic strategy} in solving these equations is to try a solution in the form $u(x)=x^m$.  When we substitute this solution into the equation we get:\marginnote{If $u(x) = x^m$ then, of course, $u^{\prime} = mx^{(m-1)}$ and $u^{\prime \prime} = m(m-1)x^{m-2}$.}
 \begin{align*}
 am(m-1)x^2x^{m-2}+bmxx^{m-1}+cx^m &=0 \\
 x^m\left[am(m-1)+bm+c \right]&=0
@@ -35,19 +37,19 @@ That last part in the brackets is referred to as the ``auxiliary equation'':
 am^2+(b-a)m+c=0
 \label{eq:CE-aux}
 \end{equation}
-We will look for values of $m$ that satisfy this quadratic equation; that will be the exponent for our solution.
+We will look for values of $m$ that satisfy this quadratic equation; those values will be the exponents for our solutions.
 
 \newthought{As is the case} for quadratic equation, there are three possible outcomes: 
 
 \begin{enumerate}
-\item \textbf{Distinct Real Roots.} In this case $m_1 \ne m_2$ and the general solution is of the form
+\item \textbf{Distinct Real Roots.} In this case $m_1 \ne m_2$ and the general solution is of the form:
 \begin{equation}
 u(x)=c_1x^{m_1}+c_2x^{m_2}
 \end{equation}
 
 \vspace{0.5cm}
 
-\noindent\textbf{Example:} find the general solution for $x^2\frac{d^2u}{dx^2}-2x\frac{du}{dx}-4u=0$
+\noindent\textbf{Example:} Find the general solution for $x^2\frac{d^2u}{dx^2}-2x\frac{du}{dx}-4u=0$.
 
 \vspace{0.25cm}
 
@@ -56,15 +58,19 @@ u(x)=c_1x^{m_1}+c_2x^{m_2}
 m^2-3m-4 &= 0 \\
 (m-4)(m+1) &=0
 \end{align*}
-By inspection the roots are $m_1=4$ and $m_2=-1$.  The general solution is $u(x)=c_1x^4+c_2x^{-1}$
+By inspection the roots are $m_1=4$ and $m_2=-1$.  The general solution is $u(x)=c_1x^4+c_2x^{-1}$.
 
 \vspace{0.5cm}
 
-\item \textbf{Real Repeated Roots.} In this case, $m_1 = m_2$.  We have one solution, $u_1(x)=c_1x^{m_1}$; clearly we need to take some kind of action if we hope to get another linearly independent solution.  It can be shown that if we form the second solution by multiplying the first solution by $\ln{x}$---$u_2(x)=\ln{(x)}u_1(x)$---then $u_2(x)$ will satisfy the governing equation and also be linearly independent from $u_1(x)$.\marginnote{The first one or two times you solve these problems, you should verify both of those assertions.}
+\item \textbf{Real Repeated Roots.} In this case, $m_1 = m_2$.  We have one solution, $u_1(x)=c_1x^{m_1}$.  Clearly we need to take some kind of action if we hope to get another linearly independent solution.  It can be shown that if we form the second solution by multiplying the first solution by $\ln{x}$---$u_2(x)=\ln{(x)}u_1(x)$---then $u_2(x)$ will satisfy the governing equation and also be linearly independent from $u_1(x)$.\marginnote[-1.5cm]{The first one or two times you solve these problems, you should verify both of those assertions. Namely that: 
+\begin{enumerate}
+\item $u_2(x) = \ln{(x)}u_1(x)$ is a solution to the equation; and
+\item $u_2(x)$ is linearly independent from $u_1(x)$.
+\end{enumerate}}
 
 \vspace{0.5cm}
 
-\noindent\textbf{Example:} find the general solution for $4x^2 \frac{d^2u}{dx^2}+8x\frac{du}{dx}+u=0$.
+\noindent\textbf{Example:} Find the general solution for $4x^2 \frac{d^2u}{dx^2}+8x\frac{du}{dx}+u=0$.
 
 \vspace{0.25cm}
 
@@ -81,7 +87,7 @@ u(x) = x^{\alpha}\left[c_1 \cos{(\beta \ln{x})} + c_2 \sin{(\beta \ln{x})} \righ
 
 \vspace{0.5cm}
 
-\noindent\textbf{Example:} Solve: $4x^2 u^{\prime \prime} +17u=0, \ \ u(1)=-1, \ u^{\prime}(1)=-1/2$
+\noindent\textbf{Example:} Solve: $4x^2 u^{\prime \prime} +17u=0, \ \ u(1)=-1, \ u^{\prime}(1)=-1/2$.
 
 \vspace{0.25cm}
 
@@ -120,10 +126,10 @@ So the solution is: $u(x) = -x^{1/2}\cos{(2 \ln{x})}$.
 \end{enumerate}
 
 \section{Non-homogeneous Cauchy-Euler Equations}
-Sadly, the Method of Undetermined Coefficients will not work with Cauchy-Euler equations; a limitation of that method is that the coefficients need to be constant. Interested students can investigate the method called \emph{variation of parameters} that can be used to address this problem analytically.  Otherwise, we will plan to use numerical methods to solve non-homogeneous problems of this type.
+Sadly, the method of undetermined coefficients will not work with Cauchy-Euler equations, a limitation of that method being that the coefficients need to be constant. Interested students can investigate the method called \emph{variation of parameters} that can be used to address this problem analytically.  Otherwise, we will plan to use numerical methods to solve non-homogeneous problems of this type.
 
 \section{Derivation of the Solution to Cauchy-Euler Equations}
-It would be hard not to notice the similarity in the solution methods of Cauchy-Euler equations and constant coefficient linear equations.  This is not a coincidence.  In this section I want to briefly show you that, through a change of variables, Cauchy-Euler equations are, in some sense, equivalent to constant coefficient equations.
+It would be hard not to notice the similarity in the solution methods of Cauchy-Euler equations and constant coefficient linear equations.  This is not a coincidence.  In this section I want to briefly show you that, through a change of variables, Cauchy-Euler equations are, in some sense, equivalent to constant coefficient linear equations.
 
 \subsection{Change of Independent Variable}
 What we will do, is change the independent variable from $x$ to $e^t$.\sidenote{Think of this as ``stretching'' the $x$-axis.}  If $x = e^t$, that means that $t = \ln{x}$ and $\frac{dt}{dx} = \frac{1}{x} = e^{-t}$.
@@ -132,7 +138,7 @@ If we consider, again, the 2\textsuperscript{nd}-order Cauchy-Euler equation,
 \begin{equation*}
 ax^2\frac{d^2u}{dx^2}+bx\frac{du}{dx}+cu = 0
 \end{equation*}
-every appearance of $x$ needs to be converted into its equivalent in terms of $t$ and every derivative with respect to $x$ needs to be converted into derivatives with respect to $t$.
+every appearance of $x$ needs to be converted into its equivalent in terms of $t$ and every derivative with respect to $x$ needs to be converted into a derivative with respect to $t$.
 
 It's easy enough to replace $x$ with $e^t$; converting the derivatives takes a bit more work.  We will use the chain rule as shown below:
 \begin{align*}
