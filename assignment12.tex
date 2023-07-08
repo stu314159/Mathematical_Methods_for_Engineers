@@ -1,0 +1,77 @@
+\chapter{Assignment \#12}
+\label{ch:ass12}
+\begin{fullwidth}
+
+\begin{enumerate}
+
+\item Find the steady-state temperature $u(r,z)$ in a cylinder if the boundary conditions are:
+\begin{align*}
+u(2,z) &= 0, \ \ 0 < z < 4 \\
+u(r,0) &= u_0, \ \ 0 < r < 2
+\end{align*}
+
+\noindent\textbf{Hint:} For the differential equation $G_{zz} - \alpha^2 G = 0$, the solution for $\alpha > 0$ can be expressed as $G(z) = c_1 \cosh{\alpha z} + c_2\sinh{\alpha z}$, but it can also be expressed as: $G(z) = c_1 \cosh{[\alpha(k-z)]} + c_2 \sinh{[\alpha(k-z)]}$ for any constant $k$---a fact that you should confirm for yoursel.  This is equivalent to shifting the location of the $z$-origin by $k$ units.  For this problem, it is very useful to use the latter form with $k=4$.
+
+
+\vspace{4.0cm}
+
+
+\item Find the steady-state temperature $u(r,z)$ in a finite cylinder defined by $0 \le r \le 1, \ \ 0 \le z \le 1$ if the boundary conditions are given as:
+\begin{align*}
+u(1,z) &= z, \ \ 0 < z < 1 \\
+u_z(r,0) &= 0, \ \ 0 < r < 1 \\
+u_z(r,1) &= 0, \ \ 0 < r < 1
+\end{align*}
+
+
+\vspace{5.0cm}
+
+\item The temperature in a circular plate of radius $c$ is determined from the boundary value problem:
+\begin{align*}
+&\alpha^2\left(\frac{\partial^2 u}{\partial r^2} + \frac{1}{r}\frac{\partial u}{\partial r} \right) = \frac{\partial u}{\partial t}, \ \ 0 < r < c, \ t>0 \\
+&u(c,t) = 0, \ \ t> 0 \\
+&u(r,0) = f(r), \ \ 0<r<c
+\end{align*}
+
+\begin{enumerate}
+\item Solve for $u(r,t)$.
+
+%\vspace{0.5cm}
+
+\item Implement your solution in MATLAB using the following parameter values: $\alpha^2 = 0.1, \ c=2, \ $ and $f(r)$ defined as follows:
+\begin{equation*}
+f(r) = 
+\begin{cases}
+1+r, & 0 < r \le 1 \\
+0, & 1 < r \le 2
+\end{cases}
+\end{equation*}
+and carry out the following tasks:
+\begin{enumerate}
+\item Plot $u(r,0)$ using $N=15$ modes.
+\item State the value to which $u(1,0)$ converges and explain why.  
+\item Briefly describe what the final steady-state solution looks like.
+\end{enumerate}
+
+\end{enumerate}
+
+\vspace{2.0cm}
+
+\item A circular plate is a composite of two different materials in the form of concentric circles.  The temperature $u(r,t)$ in the plate is determined from the boundary value problem:
+
+\begin{table}[h!]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial r^2} + \frac{1}{r}\frac{\partial u}{\partial r} = \frac{\partial u}{\partial t}, \ \ 0<r<2, \ \ t>0$ \\
+& \\
+$\substack{\text{Boundary} \\ \text{Condition}}: $& $u(2,t)=100, \ \ t>0$\\
+& \\
+$\substack{\text{Initial} \\ \text{Condition}}: $ & $u(r,0) = \begin{cases} 200, & 0<r<1 \\ 100, & 1 < r < 2  \end{cases} $ \\
+\end{tabular}
+\end{table}
+Use the substitution: $u(r,t) = v(r,t) + \psi(r)$ to solve the boundary value problem. 
+
+
+\end{enumerate}
+
+\end{fullwidth}
+
