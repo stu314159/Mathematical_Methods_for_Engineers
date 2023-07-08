@@ -33,7 +33,7 @@ To get the three summations in phase we need to strip off the first terms in the
 \begin{equation*}
 2c_2 - c_0 + \underbrace{\sum\limits_{n=3}^{\infty}n(n-1)c_nx^{n-2}}_{\substack{k=n-2 \\ n=k+2}} - \underbrace{\sum\limits_{n=1}^{\infty} c_nx^n}_{\substack{k=n \\ n=k}} -\underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n+1}}_{\substack{k=n+1 \\ n=k-1}} = 0
 \end{equation*}
-Substituting within each summation and combining the terms gives us:
+Substituting within each summation and combining terms gives us:
 \begin{equation*}
 (2c_2-c_0)x^0 + \sum\limits_{k=1}^{\infty}\left[(k+2)(k+1)c_{k+2} - c_k - c_{k-1} \right]x^k = 0
 \end{equation*}
@@ -41,7 +41,7 @@ As usual, in order to satisfy this equation, the coefficients for each power of 
 \begin{equation*}
 c_{k+2} = \frac{c_k + c_{k-1}}{(k+2)(k+1)}
 \end{equation*}
-We will help manage the complexity by adopting the following strategy:
+To help manage the complexity we will adopt the following strategy:
 \begin{itemize}
 \item Case 1: Arbitrarily set $c_0 \ne 0$, set $c_1 = 0$ and derive a solution.
 \item Case 2: Arbitrarily set $c_0 = 0$, set $c_1 \ne 0$ and derive a second solution.
