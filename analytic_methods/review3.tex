@@ -1,0 +1,64 @@
+\chapter{Review Problems \#3}
+\label{ch:rev3}
+\begin{fullwidth}
+\section{List of topics}
+
+\begin{enumerate}
+\item Boundary Value Problems in Rectangular Coordinates.
+\begin{enumerate}
+\item Laplace's Equation
+\item Non-homogeneous Boundary Value Problem
+\item Orthogonal Series Expansions
+\item Fourier Series in Two Variables
+\end{enumerate}
+\item Boundary Value Problems in Polar, Cylindrical and Spherical Coordinates.
+\begin{enumerate}
+\item Problems in Polar Coordinates
+\item Problems in Cylindrical Coordinates
+\item The Neutron Diffusion Equation in Cylindrical Coordinates
+\item Problems in Spherical Coordinates
+\end{enumerate}
+
+\end{enumerate}
+
+\section{Review Problems}
+
+\begin{enumerate}
+\item Solve the following boundary value problem:
+\begin{table}[h!]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial x^2} = \frac{\partial u}{\partial t}, \ \ 0<x<1, \ \ t>0$ \\
+& \\
+$\substack{\text{Boundary} \\ \text{Condition}}: $& $u(0,t)=u_0, \ \ u_{x}(1,t) = -u(1,t)+u_1, \ \ t>0 $\\
+& \\
+$\substack{\text{Initial} \\ \text{Condition}}: $ & $u(x,0) = u_0, \ \ 0 < x < 1$ \\
+\end{tabular}
+\end{table}
+
+\noindent where $u_0$ and $u_1$ are constants.
+
+
+\vspace{1.0cm}
+
+\item Solve the boundary value problem below based on Laplace's equation:
+\begin{equation*}
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} = 0, \ \ 0<x<a, \ \ 0 < y<b, \ \ 0 < z < c 
+\end{equation*}
+for the unit cube $(a = b = c = 1)$ with top $(z=1)$ and bottom $(z = 0)$ kept at constant temperatures $u_0$ and $-u_0$ respectively, and the remaining temperatures kept at $u=0$.
+
+\vspace{2.0cm}
+
+\item Find the steady-state temperature $u(r,\theta)$ in a semicircular plate of radius 1 if the boundary conditions are given as:
+\begin{align*}
+u(1,\theta) &= u_0(\pi \theta - \theta^2), \  \ 0 < \theta < \pi \\
+u(r,0) &= 0, \ \ u(r,\pi) = 0, \ \ 0 < r < 1
+\end{align*}
+
+\vspace{2.0cm}
+
+\item Find the steady-state temperature $u(r,z)$ in a cylinder if the lateral side $(r=2)$ is kept at temperature $u=0$; the top $(z=4)$ is kept at $u=50$, and the base, $(z=0)$ is insulated.
+
+\end{enumerate}
+
+
+\end{fullwidth}
