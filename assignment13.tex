@@ -1,0 +1,41 @@
+\chapter{Assignment \#12}
+\label{ch:ass12}
+\begin{fullwidth}
+
+\begin{enumerate}
+
+\item Find the steady-state temperature $u(r,\theta)$ in a sphere described by the boundary-value problem below.
+
+\begin{table}[h!]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $u_{rr} + \frac{2}{r}u_r + \frac{1}{r^2}u_{\theta \theta} + \frac{\cot{\theta}}{r^2}u_{\theta} = 0, \ \ 0<r<c, \ \ 0<\theta < \pi$ \\
+& \\
+$\substack{\text{Boundary} \\ \text{Condition}}: $& $u(c,\theta)= \begin{cases} 50, & 0 < \theta < \sfrac{\pi}{2} \\ 0, & \sfrac{\pi}{2} < \theta < \pi \end{cases} $\\
+\end{tabular}
+\end{table}
+
+\noindent This problem was solved in Lecture 34. You need not repeat the analysis except to the extent that you want to remind yourself of the details.  Implement the solution in MATLAB where the radius of the sphere is $c=1$.  Use MATLAB to print out enough coefficients of the first four non-zero terms to the series solution.
+
+
+\vspace{2.0cm}
+
+\item Solve the boundary-value problem involving spherical vibrations:
+\begin{table}
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\alpha^2\left(\frac{\partial^2 u}{\partial r^2} + \frac{2}{r}\frac{\partial u}{\partial r}\right) = \frac{\partial^2 u}{\partial t^2}, \ \ 0<r<c, \ t>0$  \\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $& $u(c,t)=0, \ \ t>0$\\
+& \\
+$\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(r,0) = f(r), \ \ u_{t}(r,0) = g(r), \ \ 0<r<c $ \\
+\end{tabular}
+\end{table}
+
+\vspace{0.25cm}
+
+\noindent\textbf{Hint:} Write the left side of the partial differential equation as $\alpha^2\frac{1}{r}\frac{\partial^2}{\partial r^2}(ru)$.  Let $v(r,t) = ru(r,t)$.
+
+\end{enumerate}
+
+
+
+\end{fullwidth}
