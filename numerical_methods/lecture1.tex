@@ -1,0 +1,79 @@
+\chapter{Lecture 1 - Course Introduction and Numeric Preliminaries}
+\label{ch:lec1n}
+\section{Objectives}
+The objectives of this lecture are:
+\begin{itemize}
+\item Introduce the course objectives.
+\item Describe how numbers are represented on computers.
+\item Outline sources of errors in numerical methods relative to analytical methods.
+\end{itemize}
+
+\section{Course Introduction}
+
+This course is intended to be an introduction and overview of numerical methods.\marginnote[-0.5cm]{\textbf{Question:} What are numerical methods? 
+
+\vspace{0.25cm}
+
+\textbf{Answer:} Numerical methods (or numerical analysis) is the study of \emph{algorithms} for the problems of \emph{continuous} mathematics.}  The target audience comprises undergraduate students of engineering who have already taken a full sequence of calculus and differential equations courses.  Some students may also have taken the analytical methods course described earlier in this book.  
+
+\subsection{Objectives}
+\newthought{The objectives} for this course are as follows:
+
+\begin{enumerate}
+\item Students will understand the fundamentals of numerical methods with an emphasis on the most essential algorithms and methods.
+
+\item Students will have enhanced their scientific computing skills and have developed proficiency in using the MATLAB environment to implement algorithms and have learned to critically evaluate their results.
+
+\item Students will understand the fundamentals of the finite element method (FEM) and have attained an introductory-level proficiency in using the COMSOL software package to carry out a multi-physics analysis of a relevant physical model.
+
+\item Students will have developed the ability to formulate a problem of interest, apply numerical methods and computational tools to analyze the problem and communicate pertinent results to others.
+\end{enumerate}
+
+
+\subsection{Course Topics}
+The specific topics we will cover include:
+
+\begin{enumerate}
+\item Methods for solving non-linear equations
+\begin{enumerate}
+\item Bisection method
+\item Newton's method
+\item Secant method
+
+\end{enumerate}
+\item Methods for solving linear equations
+\begin{enumerate}
+\item Gauss elimination and related methods like LU- and Cholesky factorization
+\item Iterative solution methods for sparse linear systems of equations\sidenote{We will also discuss some preconditioners.}
+\end{enumerate}
+\item Curve fitting
+\begin{enumerate}
+\item Least squares algorithms
+\item Curve fitting with Lagrange polynomials
+\end{enumerate}
+\item Numeric differentiation
+\begin{enumerate}
+\item Finite difference methods
+\item Lagrange polynomials
+\end{enumerate}
+\item Numeric integration
+\begin{enumerate}
+\item A variety of Newton-Cotes methods
+\item Gauss Quadrature
+\end{enumerate}
+
+\item Initial- and Boundary-value problems \sidenote{This section will prominently include MATLAB built-in methods; particularly for boundary value problems.}
+\begin{enumerate}
+\item Runge-Kutta methods for initial value problems\sidenote{We will not extensively cover either explicit or implicit multi-step methods, giving preference to the wide variety of very effective RK methods.}
+\item Shooting method for boundary value problems
+\item Finite element method\sidenote{There will be a simple MATLAB demonstration with application to one-dimensional boundary value problems.  The majority of FEM coverage will be related to the use of COMSOL.}
+\end{enumerate}
+
+\end{enumerate}  
+
+\vspace{4.0cm}
+
+\section{Representation of Numbers on a Computer}
+
+Every engineer who uses computational tools in their work should have a basic understanding of how numbers are represented on a computer.
+
