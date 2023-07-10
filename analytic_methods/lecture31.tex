@@ -86,7 +86,7 @@ F(r) &= c_1J_0(\nu r) + c_2 Y_0(\nu r) \\
 G(t) &= c_3\cos(\nu \alpha t) + c_4 \sin(\nu \alpha t)
 \end{align*}
 
-\newthought{In the $r$-coordinate} we have only one explicit boundary condition, but there is another condition of which we must always be mindful, particularly in polar coordinates when $r=0$ is part of the domain; that is that $\lim_{r \to 0} u(r,\theta) < \infty$.  Once again, drawing upon our knowledge of Bessel functions, we know that $Y_0(r)$ diverges to negative infinity as $r$ goes to zero; thus the radial equation simplifies to:
+\newthought{In the $r$-coordinate} we have only one explicit boundary condition, but there is another condition of which we must always be mindful, particularly in polar coordinates when $r=0$ is part of the domain; that is that $\lim_{r \to 0} u(r,\theta) < \infty$.  Once again, drawing upon our knowledge of Bessel functions, we know that $Y_0(r)$ diverges to negative infinity as $r$ goes to zero.  Thus we must set $c_2 = 0$ and the radial equation simplifies to:
 \begin{equation*}
 F(r) = c_1J_0(\nu r)
 \end{equation*} 
@@ -237,7 +237,7 @@ end
 \end{lstlisting}
 
 \marginnote[-4.0cm]{
-\ref{lst:ann31-1-2} Use of the argument \lstinline[style=myMatlab]{'facecolor'} and value \lstinline[style=myMatlab]{'none'} results in a plot resembling a wire mesh.
+\ref{lst:ann31-1-2} Use the argument \lstinline[style=myMatlab]{'facecolor'} and value \lstinline[style=myMatlab]{'none'} to get a plot resembling a wire mesh.
 
 \vspace{1.0cm}
 

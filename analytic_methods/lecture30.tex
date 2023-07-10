@@ -30,7 +30,7 @@ $r^2 = x^2 + y^2$ & & $x = r \cos{\theta} $ \\
  $\theta = \tan^{-1}{(\sfrac{y}{x})}$ & & $y = r \sin{\theta}$\\
  \end{tabular}
 \end{margintable}
-So to express the Laplacian in polar coordinates, we need to express:
+Therefore, to express the Laplacian in polar coordinates, we need to express:
 \begin{equation*}
 u_{xx} + u_{yy} = 0
 \end{equation*}
@@ -99,7 +99,7 @@ u_{xx} &= \left(u_{x}\right)_{x} \\
 &= \left(u_x\right)_r r_x + \left(u_x\right)_{\theta} \theta_x \\
 &= \left(u_r \cos{\theta} - u_{\theta}\frac{\sin{\theta}}{r} \right)_r \cos{\theta} - \left( u_r \cos{\theta} - u_{\theta}\frac{\sin{\theta}}{r}\right)_{\theta}\frac{\sin{\theta}}{r}
 \end{align*}
-We would then start all over again to find $u_y$ and $u_{yy}$.  Balancing mathematical tedium with conceptual understanding, we will omit these details.  Readers are encouraged to finish the job.\sidenote{Like some other hazing rituals, deriving the Laplacian operator for polar coordinates has some (small) redeeming benefits.}
+We would then start all over again to find $u_y$ and $u_{yy}$.  Balancing mathematical tedium with conceptual understanding, we will omit these details.  Readers are encouraged to finish the job.\sidenote{Unlike some other hazing rituals, deriving the Laplacian operator for polar coordinates has some (small) redeeming benefits.}
 
 \newthought{After much tedious} work and simplification you can arrive at the expression of the Laplacian in polar coordinates given in Equation \ref{eq:laplacian-polar}.
 \begin{equation}
@@ -234,7 +234,7 @@ On the left, we have an infinite series; on the right, we have a function that w
 \begin{equation*}
 \left\{1, \cos{\theta}, \cos{2 \theta}, \cos{3 \theta}, \dots, \sin{\theta}, \sin{2 \theta}, \sin{3 \theta},\dots \right\}
 \end{equation*}
-This set of functions is orthogonal on the domain $\theta \in [0,2\pi]$ with respect to weight function $p(x)=1$.  Carrying this out explicitly for the constant term:\sidenote{i.e. we multiply both sides by a constant---1---and integrate.  It does not matter what the value of the constant is, it is still orthogonal to all of the other eigenfunctions.}
+This set of functions is orthogonal on the domain $\theta \in [0,2\pi]$ with respect to weight function $p(x)=1$.  Carrying this out explicitly for the constant term:\sidenote{i.e. We multiply both sides by a constant---1---and integrate.  It does not matter what the value of the constant is, it is still orthogonal to all of the other eigenfunctions.}
 \begin{multline*}
 \int_0^{2\pi} a_0 (1) \ d\theta + \cdots \\ \sum\limits_{n=1}^{\infty} c^n \left(\cancelto{0}{ \int_0^{2\pi} a_n \cos{n \theta}(1) \ d\theta} + \cancelto{0}{\int_{0}^{2\pi} b_n \sin{n \theta}(1) \ d\theta} \right) = \int_0^{2 \pi} f(\theta) (1) \ d\theta 
 \end{multline*}
