@@ -10,7 +10,7 @@ The objectives of this lecture are:
 
 \section{Solution of an IVP using Power Series}
 
-\newthought{Consider the following} IVP:\marginnote{As before, we will assume $u = \sum\limits_{n=0}^{\infty}c_n x^n$.  This means that $u^{\prime} = \sum\limits_{n=1}^\infty n c_n x^{n-1}$, and $u^{\prime \prime} = \sum\limits_{n=2}^{\infty} n(n-1)c_nx^{n-2}$.}
+Consider the following IVP:\marginnote{As before, we will assume $u = \sum\limits_{n=0}^{\infty}c_n x^n$.  This means that $u^{\prime} = \sum\limits_{n=1}^\infty n c_n x^{n-1}$, and $u^{\prime \prime} = \sum\limits_{n=2}^{\infty} n(n-1)c_nx^{n-2}$.}
 \begin{align*}
 \text{Governing Equation:   }& u^{\prime \prime}-(1+x)u = 0, \ \ u\in[0,5]\\
 \text{Initial Conditions:   }& u(0) = 5, \ \ u^{\prime}(0) = 1
@@ -46,7 +46,7 @@ To help manage the complexity we will adopt the following strategy:
 \item Case 1: Arbitrarily set $c_0 \ne 0$, set $c_1 = 0$ and derive a solution.
 \item Case 2: Arbitrarily set $c_0 = 0$, set $c_1 \ne 0$ and derive a second solution.
 \end{itemize}
-\marginnote[-1.75cm]{These two solutions are sure to be linearly independent since the first will not have a linear term (proportional to $x$) and the second equation will not have a constant term (proportional to $1$).}
+\marginnote[-1.75cm]{These two solutions will be linearly independent since the first will not have a linear term (proportional to $x$) and the second equation will not have a constant term (proportional to $1$).}
 
 \vspace{0.5cm}
 
@@ -62,7 +62,7 @@ $c_3 = \frac{c_0 + \cancelto{0}{c_1}}{(2)(3)} = \frac{c_0}{6}$ & $c_4 = \frac{\c
 \multicolumn{2}{l}{$c_5 = \frac{c_2 + c_3}{(4)(5)} = \frac{c_0/2 + c_0/6}{20} = \frac{c_0}{30}$} \\
 \end{tabular}
 \end{margintable}
-The solution we thus derive is shown below:
+\noindent The solution we thus derive is shown below:
 \begin{align*}
 u_1 &= c_0 + c_1x + c_2x^2 + c_3x^3 + c_4x^4 + c_5x^5 + \cdots \\
 u_1 &= c_0\left(1 + \frac{\cancelto{0}{c_1}}{c_0}x + \frac{c_2}{c_0}x^2 + \frac{c_3}{c_0}x^3 + \frac{c_4}{c_0}x^4 + \frac{c_5}{c_0}x^5 + \cdots \right) \\
@@ -74,7 +74,6 @@ u_1 &= c_0\left(1 + \frac{1}{2}x^2 + \frac{1}{6}x^3 + \frac{1}{24}x^4 + \frac{1}
 \noindent\textbf{Case 2: $c_0 = 0, \ \ c_1 \ne 0$}
 
 \noindent Since $c_1 = 0$ and $c_2 = \frac{c_0}{2}$, $c_2 = 0$.  The coefficients derived for the first few values of $k$ are shown in the table.
-
 \begin{margintable}
 \begin{tabular}{l | l}
 \multicolumn{2}{l}{\textbf{Case 2:}} \\
@@ -109,9 +108,9 @@ u(x)= 5\left(1 + \frac{1}{2}x^2 + \frac{1}{6}x^3 + \frac{1}{24}x^4 + \frac{1}{30
 \section{Generating and Plotting Solutions with MATLAB}
 The point of doing all of this math is to gain insight.  In many cases systems of interest are subject to physical laws that are expressed in the form of differential equations; we solve these differential equations to better understand how the systems will perform.  
 
-\newthought{There are two problems} that I hope to address with this section.  
+\newthought{There are two problems} that I hope to address with this section:  
 \begin{enumerate}
-\item It is both tedious and error-prone to generate the coefficients for the series solution.  We worked hard to construct a small portion of the power series solutions and we hope that we did it without any errors.  With a modest amount of programming, we will construct a script that can build a series solution with as many terms as we would like.  With conscientious debugging we can be sure that, floating point round-off errors aside, the calculations are done quickly and correctly.  
+\item It is both tedious and error-prone to generate the coefficients for the series solution.  We worked hard to construct a small portion of the power series solutions and we hope that we did it without any errors.  With a modest amount of programming effort, we will construct a script that can build a series solution with as many terms as we would like.  With conscientious debugging we can be sure that, floating point round-off errors aside, the calculations are done quickly and correctly.  
 
 \item We may gain considerably more insight from the solution if we can create a plot.  If the plot can easily be made with the same computing tools used to generate the solution, we can get this insight with very little extra work.
 \end{enumerate}
@@ -122,13 +121,13 @@ clear
 clc
 close 'all'
 \end{lstlisting}
-Next we will specify the order of the solution we will construct, and thus the number of coefficients that we need to compute for each solution and construct arrays to store the coefficients.\marginnote{We will use two arrays to store the coefficients; one for $u_1(x)$ and the other for $u_2(x)$.  Pre-allocation in this way is done in accordance with MATLAB Style Rule \# 7, and the comments are in accordance with Rule \# 2. Use of short but meaningful variable names is prescribed in Rule \#3.}
+Next we will specify the number of terms that we will retain from the infinite series and allocate arrays in which the coefficients will be stored.\marginnote{We will use two arrays to store the coefficients; one for $u_1(x)$ and the other for $u_2(x)$.  Pre-allocation in this way is done in accordance with MATLAB Style Rule \# 7, and the comments are in accordance with Rule \# 2. Use of short but meaningful variable names is prescribed in Rule \#3.}
 \begin{lstlisting}[name=lec9_ex1,style=myMatlab]
 n=25;
 C1 = nan(1,n); % coefficients for u1(x)
 C2 = nan(1,n); % coefficients for u2(x)
 \end{lstlisting}
-Recall that for $u_1(x)$ we applied our strategy for ``case 1'' in which we assumed that $c_0 \ne 0$ and $c_1 = 0$.  This implied that $c_2 = c_1/2$ while the recurrence relation was used for all of the other coefficients.  When we applied the initial conditions we found that $c_0=5$ for $u_1(x)$.  The code snippet below accomplishes these tasks.\marginnote{Note how each line of MATLAB in this listing is terminated with a semicolon.  This is to suppress the output to the command line that would otherwise happen each time we make an assignment to a variable.  While this output might be helpful during debugging, during any other time it is distracting (drowning out other, more useful output) and slows code execution.  The extensive, non-readable output that would result from omitting the semicolons is a violation of MATLAB Style Rule \#4.}
+Recall that for $u_1(x)$ we applied our strategy for ``case 1'' in which we assumed that $c_0 \ne 0$ and $c_1 = 0$.  This implied that $c_2 = c_1/2$ while the recurrence relation was used for all of the other coefficients.  When we applied the initial conditions we found that $c_0=5$ for $u_1(x)$.  The code snippet below accomplishes these tasks.\marginnote{Note how each line of MATLAB in this listing is terminated with a semicolon.  This is to suppress the output to the command line that would otherwise happen each time we make an assignment to a variable.  While this output might be helpful during debugging, during any other time it is distracting (drowning out other, more useful output) and slows code execution.  The extensive, non-readable output that would result from omitting the semicolons is indicative of a violation of MATLAB Style Rule \#4.}
 \begin{lstlisting}[name=lec9_ex1,style=myMatlab]
 C1_0 = 5; % c_0 for u1(x), handled separatly since MATLAB array 
 % indices start at 1
@@ -170,6 +169,8 @@ end
 u = @(x) u1(x) + u2(x);
 \end{lstlisting}
 
+\vspace{2.0cm}
+
 \newthought{Now that we} have a MATLAB representation of the solution, let us create a plot.  One way to make such a plot is shown in the listing below; the output is shown in Figure \ref{fig:lec9_fig1}.:
 \begin{marginfigure}
 \includegraphics{lec9_fig1.png}
@@ -187,7 +188,7 @@ ylabel('U(X)','fontsize',16,'fontweight','bold');
 set(gca,'fontsize',12,'fontweight','bold');
 grid on
 \end{lstlisting}
-\marginnote{\textbf{Note:} pay particular attention to the formatting details of the plot.  There is a title along with axis-labels for both the x- and y-axis; fonts are bold and sized in a particular way and grid-lines are used.  These details have all been added in observance of MATLAB Style Rule \#4. 
+\marginnote{\textbf{Note:} Pay particular attention to the formatting details of the plot.  There is a title along with axis-labels for both the x- and y-axis; fonts are bold and sized in a systematic way.  Grid lines are also used to make the graph more readable.  These details have all been added in observance of MATLAB Style Rule \#4. 
 
 The variables \lstinline[style=myMatlab]{xMin} and \lstinline[style=myMatlab]{xMax} on line 39 has been included in accordance with Rule \#8.  The fact that both variables are initialized on the same line is a common exception to Rule \#9.}
 \newthought{A few more} details are worth noting.  

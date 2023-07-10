@@ -60,7 +60,7 @@ So the self-adjoint form of the parametric Bessel equation is:\marginnote{Admitt
 \begin{equation*}
 \frac{d}{dx}\left[x u^{\prime} \right] + \left(-\frac{\nu^2}{x} + \alpha^2 x \right)u = 0
 \end{equation*}
-The corresponding orthogonality relation is shown in Equation \ref{eq:fb-ortho}\marginnote{Like other Sturm-Liouville problems we will find that there are infinitely many distinct eigenvalues, $\lambda_n$, which for this equation we will refer to as $\alpha_n$.  Note the weight function $x$ now appears in the inner product.}
+The corresponding orthogonality relation is shown in Equation \ref{eq:fb-ortho}:\marginnote{Like other Sturm-Liouville problems we will find that there are infinitely many distinct eigenvalues, $\lambda_n$, which for this equation we will refer to as $\alpha_n$.  Note the weight function $x$ now appears in the inner product.}
 \begin{equation}
 \int_{a}^{b}J_{\nu}(\alpha_n x) J_{\nu}(\alpha_m x) x \ dx = 0, \ \ n \ne m
 \label{eq:fb-ortho}
@@ -86,31 +86,34 @@ Note that we omit Bessel functions of the second kind, $Y_n(x)$, because as is s
 The other boundary condition applies at $x=3$: $J_{1}(3\alpha_n) = 0$ or, put differently, we select the values of $\alpha_n$ such that $3\alpha_n$ is a root of $J_{1}(x)$.  While our plot of $J_1(x)$ does not extend out to infinity, it turns out that $J_1(x)$ has infinitely many roots and we need to find them.
 
 \subsection{Interlude on Open-Source Software}
-At some point in time in your life as an engineer it is inevitable that a problem will arise that you are not prepared to tackle yourself. The tools you have been given to do your job do not fully answer to the task at hand.  This is one such occasion.  We need to find the roots of $J_1(x)$.  \emph{You} know those values exist but you don't know what they are and it turns out that MATLAB does not (at this time) have any built-in functions to give you the roots of such functions.\sidenote[][-2.0cm]{MATLAB \emph{does} have built-in functions to represent several types of Bessel functions; $J_{\nu}(x)$ and $Y_{\nu}(x)$ are represented, respectively, by \lstinline[style=myMatlab]{besselj(nu,x)} and \lstinline[style=myMatlab]{bessely(nu,x)}. We will learn about more Bessel functions in future lectures.}
+At some point in time in your life as an engineer it is inevitable that a problem will arise that you are not prepared to tackle yourself. The tools you have been given to do your job do not fully answer to the task at hand.  This is one such occasion.  We need to find the roots of $J_1(x)$.  \emph{You know} those values exist but you do not know what they are and it turns out that MATLAB does not (at this time) have any built-in functions to give you the roots of such functions either.\sidenote[][-2.0cm]{MATLAB \emph{does} have built-in functions to represent several types of Bessel functions; $J_{\nu}(x)$ and $Y_{\nu}(x)$ are represented, respectively, by \lstinline[style=myMatlab]{besselj(nu,x)} and \lstinline[style=myMatlab]{bessely(nu,x)}. We will learn about more Bessel functions in future lectures.}
 
-Some options available to you include:
+\vspace{0.15cm}
+
+\noindent Some options available to you include:
 \begin{enumerate}
 \item Go to the library and check out a book that tabulates some roots of $J_{1}(x)$---possibly also including scads of additional Bessel function lore\cite{bowman2012introduction}---and enter the desired roots by hand into your MATLAB code.
 \item Implement an algorithm to find the roots of $J_1(x)$, possibly using a root-finding tool in MATLAB such as \lstinline[style=myMatlab]{fzero()} or \lstinline[style=myMatlab]{fsolve()}.
 \item Find a third-party function or library that has already been written that solves the problem.
 \end{enumerate}
-In this case we will take the last option since, it turns out, someone has already solved this problem for us\marginnote[-0.5cm]{The Fourier-Bessel expansion that we are learning about in this lecture is a standard element in the analytical methods repertoire; \emph{of course} someone else has already figured out how to find the roots of Bessel functions.} and it is a safe bet that they did a better job than what we would be prepared to do.  The MATLAB file exchange is an online repository where people can obtain and share code that they find useful.\sidenote{Note that a (free) MathWorks account is required to use the MATLAB file exchange.}
+In this case we will take the last option since, it turns out, someone \emph{has} already solved this problem for us\marginnote[-0.5cm]{The Fourier-Bessel expansion that we are learning about in this lecture is a standard element in the analytical methods repertoire; \emph{of course} someone else has already figured out how to find the roots of Bessel functions.} and it is a safe bet that they did a better job than what we would be prepared to do.  The MATLAB file exchange is an online repository where people can freely share code that they find useful and other users can look there in search of helpful code when needed.\sidenote{Note that a (free) MathWorks account is required to use the MATLAB file exchange.} 
 
 \newthought{Regarding Open-Source} software:
-We have a lot of experience with proprietary software. From operating systems like Microsoft Windows or Apple's IOs to office productivity tools like Microsoft Word or Excel, to valuable and important engineering tools like MATLAB or COMSOL.  We also have experience with free software, such as many applications that you download onto your smartphones.  I want to write a few words in hopes of dispelling any negative connotations that you may have developed in relation to open-source software in comparison to proprietary software.
+we have a lot of experience with proprietary software. From operating systems like Microsoft Windows or Apple's IOs to office productivity tools like Microsoft Word or Excel, to valuable and important engineering tools like MATLAB or COMSOL.  We also have experience with free software, such as many applications that you download onto your smartphones.  I want to write a few words in hopes of dispelling any negative connotations that you may have developed in relation to open-source software in comparison to proprietary software.
 \begin{itemize}
 \item Scientists and engineers of all types---not just computer scientists---write and share software in an open-source framework.  Online repositories like GitHub and GitLab are meant expressly for developing code in an open and collaborative way and then sharing the results freely.
 \item ``open-source'' ensures the source code is available.  Sometimes the code is also free but that is not the essential part.\sidenote{Think: ``free speech,'' not ``free beer.''}
 
 \item Open-source software is a \emph{hugely} important contribution to science.  Free and open-source tools like:
 \begin{itemize}
+\item The \LaTeX\ typesetting tools and almost all of the other software installed on the computer used to prepare this manuscript, including the Linux operating system, are free and open-source software.\sidenote{MATLAB is a notable exception to this list.  There is a free and open-source alternative called Octave. \url{https://octave.org/} }
 \item Programming languages that have been a part of the scientific computing landscape for generations.  Examples include Python, C++, Java and FORTRAN among others.
 \item OpenMC\cite{ROMANO201590} - a powerful particle transport simulation tool similar to MCNP.
 \item MOOSE - \underline{M}ulti-physics \underline{O}bject-\underline{O}riented \underline{S}imulation \underline{E}nvironment\cite{lindsay2022moose} combines the open-source finite element library libMesh\cite{kirk2006libmesh} and the \underline{P}ortable, \underline{E}xtensible \underline{T}oolkit for \underline{S}cientific \underline{C}omputation (PETSc)\cite{petsc-user-ref} along with a host of other free, open-source libraries to create an enormously powerful and flexible tool-set that is used to create the majority of all new multi-physics nuclear analysis codes in the United States.\sidenote{For a list of current applications tracked by the MOOSE development team see: \url{https://mooseframework.inl.gov/application_usage/tracked_apps.html}.  Not all of these codes are open-source, but they have all been created with open-source tools.}
 \end{itemize} 
 \item As the previous item should help illustrate, open-source software can be of very high quality.  The developers of MOOSE-based applications at the Department of Energy labs are highly trained scientists following nuclear quality assurance standards to ensure that the resulting software tools work correctly and do what they are supposed to do. 
 
-\item The \LaTeX\ typesetting tools and almost all of the other software installed on the computer used to prepare this manuscript, including the Linux operating system, are free and open-source software.\sidenote{MATLAB is a notable exception to this list.  There is a free and open-source alternative called Octave. \url{https://octave.org/} } 
+ 
 
 \end{itemize}
 If you have any interest in scientific computing, now is a good time to develop an interest in open-source software.

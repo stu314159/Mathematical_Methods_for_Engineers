@@ -43,9 +43,9 @@ N = 5; % specify number of coefficients
 f = @(x) ex1(x); 
 p = pi; % specifiy period
 \end{lstlisting}
-We start, as always, by clearing out the workspace memory and command-prompt output and closing any open figures.  We also need to represent $f(x)$ in MATLAB; we will do this with a local function named \lstinline{ex1(x)}.\sidenote{Since inline functions must appear \emph{after} all of the other code in a MATLAB script file, the code for \lstinline{ex1(x)} will be presented last.}  
+We start, as always, by clearing out the workspace memory and command-prompt output and closing any open figures.  We also need to represent $f(x)$ in MATLAB; we will do this with a local function named \lstinline{ex1(x)}.\sidenote{Since local functions must appear \emph{after} all of the other code in a MATLAB script file, the code for \lstinline{ex1(x)} will be presented last.}  
 
-The integrals needed to determine the Fourier coefficients will be evaluated numerically with the MATLAB built-in function \lstinline{integral()}.\sidenote{This function has default signature \lstinline{Q = integral(FUN,A,B)} and it approximates the integral of function \lstinline{FUN} over the interval \lstinline{A} to \lstinline{B} using global adaptive quadrature.  The error tolerances for this numeric integration algorithm can be specified by the user; in most cases we will use default values.  There are several standard algorithms for numerically computing integrals---called quadrature---that the interested student can read about in the numerical methods portion of this text.} Let us start with $a_0$ which, as a reminder, is computed by:
+The integrals needed to determine the Fourier coefficients will be evaluated numerically with the MATLAB built-in function \lstinline{integral()}.\sidenote{This function has default signature \lstinline{Q = integral(FUN,A,B)} and it approximates the integral of the function \lstinline{FUN} over the interval \lstinline{A} to \lstinline{B} using global adaptive quadrature.  The error tolerances for this numeric integration algorithm can be specified by the user; in most cases we will use default values.  There are several standard algorithms for numerically computing integrals---called quadrature---that the interested student can read about in the numerical methods portion of this text.} Let us start with $a_0$ which, as a reminder, is computed by:
 \begin{equation*}
 a_0 = \frac{1}{p}\int_{-p}^{p} f(x) \ dx
 \end{equation*}
@@ -143,7 +143,8 @@ Some things to note about the resulting Fourier series representation of \lstinl
 \item At the discontinuity in \lstinline{f(x)}, the Fourier series representation appears to be converging on the midpoint between $f(x^-)$ and $f(x^+)$ as the theory says it should.
 \item The Fourier series representation near the point of discontinuity has ``wiggliness'' that doesn't go away as \lstinline{n} increases.
 \item In particular, note the undershoot and overshoot of $f(x)$ to the left and right respectively of $f(0)$.  This is called ``Gibbs phenomena'' and it does not go away as \lstinline{n} increases but it moves closer to the point of discontinuity.  
-\end{enumerate}
+\end{enumerate} 
+\index{Gibbs phenomena}
 As Figure \ref{fig:lec17-ex1-n150} shows, as \lstinline{N} is increased, we can make \lstinline{FF(x)} arbitrarily close to \lstinline{f(x)} with the exception of the perturbations at the point of discontinuity.
 \begin{marginfigure}
 \includegraphics{lec17_ex1_n150.png}
@@ -265,6 +266,6 @@ This function is not periodic and, unlike the previous examples, does not even s
 Note that the convergence behavior for the Fourier expansion is different for each case.\marginnote{As you can see, in cases where you can choose which expansion you use, some choices are good and some are bad.  As we will see in coming chapters, we often do not have a choice in which set of orthogonal functions we will use to do our expansion so, sadly, we cannot pick one that we think will be best.  What we \emph{can} do is analyze the expansion that we \emph{do} get and understand the convergence behavior by examining the continuity of the functions and derivatives of functions that we are representing.}
 \begin{itemize}
 \item For the even-reflection Cosine expansion convergence is very rapid.  Both $f(x)$ and $f^{\prime}(x)$ are continuous throughout the interval $x\in (-2,2)$.  The function itself is continuous at the end-points but notice that the derivative is not.  If you were to draw an additional period on the left and right-hand side of the cosine expansion, $f^{\prime}(x)$ would have a discontinuity; that explains the (relatively) poor convergence of the series at the end-points.
-\item For the odd-reflection Sine expansion the function and derivative is continuous throughout the domain.  The derivative of the function is continuous at the periodic end-points but $f(x)$ itself is not.  This explains why the Sine series expansion converges to zero at both end-points.  
+\item For the odd-reflection Sine expansion the function and derivative are continuous throughout the domain.  The derivative of the function is continuous at the periodic end-points but $f(x)$ itself is not.  This explains why the Sine series expansion converges to zero at both end-points.  
 \item The identity-reflection full Fourier series has discontinuities in $f(x)$ and $f^{\prime}(x)$ at both endpoints and at $x=0$.  The convergence behavior is correspondingly bad.
 \end{itemize}

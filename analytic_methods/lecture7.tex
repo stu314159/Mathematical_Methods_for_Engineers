@@ -8,9 +8,9 @@ The objectives of this lecture are:
 \end{itemize}
 
 \section{Introduction and Review}
-The methods that we have discussed so far have largely been a review of differential equations class.  Sadly, even in the handful of lectures that we have had, our methods for solving equations are largely exhausted.  We can solve constant coefficient linear equations, and variable coefficient linear equations \emph{if} they happen to be Cauchy-Euler equations.  We can solve many first-order linear equations but if the equation is nonlinear we are sunk unless they happen to be separable.  This leaves out a lot of interesting equations.  In this sequence of lectures we will discuss how to solve linear equations with variable coefficients (other than Cauchy-Euler equations).  To do this we will need to use power series. 
+The methods that we have discussed so far have largely been a review of your differential equations class.  Sadly, even in the handful of lectures that we have had, our methods for solving equations are largely exhausted.  We can solve constant coefficient linear equations, and variable coefficient linear equations \emph{if} they happen to be Cauchy-Euler equations.  We can solve many first-order linear equations but if an equation is nonlinear we are sunk unless it happens to be separable.  This leaves out a lot of interesting equations.  In this sequence of lectures we will discuss how to solve linear equations with variable coefficients (other than Cauchy-Euler equations).  To do this we will need to use power series. 
 
-\newthought{You learned about} power series back in calculus class, but you weren't ready to use them for this important application.  Now you are and now this is what we shall do.  We will begin this section with some definitions that will be needed as we describe the use power series in the solution of differential equations.
+\newthought{You learned about} power series back in calculus class, but you weren't ready to use them for this important application.  Now you are ready and now this is what we shall do.  We will begin this section with some definitions that will be needed as we describe the use of power series in the solution of differential equations.
 
 \subsection{Definitions}
 \begin{definition}[Sequence]
@@ -37,7 +37,7 @@ A \emph{series} is the sum of a sequence. For example, $S_0 = c_0$; $S_1 = c_0+c
 \end{definition}
 
 \begin{definition}[Series Convergence]
-Given a series $\sum_{n=0}^{\infty}s_i=s_1+s_2+\cdots+s_n+\cdots$, let $s_n$ denote its $n$\textsuperscript{th} partial sum.  If the sequence $\left\{s_n \right\}$ is convergent then the series is convergent to the same limit.  Otherwise the series is divergent.\marginnote{We will use notation such as $s_n\to \infty$ to indicate that the partial sum is unbounded.}
+Given a series $\sum_{n=0}^{\infty}s_i=s_1+s_2+\cdots+s_n+\cdots$, let $s_n$ denote its $n$\textsuperscript{th} partial sum.  If the sequence $\left\{s_n \right\}$ is convergent then the series is convergent to the same limit.  Otherwise the series is divergent.\marginnote{We will use the notation: $s_n\to \infty$ to indicate that a partial sum is unbounded.}
 \end{definition}
 
 \index{power series}
@@ -137,7 +137,7 @@ If $\sum_{n=0}^{\infty}c_n(x-a)^n=0, \ \ \text{R}>0$, for all numbers $x$ in the
 \begin{definition}[Analytic Function]
 A function $f$ is \emph{analytic} at a point, $a_0$, if it can be represented by a power series in $x-a_0$ with a positive radius of convergence.
 \end{definition}
-\marginnote[-0.75cm]{This is just a vocabulary term that you should know.  It will come up again later when distinguishing between ordinary points and singular points, and between regular and irregular singular points of a singular differential equation.}
+\marginnote[-0.75cm]{This is just a vocabulary term that you should know.  It will come up again later when distinguishing between ordinary points and singular points of a differential equation, and between regular and irregular singular points of a singular differential equation.}
 
 \subsection{Some Common Power Series}
 You have probably had some exposure to power series in your previous mathematical courses.  As a reminder, the power series representations of some important/common functions are shown below:
@@ -155,7 +155,7 @@ You have probably had some exposure to power series in your previous mathematica
 
 
 \section{Combining Power Series}
-This is a practical ``utility skill'' that you will need to master in order to be successful at this portion of the course.  What we need to be able to do is combine multiple power series into a single expression.  
+This is a practical ``utility skill'' that you will need to master to be successful during this portion of the course.  What we need to be able to do is combine multiple power series into a single power series.  
 
 \newthought{For example}, consider the two power series below that we want to write as a single power series:
 
@@ -176,9 +176,9 @@ This is a practical ``utility skill'' that you will need to master in order to b
 
 \newthought{We will address} these issues one at a time, starting with the first one.  We will leave the summation whose first term is highest order as-is; for all other summations (i.e. if there are more than two) we will ``peel-off'' any lower-order summation terms.
 
-In this case that means we will ``peel-off'; the constant term from the first summation:
+In this case that means we will leave the second series as-is, since its first term is of higher order ($x^1$ compared to $x^0$), while we will ``peel-off' the constant term from the first summation:
 
-$$\underbrace{(2)(1)c_2x^0}_{\text{constant term}} + \underbrace{\sum\limits_{n=3}^{\infty}}_{\text{now }n=3} n(n-1)c_nx^{n-2} + \sum\limits_{n=0}^{\infty}c_nx^{n+1}$$
+$$\underbrace{(2)(1)c_2x^0}_{\text{constant term}} + \underbrace{\sum\limits_{n=3}^{\infty}}_{\text{now }n=3} n(n-1)c_nx^{n-2} + \underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n+1}}_{\substack{\text{Same as}\\ \text{before}}}$$
 Notice that now the summation index for the first summation now starts at $n=3$; this is because we've separated out the first term corresponding to $n=2$.  The two remaining summations are ``in phase'' since all of the terms now have the same power of $x$.
 
 \newthought{The second problem} will be fixed by establishing a new common index, $k$, and re-write the existing indices ($n$ for both summations) in terms of $k$.  In each case we will set $k$ equal to the exponent of $x$ appearing in the summation.

@@ -32,7 +32,7 @@ One method for finding $u_p(x)$ is called the Method of Undetermined Coefficient
 \newthought{There are three} parts to this technique
 
 \begin{enumerate}
-\item \textbf{Basic Rule:} based on the terms in $g(x)$, select the appropriate form for $u_p(x)$ using Table \ref{tab:method-of-guessing-table}.
+\item \textbf{Basic Rule:} Based on the terms in $g(x)$, select the appropriate form for $u_p(x)$ using Table \ref{tab:method-of-guessing-table}.
 
 \begin{table}[h]
 \begin{center}
@@ -54,11 +54,11 @@ $ke^{\alpha x}\sin{\omega x}$ &      \\\hline
 \label{tab:method-of-guessing-table}
 \end{table}
 
-\item \textbf{Modification rule:} if $u_p(x)$ obtained by the \textbf{Basic Rule} happens to be a solution to the associated homogeneous equation, multiply $u_p(x)$ from the table by $x$ (or $x^2$ if needed).
+\item \textbf{Modification rule:} If $u_p(x)$ obtained by the \textbf{Basic Rule} happens to be a solution to the associated homogeneous equation, multiply $u_p(x)$ from the table by $x$ (or $x^2$ if needed).
 
-\item \textbf{Sum rule:} if $g(x)$ is a linear combination of terms from the left-hand column, construct $u_p(x)$ from a linear combination of the corresponding entries in the right-hand column.
+\item \textbf{Sum rule:} If $g(x)$ is a linear combination of terms from the left-hand column, construct $u_p(x)$ from a linear combination of the corresponding entries in the right-hand column.
 \end{enumerate}
-For the remainder of this lecture, we will practice applying these rules to some example problems.
+For the remainder of this lecture, we will practice applying these rules to example problems.
 
 \vspace{0.5cm}
 
@@ -69,7 +69,7 @@ For the remainder of this lecture, we will practice applying these rules to some
 
 \vspace{0.25cm}
 
-\noindent The auxiliary equation is: $m^2 + 4m-2=0$; using the quadratic equation gives us:\marginnote{Here you are expected to examine the associated homogeneous problem as $u^{\prime \prime}+4u^{\prime}-2u =0$, identify it as constant coefficient and linear, and solve by assuming $u=e^{mx}$ and thus deriving the auxiliary equation shown without further prompting.} 
+\noindent The auxiliary equation is: $m^2 + 4m-2=0$.  Using the quadratic equation gives us:\marginnote{Here you are expected to examine the associated homogeneous problem as $u^{\prime \prime}+4u^{\prime}-2u =0$, identify it as constant coefficient and linear, and solve by assuming $u=e^{mx}$ and thus deriving the auxiliary equation shown without further prompting.} 
 \begin{align*}
 m &= \frac{-4 \pm \sqrt{16 - (4)(1)(-2)}}{2(1)} \\
 &= -2 \pm \frac{\sqrt{24}}{2} \\
@@ -84,7 +84,7 @@ so $u_c(x) = c_1e^{(-2+\sqrt{6})x}+c_2e^{(-2-\sqrt{6})x}$.
 
 \noindent Since $g(x)$ is a second-order polynomial, the table tells us $u_p(x)$ is in the general form of a second-order polynomial.
 $$u_p(x) = K_2x^2+K_1x+K_0$$
-We plug this into the governing equation and this gives us:
+We insert this into the governing equation and this gives us:
 \begin{equation*}
 2K_2 + 4(2K_2x+K_1) - 2(K_2x^2+K_1x+K_0) = 2x^2-3x+6
 \end{equation*}
@@ -180,7 +180,7 @@ u_c(x) = c_1e^{4x}+c_2e^{x}
 
 \vspace{0.25cm}
 
-\noindent We insert this proposed function for $u_p(x)$ into the equation and we get:
+\noindent We insert this function for $u_p(x)$ into the equation and we get:
 \begin{equation*}
 2Ae^x+Axe^x - 5(Ae^x+Axe^x) + 4Axe^x = 8e^x
 \end{equation*} 
@@ -234,7 +234,7 @@ u_c(x) = c_1\cos{x}+c_2\sin{x}
 
 \vspace{0.25cm}
 
-\noindent From Table \ref{tab:method-of-guessing-table}, for $g(x)=4x$, we should select $u_{p_1} = K_1x+K_0$.  Inserting this into the differential equation gives us: $K_1x + K_0 = 4x$.  By inspection we can see that $K_0 = 0$ and $K_1 = 4$ so $u_{p_1}(x) = 4x$.  
+\noindent According to Table \ref{tab:method-of-guessing-table}, when $g(x)=4x$, we should select $u_{p_1} = K_1x+K_0$.  Inserting this into the differential equation gives us: $K_1x + K_0 = 4x$.  By inspection we can see that $K_0 = 0$ and $K_1 = 4$ so $u_{p_1}(x) = 4x$.  
 
 \vspace{0.25cm}
 
@@ -242,7 +242,7 @@ u_c(x) = c_1\cos{x}+c_2\sin{x}
 
 \vspace{0.25cm}
 
-\noindent From Table \ref{tab:method-of-guessing-table}, for $g(x)=10\sin{x}$, we should select $u_{p_2} =  K\cos{x}+M\sin{x}$. Now that we have done this a couple of times we should be on the alert for portions of the complementary solution cropping up in our guesses for $u_p(x)$. We thus immediately see that we need to multiply $u_{p_2}$ by $x$.  If we do this and insert $Kx\cos{x}+Mx\sin{x}$ into the differential equation we get:
+\noindent According to Table \ref{tab:method-of-guessing-table}, when $g(x)=10\sin{x}$, we should select $u_{p_2} =  K\cos{x}+M\sin{x}$. Now that we have done this a couple of times we should be on the alert for portions of the complementary solution cropping up in our guesses for $u_p(x)$. We thus immediately see that we need to multiply $u_{p_2}$ by $x$.  If we do this and insert $Kx\cos{x}+Mx\sin{x}$ into the differential equation we get:
 \begin{multline*}
 \left(-2K-Mx\right)\sin{x}+\left(2M-Kx\right)\cos{x} + \dots \\ Kx\cos{x}+Mx\sin{x} = 10\sin{x}
 \end{multline*}

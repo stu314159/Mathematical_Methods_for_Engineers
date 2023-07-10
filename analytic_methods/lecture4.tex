@@ -9,15 +9,15 @@ The objectives of this lecture are:
 \section{Introduction}
 In this lecture we will review the well-trod ground of your differential equations class and remind ourselves how to solve linear, constant coefficient, homogeneous, n\textsuperscript{th}-order differential equations.  These equations have the general form shown in Equation \ref{eq:lcchnode}:
 \begin{equation}
-c_nu^{(n)}+c_{n-1}u^{(n-1)}+\cdots+c_1u^{\prime}+c_0u=0
+a_nu^{(n)}+a_{n-1}u^{(n-1)}+\cdots+a_1u^{\prime}+a_0u=0
 \label{eq:lcchnode}
 \end{equation}
-\noindent where the coefficients are real and constant an $c_n \ne 0$.
+\noindent where the coefficients are real and constant an $a_n \ne 0$.
 
 \newthought{The basic strategy} is to assume the solution is of the form: $u(x)=e^{mx}$. For the case of 2\textsuperscript{nd}-order equations, we get:\marginnote{If $u(x) = e^{mx}$ then, of course, $u^{\prime} = me^{mx}$ and $u^{\prime \prime} = m^2e^{mx}$.}
 \begin{align*}
-c_2m^2e^{mx}+c_1me^{mx}+c_0e^{mx}&=0 \\
-e^{mx}\left(c_2m^2+c_1m+c_0\right)
+a_2m^2e^{mx}+a_1me^{mx}+a_0e^{mx}&=0 \\
+e^{mx}\left(a_2m^2+a_1m+a_0\right)
 \end{align*}
 \noindent where the last line above is called the auxiliary equation: \marginnote{Here we re-name the constants so Equation \ref{eq:aux-eqn} takes a familiar form.}
 \begin{equation}
@@ -69,7 +69,7 @@ u_1(x) = e^{m_1x}
 
 The other solution so derived is, of course, the same and thus we do not have two linearly independent solutions as required to form a fundamental set of solutions for a 2\textsuperscript{nd}-order linear homogeneous equation.  
 
-\newthought{It can be shown} that a second linearly independent solution can be formed by multiplying by the independent variable:\marginnote{This result is derived using a technique referred to as \emph{reduction of order}.  We will not take the time to cover it in this class (or in this book) but is concisely described in section 3.2 of Zill.  At a minimum you might at least confirm for yourself that a) $xu_1(x)$ is a solution to the equation; and b) use the Wronskian to confirm that it is linearly independent from $u_1(x)$.}
+\newthought{It can be shown} that a second linearly independent solution can be formed by multiplying $u_1(x)$ by the independent variable, $x$:\marginnote{This result is derived using a technique referred to as \emph{reduction of order}.  We will not take the time to cover it in this class (or in this book) but is concisely described in section 3.2 of Zill.  At a minimum you might at least confirm for yourself that a) $xu_1(x)$ is a solution to the equation; and b) use the Wronskian to confirm that it is linearly independent from $u_1(x)$.}
 \begin{equation*}
 u_2(x) = x u_1(x) = xe^{mx}
 \end{equation*}
@@ -93,7 +93,7 @@ The complex exponentials in the last equation can be re-expressed using the Eule
 e^{i\beta x} &= \cos{\beta x} + i \sin{\beta x} \\
 e^{-i\beta x} &= \cos{\beta x} - i \sin{\beta x}
 \end{align*}
-which is slightly more convenient insofar as the solutions are no longer expressed as complex exponentials but also by breaking each solution down into their real and complex parts. It can be shown that both the real and imaginary parts of the solution must satisfy the differential equation \emph{independently}.  This fact allows us to re-express the solution in a more simple form that does not involve complex numbers at all:
+which is slightly more convenient insofar as the solutions are no longer expressed as complex exponentials; this expression also breaks the solutions down into their real and complex parts. It can be shown that both the real and imaginary parts of the solution must satisfy the differential equation \emph{independently}.  This fact allows us yet again to re-express the solution in a still more simple form that does not involve complex numbers at all:
 \begin{equation}
 u(x) = e^{\alpha x}\left(c_1 \cos{\beta x} + c_2 \sin{\beta x} \right)
 \label{eq:cmplx-conj-roots}
@@ -108,7 +108,7 @@ These solutions arise when the governing equation is as shown in Equation \ref{e
 u^{\prime \prime} + k^2 u = 0
 \label{eq:special-case-2}
 \end{equation}
-The roots $m_{1,2} = \pm ik$ and the general solution is:
+The roots are $m_{1,2} = \pm ik$ and the general solution is:
 \begin{equation}
 u(x)=c_1 \cos{kx} + c_2 \sin{kx}
 \end{equation}

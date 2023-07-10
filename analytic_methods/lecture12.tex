@@ -47,7 +47,7 @@ r(r-1)c_0x^r + x^r\sum\limits_{n=1}^{\infty}(n+r)(n+r-1)c_nx^n + rc_0x^r + x^r\s
 x^r\sum\limits_{n=0}^{\infty}c_nx^{n+2} - \nu^2c_0x^r - x^r\sum\limits_{n=1}^{\infty}\nu^2c_nx^{n} = 0
 \end{multline*}
 %\end{fullwidth}
-Now let us collect the terms outside of the summations and re-write the equation:\marginnote{The first line of the equation is the indicial equation for this problem; we use it to determine allowable values of $\nu$.  In the second line of the equation we have combined the first, second, and fourth summation because they were in phase and had a common index.  The remaining summation needs to be put in phase before we can combine everything under a single summation.}
+Now let us collect the terms outside of the summations and re-write the equation:\marginnote{The first line of the equation is the indicial equation for this problem; we use it to determine allowable values of $r$.  In the second line of the equation we have combined the first, second, and fourth summation because they were in phase and had a common index.  The remaining summation needs to be put in phase before we can combine everything under a single summation.}
 \begin{multline*}
 \overbrace{\left[r(r-1)+r - \nu^2 \right]}^{\text{indicial equation}}c_ox^r + \cdots \\ x^r\sum\limits_{n=1}^{\infty}\underbrace{\left[(n+r)(n+r-1) + (n+r) - \nu^2\right]}_{\text{combined 3 of 4 summations}}c_nx^n +  x^r\sum\limits_{n=0}^{\infty}c_nx^{n+2} = 0
 \end{multline*}
@@ -61,14 +61,14 @@ r^2 - \nu^2 &= 0 \\
 we see that, to ensure the coefficient for $x^r = 0$, $r = \pm \nu$.\marginnote[-2.5cm]{\textbf{Reminder:} We need to ensure the coefficient for $x^r$ is equal to zero.  By convention we assume $c_0 \ne 0.$  We \emph{could} allow $c_0 = 0$ but then we would just need to derive another indicial equation for some other power of $x$.  We adopt the convention $c_0 \ne 0$ so that our choices for indicial roots will be unique.}
 To simplify the discussion to follow, let us take $r = \nu$ and continue with the solution.  Our equation is now: 
 \begin{align*}
-x^{\nu}\sum\limits_{n=1}^{\infty}\left[\underbrace{(n+\nu)(n+\nu-1) + (n+\nu)-\nu^2}_{n^2+2n\nu+\nu^2 - \nu^2} \right]c_nx^n + x^{\nu}\sum\limits_{n=0}^{\infty}c_n x^{n+2} &= 0 \\
+x^{\nu}\sum\limits_{n=1}^{\infty}\left[\underbrace{(n+\nu)(n+\nu-1) + (n+\nu)-\nu^2}_{\substack{n^2+2n\nu+\nu^2 - \nu^2 \\ \\ =n(n+2\nu)}} \right]c_nx^n + x^{\nu}\sum\limits_{n=0}^{\infty}c_n x^{n+2} &= 0 \\
 x^{\nu}\sum\limits_{n=1}^{\infty} \underbrace{\left[n(n+2\nu) \right]c_nx^n}_{n=1, \ x^1} + x^{\nu}\sum\limits_{n=0}^{\infty}\underbrace{c_nx^{n+2}}_{n=0, \ x^2} &= 0
 \end{align*}
 The two summations are out of phase, so we need to separate out the first term of the first summation.
 \begin{equation*}
 \underbrace{(1)(1+2\nu)c_1}_{\text{coefficient for }x^{\nu+1}}x^{\nu+1} + \underbrace{x^{\nu}\sum\limits_{n=2}^{\infty}c_n[n(n+2\nu)]x^n}_{n=2, \ x^{\nu+2}} + \underbrace{x^{\nu}\sum\limits_{n=0}^{\infty}c_nx^{n+2}}_{n=0, \ x^{\nu+2}} = 0
 \end{equation*}
-In order to satisfy the equation, we need the coefficient for $x^{\nu+1}$ to be equal to zero; the only way to do this is to set $c_1 = 0$.\sidenote{Remember: we do not control what $\nu$ is; that is part of the equation.}
+In order to satisfy the equation, we need the coefficient for $x^{\nu+1}$ to be equal to zero; the only way to do this is to set $c_1 = 0$.\sidenote{\textbf{Reminder:} We do not control what $\nu$ is; that is part of the equation.}
 
 The summations in the equation above are in-phase so we need to combine under a common index. 
 \begin{align*}
@@ -103,7 +103,7 @@ $c_6 = \frac{-c_4}{2^2 (3)(3+\nu)} = \frac{-c_0}{2^6(1)(2)(3)(1+\nu)(2+\nu)(3+\n
 c_{2n} = \frac{(-1)^n c_0}{2^{2n}n!(1+\nu)(2+\nu)\cdots(n+\nu)} \ , \ \ n=1,2,3,\dots
 \label{eq:bessel-coef}
 \end{equation}
-\newthought{It may be worthwhile} to take a step back and summarize what we have found so far.  We are solving Bessel's equation; we looked for solutions of the form $u(x)=\sum_{n=0}^{\infty} c_n x^{n+r}$.  We found that $r$ must be equal to $\pm \nu$ and, for the case $r = \nu$, derived a perfectly acceptable expression for the coefficients in this solution in Equation \ref{eq:bessel-coef}.\marginnote{We will deal with the case $r = -\nu$, albeit in a perfunctory manner, below.} What follows is a bit of, what we will call, ``mathematical grooming'' which we will do so that we can derive solutions to Bessel's equation in a form that appears elsewhere in the literature and that, it turns out, you will use for the remainder of this course.
+\newthought{It may be worthwhile} to take a step back and summarize what we have found so far.  We are solving Bessel's equation and we looked for solutions of the form $u(x)=\sum_{n=0}^{\infty} c_n x^{n+r}$.  We found that $r$ must be equal to $\pm \nu$ and, for the case $r = \nu$, derived a perfectly acceptable expression for the coefficients of this solution in Equation \ref{eq:bessel-coef}.\marginnote{We will deal with the case $r = -\nu$, albeit in a perfunctory manner, below.} What follows is a bit of, what we will call, ``mathematical grooming'' which we will do so that we can derive solutions to Bessel's equation in a form that appears elsewhere in the literature and that, it turns out, you will use for the remainder of this course.
 \subsection{Gamma Function}\index{Gamma function}
 The gamma function is defined in Equation \ref{eq:gamma-def}.
 \begin{equation}
@@ -124,9 +124,9 @@ One property of the gamma function is that $\Gamma(x+1) = x \Gamma(x)$ for any r
 \Gamma(3) &= \Gamma(2+1) = 2\Gamma(2) = 2 \\
 \Gamma(4) &= \Gamma(3+1) = 3\Gamma(3) = 6 \\
 \end{align*}
-In general for $x \in \mathcal{I}$, $\Gamma(x) = (x-1)!$. 
+Therefore, in general for $x \in \mathcal{I}$, $\Gamma(x) = (x-1)!$. 
 
-\newthought{In the context} of our solution to Bessel's equation, we use the gamma function to compactly represent the term $(1+\nu)(2+\nu)\cdots(n+\nu)$ in the denominator of Equation \ref{eq:bessel-coef}:
+\newthought{In the context} of our solution to Bessel's equation, we use the gamma function represent the term $(1+\nu)(2+\nu)\cdots(n+\nu)$ in the denominator of Equation \ref{eq:bessel-coef} in a compact way:
 \begin{align*}
 \Gamma(1+\nu+1) &= (1+\nu)\Gamma(1+\nu) \\
 \Gamma(1+\nu+2) &= (2+\nu)\Gamma(2+\nu) = (2+\nu)(1+\nu)\Gamma(1+\nu) \\

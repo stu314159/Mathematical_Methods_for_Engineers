@@ -19,20 +19,21 @@ For a linear differential equation, an n\textsuperscript{th}-order initial value
 \text{Initial Conditions: }u(x_0)=u_0, \ u^{\prime}(x_0)=u_1,\dots,u^{(n-1)}(x_0)=u_{n-1}
 \label{eq:ivp-ics}
 \end{equation}
-\marginnote[-1.5cm]{\textbf{Note:} for an initial value problem, all of the initial conditions are provided at the same value of $x$; in accordance to custom we call this $x_0$.  The name \emph{initial} condition gives the implication that these conditions are at some ``end'' of the interval (beginning, left side, whatever) and in most all examples and exercises this is indeed the case.  It is \underline{not}, however, a requirement.}
+\marginnote[-1.5cm]{\textbf{Note:} for an initial value problem, all of the initial conditions are provided at the same value of $x$; in accordance with custom we call this $x_0$.  The name \emph{initial} condition gives the implication that these conditions are at some ``end'' of the interval (beginning, left side, whatever) and in all examples and exercises in this text this is indeed the case.  It is not, however, a requirement.}
 \noindent \newthought{We seek a} function defined on some interval containing $x_0$ that satisfies the differential equation with $n$ conditions applied.\marginnote{Generally for an n\textsuperscript{th}-order IVP you will need $n$ conditions.} The theorem below, which we will use by \emph{citing} rather than \emph{proving}, gives us assurance that, subject some fairly reasonable assumptions, such a solution will exist.  
 
 \begin{theorem}[Existence and Uniqueness for IVPs]
 If $a_n(x),a_{n-1}(x),\dots,a_1(x),a_0(x)$ and $g(x)$ are continuous on an interval $\mathcal{I}$, and if $a_n(x) \ne 0$ for every $x \in \mathcal{I}$, and if $x_0$ is any point in this interval, then a solution $u(x)$ of the IVP exists on the interval and it is unique.
 \label{thm:IVP-exist-and-unique}
 \end{theorem}
-\newthought{For this class} we will adopt a mostly operational definition of continuity: if you can draw the function throughout the specified interval without picking up your pencil or without diverging to infinity, then the function is continuous.  
+\newthought{For this class} we will adopt a fairly operational definition of continuity: if you can draw the function throughout the specified interval without picking up your pencil or without diverging to infinity, then the function is continuous.  
 
 Consider, as an example, the following initial value problem:
 \begin{equation}
 u^{\prime \prime}-4u = 12x, \ \ u(0)=4, \ u^{\prime}(0)=1
+\label{eq:lec3-ex1}
 \end{equation}
-This IVP satisfies the conditions of Theorem \ref{thm:IVP-exist-and-unique} since all of the coefficients and $g(x)$ are continuous and $a_2$ is constant and nonzero; hence a unique solution exists on any interval and that solution is unique.\marginnote[-1.5cm]{Take a moment to verify that $u(x)=3e^{2x}+e^{-2x}-3x$ satisfies both the governing equation and initial conditions and thus is \emph{the} unique solution to this IVP.}
+This IVP satisfies the conditions of Theorem \ref{thm:IVP-exist-and-unique} since all of the coefficients and $g(x)$ are continuous and $a_2$ is constant and nonzero; hence a unique solution exists on any interval and that solution is unique.\marginnote[-1.5cm]{Take a moment to verify that $u(x)=3e^{2x}+e^{-2x}-3x$ satisfies both the governing equation and initial conditions given in Equation \ref{eq:lec3-ex1} and thus is \emph{the} unique solution to this IVP.}
 
 Here is an IVP that does \emph{not} satisfy the criteria of Theorem \ref{thm:IVP-exist-and-unique}:
 \begin{equation}
@@ -53,13 +54,13 @@ For this section let us, without undue loss of generality, consider a 2\textsupe
 \newthought{Depending on the} boundary conditions, BVPs may have no solutions, one unique solution, or infinitely many solutions.
 
 \vspace{1.0cm}
-\noindent \underline{\textbf{Example:}} The equation $u^{\prime \prime}+16u = 0$ has the general solution $u(t) = c_1 \cos{(4t)}+c_2 \sin{(4t)}$.  Consider the three different sets of boundary conditions provided below.
+\noindent \underline{\textbf{Example:}} The equation $u^{\prime \prime}+16u = 0$ has the general solution $u(t) = c_1 \cos{(4t)}+c_2 \sin{(4t)}$.  Consider the three different sets of boundary conditions provided below:
 \begin{enumerate}[label=\alph*)]
-\item $u(0)=0, \ \ u(\pi/2)=0$
+\item $u(0)=0, \ \ u(\pi/2)=0$.
 Application of the first boundary condition gives us $c_1(1)+c_2(0)=0 \Rightarrow c_1 = 0$.  The second boundary condition is $c_2\sin{(2 \pi)} = 0,$ which is true for \emph{any} value of $c_2$.  Therefore there problem has infinitely many solutions.
-\item $u(0)=0, \ \ u(\pi/8)=0$
+\item $u(0)=0, \ \ u(\pi/8)=0$.
 The first boundary condition again gives us $c_1=0$; the second condition $c_2\sin{(4 \frac{\pi}{8})}=0$ is only satisfied if $c_2=0$.  Thus $c_1 = c_2 = 0$; only the trivial solution, $u=0$, satisfies both the differential equation and boundary conditions.  This is not a very interesting solution but at least it \emph{is a solution} so we will take this as an example of a BVP having a unique solution.\marginnote{For applications, we will generally be only interested in \emph{non-trivial} solutions; that is, solutions that are not identically equal to zero.}
-\item $u(0)=0, \ \ u(\pi/2)=1$
+\item $u(0)=0, \ \ u(\pi/2)=1$.
 In this case, again $c_1=0$ from the first boundary condition.  This leaves the second boundary condition: $c_2 \sin{\left(4 \frac{\pi}{2}\right)} = c_2(0) = 1$ which cannot be satisfied for any value of $c_2$.  In this case \emph{no} solution exists.
 
 \end{enumerate}
@@ -92,13 +93,12 @@ $$c_1f_1(x) + c_2f_2(x)+\cdots+c_kf_k(x) = 0$$
 
 \noindent\textbf{Answer:} The set will no longer be linearly independent.  The trivial function $f(x)=0$ is not linearly independent from \emph{anything}.}
 Repeatedly throughout this course we will want to clarify whether or not two or more functions are linearly independent of each other.  I think most engineers have a general idea of what it is we \emph{mean} when we say two functions are linearly independent or dependent but Theorem \ref{th:linear-dep} specifies what these things mean \emph{mathematically}.  
-\newthought{We need a test} to help us determine if the members of a set of functions are linearly independent or not. This will be especially important as we evaluate solutions to a linear homogeneous differential equation.  Even if you are the sort of savant who can, by inspection, always detect linear dependence, you might have a hard time convincing your friends that your assessment is always correct.  Luckily, there is a theorem that provides a suitable test that can serve as irrefutable evidence of the state of linear dependence/independence of functions.
+\newthought{We need a test} to help us determine whether or not the members of a set are linearly independent. This will be especially important as we evaluate solutions to a linear homogeneous differential equation.  Even if you are the sort of savant who can, by inspection, always detect linear dependence, you might have a hard time convincing your friends that your assessment is always correct.  Luckily, there is a theorem that provides a suitable test that can serve as irrefutable evidence of the state of linear dependence/independence of functions.
 
 \begin{theorem}[Criterion for Linearly Independent Solutions]
 Let $u_1,u_2,\dots,u_n$ be solutions of a homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$.  Then the set of solutions is linearly independent on the interval if and only if the Wronskian of the solution is non-zero for every $x \in \mathcal{I}$.  
 \end{theorem}\index{Wronskian}
-The Wronskian is a function that takes functions as arguments and returns a scalar numeric quantity.\sidenote{Sometimes such mathematical objects are referred to as \emph{functionals}.}
-\begin{equation}
+The Wronskian is a function that takes functions as arguments and returns a scalar numeric quantity and is defined in Equation \ref{eq:Wronskian-def}:\begin{equation}
 W(u_1,u_2,\dots,u_n)=
 \begin{vmatrix}
 u_1 & u_2 & \cdots & u_n \\
@@ -137,7 +137,7 @@ e^{3x} & e^{-3x} \\
 \noindent Since $6 \ne 0$ for all $x \in (-\infty,\infty)$ the solutions are linearly independent.
 
 \begin{definition}[Fundamental Set of Solutions]
-Any set $u_1,u_2,\dots,u_n$ of $n$ linearly independent solutions of the homogeneous linear n\textsuperscript{th}-order differential equation on an interval is said to be a fundamental set of solutions on an interval $\mathcal{I}$.  
+Any set $\{u_1,u_2,\dots,u_n\}$ of $n$ linearly independent solutions of the homogeneous linear n\textsuperscript{th}-order differential equation on an interval is said to be a fundamental set of solutions on an interval $\mathcal{I}$.  
 \end{definition}
 \begin{theorem}[Existence of a Fundamental Set]
 There exists a fundamental set of solutions for the homogeneous linear n\textsuperscript{th}-order differential equation on an interval $\mathcal{I}$.
@@ -145,7 +145,7 @@ There exists a fundamental set of solutions for the homogeneous linear n\textsup
 \marginnote[-1.0cm]{\textbf{Note:} This is different than saying that a BVP or IVP has a solution.  This theorem is only referring to the differential equation; not the boundary or initial conditions.}
 
 \begin{definition}[General Solution---Homogeneous Equation]
-Let $u_1,u_2,\dots,u_n$ be a fundamental set of solutions to the homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$, then the general solution is:
+Let $\{u_1,u_2,\dots,u_n\}$ be a fundamental set of solutions to the homogeneous linear n\textsuperscript{th}-order differential equation defined on an interval $\mathcal{I}$, then the general solution is:
 $$u(x) = c_1u_1(x)+c_2u_2(x)+\cdots+c_nu_n(x)$$
 \end{definition}
 

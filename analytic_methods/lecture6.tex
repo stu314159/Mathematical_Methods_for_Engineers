@@ -23,7 +23,7 @@ Also observe that this equation is \emph{linear}; if $g(x)=0$ it is homogeneous,
 ax^2\frac{d^2u}{dx^2}+bx\frac{du}{dx}+cu=0
 \end{equation}
 
-Lastly you should be alert to the fact that the coefficient for the highest order derivative is 0 at $x=0$; consequently we will restrict the interval of interest for these equations to $x \in \left(0,\infty\right)$.
+Lastly you should be alert to the fact that the coefficient for the highest order derivative is zero at $x=0$; consequently we will restrict the interval of interest for these equations to $x \in \left(0,\infty\right)$.\marginnote[-1.0cm]{\textbf{Reminder:} The notation $\left(0,\infty\right)$ means that the interval is \emph{open} and that we do \emph{not} include the endpoints. A \emph{closed} interval---where we \emph{do} include the endpoints---is denoted with square brackets such as $[a,b]$.}
 
 \vspace{4.0cm}
 
@@ -39,7 +39,7 @@ am^2+(b-a)m+c=0
 \end{equation}
 We will look for values of $m$ that satisfy this quadratic equation; those values will be the exponents for our solutions.
 
-\newthought{As is the case} for quadratic equation, there are three possible outcomes: 
+\newthought{As is the case} for the quadratic equation, there are three possible outcomes for the auxiliary equation: 
 
 \begin{enumerate}
 \item \textbf{Distinct Real Roots.} In this case $m_1 \ne m_2$ and the general solution is of the form:
@@ -62,7 +62,7 @@ By inspection the roots are $m_1=4$ and $m_2=-1$.  The general solution is $u(x)
 
 \vspace{0.5cm}
 
-\item \textbf{Real Repeated Roots.} In this case, $m_1 = m_2$.  We have one solution, $u_1(x)=c_1x^{m_1}$.  Clearly we need to take some kind of action if we hope to get another linearly independent solution.  It can be shown that if we form the second solution by multiplying the first solution by $\ln{x}$---$u_2(x)=\ln{(x)}u_1(x)$---then $u_2(x)$ will satisfy the governing equation and also be linearly independent from $u_1(x)$.\marginnote[-1.5cm]{The first one or two times you solve these problems, you should verify both of those assertions. Namely that: 
+\item \textbf{Real Repeated Roots.} In this case, $m_1 = m_2$.  We have one solution, $u_1(x)=c_1x^{m_1}$.  Clearly we need to take some kind of action if we hope to get another linearly independent solution.  It can be shown that if we form the second solution by multiplying the first solution by $\ln{x}$---i.e. $u_2(x)=\ln{(x)}u_1(x)$---then $u_2(x)$ will satisfy the equation and also be linearly independent from $u_1(x)$.\marginnote[-1.5cm]{The first one or two times you solve these problems, you should verify both of those assertions. Namely that: 
 \begin{enumerate}
 \item $u_2(x) = \ln{(x)}u_1(x)$ is a solution to the equation; and
 \item $u_2(x)$ is linearly independent from $u_1(x)$.
@@ -80,7 +80,7 @@ The solution is: $u(x)=c_1x^{-1/2}+c_2x^{-1/2}\ln{x}$.
 
 \vspace{0.5cm}
 
-\item \textbf{Complex Conjugate Roots.}  This case is completely analogous with the previous cases vis-\`a-vis linear constant coefficient equations.  The roots are $m_{1,2} = \alpha \pm i\beta$ and the general solution is:
+\item \textbf{Complex Conjugate Roots.}  This case is analogous with the previous cases vis-\`a-vis linear constant coefficient equations.  The roots are $m_{1,2} = \alpha \pm i\beta$ and the general solution is:
 \begin{equation}
 u(x) = x^{\alpha}\left[c_1 \cos{(\beta \ln{x})} + c_2 \sin{(\beta \ln{x})} \right]
 \end{equation}
@@ -126,7 +126,7 @@ So the solution is: $u(x) = -x^{1/2}\cos{(2 \ln{x})}$.
 \end{enumerate}
 
 \section{Non-homogeneous Cauchy-Euler Equations}
-Sadly, the method of undetermined coefficients will not work with Cauchy-Euler equations, a limitation of that method being that the coefficients need to be constant. Interested students can investigate the method called \emph{variation of parameters} that can be used to address this problem analytically.  Otherwise, we will plan to use numerical methods to solve non-homogeneous problems of this type.
+Sadly, the method of undetermined coefficients will not work with Cauchy-Euler equations, a limitation of that method being that the coefficients need to be constant. Interested students can investigate a method called \emph{variation of parameters} that can be used to address this problem analytically.  Otherwise, we will plan to use numerical methods to solve non-homogeneous problems of this type.
 
 \section{Derivation of the Solution to Cauchy-Euler Equations}
 It would be hard not to notice the similarity in the solution methods of Cauchy-Euler equations and constant coefficient linear equations.  This is not a coincidence.  In this section I want to briefly show you that, through a change of variables, Cauchy-Euler equations are, in some sense, equivalent to constant coefficient linear equations.
@@ -167,7 +167,7 @@ Combining terms to simplify gives us Equation \ref{eq:ce-conv} which is now, und
 au_{tt} + (b-a)u_t + cy = 0
 \label{eq:ce-conv}
 \end{equation}
-If I solve this using our standard method, the resulting auxiliary equation is the same as what is shown in Equation \ref{eq:CE-aux}.
+If we solve this using our standard method, the resulting auxiliary equation is the same as what is shown in Equation \ref{eq:CE-aux}.
 
 \newthought{In the case} of constant coefficient linear equations, the solutions were of the form $u = e^{mx}$ which, according to the exponentiation rules, the same as $u = e^{x^m}$.  But now, our independent variable is $t$, where $t=\ln{x}$. With this substitution:
 \begin{align*}

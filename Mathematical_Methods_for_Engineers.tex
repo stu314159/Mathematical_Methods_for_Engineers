@@ -413,45 +413,45 @@ What distinguishes this course from Prof Zill's work is the explicit incorporati
 
 \chapter{Matlab Style Rules}
 \begin{enumerate}
-\item \textbf{rule:} All scripts will start with the commands: \textbf{clear}, \textbf{clc}, and \textbf{close 'all'}
+\item \textbf{Rule:} All scripts will start with the commands: \textbf{clear}, \textbf{clc}, and \textbf{close 'all'}
 
-\textbf{rationale:} No script should depend upon any data visible in the MATLAB workspace when the script starts.  By omitting these commands, residual data within the workspace may hide errors.
+\textbf{Rationale:} No script should depend upon any data visible in the MATLAB workspace when the script starts.  By omitting these commands, residual data within the workspace may hide errors.
 
-\item \textbf{rule:} Your code must be documented with enough details such that a reader unfamiliar with your work will know what you are doing.
+\item \textbf{Rule:} Your code must be documented with enough details such that a reader unfamiliar with your work will know what you are doing.
 
-\textbf{rationale:} Code documentation is a habit. For more significant projects readers may need help in deciding what the author of the code intended.  For your own code, the most likely reader is you---a few months into the future.
+\textbf{Rationale:} Code documentation is a habit. For more significant projects readers may need help in deciding what the author of the code intended.  For your own code, the most likely reader is you---a few months into the future.
 
-\item \textbf{rule:} Function and variable names must be meaningful and reasonable in length.
+\item \textbf{Rule:} Function and variable names must be meaningful and reasonable in length.
 
-\textbf{rationale:} Failing to do either make code harder to read and maintain.
+\textbf{Rationale:} Failing to do either make code harder to read and maintain.
 
-\item \textbf{rule:} All outputs from the code \underline{\textbf{must}} be meaningful; numbers should be formatted, part of a sentence, and include units. Graphs should be readable and axis labels should make sense and include units.
+\item \textbf{Rule:} All outputs from the code \underline{\textbf{must}} be meaningful; numbers should be formatted, part of a sentence, and include units. Graphs should be readable and axis labels should make sense and include units.
 
-\textbf{rationale:} Code output is a form of communication. It is important that this communication be clear and unambiguous.
+\textbf{Rationale:} Code output is a form of communication. It is important that this communication be clear and unambiguous.
 
-\item \textbf{rule:} Do not leave warnings from the Code Analyzer unaddressed.
+\item \textbf{Rule:} Do not leave warnings from the Code Analyzer unaddressed.
 
-\textbf{rationale:} Sometimes Code Analyzer warnings can be safely ignored.  Most of the time the warning points to a stylistic error that would be unacceptable in software that you use. Occasionally these warnings are indicative of a hidden error.
+\textbf{Rationale:} Sometimes Code Analyzer warnings can be safely ignored.  Most of the time the warning points to a stylistic error that would be unacceptable in software that you use. Occasionally these warnings are indicative of a hidden error.
 
-\item \textbf{rule:} Use the ``smart indentation tool'' to format the indentation of your code.
+\item \textbf{Rule:} Use the ``smart indentation tool'' to format the indentation of your code.
 
-\textbf{rationale:} This tool improves code readability. It will also occasionally point out errors that you did not see before.
+\textbf{Rationale:} This tool improves code readability. It will also occasionally point out errors that you did not see before.
 
-\item \textbf{rule:} Pre-allocate arrays; if possible initialize with \textbf{NaN} values.
+\item \textbf{Rule:} Pre-allocate arrays; if possible initialize with \textbf{NaN} values.
 
-\textbf{rationale:} Pre-allocation improves performance and helps readability. Initialization with \textbf{NaN} helps avoid a range of potential logical errors.
+\textbf{Rationale:} Pre-allocation improves performance and helps readability. Initialization with \textbf{NaN} helps avoid a range of potential logical errors.
 
-\item \textbf{rule:} Avoid ``magic numbers'' --- i.e. hard-coded constants.
+\item \textbf{Rule:} Avoid ``magic numbers'' --- i.e. hard-coded constants.
 
-\textbf{rationale:} Constants included in your code tend to hide your program logic. Also, ``magic numbers'' make code maintenance more difficult and error prone.
+\textbf{Rationale:} Constants included in your code tend to hide your program logic. Also, ``magic numbers'' make code maintenance more difficult and error prone.
 
-\item \textbf{rule:} Only write one statement per line.
+\item \textbf{Rule:} Only write one statement per line.
 
-\textbf{rationale:} Multi-statement-lines hurt code readability in almost all cases.
+\textbf{Rationale:} Multi-statement-lines hurt code readability in almost all cases.
 
-\item \textbf{rule:} Do not write excessively long lines of code; use the line continuation ``...'' and indentation to spread long expressions over several lines.
+\item \textbf{Rule:} Do not write excessively long lines of code; use the line continuation ``...'' and indentation to spread long expressions over several lines.
 
-\textbf{rationale:} Following this rule improves code readability.
+\textbf{Rationale:} Following this rule improves code readability.
 \end{enumerate}
 
 

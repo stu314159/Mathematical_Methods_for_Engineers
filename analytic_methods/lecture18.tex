@@ -48,7 +48,7 @@ To obtain values for the coefficients, $c_n$, we need only take the inner produc
 \text{Equation: }& & u^{\prime \prime}+\lambda u = 0,  \ \ x\in[0,1] \\
 \text{BCs: }& & u(0) = 0, \ \ u(1) + u^{\prime}(1) = 0
 \end{align*}
-To fully analyze this problem we will have to consider three cases for $\lambda$: $\lambda < =0$, $\lambda = 0$, and $\lambda > 0$.
+To fully analyze this problem we will have to consider three cases for $\lambda$: $\lambda < 0$, $\lambda = 0$, and $\lambda > 0$.
 
 \vspace{0.5cm}
 
@@ -56,7 +56,7 @@ To fully analyze this problem we will have to consider three cases for $\lambda$
 \begin{equation*}
 u^{\prime \prime} = 0
 \end{equation*}
-with general solution: $u(x) = c_1(x) + c_2$.  If we apply the boundary condition $u(0) = 0$, this implies that $u(0) = c_1(x) + c_2 = c_2 = 0$. So the solution is simplified to $u(x) = c_1(x)$.  The second boundary condition: $u(1) + u^{\prime}(1) = c_1(1) + c_1 = 2c_1 = 0 \Rightarrow c_1 = 0$. The only solution that satisfies the equation and boundary conditions for $\lambda = 0$ is the trivial solution $u(x) = 0$.\sidenote[][-1.5cm]{The trivial solution, $u(x)=0$ will always satisfy a homogeneous boundary value problem and, in general, is of little interest to us.  What we take from this part of the analysis is that we will rule out $\lambda=0$ as there are no \emph{interesting} solutions for that case.}
+with general solution: $u(x) = c_1(x) + c_2$.  If we apply the boundary condition $u(0) = 0$, this implies that $u(0) = c_1(x) + c_2 = c_2 = 0$. So the solution is simplified to $u(x) = c_1(x)$.  The second boundary condition: $u(1) + u^{\prime}(1) = c_1(1) + c_1 = 2c_1 = 0 \Rightarrow c_1 = 0$. The only solution that satisfies the equation and boundary conditions for $\lambda = 0$ is the trivial solution $u(x) = 0$.\sidenote[][-1.5cm]{The trivial solution, $u(x)=0$ will always satisfy a homogeneous boundary value problem and, in general, is of little interest to us.  What we take from this part of the analysis is that we will rule out $\lambda=0$ since there are no \emph{interesting} solutions in that case.}
 
 \vspace{4.5cm}
 
@@ -71,7 +71,7 @@ u(x) &= c_1e^{-\alpha x} + c_2e^{\alpha x} \\
 u(x) &=c_1 \cosh{\alpha x} + c_2 \sinh{\alpha x} 
 \end{align*}
 Since this problem is posed on a bounded interval, we will choose the second form above.  Applying the first boundary condition gives us: $u(0) = c_1\cosh{0} + c_2\sinh{0} = c_1(1) + c_2(0) = 0 \Rightarrow c_1 = 0$.  Applying the second boundary condition to the current solution gives us: $u(1) + u^{\prime}(1) = c_2\sinh{1} + c_2\cosh{1} = 0$. \begin{marginfigure} \includegraphics{cosh_and_sinh_plot.png} \end{marginfigure}  
-We recall that both $\sinh{x}$ and $\cosh{x}$ are strictly positive on $x\in(0,1)$ so the only way the second boundary condition can be met is for $c_2 = 0$.  Consequently only the trivial solution $u(x) = 0$ satisfies the governing equation and boundary conditions for the case that $\lambda < 0$.
+We recall that both $\sinh{x}$ and $\cosh{x}$ are strictly positive on $x\in(0,1)$ so the only way the second boundary condition can be met is for $c_2 = 0$.  Consequently only the trivial solution, $u(x) = 0$, satisfies the governing equation and boundary conditions for the case that $\lambda < 0$.
 
 \vspace{0.5cm}
 
@@ -103,7 +103,7 @@ Apart from sharing some theoretical tid-bits regarding Sturm-Liouville eigenvalu
 
 As previously mentioned, the eigenfunction solutions are linearly independent and orthogonal with respect to weight function $p(x)$.  We need to know what that weight function is in order to carry out an orthogonal function expansion like Fourier series.\marginnote{The sines and cosines used in Fourier series fit within this theory.  It turns out that the weight function $p(x)$ in that case is $p(x)=1$.}  
 
-\newthought{Consider the linear,} homogeneous, second-order boundary value problem shown in Equation \ref{eq:lin-homo-bvp}.
+\newthought{Consider the linear,} homogeneous, second-order boundary value problem shown in Equation \ref{eq:lin-homo-bvp}:
 
 \begin{equation}
 a(x)u^{\prime \prime} + b(x)u^{\prime} + (c(x) + \lambda d(x))u = 0
@@ -149,7 +149,7 @@ p(x) &= \frac{d(x)}{a(x)} r(x) \\
 &= \frac{1}{\left(1-x^2\right)}\left(1-x^2\right) \\
 &= 1
 \end{align*}
-So the boundary value problem in self-adjoint form is:
+Therefore the boundary value problem in self-adjoint form is:
 \begin{equation}
 \frac{d}{dx}\left[\left(1-x^2\right)u^{\prime} \right]+\lambda_n u = 0
 \end{equation}

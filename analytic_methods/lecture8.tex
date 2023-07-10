@@ -31,8 +31,8 @@ The basic strategy we will use to find power series solutions for linear differe
 
 \begin{enumerate}
 \item Find solutions in the form of a power series by substituting $u = \sum\limits_{n=0}^{\infty} c_n x^n$ into the differential equation.
-\item Solve for the values of the coefficients by equating the coefficients on the left with those on the right (e.g. zero for homogeneous equations); and
-\item The equations (often 2- or 3-term recurrence relations) for the series coefficients \emph{defines} the function that is the solution of the differential equation.\marginnote[-1.05cm]{\textbf{Important:} the series ``solution'' is only valid if the series so-derived has a non-zero radius of convergence.}
+\item Solve for the values of the coefficients by equating the coefficients on the left of Equation \ref{eq:SOLH-std} with those on the right (e.g. zero for homogeneous equations); and
+\item The equations (often 2- or 3-term recurrence relations) for the series coefficients \emph{defines} the function that is the solution of the differential equation.\marginnote[-1.05cm]{\textbf{Important:} The series ``solution'' is only valid if the series so-derived has a non-zero radius of convergence.}
 \end{enumerate}
 
 \section{Examples}
@@ -59,7 +59,7 @@ u^{\prime \prime} + u &= 0 \\
 \sum\limits_{k=0}^{\infty}\underbrace{\left[(k+2)(k+1)c_{k+2} + c_k \right]}_{\text{coefficients for new power series}}x^k&=0
 \end{align*}
 
-\newthought{The expression} $\left[(k+2)(k+1)c_{k+2}+c_k \right]$ is now a formula for the coefficients of a new power series. This power series, according to the equation, is equal to \emph{zero} so that means, per Definition \ref{def:ps-identity-property}, all of the coefficients must be equal to zero:
+\newthought{The expression}, $\left[(k+2)(k+1)c_{k+2}+c_k \right]$, is now a formula for the coefficients of a new power series. This power series, according to the equation, is equal to \emph{zero} so that means, per Definition \ref{def:ps-identity-property}, all of the coefficients must be equal to zero:
 
 \marginnote[1.0cm]{This is called a \emph{two-term recurrence} since the expression involves \emph{two} terms; $c_{k-2}$ and $c_k$.}
 \begin{equation*}
@@ -74,8 +74,8 @@ c_{k+2}=-\frac{c_k}{(k+2)(k+1)}
 \label{eq:ex1-l8-rec}
 \end{equation}
 
-\newthought{As we should} expect, there are two unknown constants in this general solution---$c_0$ and $c_1$.\marginnote[-1.0cm]{As we would expect the general solution for any other second order differential equation would have two unknown constants that can only be resolved by adding initial- or boundary-conditions.}  The first value of $k$ from the summation in our solution is $k=0$ which gives us an expression for $c_2$ in terms of $c_0$.  The second value, $k=1$, will give us an expression for $c_3$ in terms of $c_1$.  Simplified equations for the first few coefficients are presented in the table below.
-\begin{table*}
+\newthought{As we should} expect, there are two unknown constants in this general solution---$c_0$ and $c_1$.\marginnote[-1.0cm]{We expect the general solution for any second order differential equation to have two unknown constants that can only be resolved by adding initial- or boundary-conditions.}  The first value of $k$ from the summation in our solution is $k=0$ which gives us an expression for $c_2$ in terms of $c_0$.  The second value, $k=1$, will give us an expression for $c_3$ in terms of $c_1$.  Simplified equations for the first few coefficients are presented in the table below.
+\begin{table*}[h!]
 \begin{tabular}{l | l | l}
 $k=0$ & $k=2$ & $k=4$ \\
 $c_2=\frac{-c_0}{(1)(2)}$ & $c_4=\frac{-c_2}{(3)(4)}=\frac{c_0}{4!}$ & $c_6 = \frac{-c_4}{(5)(6)} = \frac{-c_0}{6!}$ \\\hline
@@ -83,7 +83,10 @@ $k=1$ & $k=3$ & $k=5$ \\
 $c_3 = \frac{-c_1}{(2)(3)}$ & $c_5 = \frac{-c_3}{(4)(5)}=\frac{c_1}{5!}$ & $c_7=\frac{-c_5}{(6)(7)} = \frac{-c_1}{7!}$\\
 \end{tabular}
 \end{table*}
-Each cell in the table above is a formula for the $k$\textsuperscript{th}-coefficient of our power series solution.  Organizing this into a formula for our power series solution gives us:\marginnote{Notice how the even-numbered coefficients are all dependent on $c_0$ and all of the odd-numbered coefficients are dependent on $c_1$.}
+
+\vspace{0.25cm}
+
+\noindent Each cell in the table above is a formula for the $k$\textsuperscript{th}-coefficient of our power series solution.  Organizing this into a formula for our power series solution gives us:\marginnote{Notice how the even-numbered coefficients are all dependent on $c_0$ and all of the odd-numbered coefficients are dependent on $c_1$.}
 \begin{align*}
 u(x) &= c_0 + c_1x + c_2x^2+c_3x^3+c_4x^4+c_5x^5+c_6x^6+c_7x^7 + \cdots \\
 u(x) &= c_0\left(1 + \frac{c_2}{c_0}x^2 + \frac{c_4}{c_0}x^4 + \frac{c_6}{c_0}x^6 + \cdots \right) + c_1\left(x + \frac{c_3}{c_1}x^3 + \frac{c_5}{c_1}x^5 + \frac{c_7}{c_1}x^7 + \cdots \right) \\
@@ -107,7 +110,7 @@ u^{\prime \prime}-xu &= 0 \\
 \sum\limits_{n=2}^{\infty}n(n-1)c_n x^{n-2} - x\sum\limits_{n=0}^{\infty}c_nx^n &= 0 \\
 \sum\limits_{n=2}^{\infty}n(n-1)c_n x^{n-2} - \sum\limits_{n=0}^{\infty}c_n x^{n+1} &=0
 \end{align*}
-We want to combine these summations and see that they are both ``out of phase'' and the summation index, $n$, starts at different values for each summation.
+We want to combine these summations but we see that they are both ``out of phase'' and the summation index, $n$, starts at different values for each summation.
 \begin{align*}
 \underbrace{\sum\limits_{n=2}^{\infty}n(n-1)c_n x^{n-2}}_{\text{for }n=2, \ \ x^0} - \underbrace{\sum\limits_{n=0}^{\infty}c_n x^{n+1}}_{\text{for }n=0, \ \ x^1} &=0 \\
 \end{align*}
@@ -115,7 +118,7 @@ So we must separate out the first term in the first summation to get the summati
 \begin{equation*}
 (2)(1)c_2x^0 + \sum\limits_{n=3}^{\infty}n(n-1)c_n x^{n-2} - \sum\limits_{n=0}^{\infty}c_n x^{n+1} = 0
 \end{equation*}
-Next we must combine our indices using $k=n-2$ for the first summation and $k=n+1$ for the second summation.\marginnote[-0.5cm]{\textbf{Reminder:} we take our definition of $k$ from the \underline{exponent for $x$} in each summation term.}  
+Next we must combine our indices using $k=n-2$ for the first summation and $k=n+1$ for the second summation.\marginnote[-0.5cm]{\textbf{Reminder:} We take our definition of $k$ from the \underline{exponent for $x$} in each summation term.}  
 \begin{equation*}
 2c_2x^0 + \underbrace{\sum\limits_{n=3}^{\infty}n(n-1)c_n x^{n-2}}_{\substack{k=n-2 \\n=k+2}} - \underbrace{\sum\limits_{n=0}^{\infty}c_n x^{n+1}}_{\substack{k=n+1 \\ n=k-1}} = 0
 \end{equation*}
@@ -130,7 +133,7 @@ In order to solve the differential equation, the coefficient for \underline{ever
 
 \vspace{4.0cm}
 
-\noindent Our corresponding, two-term recurrence relation is:\marginnote{\textbf{Reminder:} we should define our recurrence relation to give higher-order coefficients in terms of lower-order coefficients.}
+\noindent Our corresponding two-term recurrence relation is:\marginnote{\textbf{Reminder:} We should define our recurrence relation to give higher-order coefficients in terms of lower-order coefficients.}
 \begin{equation*}
 c_{k+2}=\frac{c_{k-1}}{(k+2)(k+1)}
 \end{equation*}

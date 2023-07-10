@@ -26,12 +26,12 @@ A singular point $x_0$ is said to be a \emph{regular} singular point of the diff
 
 \vspace{0.5cm}
 
-\noindent In standard form, $P(x) = \frac{3(x-2)}{(x^2-4)^2} = \frac{3(x-2)}{(x+2)^2(x-2)^2}$; and $Q(x) = \frac{5}{(x+2)^2(x-2)^2}$.  There are two singular points: -2 and 2.\marginnote{$x_0=2:\ \ p(x) = \frac{\cancel{(x-2)}3\cancel{(x-2)}}{(x+2)^2 \cancel{(x-2)^2}}$, so $p(x) = \frac{3}{(x+2)^2}$ which is analytic at $x=2$.
+\noindent In standard form, $P(x) = \frac{3(x-2)}{(x^2-4)^2} = \frac{3(x-2)}{(x+2)^2(x-2)^2}$; and $Q(x) = \frac{5}{(x+2)^2(x-2)^2}$.  There are two singular points: -2 and 2.\marginnote[-1.0cm]{\underline{$x_0=2$}:$\ \ \ p(x) = \frac{\cancel{(x-2)}3\cancel{(x-2)}}{(x+2)^2 \cancel{(x-2)^2}}$, so $p(x) = \frac{3}{(x+2)^2}$ which is analytic at $x=2$. $q(x) = \frac{\cancel{(x-2)^2} 5}{(x+2)^2\cancel{(x-2)^2}}$, so $q(x) = \frac{5}{(x+2)^2}$ which is analytic at $x=2$.
 
-\vspace{0.25cm}
+\vspace{0.3cm}
 
-$x_0=-2: \ \ p(x) = \frac{(x+2)3(x-2)}{(x+2)^2(x-2)^2}$ so $p(x) = \frac{3(x-2)}{(x+2)(x-2)}$.}
-Work is shown in the margin for $p(x)$.  From the work in the margin it should be clear for this problem that $q(x)$ is analytic at both $x=-2$ and $x=2$ but, since $p(x)$ is not analytic at $x_0=-2$, $x_0=-2$ is an irregular singular point and $x_0=2$ is a regular singular point.
+\underline{$x_0=-2$}:$ \ \ p(x) = \frac{(x+2)3(x-2)}{(x+2)^2(x-2)^2}$ so $p(x) = \frac{3(x-2)}{(x+2)(x-2)}$ which is \underline{not} analytic at $x=-2$.  $q(x)=\frac{\cancel{(x+2)^2} 5}{\cancel{(x+2)^2}(x-2)^2}$, so $q(x) = \frac{5}{(x-2)^2}$ which is analytic at $x=-2$.}
+Work is shown in the margin for $p(x)$.  From the work in the margin it should be clear for this problem that $q(x)$ is analytic at both $x=-2$ and $x=2$ but, since $p(x)$ is not analytic at $x_0=-2$, $x_0=-2$ is an irregular singular point; $x_0=2$ is a regular singular point.
 
 \begin{theorem}[Frobenius' Theorem]
 If $x=x_0$ is a \emph{regular} singular point then there exists at least one non-zero solution of the form:
@@ -42,13 +42,13 @@ where $r$ is to be determined.  The series will converge at least on some radius
 
 \vspace{0.5cm}
 
-\noindent\textbf{Example:} Find a series solution to: $3xu^{\prime \prime} + u^{\prime} - u = 0$.\marginnote{You should verify that this equation has a regular singularity at $x_0=0$.}
+\noindent\textbf{Example:} Find a series solution to: $3xu^{\prime \prime} + u^{\prime} - u = 0$.\marginnote{You should verify that this equation has a regular singluar point at $x_0=0$.}
 
 \noindent Per Theorem \ref{thm:frobenius}, this equation should have a solution of the form: $u = \sum_{n=0}^{\infty}c_nx^{n+r}$ where $r$ is constant. Taking the first and second derivatives we get:\marginnote{Notice in this case that the summations for $u^{\prime}$ and $u^{\prime \prime}$ start at $n=0$ while for the power series solution method the starting index for $u^{\prime}$ was $n=1$ and the starting index for $u^{\prime \prime}$ was $n=2$.  
 
 The reason for this is that, for the power series method, the constant term of $u$, corresponding to $n=0$, becomes zero for $u^{\prime}$; so we omit that term and start with $n=1$.  Both the constant and linear term in $u$, corresponding to $n=0$ and $n=1$, are zero for $u^{\prime \prime}$.  So the series for $u^{\prime \prime}$ starts at $n=2$.
 
-The factor $x^r$ included in the method of Frobenius means there may not be any constant terms in the series at all.  Therefore there is no reason to omit terms for $u^{\prime}$ or $u^{\prime \prime}$.}
+The factor $x^r$ included in the method of Frobenius means there may not be any constant terms in the series at all---i.e. if $r$ is not an integer.  Therefore there is no reason to omit terms for $u^{\prime}$ or $u^{\prime \prime}$.}
 \begin{align*}
 u^{\prime} &= \sum\limits_{n=0}^{\infty}(n+r)c_nx^{n+r-1} \\
 u^{\prime\prime} &= \sum\limits_{n=0}^{\infty}(n+r)(n+r-1)c_nx^{n+r-2}
@@ -92,7 +92,7 @@ f(x) &= 3r(r-1)+r \\
 &=3r^2-2r \\
 &=r(3r-2) = 0
 \end{align*}
-so the roots are $r_1=0$, and $r_2 = \frac{2}{3}$. So long as $r$ is chosen to be one of those values, the coefficient for $x^{r-1}$ will be zero.  Let us refocus our attention on the remaining terms:
+so the roots are $r_1=0$, and $r_2 = \sfrac{2}{3}$. So long as $r$ is chosen to be one of those values, the coefficient for $x^{r-1}$ will be zero.  Let us refocus our attention on the remaining terms:
 
 \begin{equation*}
 x^r \left[\sum\limits_{n=1}^{\infty} 3(n+r)(n+r-1)c_nx^{n-1} + \sum\limits_{n=1}^{\infty} (n+r)c_nx^{n-1} - \sum\limits_{n=0}^{\infty}c_nx^n \right] = 0
@@ -166,7 +166,7 @@ u_2(x) &= x^{\sfrac{2}{3}}\left(c_0 + c_1x + c_2x^2 + c_3x^3 + \cdots \right) \\
 \vspace{5.0cm}
 
 \section{Indicial Equation}
-It turns out that we could have determined the indicial roots before set out upon the method of Frobenius.  Recall that we use the method of Frobenius on differential equations with regular singular points; also recall that a regular singular point is one where $p(x)=xP(x)$ and $q(x)=x^2Q(x)$ are both analytic.  If $p(x)$ and $q(x)$ are analytic, that means that they can be represented as a convergent power series.  Suppose we did that, and expressed $p(x)$ and $q(x)$ as a power series; if we did they could be written as:
+It turns out that we could have determined the indicial roots before setting out upon the method of Frobenius.  Recall that we use the method of Frobenius on differential equations with regular singular points; also recall that a regular singular point is one where $p(x)=xP(x)$ and $q(x)=x^2Q(x)$ are both analytic.  If $p(x)$ and $q(x)$ are analytic, that means that they can be represented as a convergent power series.  Suppose we did that, and expressed $p(x)$ and $q(x)$ as a power series; if we did they could be written as:
 \begin{align*}
 p(x) &= \sum\limits_{n=0}^{\infty} a_nx^n = a_0 + a_1x + a_2x^2 + \cdots \\
 q(x) &= \sum\limits_{n=0}^{\infty} b_nx^n = b_0 + b_1x + b_2x^2 + \cdots
@@ -205,14 +205,14 @@ so the indicial roots are: $r = 0$, and $r = \sfrac{5}{2}$.
 
 \newthought{In general, of course,} the indicial equation is just a quadratic equation, so the roots may be real and repeated, real and distinct and complex conjugates.  There are three cases that will be of immediate interest to us:
 \begin{enumerate}
-\item Two distinct roots that do \emph{not} differ by an integer.  In this case it can be shown that there exist two linearly independent solutions: $u_1 = \sum_{n=0}^{\infty}c_nx^{n+r_1}$, and $u_2 = \sum_{n=0}^{\infty}c_nx^{n+r_2}$.\marginnote{In both of these cases we implicitly assume that $c_0 \ne 0$.}
-\item Two distinct roots that differ by an integer.  In this case there exist two linearly independent solutions of the form:
+\item Two distinct real roots that do \emph{not} differ by an integer.  In this case it can be shown that there exist two linearly independent solutions: $u_1 = \sum_{n=0}^{\infty}c_nx^{n+r_1}$, and $u_2 = \sum_{n=0}^{\infty}c_nx^{n+r_2}$.\marginnote{In both of these cases we implicitly assume that $c_0 \ne 0$.}
+\item Two distinct real roots that differ by an integer.  In this case there exist two linearly independent solutions of the form:
 \begin{align*}
 u_1(x) &= \sum\limits_{n=0}^{\infty}c_nx^{n+r_1}, \ \ c_0 \ne 0 \\
 u_2(x) &= C u_1(x) \ln{x} + \sum\limits_{n=0}^{\infty}b_nx^{n+r_2}, \ \ b_0 \ne 0 
 \end{align*}
 In this case, the constant $C$ \emph{might} be zero.
-\item If $r_1 = r_2$ then there exist two linearly independent solutions of the form:
+\item If both roots are real and $r_1 = r_2$ then there exist two linearly independent solutions of the form:
 \begin{align*}
 u_1(x) &= \sum\limits_{n=0}^{\infty}c_nx^{n+r_1}, \ \ c_0 \ne 0 \\
 u_2(x) &= u_1(x) \ln{x} + \sum\limits_{n=0}^{\infty}b_nx^{n+r_2}, \ \ b_0 \ne 0

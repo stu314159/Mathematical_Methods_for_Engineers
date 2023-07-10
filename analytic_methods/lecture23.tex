@@ -39,7 +39,7 @@ FG_{t} &= \alpha^2 F_{xx}G
 
 \vspace{3.0cm}
 
-\noindent\textbf{Step \#3:} Separate variables: \marginnote{On the last line we see that $\frac{G_t}{\alpha^2 G}$ is only a function of $y$; $\frac{F_{xx}}{F}$ is only a function of $x$ and yet they must be equal to each other for all values of $x$ and $y$.  The only way this makes sense is if they are both in fact constant.  We will denote this constant $-\lambda$.}
+\noindent\textbf{Step \#3:} Separate variables: \marginnote{On the middle line we see that $\frac{G_t}{\alpha^2 G}$ is only a function of $y$; $\frac{F_{xx}}{F}$ is only a function of $x$ and yet they must be equal to each other for all values of $x$ and $y$.  The only way this makes sense is if they are both in fact constant.  We will denote this constant $-\lambda$.}
 \begin{align*}
 \frac{FG_t}{\alpha^2 FG} &= \frac{\alpha^2 F_{xx}G}{\alpha^2 FG} \\
 \frac{G_t}{\alpha^2 G} &= \frac{F_{xx}}{F} = -\lambda \\
@@ -96,7 +96,7 @@ F(0) &= c_1 \cancelto{1}\cos{0} + c_2 \cancelto{0}\sin{0} \\
 F(0) &= c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
 F(L) &= c_2 \sin{\nu L} = 0
 \end{align*}
-Finally we have something we can work with!  Rather than setting $c_2 = 0$, we can observe that $\sin{\nu L} = 0$ whenever $\nu L = n \pi, \ \ n=1,2,3,...$.\marginnote{Note that we exclude the case where $n=0$ since that implies $\nu L = 0$ but we stipulated that $\nu > 0$.}  So there are infinitely many values that we will designate $\nu_n$ that satisfy the condition: $\nu_n = \sfrac{n \pi}{L}, \ \ n = 1,2,3$.
+Finally we have something we can work with!  Rather than setting $c_2 = 0$, we can observe that $\sin{\nu L} = 0$ whenever $\nu L = n \pi$, and $n$ is a positive integer.\marginnote[-1.0cm]{Note that we exclude the case where $n=0$ since that implies $\nu L = 0$ but we stipulated that $\nu > 0$.}  Thus there are infinitely many values that we will designate $\nu_n$ that satisfy the condition: $\nu_n = \sfrac{n \pi}{L}$ with $n\in \mathcal{Z}^{+}$.\sidenote[][]{Traditionally, in mathematical literature, $\mathcal{Z}$ denotes the set of all integers.  The notation $\mathcal{Z}^{+}$ is used here to denote the set of all positive integers.}
 
 For $\lambda = \nu^2$ we can now also solve the separated equation for $G(t)$:
 \begin{align*}
@@ -152,7 +152,7 @@ c_n &= \frac{2}{L} \int_0^L f(x) \sin{\frac{n \pi x}{L}} \ dx
 
 \newthought{To get quantitative} information, we need to specify values for the length of the bar,$L$; the thermal diffusivity, $\alpha$; and the initial temperature distribution, $f(x)$.  But we can consider some qualitative aspects of the solution before we start computing.\marginnote{Answers:  
 \begin{enumerate}
-\item Owing to the exponential term in the solution, $u(x,t) \rightarrow \infty$ as $t \rightarrow \infty$.
+\item Owing to the exponential term in the solution, $u(x,t) \rightarrow 0$ as $t \rightarrow \infty$.
 
 \item Recalling our experience from Fourier series expansions of functions with discontinuities, the representation will be ``wiggly.''
 
@@ -251,9 +251,9 @@ legend('t = 0','t = 0.1','t = 0.5');
 \caption{Solution for smooth initial condition.}
 \label{fig:lec23-ex1-smooth-plot}
 \end{marginfigure}
-\newthought{The plot is shown} in Figure \ref{fig:lec23-ex1-smooth-plot}. As is expected, the temperature is going down over time. As time goes to infinity, the solution will be zero everywhere.  Recalling that the heat equation is simply a mathematical representation of conservation of energy, you should ask yourself the question: where is the energy going?  The answer is that the energy is flowing out of the left and right side of the bar and will continue to do so as long as the temperature of the bar is higher than the temperature at the boundary.
+\newthought{The plot is shown} in Figure \ref{fig:lec23-ex1-smooth-plot}. As is expected, the temperature is going down over time. As time goes to infinity, the solution will be zero everywhere.  Recalling that the heat equation is simply a mathematical representation of conservation of energy, you should ask yourself the question: where is the energy going?  The answer is that the energy is flowing out of the left and right side of the bar and will continue to do so as long as the temperature of the bar is higher than the temperature at the boundary which, for this problem, is set to zero.
 
-\newthought{What happens if} we increase the thermal diffusivity?  Answer: the heat flows ``faster''.  Since the thermal diffusivity shows up in the equation $G(t)$, the answer should look like time ``sped up''.  Testing this hypothesis out on our MATLAB solution, we change thermal diffusivity to 1.2.  The results are shown in Figure \ref{fig:lec23-ex1-smooth-plot-copper}.
+\newthought{What happens if} we increase the thermal diffusivity?  Answer: the heat flows ``faster.''  Since the thermal diffusivity shows up in the equation $G(t)$, the answer should look like time ``sped up.''  Testing this hypothesis out on our MATLAB solution, we change thermal diffusivity to 1.2.  The results are shown in Figure \ref{fig:lec23-ex1-smooth-plot-copper}.
 \begin{marginfigure}
 \includegraphics{lec23_ex1_smooth_ic_n25-copper.png}
 \caption{Solution with high thermal diffusivity.}
@@ -276,12 +276,12 @@ L-x, & \frac{3L}{4} \le x < L
 
 \end{cases}
 \end{equation*}
-and shown in Figure \ref{fig:lec23_ex1_discont}. The solution (for $\alpha^2=0.1$) is shown in Figure \ref{fig:lec23_ex1_discont_n25}.
-\begin{marginfigure}
+and shown in Figure \ref{fig:lec23_ex1_discont}. The solution (for $\alpha^2=0.1$) is shown in Figure \ref{fig:lec23_ex1_discont_n25}. 
+\begin{marginfigure} 
 \includegraphics{lec23_ex1_discont_n25.png}
 \caption{Solution with discontinuous initial condition, $N=25$.}
 \label{fig:lec23_ex1_discont_n25}
-\end{marginfigure}
+\end{marginfigure} 
 Note the ``wiggliness'' of the Fourier series representation of the initial condition; note also how that ``wiggliness'' goes away almost immediately.
 
 In much the same way as we could improve our resolution of functions represented by a Fourier series by computing more terms, we can do the same thing here.  In Figure \ref{fig:lec23_ex1_discont_n100} we show the solution computed with $N=100$ terms in the Fourier series.
