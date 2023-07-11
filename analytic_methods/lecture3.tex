@@ -8,7 +8,7 @@ The objectives of this lecture are:
 \item Present some important theorems and definitions relevant to the theory of linear ordinary differential equations.
 \end{itemize}
 
-\section{Initial Value Problems}
+\section{Initial Value Problems} \index{initial value problem}
 
 For a linear differential equation, an n\textsuperscript{th}-order initial value problem (IVP) is given by the following governing equation and initial conditions:
 \begin{multline}
@@ -26,7 +26,8 @@ For a linear differential equation, an n\textsuperscript{th}-order initial value
 If $a_n(x),a_{n-1}(x),\dots,a_1(x),a_0(x)$ and $g(x)$ are continuous on an interval $\mathcal{I}$, and if $a_n(x) \ne 0$ for every $x \in \mathcal{I}$, and if $x_0$ is any point in this interval, then a solution $u(x)$ of the IVP exists on the interval and it is unique.
 \label{thm:IVP-exist-and-unique}
 \end{theorem}
-\newthought{For this class} we will adopt a fairly operational definition of continuity: if you can draw the function throughout the specified interval without picking up your pencil or without diverging to infinity, then the function is continuous.  
+\newthought{For this class} we will adopt a fairly operational definition of continuity: if you can draw the function throughout the specified interval without picking up your pencil or without diverging to infinity, then the function is continuous. 
+\index{continuity} 
 
 Consider, as an example, the following initial value problem:
 \begin{equation}
@@ -42,7 +43,7 @@ x^2u^{\prime \prime} - 2xu^{\prime}+2u=6, \ \ u(0)=3, \ u^{\prime}(0)=1
 \end{equation}
 \noindent In this case, the coefficients and $g(x)$ are all continuous but $a_2(x)$ is equal to zero at $x=0$.  This might not be a problem---i.e. if $x=0$ is not in the interval of interest for the IVP then we are okay---but since $x_0=0$, $x=0$ \emph{must} be in the domain for the theorem to apply.  So we have no assurances that a solution exists or, if a solution does exist, it may not be unique.\marginnote[-1.5cm]{You should take a moment to verify that $u(x)=cx^2+x+3$ is a solution for the IVP given in Equation \ref{eq:lec3-ex2} for \emph{any} choice of parameter $c$.}
 
-\section{Boundary Value Problems}
+\section{Boundary Value Problems} \index{boundary value problem}
 For this section let us, without undue loss of generality, consider a 2\textsuperscript{nd}-order boundary value problem (BVP):\marginnote{Almost all of the applications we will consider for this class will involve 2\textsuperscript{nd}-order operators.  The way we derive important boundary-value problems from underlying physical laws like conservation of mass and conservation of energy lead to them being 2\textsuperscript{nd}-order.  You should think about this while you are sitting in your fluid dynamics class and equations are being derived for conservation of mass and momentum for viscous incompressible fluid flow or when you are sitting in heat transfer class and the heat equation is being derived from conservation of energy principles.  Probably the most obvious counterexample is beam theory which involves a 4\textsuperscript{th}-order operator.}
 \begin{equation}
 \text{Governing Equation: }a_2(x)\frac{d^2u}{dx^2}+a_1(x)\frac{du}{dx}+a_0(x)u=g(x) 
@@ -65,7 +66,7 @@ In this case, again $c_1=0$ from the first boundary condition.  This leaves the 
 
 \end{enumerate}
 
-\section{Superposition and Linear Dependence}
+\section{Superposition and Linear Dependence} \index{superposition} \index{linear dependence}
 In this section some important theorems regarding IVPs and BVPs will be presented.  No attempt will be made to prove these theorems; we will simply take these theorems as facts that are relevant for this course that you should try to understand as best you can.
 
 \begin{theorem}[Superposition Principle for Homogeneous Equations]

@@ -7,6 +7,7 @@ The objectives of this lecture are:
 \item Describe how numbers are represented on computers.
 \item Outline sources of errors in numerical methods relative to analytical methods.
 \end{itemize}
+\setcounter{lstannotation}{0}
 
 \section{Course Introduction}
 
@@ -26,7 +27,7 @@ This course is intended to be an introduction and overview of numerical methods.
 
 \item Students will understand the fundamentals of the finite element method (FEM) and have attained an introductory-level proficiency in using the COMSOL software package to carry out a multi-physics analysis of a relevant physical model.
 
-\item Students will have developed the ability to formulate a problem of interest, apply numerical methods and computational tools to analyze the problem and communicate pertinent results to others.
+\item Students will have developed the ability to formulate a problem of interest, apply numerical methods and computational tools to analyze the problem, and communicate pertinent results to others.
 \end{enumerate}
 
 
@@ -75,5 +76,49 @@ The specific topics we will cover include:
 
 \section{Representation of Numbers on a Computer}
 
-Every engineer who uses computational tools in their work should have a basic understanding of how numbers are represented on a computer.
+Every engineer who uses computational tools in their work should have a basic understanding of how numbers are represented on a computer.  The essential take-aways from this section are:
+\begin{enumerate}
+\item Since the computer is a finite machine, only a finite set of numbers can be exactly represented on the computer.  All other numbers are approximated.
+\item Computers store integers and non-integers differently and the limits to what numbers can be represented or how exactly they are represented are also different.
+\item The fact that numbers, in general, are represented inexactly on the computer has an impact on how algorithms are developed.
+\end{enumerate}
+
+\subsection{Integers}
+Integers are represented exactly on a computer, but only a finite subset of all integers can be represented.  There are a number of integer types that are supported by common computer architectures and language compilers.\marginnote[-2.5cm]{Some of the integer data types specified by the C++ language standard include:
+\begin{enumerate}
+\item signed char (8 bits)
+\item short int (16 bits)
+\item int (at least 16 bits -- usually 32 bits)
+\item long int (at least 32 bits)
+\item long long int (at least 64 bits)
+\end{enumerate}
+Each of these categories includes a signed and unsigned variant.  Even within these categories there is fuzziness---e.g. \emph{``at least 16 bits''}---that allows for variations between different compiler implementations and computer hardware (e.g. Intel vs. AMD CPU).
+} For the purposes of this class we will focus on two types: \emph{unsiged integers} and \emph{signed integers}.  To further focus the discussion we will only consider 32-bit representations of signed and unsigned integers.
+
+\newthought{Perhaps the easiest} integer representation to understand is the 32-bit unsigned integer.\sidenote{You can create a 32-bit unsigned integer in MATLAB by typing:
+x = uint32(1994);
+\vspace{0.1cm}
+
+\noindent \lstinline[style=myMatlab]{x = uint32(1994)}
+} In this format 32 binary digits corresponding to $2^0$ to $2^{31}$ are stored in memory.  Numbers in binary work the same way our normal decimal number work: just base 2 instead of base 10.  For example, the 32-bit unsigned integer representation of the number 24 is:
+
+\vspace{0.25cm}
+\noindent (image of 24 in binary)
+\vspace{0.25cm}
+
+With 32-bit unsigned integers the computer can exactly represent all integers between 0 and $2^{32}-1$. Negative integers and integers greater than $2^{31}$ are not represented at all.%\sidenote{\textbf{Question:} What do you get from the following MATLAB code?
+%\begin{lstlisting}[style=myMatlab]
+%a = uint32(2^32-1);
+%b = uint32(1);
+%c = a + b;
+%fprintf('c = %d \n',c);
+%\end{lstlisting}
+
+%\lstinline[style=myMatlab]{ a = uint32(2^32 - 1)  b = unit32(1) }
+
+%\vspace{0.1cm}
+
+%\noindent\textbf{Answer:} The variable c will still be equal to $2^{31}-1$.  MATLAB will round numbers outside of the range of representation for 32-bit unsigned ints to the nearest endpoint which, in this case, is $2^{31}-1$.
+%}
+
 

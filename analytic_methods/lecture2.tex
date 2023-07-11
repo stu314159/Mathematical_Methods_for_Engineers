@@ -7,7 +7,7 @@ The objectives of this lecture are:
 \item Define and demonstrate the solution procedure for \emph{linear} first order equations.
 \end{itemize}
 
-\section{Separable Equations}
+\section{Separable Equations} \index{separable differential equation}
 A first order differential equation of the form shown below:
 \begin{equation}
 \frac{du}{dx} = g(u)h(x)
@@ -80,7 +80,7 @@ a_1(x)\frac{du}{dx} + a_0(x)u = g(x)
 is said to be a first order \emph{linear equation} in the dependent variable $u$.\marginnote[-2.0cm]{\textbf{Note:} it is sometimes customary to write the differential equation in \emph{operator form} where the differential operator, $\mathcal{L}=a_1(x) \frac{d}{dx} + a_0(x)$, is applied to the function $u(x)$ to get $g(x)$; $\mathcal{L}u(x) = g(x)$ }
 When $g(x) = 0$, the first-order linear equation is said to be \emph{homogeneous}; otherwise it is \emph{non-homogeneous}.\marginnote{Notice that $g(x)$ is the only term in Equation \ref{eq:lin_first_order} that does \underline{\textbf{not}} include $u$ or any of its derivatives.}
 
-\newthought{When solving} equations of this type it is customary to express it in the \textbf{standard form}:
+\newthought{When solving} equations of this type it is customary to express it in the \textbf{standard form}: \index{standard form, first order linear}
 \begin{equation}
 \frac{du}{dx}+P(x)u = f(x)
 \label{eq:first-order-linear-standard-form}
@@ -121,8 +121,11 @@ u_c(x) &=Ce^{-\int P(x) \ dx}
 where $C = e^{C_1}$.\marginnote{\textbf{Note:} Going forward, we will desist in making such piddling distinctions between constants.  $C_1$ is an arbitrary constant, $e^{C_1}$ is still an arbitrary constant.  There is no real difference between $C_1$ and $C$ and, in this author's humble opinion, they do not rate different symbols.}
 
 \newthought{We need to find} a solution $u_p(x)$ to Equation \ref{eq:fol_particular}.  The technique we will use is called \emph{variation of parameters}.  It consists of looking for a solution in the form $y_p(x) = v(x)u_1(x)$, where $u_1(x) = e^{-\int P(x) \ dx}$ which is $u_c(x)$ with the arbitrary constant set to 1 and $v(x)$ might be thought of as some kind of weighting or \emph{variational} function.
+\index{variation of parameters}
 
-\newthought{We will insert} this proposed form of $y_p(x)$ into Equation \ref{eq:fol_particular}:
+\vspace{0.25cm}
+
+\noindent We will insert this proposed form of $y_p(x)$ into Equation \ref{eq:fol_particular}:
 \begin{equation*}
 \frac{d(vu_1)}{dx} + P(x)\left[v(x)u_1(x)\right]=f(x)
 \end{equation*}
@@ -148,7 +151,7 @@ u(x) = Ce^{-\int P(x) \ dx} + e^{-\int P(x) \ dx} \left[e^{\int P(x) \ dx} f(x) 
 \label{eq:fol-solution}
 \end{equation}
 
-\section{Method of Solution}
+\section{Method of Solution} \index{method of solution, first order linear}
 In summary, once we have identified a problem to be first-order and linear, we will solve the problem using the following steps:
 \begin{enumerate}
 \item Write the equation in standard form (Equation \ref{eq:first-order-linear-standard-form})
