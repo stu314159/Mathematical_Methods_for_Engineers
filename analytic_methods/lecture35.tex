@@ -22,7 +22,7 @@ $\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,0) = 0, \ \ 0<r<1 $ \\
 \end{tabular}
 \end{table} 
 
-Notice that we have omitted portions of the Laplacian, in spherical coordinates, containing derivatives of $\phi$ and $\theta$.  This is owing to the boundary conditions and initial conditions that are constants along with uniform material properties.\sidenote{We have omitted the thermal diffusivity, so you should assume $\alpha^2 = 1$.}  Thus we have considerably simplified the equation.  Having said that you should also notice that the boundary condition at $r=1$ is non-homogeneous.  We will not be able to solve this problem using separation of variables without dealing with that boundary condition first.
+Notice that we have omitted portions of the Laplacian, in spherical coordinates, containing derivatives of $\phi$ and $\theta$.  Besides the usual uniformity of material properties, this is owing to the boundary conditions and initial conditions that are constants.\sidenote{We have omitted the thermal diffusivity, so you should assume $\alpha^2 = 1$.}  Thus we have considerably simplified the equation.  Having said that you should also notice that the boundary condition at $r=1$ is non-homogeneous.  We will not be able to solve this problem using separation of variables without dealing with that boundary condition first.
 
 \newthought{Readers may recall} from Lecture 27 that we were able to deal with (some types of) non-homogeneous terms in the governing equation and boundary conditions by assuming a solution of the form: $u(x,t) = v(x,t) + \psi(x)$.  The boundary value problem that we derived for $\psi(x)$ absorbed all of the non-homogeneous terms leaving a homogeneous boundary value problem for $v(x,t)$ that we could solve using separation of variables.  We will pursue a similar strategy in this lecture. What we will do is:
 
@@ -37,7 +37,7 @@ Notice that we have omitted portions of the Laplacian, in spherical coordinates,
 
 and
 
-\item Let $ru(r,t) = v(r,t) + \psi(r)$ where $\psi(r)$ will once again be used to absorb the nonhomogenaities.  In this case we will also need to take care to only use solutions $\frac{1}{r}v(r,t)+\frac{1}{r}\psi(r)$ that remain bounded as $r \to 0$.
+\item Let $ru(r,t) = v(r,t) + \psi(r)$ where $\psi(r)$ will once again be used to absorb the nonhomogenaities.  In this case we will also need to take care to only use solutions $u(r,t) = \frac{1}{r}v(r,t)+\frac{1}{r}\psi(r)$ that remain bounded as $r \to 0$.
 \end{enumerate}
 
 \newthought{Let us now} restate the boundary value problem in terms of $ru(r,t)=v(r,t)+\psi(r)$. The governing equation becomes:
@@ -82,7 +82,7 @@ $\substack{\text{Initial} \\ \text{Conditions}}: $ & $v(r,0) = -\psi(r), \ \ 0<r
 \psi(r) &= 0 \\
 \psi(1) &= 100
 \end{align*}
-The general solution is $\psi(r) = c_1r + c_2$.  Applying the boundary condition we get: $\psi(1) = c_1(1) + c_2 = 100$. There are infinitely many values for $c_1$ and $c_2$ that could satisfy this condition but we need to remember that $\frac{1}{r}\psi(r)$ must remain bounded as $r \to 0$.  This we will choose to set $c_2 = 0$ and $c_1 = 100$ so that:
+The general solution is $\psi(r) = c_1r + c_2$.  Applying the boundary condition we get: $\psi(1) = c_1(1) + c_2 = 100$. There are infinitely many values for $c_1$ and $c_2$ that could satisfy this condition but we need to remember that $\frac{1}{r}\psi(r)$ must remain bounded as $r \to 0$.  Thus we will choose to set $c_2 = 0$ and $c_1 = 100$ so that:
 \begin{equation}
 \psi(r) = 100r
 \label{eq:lec35-psi-sol}

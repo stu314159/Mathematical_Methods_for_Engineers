@@ -9,7 +9,7 @@
 
 \section{Boundary Value Problem}
 
-In this lecture we will consider the problem of steady-state temperature in a sphere.  We will define our spherical coordinates as shown in Figure \ref{fig:lec34-spherical-coordinates}.  The relationship between $x$,$y$,$z$ and $r$,$\theta$, and $\phi$, are shown in the margin.
+In this lecture we will consider the problem of steady-state temperature in a sphere.  We will define our spherical coordinates as shown in Figure \ref{fig:lec34-spherical-coordinates}.  The relationship between $x$, $y$, $z$ and $r$, $\theta$, and $\phi$ are shown in the margin.
 \begin{marginfigure}
 \includegraphics{lec34-spherical-coordinates.png}
 \caption{Spherical coordinate system.}
@@ -36,7 +36,7 @@ Laplace's equation could be stated generically enough as $\nabla^2u = 0$, of cou
 \begin{equation*}
 u(c,\theta) = f(\theta)
 \end{equation*}
-Thus the solution will only be a function of $r$, and $\theta$ and all derivatives of $u$ with respect to $\phi$ can be eliminated from the Laplacian.  The governing equation will therefore be:
+Thus the solution will only be a function of $r$ and $\theta$ and all derivatives of $u$ with respect to $\phi$ can be eliminated from the Laplacian.  The governing equation will therefore be:
 \begin{equation}
 \frac{\partial^2 u}{\partial r^2} + \frac{2}{r}\frac{\partial u}{\partial r} + \frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2} + \frac{\cot{\theta}}{r^2}\frac{\partial u}{\partial \theta} = 0
 \label{eq:lec34-ex1-ge}
@@ -103,7 +103,7 @@ G_{\theta \theta} &= \frac{d}{dx}(G_{\theta})\frac{dx}{d\theta} \\
 \end{align*}
 Inserting these expressions into our equation for $G(\theta)$ gives us:
 \begin{equation*}
-\overbrace{-xG_{x}+(1-x^2)G_{xx}}^{G_{\theta \theta}} + \underbrace{\frac{x}{1-x^2}^{\sfrac{1}{2}}}_{\substack{\cot{\theta} \\ = \frac{\cos{\theta}}{\sin{\theta}}}}\overbrace{\left[-1(1-x^2)^{\sfrac{1}{2}}G_x \right]}^{G_{\theta}} + \lambda G = 0
+\overbrace{-xG_{x}+(1-x^2)G_{xx}}^{G_{\theta \theta}} + \underbrace{\frac{x}{1-x^2}^{\sfrac{1}{2}}}_{\substack{\cot{\theta} \\ \\ = \frac{\cos{\theta}}{\sin{\theta}}}}\overbrace{\left[-1(1-x^2)^{\sfrac{1}{2}}G_x \right]}^{G_{\theta}} + \lambda G = 0
 \end{equation*}
 which, upon simplification is:
 \begin{equation*}
@@ -144,14 +144,18 @@ u(r,\theta) = \sum\limits_{n=0}^{\infty} c_n r^nP_n(cos{\theta})
 \begin{equation*}
 u(R,\theta) = \sum\limits_{n=0}^{\infty}c_n R^n P_n(\cos{\theta}) = f(\theta)
 \end{equation*}
-On the left of the last equality we have an infinite linear combination of orthogonal functions; on the left we have a function.  We want to know the values of $c_n$ so that they will be equal.  How do we do this?  We multiply both sides by an orthogonal function, and weight function, and integrate.
+On the left of the last equality we have an infinite linear combination of orthogonal functions; on the right we have a function.  We want to know the values of $c_n$ so that they will be equal.  How do we do this?  We multiply both sides by an orthogonal function, and weight function, and integrate.
 
 \newthought{This case is} a bit different than the last time we met Legendre polynomials, however, insofar as the argument for $P_n$ is now $\cos{\theta}$ and not $x$.  Suppose we pretended, temporarily, that we were dealing with $P_n(x)$; what would we do?  The equation for $c_n$ would look something like:
 \begin{align*}
 \int_{-1}^{1}c_n R^n P_n(x)^2 \ dx &= \int_{-1}^{1} f(x) P_n(x) \ dx \\
 \Rightarrow c_n &= \frac{1}{R^n}\frac{\int_{-1}^{1} f(x) P_n(x) \ dx}{\int_{-1}^{1} P_n(x)^2 \ dx}
 \end{align*}
-But in our case, we have $P_n(\cos{\theta})$; we need to change variables, again, to reflect $x = \cos{\theta}$, and $dx = -\sin{\theta} \ d\theta$.  We also make substitutions in the limits of integration: if $x=\cos{\theta}$, when $x=-1$, $\theta = \pi$;  also $x=\cos{\theta}$ when $x=1$, corresponds to $\theta = 0$.  Making these substitutions into our expression gives us the formula for our coefficients in Equation \ref{eq:lec34-ex-coeff}.\marginnote{Notice that we flipped the bounds of integration and removed the minus sign from $(-\sin{\theta})$.}
+But in our case, we have $P_n(\cos{\theta})$; we need to change variables, again, to reflect $x = \cos{\theta}$, and $dx = -\sin{\theta} \ d\theta$.  We must also make substitutions in the limits of integration: if $x=\cos{\theta}$, when $x=-1$, $\theta = \pi$;  also $x=\cos{\theta}$ when $x=1$, corresponds to $\theta = 0$.  Making these substitutions into our expression gives us the formula for our coefficients in Equation \ref{eq:lec34-ex-coeff}.\marginnote[-1.0cm]{With the given substitutions, the formulat for $c_n$ becomes:
+
+$$c_n = \frac{\int_{\pi}^0 f(\theta)P_n(\cos{\theta}(-\sin{\theta}) \ d\theta}{R^n \int_{\pi}^{0} P_n(\cos{\theta})^2 \ (-\sin{\theta}) \ d\theta}  $$
+
+\noindent In Equation \ref{eq:lec34-ex-coeff} we flipped the bounds of integration and removed the minus sign from $(-\sin{\theta})$.}
 \begin{equation}
 c_n = \frac{\int_{0}^{\pi} f(\theta) P_n(\cos{\theta}) \sin{\theta} \ d\theta}{R^n\int_{0}^{\pi} P_n(\cos{\theta})^2 \sin{\theta} \ d\theta}
 \label{eq:lec34-ex-coeff}
@@ -203,7 +207,7 @@ for n = 1:N
         c(n)*(r.^n).*legendreP(n,cos(theta)); 
 end
 \end{lstlisting}
-Next we would like to visualize the results.  At the time of this writing, MATLAB has limited capability for visualizing three-dimensional data.  For the example, we will tabulate the solution on a regular mesh comprising a cube that contains the sphere of interest.  The tabulated solution will be written to a VTK\sidenote{VTK stands for ``Visualization Toolkit'' and a VTK data file is one of several standard data formats used for storing scientific data as it is prepared for visualization.} data file that can be visualized with software tools such as ParaView.
+Next we would like to visualize the results.  At the time of this writing, MATLAB has limited capability for visualizing three-dimensional data.  For the example, we will tabulate the solution on a regular mesh comprising a cube that contains the sphere of interest.  The tabulated solution will be written to a VTK\sidenote{VTK stands for ``Visualization Toolkit'' and a VTK data file is one of several standard data formats used for storing scientific data as it is prepared for visualization.} data file that can be visualized with software tools such as ParaView.\cite{paraview}
 \begin{lstlisting}[name=lec34-ex, style=myMatlab]
 %% Process Result for Plotting 
 Nx = 50;
@@ -228,6 +232,9 @@ save_scalarStructuredPoints3D_VTK_binary(filename,...
     dataname,UU,origin,spacing);
 \end{lstlisting}
 Lastly, let us show the local functions used to represent the boundary condition and to write the resulting data into a properly formatted VTK file.
+\marginnote[4.0cm]{
+\ref{lst:ann34-1-1} This local function, as the name suggests, saves the scalar data---which is organized in a three-dimensional regular grid---into a binary data file.  The ASCII file header is a specified format and is used to describe the structure of the data so that software like ParaView can be used to visualize the data.  We refer to this as a ``binary data file'' since the actual data is stored in binary form.  Alternatively the data could be stored in plain text but that would make the file much larger.
+}
 \begin{lstlisting}[name=lec34-ex, style=myMatlab]
 %% Local functions
 function u = ex1(theta)
@@ -239,7 +246,7 @@ u(ind_a) = 10*((pi/2)-theta(ind_a));
 u(ind_b) = 0;
 end
 
-function save_scalarStructuredPoints3D_VTK_binary(filename,...
+function save_scalarStructuredPoints3D_VTK_binary(filename,... /*!\annotation{lst:ann34-1-1}!*/
     dataname,data_set,origin,spacing)
 
 [nx,ny,nz]=size(data_set);

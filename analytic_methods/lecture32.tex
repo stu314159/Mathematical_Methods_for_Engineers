@@ -43,7 +43,7 @@ u(r,z) = F(r)G(z)
 \noindent\textbf{Step \#2:} Insert the product solution into the governing equation.
 
 \begin{align*}
-\frac{\partial^2}{\partial r^2}\left(F(r)G(z) \right) + \frac{1}{r}\frac{\partial}{\partial r}\left(F(r) G(z)\right) + \frac{\partial^2}{\partial z^2}\left( F(r)G(z)\right) &= 0 \\
+\frac{\partial^2}{\partial r^2}\left[F(r)G(z) \right] + \frac{1}{r}\frac{\partial}{\partial r}\left[F(r) G(z)\right] + \frac{\partial^2}{\partial z^2}\left[ F(r)G(z)\right] &= 0 \\
 F_{rr}G + \frac{1}{r}F_rG + FG_{zz} &= 0
 \end{align*}
 
@@ -56,7 +56,7 @@ F_{rr}G + \frac{1}{r}F_rG + FG_{zz} &= 0
 \frac{F_{rr}}{F} + \frac{1}{r}\frac{F_r}{F} + \frac{G_{zz}}{G} &= 0 \\
 \frac{F_{rr}}{F} + \frac{1}{r}\frac{F_r}{F} = -\frac{G_{zz}}{G} &= -\lambda
 \end{align*}
-So the separated equations are:\marginnote{Again, here we multiply the equation for $F(r)$ by $r^2$ to render the equation into a familiar form.}
+Thus the separated equations are:\marginnote{Again, here we multiply the equation for $F(r)$ by $r^2$ to render the equation into a familiar form.}
 \begin{equation*}
 r^2F_{rr} + rF_r + \lambda r^2 F = 0, \ \ \text{ and } \ \ G_{zz} - \lambda G = 0
 \end{equation*}
@@ -73,7 +73,7 @@ r^2F_{rr} + rF_r + \lambda r^2 F = 0, \ \ \text{ and } \ \ G_{zz} - \lambda G = 
 
 \vspace{0.05cm}
 
-\noindent In this case the boundary value problem for $F(r)$ is a Cauchy-Euler equation:\marginnote{Reminder: for Cauchy-Euler equations we assume the solution is of the form $F(r)=r^m$.  In this case where the resulting auxiliary equation has a double-root---$m=0,0$---the first solution is a constant ($c_1$) and the second solution is a constant times $\ln r$ so that it is linearly independent.}
+\noindent In this case the boundary value problem for $F(r)$ is a Cauchy-Euler equation:\marginnote{\textbf{Reminder:} For a Cauchy-Euler equation, we assume the solution is of the form $F(r)=r^m$.  In this case, where the resulting auxiliary equation has a double-root---$m=0,0$---the first solution is a constant ($c_1$) and the second solution is a constant times $\ln r$ so that it is linearly independent.}
 \begin{align*}
 r^2F_{rr} + rF_r &= 0 \\
 r^2[m(m-1)r^{m-2}] + rmr^{m-1} &= 0 \\
@@ -84,13 +84,13 @@ We must set $c_2=0$ so that $F(r)$ will remain bounded as $r \to 0$.  Since $u(2
 
 \vspace{0.05cm}
 
-\noindent\underline{$\lambda < 0$} where $\lambda = -\alpha^2, \ \alpha>0$.
+\noindent\underline{$\lambda < 0$}: where $\lambda = -\alpha^2, \ \alpha>0$.
 
 \noindent In this case the boundary value problem for $F(r)$ is:
 \begin{equation*}
 r^2F_{rr} + rF_r -\alpha^2r^2F = 0
 \end{equation*} 
-Which we recognize as the parametric modified Bessel's equation of order zero.  The general solution is:\marginnote[-1.5cm]{Reminder: the parametric modified Bessel's equation is of the form:
+Which we recognize as the parametric modified Bessel's equation of order zero.  The general solution is:\marginnote[-1.5cm]{\textbf{Reminder:} The parametric modified Bessel's equation is of the form:
 \begin{equation*}
 r^2 F_{rr} + rF_r - (\alpha^2 r^2 + \nu^2)F = 0
 \end{equation*}
@@ -99,7 +99,7 @@ where $\nu$ is the order of the equation.
 \begin{equation*}
 F(r) = c_1I_0(\alpha r) + c_2 K_0(\alpha r)
 \end{equation*}
-In case one is not familiar with modified Bessel functions of the first and second kind of order zero---$I_0(r)$ and $K_0(r)$,respectively---the reader might be relieved to be informed that MATLAB has built-in functions available: \lstinline[style=myMatlab]{besseli()} and \lstinline[style=myMatlab]{besselk()}. A plot of these functions is shown in Figure \ref{fig:lec32-mbfs}.
+In case one is not familiar with modified Bessel functions of the first and second kind of order zero---$I_0(r)$ and $K_0(r)$, respectively---the reader might be relieved to be informed that MATLAB has built-in functions available: \lstinline[style=myMatlab]{besseli()} and \lstinline[style=myMatlab]{besselk()}. A plot of these functions is shown in Figure \ref{fig:lec32-mbfs}.
 \begin{marginfigure}
 \includegraphics{lec32-mbfs.png}
 \caption{Plots of $I_0(\alpha r)$ and $K_0(\alpha r)$ for $\alpha r > 0$.}
@@ -109,7 +109,7 @@ The salient facts about these functions is that $K_0(\alpha r)$ diverges to infi
 
 \vspace{0.25cm}
 
-\noindent\underline{$\lambda > 0 $} where $\lambda = \alpha^2, \ \alpha>0$.
+\noindent\underline{$\lambda > 0$}: where $\lambda = \alpha^2, \ \alpha>0$.
 
 \noindent In this case the boundary value problem for $F(r)$ is:
 \begin{equation*}
@@ -167,7 +167,7 @@ where $\alpha_n = \sfrac{k_{0,n}}{2}$.
 \begin{equation*}
 u(r,4) = \sum\limits_{n=1}^{\infty}a_n J_0(\alpha_n r) \sinh{4\alpha_n} = u_0
 \end{equation*}
-Once again we have an infinite linear combinations of eigenfunctions on the left and on the right we have a given function---in this case a constant, $u_0$.  We want them to be equal; our job is to determine $a_n$ such that they are equal.  How do we do this?  We multiply both sides by our orthogonal function, and weight function, and integrate.  The resulting equation for $a_n$ is given in Equation \ref{eq:lec32-ex1-coeff}.\marginnote[0.75cm]{Do not forget to include the constant $\sinh{4 \alpha_n}$; it is easy to leave off when you are in a hurry.}
+Once again we have an infinite linear combination of eigenfunctions on the left and on the right we have a given function---in this case a constant, $u_0$.  We want them to be equal; our job is to determine $a_n$ such that they are equal.  How do we do this?  We multiply both sides by our orthogonal function, and weight function, and integrate.  The resulting equation for $a_n$ is given in Equation \ref{eq:lec32-ex1-coeff}.\marginnote[0.75cm]{Do not forget to include the constant $\sinh{4 \alpha_n}$; it is easy to leave off when you are in a hurry.}
 \begin{equation}
 a_n = \frac{u_0\int_0^2 J_0(\alpha_n r)r \ dr}{\sinh{4 \alpha_n}\int_0^2 J_0(\alpha_nr)^2 r \ dr}
 \label{eq:lec32-ex1-coeff}
@@ -220,14 +220,14 @@ zlabel('U','fontsize',16,'fontweight','bold');
 view([65 10]);  /*!\annotation{lst:ann32-1-2}!*/
 \end{lstlisting}
 A cross-section of the temperature distribution is shown in Figure \ref{fig:lec32-ex1-plot-n25}. \marginnote[-3.0cm]{
-\ref{lst:ann23-1-2} The \lstinline[style=myMatlab]{view()} function allows you to rotate the plotted image.  It is best to experiment a bit with different arguments to find a view that best presents the results.
+\ref{lst:ann23-1-2} The \lstinline[style=myMatlab]{view()} function allows you to rotate the plotted image to change the azimuth and elevation.  It is best to experiment a bit with different arguments to find a view that best presents the results.
 }
 \begin{marginfigure}
 \includegraphics{lec32-ex1-plot-n25.png}
 \caption{Cross section of Case I solution for N=25.}
 \label{fig:lec32-ex1-plot-n25}
 \end{marginfigure}
-\newthought{As we have come} to expect, the approximate solution has a certain amount of ``wiggliness'' at points of discontinuity.  In this case, the issue is along the outer rim of the top of the cylinder; on the top of the cylinder, the solution is constant at $u_0 = 5$; on the outer surface of the cylinder the solution is fixed at $u = 0$.  Along the outer rim of the top is where these conflicting solutions come together and the ``wiggliness'' is the result.  If we increase the number of eigenmodes.  A plot with $N=100$ eigenmodes is shown in Figure \ref{fig:lec32-ex1-plot-n100}.
+\newthought{As we have come} to expect, the approximate solution has a certain amount of ``wiggliness'' at points of discontinuity.  In this case, the issue is along the outer rim of the top of the cylinder; on the top of the cylinder, the solution is constant at $u_0 = 5$; on the outer surface of the cylinder the solution is fixed at $u = 0$.  Along the outer rim of the top is where these conflicting solutions come together and the ``wiggliness'' is the result.  If we increase the number of eigenmodes a more sharp solution can be obtained.  A plot with $N=100$ eigenmodes is shown in Figure \ref{fig:lec32-ex1-plot-n100}.
 \begin{marginfigure}
 \includegraphics{lec32-ex1-plot-n100.png}
 \caption{Cross section of Case I solution for N=100.}
@@ -312,7 +312,7 @@ u(r,z) = \sum\limits_{n=1}^{\infty} c_n I_0(n \pi r) \sin{n \pi z}
 \begin{equation*}
 u(1,z) = \sum\limits_{n=1}^{\infty} c_n I_0(n \pi)\sin{n \pi z} = 1-z
 \end{equation*}
-Here again, of course, we need to multiply both sides by an orthogonal function (and weight function) and integrate.  In this case, however, the orthogonal set of functions is $\sin{n\pi z}$ and the weight function is $p(z)=1$.\marginnote[-1.0cm]{Students sometimes struggle with this.  The key is to realize that $I_0(n \pi)$ is not really a function but a constant---albeit a tricky one to evaluate.}  Carrying out this (by now routine) task, we obtain the expression for $c_n$ as:
+Here again, of course, we need to multiply both sides by an orthogonal function (and weight function) and integrate.  In this case, however, the orthogonal set of functions is $\sin{n\pi z}$ and the weight function is $p(z)=1$.\marginnote[-1.0cm]{Students sometimes struggle with determining which term is the orthogonal function.  The key is to realize that $I_0(n \pi)$ is not really a function at all but a constant---albeit a tricky one to evaluate.}  Carrying out this (by now routine) task, we obtain the expression for $c_n$ as:
 \begin{equation}
 c_n = \frac{\int_0^1 (1-z)\sin{n \pi z} \ dz}{I_0(n \pi) \int_0^1 \sin{(n \pi z)}^2 \ dz}
 \label{eq:lec32-ex2-coeff}
