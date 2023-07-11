@@ -39,7 +39,7 @@ FG_{t} &= \alpha^2 F_{xx}G
 
 \vspace{3.0cm}
 
-\noindent\textbf{Step \#3:} Separate variables: \marginnote{On the middle line we see that $\frac{G_t}{\alpha^2 G}$ is only a function of $y$; $\frac{F_{xx}}{F}$ is only a function of $x$ and yet they must be equal to each other for all values of $x$ and $y$.  The only way this makes sense is if they are both in fact constant.  We will denote this constant $-\lambda$.}
+\noindent\textbf{Step \#3:} Separate variables: \marginnote{On the middle line we see that $\frac{G_t}{\alpha^2 G}$ is only a function of $y$; $\frac{F_{xx}}{F}$ is only a function of $x$ and yet they must be equal to each other for all values of $x$ and $y$.  The only way this makes sense is if they are both, in fact, constant.  We will denote this constant $-\lambda$.}
 \begin{align*}
 \frac{FG_t}{\alpha^2 FG} &= \frac{\alpha^2 F_{xx}G}{\alpha^2 FG} \\
 \frac{G_t}{\alpha^2 G} &= \frac{F_{xx}}{F} = -\lambda \\
@@ -52,7 +52,7 @@ G_{t} + \alpha^2 \lambda G = 0, \ \ & \ \ F_{xx}+\lambda F = 0
 
 \noindent\textbf{Step \#4:} Apply boundary conditions to determine non-trivial product solution(s).  
 
-\noindent The boundary conditions must be applied to the separated equation for $F(x)$.\sidenote{The only way $G(t)$ can satisfy the homogeneous spatial boundary conditions would be for us to set $G(t)=0$.  Thus the product solution would be $u(x,t)=F(x)G(t) = F(x)(0)=0$.  Obviously a trivial solution $u(x,t)=0$ is not what we are looking for.}
+\noindent The boundary conditions must be applied to the separated equation for $F(x)$.\sidenote{The only way $G(t)$ can satisfy the homogeneous spatial boundary conditions would be for us to set $G(t)=0$.  Thus the product solution would be $u(x,t)=F(x)G(t) = F(x)(0)=0$.  Obviously a trivial solution, $u(x,t)=0$, is not what we are looking for.}
 
 \begin{equation*}
 F_{xx} + \lambda F = 0, \ \ F(0) = 0, \ \ F(L) = 0, \ \ 0<x<L
@@ -78,11 +78,11 @@ Thus we will disregard $\lambda = 0$ since only the trivial solution satisfies t
 
 \noindent\underline{$\lambda < 0$}:  Here we will set $\lambda = -\nu^2, \ \ \nu>0$. \marginnote[1.5cm]{Note again that we use the $\cosh()$ and $\sinh()$ form of the solution since the domain is bounded.}
 \begin{align*}
-F_{xx} - \nu^2 F &= 0 \\
-F(x) &= c_1 \cosh{\nu x} + c_2 \sinh{\nu x} \\
-F(0) &= c_1 \cancelto{1}{\cosh{0}} + c_2 \cancelto{0}\sinh{0} \\
-F(0) &= c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
-F(L) &= c_2 \sinh{\nu L} = 0 \\
+&F_{xx} - \nu^2 F = 0 \\
+&F(x) = c_1 \cosh{\nu x} + c_2 \sinh{\nu x} \\
+&F(0) = c_1 \cancelto{1}{\cosh{0}} + c_2 \cancelto{0}\sinh{0} \\
+&F(0) = c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
+&F(L) = c_2 \sinh{\nu L} = 0 \\
 \end{align*}
 Here we have to recall that $\sinh{x}$ is strictly positive for $x>0$.  Therefore $c_2 = 0$ and, again, only the trivial solution satisfies the governing equation and boundary conditions for the case $\lambda < 0$ so we will discard this possibility.
 
@@ -90,18 +90,20 @@ Here we have to recall that $\sinh{x}$ is strictly positive for $x>0$.  Therefor
 
 \noindent\underline{$\lambda > 0$}:  Here we will set $\lambda = \nu^2, \ \ \nu>0$.
 \begin{align*}
-F_{xx} + \nu^2 F &= 0 \\
-F(x) &= c_1 \cos{\nu x} + c_2 \sin{\nu x} \\
-F(0) &= c_1 \cancelto{1}\cos{0} + c_2 \cancelto{0}\sin{0} \\
-F(0) &= c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
-F(L) &= c_2 \sin{\nu L} = 0
+&F_{xx} + \nu^2 F = 0 \\
+&F(x) = c_1 \cos{\nu x} + c_2 \sin{\nu x} \\
+&F(0) = c_1 \cancelto{1}\cos{0} + c_2 \cancelto{0}\sin{0} \\
+&F(0) = c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
+&F(L) = c_2 \sin{\nu L} = 0
 \end{align*}
-Finally we have something we can work with!  Rather than setting $c_2 = 0$, we can observe that $\sin{\nu L} = 0$ whenever $\nu L = n \pi$, and $n$ is a positive integer.\marginnote[-1.0cm]{Note that we exclude the case where $n=0$ since that implies $\nu L = 0$ but we stipulated that $\nu > 0$.}  Thus there are infinitely many values that we will designate $\nu_n$ that satisfy the condition: $\nu_n = \sfrac{n \pi}{L}$ with $n\in \mathcal{Z}^{+}$.\sidenote[][]{Traditionally, in mathematical literature, $\mathcal{Z}$ denotes the set of all integers.  The notation $\mathcal{Z}^{+}$ is used here to denote the set of all positive integers.}
+Finally we have something we can work with!  Rather than setting $c_2 = 0$, we can observe that $\sin{\nu L} = 0$ whenever $\nu L = n \pi$, and $n$ is a positive integer.\marginnote[-1.0cm]{Note that we exclude the case where $n=0$ since that implies $\nu L = 0$ but we stipulated that $\nu > 0$.}  Thus there are infinitely many values---which we will designate $\nu_n$---that satisfy the condition: $\nu_n = \sfrac{n \pi}{L}$ with $n\in \mathcal{Z}^{+}$.\sidenote[][]{Traditionally, in mathematical literature, $\mathcal{Z}$ denotes the set of all integers.  The notation $\mathcal{Z}^{+}$ is used here to denote the set of all positive integers.}
 
-For $\lambda = \nu^2$ we can now also solve the separated equation for $G(t)$:
+\vspace{0.15cm}
+
+\noindent For $\lambda = \nu^2$ we can now also solve the separated equation for $G(t)$:
 \begin{align*}
-G_t + \alpha^2 \nu^2 G &= 0 \\
-G(t) &= c_3 e^{-(\alpha \nu)^2 t}
+&G_t + \alpha^2 \nu^2 G = 0 \\
+&G(t) = c_3 e^{-(\alpha \nu)^2 t}
 \end{align*}
 
 \noindent We combine these values of $\nu_n$ with $F(x)$ and $G(x)$---which we will now call eigenfunctions: 
@@ -150,7 +152,7 @@ u(x,t) &= \sum\limits_{n=1}^{\infty} c_n \sin{\frac{n \pi x}{L}}e^{-(\alpha \fra
 c_n &= \frac{2}{L} \int_0^L f(x) \sin{\frac{n \pi x}{L}} \ dx
 \end{align*}
 
-\newthought{To get quantitative} information, we need to specify values for the length of the bar,$L$; the thermal diffusivity, $\alpha$; and the initial temperature distribution, $f(x)$.  But we can consider some qualitative aspects of the solution before we start computing.\marginnote{Answers:  
+\newthought{To get quantitative} information, we need to specify values for the length of the bar $(L)$, the thermal diffusivity $(\alpha)$, and the initial temperature distribution, $f(x)$.  But we can consider some qualitative aspects of the solution before we start computing.\marginnote{Answers:  
 \begin{enumerate}
 \item Owing to the exponential term in the solution, $u(x,t) \rightarrow 0$ as $t \rightarrow \infty$.
 
@@ -282,7 +284,7 @@ and shown in Figure \ref{fig:lec23_ex1_discont}. The solution (for $\alpha^2=0.1
 \caption{Solution with discontinuous initial condition, $N=25$.}
 \label{fig:lec23_ex1_discont_n25}
 \end{marginfigure} 
-Note the ``wiggliness'' of the Fourier series representation of the initial condition; note also how that ``wiggliness'' goes away almost immediately.
+Note the ``wiggliness'' of the Fourier series representation of the initial condition; note also how that ``wiggliness'' goes away almost immediately. This is due to the diffusive nature of the heat equation.
 
 In much the same way as we could improve our resolution of functions represented by a Fourier series by computing more terms, we can do the same thing here.  In Figure \ref{fig:lec23_ex1_discont_n100} we show the solution computed with $N=100$ terms in the Fourier series.
 \begin{marginfigure}
@@ -307,10 +309,10 @@ $\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,0) = f(x), \ \ 0<x<L $
 
 \vspace{0.25cm}
 
-\noindent Before we do any analysis we should think about what we \emph{expect} the solution to look like.  Mathematically we implement the insulated boundary condition by setting the temperature gradient at that boundary equal to zero.  Conceptually, we know this means that heat will no longer flow out of that boundary.  Heat may or may not flow \emph{towards} the right boundary depending on the temperature distribution within the domain but any heat reaching the right boundary will stay there until it can flow out towards the \emph{left} boundary.
+\noindent Before we do any analysis we should think about what we \emph{expect} the solution to look like.\sidenote{This is important.  Do not let yourself get stuck inside analytic blinders that prevent you from seeing the big picture.  Eventually you will need to be prepared to critically scrutinize your answer and decide, on your own, whether or not it is reasonable and/or correct.}  Mathematically we implement the insulated boundary condition by setting the temperature gradient at that boundary equal to zero.  Conceptually, we know this means that heat will no longer flow out of that boundary.  Heat may or may not flow \emph{towards} the right boundary depending on the temperature distribution within the domain but any heat reaching the right boundary will stay there until it can flow out towards the \emph{left} boundary.
 
 \vspace{0.25cm}
-\marginnote{\emph{Hint:} when we apply the insulated boundary condition, we will be left with $F_x(L) = \nu c_2 \cos{\nu L} = 0$ which we can satisfy if $\nu L$ is an odd integer multiple of $\sfrac{\pi}{2}$. So $\nu_n L = \frac{(2n-1) \pi}{2}, \ n=1,2,3,\cdots$, and therefore $\nu_n = \frac{(2n-1)\pi}{2L}$. 
+\marginnote{\textbf{Hint:} When we apply the insulated boundary condition, we will be left with $F_x(L) = \nu c_2 \cos{\nu L} = 0$ which we can satisfy if $\nu L$ is an odd integer multiple of $\sfrac{\pi}{2}$. So $\nu_n L = \frac{(2n-1) \pi}{2}, \ n=1,2,3,\cdots$, and therefore $\nu_n = \frac{(2n-1)\pi}{2L}$. 
 }
 \noindent The details are left to the reader but application of separation of variables to the new boundary value problem yields the following solution:
 

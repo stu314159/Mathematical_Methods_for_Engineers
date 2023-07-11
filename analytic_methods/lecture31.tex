@@ -51,7 +51,7 @@ u(r,t) = F(r)G(t)
 
 \noindent\textbf{Step \#2:} Insert the product solution into the governing equation.
 \begin{align*}
-\frac{\partial^2 }{\partial t^2}\left(F(r)G(t)\right) &= \alpha^2 \left[\frac{\partial^2}{\partial r^2}\left[F(r)G(t) \right] + \frac{1}{r}\frac{\partial}{\partial r}\left[F(r)G(t)\right] \right] \\
+\frac{\partial^2 }{\partial t^2}\left[F(r)G(t)\right] &= \alpha^2 \left\{\frac{\partial^2}{\partial r^2}\left[F(r)G(t) \right] + \frac{1}{r}\frac{\partial}{\partial r}\left[F(r)G(t)\right] \right\} \\
 FG_{tt} &= \alpha^2 \left(F_{rr}G + \frac{1}{r}F_rG \right)
 \end{align*}
 
@@ -86,7 +86,7 @@ F(r) &= c_1J_0(\nu r) + c_2 Y_0(\nu r) \\
 G(t) &= c_3\cos(\nu \alpha t) + c_4 \sin(\nu \alpha t)
 \end{align*}
 
-\newthought{In the $r$-coordinate} we have only one explicit boundary condition, but there is another condition of which we must always be mindful, particularly in polar coordinates when $r=0$ is part of the domain; that is that $\lim_{r \to 0} u(r,\theta) < \infty$.  Once again, drawing upon our knowledge of Bessel functions, we know that $Y_0(r)$ diverges to negative infinity as $r$ goes to zero.  Thus we must set $c_2 = 0$ and the radial equation simplifies to:
+\newthought{In the $r$-coordinate} we have only one explicit boundary condition. There is, however, another condition of which we must always be mindful, particularly in polar coordinates when $r=0$ is part of the domain and that is: $\lim_{r \to 0} u(r,\theta) < \infty$.  Once again, drawing upon our knowledge of Bessel functions, we know that $Y_0(r)$ diverges to negative infinity as $r$ goes to zero.  Thus we must set $c_2 = 0$ and the radial equation simplifies to:
 \begin{equation*}
 F(r) = c_1J_0(\nu r)
 \end{equation*} 
@@ -95,7 +95,7 @@ F(r) = c_1J_0(\nu r)
 \begin{equation*}
 F(c) = c_1J_0(\nu c) = 0
 \end{equation*}
-which implies that $\nu c$ needs to be a positive root of $J_0(r)$.  As we learned in lecture 19, $J_0$ has infinitely many positive roots and we can find them with the assistance of the MATLAB function \lstinline[style=myMatlab]{besselzero()}.  If we denote the $n$\textsuperscript{th} root of $J_0$ as $k_{0,n}$, then our eigenvalues must be equal to:
+which implies that $\nu c$ needs to be a positive root of $J_0(r)$.  As we learned in lecture 19, $J_0$ has infinitely many positive roots and we can find them with the assistance of the function \lstinline[style=myMatlab]{besselzero()} that we obtained from the MATLAB file exchange.  If we denote the $n$\textsuperscript{th} root of $J_0$ as $k_{0,n}$, then our eigenvalues must be equal to:
 \begin{equation*}
 \nu_n = \frac{k_{0,n}}{c}
 \end{equation*}
@@ -116,7 +116,7 @@ u(r,t) = \sum\limits_{n=1}^{\infty} J_0(\nu_n r)\left[a_n \cos{\alpha \nu_n t} +
 u(r,0) = \sum\limits_{n=1}^{\infty} \left(a_n \cancelto{1}{\cos{0}} + b_n \cancelto{0}{\sin{0}}\right) J_0(\nu_n r) &= f(r) \\
 \sum\limits_{n=1}^{\infty}a_nJ_0(\nu_n r) &= f(r)
 \end{align*}
-On the left, we have an infinite linear combination of eigenfunctions, $J_0(\nu_n r)$, on the right we have a function we are trying to represent.  We need to determine the values $a_n$ so that the two are equal.  How do we do this?  We multiply both sides by an orthogonal function---and weight function---and integrate.  As we learned previously, the weight function $p(r) = r$.  Doing this explicitly for $a_1$ gives us:\marginnote{All terms other than the first one on the left hand side is zero due to orthogonality of $J_0(\nu r)$ on the interval $r \in [0,c]$ with respect to weight function $p(r)=r$.}
+On the left, we have an infinite linear combination of eigenfunctions, $J_0(\nu_n r)$, on the right we have a function we are trying to represent.  We need to determine the values $a_n$ so that the two are equal.  How do we do this?  We multiply both sides by an orthogonal function---and weight function---and integrate.  As we learned previously, the weight function is $p(r) = r$.  Doing this explicitly for $a_1$ gives us:\marginnote{All terms other than the first one on the left hand side is zero due to orthogonality of $J_0(\nu r)$ on the interval $r \in [0,c]$ with respect to weight function $p(r)=r$.}
 \begin{multline*}
 a_1 \int_0^c J_0(\nu_1r)^2 r \ dr + a_2 \cancelto{0 \ \text{ by orthogonality}}{\int_0^c J_0(\nu_2r)J_0(\nu_1 r)r \ dr} + \cdots = \\ \int_0^c f(r)J_0(\nu_1r) r \ dr
 \end{multline*}
@@ -177,7 +177,7 @@ switch example
         error('Unexpected example number!!');
 end
 \end{lstlisting}
-Next we use \lstinline[style=myMatlab]{besselzero()} to get the roots of $J_0$, compute the coefficients $a_n$ and $b_n$ and build the solution $u(r,t)$.
+Next we use \lstinline[style=myMatlab]{besselzero()} to get the roots of $J_0$, compute the coefficients $a_n$ and $b_n$, and build the solution $u(r,t)$.
 \marginnote[1.0cm]{
 \ref{lst:ann31-1-1} Reminder that in order to use \lstinline[style=myMatlab]{besselzero()} in a script, you need to have a copy of besselzero.m in the current folder or otherwise on the MATLAB path.
 }

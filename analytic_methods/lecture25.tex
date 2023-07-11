@@ -9,12 +9,12 @@
 \setcounter{lstannotation}{0} %hack to try and re-set annotation counter.
 
 \section{Introduction}
-In the past two lectures we have invested considerable time in the solution of two boundary value problems using the method of separation of variables.  When I teach this course I find that, during those lectures, there is little time available to spend going into the details of the MATLAB code created, essentially, to visualize the solution. Nonetheless it is often the case that a large fraction of the students have only modest proficiency in using MATLAB.\marginnote{Proficiency levels vary but students have had as much as two years under their belt using MATLAB to as little as two or three weeks.}  In this lecture we focus on the MATLAB details.  The hope is that students will come away with at least an introduction to the bare-minimum of MATLAB tools that will allow them to complete homework assignments.
+In the past two lectures we have invested considerable time in the solution of two boundary value problems using the method of separation of variables.  When I teach this course I find that, during those lectures, there is little time available to spend going into the details of the MATLAB code created, essentially, to visualize the solution. Nonetheless it is often the case that a large fraction of the students have only modest proficiency in using MATLAB.\marginnote{Proficiency levels vary: students have as much as two years experience using MATLAB to as little as two or three weeks.}  In this lecture we focus on the MATLAB details.  The hope is that students will come away with at least an introduction to the bare-minimum of MATLAB tools that will allow them to complete homework assignments.
 
 \section{Example Heat Equation}
 
 \marginnote[-1.0cm]{Take a moment to consider the units used in this boundary value problem.  If you believe the units provided for density, thermal conductivity, and specific heat, simple ``unit arithmetic'' shows that the thermal diffusivity should have units of cm\textsuperscript{2}/s.  What are the units of $\sfrac{\partial^2 u }{\partial x^2}$? Answer: $\sfrac{^{\circ}\text{C}}{\text{cm}^2}$.  What are the units of $\sfrac{\partial u}{\partial t}$?  Answer: $\sfrac{^{\circ}\text{C}}{\text{s}}$.  From this it should be clear that, indeed, the units are the same on the left and right side of the governing equation---as it \emph{must} be in order to be correct.  My point is that it does not take a tremendous amount of mathematical skill to check these things but you should \emph{always} check them.  If you do so, then you will definitely increase your confidence that you know what is going on; you may also save yourself from an embarrassing error.}
-\noindent\textbf{Problem Statement: } Find the temperature $u(x,t)$ of a bar of silver of length 10cm.  The density is 10.6 g/cm\textsuperscript{3}, thermal conductivity is 1.04 cal/cm-s-$^{\circ}$C, and the specific heat is 0.056 cal/g-$^{\circ}$C.  The bar is perfectly insulated laterally with ends kept at 0$^{\circ}$C.  The initial temperature, $f(x)$, is given by: $f(x)=4-0.8\left|x-5\right|^{\circ}$C.  From this physical description of the problem, we formulate the following boundary value problem:
+\noindent\textbf{Problem Statement: } Find the temperature $u(x,t)$ of a bar of silver of length 10 cm.  The density is 10.6 g/cm\textsuperscript{3}, thermal conductivity is 1.04 cal/cm-s-$^{\circ}$C, and the specific heat is 0.056 cal/g-$^{\circ}$C.  The bar is perfectly insulated laterally with ends kept at 0$^{\circ}$C.  The initial temperature is given by: $f(x)=4-0.8\left|x-5\right|^{\circ}$C.  From this physical description of the problem, we formulate the following boundary value problem:
 \begin{table}[h]
 \begin{tabular}{l l}
 $\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial u}{\partial t} = \alpha^2 \frac{\partial^2 u}{\partial x^2}, \ \ \alpha>0, \ \ 0<x<10, \ \ t>0$ \\
@@ -68,7 +68,7 @@ We will tackle these tasks one at a time.
 
 \vspace{0.2cm}
 
-\ref{lst:ann25-1-2} Make sure you fully understand how these anonymous functions work.  The snippet: \lstinline[style=myMatlab]{F = @(x,n) ...} should be read: ``F is a function of x and n...''  The ``L'' that appears on the right hand sides is the same ``L'' defined as a parameter.  The fact that this works is one of the benefits of using anonymous functions.  Remember to write these anonymous functions so that they can accept vector inputs for $x$ and $n$.  Built-in functions like \lstinline[style=myMatlab]{integral()} will fail if the function you supply to be integrated \emph{cannot} accept vector inputs.
+\ref{lst:ann25-1-2} Make sure you fully understand how these anonymous functions work.  The snippet: \lstinline[style=myMatlab]{F = @(x,n) ...} should be read: ``F is a function of x and n...''  The ``L'' that appears on the right hand side is the same ``L'' defined as a parameter.  The fact that this works is one of the benefits of using anonymous functions.  Remember to write these anonymous functions so that they can accept vector inputs for $x$ and $n$.  Built-in functions like \lstinline[style=myMatlab]{integral()} will fail if the function you supply to be integrated \emph{cannot} accept vector inputs.
 
 }
 \begin{lstlisting}[name=lec25-ex1, style=myMatlab]
@@ -230,7 +230,7 @@ end
 
 \vspace{1.5cm}
 
-\ref{lst:ann25-1-14} the command \lstinline{gcf} means ``get current frame.''  In this line, the n\textsuperscript{th} frame of the animation is saved to the n\textsuperscript{th} FRAMES structure.
+\ref{lst:ann25-1-14} the command \lstinline[style=myMatlab]{gcf} means: ``get current frame.''  In this line, the n\textsuperscript{th} frame of the animation is saved to the n\textsuperscript{th} FRAMES structure.
 
 }
 \begin{lstlisting}[style=myMatlab, name=lec25-ex1]
@@ -269,7 +269,7 @@ close(v); /*!\annotation{lst:ann25-1-16}!*/
 
 \vspace{0.15cm}
 
-\ref{lst:ann25-1-16} Be a good citizen and close any files you open for writing. 
+\ref{lst:ann25-1-16} Be a good leader and close any files you open for writing. 
 
 }
 
@@ -280,7 +280,7 @@ close(v); /*!\annotation{lst:ann25-1-16}!*/
 
 \vspace{0.15cm}
 
-\noindent Animations are nice but sometimes the splashy graphics is not needed and you just want to see how the temperature across the domain changes over time in a static image.  A surface plot is an excellent way to do this; the MATLAB built-in function that does the job is cunningly named \lstinline[style=myMatlab]{surf()} and is shown in the listing below.
+\noindent Animations are nice but sometimes the splashy graphics are not needed and you just want to see how the temperature across the domain changes over time in a static image.  A surface plot is an excellent way to do this; the MATLAB built-in function that does the job is cunningly named \lstinline[style=myMatlab]{surf()} and is shown in the listing below.
 \marginnote{
 
 \vspace{0.3cm} 
@@ -307,7 +307,7 @@ zlabel('u(X,T)  [^{\circ}C]','fontsize',16,...
 
 \vspace{0.2cm}
 
-\ref{lst:ann25-1-18} The \lstinline[style=myMatlab]{surf(XX,YY,ZZ)} function takes at least three arguments; in this case the first two are used by the output of \lstinline[style=myMatlab]{meshgrid()} and the last is created by supplying the \lstinline{XX} and \lstinline{TT} arrays to our approximate solution---\lstinline{u(x,y)}---which serves as the height (or z-coordinate) of the surface plot at each point. The name-value pair: \lstinline{'edgecolor','none'} suppresses the (by default) black grid line that delineate the mesh created with \lstinline{XX} and \lstinline{TT}.  For high-resolution meshes the grid lines would obscure the color-map used to highlight the solution. (Try omitting this name-value pair and observe the effect.)
+\ref{lst:ann25-1-18} The \lstinline[style=myMatlab]{surf(XX,YY,ZZ)} function takes at least three arguments.  In this case the first two are used by the output of \lstinline[style=myMatlab]{meshgrid()} and the last is created by supplying the \lstinline{XX} and \lstinline{TT} arrays to our approximate solution---\lstinline{u(x,y)}---which serves as the height (or z-coordinate) of the surface plot at each point. The name-value pair: \lstinline{'edgecolor','none'} suppresses the (by default) black grid lines that delineate the mesh created with \lstinline{XX} and \lstinline{TT}.  For high-resolution meshes these grid lines would obscure the color-map used to highlight the solution. (Try omitting this name-value pair and observe the effect.)
 
 \vspace{0.2cm}
 
@@ -381,7 +381,7 @@ g = @(x) x.*0; /*!\annotation{lst:ann25-2-3}!*/
 \end{lstlisting}
 \vspace{0.2cm}
 
-\ref{lst:ann25-2-3} At first glance it would appear to be easier to simply make the assignment: \lstinline[style=myMatlab]{g = 0;}.  We do it this way so that the follow-on code can be written in a way that assumes that \lstinline{g} is a function of $x$---i.e. the code \lstinline[style=myMatlab]{integral(@(x) g(x).*sin(n*pi*x./L,0,L)} does not result in an error. In the future, if we replace $g(x)=0$ with a  non-trivial function of $x$, for example, $g(x)=\sin{x}$ everything will work as expected.
+\ref{lst:ann25-2-3} At first glance it would appear to be easier to simply make the assignment: \lstinline[style=myMatlab]{g = 0;}.  We do it this way so that the follow-on code can be written in a way that assumes that \lstinline{g} is a function of $x$---i.e. the code \lstinline[style=myMatlab]{integral(@(x) g(x).*sin(n*pi*x./L,0,L)} does not result in an error. In the future, if we replace $g(x)=0$ with a  non-trivial function of $x$, for example $g(x)=\sin{x}$, everything will work as expected.
 
 \vspace{3.5cm}
 
@@ -469,7 +469,7 @@ function y = ex1(x,L)
 [m,n] = size(x);
 y = nan(m,n);
 for i = 1:length(x)
-   if (x(i)>0)&& (x(i) < L/2)
+   if (x(i)>0) && (x(i) < L/2)
        y(i) = (2/3).*x(i);
    elseif(x(i) >= L/2) && (x(i)<L)
        y(i) = (2/3)*(L - x(i));

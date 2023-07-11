@@ -18,9 +18,9 @@ f(x,y) = \sum\limits_{m=1}^{\infty}\sum\limits_{n=1}^{\infty} A_{mn}\sin{\frac{m
 
 \begin{enumerate}
 
-\item Should we expect this to be possible?  Answer: of course!  Fourier series have shown themselves to be a perfectly adequate tool for representing a variety of functions.  There is no problem in adding another spatial dimension.
+\item Should we expect this to be possible?  \textbf{Answer:} Of course!  Fourier series have shown themselves to be a perfectly adequate tool for representing a variety of functions.  There is no problem in adding another spatial dimension.
 
-\item How will we determine the appropriate values for $A_{mn}$?  Answer: we will multiply both sides by orthogonal function\underline{s} and integrate, as usual.\marginnote{Again, these sets of functions---$\sin{\sfrac{m \pi x}{a}}$ and $\sin{\sfrac{n \pi y}{b}}$---are orthogonal with respect to a weight function $p(x)=1$ and we should not forget it even if we leave it out of the equations and fail to mention it in the discussion.}
+\item How will we determine the appropriate values for $A_{mn}$?  \textbf{Answer:} We will multiply both sides by orthogonal function\underline{s} and integrate, as usual.\marginnote{Again, these sets of functions---$\sin{\sfrac{m \pi x}{a}}$ and $\sin{\sfrac{n \pi y}{b}}$---are orthogonal with respect to a weight function $p(x)=1$ and we should not forget it even if we leave it out of the equations and fail to mention it in the discussion.}
 
 \end{enumerate}
 \begin{multline*}
@@ -233,9 +233,9 @@ FGH_t &= \alpha^2\left(F_{xx}GH + FG_{yy}H\right) \\
 \noindent\textbf{Step \#3b:} Separate remaining variables---$t$ from $y$.
 
 \begin{align*}
-\frac{G_{yy}}{G} &= \frac{H_{t}}{\alpha^2 H} + \lambda = -\mu \\
-G_{yy} + \mu G &= 0 \\
-H_{t} + \alpha^2\gamma H &= 0, \text{ where: } \gamma = \lambda + \mu
+&\frac{G_{yy}}{G} = \frac{H_{t}}{\alpha^2 H} + \lambda = -\mu \\
+&G_{yy} + \mu G = 0 \\
+&H_{t} + \alpha^2\gamma H = 0, \text{ where: } \gamma = \lambda + \mu
 \end{align*}
 
 \noindent\textbf{Step \#4:} Apply boundary conditions to determine non-trivial product solution(s).
@@ -270,3 +270,6 @@ A_{mn} = \frac{4}{a b} \int_0^b \int_0^a f(x,y) \sin{\frac{m \pi x}{a}} \sin{\fr
 \label{eq:lec29-ex2-sol-coeff}
 \end{equation}
 
+\vspace{0.1cm}
+
+\noindent A problem requiring use of the double Fourier series will be included in the homework.

@@ -15,7 +15,7 @@ In past lectures we have used the Laplacian operator ($\nabla^2$ or $\bigtriangl
 \nabla \cdot \nabla = \nabla^2 &= \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2} \\
 &= \bigtriangleup
 \end{align*}
-The operator notation is convenient insofar as it is agnostic regarding coordinate system.  We can use the Laplacian in a differential equation---e.g.$\nabla^2u = 0$---without immediate regard as to whether the domain will be described in a rectangular (Cartesian) coordinate system, polar, cylindrical or spherical coordinates.  Still, at some point in time before we can hope to solve such a differential equation, we need to select a coordinate system.\marginnote[-1.5cm]{How do you pick a coordinate system?  The answer is that you select a coordinate system that makes \underline{\emph{the boundary of the domain easy to describe.}}}  Once we have done that, we need to have an expression of the Laplacian available with the appropriate independent variables.  
+The operator notation is convenient insofar as it is agnostic regarding coordinate system.  We can use the Laplacian in a differential equation---e.g.$\nabla^2u = 0$---without immediate regard as to whether the domain will be described in a rectangular (Cartesian) coordinate system, polar, cylindrical or spherical coordinates.  Still, at some point in time before we can hope to solve such a differential equation, we need to select a coordinate system.\marginnote[-1.5cm]{\textbf{Question:} How do you pick a coordinate system?  \textbf{Answer:} You select a coordinate system that makes \textbf{\emph{the boundary of the domain easy to describe.}}}  Once we have done that, we need to have an expression of the Laplacian available with the appropriate independent variables.  
 \begin{marginfigure}
 \includegraphics{lec30-cylindrical-coordinates.png}
 \caption{Cylindrical coordinate system.}
@@ -107,7 +107,9 @@ We would then start all over again to find $u_y$ and $u_{yy}$.  Balancing mathem
 \label{eq:laplacian-polar}
 \end{equation}
 
-We are now ready to solve Laplace's equation in polar coordinates.
+\vspace{0.1cm}
+
+\noindent We are now ready to solve Laplace's equation in polar coordinates.
 
 \vspace{0.25cm}
 
@@ -120,7 +122,10 @@ $\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial
 $\substack{\text{Boundary} \\ \text{Conditions}}: $ & $u(c,\theta) = f(\theta), \ \ 0 < \theta< 2 \pi$\\
 \end{tabular}
 \end{table} 
-You can confirm that the equation is linear and homogeneous.  As usual, we will use separation of variables to solve the problem.
+
+\vspace{0.1cm}
+
+\noindent You can confirm that the equation is linear and homogeneous.  As usual, we will use separation of variables to solve the problem.
 
 \vspace{0.25cm}
 
@@ -159,8 +164,11 @@ G_{\theta \theta} + \lambda G &= 0
 
 \vspace{0.15cm}
 
-\noindent\underline{$\lambda = 0$}
-We will start with $G(\theta)$:
+\noindent\underline{$\lambda = 0$}:
+
+\vspace{0.1cm}
+
+\noindent We will start with $G(\theta)$:
 \begin{align*}
 G_{\theta \theta} &= 0 \\
 G(\theta) &= c_1 + c_2\theta
@@ -209,7 +217,7 @@ r^m[m(m-1)+m - n^2] &= 0 \\
 m^2-n^2 &= 0 \\
 \Rightarrow m = \pm n, \ \ n = 1,2,3,\dots
 \end{align*}
-This yields the general solution: $F(r) = c_3r^n + c_4r^{-n}$.  In order to satisfy the requirement that $\lim_{r \to 0} F(r) < \infty$, we must stipulate that $c_4 = 0$.  Thus for $\lambda > 0$, the product solution is of the form:
+This yields the general solution: $F(r) = c_3r^n + c_4r^{-n}$.  In order to satisfy the requirement that $\lim_{r \to 0} F(r) < \infty$, we must stipulate that $c_4 = 0$.  Thus, for $\lambda > 0$, the product solution is of the form:
 \begin{equation*}
 u_n(r,\theta) = F_n(r)G_n(\theta) = r^n\left(a_n \cos{n \theta} + b_n \sin{n \theta} \right)
 \end{equation*}

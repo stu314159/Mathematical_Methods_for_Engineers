@@ -18,7 +18,7 @@ where $\alpha^2$ corresponds to thermal diffusivity which, in turn is given in E
 \alpha^2 = \frac{k}{\rho c_p}
 \label{eq:thermal-diffusivity}
 \end{equation}
-where $k$ is thermal conductivity, $\rho$ is the density, and $c_p$ is the specific heat at constant pressure and the dependent variable $u$ is the temperature.  All of these material properties must be positive for physically meaningful materials and, for the time being at least, we will consider all of these properties to be constant.\sidenote{This is a very important assumption mathematically and it is also untrue for relevant materials.  The thermal conductivity of most materials is highly dependent on temperature as is the density and specific heat.  If we allowed for this bit of realism to slip into our mathematical analysis, however, the differential equation would become nonlinear---$\alpha$ would become a function of the dependent variable $u$---and we would not be able to solve it with methods taught in this class.}
+where $k$ is thermal conductivity, $\rho$ is the density, and $c_p$ is the specific heat at constant pressure and the dependent variable $u$ is the temperature.  All of these material properties must be positive for physically meaningful materials and, for the time being at least, we will consider all of these properties to be constant.\sidenote{This is a very important assumption mathematically and it is also untrue for relevant materials.  The thermal conductivity of most materials is temperature dependent as is the density and specific heat.  If we allowed for this bit of realism to slip into our mathematical analysis, however, the differential equation would become nonlinear---$\alpha$ would become a function of the dependent variable $u$---and we would not be able to solve it with methods taught in this class. Tools based on the finite element method such as MOOSE and COMSOL are specifically designed to deal with this sort of nonlinearity.}
 
 \newthought{We will not} delve into the derivation of Equation \ref{eq:heat-eq}; this is left for your class in heat transfer.  Suffice it to say here that the equation is a mathematical expression of conservation of energy.  The following assumptions are incorporated into this expression:
 \begin{enumerate}
@@ -43,7 +43,7 @@ where $q$ is the \emph{heat flux}.  Relationships such as given in Equation \ref
 
 \vspace{0.5cm}
 
-\noindent\textbf{Type 1:} These are also called \emph{Dirichlet boundary conditions}.\sidenote{Named after the German mathematician Peter Gustav Lejeune Dirichlet who was known as a popular instructor at the Prussian Military Academy in the mid 19\textsuperscript{th} century. He is also famous for having first established the convergence proofs that we have cited for Fourier series and he also studied and proved a unique solution for the first boundary value problem and that, to the best of my knowledge, is why this boundary condition type is named for him.} These conditions apply to the dependent variable itself.  For example:
+\noindent\textbf{Type 1:} These are also called \emph{Dirichlet boundary conditions}.\sidenote{Named after the German mathematician Peter Gustav Lejeune Dirichlet who was known as a popular instructor at the Prussian Military Academy in the mid 19\textsuperscript{th} century. He is also famous for having first established the convergence proofs that we have cited for Fourier series and he also studied and proved a unique solution for the first boundary value problem.  That, to the best of my knowledge, is why this boundary condition type is named for him.} These conditions apply to the dependent variable itself.  For example:
 \begin{equation*}
 u(a) = T_a, \ \ u(b) = f(t)
 \end{equation*}
@@ -84,7 +84,7 @@ This equation is derived as a mathematical expression of mechanical equilibrium 
 \item Tension is constant; and
 \item there are no other forces acting on the string.
 \end{enumerate}
-A properly stated boundary value problem based on the wave equation will have two boundary conditions.  For this course we will usually apply Dirichlet boundary conditions but others are possible.  Since the equation is second-order in time we also need two temporal boundary conditions.  Typically these are given as the initial displacement, $u(x,0)=f(x)$ and initial velocity $u_t(x,0)=g(x)$.
+A properly stated boundary value problem based on the wave equation will have two boundary conditions.  For this course we will usually apply Dirichlet boundary conditions but others are possible.  Since the equation is second-order in time we also need two temporal boundary conditions.  Typically these are given as the initial displacement, $u(x,0)=f(x)$, and initial velocity, $u_t(x,0)=g(x)$.
 
 \section{Laplace Equation}
 The Laplace equation in two dimensions in a Cartesian coordinate system is given by Equation \ref{eq:laplace-eq}:
@@ -109,7 +109,7 @@ where in Cartesian coordinates:
 \end{align*}
 
 }
-Using this notation, Equation \ref{eq:laplace-eq} could be written: $\nabla^2 u = 0$.  This same expression is valid for 1-,2-, or 3-dimensional Cartesian coordinates but it is also valid for polar, cylindrical and spherical coordinates.  The specialization comes in the definition of $\nabla$.  We will address this further when we examine problems in those coordinate systems.
+Using this notation, Equation \ref{eq:laplace-eq} could be written: $\nabla^2 u = 0$.  This same expression is valid for 1-, 2-, or 3-dimensional Cartesian coordinates but it is also valid for polar, cylindrical and spherical coordinates.  The specialization comes in the definition of $\nabla$.  We will address this further when we examine problems in those coordinate systems.
 
 \section{Boundary Value Problems}
 In all of the above cases, a full statement of the boundary value problem must include:
@@ -145,7 +145,7 @@ where $h$ is the convective heat transfer coefficient.
 \newthought{In Equation \ref{eq:wave-eq-with-variations}} we show the wave equation in a case where we have an external force, damping and restoring forces.
 
 \begin{equation}
-\frac{\partial^2 u}{\partial t^2} = \alpha^2 \frac{\partial^2 u}{\partial x^2} \underbrace{-c\frac{\partial u}{\partial t}}_{\text{damping}}\overbrace{+f(x,t)}^{\substack{\text{external}\\\text{force}}}\underbrace{-ku}_{\substack{\text{restoring}\\ \text{force}}}
+\frac{\partial^2 u}{\partial t^2} = \alpha^2 \frac{\partial^2 u}{\partial x^2} \overbrace{+f(x,t)}^{\substack{\text{external}\\\text{force}}} \underbrace{-c\frac{\partial u}{\partial t}}_{\text{damping}}\overbrace{-ku}^{\substack{\text{restoring}\\ \text{force}}}
 \label{eq:wave-eq-with-variations}
 \end{equation}
 
@@ -181,7 +181,7 @@ ICs: & $u(x,0) = 0, \ u_t(x,0) = 0, \ \ 0<x<L$ \\
 
 \vspace{0.25cm}
 
-\noindent\textbf{Example: } Consider a semi-infinite plate coinciding with the region $0 \le x \le \pi, y\ge 0.$  The left end is held at temperature $e^{-y}$, and the right end is held at temperature $100^{\circ}$C for $0 < y \le 1$ and $0^{\circ}$C for $y>1$.  The bottom of the plate is held at temperature $f(x)$.  The corresponding BVP is:
+\noindent\textbf{Example: } Consider a semi-infinite plate coinciding with the region $0 \le x \le \pi, \ \  y\ge 0.$  The left end is held at temperature $e^{-y}$, and the right end is held at temperature $100^{\circ}$C for $0 < y \le 1$ and $0^{\circ}$C for $y>1$.  The bottom of the plate, $y=0$, is held at temperature $f(x)$.  The corresponding BVP is:
 
 \begin{table}
 \begin{tabular}{l l}
@@ -191,4 +191,4 @@ BCs: & $u(0,y) = e^{-y}, \ y>0, \ \ u(\pi,y) = \begin{cases} 100 & 0 < y \le 1 \
 & $u(x,0) = f(x), \ \ 0<x<\pi $\\
 \end{tabular}
 \end{table}
-An implicit constraint that may need to be applied in this cases is: $\lim_{y \to \infty} u(x,y) < \infty$. 
+One implicit constraint that may need to be applied in this cases is: $\lim_{y \to \infty} u(x,y) < \infty$. 

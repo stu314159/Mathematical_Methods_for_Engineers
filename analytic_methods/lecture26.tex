@@ -85,13 +85,13 @@ F_{x}(a) &= 0 \ \text{ (satisfied)}
 \noindent\underline{$\lambda < 0$}: To ensure $\lambda$ is negative we will set $\lambda = -\alpha^2, \ \alpha>0$.
 \marginnote[1.5cm]{Since the domain is bounded between $0<x<a$, we will use the $\cosh{}$ and $\sinh{}$ form of the solution.}
 \begin{align*}
-F_{xx} - \alpha^2 F &= 0 \\
-F(x) &= c_1 \cosh{\alpha x} + c_2 \sinh{\alpha x} \\
-F_x(x) &= \alpha c_1 \sinh{\alpha x} + \alpha c_2 \cosh{\alpha x} \\
-F_x(0) &= \alpha c_1 (0) + \alpha c_2 (1) = 0 \\
-\Rightarrow c_2 &= 0 \\
-F_x(a) &= \alpha c_1 \sinh{a \alpha} = 0\\
-\Rightarrow c_1 &= 0
+&F_{xx} - \alpha^2 F = 0 \\
+&F(x) = c_1 \cosh{\alpha x} + c_2 \sinh{\alpha x} \\
+&F_x(x) = \alpha c_1 \sinh{\alpha x} + \alpha c_2 \cosh{\alpha x} \\
+&F_x(0) = \alpha c_1 (0) + \alpha c_2 (1) = 0 \\
+&\Rightarrow c_2 = 0 \\
+&F_x(a) = \alpha c_1 \sinh{a \alpha} = 0\\
+&\Rightarrow c_1 = 0
 \end{align*}
 \marginnote[-1.5cm]{For this last two lines, recall that $\sinh{x}$ is positive for all $x>0$.}
 Therefore only the trivial solution $F(x)=0$ satisfies the separated equation and boundary conditions if $\lambda < 0$.
@@ -101,12 +101,12 @@ Therefore only the trivial solution $F(x)=0$ satisfies the separated equation an
 \noindent\underline{$\lambda > 0$}: To insure $\lambda$ is positive we will set $\lambda = \alpha^2, \ \alpha>0$.
 
 \begin{align*}
-F_{xx}+\alpha^2 F &= 0 \\
-F(x) &= c_1 \cos{\alpha x} + c_2 \sin{\alpha x} \\
-F_{x}(x) &= -\alpha c_1 \sin{\alpha x} + \alpha c_2 \cos{\alpha x} \\
-F_{x}(0) &= -\alpha c_1 (0) + \alpha c_2 (1) = 0 \\
-\Rightarrow c_2 &= 0 \\
-F_{x}(a) &= -\alpha c_1 \sin{\alpha a} = 0
+&F_{xx}+\alpha^2 F = 0 \\
+&F(x) = c_1 \cos{\alpha x} + c_2 \sin{\alpha x} \\
+&F_{x}(x) = -\alpha c_1 \sin{\alpha x} + \alpha c_2 \cos{\alpha x} \\
+&F_{x}(0) = -\alpha c_1 (0) + \alpha c_2 (1) = 0 \\
+&\Rightarrow c_2 = 0 \\
+&F_{x}(a) = -\alpha c_1 \sin{\alpha a} = 0
 \end{align*}
 This last condition, $\sin{\alpha a} = 0$, will be satisfied whenever $\alpha a$ is an integer multiple of $\pi$, therefore the eigenvalues are: $\alpha_n = \sfrac{n \pi}{a}, \ \ n\in \mathcal{Z}^+$.\marginnote[-0.25cm]{Note that we do not include $n=0$ since $\alpha>0$.}  The corresponding eigenfunctions are: $F_n(x) = c_1 \cos{\alpha_n x}$.
 
@@ -130,11 +130,11 @@ So the product solution for the case $\lambda = 0$ is: $F(x)G(y) = c_1 c_3y = c_
 \noindent\underline{$\lambda = \alpha_n^2$}, $\ \ \alpha_n = \sfrac{n \pi}{a}$.
 
 \begin{align*}
-G_{yy} - \alpha_n^2 G &= 0 \\
-G(y) &= c_3 \cosh{\alpha_n y} + c_4 \sinh{\alpha_n y} \\
-G(0) &= c_3 (1) + c_4(0) \\
-\Rightarrow c_3 &= 0 \\
-\Rightarrow G_n(y) &= c_4 \sinh{\alpha_n y}
+&G_{yy} - \alpha_n^2 G = 0 \\
+&G(y) = c_3 \cosh{\alpha_n y} + c_4 \sinh{\alpha_n y} \\
+&G(0) = c_3 (1) + c_4(0) \\
+&\Rightarrow c_3 = 0 \\
+&\Rightarrow G_n(y) = c_4 \sinh{\alpha_n y}
 \end{align*}
 Therefore the product solution for the case $\lambda > 0$ is: $F_n(x)G_n(y) = c_n \cos{\alpha_n x} \sinh{\alpha_n y}$.\marginnote{We combine all previous constants for each eigenfunction into $c_n$.}
 
@@ -209,7 +209,7 @@ c_n &= \frac{2\int_0^a f(x) \cos{\frac{n \pi x}{b}} \ dx}{a \sinh{\frac{n \pi b}
 
 \section{Implementation in MATLAB}
 
-To actually calculate and plot a solution we need to specify values for $a$, $b$, and $f(x)$ as well as choose a finite number of terms to the infinite series solution.  For this example we will set $a=3$, $b=5$, we will use $N=25$ terms of the infinite series and we will define the type 1 boundary condition at $y=b$ to be:
+To actually calculate and plot a solution we need to specify values for $a$, $b$, and $f(x)$ as well as choose a finite number of terms to the infinite series solution.  For this example we will set $a=3$, $b=5$, and we will use $N=25$ terms of the infinite series and we will define the type 1 boundary condition at $y=b$ to be:
 \begin{equation*}
 f(x) = 
 \begin{cases}
@@ -327,7 +327,7 @@ F(a) &= c_1(a) = g(y) \ \ \leftarrow \text{  Problem!!}
 Everything is going fine until we have the condition $c_1(a) = g(y)$.  Unless $g(y)$ is a constant: a) no value of $c_1$ will satisfy $g(y)$ for all values of $y \in [0,b]$; and b) there is nothing we can do about it.  We are simply stuck.  The same problem would occur if $\lambda$ were non-zero or if we did the same analysis on $G(y)$.  We need to do something different.
 
 
-\newthought{What we will do} is this: decompose the problem into two boundary value problems: Problem A and Problem B as is illustrated in Figure \ref{fig:lec26-ex2-bcs-super}.  Each boundary value problem in this decomposition will have one dimension for which there are homogeneous boundary conditions on each boundary.
+\newthought{What we will do} is this: decompose the problem into two boundary value problems: Problem A and Problem B as is illustrated in Figure \ref{fig:lec26-ex2-bcs-super}.  Each boundary value problem in this decomposition will have one dimension for which there are homogeneous boundary conditions on both boundaries.
 \begin{marginfigure}
 \includegraphics{lec26-ex2-bcs-super.png}
 \caption{Superposition of two BVPs each with homogeneous boundary conditions in one dimension.}
@@ -345,7 +345,7 @@ Everything is going fine until we have the condition $c_1(a) = g(y)$.  Unless $g
 \vspace{0.25cm}
 
 
-\noindent We then solve each boundary value problem to get $v(x,y)$ and $w(x,y)$.  The solution to the original problem is the \emph{superposition} (or just sum) of the solutions to the sub-problems:
+\noindent We then solve each boundary value problem to get $v(x,y)$ and $w(x,y)$.  The solution to the original problem is the \emph{superposition} (or just: sum) of the solutions to the sub-problems:
 \begin{equation*}
 u(x,y) = v(x,y) + w(x,y)
 \end{equation*}

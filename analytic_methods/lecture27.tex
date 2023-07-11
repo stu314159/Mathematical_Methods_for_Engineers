@@ -23,6 +23,8 @@ $\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,0) = f(x), \ \ 0<x<L $
 \end{tabular}
 \end{table}
 
+\vspace{0.1cm}
+
 \noindent where $u_0$ and $u_1$ are constants.  In this boundary value problem both the governing equation and the boundary conditions are non-homogeneous.  
 
 Since the governing equation is non-homogeneous, it is not separable.  In order to see why, let us begin the separation process:\marginnote[1.5cm]{Here we carry out the steps of separation of variables just as we did in Lecture 23.}
@@ -40,7 +42,7 @@ The non-homogeneous boundary conditions are also a problem.  Suppose we were abl
 u(0,t) &= F(0)G(t) = u_0 \\
 u(L,t) &= F(L)G(t) = u_1
 \end{align*}
-If we had homogeneous boundary conditions and $u_0=0$---like we have always had before---we could just require $F(0)=0$ and be done with it.\sidenote{Zero is special because if $F(0)=0$, it does not matter what $G(t)$ is, we still satisfy the condition.}  But if $u_1 \ne 0$ we are stuck.  We cannot simply say: $F(0) = \sfrac{u_0}{G(t)}$; even if we knew what $G(t)$ was it could only work in the case that $\sfrac{u_0}{G(t)}$ were a constant.  The same problem applies to the boundary at $x=L$.  If we are to use separation of variables, we need to find a way to make the governing equation and boundary conditions homogeneous.
+If we had homogeneous boundary conditions and $u_0=0$---like we have always had before---we could just require $F(0)=0$ and be done with it.\sidenote{Zero is special because if $F(0)=0$, it does not matter what $G(t)$ is, we still satisfy the condition.}  But if $u_1 \ne 0$ we are stuck.  We cannot simply say: $F(0) = \sfrac{u_0}{G(t)}$; even if we knew what $G(t)$ was it could only work in the case that $\sfrac{u_0}{G(t)}$ were a constant.  The same problem applies to the boundary at $x=L$.  If we are to use separation of variables, we need to find a way to make both the governing equation and the boundary conditions homogeneous.
 
 \vspace{0.25cm}
 
@@ -79,7 +81,7 @@ $\substack{\text{Initial} \\ \text{Conditions}}: $ & $v(x,0) = f(x)-\psi(x), \ \
 \end{align*}\marginnote[-2.0cm]{Readers are strongly encouraged to look at the boundary value problems for $v(x,t)$ and $\psi(x)$ and see that if you ``add them up'' you recover the original boundary value problem for $u(x,t)$.}
 where the non-homogeneous terms from the governing equation and boundary conditions have been absorbed in the equation for $\psi(x)$.  The initial condition for $v(x,t)$ remains non-homogeneous but is modified to account for $\psi(x)$.
 \end{enumerate}
-We solve for $\phi(x)$, then solve for $v(x,t)$ and add the results together to get $u(x,t)$.
+We solve for $\psi(x)$, then solve for $v(x,t)$ and add the results together to get $u(x,t)$.
 
 \vspace{0.25cm}
 
@@ -157,11 +159,11 @@ u(x,t) &= -\frac{r}{2\alpha^2}x^2 + \frac{1}{L}\left(u_1+\frac{rL^2}{2 \alpha^2}
 \caption{The solution, $u(x,t)$ at various times and the steady-state solution $\psi(x)$.}
 \label{fig:lec27-ex-plt}
 \end{marginfigure}
-In this particular case, while we know from the boundary conditions, that $v(x,t)$ goes to zero as $t \rightarrow \infty$, the function $\phi(x)$ remains constant with time.  Conceptually we can think of $\phi(x)$ as being the \emph{steady state} part of the solution while $v(x,t)$ is the \emph{transient} part.
+In this particular case, while we know from the boundary conditions, that $v(x,t)$ goes to zero as $t \rightarrow \infty$, the function $\psi(x)$ remains constant with time.  Conceptually we can think of $\psi(x)$ as being the \emph{steady state} part of the solution while $v(x,t)$ is the \emph{transient} part.
 
 \begin{equation*}
 u(x,t) = \underbrace{-\frac{r}{2\alpha^2}x^2 + \frac{1}{L}\left(u_1+\frac{rL^2}{2 \alpha^2}\right)x}_{\text{steady state}} + \underbrace{\sum\limits_{n=1}^{\infty} c_n \sin{\frac{n \pi x}{L}}e^{-\left(\alpha \frac{n \pi}{L}\right)^2 t}}_{\text{transient}}
 \end{equation*}
 A plot for the case: $\alpha^2 = 0.5$, $L=1$, $r=150$, $u_1=100$, and $f(x) = 300x(1-x)$ is shown in Figure \ref{fig:lec27-ex-plt}.\marginnote{
-Take note of how, since the initial condition, $f(x)$, does not match the boundary condition at $x=1$ there is ``wiggliness'' in the Fourier series representation that ``diffuses away'' almost immediately.  Note also how $u(x,\infty)$ matches $\psi(x)$ as expected.} Think about the physics for a minute: we have a rod that is heated from a uniform source $r$ which gives the roughly parabolic temperature profile throughout the rod except at the ends; the left-hand side is maintained at 0 degrees and the right-hand side is held steady at 100 degrees. Hopefully the answer you see in the plot matches, more-or-less, your expectations as to what the temperature profile \emph{should} look like. 
+Take note of how, since the initial condition, $f(x)$, does not match the boundary condition at $x=1$ there is ``wiggliness'' in the Fourier series representation that ``diffuses away'' almost immediately.  Note also how $u(x,\infty)$ matches $\psi(x)$ as expected.} Think about the physics for a minute: we have a rod that is heated from a uniform source, $r$, which gives the roughly parabolic temperature profile throughout the rod except at the ends; the left-hand side is maintained at 0 degrees and the right-hand side is held steady at 100 degrees. Hopefully the answer you see in the plot matches, more-or-less, your expectations as to what the temperature profile \emph{should} look like. 
 

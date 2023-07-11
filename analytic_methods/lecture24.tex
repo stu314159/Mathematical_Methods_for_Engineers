@@ -75,38 +75,38 @@ F(0) &= c_1(0) + c_2 = 0 \\
 F(L) &= c_1(L) = 0 \\
 \Rightarrow & c_1 = 0
 \end{align*}
-Thus we will disregard $\lambda = 0$ since only the trivial solution satisfies the governing equation and boundary conditions in that case.
+Thus we will disregard $\lambda = 0$ since, in that case, only the trivial solution satisfies the governing equation and boundary conditions.
 
 \vspace{0.25cm}
 
 \noindent\underline{$\lambda < 0$}:  Here we will set $\lambda = -\nu^2, \ \ \nu>0$. \marginnote[1.5cm]{Note again that we use the $\cosh()$ and $\sinh()$ form of the solution since the domain is bounded.}
 \begin{align*}
-F_{xx} - \nu^2 F &= 0 \\
-F(x) &= c_1 \cosh{\nu x} + c_2 \sinh{\nu x} \\
-F(0) &= c_1 \cancelto{1}{\cosh{0}} + c_2 \cancelto{0}\sinh{0} \\
-F(0) &= c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
-F(L) &= c_2 \sinh{\nu L} = 0 \\
+&F_{xx} - \nu^2 F = 0 \\
+&F(x) = c_1 \cosh{\nu x} + c_2 \sinh{\nu x} \\
+&F(0) = c_1 \cancelto{1}{\cosh{0}} + c_2 \cancelto{0}\sinh{0} \\
+&F(0) = c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
+&F(L) = c_2 \sinh{\nu L} = 0 \\
 \end{align*}
-We once again recall that $\sinh{x}$ is strictly positive for $x>0$.  Therefore $c_2 = 0$ and, again, only the trivial solution satisfies the governing equation and boundary conditions for the case $\lambda < 0$ so we will discard this possibility.
+We once again recall that $\sinh{x}$ is strictly positive for $x>0$.  Therefore $c_2 = 0$ and, again, only the trivial solution satisfies the governing equation and boundary conditions for the case $\lambda < 0$.  Therefore we will discard this possibility.
 
 \vspace{0.25cm}
 
 \noindent\underline{$\lambda > 0$}:  Here we will set $\lambda = \nu^2, \ \ \nu>0$.
 \begin{align*}
-F_{xx} + \nu^2 F &= 0 \\
-F(x) &= c_1 \cos{\nu x} + c_2 \sin{\nu x} \\
-F(0) &= c_1 \cancelto{1}\cos{0} + c_2 \cancelto{0}\sin{0} \\
-F(0) &= c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
-F(L) &= c_2 \sin{\nu L} = 0
+&F_{xx} + \nu^2 F = 0 \\
+&F(x) = c_1 \cos{\nu x} + c_2 \sin{\nu x} \\
+&F(0) = c_1 \cancelto{1}\cos{0} + c_2 \cancelto{0}\sin{0} \\
+&F(0) = c_1 + 0 = 0 \Rightarrow c_1 = 0 \\
+&F(L) = c_2 \sin{\nu L} = 0
 \end{align*}
-Again we see that $\lambda > 0$ works out; our eigenvalues are $\nu_n = \frac{n \pi}{L}$ and eigenfunctions are $F_n(x) = \sin{\frac{n \pi x}{L}}$.  This should not be surprising.  If we have the same separated equation and the same boundary conditions (at least in $x$-direction) we should expect the same eigenvalues and eigenfunctions.
+Again we see that $\lambda > 0$ bears fruit; our eigenvalues are $\nu_n = \frac{n \pi}{L}$ and eigenfunctions are $F_n(x) = \sin{\frac{n \pi x}{L}}$.  This should not be surprising.  If we have the same separated equation and the same boundary conditions (at least in $x$-direction) we should expect the same eigenvalues and eigenfunctions.
 
 \vspace{0.25cm}
 
 \noindent In this case, the separated equation for $G(t)$ is now:
 \begin{align*}
-G_{tt} + \alpha^2 \nu^2 G &= 0 \\
-G(t) &= c_1 \cos{\alpha \nu t} + c_2 \sin{\alpha \nu t}
+&G_{tt} + \alpha^2 \nu^2 G = 0 \\
+&G(t) = c_1 \cos{\alpha \nu t} + c_2 \sin{\alpha \nu t}
 \end{align*}
 
 
@@ -124,7 +124,7 @@ u(x,t) &= \sum\limits_{n=1}^{\infty} \left(a_n \cos{\alpha \frac{n \pi t}{L}} + 
 
 \vspace{0.25cm}
 
-\noindent We now have two infinite sets of unknowns: the $a_n$ and $b_n$.  We will resolve these constants through the initial conditions.
+\noindent We now have two infinite sets of unknowns: the coefficients $a_n$ and $b_n$.  We will resolve these constants through the initial conditions.
 
 \begin{align*}
 u(x,0) &= \sum\limits_{n=1}^{\infty} \left(a_n \cancelto{1}{\cos{0}} + b_n \cancelto{0}{\sin{0}} \right)\sin{\alpha \frac{n \pi x}{L}} \\
@@ -139,13 +139,13 @@ So
 a_n &= \frac{\int_{0}^{L} f(x) \sin{\alpha_n \frac{n \pi x}{L}} \ dx}{\int_0^L \sin{\left(\alpha \frac{n \pi x}{L} \right)}^2 \ dx} \\
 &= \frac{2}{L} \int_{0}^{L} f(x) \sin{\alpha_n \frac{n \pi x}{L}} \ dx
 \end{align*}
-This defines the values for all $a_n$.  We still need to deal with the $b_n$ so we apply the other boundary condition:
+This defines the values for all $a_n$.  We still need to deal with the $b_n$ so we apply the other initial condition:
 
 \begin{align*}
 u_t(x,0) &= \sum\limits_{n=1}^{\infty}\left(-a_n\alpha \frac{n \pi}{L} \cancelto{0}{\sin{0}} + b_n\alpha \frac{n \pi}{L} \cancelto{1}{\cos{0}} \right) \sin{\alpha \frac{n \pi x}{L}} \\
 &=\sum\limits_{n=1}^{\infty} b_n \alpha \frac{n \pi}{L} \sin{\alpha \frac{n \pi x}{L}} = g(x)
 \end{align*}
-Alas we are in familiar territory now.  To find the values of $b_n$ we need only multiply both sides of the equation by $\sin{\alpha_n \frac{n \pi x}{L}}$ and integrate.\marginnote{Do \textbf{\underline{not}} forget to include the additional constants we gained through taking the derivative of the solution with respect to $t$.}
+Alas we are in familiar territory now.  To find the values of $b_n$ we multiply both sides of the equation by $\sin{\alpha_n \frac{n \pi x}{L}}$ and integrate.\marginnote{Do \textbf{\underline{not}} forget to include the additional constants we gained through taking the derivative of the solution with respect to $t$.}
 
 \begin{align*}
 b_n &= \frac{\int_{0}^{L} g(x) \sin{\alpha \frac{n \pi x}{L}} \ dx }{\alpha \frac{n \pi}{L}\int_{0}^{L} \sin{\left(\alpha \frac{n \pi x}{L} \right)}^2} \\
@@ -165,7 +165,7 @@ b_n &= \frac{2}{\alpha n \pi} \int_{0}^{L} g(x) \sin{\alpha \frac{n \pi x}{L}} \
 \vspace{4.0cm}
 
 \section{MATLAB Implementation}
-As with the heat equation, we really cannot extract much insight by inspecting the solution formula.  We need to make a plot and to do so we will use MATLAB to represent an approximate solution.\marginnote{For this example we will set the wave speed $\alpha = 1$, the length $L=3$ and the initial conditions as:
+As with the heat equation, we really cannot extract much insight by inspecting the solution formulas.  We need to make a plot and to do so we will use MATLAB to represent an approximate solution.\marginnote{For this example we will set the wave speed $\alpha = 1$, the length $L=3$ and the initial conditions as:
 \begin{align*}
 f(x) &= \begin{cases} \frac{2}{3x}, & 0 < x < \frac{3}{2} \\ \frac{2}{3}(3-x), & \frac{3}{2} \le x < 3 \end{cases} \\
 g(x) &= 0
@@ -238,7 +238,7 @@ The resulting solution is plotted in Figure \ref{fig:lec24-ex1}.
 \subfloat[]{\includegraphics[width=2in]{lec24_t2p5.png}}
 \subfloat[]{\includegraphics[width=2in]{lec24_t3p0.png}}
 \label{fig:lec24-ex1}
-\caption[][-1.0cm]{Wave equation solution from $t=0$ to $t=3$ seconds.}
+\caption[][-1.0cm]{Wave equation solution from $t=0$ to $t=3$.}
 \end{figure}
 \end{fullwidth}
 
