@@ -6,3 +6,242 @@ The objective of this lecture is to:
 \item Provide an overview of essential linear algebra concepts.
 \end{itemize}
 \setcounter{lstannotation}{0}
+
+\section{Definitions}
+In this course we will regularly make use of vectors and matrices.  These mathematical objects are widely used and probably familiar to readers from previous courses.  Nonetheless we will review some concepts so that we can all go forward with a common understanding.  We begin with the following definitions:
+
+\begin{definition}[Vector]
+A vector is \emph{a discrete representation of a function}.
+\end{definition}
+
+\begin{definition}[Matrix]
+In many contexts, it is suitable to view a matrix as: any rectangular array of numbers.\sidenote{\textbf{Note:} Unless otherwise indicated we will assume any matrix to be two-dimensional.  Higher-dimensional generalizations of a matrix exist, but they are not within the scope of this class.}  For this class, and as a computational engineer, a more specific definition of a matrix that is often appropriate would be: \emph{a discrete representation of a differential operator}. 
+\end{definition}
+
+These are intended to be operational definitions; not technically complete or correct but adequate for our present purposes.  More than that, the definitions are intended to highlight why, as an engineer, \emph{you should care} about vectors, matrices, and linear algebra.  
+
+In this course, when we numerically solve the heat equation to find temperature, say, in a cylindrical rod, the function that we find as the solution will be represented as a vector. If we take the derivative of the temperature so that we can calculate heat flux, for instance, the function that is the derivative of the temperature will also be stored as a vector.  Representing functions is the main thing that vectors are \emph{used for} in this class.
+
+There are instances in this class where we will store a rectangular array of numbers and call it a matrix.  An example would be the ``Runge-Kutta matrix'' that stores coefficients used in various Runge-Kutta algorithms for solving initial value problems.  But a more representative example of what we use matrices for applies when we are solving boundary value problems using the finite difference or finite element method.  Consider, as an example, the case of a numeric solution of Poisson's equation:
+
+\begin{align*}
+\left(\frac{\partial^2 }{\partial x^2} \right)u(x) &= f(x) \\
+Au &= f
+\end{align*} 
+In this expression the matrix $A$ in the second row is a discrete representation of the $\sfrac{\partial^2 }{\partial x^2}$ operator and the vectors $u$ and $f$ are discrete representations of the functions $u(x)$ and $f(x)$.  We solve this discrete form of the differential equation by solving the matrix-vector equation using linear algebra.
+
+
+\section{Operations with Matrices}
+
+\subsection{Matrix Equality}
+Consider two matrices, $A$ and $B$.  We say $A$ and $B$ are \emph{equal} and write:
+\begin{equation*}
+A = B
+\end{equation*}
+if $a_{i,j} = b_{i,j}$ for all $i,j$ and if $A$ and $B$ are the same size.\sidenote{Here we use the notation $a_{i,j}$ and $b_{i,j}$ to refer to the element of $A$ or $B$ in the $i$-th row and $j$-th column.  For a two-dimensional matrix, the MATLAB built-in function \lstinline[style=myMatlab]{[m,n]=size(A)} returns the number of rows, \lstinline[style=myMatlab]{m}, and columns, \lstinline[style=myMatlab]{n}, of $A$.}  Where, in this context, we use the word \emph{size} to refer to the number of rows and columns in a matrix.
+
+\subsection{Multiplication by a Scalar}
+Any matrix, $A$, can be multiplied by a scalar, $\alpha$:
+\begin{equation*}
+B = \alpha A
+\end{equation*}
+where $b_{i,j} = \alpha a_{i,j}$ for  all values $i,j$ and the output matrix $B$ is the same size as $A$.
+
+\subsection{Addition of Two Matrices}
+Matrices of the same size can be added:\marginnote{\textbf{Note:} In MATLAB this operation would be encoded exactly as written: \lstinline[style=myMatlab]{C = A + B}.}
+\begin{equation*}
+C = A + B
+\end{equation*}
+The output matrix $C$ is the same size as $A$ and $B$.  This operation is not defined if $A$ and $B$ are not the same size.
+
+\subsection{Matrix Multiplication}
+Multiplication of two matrices is denoted:
+\begin{equation*}
+C = AB
+\end{equation*}
+The output matrix $C$ has the same number of rows as $A$ and the same number of columns as $B$.  This operation is only defined if $A$ has the same number of columns as $B$ has rows.\sidenote{Matrices $A$ and $B$ with this property are said to be \emph{conformable}.}  Each element, $c_{i,j}$, of $C$ is equal to the \emph{dot product} of row $i$ of $A$ with column $j$ of $B$.  More explicitly, suppose $A$ has $m$ rows and $n$ columns, $B$ has $n$ rows and $p$ columns, The $c_{i,j}$ element of $C$ is calculated:
+\begin{equation*}
+c_{i,j} = \sum\limits_{k=1}^{n} a_{i,k}b_{k,j}
+\end{equation*}
+where $i=1,\dots,m$ and $j=1,\dots,p$.\sidenote[][-1.5cm]{\textbf{Important Note:} In MATLAB this operation would be written: \lstinline[style=myMatlab]{C = A*B.}  Notice that we do \emph{not} use the $.*$ notation in this case because that would imply element-by-element multiplication which: a) may not be possible since $A$ and $B$ do not necessarily have the same number of elements; and b) is not the same mathematical operation as matrix multiplication.}
+
+Note that matrix multiplication, in general, is not cummutative.  The operations: $C = AB$ and $D=BA$ may or may not both be defined but they are only equal under very specific circumstances.\sidenote{If $A$ is of size $[m, n]$ and $B$ is $[p,q]$:
+\begin{enumerate}
+\item $C = AB$ is valid if $n=p$.  $C$ will be of size $[m,q]$.
+\item $D = BA$ is valid if $q=m$.  $D$ will be of size $[p,n]$.
+\item If $A$ and $B$ are \emph{square}---same number of rows as columns---and both are the same size, then $C$ and $D$ are both valid are are both the same size as $A$ and $B$.
+\item If $C$ and $D$ are both valid and the same size, $C \ne D$ unless both $A$ and $B$ are \emph{diagonal}.
+\end{enumerate}
+}
+
+\subsection{Matrix Transpose}
+The matrix transpose is an operation where the rows and columns of a matrix are interchanged.  For example:
+\begin{equation*}A = 
+\left[
+\begin{matrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{matrix}
+\right], \ \ 
+A^{\text{T}} = 
+\left[
+\begin{matrix}
+1 & 4 & 7 \\
+2 & 5 & 8 \\
+3 & 6 & 9
+\end{matrix}
+\right]
+\end{equation*}
+This operation is usually only needed to support the semantics of linear algebraic operations which we will discuss later in the text.
+
+\subsection{Special Matrix Structure}
+There are several matrices that are special owing to very specific structural properties.  These include:
+\begin{enumerate}
+\item \emph{Square matrix}.  A matrix is square if it has the same number of rows as it has columns.
+
+\item \emph{Symmetric matrix}. A matrix is symmetric if it is equal to its own transpose: $A = A^{\text{T}}$.
+
+\item \emph{Zero matrix}. This is a matrix where all of the elements are zero.  This special matrix serves as the additive identity in matrix algebra.
+
+\end{enumerate}
+
+\noindent The following definitions of structural properties apply only to \emph{square matrices}.
+\begin{enumerate}[resume]
+
+\item \emph{Diagonal matrix}.  A diagonal matrix is one that is zero except along the main diagonal. In mathematical notation: $a_{i,i} \ne 0 $ and $a_{i,j} = 0$ where $i \ne j$.
+
+\item \emph{Identity matrix}.  The identity matrix, denoted $I$, is a diagonal matrix with ones along the main diagonal.  This matrix serves as the multiplicative identiy in matrix algebra.  For example, for $n=3$, the identity matrix is:
+\begin{equation*}
+I = \left[
+\begin{matrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{matrix}
+\right]
+\end{equation*}
+and, for any 3x3 matrix A:
+\begin{equation*}
+AI = \left[
+\begin{matrix}
+a_{1,1} & a_{1,2} & a_{1,3} \\
+a_{2,1} & a_{2,2} & a_{2,3} \\
+a_{3,1} & a_{3,2} & a_{3,3}
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{matrix}
+\right]
+=
+\left[
+\begin{matrix}
+a_{1,1} & a_{1,2} & a_{1,3} \\
+a_{2,1} & a_{2,2} & a_{2,3} \\
+a_{3,1} & a_{3,2} & a_{3,3}
+\end{matrix}
+\right]
+= 
+A
+\end{equation*}
+
+\item \emph{Lower/Upper triangular matrix}.  A lower triangular matrix is non-zero only for entries at or below the main diagonal.  If the main diagonal is also zero, the matrix is referred to as \emph{strictly lower triangular}.  An upper triangular matrix is defined similarly: non-zero only on the main diagonal or above; if the main diagonal is zero, then it is called \emph{strictly upper triangular}.
+\end{enumerate}
+
+\subsection{Matrix Properties}
+We have already mentioned some of the structural properties of a matrix.  There are other important properties not solely related to its size, zero-structure, or symmetry of entries.
+
+\begin{enumerate}
+\item \emph{Rank}.  The matrix rank is the number of rows or columns of a matrix that are \emph{linearly independent}.  If $a_{i}$ denotes the $i$\textsuperscript{th} row or column of matrix $A$, then the rows/columns are linearly independent if:\marginnote{\textbf{Note:} The mathematical notation $\forall$ means ``for all.'' Consequently $\forall i \in \{1,\dots,n\}$ means: ``for all $i$ in the set 1 to n.''}
+\begin{equation*}
+\alpha_1 a_1 + \alpha_2 a_2 + \cdots + \alpha_n a_n = 0, \iff \alpha_i = 0, \ \forall i \in \{1,\dots,n\}
+\end{equation*}
+Which means that a linear combinations of the rows/columns can only be equal to zero (a vector of all zeros) \emph{if, and only if, all} of the coefficients in the linear combination are equal to zero.\sidenote{This is completely analogous to the concept of linear independence of functions described in Lecture 3.}  
+
+\vspace{0.1cm}
+
+\noindent\textbf{Example:} The matrix:
+\begin{equation*}
+A = \left[
+\begin{matrix}
+1 & 0 & 1 \\
+-2 & -3 & 1 \\
+3 & 3 & 0
+\end{matrix}
+\right]
+\end{equation*}
+is of rank 2 since column 3 is equal to the difference between column 1 and column 2.
+
+\vspace{0.1cm}
+
+\noindent\textbf{Example:} The diagonal matrix:
+\begin{equation*}
+A = \left[
+\begin{matrix}
+1 & 0 & 0 \\
+0 & -2 & 0 \\
+0 & 0 & 6
+\end{matrix}
+\right]
+\end{equation*}
+is full rank since no linear combination of the rows or columns is equal to the zero vector.
+
+\vspace{0.1cm}
+
+\noindent If $A$ is an $[m,n]$ matrix, the matrix rank is \emph{at most} the minimum of $m$, and $n$.  If $A$ is a square matrix and rank = $m$, we say the matrix is \emph{full rank}.  If $A$ is a rectangular $[m,n]$ matrix and rank = min($m$,$n$), then $A^{\text{T}}A$ is full rank.
+
+
+\item \emph{Invertibility.} If the square matrix $A$ is invertible, there exists a square matrix of the same size, denoted $A^{-1}$, such that:
+\begin{equation*}
+A A^{-1} = A^{-1}A = I
+\end{equation*}
+where $I$ is the identity matrix of the same size as $A$.  If $A$ is \emph{square} and is \emph{full rank} then $A$ is invertible.  
+
+A conceptual use of the matrix inverse is in solving a linear system of equations. If $A$ is an invertible matrix with $n$ rows and $b$ is a given vector of length $n$, then we can solve the system of equations:
+\begin{equation*}
+Ax = b
+\end{equation*}
+by applying the inverse of $A$:\marginnote{
+\textbf{Note:} The identity matrix works with vectors also, so long as the vector is conformable for multiplication.  If $I$ is conformable with the vector $x$, then $Ix = x$.
+}
+\begin{align*}
+A^{-1}Ax &= A^{-1}b \\
+Ix &= A^{-1}b \\
+\Rightarrow x &= A^{-1}b
+\end{align*}
+While we will not use the matrix inverse in this way, it is still conceptually important to know when a matrix inverse exists.
+
+\item \emph{Matrix eigenvalues}.  Consider the equation below:
+\begin{equation*}
+Au = \lambda u
+\end{equation*}
+for the matrix $A$ and vector $u$ where the $A$ and $u$ are conformable in multiplication and $\lambda$ is a constant.  This is called an \emph{eigenvalue equation}.  The vector $u$ is called an \emph{eigenvector} and the constant $\lambda$ is called an \emph{eigenvalue}.  
+
+If $A$ is invertible then it has a full set of linearly independent eigenvectors; if $A$ is symmetric then the eigenvectors are orthogonal.\sidenote{Students who have taken the analytical methods class should find this language to be eerily familiar: exchange \emph{eigenvector} with \emph{eigenfunction} and replace $A$ with \emph{``a linear differential operator''} and you would be forgiven for thinking we have accidentally skipped back to lecture 18 from the analytical methods class.} In either case, all of the eigenvalues are non-zero.  Most square matrices can be \emph{``diagonalized''} in this way:
+\begin{equation*}
+A = U \Lambda U^{-1}
+\end{equation*}
+in which $U$ is an $nxn$ matrix where each column is an eigenvector and $\Lambda$ is a diagonal matrix with the eigenvalues along the diagonal.  Square matrices that cannot be diagonalized in this way are said to be \emph{defective}.\sidenote{The language used in this should indicate to you how important it is for a matrix to have a full set of eigenvectors and able to be diagonalized in this way.}  
+
+\noindent There is at least one matrix property related to the eigenvalues that students should be aware of. A symmetric matrix is said to be \emph{positive definite} if the following equation holds:
+\begin{equation*}
+x^{\text{T}}Ax \ge 0, \ \text{ and } x^{\text{T}}Ax = 0 \Rightarrow x=0
+\end{equation*}
+If this equation is true, it implies that all of the eigenvalues of $A$ are positive.  Apart from implying that $A$ is thus invertible (all eigenvalues non-zero), and square (only square matrices are invertible), if a matrix is positive definite there are significant impacts in which methods one should use to factorize (solve) a system of equations involving that matrix.  We will revisit this property when discussing solution methods for linear systems of equations.
+
+\item \emph{Matrix determinant}.  The determinant is \emph{a useful property of a matrix}.\sidenote{\textbf{Personal aside: } As a young ensign in the navy nuclear power training progam I remember being taught an operational definition of (the thermodynamic property) entropy.  \emph{``entropy: a useful thermodynamic property.''}  A determinant is like that: nobody wants to get into exactly what it means, but it is useful and you may need to calculate it.}  The operation of taking the determinant is denote:
+\begin{equation*}
+\text{det}(A) = \left| A \right| = \prod_{i=1}^n \lambda_i
+\end{equation*}
+where $\lambda_i$ are the eigenvalues of $A$. Since, as previously mentioned, all of the eigenvalues of an invertible matrix are non-zero, the determinant of an invertible matrix is non-zero.  
+
+
+\end{enumerate}
+
+
+
+

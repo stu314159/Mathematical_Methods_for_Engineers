@@ -1,0 +1,37 @@
+\chapter{Lecture 3 - The Bisection Method}
+\label{ch:lec3n}
+\section{Objectives}
+The objectives of this lecture are to:
+\begin{itemize}
+\item Introduce the problem of solving non-linear equations.
+\item Describe the bisection method.
+\item Discuss error estimates and stopping criteria.
+\item Illustrate the bisection method with an example.
+\end{itemize}
+\setcounter{lstannotation}{0}
+
+\section{Solving Non-Linear Equations}
+Engineers often need to solve non-linear equations.  An equation of one variable can be written in the form:
+\begin{equation}
+f(x) = 0
+\end{equation}
+A solution to such an equation is called a \emph{root}.  In past lectures, in the analytial methods portion of this text, we frequently needed to find the root(s) of linear and non-linear equations.  We also encountered several cases where we were not able to find the roots analytically.\sidenote{As a quick re-cap: 
+\begin{itemize}
+\item In lecture 19 we needed to find the roots of $J_{0}(x)$.  We did not write our own routine for doing this but, at its heart, \lstinline[style=myMatlab]{besselzero()} had to solve a non-linear equation.  We used these tools again in lectures 31, 32, and 33 along with several homework problems.
+\item In lecture 28 we needed to find roots of $f(x) = \tan{x} + \sfrac{x}{h}$ for a given value of $h$.
+\end{itemize}
+}
+The case that this lecture will address is when such roots cannot be found analytically.  For example, suppose we wish to find the area marked $A_s$ as shown in Figure (include figure) which is given in Equation \ref{eq:lec3n-ex1}.
+\begin{equation}
+A_s = \frac{1}{2}r^2\left(\theta - \sin{\theta}\right)
+\label{eq:lec3n-ex1}
+\end{equation}
+where $A_s$ and $r$ are given.  This is a non-linear equation and we wish to solve it numerially.
+
+\newthought{There are two} general approaches with numerical methods to solve non-linear equations:
+\begin{enumerate}
+\item bracketing methods; and
+\item open methods.
+\end{enumerate}
+
+(figures)
