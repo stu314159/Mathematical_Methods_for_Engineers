@@ -218,3 +218,36 @@ end
 
 \end{lstlisting}
 For this example problem the iteration succeeds and finds an estimated root at $x = 0.029109$ after 14 iterations.
+
+\section{Regula Falsi Method}
+The regula falsi method is a simple alternative to the bisection method that holds the promise (potentially) for faster convergence.  The method starts witha bracket $[a,b]$ like the bisection method but, instead of using the midpoint of the bracket for the next estimate of the solution, the regula falsi method uses the point in $[a,b]$ where the \emph{secant line} between $f(a)$ and $f(b)$ is equal to zero.  A schematic of the first two iterations is illustrated in Figure \ref{fig:lec3n-regula-falsi}.
+\begin{marginfigure}
+\includegraphics{Chapter3_Fig3_9.eps}
+\caption{The first two iterations of the regula falsi method.}
+\label{fig:lec3n-regula-falsi}
+\end{marginfigure}
+The straight line connecting $f(a)$ to $f(b)$ is given by Equation \ref{eq:lec3n-regula-falsi}:
+\begin{equation}
+y = \frac{f(b) - f(a)}{b-a}(x-b)+f(b)
+\label{eq:lec3n-regula-falsi}
+\end{equation}
+The point where the line intersects the $x$-axis is found by setting $y=0$ and solving for $x$, giving us:
+\begin{equation}
+x_{\text{NS}} = \frac{a f(b) - b f(a)}{f(b) - f(a)}
+\label{eq:lec3n-regula-falsi-xns}
+\end{equation}
+The algorithm for the regula falsi method is as follows:
+\begin{enumerate}
+\item Step \#1 from the bisection method.
+\item Use Equation \ref{eq:lec3n-regula-falsi-xns} to find the new estimate of the numerical solution.
+\item Step \#3 from the bisection method.
+\item Step \#4 from the bisection method.
+\end{enumerate}
+The iteratino should be stopped when the estimated error is smaller than the pre-determined tolerance.  Some notes on this method:
+\begin{itemize}
+\item Like the bisection method, the regula falsi method \emph{will} converge.  One can hope that, given the small added complexity, the rate of convergence would be somewhat faster using the regula falsi method.
+\item For a given function, it is typically the case that only one endpoint will ``move towards'' the solution.  Modifications to the algorithm can be made to address this issue and will be considered in the assignments.
+\end{itemize}
+
+\section{Summary}
+Both of the bracketing methods discussed in this lecture are useful.  They are both simple to implement in code and reliably converge to a root provided that a suitable initial interval is established.  The convergence rate of these methods are slow compared to the methods that we will explore in the next lecture. This slow convergence is not a significant problem for the problem types you are liely to encounter in a typical classroom environment; computers are fast and they do not mind working a little bit longer.  The convergence rate becomes an issue when evaluation of the function (to which we are finding a root) is computationally expensive.  The bisection method is sufficient for most purposes. The regular falsi method is introduced primarily as a way to show how one can try to make a good algorithm better.

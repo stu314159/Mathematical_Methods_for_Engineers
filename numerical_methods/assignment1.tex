@@ -1,0 +1,43 @@
+\chapter{Assignment \#1}
+\label{ch:ass1n}
+\begin{fullwidth}
+
+\begin{enumerate}
+\item Write the number 38.8125 as a 64-bit double-precisioin string using the IEEE-754 standard. 
+
+
+
+\vspace{2.0cm}
+
+\item In single precsion (IEEE-754 standard), 8 bits are used for storing the exponent (the bias is 127), and 23 bits are used for storing the mantissa.  What (approximately) are the smallest and largest positive numbers that can be stored in single precision?
+
+\vspace{2.0cm}
+
+\item The value of $\pi$ can be calculated with the series:
+\begin{equation*}
+\pi = 4 \sum\limits_{n=1}^{\infty} (-1)^{n-1}\frac{1}{2n-1} = 4 \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \cdots \right)
+\end{equation*}
+Write a MATLAB script that calculates the value of $\pi$ by using $n$ terms of the series and calculate the corresponding true relative error.  Calculate $\pi$ and the true relative error for $n=10$, 20, and 40. \textbf{Note:} Implement the partial series summation as a \emph{local function} named \lstinline[style=myMatlab]{piApprox} that takes one argument---the number of terms ($n$)---and returns the estimated value of $\pi$ and the true relative error.  Use MATLAB's built-in constant \lstinline[style=myMatlab]{pi} for the ``true'' value of $\pi$.
+
+\vspace{2.0cm}
+
+\item Using a hand calculator, determine the root of $f(x)=x-2e^{-x}$ with the bisectin method.  Start with $a=0$ and $b=1$, and carry out the first three iterations to determine an estimated root and bracket within which the root lies.
+
+\vspace{2.0cm}
+
+\item Write a MATLAB user-defined function that solves for a root of a nonlinear equation $f(x)=0$ using the bisection method.  Implement the function as a \emph{local function} that takes three arguments: \lstinline[style=myMatlab]{fun}, \lstinline[style=myMatlab]{a}, and \lstinline[style=myMatlab]{b}, where \lstinline[style=myMatlab]{fun} is a handle to the nonlinear function for which a root is to be found and \lstinline[style=myMatlab]{a} and \lstinline[style=myMatlab]{b} bracket the root.  The bisection iterations should stop when $f(x_{\text{NS}})\le 0.0000001$ where $x_{\text{NS}}$ is the midpoint of the current bracket.  The function should also check if points \lstinline[style=myMatlab]{a} and \lstinline[style=myMatlab]{b} do indeed bracket a root; if not, the function should return an error message.  Use your function to find the root of $f(x) = x-2e^{-x}$.  
+
+
+\vspace{2.0cm}
+\index{van der Waals equation}
+\item The van der Waals equation gives a relationship between the pressure $P$ (in atm.), volume $V$ (in iters), and temperatuer $T$ (in K) for a real gas:
+\begin{equation}
+P = \frac{nRT}{V-nb}-\frac{n^2 a}{V^2}
+\label{eq:ass1n-van-der-waals}
+\end{equation}
+where $n$ is the number of moles, $R=0.08206$ (L-atm)/(mole-K) is the gas constant, and $a$ (in L\textsuperscript{2}-atm/mole\textsuperscript{2}) and $b$ (in L/mole) are material constants.  Consider 1.5 moles of nitrogen ($a$=1.39 L\textsuperscript{2}-atm/mole\textsuperscript{2}) at 25$^{\circ}$C stored in a pressure vesel.  Use the function you created for problem \#5 to determine the volume of the vessel if the pressure is 13.5 atm.
+
+
+\end{enumerate}
+
+\end{fullwidth}
