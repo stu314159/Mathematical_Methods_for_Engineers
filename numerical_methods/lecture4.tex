@@ -124,7 +124,7 @@ x_3 &= \mathbf{1.41421}5686274510 \\
 x_4 &= \mathbf{1.41421356237}4690 \\
 x_5 &= \mathbf{1.414213562373095} 
 \end{align*}
-Note that between iteration 2 and 3, and between iteration 3 and 4, the number of correct digits doubles each time.  By the time that the 5th iteration is arrived at, the estimated solution is correct to full double precision.  It can be shown that the relative error in Newton's method can be approximated as:
+Note that between iteration 2 and 3, and between iteration 3 and 4, the number of correct digits doubles each time.  By the time that the 5th iteration is arrived at, the estimated solution is correct to full double precision.  It can be shown\cite{stewart1993afternotes} that the relative error in Newton's method can be approximated as:
 \begin{equation*}
 e_{i+1} \approx \frac{f^{\prime \prime}(x^{\star})}{2 f^{\prime}(x^{\star})}e_{i}^2
 \end{equation*}
@@ -154,3 +154,92 @@ Alas, not all is well with Newton's method.  When the method works, it converges
 \end{enumerate}
 Notwithstanding these difficulties, it is possible to show that Newton's method will converge if the function, $f(x)$, and its first and second derivatives are all \emph{continuous}, and if the first derivitive is not zero at the solution, and if the starting value, $x_1$, is ``near'' the exact solution.\sidenote{Whatever the hell ``near'' is supposed to mean.}
 
+\newthought{Another issue with} Newton's method, not directly related to convergence, is that to use the method you need both the function as well as its derivative.  The derivative is not always easy to obtain.  In some cases the ``function'' to be solved is not available in the form of an equation but rather a complex computational routine that does not admit to analytical differentiation.  Combined with the convergence difficulties, there is plenty of motivation to come up with a different algorithm.
+
+\section{Secant Method}
+The secant method is another open scheme for finding a numerical solution to a non-linear equation.  Unlike Newton's method, the secant method does not require an expression for $f^{\prime}(x)$.  With the secant method we instead approximate this derivative by using the \emph{secant line} between \emph{two} initially provided points. This is illustrated in Figure \ref{fig:lec4n-secant-schematic} where it is also shown that it does not matter if $x_1$ and $x_2$ bracket the root or not.
+\begin{figure}[h!]
+\includegraphics{Chapter3_Fig3_14.eps}
+\caption{Schematic of the secant method.}
+\label{fig:lec4n-secant-schematic}
+\end{figure} 
+
+\noindent The slope of the secant line is given by:
+\begin{align*}
+&\frac{f(x_1) - f(x_2)}{x_1 - x_2} = \frac{f(x_2) - 0}{x_2 - x_3} \\
+& x_3 = x_2 - \frac{f(x_2)(x_1 - x_2)}{f(x_1)-f(x_2)}
+\end{align*}
+Once $x_3$ is determined, it is used along with $x_2$ to find $x_4$ and so it goes.  We generalize this iteration in Equation \ref{eq:secant-it}.\marginnote[-1.25cm]{\textbf{Note:} We can slighly re-arrange Equation \ref{eq:secant-it} to get:
+$$ x_{i+1} = x_i - \frac{f(x_i)}{\frac{f(x_{i-1}) - f(x_i)}{(x_{i-1} - x_i)}}$$
+This may help emphasize the similarity between the secant method and Newton's method.  If $x_{i-1}$ and $x_{i}$ are sufficiently close together:
+$$\frac{f(x_{i-1})-f(x_i)}{x_{i-1}-x_i} \approx f^{\prime}(x_i)$$
+}
+
+\begin{equation}
+x_{i+1} = x_i - \frac{f(x_i)(x_{i-1} - x_i)}{f(x_{i-1}) - f(x_i)}
+\label{eq:secant-it}
+\end{equation}
+Successive iterations of the secant method are illustrated in Figure \ref{fig:lec4n-secant2}.
+\begin{marginfigure}
+\includegraphics{Chapter3_Fig3_15.eps}
+\caption{Secant method in action.}
+\label{fig:lec4n-secant2}
+\end{marginfigure}
+
+\newthought{While the secant} method does not rely on an expression for $f^{\prime}(x)$, it does require additional evaluations of $f(x)$.  If each evaluation of $f(x)$ is computationally expensive then the preogrammer who is implementing the method would be wise to minimize or eliminate any extraneous evaluations of $f(x)$.  While this point probably seems obvious, it is worth mentioning that this consideration amounts to a design trade-off.  Program complexity and the number of additional variables that you may store to avoid re-evaluating a function can add up.  Sometimes it pays to simply re-compute $f(x)$ whenever you need it; sometimes it does not.  Keep this in mind when you design your own implementation.
+
+\section{Convergence of Secant Method}
+The MATLAB code for testing the convergence of the secant method is provided in the listing below. Again we solve the equation: $f(x) = x^2 - 2$.  We use the starting points, $x_1 = 0$ and $x_2 = 2$.
+
+\begin{lstlisting}[name=lec4n-ex2, style=myMatlab]
+clear
+clc
+close 'all'
+
+% find the square root of two
+F = @(x) x.^2 - 2;
+
+Xa = 0; 
+Xb = 2;
+
+Err = 1e-16;
+imax = 15;
+fprintf('Exact solution = %16.15f \n',sqrt(2));
+for i = 1:imax
+   FXb = F(Xb);
+   Xi = Xb - FXb*(Xa - Xb)/(F(Xa) - FXb);
+   
+   if abs((Xi - Xb)/Xb) < Err
+       xNS = Xi;
+       break;
+   end
+   Xa = Xb;
+   Xb = Xi;
+   
+   fprintf('After %i iterations, Xi = %16.15f \n',i,Xi);          
+end
+\end{lstlisting}
+Results are as shown below:
+\begin{align*}
+\sqrt{2} &\approx 1.414213562373095 \\
+x_1 &= \mathbf{1.}000000000000000 \\
+x_2 &= \mathbf{1.}333333333333333 \\
+x_3 &= \mathbf{1.4}28571428571429 \\
+x_4 &= \mathbf{1.41}3793103448276 \\
+x_5 &= \mathbf{1.41421}1438474870 \\
+x_6 &= \mathbf{1.414213562}688870 \\
+x_7 &= \mathbf{1.414213562373095}
+\end{align*}
+Clearly the convergence rate for the secant method is inferior to Newton's method\sidenote{It should be noted that the exact convergence behavior depends, to some extent, on the values chosen for $x_1$ and $x_2$.} and yet, it is still better than bisection method.
+
+\section{Wrap-up}
+In this lecture we investigate dopen root-finding methods that, using the derivative of a function or, i the case of the secant method, an estimate of the derivative of a function, to find the root of a non-linear equation.  We found that, for the expense of using the derivative, or estimate of a derivative, of a function, we were able to get quadratic convergence.  If you need to get a very precise solution and/or individual function evaluations are computationally expensive, these methods have strong advantages over bisection or regula falsi.  
+
+\newthought{There are at least} two question sthat you should be asking yourself:
+\begin{enumerate}
+\item Can I get even faster convergence if I also make use of the \emph{second} derivative of the function?  The answer is: \textbf{yes}.  The algorithm that takes this approach is called Halley's method\cite{gander1985halley} and the error after each iteration is proportional to the error after the previous step \emph{cubed}.
+
+\item Can I get convergence faster than the bisection method while retaining the reliability of the bisection method?  The answer is also \textbf{yes}.  The Brent method combines techniques based on the secant method, bisection method, and inversse quadratic interpolation to converge \emph{at least} as fast as bisection---often much faster---while retaining the robust reliability of bisection.  Theoretical details of the Brent method are available in the literature\cite{forsythe1977computer} and a straightforward example implementation is given in a popular Numerical Recipes\cite{press1988numerical} book.  MATLAB's built-in non-linear equation solver \lstinline[style=myMatlab]{fsolve} is based on Brent's method.
+
+\end{enumerate}
+Homework problems will be assigned that will help you explore the practical details of implementing these algorithms and observing the convergence properties.
