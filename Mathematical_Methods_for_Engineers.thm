@@ -1,26 +1,26 @@
-\contentsline {theorem}{{Theorem}{1}{Existence and Uniqueness for IVPs}}{31}{theorem.1}%
-\contentsline {theorem}{{Theorem}{2}{Superposition Principle for Homogeneous Equations}}{33}{theorem.2}%
-\contentsline {theorem}{{Theorem}{3}{Linear Dependence / Independence of Functions}}{33}{theorem.3}%
-\contentsline {theorem}{{Theorem}{4}{Criterion for Linearly Independent Solutions}}{34}{theorem.4}%
-\contentsline {definition}{{Definition}{1}{Fundamental Set of Solutions}}{35}{definition.1}%
-\contentsline {theorem}{{Theorem}{5}{Existence of a Fundamental Set}}{35}{theorem.5}%
-\contentsline {definition}{{Definition}{2}{General Solution---Homogeneous Equation}}{35}{definition.2}%
-\contentsline {definition}{{Definition}{3}{Sequence}}{61}{definition.3}%
-\contentsline {definition}{{Definition}{4}{Limit of a Sequence, convergence, divergence}}{62}{definition.4}%
-\contentsline {definition}{{Definition}{5}{Series, infinite series}}{62}{definition.5}%
-\contentsline {definition}{{Definition}{6}{Series Convergence}}{62}{definition.6}%
-\contentsline {definition}{{Definition}{7}{Power Series}}{62}{definition.7}%
-\contentsline {definition}{{Definition}{8}{Interval of Convergence, Radius of Convergence}}{62}{definition.8}%
-\contentsline {definition}{{Definition}{9}{Identity Property for a Power Series}}{65}{definition.9}%
-\contentsline {definition}{{Definition}{10}{Analytic Function}}{65}{definition.10}%
-\contentsline {definition}{{Definition}{11}{Ordinary Points and Singular Points}}{67}{definition.11}%
-\contentsline {theorem}{{Theorem}{6}{Existence of Power Series Solutions}}{67}{theorem.6}%
-\contentsline {definition}{{Definition}{12}{Singular Point}}{85}{definition.12}%
-\contentsline {definition}{{Definition}{13}{Regular/Irregular Singular Point}}{85}{definition.13}%
-\contentsline {theorem}{{Theorem}{7}{Frobenius' Theorem}}{86}{theorem.7}%
-\contentsline {theorem}{{Theorem}{8}{Convergence of Fourier Series}}{120}{theorem.8}%
-\contentsline {definition}{{Definition}{14}{Even Function}}{120}{definition.14}%
-\contentsline {definition}{{Definition}{15}{Odd Function}}{120}{definition.15}%
-\contentsline {theorem}{{Theorem}{9}{Convergence of Fourier-Legendre Series}}{146}{theorem.9}%
-\contentsline {definition}{{Definition}{16}{Vector}}{281}{definition.16}%
-\contentsline {definition}{{Definition}{17}{Matrix}}{281}{definition.17}%
+\contentsline {theorem}{{Theorem}{1}{Existence and Uniqueness for IVPs}}{33}{theorem.1}%
+\contentsline {theorem}{{Theorem}{2}{Superposition Principle for Homogeneous Equations}}{35}{theorem.2}%
+\contentsline {theorem}{{Theorem}{3}{Linear Dependence / Independence of Functions}}{35}{theorem.3}%
+\contentsline {theorem}{{Theorem}{4}{Criterion for Linearly Independent Solutions}}{36}{theorem.4}%
+\contentsline {definition}{{Definition}{1}{Fundamental Set of Solutions}}{37}{definition.1}%
+\contentsline {theorem}{{Theorem}{5}{Existence of a Fundamental Set}}{37}{theorem.5}%
+\contentsline {definition}{{Definition}{2}{General Solution---Homogeneous Equation}}{37}{definition.2}%
+\contentsline {definition}{{Definition}{3}{Sequence}}{63}{definition.3}%
+\contentsline {definition}{{Definition}{4}{Limit of a Sequence, convergence, divergence}}{64}{definition.4}%
+\contentsline {definition}{{Definition}{5}{Series, infinite series}}{64}{definition.5}%
+\contentsline {definition}{{Definition}{6}{Series Convergence}}{64}{definition.6}%
+\contentsline {definition}{{Definition}{7}{Power Series}}{64}{definition.7}%
+\contentsline {definition}{{Definition}{8}{Interval of Convergence, Radius of Convergence}}{64}{definition.8}%
+\contentsline {definition}{{Definition}{9}{Identity Property for a Power Series}}{67}{definition.9}%
+\contentsline {definition}{{Definition}{10}{Analytic Function}}{67}{definition.10}%
+\contentsline {definition}{{Definition}{11}{Ordinary Points and Singular Points}}{69}{definition.11}%
+\contentsline {theorem}{{Theorem}{6}{Existence of Power Series Solutions}}{69}{theorem.6}%
+\contentsline {definition}{{Definition}{12}{Singular Point}}{87}{definition.12}%
+\contentsline {definition}{{Definition}{13}{Regular/Irregular Singular Point}}{87}{definition.13}%
+\contentsline {theorem}{{Theorem}{7}{Frobenius' Theorem}}{88}{theorem.7}%
+\contentsline {theorem}{{Theorem}{8}{Convergence of Fourier Series}}{122}{theorem.8}%
+\contentsline {definition}{{Definition}{14}{Even Function}}{122}{definition.14}%
+\contentsline {definition}{{Definition}{15}{Odd Function}}{122}{definition.15}%
+\contentsline {theorem}{{Theorem}{9}{Convergence of Fourier-Legendre Series}}{148}{theorem.9}%
+\contentsline {definition}{{Definition}{16}{Vector}}{283}{definition.16}%
+\contentsline {definition}{{Definition}{17}{Matrix}}{283}{definition.17}%
