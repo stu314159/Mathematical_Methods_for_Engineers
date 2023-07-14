@@ -33,7 +33,7 @@ u(x,t) = F(x)G(t)
 
 \vspace{0.5cm}
 
-\noindent\textbf{Step \#2:} Insert proposed solution into the governing equation:\marginnote{\textbf{Note:} once again we will use subscripts to denote partial derivatives.}
+\noindent\textbf{Step \#2:} Insert proposed solution into the governing equation:
 \begin{align*}
 \frac{\partial^2}{\partial t^2}\left[F(x) G(t)\right] &= \alpha^2 \frac{\partial^2 }{\partial x^2}\left[F(x)G(t) \right] \\
 FG_{tt} &= \alpha^2 F_{xx}G
@@ -47,7 +47,7 @@ FG_{tt} &= \alpha^2 F_{xx}G
 \frac{G_{tt}}{\alpha^2 G} &= \frac{F_{xx}}{F} = -\lambda \\
 G_{tt} + \alpha^2 \lambda G = 0, \ \ & \ \ F_{xx}+\lambda F = 0
 \end{align*}
-\marginnote[-2.0cm]{On the middle line we see that $\frac{G_{tt}}{\alpha^2 G}$ is only a function of $y$; $\frac{F_{xx}}{F}$ is only a function of $x$ and yet they must be equal to each other for all values of $x$ and $y$.  The only way this makes sense is if they are both in fact constant.  We will denote this constant $-\lambda$.}
+\marginnote[-2.0cm]{On the middle line we see that $\frac{G_{tt}}{\alpha^2 G}$ is only a function of $y$; $\frac{F_{xx}}{F}$ is only a function of $x$ and yet they must be equal to each other for all values of $x$ and $y$.  The only way this makes sense is if they are both, in fact, constant.  We will denote this constant $-\lambda$.}
 
 \vspace{0.5cm}
 
@@ -55,7 +55,7 @@ G_{tt} + \alpha^2 \lambda G = 0, \ \ & \ \ F_{xx}+\lambda F = 0
 
 \noindent\textbf{Step \#4:} Apply boundary conditions to determine non-trivial product solution(s).  
 
-\noindent The boundary conditions must be applied to the separated equation for $F(x)$.\sidenote{The only way $G(t)$ can satisfy the homogeneous spatial boundary conditions would be for us to set $G(t)=0$.  Thus the product solution would be $u(x,t)=F(x)G(t) = F(x)(0)=0$.  Obviously a trivial solution $u(x,t)=0$ is not what we are looking for.}
+\noindent The boundary conditions must be applied to the separated equation for $F(x)$.\sidenote{As with the heat equation in Lecture 23, the only way $G(t)$ can satisfy the homogeneous spatial boundary conditions would be for us to set $G(t)=0$.  Thus the product solution would be $u(x,t)=F(x)G(t) = F(x)(0)=0$.  Obviously a trivial solution $u(x,t)=0$ is not what we are looking for.}
 
 \begin{equation*}
 F_{xx} + \lambda F = 0, \ \ F(0) = 0, \ \ F(L) = 0, \ \ 0<x<L
@@ -66,7 +66,7 @@ F_{xx} + \lambda F = 0, \ \ F(0) = 0, \ \ F(L) = 0, \ \ 0<x<L
 \vspace{0.25cm}
 
 \noindent\underline{$\lambda = 0$}:
-\marginnote[0.75cm]{This analysis is identical to what we carried out in the last lecture for the heat equation.  It is worth doing this a few times just to make sure you know what you are doing.  After that, you may decide that it is okay to skip to the answer.  Obviously it can be risky to ``skip to the answer'' so do not let me tempt you away from the straight-and-narrow path of always thoroughly looking for valid eigenvalues.}
+\marginnote[0.75cm]{This analysis is identical to what we carried out in the last lecture for the heat equation.  It is worth doing this a few times just to make sure you know what you are doing.  After that, you may decide that it is okay to skip to the answer.  It can be risky to ``skip to the answer'' so do not let me tempt you away from the straight-and-narrow path of always thoroughly looking for valid eigenvalues.}
 \begin{align*}
 F_{xx} &= 0 \\
 F(x) &= c_1x + c_2 \\

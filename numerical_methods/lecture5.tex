@@ -1,4 +1,4 @@
-\chapter{Lecture 5 - MATLAB Built-in Functions for Root Finding}
+\chapter{Lecture 5 - MATLAB Functions for Root Finding}
 \label{ch:lec5n}
 \section{Objectives}
 The objectives of this lecture are to:
@@ -48,5 +48,85 @@ The algorithm for the regula falsi method is as follows:
 The iteration should be stopped when the estimated error is smaller than the pre-determined tolerance.  Some notes on this method:
 \begin{itemize}
 \item Like the bisection method, the regula falsi method \emph{will} converge.  One can hope that, given the small added complexity, the rate of convergence would be somewhat faster using the regula falsi method.
-\item For a given function, it is typically the case that only one endpoint will ``move towards'' the solution.  Modifications to the algorithm can be made to address this issue and will be considered in the assignments.
+\item For a given function, it is typically the case that only one endpoint will ``move towards'' the solution.  Modifications to the algorithm can be made to address this issue and will be considered in the assignments.  An example of this, that will be included in the homework assignment, is to combine a step of the bisection method along with the regula falsi method.  This measure helps ensure that the interval around the root is consistently reduced from both directions. 
+\item Newton's method, the secant method, and regula falsi method all, in one way or another, use linear interpolation to estimate the location of the root.  We might hope to get a better approximation of the root if we used a higher-order interpolant.\sidenote{This is an idea that we will return to in our lectures on interpolation.} Brent's method combines root-bracketing, secant method, and \emph{inverse quadratic interpolation} methods and is the basis of MATLAB's \lstinline[style=myMatlab]{fzero} function.\cite{forsythe1977computer}
 \end{itemize}
+
+
+\section{MATLAB's fzero}
+MATLAB's built-in function \lstinline[style=myMatlab]{fzero} is the basic, bread-and-butter, root finding function that you should use in a MATLAB environment.  The basic usage is:
+\begin{center}
+\begin{tabular}{c}
+\begin{lstlisting}[style=myMatlab, frame=none, numbers=none, basicstyle=\large]
+x = fzero(f,x0)
+\end{lstlisting}
+\end{tabular}
+\end{center}
+where \lstinline[style=myMatlab]{x} is the root, \lstinline[style=myMatlab]{fun} is a handle to the non-linear function, and \lstinline[style=myMatlab]{x0} is either a point (close to the solution) or a vector \lstinline[style=myMatlab]{x0 = [a b]} whose entries indicate the left and right boundary of an interval that brackets a solution.\sidenote{MATLAB checks to see if \lstinline[style=myMatlab]{[a b]} contains a root---i.e. by checking $f(a)f(b)<0$---and returns an error if it does not.}
+
+You can specify options and get more information about the solution by using optional input and output variables as shown below:
+\begin{center}
+\begin{tabular}{c}
+\begin{lstlisting}[style=myMatlab, frame=none, numbers=none, basicstyle=\large]
+[x,fval,exitflag,output] = fzero(f,x0, options)
+\end{lstlisting}
+\end{tabular}
+\end{center}
+where, in addition to the root, \lstinline[style=myMatlab]{x}, the function returns:
+\begin{itemize}
+\item \lstinline[style=myMatlab]{fval}: which is the value of $f(x)$ at the root.
+
+\item \lstinline[style=myMatlab]{exitflag}, which is a variable encoding the reason why \lstinline[style=myMatlab]{fzero} stopped iterations.  Below is a table showing the meaning of various \lstinline[style=myMatlab]{exitflag} values:
+
+\begin{center}
+\begin{tabular}{|p{0.1\linewidth} | p{0.8\linewidth}|}
+\hline
+\textbf{Value} & \textbf{Meaning} \\ \hline
+1 & Function converged to a solution. \\
+-1 & Algorithm was terminated by the output function or plot function. \\
+-3 & Nan or Inf function value was encountered while searching for an interval containing a sign change. \\
+-4 & Complex function value was encountered while searching for an interval containing a sign change. \\
+-5 & Algorithm might have converged to a singular point. \\
+-6 & fzero did not detect a sign change. \\
+\hline
+\end{tabular}
+\end{center} 
+Notice that all of these conditions are bad except for \lstinline[style=myMatlab]{exitflag=1}.
+
+\vspace{5.0cm}
+
+\item a variable called \lstinline[style=myMatlab]{output} which is a \emph{struct}\sidenote{A struct is a composite data type that facilitates a logically grouped list of variables under one name. Each variable is referred to as a \emph{field} of the struct.  Different fields can have different data types.} containing fields describing performance of \lstinline[style=myMatlab]{fzero} on this particular invocation.
+
+
+The  \lstinline[style=myMatlab]{output} struct contains the following fields:
+\begin{center}
+\begin{tabular}{|p{0.35\linewidth} | p{0.6\linewidth}|}
+\hline
+\textbf{Field Name} & \textbf{Meaning} \\ \hline
+intervaliterations: & Number of iterations taken to find an interval containing a root. \\
+iterations: & Number of zero-finding iterations. \\
+funcCount: & Number of function evaluations. \\ 
+algorithm: & Name(s) of algorithm(s) used. \\
+message: & An exit message. (e.g. ``Zero found in the interval [a,b]'')\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\end{itemize} 
+
+The additional input variable, \lstinline[style=myMatlab]{options}, is also a struct. Users typically construct this object using the MATLAB function \lstinline[style=myMatlab]{optimset} with a collection of name-value pairs pertaining to input options available to \lstinline[style=myMatlab]{fzero}.  See the MATLAB documentation for full details but a typical usage might be something like:
+
+\begin{center}
+\begin{tabular}{c}
+\begin{lstlisting}[style=myMatlab, frame=none, numbers=none, basicstyle=\small]
+options = optimset('Display','iter','TolX',1e-15);
+\end{lstlisting}
+\end{tabular}
+\end{center}
+where \lstinline[style=myMatlab]{'Display','iter'} causes MATLAB to display output at each iteration, and \lstinline[style=myMatlab]{'TolX',1e-15} sets the termination tolerance on $x$ to be equal to $10^{-15}$.
+
+
+  
+
+

@@ -124,7 +124,7 @@ u(x,t) = F(x)G(t) = \sum\limits_{n=1}^{\infty} c_n \sin{\frac{n \pi x}{L}} e^{-(
 \noindent\textbf{Step \#5:} Satisfy the initial condition.
 
 \begin{align*}
-u(x,0) &= \sum\limits_{n=1}^{\infty}c_n \sin{\frac{n \pi x}{L}} \cancelto{0}{e^{-(\alpha \frac{n \pi}{L})^2 0}} \\
+u(x,0) &= \sum\limits_{n=1}^{\infty}c_n \sin{\frac{n \pi x}{L}} \cancelto{1}{e^{-(\alpha \frac{n \pi}{L})^2 0}} \\
 &= \sum\limits_{n=1}^{\infty}c_n \sin{\frac{n \pi x}{L}} = f(x)
 \end{align*}
 On the left we have an infinite series of eigenfunctions; on the right we have $f(x)$.  Our job is to find the values of $c_n$ so that they are equal.  This is \emph{exactly} the reason why we spent time learning about Fourier series and orthogonal function expansions.  We will multiply both sides by our (orthogonal) eigenfunctions and integrate.
@@ -140,7 +140,7 @@ By orthogonality of the eigenfunctions $F_n(x)$ we can find the coefficients, $c
 c_n = \frac{\int_0^L f(x) \sin{\frac{n \pi x}{L}} \ dx}{\int_0^L \sin{\left(\frac{n \pi x}{L}\right)}^2 \ dx}
 \label{eq:lec23-ex1-coeff}
 \end{equation}
-You might recognize Equation \ref{eq:lec23-ex1-coeff}; it is the same as the Sine series expansion given in Lecture 16. In particular the value of $\int_0^L \sin{\sfrac{n \pi x}{L}}^2 \ dx$ is equal to $\sfrac{L}{2}$ so the formula for the coefficients can more concisely be stated as:
+You might recognize Equation \ref{eq:lec23-ex1-coeff}; it is the same as the Sine series expansion given in Lecture 16. In particular the value of $\int_0^L \sin{\sfrac{n \pi x}{L}}^2 \ dx$ is equal to $\sfrac{L}{2}$ so the formula for the coefficients can be stated more concisely as:
 
 \begin{equation*}
 c_n = \frac{2}{L} \int_0^L f(x) \sin{\frac{n \pi x}{L}} \ dx
@@ -309,12 +309,12 @@ $\substack{\text{Initial} \\ \text{Conditions}}: $ & $u(x,0) = f(x), \ \ 0<x<L $
 
 \vspace{0.25cm}
 
-\noindent Before we do any analysis we should think about what we \emph{expect} the solution to look like.\sidenote{This is important.  Do not let yourself get stuck inside analytic blinders that prevent you from seeing the big picture.  Eventually you will need to be prepared to critically scrutinize your answer and decide, on your own, whether or not it is reasonable and/or correct.}  Mathematically we implement the insulated boundary condition by setting the temperature gradient at that boundary equal to zero.  Conceptually, we know this means that heat will no longer flow out of that boundary.  Heat may or may not flow \emph{towards} the right boundary depending on the temperature distribution within the domain but any heat reaching the right boundary will stay there until it can flow out towards the \emph{left} boundary.
+\noindent Before we do any analysis we should think about what we \emph{expect} the solution to look like.\sidenote{This is important.  Do not let yourself get stuck inside analytic blinders that prevent you from seeing the big picture.  Eventually you will need to be prepared to critically scrutinize your answer and decide, on your own, whether or not it is reasonable and/or correct. To do this, you need to know \emph{in advance} what you \emph{expect} the solution to look like.}  Mathematically we implement the insulated boundary condition by setting the temperature gradient at that boundary equal to zero.  Conceptually, we know this means that heat will no longer flow out of that boundary.  Heat may or may not flow \emph{towards} the right boundary depending on the temperature distribution within the domain but any heat reaching the right boundary will stay there until it can flow out towards the \emph{left} boundary.
 
 \vspace{0.25cm}
-\marginnote{\textbf{Hint:} When we apply the insulated boundary condition, we will be left with $F_x(L) = \nu c_2 \cos{\nu L} = 0$ which we can satisfy if $\nu L$ is an odd integer multiple of $\sfrac{\pi}{2}$. So $\nu_n L = \frac{(2n-1) \pi}{2}, \ n=1,2,3,\cdots$, and therefore $\nu_n = \frac{(2n-1)\pi}{2L}$. 
-}
-\noindent The details are left to the reader but application of separation of variables to the new boundary value problem yields the following solution:
+
+\noindent The details are left to the reader\sidenote{\textbf{Hint:} When we apply the insulated boundary condition, we will be left with $F_x(L) = \nu c_2 \cos{\nu L} = 0$ which we can satisfy if $\nu L$ is an odd integer multiple of $\sfrac{\pi}{2}$. So $\nu_n L = \frac{(2n-1) \pi}{2}, \ n=1,2,3,\cdots$, and therefore $\nu_n = \frac{(2n-1)\pi}{2L}$. 
+} but application of separation of variables to the new boundary value problem yields the following solution:
 
 \begin{align*}
 \nu_n &= \frac{(2n-1)\pi}{2L}, \ \ n=1,2,3,\dots \\
@@ -330,6 +330,6 @@ A plot of the solution when $N=25$, $L=1$, and $\alpha^2=1.5$ is shown in Figure
 \end{marginfigure}
 %\subsection{Both Boundaries Insulated}
 
-\newthought{What happens if} both boundaries are insulated?  Physically, when we insulate something, that means we want to keep heat from coming in or out of the domain.  Does this mean heat will not diffuse \emph{within} the domain?  Of course not; heat will simply flow as it must while driven by temperature gradients in the domain.  When will it stop?  When there is no more temperature gradient to drive heat flow and that will happen when the temperature is uniform.  
+\newthought{What happens if} both boundaries are insulated?  Physically, when we insulate something, that means we want to keep heat from coming in or out of the domain.  Does this mean heat will not diffuse \emph{within} the domain?  Of course not; heat will simply flow as it must while driven by temperature gradients in the domain.  When will the diffusion stop?  When there is no more temperature gradient to drive heat flow and that will happen when the temperature is uniform.  
 
 Mathematically, this means that we again change the boundary conditions so that the temperature gradient is zero at \emph{both} boundaries.  The details of this solution will be left to exercises but it is hoped by this point that you already know what the solution \emph{must} look like; namely that heat will diffuse within the domain until a uniform temperature is reached that is equal to the \emph{average} initial temperature.

@@ -1,0 +1,41 @@
+\chapter{Assignment \#2}
+\label{ch:ass2n}
+\begin{fullwidth}
+
+\begin{enumerate}
+\item Determine the fourth root of 200 by finding the numerical solution of the equation $f(x) = x^4 - 200 = 0$.  Use Newton's method (by hand).  Start at $x=8$ and carry out the first five iterations.
+
+\vspace{2.0cm}
+
+\item Create a function to carry out Newton's method for finding a root for a nonlinear equation.  The function should have the signature: \lstinline[style=myMatlab]{Xs=NewtonSol(Fun,FunDer,Xest)} where, \lstinline[style=myMatlab]{Xs} is a root, \lstinline[style=myMatlab]{Fun} and \lstinline[style=myMatlab]{FunDer} are handles to the function to be solved and its derivative, and \lstinline[style=myMatlab]{Xest} is an initial starting guess for the root.  Your function should use the estimated relative error as a stopping criterion with a threshold value of $10^{-9}$.  The number of iterations should be limited to 100; if the solution is not found in 100 iterations the program should stop and display an error message.  Use your function to solve the equation given in Problem \#1.
+
+\vspace{2.0cm}
+
+\item Steffensen's method is a scheme for finding a numerical solution of an equation of the form $f(x)=0$ that is like Newton's method but does not require the derivative of $f(x)$.  The solution process starts by choosing a point $x_1$, near the solution, as the first estimate fo the root.  The subsequent estimates of the solution, $x_{i+1}$, are calculated by:
+\begin{equation*}
+x_{i+1} = x_i - \frac{f(x_i)^2}{f(x_i + f(x_i)) - f(x_i)}
+\end{equation*}
+Write a MATLAB function that solves a nonlinear equation with Steffensen's method.  The function signature should be: \lstinline[style=myMatlab]{Xs = SteffensenRoot(Fun,Xest)} where \lstinline[style=myMatlab]{Xs} is a root, \lstinline[style=myMatlab]{Fun} is a handle to the function you wish to solve, and \lstinline[style=myMatlab]{Xest} is the estimated root.  Use your function to find the root of $f(x) = x-2e^{-x}$.  Use 2 as an initial starting point.  As termination criteria, use the estimated relative error with $10^{-9}$ as a tolerance, and maximum iterations with a limit of 100.
+
+
+\vspace{4.0cm}
+
+\item A simply-supported I-beam is loaded with a distributed load, as shown in the figure. (need to add the figure)  The deflection, $y$, of the centerline of the beam as a function of the position, $x$, is given by the equation:
+\begin{equation*}
+y = \frac{w_0 x}{360 LEI}\left(7L^4 - 10L^2x^2 + 3x^4\right)
+\end{equation*}
+where $L=4$ m is the length, $E=70$ GPa is the elastic modulus, $I=52.9\times 10^{-6}$ m\textsuperscript{4} is the moment of inertia, and $w_0=20$ kN/m is the distributed load.
+
+\vspace{0.25cm}
+
+\noindent Find the position $x$ where the deflection of the beam is maximum and determine the deflection at this point. [\textbf{Hint:} The maximum delfection is at the point where $y_x = 0$.]
+\begin{enumerate}
+\item Write a MATLAB function that solvs this non-linear equation using the secant method.  The function signature should be \lstinline[style=myMatlab]{Xs = SecantRoot(Fun,Xa,Xb,Err,imax)} where \lstinline[style=myMatlab]{Err} is the estimated relative error, a tolerance for which you should set at $10^{-9}$.  Use 1.5 for \lstinline[style=myMatlab]{Xa} and 2.5 for \lstinline[style=myMatlab]{Xb}.
+
+\item Repeate the solution of this equation with \lstinline[style=myMatlab]{NewtonSol} and \lstinline[style=myMatlab]{SteffensonRoot}.
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{fullwidth}
