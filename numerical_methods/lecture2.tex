@@ -8,17 +8,17 @@ The objective of this lecture is to:
 \setcounter{lstannotation}{0}
 
 \section{Definitions}
-In this course we will regularly make use of vectors and matrices.  These mathematical objects are widely used and probably familiar to readers from previous courses.  Nonetheless we will review some concepts so that we can all go forward with a common understanding.  We begin with the following definitions:
+In this course we will regularly make use of vectors and matrices.  These mathematical objects are widely used and probably familiar to readers from previous courses.  Nonetheless we will review some concepts so that we can all go forward with a common understanding or, at least, a common vocabulary.  We begin with the following definitions:
 
 \begin{definition}[Vector]
-A vector is \emph{a discrete representation of a function}.
+A vector is row or column of numbers.  From our perspective, the significance of such a \emph{row vector} or \emph{column vector} is that the numbers so presented are \emph{a discrete representation of a function}.
 \end{definition}
 
 \begin{definition}[Matrix]
 In many contexts, it is suitable to view a matrix as: any rectangular array of numbers.\sidenote{\textbf{Note:} Unless otherwise indicated we will assume any matrix to be two-dimensional.  Higher-dimensional generalizations of a matrix exist, but they are not within the scope of this class.}  For this class, and as a computational engineer, a more specific definition of a matrix that is often appropriate would be: \emph{a discrete representation of a differential operator}. 
 \end{definition}
 
-These are intended to be operational definitions; not technically complete or correct but adequate for our present purposes.  More than that, the definitions are intended to highlight why, as an engineer, \emph{you should care} about vectors, matrices, and linear algebra.  
+These are intended to be operational definitions; not technically complete or correct but adequate for our present purposes.  More than that, the definitions are intended to highlight why, as an engineer, \emph{you should care} about vectors, matrices, and mathematical operations done with them. 
 
 In this course, when we numerically solve the heat equation to find temperature, say, in a cylindrical rod, the function that we find as the solution will be represented as a vector. If we take the derivative of the temperature so that we can calculate heat flux, for instance, the function that is the derivative of the temperature will also be stored as a vector.  Representing functions is the main thing that vectors are \emph{used for} in this class.
 
@@ -121,7 +121,7 @@ I = \left[
 \end{matrix}
 \right]
 \end{equation*}
-and, for any 3x3 matrix A:
+and, for any 3x3 matrix A:\marginnote[1.25cm]{\textbf{Note:} It is also true that $IA = A$.}
 \begin{equation*}
 AI = \left[
 \begin{matrix}
@@ -149,18 +149,18 @@ a_{3,1} & a_{3,2} & a_{3,3}
 A
 \end{equation*}
 
-\item \emph{Lower/Upper triangular matrix}.  A lower triangular matrix is non-zero only for entries at or below the main diagonal.  If the main diagonal is also zero, the matrix is referred to as \emph{strictly lower triangular}.  An upper triangular matrix is defined similarly: non-zero only on the main diagonal or above; if the main diagonal is zero, then it is called \emph{strictly upper triangular}.
+\item \emph{Lower/Upper triangular matrix}.  A lower triangular matrix is non-zero only for entries at or below the main diagonal.  If the main diagonal is also zero, the matrix is referred to as \emph{strictly lower triangular}.  An upper triangular matrix is defined similarly: non-zero only on the main diagonal or above; if the main diagonal is zero, then the matrix is called \emph{strictly upper triangular}.
 \end{enumerate}
 
 \subsection{Matrix Properties}
 We have already mentioned some of the structural properties of a matrix.  There are other important properties not solely related to its size, zero-structure, or symmetry of entries.
 
 \begin{enumerate}
-\item \emph{Rank}.  The matrix rank is the number of rows or columns of a matrix that are \emph{linearly independent}.  If $a_{i}$ denotes the $i$\textsuperscript{th} row or column of matrix $A$, then the rows/columns are linearly independent if:\marginnote{\textbf{Note:} The mathematical notation $\forall$ means ``for all.'' Consequently $\forall i \in \{1,\dots,n\}$ means: ``for all $i$ in the set 1 to n.''}
+\item \emph{Rank}.  The matrix rank is the number of rows or columns of a matrix that are \emph{linearly independent}.  If $a_{i}$ denotes the $i$\textsuperscript{th} row or column of matrix $A$, then the rows/columns are linearly independent if:\marginnote{\textbf{Note:} The mathematical notation $\iff$ should be read ``if and only if'', and $\forall$ means ``for all.'' Consequently, $\iff \alpha_i = 0, \ \forall i \in \{1,\dots,n\}$ means: ``if and only if $\alpha_i$ equals zero for all $i$ in the set 1 to n.''}
 \begin{equation*}
 \alpha_1 a_1 + \alpha_2 a_2 + \cdots + \alpha_n a_n = 0, \iff \alpha_i = 0, \ \forall i \in \{1,\dots,n\}
 \end{equation*}
-Which means that a linear combinations of the rows/columns can only be equal to zero (a vector of all zeros) \emph{if, and only if, all} of the coefficients in the linear combination are equal to zero.\sidenote{This is completely analogous to the concept of linear independence of functions described in Lecture 3.}  
+Which means that a linear combinations of the rows/columns can only be equal to zero (a vector of all zeros) \emph{if, and only if, all} of the coefficients in the linear combination are equal to zero.\sidenote{This is completely analogous to the concept of linear independence of functions described in Lecture 3 of the anlytical methods part of this text.}  
 
 \vspace{0.1cm}
 
@@ -201,7 +201,7 @@ A A^{-1} = A^{-1}A = I
 \end{equation*}
 where $I$ is the identity matrix of the same size as $A$.  If $A$ is \emph{square} and is \emph{full rank} then $A$ is invertible.  
 
-A conceptual use of the matrix inverse is in solving a linear system of equations. If $A$ is an invertible matrix with $n$ rows and $b$ is a given vector of length $n$, then we can solve the system of equations:
+A conceptual use of the matrix inverse is in solving a linear system of equations. If $A$ is an invertible matrix with $n$ rows, and $b$ is a given vector of length $n$, then we can solve the system of equations:
 \begin{equation*}
 Ax = b
 \end{equation*}
@@ -219,23 +219,27 @@ While we will not use the matrix inverse in this way, it is still conceptually i
 \begin{equation*}
 Au = \lambda u
 \end{equation*}
-for the matrix $A$ and vector $u$ where the $A$ and $u$ are conformable in multiplication and $\lambda$ is a constant.  This is called an \emph{eigenvalue equation}.  The vector $u$ is called an \emph{eigenvector} and the constant $\lambda$ is called an \emph{eigenvalue}.  
+for the matrix $A$ and vector $u$ where $A$ and $u$ are conformable in multiplication and $\lambda$ is a constant.  This is called an \emph{eigenvalue equation}.  The vector $u$ is called an \emph{eigenvector} and the constant $\lambda$ is called an \emph{eigenvalue}.  
 
-If $A$ is invertible then it has a full set of linearly independent eigenvectors; if $A$ is symmetric then the eigenvectors are orthogonal.\sidenote{Students who have taken the analytical methods class should find this language to be eerily familiar: exchange \emph{eigenvector} with \emph{eigenfunction} and replace $A$ with \emph{``a linear differential operator''} and you would be forgiven for thinking we have accidentally skipped back to lecture 18 from the analytical methods class.} In either case, all of the eigenvalues are non-zero.  Most square matrices can be \emph{``diagonalized''} in this way:
+If $A$ is an invertible matrix with $m$ rows and columns then it has a full set of $m$ linearly independent eigenvectors; if $A$ is symmetric then the eigenvectors are orthogonal.\sidenote{Students who have taken the analytical methods class should find this language to be eerily familiar: exchange \emph{eigenvector} with \emph{eigenfunction} and replace $A$ with \emph{``a linear differential operator''} and you would be forgiven for thinking we have accidentally skipped back to lecture 18 from the analytical methods class.} In either case, all of the eigenvalues are non-zero.  Most square matrices can be \emph{``diagonalized''} in this way:
 \begin{equation*}
 A = U \Lambda U^{-1}
 \end{equation*}
-in which $U$ is an $nxn$ matrix where each column is an eigenvector and $\Lambda$ is a diagonal matrix with the eigenvalues along the diagonal.  Square matrices that cannot be diagonalized in this way are said to be \emph{defective}.\sidenote{The language used in this should indicate to you how important it is for a matrix to have a full set of eigenvectors and able to be diagonalized in this way.}  
+in which $U$ is an $n\times n$ matrix where each column is an eigenvector and $\Lambda$ is a diagonal matrix with the eigenvalues along the diagonal.  Square matrices that cannot be diagonalized in this way are said to be \emph{defective}.\sidenote{The language used in this should indicate to you how important it is for a matrix to have a full set of eigenvectors and able to be diagonalized in this way.}  
 
 \noindent There is at least one matrix property related to the eigenvalues that students should be aware of. A symmetric matrix is said to be \emph{positive definite} if the following equation holds:
 \begin{equation*}
 x^{\text{T}}Ax \ge 0, \ \text{ and } x^{\text{T}}Ax = 0 \Rightarrow x=0
 \end{equation*}
-If this equation is true, it implies that all of the eigenvalues of $A$ are positive.  Apart from implying that $A$ is thus invertible (all eigenvalues non-zero), and square (only square matrices are invertible), if a matrix is positive definite there are significant impacts in which methods one should use to factorize (solve) a system of equations involving that matrix.  We will revisit this property when discussing solution methods for linear systems of equations.
+If this equation is true, it implies that all of the eigenvalues of $A$ are positive.  Apart from implying that $A$ is thus invertible (all eigenvalues non-zero), and square (only square matrices are invertible), if a matrix is positive definite there are significant impacts in which methods one should use to solve a system of equations involving that matrix.  We will revisit this property when discussing solution methods for linear systems of equations.
 
-\item \emph{Matrix determinant}.  The determinant is \emph{a useful property of a matrix}.\sidenote{\textbf{Personal aside: } As a young ensign in the navy nuclear power training progam I remember being taught an operational definition of (the thermodynamic property) entropy.  \emph{``entropy: a useful thermodynamic property.''}  A determinant is like that: nobody wants to get into exactly what it means, but it is useful and you may need to calculate it.}  The operation of taking the determinant is denote:
+\item \emph{Matrix determinant}.  The determinant is \emph{a useful property of a matrix}.\sidenote{\textbf{Personal aside: } As a young ensign in the navy nuclear power training progam I remember being taught an operational definition of (the thermodynamic property) entropy.  \emph{``entropy: a useful thermodynamic property.''}  A determinant is like that: nobody wants to get into exactly what it means, but it is useful and you may need to calculate it.}  The operation of taking the determinant is denoted:
 \begin{equation*}
-\text{det}(A) = \left| A \right| = \prod_{i=1}^n \lambda_i
+\text{det}(A) = \left| A \right| 
+\end{equation*}
+There is also a relationship between the determinant of a matrix and the eigenvalues of a matrix:
+\begin{equation*}
+\left| A \right| = \prod_{i=1}^n \lambda_i
 \end{equation*}
 where $\lambda_i$ are the eigenvalues of $A$. Since, as previously mentioned, all of the eigenvalues of an invertible matrix are non-zero, the determinant of an invertible matrix is non-zero.  
 

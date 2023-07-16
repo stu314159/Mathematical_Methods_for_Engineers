@@ -191,6 +191,7 @@ The IEEE-754 standard provides specification of several floating point number fo
 
 \noindent\textbf{Step \#2:} Set the sign bit. As the number is negative, the sign bit is: 1.
 
+\vspace{0.25cm}
 
 
 \noindent\textbf{Step \#3:} Calculate the 11 exponent bits.  
@@ -220,7 +221,7 @@ The IEEE-754 standard provides specification of several floating point number fo
 
 \noindent Where the calculations might be done as shown below:
 \begin{align*}
-0.3125 - 0 \times 2^{-1} &= 0.3 \\
+0.3125 - 0 \times 2^{-1} &= 0.3125 \\
 0.3125 - 1 \times 2^{-2} &= 0.0625 \\
 0.0625 - 0 \times 2^{-3} &= 0.0625 \\
 0.0625 - 1 \times 2^{-4} &= 0
@@ -234,7 +235,7 @@ When using numerical methods there are several sources of error that you, as an 
 
 The second source of error that we will mention here is something that should be familiar to students who have taken the course in analytical methods: \emph{truncation error}.  In the analytical methods course we suffered from truncation error every time we shortened our infinite series solution to a finite number of terms.  We reduced this error by increasing the number of terms we retained, but there was no way to make it go away completely.  In this course we will see further instances of truncation error in most every algorithm we implement.  Derivatives and integrals that could, in principle, be done exactly, will be done approximately as we truncate the Taylor series expansion or limit the order of polynomials used to represent the exact derivative or integral.  We can reduce the magnitude of these errors, but we cannot make them go away entirely.
 
-The third source of error mentioned here is \emph{modeling error}.  Modeling errors are reflected in the differences between observed physical phenomena and the corresponding output of a mathematical model of the phenomena.  There are a couple of reasons for these differences and these include:
+The third source of error mentioned here is \emph{modeling error}.  Modeling errors are reflected in the differences between observed physical phenomena and the corresponding mathematical model of the phenomena.  There are a couple of reasons for these differences and these include:
 \begin{enumerate}
 \item Linearization of non-linear processes.  Instances where you may already have done this, in your heat transfer or fluid dynamics class, include:
 \begin{enumerate}
