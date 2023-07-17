@@ -62,7 +62,7 @@ where higher order terms are neglected.  This set of linear equations can be exp
 }
 \label{eq:lec6n-matvec}
 \end{equation}
-The unknown quantities are $\Delta x$ and $\Delta y$.  The matrix in Equation \ref{eq:lec6n-matvec} is referred to as the \emph{Jacobian}. We can solve this linear system of equations\sidenote{Actually we have not covered how to do that yet in this class.  Students can probably solve this 2x2 system of equations based on high school math, but we will thoroughly study methods for solving linear systems of equations in the next section of the text.} to find $\Delta x$ and $\Delta y$ and thus get $x_2$ and $y_2$ from Equation \ref{eq:lec6n-xy-update}.
+The unknown quantities are $\Delta x$ and $\Delta y$.  The matrix in Equation \ref{eq:lec6n-matvec} is referred to as the \emph{Jacobian}. We can solve this linear system of equations\sidenote{Actually we have not covered how to do that yet in this class.  Students can probably solve this $2 \times 2$ system of equations based on their experience in high school math, but we will thoroughly study methods for solving linear systems of equations in the next section of the text.} to find $\Delta x$ and $\Delta y$ and thus get $x_2$ and $y_2$ from Equation \ref{eq:lec6n-xy-update}.
 \begin{equation}
 x_2 = x_1 + \Delta x, \ \ \ y_2 = y_1 + \Delta y
 \label{eq:lec6n-xy-update}
@@ -74,13 +74,18 @@ x_2 = x_1 + \Delta x, \ \ \ y_2 = y_1 + \Delta y
 \begin{enumerate}
 \item Start with an initial guess, $x_1$, $y_1$.
 \item Form and solve the linear system of equations given in Equation \ref{eq:lec6n-matvec} to obtain $\Delta x$ and $\Delta y$.
-\item compute $x_{i+1}$ and $y_{i+1}$ from: $x_{i+1} = x_{i} + \Delta x, \ \ \ y_{i+1} = y_{i} + \Delta y$.
-\item Repeat steps \#2 and \#3 until $\Delta x$ and $\Delta y$ are within some specified error tolerance.\sidenote{This relative error tolerance will be illustrated in the example code.}
+\item compute $x_{i+1}$ and $y_{i+1}$ from: $x_{i+1} = x_{i} + \Delta x, $ and $ y_{i+1} = y_{i} + \Delta y$.
+\item Repeat steps \#2 and \#3 until $\Delta x$ and $\Delta y$ are within some specified error tolerance.\sidenote{We will use a relative error tolerance that will be illustrated in the example code.}
 \end{enumerate}
 
 \vspace{0.25cm}
 
-\noindent\textbf{Example:} The equations of the catenary curve and the ellipse, which are shown in the figure (add figure), are given by:
+\noindent\textbf{Example:} The equations of the catenary curve and the ellipse, which are shown in Figure \ref{fig:lec6n-ex1}, are given by:
+\begin{marginfigure}
+\includegraphics{Chapter3Example3_5.jpg}
+\caption{Example system of non-linear equations.}
+\label{fig:lec6n-ex1}
+\end{marginfigure}
 \begin{align*}
 f_1(x,y) &= y-\frac{1}{2}\left(e^{\sfrac{x}{2}} + e^{-\sfrac{x}{2}}\right) \\
 f_2(x,y) &= 9x^2 + 25y^2 - 225
@@ -99,7 +104,7 @@ Use Newton's method to determine the point of intersection of the curves that re
 
 \vspace{0.15cm}
 
-\noindent We begin by clearing out the workspace and defining the given functions:
+\noindent We begin by clearing out the workspace and defining the given functions and the Jacobian:
 \begin{lstlisting}[style=myMatlab, name=lec6n-ex1]
 clear
 clc
@@ -124,8 +129,9 @@ Jac = @(x,y) [dF1x(x,y) dF1y(x,y); dF2x(x,y) dF2y(x,y)];
 xi = 2.5; yi = 2; 
 Err = 1e-10; imax = 10;
 \end{lstlisting}
-Note that we do not plan on making many iterations.  If Newton's method works, we will very quickly converge.
-\vspace{4.0cm}
+Note that we do not plan on making many iterations.  If Newton's method works, it will very quickly converge.
+
+\vspace{0.25cm}
 
 \noindent Now we implement Newton's method:\marginnote[1.0cm]{
 \ref{lst:ann6n-1} We use MATLAB's built-in ``backslash'' operator to solve the linear system of equations.  This will be discussed in Section VIII of this text.
@@ -181,10 +187,19 @@ A more complete syntax that provides additional output information and an interf
 \end{lstlisting}
 \end{tabular}
 \end{center}
-The values of \lstinline[style=myMatlab]{x} and \lstinline[style=myMatlab]{fval} are similar to what one obtains when using \lstinline[style=myMatlab]{fzero} except, of course they are now both vectors.  Values for \lstinline[style=myMatlab]{exitflag} and \lstinline[style=myMatlab]{output} are different---interested readers should consult the MATLAB documentation---but \lstinline[style=myMatlab]{exitflag=1} still means success.  As with \lstinline[style=myMatlab]{fzero} a function is used to construct an appropriate \lstinline[style=myMatlab]{options} structure.  When using \lstinline[style=myMatlab]{fsolve} you should use the \lstinline[style=myMatlab]{optimoptions} function. An example usage of \lstinline[style=myMatlab]{optimoptions} is included in the MATLAB listing below.
+The values of \lstinline[style=myMatlab]{x} and \lstinline[style=myMatlab]{fval} are similar to what one obtains when using \lstinline[style=myMatlab]{fzero} except, of course they are now both vectors.  Values for \lstinline[style=myMatlab]{exitflag} and \lstinline[style=myMatlab]{output} are different---interested readers should consult the MATLAB documentation---but \lstinline[style=myMatlab]{exitflag=1} still means success.  As with \lstinline[style=myMatlab]{fzero}, a function is used to construct an appropriate \lstinline[style=myMatlab]{options} structure; when using \lstinline[style=myMatlab]{fsolve} you should use the \lstinline[style=myMatlab]{optimoptions} function for this purpose. An example usage of \lstinline[style=myMatlab]{optimoptions} is included in the MATLAB listing below.
 
 \vspace{3.0cm}
 
+\marginnote[4.0cm]{
+
+\ref{lst:ann6n-1} Here we use a \lstinline[style=myMatlab]{switch...case} structure to select between sets of options for purposes of demonstration. The options specified in \lstinline[style=myMatlab]{option_set=1} amount to telling \lstinline[style=myMatlab]{fsolve()} to quietly solve the problem with no output to the command window.  The options specified in \lstinline[style=myMatlab]{option_set=2} specify detailed output on each iteration and provides non-default values for the \lstinline[style=myMatlab]{'MaxIterations'} and \lstinline[style=myMatlab]{'StepTolerance'} parameters.  Consult the MATLAB documentation on \lstinline[style=myMatlab]{fsolve} for more details.
+
+\vspace{3.5cm} 
+
+\ref{lst:ann6n-2} The first argument to \lstinline[style=myMatlab]{fsolve} has to be a (single) handle to a function.  This local function implements the system of two equations from the example. The first argument to \lstinline[style=myMatlab]{ex3p5} is a vector; one element for each equation in our system of equations.
+
+}
 \begin{lstlisting}[name=lec6n-ex2, style=myMatlab]
 clear
 clc
@@ -197,7 +212,7 @@ option_set = 2;
 % 1 = no outputs
 % 2 = detailed outputs
 
-switch option_set
+switch option_set     /*!\annotation{lst:ann6n-1}!*/
     
     case 1
         options = optimoptions('fsolve','Display','none');
@@ -220,7 +235,7 @@ fprintf('fval = \n'); disp(fval);
 fprintf('exitflag = %d \n',exitflag);
 
 %% Local Function
-function out = ex3p5(x)
+function out = ex3p5(x)   /*!\annotation{lst:ann6n-2}!*/
 [m,n] = size(x); % expect scalar or vector input
 assert(min(m,n)==1,...
     'Error!  Vector input expected for x! \n');
