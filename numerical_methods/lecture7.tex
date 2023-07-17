@@ -151,26 +151,198 @@ b_2 \\
 b_n
 }
 \end{equation*} 
-and convert it to an upper-tringular matrix using a matrix called \emph{forward elimination}.
+and convert it to an upper-tringular matrix using a process called \emph{forward elimination}.
+
+\vspace{0.25cm}
+
+\noindent\textbf{Example: } Carry out the process of forward elimination for the $4 \times 4$ system of equations shown.
+
 \begin{equation*}
 \bracketMatrixstack{
-a_{11} & a_{12} & \cdots & a_{1n} \\
-0 & a^{\prime}_{22} & \cdots & a^{\prime}_{2n} \\
-\vdots & \ddots & \ddots & \vdots \\
-0 & \cdots & 0 & a^{\prime}_{nn}
-} 
+a_{11} & a_{12} & a_{13} & a_{14} \\
+a_{21} & a_{22} & a_{23} & a_{24} \\
+a_{31} & a_{32} & a_{33} & a_{34} \\
+a_{41} & a_{42} & a_{43} & a_{44}
+}
 \bracketVectorstack{
 x_1 \\
 x_2 \\
-\vdots \\
-x_n
+x_3 \\
+x_4
 }
 =
 \bracketVectorstack{
-b^{\prime}_1 \\
-b^{\prime}_2 \\
-\vdots \\
-b^{\prime}_n
+b_1 \\
+b_2 \\
+b_3 \\
+b_4
 }
 \end{equation*}
-The resulting upper-triangular matrix can readily be solved in a process called \emph{back substitution}.
+In this process, the first row is unchanged and, for the first step, is referred to as the \emph{pivot equation}.  The coefficient $a_{11}$ is called the \emph{pivot}.  We subtract $m_{21} = \sfrac{a_{21}}{a_{11}}$ of equation (row) 1 from equation (row) 2:
+\begin{align*}
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3 + a_{24}x_4 &= b_2 & \leftarrow \text{ row 2} \\
+-\underbrace{\frac{a_{21}}{a_{11}}}_{m_{21}}(a_{11}x_1 + a_{12}x_2 + a_{13}x_3 + a_{14}x_4) &= m_{21}b & \leftarrow -m_{21} \times \text{ row 1}
+\end{align*}
+which equals:\marginnote[0.8cm]{The term $a^{\prime}_{21} = a_{21} - \sfrac{a_{21}}{a_{11}}a_{11} = 0$.}
+\begin{equation*}
+0 + \underbrace{(a_{22} - m_{21}a_{12})}_{a^{\prime}_{22}}x_2 + \underbrace{(a_{23} - m_{21}a_{13})}_{a^{\prime}_{23}}x_3 + \underbrace{(a_{24} - m_{21}a_{14})}_{a^{\prime}_{24}}x_4 = \underbrace{b_2 - m_{21}b_1}_{b^{\prime}_1}
+\end{equation*}
+thereby eliminating the first term in the second row.  This leaves us: \marginnote{Matrix and vector entries that get modified are annotated with a $(\ )^{\prime}$.  Additional primes are added for subsequent modifications.}
+\begin{equation*}
+\bracketMatrixstack{
+a_{11} & a_{12} & a_{13} & a_{14} \\
+0 & a^{\prime}_{22} & a^{\prime}_{23} & a^{\prime}_{24} \\
+a_{31} & a_{32} & a_{33} & a_{34} \\
+a_{41} & a_{42} & a_{43} & a_{44}
+}
+\bracketVectorstack{
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+}
+=
+\bracketVectorstack{
+b_1 \\
+b^{\prime}_2 \\
+b_3 \\
+b_4
+}
+\end{equation*}
+
+\vspace{2.0cm}
+
+We do the same elimination for subsequent rows to put zeros in the entire first column.
+\begin{equation*}
+\bracketMatrixstack{
+a_{11} & a_{12} & a_{13} & a_{14} \\
+0 & a^{\prime}_{22} & a^{\prime}_{23} & a^{\prime}_{24} \\
+0 & a^{\prime}_{32} & a^{\prime}_{33} & a^{\prime}_{34} \\
+0 & a^{\prime}_{42} & a^{\prime}_{43} & a^{\prime}_{44}
+}
+\bracketVectorstack{
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+}
+=
+\bracketVectorstack{
+b_1 \\
+b^{\prime}_2 \\
+b^{\prime}_3 \\
+b^{\prime}_4
+}
+\end{equation*}
+We will repeate the process for the next column and rows and continue until all entries below the main diagonal are set to zero in this process.
+\begin{fullwidth}
+\begin{equation*}
+\underbrace{
+\bracketMatrixstack{
+a_{11} & a_{12} & a_{13} & a_{14} \\
+0 & a^{\prime}_{22} & a^{\prime}_{23} & a^{\prime}_{24} \\
+0 & 0 & a^{\prime}_{33} & a^{\prime \prime}_{34} \\
+0 & a^{\prime}_{42} & a^{\prime}_{43} & a^{\prime}_{44}
+}
+\bracketVectorstack{
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+}
+=
+\bracketVectorstack{
+b_1 \\
+b^{\prime}_2 \\
+b^{\prime \prime}_3 \\
+b^{\prime}_4
+}
+}_{
+\substack{ \text{eliminate } a_{32} \text{ by subtracting } m_{32}=\sfrac{a_{32}}{a_{22}} \\ \text{of 2\textsuperscript{nd} row from 3\textsuperscript{rd} row}
+}
+}
+\rightarrow
+\underbrace{
+\bracketMatrixstack{
+a_{11} & a_{12} & a_{13} & a_{14} \\
+0 & a^{\prime}_{22} & a^{\prime}_{23} & a^{\prime}_{24} \\
+0 & 0 & a^{\prime}_{33} & a^{\prime \prime}_{34} \\
+0 & 0 & a^{\prime \prime}_{43} & a^{\prime \prime}_{44}
+}
+\bracketVectorstack{
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+}
+=
+\bracketVectorstack{
+b_1 \\
+b^{\prime}_2 \\
+b^{\prime \prime}_3 \\
+b^{\prime \prime}_4
+}
+}_{
+\substack{ \text{eliminate } a_{42} \text{ by subtracting } m_{42}=\sfrac{a_{42}}{a_{22}} \\ \text{of 2\textsuperscript{nd} row from 4\textsuperscript{th} row}
+}
+}
+\rightarrow
+\underbrace{
+\bracketMatrixstack{
+a_{11} & a_{12} & a_{13} & a_{14} \\
+0 & a^{\prime}_{22} & a^{\prime}_{23} & a^{\prime}_{24} \\
+0 & 0 & a^{\prime}_{33} & a^{\prime \prime}_{34} \\
+0 & 0 & 0 & a^{\prime \prime \prime}_{44}
+}
+\bracketVectorstack{
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+}
+=
+\bracketVectorstack{
+b_1 \\
+b^{\prime}_2 \\
+b^{\prime \prime}_3 \\
+b^{\prime \prime \prime}_4
+}
+}_{
+\substack{ \text{eliminate } a_{43} \text{ by subtracting } m_{43}=\sfrac{a_{43}}{a_{33}} \\ \text{of 3\textsuperscript{rd} row from 4\textsuperscript{th} row}
+}
+}
+\end{equation*}
+\end{fullwidth}
+The first phase of Gauss Elimination is complete and the system of equations is in upper triangular form.
+
+\newthought{Upper triangular form} is special because now we can solve the system of equations, one variable at a time, starting with the last variable, $x_4$:  
+\begin{equation*}
+x_{4} = \frac{b^{\prime \prime \prime}}{a^{\prime \prime \prime}_{44}}
+\end{equation*}
+Next we can solve for $x_3$:
+\begin{equation*}
+\frac{b^{\prime \prime}_3 - a^{\prime \prime}_{34}x_4}{a^{\prime}_{33}}
+\end{equation*}
+followed by $x_2$:
+\begin{equation*}
+x_{2} = \frac{b^{\prime}_2 - (a^{\prime}_{23}x_3 + a^{\prime}_{24}x_4) }{a^{\prime}_{22}}
+\end{equation*}
+and lastly $x_1$:
+\begin{equation*}
+x_1 = \frac{b_1 - (a_{12}x_2 + a_{13}x_3 + a_{14}x_4)}{a_{11}}
+\end{equation*}
+Hopefully, if you have been following closely, the pattern is clear. If we had a larger system of equations, we would do the same thing, just more of it.
+
+\section{MATLAB Implementation}
+
+Let us create a MATLAB script to use Gauss elimination to solve the following $4 \times 4$ system of linear equations:
+\begin{equation*}
+\bracketMatrixstack{
+4 & -2 -3 & 6 \\
+-6 & 7 & 6.5 & -6 \\
+1 & 7.5 & 6.25 & 5.5 \\
+-12 & 22 & 15.5 & -1 
+}
+\end{equation*}
+
+
