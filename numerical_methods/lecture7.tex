@@ -241,7 +241,7 @@ We will repeate the process for the next column and rows and continue until all 
 \bracketMatrixstack{
 a_{11} & a_{12} & a_{13} & a_{14} \\
 0 & a^{\prime}_{22} & a^{\prime}_{23} & a^{\prime}_{24} \\
-0 & 0 & a^{\prime}_{33} & a^{\prime \prime}_{34} \\
+0 & 0 & a^{\prime\prime}_{33} & a^{\prime \prime}_{34} \\
 0 & a^{\prime}_{42} & a^{\prime}_{43} & a^{\prime}_{44}
 }
 \bracketVectorstack{
@@ -266,7 +266,7 @@ b^{\prime}_4
 \bracketMatrixstack{
 a_{11} & a_{12} & a_{13} & a_{14} \\
 0 & a^{\prime}_{22} & a^{\prime}_{23} & a^{\prime}_{24} \\
-0 & 0 & a^{\prime}_{33} & a^{\prime \prime}_{34} \\
+0 & 0 & a^{\prime\prime}_{33} & a^{\prime \prime}_{34} \\
 0 & 0 & a^{\prime \prime}_{43} & a^{\prime \prime}_{44}
 }
 \bracketVectorstack{
@@ -291,7 +291,7 @@ b^{\prime \prime}_4
 \bracketMatrixstack{
 a_{11} & a_{12} & a_{13} & a_{14} \\
 0 & a^{\prime}_{22} & a^{\prime}_{23} & a^{\prime}_{24} \\
-0 & 0 & a^{\prime}_{33} & a^{\prime \prime}_{34} \\
+0 & 0 & a^{\prime\prime}_{33} & a^{\prime \prime}_{34} \\
 0 & 0 & 0 & a^{\prime \prime \prime}_{44}
 }
 \bracketVectorstack{
@@ -331,18 +331,153 @@ and lastly $x_1$:
 \begin{equation*}
 x_1 = \frac{b_1 - (a_{12}x_2 + a_{13}x_3 + a_{14}x_4)}{a_{11}}
 \end{equation*}
-Hopefully, if you have been following closely, the pattern is clear. If we had a larger system of equations, we would do the same thing, just more of it.
+Hopefully, if you have been following closely, the pattern is clear.\sidenote[][-1.0cm]{The pattern is, for an $n \times n$ matrix: $$x_{i} = \frac{b_{i} - \sum\limits_{j=i+1}^{n} a_{ij}x_j}{a_{ii}} $$  Note that the second term in the numerator can be expressed as a vector dot-product.} If we had a larger system of equations, we would do the same thing, just more of it.
 
 \section{MATLAB Implementation}
 
 Let us create a MATLAB script to use Gauss elimination to solve the following $4 \times 4$ system of linear equations:
 \begin{equation*}
 \bracketMatrixstack{
-4 & -2 -3 & 6 \\
+4 & -2 & -3 & 6 \\
 -6 & 7 & 6.5 & -6 \\
 1 & 7.5 & 6.25 & 5.5 \\
 -12 & 22 & 15.5 & -1 
 }
+\bracketVectorstack{
+x_1 \\
+x_2 \\
+x_3 \\ 
+x_4 
+}
+=
+\bracketVectorstack{
+12 \\
+-6.5 \\
+16 \\
+17
+}
+\end{equation*}
+We start by clearing out the workspace and providing the problem data.
+\begin{lstlisting}[style=myMatlab, name=lec7n-ex1]
+clear
+clc
+close 'all'
+
+% System to be solved
+A = [4, -2, -3, 6;
+    -6, 7, 6.5, -6;
+    1, 7.5, 6.25, 5.5;
+    -12, 22, 15.5, -1];
+
+% right hand side
+b = [12;
+    -6.5;
+    16;
+    17];
+\end{lstlisting}
+We will implement the Gauss elimination algorithm as a local function, so that part will come last.  This next listing will show the code to call our local function and compare our solution result to MATLAB's built-in function for solving linear equations---the backslash operator: \lstinline[style=myMatlab]{\}.\sidenote{This operator is shorthand for the built-in function \lstinline[style=myMatlab]{mldivide(A,b)}, where \lstinline[style=myMatlab]{A} is the matrix and \lstinline[style=myMatlab]{b} is the right hand side.}
+\marginnote{\textbf{Note:} Sometimes it is very helpful to write the code you will use to test your function, before you write the function.  For one thing, it will help clarify in your mind the interface to your function---i.e. what you will provide as inputs and what you will get as output.  It also takes care of the necessary, but sometimes tedious, task of providing a test to confirm that your function works correctly.  I cannot overstate the importance of code testing.  It is a sad fact that we cannot include in this course a detailed treatment of testing frameworks that are used for large-scale software projects.  This is something that, I think, is often missing from the training of undergraduate engineers.}  
+\begin{lstlisting}[style=myMatlab,name=lec7n-ex1]
+x = Gauss(A,b);
+
+fprintf('Solution with local function Gauss: \n');
+disp(x);
+
+fprintf('Solution with backslash: \n');
+x_gold = A\b;
+disp(x_gold);
+
+rel_error = norm(x-x_gold,2)/norm(x_gold,2); /*!\annotation{lst:ann7n-1}!*/
+fprintf('Relative difference: %g \n',rel_error);
+\end{lstlisting}
+
+\vspace{0.1cm}
+
+\noindent \ref{lst:ann7n-1} In this calculation of the relative error, we make use of a MATLAB built-in function: \lstinline[style=myMatlab]{norm(v,p)} where \lstinline[style=myMatlab]{v} is a vector.  We do not have space to go into detail here, but a vector norm has the same purpose as a function norm described in Lecture 15 in Section III of this book. The argument \lstinline[style=myMatlab]{p} specifies which norm to use.  Our choice of \lstinline[style=myMatlab]{p=2} results in use of the Euclidian norm, which many engineers are familiar with as the vector magnitude.
+
+\vspace{0.25cm}
+
+\noindent Finally we are ready to implement the Gauss elimination algorithm as a local function. We will start with the function entry through the forward elimination phase. 
+\marginnote[1.5cm]{
+
+\ref{lst:ann7n-2} We assume that \lstinline[style=myMatlab]{A} is square.  This is an assumption that we should check.
+
+\vspace{0.1cm}
+
+\ref{lst:ann7n-3}  This loop ends on the second-to-last row since the last row is not a pivot row for any eliminatin operations.
+
+\vspace{0.1cm}
+
+\ref{lst:ann7n-4} This is a little bit tricky but not too hard to understand provided you understand the notation: \lstinline[style=myMatlab]{A(j,j:n)} which refers to the \lstinline[style=myMatlab]{j}\textsuperscript{th} row of \lstinline[style=myMatlab]{A}, columns \lstinline[style=myMatlab]{j} through \lstinline[style=myMatlab]{n}.
+}
+\begin{lstlisting}[style=myMatlab, name=lec7n-ex1]
+%% Local function implementing Gauss Elimination
+function x = Gauss(A,b)
+[n,c] = size(A);
+assert(n==c,'Error! A must be square!'); /*!\annotation{lst:ann7n-2}!*/
+
+% forward elimination phase
+for j = 1:n-1 /*!\annotation{lst:ann7n-3}!*/
+    for i = (j+1):n 
+        m = A(i,j)/A(j,j); % calculate pivot
+        A(i,j:n) = A(i,j:n) - m*A(j,j:n); /*!\annotation{lst:ann7n-4}!*/
+        
+        b(i) = b(i) - m*b(j); % update the right hand side
+    end
+end
+\end{lstlisting}
+At this point, the matrix \lstinline[style=myMatlab]{A} should be in upper-triangular form.  Now we commence back-substitution.\marginnote[0.25cm]{
+
+\ref{lst:ann7n-5} The variable \lstinline[style=myMatlab]{x} is constructed as a \emph{column vector}.  This is important since it is required for the semantics of the matrix-vector multiplication carried out in line 45 to be correct.
+
+\vspace{0.1cm}
+
+\ref{lst:ann7n-6} Notice that this \lstinline[style=myMatlab]{for...end} loop steps \emph{backward}.  Obviously that is required to carry out the back-substitution as described.
+
+\vspace{0.25cm}
+
+\ref{lst:ann7n-7} Look at this notation carefully.  It is a concise articulation of: 
+$$x_{i} = \frac{b_{i} - \sum\limits_{j=i+1}^{n} a_{ij}x_j}{a_{ii}}$$
+Note that for \lstinline[style=myMatlab]{i=R}, when we index \lstinline[style=myMatlab]{x((i+1):n)} \emph{nothing} is returned since, for \lstinline[style=myMatlab]{i=n}, \lstinline[style=myMatlab]{i+1=n+1} and thus equivalent to \lstinline[style=myMatlab]{(n+1):n} which MATLAB constructs as an empty vector. 
+}
+\begin{lstlisting}[style=myMatlab,name=lec7n-ex1]
+% back substitution phase
+x = nan(n,1);   /*!\annotation{lst:ann7n-5}!*/
+for i = n:-1:1    /*!\annotation{lst:ann7n-6}!*/
+   x(i) = (b(i) - ...    /*!\annotation{lst:ann7n-7}!*/
+       A(i,(i+1):n)*x((i+1):n))/A(i,i);    
+end
+
+assert(sum(isnan(x))==0,...      /*!\annotation{lst:ann7n-8}!*/
+    'Error! An element of x is NaN!');
+
+end
+\end{lstlisting}
+
+\vspace{0.1cm}
+
+\noindent \ref{lst:ann7n-8} It turns out that a lot can go wrong in the update of \lstinline[style=myMatlab]{x(i)} and, when everything is done, it is worth checking to see that all members of \lstinline[style=myMatlab]{x} have been updated and that none of them are \lstinline[style=myMatlab]{'NaN'}.  Throwing an error may be a bit heavy-handed but it is sure, at least, to get the user's attention.
+
+For this example, the script finds and returns the correct solution: 
+\begin{equation*}
+x = 
+\bracketVectorstack{
+2.0 \\
+4.0 \\
+-3.0 \\
+0.5
+}
 \end{equation*}
 
+\vspace{2.0cm}
 
+\newthought{It is worth} asking: \emph{``what can go wrong''} with Gauss elimination?  
+\begin{enumerate}
+\item If \lstinline[style=myMatlab]{A(j,j) = 0} then the pivots, calculated on line 35 will be \lstinline[style=myMatlab]{'NaN'}.  It may seem that this is an unlikely problem; how likely is it, after all, to have a zero element along the diagonal?  As it turns out, in general: quite likely.  Most of the matrices that we will be interested in are mostly zeros; only a handful of entries in each row will be non-zero.  It so happened that all of the diagonal entries of the matrix shown in Equation \ref{eq:lec7n-truss-soe} are non-zero but that is only because I chose to order the equations and arrange the unknowns such that the diagonals would be non-zero.  But the order of the equations is arbitrary as is the ordering of the unknowns so we easily could have a zero in the first row and first column causing Gauss elimination to fail on the first step of elimination.  
+
+I hasten to add that the values of the pivots, other than the first one, are not apparent right away since, in general, the values of the soon-to-be-pivots change with each step of forward elimination.  You cannot usually tell if a pivot will be zero just by looking at a matrix.  Thus, zero-pivots can pop up unexpectedly like a land-mine and derail the algorithm.
+
+\item A pivot does not have to be zero to cause problems.  Pivots that are \emph{much smaller} than other entries in a matrix can exacerbate floating point roundoff.  It can be shown that collectively these errors can cause the Gauss elimination procedure to be numerically unstable.\cite{trefethen2022numerical}
+\end{enumerate}  
+
+A resolution to both of these issues will be presented in the next lecture.

@@ -45,8 +45,8 @@ x = nan(R,1);
 x(R) = b(R)/A(R,R);
 for i = (R-1):-1:1
    x(i) = (b(i) - A(i,(i+1):end)*x((i+1):end))/A(i,i); 
-   % The line above is a little tricky. Note the vector addition in the 
-   % numerator.
+   % The line above is a little tricky. Note the vector multiplication 
+   % in the numerator.
 end
 
 % at this point, all values of x should be updated.  That is an assumption
