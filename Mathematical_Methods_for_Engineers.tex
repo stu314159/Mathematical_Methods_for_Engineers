@@ -87,6 +87,14 @@
 \setstacktabbedgap{1ex}
 \setstackgap{L}{2.0\baselineskip}
 
+% fancy boxes around matrix elements
+\usepackage{nicematrix} %(okay, this isn't going to do what I want)
+
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+
+
+
 
 \usepackage{listings}
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -131,7 +139,7 @@
 \lstdefinestyle{myMatlab}{
 language=Matlab,
 morekeywords={switch, case, otherwise},
-deletekeywords={axis,length,error,colormap, colorbar,ceil,meshgrid,zlabel,surf,realmin, realmax,view,pause,sinh,gcf,exp,abs,besselk,sqrt,cosh,movie,cos,sin,clear,clc,close,drawnow,getframe,gcf,figure,fplot,fzero,title,legend,loglog,xlabel,ylabel,set,grid,sprintf,gca,pi,plot,bessely,fprintf,linspace,min,size}
+deletekeywords={axis,length,error,colormap, colorbar,ceil,meshgrid,zlabel,surf,realmin, realmax,view,pause,sinh,max,gcf,exp,abs,besselk,sqrt,cosh,movie,cos,sin,clear,clc,close,drawnow,getframe,gcf,figure,fplot,fzero,title,legend,loglog,xlabel,ylabel,set,grid,sprintf,gca,pi,plot,bessely,fprintf,linspace,min,size}
 }
 
 % example usage for code: \begin{lstlisting}[caption=< caption text >, label=<label>]
@@ -410,6 +418,7 @@ What distinguishes this course from Prof Zill's work is the explicit incorporati
 
 \part{Solving Linear Equations}
 \input{numerical_methods/lecture7.tex}
+\input{numerical_methods/lecture8.tex}
 
 %%
 % The back matter contains appendices, bibliographies, indices, glossaries, etc.
