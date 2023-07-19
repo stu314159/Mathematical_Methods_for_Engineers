@@ -102,7 +102,7 @@ In this case we will take the last option since, it turns out, someone \emph{has
 we have a lot of experience with proprietary software. From operating systems like Microsoft Windows or Apple's IOs to office productivity tools like Microsoft Word or Excel, to valuable and important engineering tools like MATLAB or COMSOL.  We also have experience with free software, such as many applications that you download onto your smartphones.  I want to write a few words in hopes of dispelling any negative connotations that you may have developed in relation to open-source software in comparison to proprietary software.
 \begin{itemize}
 \item Scientists and engineers of all types---not just computer scientists---write and share software in an open-source framework.  Online repositories like GitHub and GitLab are meant expressly for developing code in an open and collaborative way and then sharing the results freely.
-\item ``open-source'' ensures the source code is available.  Sometimes the code is also free but that is not the essential part.\sidenote{Think: ``free speech,'' not ``free beer.''}
+\item ``Open-source'' ensures the source code is available.  Sometimes the code is also free but that is not the essential part.\sidenote{Think: ``free speech,'' not ``free beer.''}
 
 \item Open-source software is a \emph{hugely} important contribution to science.  Free and open-source tools like:
 \begin{itemize}
@@ -138,22 +138,22 @@ nu = 1; kind = 1;
 k = besselzero(nu,N,kind); % get roots  /*!\annotation{lst:annotation19-1}!*/
 alpha = k/b;  /*!\annotation{lst:annotation19-2}!*/
 \end{lstlisting}
-\marginnote[-1.5cm]{\ref{lst:annotation19-1} \lstinline[style=myMatlab]{besselzero()} takes up to three arguments; the first,$\nu$, is the order of the Bessel function; the second is the number of roots requested; the third is to indicate the \emph{kind}---first or second---of Bessel function for which you want the roots.
+\marginnote[-1.5cm]{\ref{lst:annotation19-1} \lstinline[style=myMatlab]{besselzero()} takes up to three arguments; the first, $\nu$, is the order of the Bessel function; the second is the number of roots requested; the third is to indicate the \emph{kind}---first or second---of Bessel function for which you want the roots.
 
 \vspace{0.25cm}
-\ref{lst:annotation19-2} since $J_1\left(\alpha_n 3\right) = k_n$ where $k_n$ is the n\textsuperscript{th} root of $J_1$, $\alpha_n$ must be equal to $\sfrac{k_n}{3}$.
+\ref{lst:annotation19-2} since $J_1\left(\alpha_n 3\right) = k_n$, where $k_n$ is the n\textsuperscript{th} root of $J_1$, $\alpha_n$ must be equal to $\sfrac{k_n}{3}$.
 
 }
 
 Now we have the first \lstinline{N=15} values of $\alpha_n$.
 
-\item Compute the coefficients of the expansion $c_n$.  As with the Fourier series, we do this by multiplying both sides of our equation by an orthogonal function \emph{and the weight function } $p(x)=x$ and integrating. For example, to get $c_1$, we do the following:
+\item Compute the coefficients of the expansion $c_n$.  As with the Fourier series, we do this by multiplying both sides of our equation by an orthogonal function \emph{and the weight function, } $p(x)=x$, and integrating. For example, to get $c_1$, we do the following:
 \begin{align*}
 f(x) = x &= c_1 J_1\left(\alpha_1 x\right) + c_2 J_1 \left(\alpha_2 x\right) + \cdots \\
 \int_0^3 x J_1\left(\alpha_1 x\right) x \ dx &= c_1 \int_0^3 J_1\left(\alpha_1 x\right)^2 x \ dx + c_2 \underbracket{\int_0^3 J_1\left(\alpha_2 x \right) J_1 \left( \alpha_1 x \right) x \ dx}_{=0 \ \text{by orthogonality}} + \cdots \\
 \Rightarrow c_1 &= \frac{\int_0^3 x J_1\left(\alpha_1 x\right) x \ dx}{\int_0^3 J_1\left(\alpha_1 x\right)^2 x \ dx}
 \end{align*}
-where we recall that the weight function for the orthogonality relation for the Bessel equation is $p(x)=x$.  For the calculation of $c_1$ all of the remaining terms are zero due to the weighted orthogonality of the eigenfunctions $J_1\left(\alpha_n x \right)$.  We repeat the process for all values of $c_n$ and, in MATLAB, we implement this process in the form of a loop.
+where we use the fact that the weight function for the orthogonality relation for the Bessel equation is $p(x)=x$.  For the calculation of $c_1$, all of the remaining terms are zero due to the weighted orthogonality of the eigenfunctions $J_1\left(\alpha_n x \right)$.  We repeat the process for all values of $c_n$ and, in MATLAB, we implement this process in the form of a loop.
 \marginnote[3.0cm]{
 \ref{lst:annotation19-3} these three lines are actually one long line of MATLAB that calculates the coefficients:
 \begin{equation*}
