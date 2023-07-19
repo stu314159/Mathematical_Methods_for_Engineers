@@ -12,7 +12,7 @@ The objectives of this lecture are to:
 
 \section{Gauss Elimination with Pivoting}
 
-One problem with the basic Gauss elimination algorithm presented in the last lecture is the possibility that the pivot will be zero.  In the event of such a pivot, the algorithm will fail and we need to find a way to prevent it from happening if at all possible.  Less serious, but still worth considering, is the case where the pivot is much smaller than other entries in its row and/or column.  Consider the following linear system:
+One problem with the basic Gauss elimination algorithm presented in the last lecture is the possibility that the pivot will be zero.  In the event of such a pivot, the algorithm will fail and we need to find a way to prevent it from happening if at all possible.  A problem that may appear to be less serious, but nonetheless worthy of our attention, is the case where the pivot is much smaller than other entries in its row and/or column.  Consider the following linear system:
 \begin{equation*}
 \bracketMatrixstack{
 0.0003 & 12.34 \\
@@ -32,13 +32,13 @@ For the first step of forward-elimination, the pivot element is: 0.0003 and $m_{
 \begin{equation*}
 A(i,j:n) = A(i,j:n) - m*A(j,j:n)
 \end{equation*}
-the value of $m$ is very large compared to any entry in $A$, and, for lack of a more precise way of putting it, this results in roundoff errors in the result. 
+the value of $m$ is very large compared to any entry in $A$, and, for lack of a more precise way of putting it, this aggravates roundoff errors in the result. 
 
-The basic idea is: if the pivot is small or zero, why not just exchange the pivot row with a different row?  In order to avoid un-doing any of the forward elimination steps, the row to be exchanged must be ``below'' the current pivot row.  Also, if we want to execute such an exchange, we need to have some criteria by which to decide which row we want to exchange.  The criteria we will use is this: \emph{select the row corresponding to the element in the pivot column with the largest absolute value.} This is most easily clarified with an example.\marginnote{For step \lstinline[style=myMatlab]{i} of forward elimination, \lstinline[style=myMatlab]{A(i,i)} is the pivot.  \lstinline[style=myMatlab]{A(i,i:n)} is the pivot row, and \lstinline[style=myMatlab]{A(i:n,i)} is the pivot column.}
+The basic idea is: if the pivot is small or zero, why not just exchange the pivot row with a different row?  In order to avoid un-doing any of the forward elimination steps, the row to be exchanged must be ``below'' the current pivot row.  Also, if we want to execute such an exchange, we need to have some criteria by which to decide which row we want to exchange.  The criteria we will use is this: \emph{select the row corresponding to the element in the pivot column with the largest absolute value.} This is most easily clarified with an example.\marginnote[-1.0cm]{For step \lstinline[style=myMatlab]{i} of forward elimination, \lstinline[style=myMatlab]{A(i,i)} is the pivot.  \lstinline[style=myMatlab]{A(i,i:n)} is the pivot row, and \lstinline[style=myMatlab]{A(i:n,i)} is the pivot column.}
 
 \vspace{0.25cm}
 
-\noindent Consider the same linear system of equations:
+\noindent Consider the linear system of equations below:
 \begin{equation*}
 \bracketMatrixstack{
 4 & -2 & -3 & 6 \\
@@ -104,7 +104,7 @@ x_4
 17.667
 }
 \end{equation*}
-The pivot column is now \lstinline[style=myMatlab]{A(2:4,2)} and the element with the largest magnitude is 9.333 in row 3.  We thus swap row 2 and 3 and eliminate the entries in column 2 below row 2.
+The pivot column for the next step of forward elimination is now \lstinline[style=myMatlab]{A(2:4,2)} and the element with the largest magnitude is 9.333 in row 3.  We thus swap row 2 and 3 and eliminate the entries in column 2 below row 2.
 
 \begin{equation*}
 \underbrace{
@@ -205,19 +205,19 @@ x_4
 \text{Eliminate the }a_{4,3}\text{ entry.}
 }
 \end{equation*}
-At this time, we are ready for the back-substitution phase of the algorithm which is unchanged from regular Gauss Quadrature and, for a matrix like this example, the answer is essentially the same.
+At this time, we are ready for the back-substitution phase of the algorithm which is unchanged from regular Gauss elimination and, for a small matrix such as in this example, the answer is essentially the same.
 
 \subsection{MATLAB Implementation}
 Since the only difference lies in the pivoting, we will restrict our attention to the forward elimination phase of the algorithm.
 
 \vspace{0.25cm}
 
-\marginnote[1.5cm]{
-\ref{lst:ann8n-1} The built-in function \lstinline[style=myMatlab]{max()} takes a vector and returns the index of the largest element.  Of course the built-in function \lstinline[style=myMatlab]{abs()} returns a vector in which all of the elements are converted to their absolute value.
+\marginnote[-1.5cm]{
+\ref{lst:ann8n-1} The built-in function \lstinline[style=myMatlab]{max()} takes a vector and returns the largest element along with its index.  Of course the built-in function \lstinline[style=myMatlab]{abs()} returns a vector in which all of the elements are converted to their absolute value. The first return argument to \lstinline[style=myMatlab]{max()} is the actual maximum value but we actually do not need the value; we just need to know which row it is in, which is provided by the return argument \lstinline[style=myMatlab]{j_piv}.  We need both arguments on the right hand side---\lstinline[style=myMatlab]{[~,j_piv]}---but since we never use the first one, instead of storing the result in a variable, we replace the variable with a tilde \lstinline[style=myMatlab]{(~)}.  If we assigned the first argument to a variable but then never used it, MATLAB's code analyzer would issue a warning.  This usage avoids such a warning.   
 
-\vspace{0.25cm} 
+\vspace{0.15cm} 
 
-\ref{lst:ann8n-2} The \lstinline[style=myMatlab]{max} function will return an index that needs to be corrected to reflect the actual row number in \lstinline[style=myMatlab]{A}.
+\ref{lst:ann8n-2} Since we only used a portion of the column of \lstinline[style=myMatlab]{A} in our call to \lstinline[style=myMatlab]{max}, we need to adjust the value of \lstinline[style=myMatlab]{j_piv} to reflect the true row index of the maximum value in the pivot column.
 
 \vspace{0.15cm}
 
@@ -264,9 +264,9 @@ end
 
 \end{enumerate}
 
-\section{Matrix Market test Repository}
+\section{Matrix Market Test Repository}
 
-The Matrix Market is an online repository of matrices that can be used to test and benchmark algorithms for solving linear systems of equations.\cite{MatrixMarket}  Example matrices that we have used so far are helpful in illustrating an algorithm and performing simple tests to make sure everything is working.  MATLAB also has tools for generation of random matrices that can also be helpful.  If you want to know if the algorithm you have developed will work well on \emph{relevant} matrices, however, you need a resource like the Matrix Market.  Using the Matrix Market you can browse through and select from a selection of hundreds of \emph{actual} linear systems of equations created as part of a real system.  The Matrix Market also includes utility routines to allow automatically loading matrix data into the MATLAB environment.
+The Matrix Market is an online repository of matrices that can be used to test and benchmark algorithms for solving linear systems of equations.\cite{MatrixMarket}  Example matrices that we have used so far are helpful in illustrating an algorithm and performing simple tests to make sure everything is working.  MATLAB also has tools for generation of random matrices that can also be helpful.  But, if you want to know if the algorithm you have developed will work well on \emph{relevant} matrices, you need a resource like the Matrix Market.  With the Matrix Market you can browse through and select from a selection of hundreds of \emph{actual} linear systems of equations created as part of a real system.  The Matrix Market also includes information about test matrices such as whether or not it is symmetric, positive definite, has real or complex entries, and for sparse matrices, the total number of non-zero entries.  Matrix Market provides utility routines to allow automatically loading matrix data into the MATLAB environment.
 
 \newthought{We will use} some matrices obtained from the Matrix Market to compare the performance of the Gauss elimination and Gauss elimination with pivoting algorithms.  The metric we will use to measure performance will be the \emph{relative residual}.  The residual is calculated from Equation \ref{eq:lec8n-residual}.
 
@@ -281,9 +281,9 @@ The \emph{relative residual} is just the residual divided by the norm of \lstinl
 
 If you have the exact solution, $x^{\star}$, the resdual will be zero:
 \begin{equation*}
-Ax^{\star} = b \rightarrow r = b - Ax^{\star} = 0
+Ax^{\star} = b \Rightarrow r = b - Ax^{\star} = 0
 \end{equation*}
-In general, however, we do not get the exact solution.  This is because the elements of $A$ and $b$ are represented with double precision floating point numbers which, in general, are not exact.  Each mathematical operation we do with these inexact numbers, incurs additional errors that accumulate through the algorithm.  We claimed that Gauss elimination without pivoting incurred more of these errors; we will use samples from the Matrix Market to see how differently the matrices perform.
+In general, however, we do not get the exact solution.  This is because the elements of $A$ and $b$ are represented with double precision floating point numbers which, in general, are not exact.  Each mathematical operation we do with these inexact numbers, incurs additional errors that accumulate throughout the algorithm.  We claimed that Gauss elimination without pivoting incurred more of these errors; we will use samples from the Matrix Market to see how differently the algorithms perform on relevant matrices.
 
 \begin{enumerate}
 \item \lstinline[style=myMatlab]{A = rand(50,50)}.  Lest you think that tools like Matrix Market might be unnecessary, we will start by using a random $50 \times 50$ matrix generated by MATLAB.  We compare the relative residual of the solution using three different solvers.  The results are shown in Table \ref{tab:lec8n-comp1}.
@@ -298,7 +298,7 @@ Backslash & 2.617e-15 \\ \hline
 \caption{Comparison for random $50 \times 50$ matrix.}
 \label{tab:lec8n-comp1}
 \end{margintable} 
-Note that, while the relative residual is small in all cases, the relative residual for Gauss elimination without pivoting is \emph{roughly 100 times} as big as that for Gauss eliminatin with pivoting.
+Note that, while the relative residual is small in all cases, the relative residual for Gauss elimination without pivoting is \emph{roughly 100 times} as big as that for Gauss elimination with pivoting.
 
 \item \lstinline[style=myMatlab]{A = rand(150,150)}.  We will try again with a slightly larger matrix and see what happens.  The results are shown in Table \ref{tab:lec8n-comp2}.
 \begin{margintable}
@@ -341,6 +341,6 @@ Backslash & 5.460e-5 \\ \hline
 \label{tab:lec8n-comp4}
 \end{margintable}
 \end{enumerate}
-You can see from the last two examples that the performance of both Gauss elimination with pivoting and the backslash operator are degrading for the bigger matrix.  As we will discuss in future lectures, the issue is not that the last matrix is bigger, although that does not help; the issue is related to the \emph{condition number} of the respective matrices.  The condition number of LNS131 is 9.8e9; the condition number for LNS 511 is 5.2e10.  We will learn that a higher condition number is related to the accuracy that we can obtain with a numeric solution represented in floating point numbers.  A higher condition number means the solution will be less accurate.  We see that trend in the last two test cases and we can see that without the benefits obtained by pivoting, the answer we get from Gauss elimination is essentially worthless for relevant matrices.
+You can see from the last two examples that the performance of both Gauss elimination with pivoting and the backslash operator are degrading for the bigger matrix.  As we will discuss in future lectures, the issue is not that the last matrix is bigger, although that does not help; the issue is related to the \emph{condition number} of the respective matrices.  The condition number of LNS131 is $9.8\times 10^9$; the condition number for LNS 511 is $5.2 \times 10^{10}$.  We will learn that a higher condition number is related to the accuracy that we can obtain with a numeric solution represented in floating point numbers.  A higher condition number means the solution will be less accurate.  We see that trend in the last two test cases and we can see that without the benefits obtained by pivoting, the answer we get from Gauss elimination is essentially worthless for relevant matrices.
 
 
