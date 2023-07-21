@@ -19,7 +19,7 @@ For a linear differential equation, an n\textsuperscript{th}-order initial value
 \text{Initial Conditions: }u(x_0)=u_0, \ u^{\prime}(x_0)=u_1,\dots,u^{(n-1)}(x_0)=u_{n-1}
 \label{eq:ivp-ics}
 \end{equation}
-\marginnote[-1.5cm]{\textbf{Note:} for an initial value problem, all of the initial conditions are provided at the same value of $x$; in accordance with custom we call this $x_0$.  The name \emph{initial} condition gives the implication that these conditions are at some ``end'' of the interval (beginning, left side, whatever) and in all examples and exercises in this text this is indeed the case.  It is not, however, a requirement.}
+\marginnote[-1.5cm]{\textbf{Note:} For an initial value problem, all of the initial conditions are provided at the same value of $x$; in accordance with custom we call this $x_0$.  The name \emph{initial} condition gives the implication that these conditions are at some ``end'' of the interval (beginning, left side, whatever) and in all examples and exercises in this text this is indeed the case.  It is not, however, a requirement.}
 \noindent \newthought{We seek a} function defined on some interval containing $x_0$ that satisfies the differential equation with $n$ conditions applied.\marginnote{Generally for an n\textsuperscript{th}-order IVP you will need $n$ conditions.} The theorem below, which we will use by \emph{citing} rather than \emph{proving}, gives us assurance that, subject some fairly reasonable assumptions, such a solution will exist.  
 
 \begin{theorem}[Existence and Uniqueness for IVPs]
@@ -122,6 +122,8 @@ u^{\prime}_1 & u^{\prime}_2 \\
 \vspace{0.5cm}
 
 \noindent\textbf{\underline{Example:}} Show that the functions $u_1 = e^{3x}$ and $u_2=e^{-3x}$ are linearly independent solutions to the homogeneous linear equation $u^{\prime \prime}-9u=0$ for every $x \in (-\infty,\infty)$.
+
+\vspace{0.0cm}
 
 \noindent\textbf{\underline{Solution:}} The Wronskian is given by:\marginnote{The reader should verify that both $u_1 = e^{3x}$ and $u_2=e^{-3x}$ satisfy the given differential equation.}
 \begin{align*}
