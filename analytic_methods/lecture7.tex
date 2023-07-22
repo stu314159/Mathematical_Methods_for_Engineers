@@ -29,7 +29,7 @@ A \emph{sequence} is a list of numbers (or other mathematical objects, like func
 A sequence has a \emph{limit} $(L)$ if we can make the terms $c_n$ arbitrarily close to $L$ by taking $n$ sufficiently large.  If $\lim_{n\to \infty} c_n$ exists, we say the sequence \emph{converges}; otherwise, we say the sequence \emph{diverges} or is \emph{divergent}.
 \end{definition}
 
-There are various mathematical tools available for determining if an infinite sequence converges or diverges without needing to examine every element.
+There are mathematical tools available for determining if an infinite sequence converges or diverges without needing to examine every element.  We will discuss one of them as part of our treatment of infinite series.
 
 \index{series}
 \index{infinite series}
@@ -43,14 +43,14 @@ Given a series $\sum_{n=0}^{\infty}s_i=s_1+s_2+\cdots+s_n+\cdots$, let $s_n$ den
 
 \index{power series} \index{power series}
 \begin{definition}[Power Series]
-A series of the form $\sum_{n=0}^{\infty}c_n(x-a)^n=c_0+c_1(x-a)+\cdots$ is called a Power Series. The constant $a$ is referred to as the ``center'' of the power series.\marginnote{For almost all of the power series we will work with in this class, the series will be centered on $a=0$ and will be denoted $\sum\limits_{n=0}^{\infty} c_nx^n$.}
+A series of the form $\sum_{n=0}^{\infty}c_n(x-a)^n=c_0+c_1(x-a)+\cdots$ is called a \emph{power series.} The constant, $a$, is referred to as the \emph{center} of the power series.\marginnote{For almost all of the power series we will work with in this class, the series will be centered on $a=0$ and will be denoted $\sum\limits_{n=0}^{\infty} c_nx^n$.}
 \end{definition}
 
 
 \index{convergence, interval of}
 \index{convergence, radius of}
 \begin{definition}[Interval of Convergence, Radius of Convergence]
-The \emph{interval of convergence} is the set of all real numbers $x$ for which the series converges.  This interval can also be expressed as a \emph{radius of convergence ($R$).}  The series converges for all $a-R < x < a+R$.
+The \emph{interval of convergence} is the set of all real numbers $x$ for which the series converges.  This interval can also be expressed as a \emph{radius of convergence ($R$).}  The series converges for all $(a-R) < x < (a+R)$.
 \end{definition}
 
 \subsection{Ratio Test}
@@ -62,7 +62,7 @@ We should have at least one test that we can use to decide whether or not a seri
 \end{equation}
 The following cases are considered:
 \begin{itemize}
-\item If $L<1$ then the series converges absolutely.\marginnote{\textbf{Note:} \emph{Absolute convergence} means that the series converges irrespective of the signs of each term. (i.e. whether or not all terms are positive, negative, or a mix of both positive and negative.)}
+\item If $L<1$ then the series converges absolutely.\marginnote{\textbf{Note:} \emph{Absolute convergence} means that the series converges irrespective of the signs of each term---i.e. whether or not all terms are positive, negative, or a mix of both positive and negative.}
 \item If $L = 1$ then the test is inconclusive; some other test must be used; and
 \item if $L > 1$ then the series diverges.
 \end{itemize}
@@ -167,7 +167,7 @@ This is a practical ``utility skill'' that you will need to master to be success
 \noindent If I want to combine these series, I need to overcome two issues:
 \begin{enumerate}
 
-\item The powers of $x$ in each term in both summations need to be ``in phase'' -- that is the corresponding terms need to have the same power of $x$.  The first term in the first summation is constant ($x^0$) while the first term in the second summation is linear ($x^1$). \marginnote[-1.5cm]{It is not only the first term that is important but if you can get the summations in phase for the first term, and if the power of $x$ increases by one with each consecutive term, then if the first term is correct, they will all be correct.}
+\item The powers of $x$ in each term in both summations need to be ``in phase''---that is the corresponding terms need to have the same power of $x$.  The first term in the first summation is constant ($x^0$) while the first term in the second summation is linear ($x^1$). \marginnote[-1.5cm]{It is not only the first term that is important but if you can get the summations in phase for the first term, and if the power of $x$ increases by one with each consecutive term, then if the first term is correct, they will all be correct.}
 
 
 \item The first summation index starts at $n=2$ while the second summation index starts at $n=0$.
@@ -175,20 +175,20 @@ This is a practical ``utility skill'' that you will need to master to be success
 \end{enumerate}
 
 
-\newthought{We will address} these issues one at a time, starting with the first one.  We will leave the summation whose first term is highest order as-is; for all other summations (i.e. if there are more than two) we will ``peel-off'' any lower-order summation terms.
+\newthought{We will address} these issues one at a time, starting with the first one.  We will leave the summation whose first term is higher order as-is; for all other summations---i.e. if there are more than two---we will ``peel-off'' any lower-order summation terms.
 
 In this case that means we will leave the second series as-is, since its first term is of higher order ($x^1$ compared to $x^0$), while we will ``peel-off' the constant term from the first summation:
 
 $$\underbrace{(2)(1)c_2x^0}_{\text{constant term}} + \underbrace{\sum\limits_{n=3}^{\infty}}_{\text{now }n=3} n(n-1)c_nx^{n-2} + \underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n+1}}_{\substack{\text{Same as}\\ \text{before}}}$$
-Notice that now the summation index for the first summation now starts at $n=3$; this is because we've separated out the first term corresponding to $n=2$.  The two remaining summations are ``in phase'' since all of the terms now have the same power of $x$.
+Notice that the summation index for the first summation now starts at $n=3$; this is because we've separated out the first term corresponding to $n=2$.  The two remaining summations are ``in phase'' since all of the terms now have the same power of $x$.
 
 \newthought{The second problem} will be fixed by establishing a new common index, $k$, and re-write the existing indices ($n$ for both summations) in terms of $k$.  In each case we will set $k$ equal to the exponent of $x$ appearing in the summation.
 \begin{itemize}
 \item For the first summation---$\sum\limits_{n=3}^{\infty} n(n-1)c_nx^{n-2}$---we set $k=n-2$ because that is the exponent for $x$. We need to eliminate each occurrence of $n$ in the summation and replace it with it's equivalent expression in terms of $k$.  From our definition of $k$ for this summation, $n=k+2$. Our summation now can be written:\marginnote{Everywhere you see an $n$ in the original summation, replace it with a $k+2$ and simplify.}
-$$\sum\limits_{k=1}^{\infty} (k+2)(k+2-1)c_{k+2}x^k$$ 
+$$\sum\limits_{n=3}^{\infty} n(n-1)c_nx^{n-2} \xrightarrow[n=k+2]{} \sum\limits_{k=1}^{\infty} (k+2)(k+2-1)c_{k+2}x^k$$ 
 
 \item For the second summation---$\sum\limits_{n=0}^{\infty} c_n x^{n+1}$---we set $k=n+1$ because that is the exponent for $x$ in this summation.  This means $n=k-1$; substituting that expression in our summation gives us:
-$$\sum\limits_{k=1}^{\infty}c_{k-1}x^{k}$$
+$$\sum\limits_{n=0}^{\infty} c_nx^{n+1} \xrightarrow[n=k-1]{}\sum\limits_{k=1}^{\infty}c_{k-1}x^{k}$$
 \end{itemize}
 
 With these changes our original summation can be written:\marginnote{Notice that I've made some obvious simplifications in the constant term and first summation.}
