@@ -37,9 +37,11 @@ The basic strategy we will use to find power series solutions for linear differe
 
 \section{Examples}
 
-\noindent\textbf{Example:} Solve $u^{\prime \prime}+u = 0$ using the power series method; compare with the known solution $u(x)=c_0\cos{x}+c_1\sin{x}$\marginnote[-1.5cm]{It is not \emph{required} that a problem have variable coefficients in order to use the Power Series method; only that $P(x)$ and $Q(x)$ are analytic on the domain of interest.  Constants are always analytic over the entire real number line so you can always use the Power Series method on linear, constant-coefficient differential equations.}
+\noindent\textbf{Example \#1:} Solve $u^{\prime \prime}+u = 0$ using the power series method; compare with the known solution $u(x)=c_0\cos{x}+c_1\sin{x}$.\marginnote[-1.5cm]{It is not \emph{required} that a problem have variable coefficients in order to use the Power Series method; only that $P(x)$ and $Q(x)$ are analytic on the domain of interest.  Constants are always analytic over the entire real number line so you can always use the Power Series method on linear, constant-coefficient differential equations.}
 
-\newthought{In accordance with} our strategy, we will assume that the solution is of the form: $u(x)=\sum_{n=0}^{\infty} c_n x^n$.  This means that $u^{\prime} = \sum_{n=1}^{\infty} n c_n x^{n-1}$ and $u^{\prime \prime} = \sum_{n=2}^{\infty} n(n-1)c_nx^{n-2}$.\marginnote{Note that the $n=0$ term in $u^{\prime}$ is omitted as is the $n=0$ and $n=1$ term in $u^{\prime \prime}$.  These terms are zero due to having taken the first- and second-derivative on the constant $(x^0)$ and linear ($x^1)$ terms of the power series.}  Plugging this into our differential equation gives us:
+\vspace{0.25cm}
+
+\noindent In accordance with our strategy, we will assume that the solution is of the form: $u(x)=\sum_{n=0}^{\infty} c_n x^n$.  This means that $u^{\prime} = \sum_{n=1}^{\infty} n c_n x^{n-1}$ and $u^{\prime \prime} = \sum_{n=2}^{\infty} n(n-1)c_nx^{n-2}$.\marginnote{Note that the $n=0$ term in $u^{\prime}$ is omitted as is the $n=0$ and $n=1$ term in $u^{\prime \prime}$.  These terms are zero due to having taken the first- and second-derivative on the constant $(x^0)$ and linear ($x^1)$ terms of the power series.}  Plugging this into our differential equation gives us:
 
 \begin{align*}
 u^{\prime \prime} + u &= 0 \\
@@ -94,7 +96,7 @@ u(x)&=c_0\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!} + \cdots  \right) 
 \end{align*}
 where in the last line we have substituted the formulas for coefficients $c_2$ through $c_7$ in terms of $c_0$ and $c_1$.
 
-Recalling from the last lecture the power series representations of $\cos{x}$ and $\sin{x}$ and we should be able to see them again here.\marginnote{In general you are not expected to, nor will you be able to, identify common functions from a power series solution. This is a special case.}
+Recall from the Lecture 7 the power series representations of $\cos{x}$ and $\sin{x}$; we should be able to see them again here.\marginnote{In general you are not expected to, nor will you be able to, identify common functions from a power series solution. This is a special case.}
 \begin{align*}
 u(x)&=c_0\underbrace{\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!} + \cdots  \right)}_{\cos{x}} + c_1\underbrace{\left(x -\frac{x^3}{3!}+\frac{x^5}{5!} - \frac{x^7}{7!} + \cdots \right)}_{\sin{x}} \\
 u(x)&=c_0\cos{x} + c_1\sin{x}
@@ -102,7 +104,7 @@ u(x)&=c_0\cos{x} + c_1\sin{x}
 Which is exactly what we would have determined using our methods for constant coefficient linear equations.
 
 \vspace{3.0cm}
-\noindent\textbf{Example:} Find the general solution to $u^{\prime \prime}-xu = 0$.
+\noindent\textbf{Example \#2:} Find the general solution to $u^{\prime \prime}-xu = 0$.
 
 Notice first that while this equation is linear and homogeneous it is not constant-coefficient.  It is also not a Cauchy-Euler equation.\marginnote{The equation is separable but, in this case, the solution is not so easy to obtain using that method either.}  We will use the power series method to solve this problem.  Assuming $u=\sum_{n=0}^{\infty}c_n x^n$ and inserting this into the governing equation gives us:
 \begin{align*}
