@@ -3,7 +3,7 @@
 \section{Objectives}
 The objectives of this lecture are:
 \begin{itemize}
-\item Illustrate the solution of a linear IVP (with a 3-term recurrence) using Power Series.
+\item Illustrate the solution of a linear IVP (with a 3-term recurrence) using power series.
 \item Demonstrate \textbf\underline{a way} to analyze these solutions using MATLAB; and
 \item demonstrate some expected elements of MATLAB style for this course.
 \end{itemize}
@@ -20,7 +20,7 @@ Inserting our assumed power series solution into the governing equation gives us
 \sum\limits_{n=2}^{\infty}n(n-1)c_nx^{n-2} - (1+x)\sum\limits_{n=0}^{\infty}c_nx^n &= 0 \\
 \sum\limits_{n=2}^{\infty}n(n-1)c_nx^{n-2} - \sum\limits_{n=0}^{\infty}c_nx^{n} - \sum\limits_{n=0}^{\infty}c_nx^{n+1} &= 0
 \end{align*}
-\marginnote[-1.0cm]{Note the effect of distributing $-(1-x)$ through the second summation.}
+\marginnote[-1.0cm]{Note the effect of distributing $-(1+x)$ through the second summation.}
 \noindent We need to evaluate the order of $x$ for the first term in each summation to determine if the summations are in phase:
 \begin{equation*}
 \underbrace{\sum\limits_{n=2}^{\infty}n(n-1)c_nx^{n-2}}_{x^0} - \underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n}}_{x^0} - \underbrace{\sum\limits_{n=0}^{\infty}c_nx^{n+1}}_{x^1} = 0
@@ -37,7 +37,7 @@ Substituting within each summation and combining terms gives us:
 \begin{equation*}
 (2c_2-c_0)x^0 + \sum\limits_{k=1}^{\infty}\left[(k+2)(k+1)c_{k+2} - c_k - c_{k-1} \right]x^k = 0
 \end{equation*}
-As usual, in order to satisfy this equation, the coefficients for each power of $x$ must be equal to zero.  For $x^0$ this means $2c_2 - c_0 = 0$;  For all the other powers of $x$, a \emph{three-term recurrence} involving $c_{k-1}$, $c_k$, and $c_{k+2}$ must be satisfied:
+As usual, in order to satisfy this equation, the coefficients for each power of $x$ must be equal to zero.  For $x^0$ this means $2c_2 - c_0 = 0$.  For all the other powers of $x$, a \emph{three-term recurrence} involving $c_{k-1}$, $c_k$, and $c_{k+2}$ must be satisfied:
 \begin{equation*}
 c_{k+2} = \frac{c_k + c_{k-1}}{(k+2)(k+1)}
 \end{equation*}
@@ -46,7 +46,7 @@ To help manage the complexity we will adopt the following strategy: \index{power
 \item Case 1: Arbitrarily set $c_0 \ne 0$, set $c_1 = 0$ and derive a solution.
 \item Case 2: Arbitrarily set $c_0 = 0$, set $c_1 \ne 0$ and derive a second solution.
 \end{itemize}
-\marginnote[-1.75cm]{These two solutions will be linearly independent since the first will not have a linear term (proportional to $x$) and the second equation will not have a constant term (proportional to $1$).}
+\marginnote[-1.75cm]{These two solutions will be linearly independent since the first will not have a linear term (proportional to $x$) and the second solution will not have a constant term (proportional to $1$).}
 
 \vspace{0.5cm}
 
@@ -106,16 +106,16 @@ u(x)= 5\left(1 + \frac{1}{2}x^2 + \frac{1}{6}x^3 + \frac{1}{24}x^4 + \frac{1}{30
 \end{multline*}
 
 \section{Generating and Plotting Solutions with MATLAB}
-The point of doing all of this math is to gain insight.  In many cases systems of interest are subject to physical laws that are expressed in the form of differential equations; we solve these differential equations to better understand how the systems will perform.  
+Most of the problems that we will solve in this class are derived from physical conservation laws and describe systems of interest to engineers.  We solve the equations so we can get insight into how these systems will perform.    
 
 \newthought{There are two problems} that I hope to address with this section:  
 \begin{enumerate}
-\item It is both tedious and error-prone to generate the coefficients for the series solution.  We worked hard to construct a small portion of the power series solutions and we hope that we did it without any errors.  With a modest amount of programming effort, we will construct a script that can build a series solution with as many terms as we would like.  With conscientious debugging we can be sure that, floating point round-off errors aside, the calculations are done quickly and correctly.  
+\item It is both tedious and error-prone to generate the coefficients for the series solution.  We worked hard to construct a small portion of the power series solutions and we hope that we did it without any errors.  With a modest amount of programming effort, we will write a script that can build a series solution with as many terms as we would like.  With conscientious debugging we can be sure that, floating point round-off errors aside, the calculations are done correctly and without undue tedium.  
 
-\item We may gain considerably more insight from the solution if we can create a plot.  If the plot can easily be made with the same computing tools used to generate the solution, we can get this insight with very little extra work.
+\item We may get more insight if we can visualize the solution; usually via a simple plot.  If the plot can easily be made with the same computing tools used to generate the solution, we can get this insight with very little extra work.
 \end{enumerate}
 
-We will use MATLAB to generate and plot the solutions.  We start our MATLAB script in the same way we will start \emph{all} of our MATLAB scripts, with the following three lines:\marginnote{This is done in accordance with the MATLAB Style Rule \#1.  The MATLAB Style Rules are listed in the Appendices and I will try to exemplify the rules in the code I provide as examples in the lectures.}
+We will use MATLAB to generate and plot the solutions.  We start our MATLAB script in the same way we will start \emph{all} of our MATLAB scripts, with the following three lines:\marginnote{This is done in accordance with MATLAB Style Rule \#1.  The MATLAB Style Rules are listed in the Appendices and I will try to exemplify the rules in the code I provide as examples in the lectures.}
 \begin{lstlisting}[name=lec9_ex1,style=myMatlab]
 clear
 clc
@@ -208,7 +208,7 @@ Power series results for various values of $n$ are compared to the numerical sol
 \item The solution gets worse the further one gets from zero; and
 \item The solution gets better for larger values of $n$.  
 \end{enumerate}
-Neither of these observations should be particularly surprising but there is value to seeing it in your results. It adds confidence to the proposition that your (approximate) solution is correct.
+Neither of these observations should be surprising but there is value to seeing it in your results. It adds confidence to the proposition that your (approximate) solution is correct.
 
 \newthought{As a last note} it should be pointed out that, while plots like that shown in Figure \ref{fig:lec9_ps_compare} gives a good qualitative feel for how the solution is improving as the number of power series terms increases, a quantitative measure for correctness is preferable.  In Figure \ref{fig:lec9_ps_converge} a quantitative measure---the relative error in the 2-norm---is used to quantify the difference between different power series solutions and the solution generated using \emph{ODE45}.  Details of this error measure will be discussed in future lectures.
 \begin{marginfigure}

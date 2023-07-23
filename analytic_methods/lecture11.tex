@@ -31,7 +31,7 @@ A singular point $x_0$ is said to be a \emph{regular} singular point of the diff
 \vspace{0.3cm}
 
 \underline{$x_0=-2$}:$ \ \ p(x) = \frac{(x+2)3(x-2)}{(x+2)^2(x-2)^2}$ so $p(x) = \frac{3(x-2)}{(x+2)(x-2)}$ which is \underline{not} analytic at $x=-2$.  $q(x)=\frac{\cancel{(x+2)^2} 5}{\cancel{(x+2)^2}(x-2)^2}$, so $q(x) = \frac{5}{(x-2)^2}$ which is analytic at $x=-2$.}
-Work is shown in the margin for $p(x)$.  From the work in the margin it should be clear for this problem that $q(x)$ is analytic at both $x=-2$ and $x=2$ but, since $p(x)$ is not analytic at $x_0=-2$, $x_0=-2$ is an irregular singular point; $x_0=2$ is a regular singular point.
+Work is shown in the margin for $p(x)$ and $q(x)$.  From the work in the margin it should be clear for this problem that $q(x)$ is analytic at both $x=-2$ and $x=2$ but, since $p(x)$ is not analytic at $x_0=-2$, $x_0=-2$ is an irregular singular point; $x_0=2$ is a regular singular point.
 
 \begin{theorem}[Frobenius' Theorem]
 If $x=x_0$ is a \emph{regular} singular point then there exists at least one non-zero solution of the form:
@@ -174,7 +174,7 @@ u_2(x) &= x^{\sfrac{2}{3}}\left(c_0 + c_1x + c_2x^2 + c_3x^3 + \cdots \right) \\
 %\vspace{5.0cm}
 
 \section{Indicial Equation} \index{indicial equation}
-It turns out that we could have determined the indicial roots before setting out upon the method of Frobenius.  Recall that we use the method of Frobenius on differential equations with regular singular points; also recall that a regular singular point is one where $p(x)=xP(x)$ and $q(x)=x^2Q(x)$ are both analytic.  If $p(x)$ and $q(x)$ are analytic, that means that they can be represented as a convergent power series.  Suppose we did that, and expressed $p(x)$ and $q(x)$ as a power series; if we did they could be written as:
+It turns out that we could have determined the indicial roots before setting out upon the method of Frobenius.  Recall that we use the method of Frobenius on differential equations with regular singular points; also recall that a regular singular point is one where $p(x)=xP(x)$ and $q(x)=x^2Q(x)$ are both analytic.  By definition, if $p(x)$ and $q(x)$ are analytic, that means that they can be represented as a convergent power series.  Suppose we did that, and expressed $p(x)$ and $q(x)$ as a power series; if we did they could be written as:
 \begin{align*}
 p(x) &= \sum\limits_{n=0}^{\infty} a_nx^n = a_0 + a_1x + a_2x^2 + \cdots \\
 q(x) &= \sum\limits_{n=0}^{\infty} b_nx^n = b_0 + b_1x + b_2x^2 + \cdots
@@ -211,7 +211,7 @@ r\left(r-\frac{5}{2}\right) &= 0
 so the indicial roots are: $r = 0$, and $r = \sfrac{5}{2}$.
 
 
-\newthought{In general, of course,} the indicial equation is just a quadratic equation, so the roots may be real and repeated, real and distinct and complex conjugates.  There are three cases that will be of immediate interest to us:
+\newthought{In general, of course,} the indicial equation is just a quadratic equation, so the roots may be real and repeated, real and distinct or complex conjugates.  There are three cases that will be of immediate interest to us:
 \begin{enumerate}
 \item Two distinct real roots that do \emph{not} differ by an integer.  In this case it can be shown that there exist two linearly independent solutions: $u_1 = \sum_{n=0}^{\infty}c_nx^{n+r_1}$, and $u_2 = \sum_{n=0}^{\infty}c_nx^{n+r_2}$.\marginnote{In both of these cases we implicitly assume that $c_0 \ne 0$.}
 \item Two distinct real roots that differ by an integer.  In this case there exist two linearly independent solutions of the form:
