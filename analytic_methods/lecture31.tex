@@ -25,7 +25,7 @@ If we specialize the Laplacian operator for 1D Cartesian coordinates then we rec
 \frac{\partial^2 u}{\partial t^2} = \alpha^2 \left(\frac{\partial^2 u}{\partial r^2} + \frac{1}{r}\frac{\partial u}{\partial r} + \frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2} \right)
 \label{eq:lec31-wave-eqn-polar}
 \end{equation}
-We will use this equation to model radial vibrations in a circular membrane for which the membrane is fixed (no displacement) all around the periphery at $r=c$.  We will also assume that the initial displacement and velocity of the membrane are functions of radius only.  Because this boundary condition and both initial conditions are constant for all angular positions, we should expect that \emph{the solution} will also be constant for all angular positions; in particular, we expect $\sfrac{\partial u}{\partial \theta}$ and $\sfrac{\partial^2 u}{\partial \theta^2}$ to equal zero.\sidenote[][-1.5cm]{Conversely, if \emph{either} the boundary or initial conditions were a function of angular position, $\theta$, this assumption would not be true and we would need to use the full form of the wave equation in polar coordinates given in equation \ref{eq:lec31-wave-eqn-polar}.} The boundary value problem for this is given below.
+We will use this equation to model radial vibrations in a circular membrane for which the membrane is fixed (no displacement) all around the periphery at $r=c$.  We will also assume that the initial displacement and velocity of the membrane are functions of radius only.  Because the boundary condition and both initial conditions are constant for all angular positions, we should expect that \emph{the solution} will also be constant for all angular positions; in particular, we expect $\sfrac{\partial u}{\partial \theta}$ and $\sfrac{\partial^2 u}{\partial \theta^2}$ to equal zero.\sidenote[][-1.5cm]{Conversely, if \emph{either} the boundary or initial conditions were a function of angular position, $\theta$, this assumption would not be true and we would need to use the full form of the wave equation in polar coordinates given in equation \ref{eq:lec31-wave-eqn-polar}.} The boundary value problem for this is given below.
 \begin{table}
 \begin{tabular}{l l}
 $\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial t^2} = \alpha^2 \left(\frac{\partial^2 u}{\partial r^2} + \frac{1}{r}\frac{\partial u}{\partial r}\right), \ \ \alpha > 0, \ 0<r<c, \ t>0$  \\
@@ -75,11 +75,11 @@ G_{tt} + \alpha^2 \lambda G &= 0
 
 \vspace{0.25cm}
 
-\noindent We will take a short-cut here by assuming that the separated solution $G(\theta)$ must be periodic and, having done this before, we know that this implies $\lambda >0$.  Setting $\lambda = \nu^2, \ \nu>0$, we get:
+\noindent We will take a short-cut here by assuming that the separated solution $G(\theta)$ must be periodic and, having done this before, we know that this implies $\lambda >0$.  Setting $\lambda = \nu^2, \ \nu>0$, we get: 
 \begin{align*}
 G_{tt} + \alpha^2 \nu^2 G &= 0 \\
 r^2F_{rr} + rF_r + \alpha^2\nu^2 F &= 0
-\end{align*}
+\end{align*}\marginnote{Alert readers who remember the analysis from Lecture 30 will note that $\lambda = 0$ should also be included since, the corresponding eigenfunction in time $G(t) = c_1$, meets the periodicity requirement. If we followed that path we would find that, for $\lambda=0$, the separated equation in the $r$-direction is the Cauchy-Euler equation. You will find that only the trivial solution, $F(r)=0$, will satisfy the equation and the homogeneous Dirichlet boundary condtion at $r=c$. In Lecture 31 the boundary condition at $r=c$ was not homogeneous so the $\lambda=0$ eigenvalue had a non-trivial eigenfunction.}
 where, to put the equation for $F(r)$ in a more familiar form, we multiplied through by $r^2$.  The general solution for both equations is:
 \begin{align*}
 F(r) &= c_1J_0(\nu r) + c_2 Y_0(\nu r) \\
@@ -95,7 +95,7 @@ F(r) = c_1J_0(\nu r)
 \begin{equation*}
 F(c) = c_1J_0(\nu c) = 0
 \end{equation*}
-which implies that $\nu c$ needs to be a positive root of $J_0(r)$.  As we learned in lecture 19, $J_0$ has infinitely many positive roots and we can find them with the assistance of the function \lstinline[style=myMatlab]{besselzero()} that we obtained from the MATLAB file exchange.  If we denote the $n$\textsuperscript{th} root of $J_0$ as $k_{0,n}$, then our eigenvalues must be equal to:
+which implies that $\nu c$ needs to be a positive root of $J_0(r)$.  As we learned in lecture 19, $J_0(r)$ has infinitely many positive roots and we can find them with the assistance of the function \lstinline[style=myMatlab]{besselzero()} that we obtained from the MATLAB file exchange.  If we denote the $n$\textsuperscript{th} root of $J_0$ as $k_{0,n}$, then our eigenvalues must be equal to:
 \begin{equation*}
 \nu_n = \frac{k_{0,n}}{c}
 \end{equation*}
@@ -110,13 +110,13 @@ u(r,t) = \sum\limits_{n=1}^{\infty} J_0(\nu_n r)\left[a_n \cos{\alpha \nu_n t} +
 
 \vspace{0.25cm}
 
-\newthought{We now have} two infinite sets of unknowns: $a_n$ and $b_n$.  We will resolve these constants through the initial conditions.
+\newthought{We now have} two infinite sets of unknowns: $a_n$ and $b_n$.  We will resolve these constants through the initial conditions as applied below:
 
 \begin{align*}
 u(r,0) = \sum\limits_{n=1}^{\infty} \left(a_n \cancelto{1}{\cos{0}} + b_n \cancelto{0}{\sin{0}}\right) J_0(\nu_n r) &= f(r) \\
 \sum\limits_{n=1}^{\infty}a_nJ_0(\nu_n r) &= f(r)
 \end{align*}
-On the left, we have an infinite linear combination of eigenfunctions, $J_0(\nu_n r)$, on the right we have a function we are trying to represent.  We need to determine the values $a_n$ so that the two are equal.  How do we do this?  We multiply both sides by an orthogonal function---and weight function---and integrate.  As we learned previously, the weight function is $p(r) = r$.  Doing this explicitly for $a_1$ gives us:\marginnote{All terms other than the first one on the left hand side is zero due to orthogonality of $J_0(\nu r)$ on the interval $r \in [0,c]$ with respect to weight function $p(r)=r$.}
+On the left, we have an infinite linear combination of eigenfunctions, $J_0(\nu_n r)$, on the right we have a function we are trying to represent, $f(r)$.  We need to determine the values $a_n$ so that the two are equal.  How do we do this?  We multiply both sides by an orthogonal function---and weight function---and integrate.  As we learned previously, the weight function is $p(r) = r$.  Doing this explicitly for $a_1$ gives us:\marginnote{All terms other than the first one on the left hand side is zero due to orthogonality of $J_0(\nu r)$ on the interval $r \in [0,c]$ with respect to weight function $p(r)=r$.}
 \begin{multline*}
 a_1 \int_0^c J_0(\nu_1r)^2 r \ dr + a_2 \cancelto{0 \ \text{ by orthogonality}}{\int_0^c J_0(\nu_2r)J_0(\nu_1 r)r \ dr} + \cdots = \\ \int_0^c f(r)J_0(\nu_1r) r \ dr
 \end{multline*}

@@ -15,7 +15,7 @@ In past lectures we have used the Laplacian operator ($\nabla^2$ or $\bigtriangl
 \nabla \cdot \nabla = \nabla^2 &= \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2} \\
 &= \bigtriangleup
 \end{align*}
-The operator notation is convenient insofar as it is agnostic regarding coordinate system.  We can use the Laplacian in a differential equation---e.g.$\nabla^2u = 0$---without immediate regard as to whether the domain will be described in a rectangular (Cartesian) coordinate system, polar, cylindrical or spherical coordinates.  Still, at some point in time before we can hope to solve such a differential equation, we need to select a coordinate system.\marginnote[-1.5cm]{\textbf{Question:} How do you pick a coordinate system?  \textbf{Answer:} You select a coordinate system that makes \textbf{\emph{the boundary of the domain easy to describe.}}}  Once we have done that, we need to have an expression of the Laplacian available with the appropriate independent variables.  
+The operator notation is convenient insofar as it is agnostic regarding coordinate system.  We can use the Laplacian in a differential equation---e.g.$\nabla^2u = 0$---without immediate regard as to whether the domain will be described in a rectangular (Cartesian), polar, cylindrical or spherical coordinate system.  Still, at some point in time before we can hope to solve such a differential equation, we need to select a coordinate system.\marginnote[-1.5cm]{\textbf{Question:} How do you pick a coordinate system?  \textbf{Answer:} You select a coordinate system that makes \textbf{\emph{the boundary of the domain easy to describe.}}}  Once we have done that, we need to have an expression of the Laplacian available with the appropriate independent variables.  
 \begin{marginfigure}
 \includegraphics{lec30-cylindrical-coordinates.png}
 \caption{Cylindrical coordinate system.}
@@ -99,7 +99,7 @@ u_{xx} &= \left(u_{x}\right)_{x} \\
 &= \left(u_x\right)_r r_x + \left(u_x\right)_{\theta} \theta_x \\
 &= \left(u_r \cos{\theta} - u_{\theta}\frac{\sin{\theta}}{r} \right)_r \cos{\theta} - \left( u_r \cos{\theta} - u_{\theta}\frac{\sin{\theta}}{r}\right)_{\theta}\frac{\sin{\theta}}{r}
 \end{align*}
-We would then start all over again to find $u_y$ and $u_{yy}$.  Balancing mathematical tedium with conceptual understanding, we will omit these details.  Readers are encouraged to finish the job.\sidenote{Unlike some other hazing rituals, deriving the Laplacian operator for polar coordinates has some (small) redeeming benefits.}
+We would then start all over again to find $u_y$ and $u_{yy}$.  Balancing mathematical tedium with conceptual understanding, we will omit these details.  Interested readers are encouraged to finish the job.\sidenote{Unlike most other hazing rituals, deriving the Laplacian operator for polar coordinates has some (small) redeeming benefits.}
 
 \newthought{After much tedious} work and simplification you can arrive at the expression of the Laplacian in polar coordinates given in Equation \ref{eq:laplacian-polar}.
 \begin{equation}
@@ -170,16 +170,16 @@ G_{\theta \theta} + \lambda G &= 0
 
 \noindent We will start with $G(\theta)$:
 \begin{align*}
-G_{\theta \theta} &= 0 \\
-G(\theta) &= c_1 + c_2\theta
+&G_{\theta \theta} = 0 \\
+&G(\theta) = c_1 + c_2\theta
 \end{align*}
 Since the solution must be periodic, with period $2\pi$, $c_2 = 0$.  Consequently $G(\theta) = c_1$ is a non-trivial eigenfunction.
 
 Checking solutions for $F(r)$:
 \marginnote{ This is a Cauchy-Euler equation.  Recall from the beginning of the course that we seek solutions of the form $r^{m}$.  Inserting $r^m$ into the equation gives us: $r^2[m(m-1)r^{m-2} + mr^m]=0$ which can be simplified to: $r^m[m(m-1)+m]=0$ which is only true if $m^2 = 0$.  Recall how to deal with this double-root.}
 \begin{align*}
-r^2F_{rr} + rF_{r} &= 0 \\
-F(r) &= c_3 + c_4 \ln{r}
+&r^2F_{rr} + rF_{r} = 0 \\
+&F(r) = c_3 + c_4 \ln{r}
 \end{align*}
 In order to satisfy our other implicit boundary condition, $c_4 = 0$.  So $F(r)=  c_3$ is also a valid eigenfunction.  Looking ahead, our product solution will include a constant term for the eigenvalue $\lambda = 0$.
 
@@ -189,8 +189,8 @@ In order to satisfy our other implicit boundary condition, $c_4 = 0$.  So $F(r)=
 
 For $G(\theta)$:
 \begin{align*}
-G_{\theta \theta} - \nu^2 G &= 0 \\
-G(\theta) &= c_1 \cosh{\nu \theta} + c_2 \sinh{\nu \theta}
+&G_{\theta \theta} - \nu^2 G = 0 \\
+&G(\theta) = c_1 \cosh{\nu \theta} + c_2 \sinh{\nu \theta}
 \end{align*}
 Neither $\cosh{()}$ nor $\sinh{()}$ are periodic so we must conclude that $c_1 = c_2 = 0$ and that there are no non-trivial eigenfunctions for $\lambda < 0$.
 
@@ -201,8 +201,8 @@ Neither $\cosh{()}$ nor $\sinh{()}$ are periodic so we must conclude that $c_1 =
 
 For $G(\theta)$:
 \begin{align*}
-G_{\theta \theta} + \nu^2 G &= 0 \\
-G(\theta) &= c_1 \cos{\nu \theta} + c_2 \sin{\nu \theta}
+&G_{\theta \theta} + \nu^2 G = 0 \\
+&G(\theta) = c_1 \cos{\nu \theta} + c_2 \sin{\nu \theta}
 \end{align*}
 which is periodic, with period $2\pi$, if $\nu$ is an integer $n$.
 

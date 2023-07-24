@@ -52,11 +52,11 @@ F_{rr}G + \frac{1}{r}F_rG + FG_{zz} &= 0
 \noindent\textbf{Step \#3:} Separate the variables.
 
 \begin{align*}
-\frac{F_{rr}G}{FG} + \frac{1}{r}\frac{F_r G}{FG} + \frac{FG_{zz}}{FG} &= 0 \\
-\frac{F_{rr}}{F} + \frac{1}{r}\frac{F_r}{F} + \frac{G_{zz}}{G} &= 0 \\
-\frac{F_{rr}}{F} + \frac{1}{r}\frac{F_r}{F} = -\frac{G_{zz}}{G} &= -\lambda
+&\frac{F_{rr}G}{FG} + \frac{1}{r}\frac{F_r G}{FG} + \frac{FG_{zz}}{FG} = 0 \\
+&\frac{F_{rr}}{F} + \frac{1}{r}\frac{F_r}{F} + \frac{G_{zz}}{G} = 0 \\
+&\frac{F_{rr}}{F} + \frac{1}{r}\frac{F_r}{F} = -\frac{G_{zz}}{G} = -\lambda
 \end{align*}
-Thus the separated equations are:\marginnote{Again, here we multiply the equation for $F(r)$ by $r^2$ to render the equation into a familiar form.}
+Thus the separated equations are:\marginnote{Again, here we multiply the equation for $F(r)$ by $r^2$ to change the equation into a familiar form.}
 \begin{equation*}
 r^2F_{rr} + rF_r + \lambda r^2 F = 0, \ \ \text{ and } \ \ G_{zz} - \lambda G = 0
 \end{equation*}
@@ -75,10 +75,10 @@ r^2F_{rr} + rF_r + \lambda r^2 F = 0, \ \ \text{ and } \ \ G_{zz} - \lambda G = 
 
 \noindent In this case the boundary value problem for $F(r)$ is a Cauchy-Euler equation:\marginnote{\textbf{Reminder:} For a Cauchy-Euler equation, we assume the solution is of the form $F(r)=r^m$.  In this case, where the resulting auxiliary equation has a double-root---$m=0,0$---the first solution is a constant ($c_1$) and the second solution is a constant times $\ln r$ so that it is linearly independent.}
 \begin{align*}
-r^2F_{rr} + rF_r &= 0 \\
-r^2[m(m-1)r^{m-2}] + rmr^{m-1} &= 0 \\
-r^m[m(m-1) + m] &= 0 \Rightarrow m^2 = 0\\
-\Rightarrow F(r) &= c_1 + c_2 \ln r
+&r^2F_{rr} + rF_r = 0 \\
+&r^2[m(m-1)r^{m-2}] + rmr^{m-1} = 0 \\
+&r^m[m(m-1) + m] = 0 \Rightarrow m^2 = 0\\
+&\Rightarrow F(r) = c_1 + c_2 \ln r
 \end{align*}
 We must set $c_2=0$ so that $F(r)$ will remain bounded as $r \to 0$.  Since $u(2,z)=0$, we must stipulate that $F(2)=c_1=0$ so that only the trivial solution will satisfy the boundary conditions if $\lambda = 0$.
 
@@ -105,7 +105,7 @@ In case one is not familiar with modified Bessel functions of the first and seco
 \caption{Plots of $I_0(\alpha r)$ and $K_0(\alpha r)$ for $\alpha r > 0$.}
 \label{fig:lec32-mbfs}
 \end{marginfigure}
-The salient facts about these functions is that $K_0(\alpha r)$ diverges to infinity as $r \to 0$ and that $I_0(\alpha r)$ is strictly positive for $\alpha r > 0$.  Thus $c_1 = c_2 = 0$ and only the trivial solution satisfies the boundary conditions in the case $\lambda < 0 $.
+The salient facts about these functions are that $K_0(\alpha r)$ diverges to infinity as $r \to 0$ and that $I_0(\alpha r)$ is strictly positive for $\alpha r > 0$.  Thus $c_1 = c_2 = 0$ and only the trivial solution satisfies the boundary conditions in the case $\lambda < 0 $.
 
 \vspace{0.25cm}
 
