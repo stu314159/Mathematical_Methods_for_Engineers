@@ -54,7 +54,7 @@ For this section let us, without undue loss of generality, consider a 2\textsupe
 
 \newthought{Depending on the} boundary conditions, BVPs may have no solutions, one unique solution, or infinitely many solutions.
 
-\vspace{1.0cm}
+\vspace{0.5cm}
 \noindent \underline{\textbf{Example:}} The equation $u^{\prime \prime}+16u = 0$ has the general solution $u(t) = c_1 \cos{(4t)}+c_2 \sin{(4t)}$.  Consider the three different sets of boundary conditions provided below:
 \begin{enumerate}[label=\alph*)]
 \item $u(0)=0, \ \ u(\pi/2)=0$.
@@ -73,7 +73,7 @@ In this section some important theorems regarding IVPs and BVPs will be presente
 Let $u_1,u_2,\dots,u_k$ be solutions of a homogeneous n\textsuperscript{th}-order linear differential equation.  Then any linear combination of those solutions 
 $$u = c_1u_1+c_2u_2+\cdots+c_ku_k$$where $c_1,c_2,\dots,c_k$ are arbitrary constants, is also a solution.
 \end{theorem}
-\marginnote[-3.0cm]{\textbf{Note:} It is essential that \emph{both} the governing equation and given conditions (boundary or initial) for the linear differential equation are homogeneous.  As a reminder, this means that \emph{all} terms in the governing equation and boundary conditions must either a) involve the dependent variable or one of its derivatives; or b) be equal to zero.} 
+\marginnote[-3.0cm]{\textbf{Note:} It is essential that \emph{both} the governing equation and conditions (boundary or initial) for the linear differential equation are homogeneous.  As a reminder, this means that \emph{all} terms in the governing equation and boundary conditions must either a) involve the dependent variable or one of its derivatives; or b) be equal to zero.} 
 As an example, If we denote the linear homogeneous differential equation as $\mathcal{L}$, then $\mathcal{L}(u_i) = 0$ for any $i \in [1,2,\dots,k]$.  By the linearity property of $\mathcal{L}$, for any constants $\alpha$ and $\beta$:
 \begin{align*}
 \mathcal{L}(\alpha u_i + \beta u_j) &=  \alpha \mathcal{L}(u_i) + \beta \mathcal{L}(u_j)\\
@@ -82,17 +82,19 @@ As an example, If we denote the linear homogeneous differential equation as $\ma
 \end{align*}
 thus $\alpha u_i + \beta u_j$ is a solution.
 
+\marginnote[1.75cm]{\textbf{Question: }What if a member of the set of functions is $f(x)=0$?
+
+\vspace{0.25cm}
+
+\noindent\textbf{Answer:} The set will no longer be linearly independent.  The trivial function $f(x)=0$ is not linearly independent from \emph{anything}.}
 \begin{theorem}[Linear Dependence / Independence of Functions]
 A set of functions $f_1(x),f_2(x),\dots,f_k(x)$ is said to be \emph{linearly dependent} on an interval $\mathcal{I}$ if there exist constants $c_1,c_2,\dots,c_k$, \emph{not \underline{all} of which are zero}, such that
 $$c_1f_1(x) + c_2f_2(x)+\cdots+c_kf_k(x) = 0$$
 \noindent for every $x \in \mathcal{I}$.  If the set of functions is \emph{not} linearly dependent, it is linearly independent.
 \label{th:linear-dep}
 \end{theorem} 
-\marginnote[-1.75cm]{\textbf{Question: }What if a member of the set of functions is $f(x)=0$? 
 
-\vspace{0.25cm}
 
-\noindent\textbf{Answer:} The set will no longer be linearly independent.  The trivial function $f(x)=0$ is not linearly independent from \emph{anything}.}
 Repeatedly throughout this course we will want to clarify whether or not two or more functions are linearly independent of each other.  I think most engineers have a general idea of what it is we \emph{mean} when we say two functions are linearly independent or dependent but Theorem \ref{th:linear-dep} specifies what these things mean \emph{mathematically}.  
 \newthought{We need a test} to help us determine whether or not the members of a set are linearly independent. This will be especially important as we evaluate solutions to a linear homogeneous differential equation.  Even if you are the sort of savant who can, by inspection, always detect linear dependence, you might have a hard time convincing your friends that your assessment is always correct.  Luckily, there is a theorem that provides a suitable test that can serve as irrefutable evidence of the state of linear dependence/independence of functions.
 
@@ -123,7 +125,7 @@ u^{\prime}_1 & u^{\prime}_2 \\
 
 \noindent\textbf{\underline{Example:}} Show that the functions $u_1 = e^{3x}$ and $u_2=e^{-3x}$ are linearly independent solutions to the homogeneous linear equation $u^{\prime \prime}-9u=0$ for every $x \in (-\infty,\infty)$.
 
-\vspace{0.0cm}
+\vspace{4.5cm}
 
 \noindent\textbf{\underline{Solution:}} The Wronskian is given by:\marginnote{The reader should verify that both $u_1 = e^{3x}$ and $u_2=e^{-3x}$ satisfy the given differential equation.}
 \begin{align*}

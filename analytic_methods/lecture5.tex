@@ -15,7 +15,7 @@ In this lecture we will review \emph{a} method for finding solutions to non-homo
 a_nu^{(n)} + a_{n-1}u^{(n-1)}+\cdots+a_1u^{\prime}+a_0u = g(x)
 \label{eq:cc_nonhomo}
 \end{equation}
-where
+where:
 \begin{itemize}
 \item the coefficients $a_i, \ i\in [1,2,\dots,n]$ are constants; and
 \item the function $g(x)$ is a constant, a polynomial function, exponential function, sine or cosine, or finite sums or products of these functions.
@@ -29,7 +29,7 @@ We spent the last lecture describing how to find $u_c(x)$.  The question this le
 \section{Method of Undetermined Coefficients}\index{Undetermined Coefficients}
 One method for finding $u_p(x)$ is called the Method of Undetermined Coefficients.\sidenote{Some people lovingly refer to this technique as "The Method of Guessing."}
 
-\newthought{There are three} parts to this technique:
+\newthought{There are three} rules that comprise this technique:
 
 \begin{enumerate}
 \item \textbf{Basic Rule:} Based on the terms in $g(x)$, select the appropriate form for $u_p(x)$ using Table \ref{tab:method-of-guessing-table}.
@@ -54,7 +54,9 @@ $ke^{\alpha x}\sin{\omega x}$ &      \\\hline
 \label{tab:method-of-guessing-table}
 \end{table}
 
-\item \textbf{Modification rule:} If $u_p(x)$ obtained by the \textbf{Basic Rule} happens to be a solution to the associated homogeneous equation, multiply $u_p(x)$ from the table by $x$ (or $x^2$ if needed).
+\item \textbf{Modification rule:} If $u_p(x)$ obtained by the \textbf{Basic Rule} happens to be a solution to the associated homogeneous equation, multiply $u_p(x)$ from the table by $x$ (or $x^2$ if needed).\sidenote{It's a bad example but consider:
+$$u^{\prime \prime} = 3$$
+where $u_c(x) = c_1 x + c_2$.  Since $g(x)$ is a constant, the basic rule (second row) dictates that $u_p(x)$ should also be a constant, $K_0$.  That will not work in this case since a constant term is also part of $u_c(x)$.  If we multiply by $x$, then we still have a part of $u_c(x)$.  If we multiply by $x^2$, the method will work.  Of course in this case the equation is separable and we would solve it by separating and integrating but hopefully this clarifies the need for the Modification rule.}
 
 \item \textbf{Sum rule:} If $g(x)$ is a linear combination of terms from the left-hand column, construct $u_p(x)$ from a linear combination of the corresponding entries in the right-hand column.
 \end{enumerate}
@@ -97,7 +99,7 @@ $x$:& $8K_2 - 2K_1$ &$= -3$ \\
 $1$:&$2K_2+4K_1-2K_0$ &$= 6$
 \end{tabular}
 \end{table*}
-Luckily for us, this system of equations is structured such that it can easily be solved.  We see by inspection that $K_2 = 2/-2 = -1$; this can be plugged into the second equation to find $K_1 = -5/2$ and then we can solve the last equation to find that $K_0 = -9$.\marginnote[-4.0cm]{In general you cannot expect this to go so nicely.  What you \emph{can} hope for is that the, in this case, three equations you derive will have a unique solution.  We could re-write the system in the form of a matrix-vector equation:
+Luckily for us, this system of equations is structured such that it can easily be solved.  We see by inspection that $K_2 = 2/-2 = -1$; this can be plugged into the second equation to find $K_1 = -5/2$ and then we can solve the last equation to find that $K_0 = -9$.\marginnote[-4.0cm]{In general you cannot expect this to go so nicely.  What you \emph{can} hope for is that the equations you derive will have a unique solution.  We could re-write the system in the form of a matrix-vector equation:
 \begin{equation*}
 \begin{bmatrix}
 0 & 0 & -2 \\
