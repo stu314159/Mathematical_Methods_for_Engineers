@@ -2,12 +2,12 @@
 \label{ch:lec20}
 \section{Objectives}
 \begin{itemize}
-\item Recap the Legendre equation as a Sturm-Liouville problem and give its orthogonality relation.
+\item Revisit the Legendre equation as a Sturm-Liouville problem and give its orthogonality relation.
 \item Give an example to show the expansion of a function in terms of Legendre polynomials.
 \end{itemize}
 \setcounter{lstannotation}{0} %hack to try and re-set annotation counter.
 \section{Orthogonality with Legendre Polynomials}
-We have some experience with Legendre's equation and their solutions Legendre polynomials.  As a recap, however, Legendre's equation is shown in Equation \ref{eq:lec20-legendre-eq}.
+We have some experience with Legendre's equation and their solutions, Legendre polynomials.  As a recap, however, Legendre's equation is shown in Equation \ref{eq:lec20-legendre-eq}.
 \begin{equation}
 \left(1-x^2\right)u^{\prime \prime} - 2xu^{\prime} + n(n+1)u = 0, \ \ x \in (-1,1)
 \label{eq:lec20-legendre-eq}
@@ -35,7 +35,7 @@ c_n &= \frac{\left(f(x),P_n(x) \right)}{\left(P_n(x),P_n(x) \right)} = \frac{\in
 \label{eq:lec20-FL-coeff}
 \end{align}
 
-The convergence of Fourier-Legendre series expansions behave similarly to the Fourier series expansion using trigonometric polynomials.  This behavior is recapitulated in the next theorem.\marginnote[1.0cm]{This also happens to be true for Fourier-Bessel expansions.} 
+The convergence behavior of Fourier-Legendre series expansions is similar to that for the Fourier series expansion using trigonometric polynomials.  This behavior is recapitulated in the next theorem.\marginnote[1.0cm]{This also happens to be true for Fourier-Bessel expansions.} 
 
 \begin{theorem}[Convergence of Fourier-Legendre Series]
 Let $f(x)$ and $f^{\prime}(x)$ be piece-wise continuous on the interval $[-1,1]$. Then for all $x$ in the interval, the Fourier-Legendre series of $f$ converges to $f(x)$ at a point where $f(x)$ is continuous and to the average:
