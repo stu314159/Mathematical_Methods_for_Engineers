@@ -14,7 +14,7 @@ u(x) = \sum\limits_{n=0}^{\infty} c_n \phi_n
 \end{equation*}
 where $\phi_n$ are members of a set of orthogonal functions and $c_n$ are determined by:
 \begin{equation*}
-c_n = \frac{(u,\phi_n)}{||\phi_n||^2}\phi_n
+c_n = \frac{(u,\phi_n)}{||\phi_n||^2}
 \end{equation*} \index{Fourier Series}
 You should already have experience with expansions such as this from your previous classes in differential equations in the form of Fourier series expansions.  In that case the orthogonal functions, $\phi_n(x)$, were:
 \begin{equation*}
@@ -54,7 +54,7 @@ where the last terms are zero since we are evaluating the sine function at integ
 &= p
 \end{align*}
 
-\newthought{We can use} this infinite set of orthogonal functions to represent any other continuous function over the interval $[-p,p]$.\marginnote{You might be wondering at this point why you would ever want to represent a function $f(x)$ as a linear combination of orthogonal functions.  The answer is that the members of the set of orthogonal functions are solutions to a linear homogeneous boundary value problem and the function $f(x)$ will be a boundary condition for a partial differential equation that we are trying to solve.}  In your differential equations class you did this by using Equation \ref{eq:fourier-exp}:
+\newthought{We can use} this infinite set of orthogonal functions to represent (nearly) any other continuous function over the interval $[-p,p]$.\marginnote{You might be wondering at this point why you would ever want to represent a function $f(x)$ as a linear combination of orthogonal functions.  The answer is that the members of the set of orthogonal functions are solutions to a linear homogeneous boundary value problem and the function $f(x)$ will be a boundary condition for a partial differential equation that we are trying to solve.}  In your differential equations class you did this by using Equation \ref{eq:fourier-exp}:
 
 \begin{equation}
 f(x) = \frac{a_0}{2} + \sum\limits_{n=1}^{\infty}\left[a_n \cos{\frac{n \pi x}{p}} + b_n \sin{\frac{n \pi x}{p}} \right]
@@ -93,7 +93,7 @@ Since this is an infinite series, we need to concern ourselves with convergence.
 
 \marginnote[1.0cm]{In coming lectures and when doing assignments you will see that issues of continuity of $f$ and $\sfrac{df}{dx}$ have obvious visible influence on the convergence behavior of Fourier series.}
 \begin{theorem}[Convergence of Fourier Series]
-If $f$ and $\sfrac{df}{dx}$ are piece-wise continuous on an interval $[-p,p]$ then for all $x$ in the interval $[-p,p]$ the Fourier series converges to $f$ at points where the function is continuous; at points of discontinuity, the Fourier series converges to 
+If $f$ and $\sfrac{df}{dx}$ are piece-wise continuous on an interval $[-p,p]$, then for all $x$ in the interval $[-p,p]$ the Fourier series converges to $f$ at points where the function is continuous; at points of discontinuity, the Fourier series converges to: 
 \begin{equation*}
 \frac{f(x^{-}) + f(x^+)}{2}
 \end{equation*}

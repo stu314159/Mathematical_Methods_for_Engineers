@@ -20,10 +20,10 @@ u(x) = \sum\limits_{n=0}^{\infty}c_nx^{n+r}
 \end{equation*}
 It should be stressed that, if you calculate the coefficients $(c_n)$ in exact arithmetic and if you sum \emph{all} of the terms $(n\to \infty)$, the representation is \emph{exact}.  Each term in the series is linearly independent from all other terms, so as we keep adding terms to the representation of $u(x)$, greater accuracy is achieved.  
 
-\newthought{Our next idea} is to generalize this approach by representing our solution, $u(x)$, as a linear combination of \emph{orthogonal functions.}
+\newthought{Our next idea} is to generalize this approach by representing our solution, $u(x)$, as a linear combination of \emph{orthogonal functions.}\marginnote{\textbf{Emphasis:} For power series and method of Frobenius, each term in the series is a monomial.  Going forward we will use series solutions where each term is an orthogonal function.}
 
 \section{Inner Product and Orthogonality of Functions}
-From previous courses in calculus, you should be familiar with the concept of orthogonality of vectors.  We test for orthogonality by taking the ``dot-product''; if the dot-product is equal to zero, the vectors are orthogonal, otherwise they are not.\marginnote{Vector dot product:
+From previous courses in calculus, you should be familiar with the concept of orthogonality of vectors.  We test for orthogonality by taking the ``dot product'' or \emph{inner product}; if the inner product is equal to zero, the vectors are orthogonal, otherwise they are not.\marginnote{Vector dot/inner product:
 \begin{align*}
 \left(\vec{a},\vec{b}\right) &= \sum\limits_{i=1}^{n}(a_i)(b_i) \\
 \vec{a}\cdot \vec{b} &= a_1b_1 + a_2b_2 + \cdots a_nb_n
@@ -49,14 +49,14 @@ If $\left(u_1,u_2\right)=0$ then $u_1(x)$ and $u_2(x)$ are said to be \emph{orth
 &=\frac{1}{6} - \frac{1}{6} = 0
 \end{align*}
 
-\newthought{A slight generalization} is \emph{weighted} orthogonality, where we apply a \emph{weight function} to the inner product:\marginnote{In the context of Sturm-Liouville theory (coming up in a few lectures) we use $p(x)$ to denote the weight function.  Please do not let this change in notation confuse you.}
+\newthought{A slight generalization} is \emph{weighted} orthogonality, where we apply a \emph{weight function}, $p(x)$, to the inner product:
 \begin{equation}
-\left(u_1,u_2\right) = \int_a^b \ u_1(x)u_2(x)w(x) \ dx
+\left(u_1,u_2\right) = \int_a^b \ u_1(x)u_2(x)p(x) \ dx
 \label{eq:weighted-inner-product}
 \end{equation}
-where if $\left(u_1,u_2\right)=0$ then we say $u_1(x)$ and $u_2(x)$ are orthogonal with respect to weight function $w(x)$.
+where if $\left(u_1,u_2\right)=0$ then we say $u_1(x)$ and $u_2(x)$ are orthogonal with respect to weight function $p(x)$.
 
-\newthought{We can assemble} sets of orthogonal functions on a specified interval.  If $\left\{ \phi_1,\phi_2,\phi_3,\dots,\phi_n\right\}$ is a set of orthogonal functions on the interval $x\in[a,b]$, then:
+\newthought{We can assemble} a set of orthogonal functions on a specified interval.  If $\left\{ \phi_1,\phi_2,\phi_3,\dots,\phi_n\right\}$ is a set of orthogonal functions on the interval $x\in[a,b]$, then:
 \begin{equation*}
 \left(\phi_i, \phi_j\right) = \int_{a}^{b} \phi_i \phi_j \ dx = 0, \ \ \text{if } i \ne j
 \end{equation*}
@@ -69,7 +69,7 @@ We can then use a linear combination of the members of this set of orthogonal fu
 \item $||f+g|| \ge ||f|| + ||g||$
 \end{enumerate}
 where $f$ and $g$ are mathematical objects subject to the norm.
-}  Norms are often denoted $||\cdot||$---i.e. the norm of $f(x)$ is $||f(x)||$---and several types of norms have been defined for vectors, matrices, and functions.  The norm we will use for this class is defined in Equation \ref{eq:norm}.
+}  Norms are denoted $||\cdot||$---i.e. the norm of $f(x)$ is $||f(x)||$---and several types of norms have been defined for vectors, matrices, and functions.  The norm we will use for this class is defined in Equation \ref{eq:norm}.
 \begin{equation}
 ||f(x)||^2 = \int_{a}^{b} \ f(x)^2 \ dx
 \label{eq:norm}
@@ -96,7 +96,7 @@ where $f$ and $g$ are mathematical objects subject to the norm.
 \Rightarrow ||f_n|| &= \sqrt{\pi}
 \end{align*}\marginnote[-3.0cm]{Recall the ``double-angle'' identity: $\cos{2x}=2\cos{^2x}-1$.}
 
-\newthought{We can apply} norms to define \emph{orthonormal} sets of functions in which $\left\{ \phi_0, \phi_1, \dots \phi_n\right\}$ are orthonormal if the following is true:
+\newthought{We can apply} norms to define \emph{orthonormal} sets of functions, where $\left\{ \phi_0, \phi_1, \dots \phi_n\right\}$ are orthonormal if the following is true:
 \begin{equation*}
 \left(\phi_n,\phi_m\right) = 
 \begin{cases}
@@ -129,9 +129,10 @@ To get individual coefficient values, $c_n$, take the inner product---i.e. multi
 \begin{align*}
 \left(u,\phi_n\right) &= \int_{a}^{b}u(x)\phi_n(x) \ dx \\
 &= \int_{a}^{b} c_0 \cancelto{0}{\phi_0 \phi_n} + c_1\cancelto{0}{\phi_1 \phi_n} + \cdots + c_n\overbracket{\phi_n \phi_n}^{||\phi_n||^2} + \cdots \\
-&= c_n||\phi_n||^2 
+&= c_n||\phi_n||^2  \\
+&\Rightarrow c_n = \frac{(u,\phi_n)}{||\phi_n||^2}
 \end{align*}
-Therefore we can construct or expansion as shown in Equation \ref{eq:orth-fun-expan}.
+Therefore we can construct or expansion as shown in Equation \ref{eq:orth-fun-expan}.\marginnote{\textbf{Note:} If $\phi$ is an orthonormal function, $||\phi_{n}||^2 = 1$.}
 \begin{equation}
 u(x) = \sum\limits_{n=0}^{\infty}\frac{\left(u,\phi_n\right)}{||\phi_n||^2}\phi_n
 \label{eq:orth-fun-expan}
