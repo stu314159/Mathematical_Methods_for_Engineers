@@ -10,17 +10,17 @@ The objectives of this lecture are to:
 \setcounter{lstannotation}{0}
 
 \section{Introduction}
-Up to this point we have discussed a handful of methods for solving linear systems of equations.  We studied Gauss elimination with and without pivoting; LU factorization which, to be sure, is basically the same as Gauss elimination.  We also learned a little bit about the array of solution methods that are used in MATLAB's built-in tools for linear equations.  These are fundamental methods that should be in the toolbox of every engineer.
+Up to this point we have discussed a handful of methods for solving linear systems of equations.  We studied Gauss elimination with and without pivoting; LU factorization which, to be sure, is basically the same as Gauss elimination.  We also learned a little bit about the array of solution methods that are used in MATLAB's built-in tools for linear equations such as the QR factorization and LDL and Cholesky factorizations.  These are fundamental methods that should be in the toolbox of every engineer.
 
 There are practical situations where these direct solution methods for linear equations are not suitable.  Physical conservation laws that are encoded in partial differential equations, discretized and solved using methods like the finite element method (FEM) and finite volume method (FVM) result in large systems of linear equations.  A high-resolution simulation will routinely require upwards of $10^5$ degrees of freedom\sidenote{In this context, the number of \emph{degrees of freedom} can be interpreted to refer to the length of a vector describing the unknown function.} to adequately resolve the physics of interest such as: the flow field around an automobile to estimate drag forces; stress and strain distribution within a complex structural component to ensure material failure limits are not exceeded; or the component temperature in the vicinity of a weld process.
 
-Just \emph{storing} the matrices used to represent these linear systems---something, for example, like a $10^5 \times 10^5$ matrix\sidenote{Such a matrix has $10^{10}$ entries.  If each entry is represented with a double-precision floating point number (8 bytes each), that adds up to roughly 80 Gigabytes of memory just to \emph{store} the matrix.}---requires us to take a new approach from what we have described up to now.  Likewise solving the systems to find the unknown vectors---whether the vector represents temperature, pressure, a velocity component, or a component of material displacement---requires new techniques.
+Just \emph{storing} the matrices used to represent these linear systems---something, for example, like a $10^5 \times 10^5$ matrix\sidenote[][-1.25cm]{Such a matrix has $10^{10}$ entries.  If each entry is represented with a double-precision floating point number (8 bytes each), that adds up to roughly 80 Gigabytes of memory just to \emph{store} the matrix.}---requires us to take a new approach from what we have described up to now.  Likewise solving the systems to find the unknown vectors---whether the vector represents temperature, pressure, a velocity component, or a component of material displacement---requires new techniques.
 
 \section{Sparse Matrices}
 
-Matrices that arise as part of a finite difference method or finite element method is almost always \emph{sparse}.  This means that for every row of the matrix, corresponding to a linear equation pertaining to a single degree of freedom, most of the entries are equal to zero.  
+Matrices that arise as part of a finite difference method or finite element method are almost always \emph{sparse}.  This means that for every row of the matrix, corresponding to a linear equation pertaining to a single degree of freedom, most of the entries are equal to zero.  
 
-\begin{marginfigure}[-4.0cm]
+\begin{marginfigure}[-3.75cm]
 %\includegraphics{lec11n-mesh.png}
 \includegraphics{discretization.eps}
 \caption{A triangular mesh for a finite element method analysis of the transient heat equation.}
@@ -41,19 +41,19 @@ Au = b
 \caption{Non-zeros in linear system for transient heat conduction.}
 \label{fig:lec11n-spy1}
 \end{marginfigure}
-The non-zero structure of this system of equations can be observed using MATLAB's built-in function \lstinline[style=myMatlab]{spy(A)}, and the result is shown in Figure \ref{fig:lec11n-spy1}. The system of equations has 9824 nodes, each with a single degree of freedom.  The resulting $9824 \times 9824$ matrix $A$ has a total of 67,904 non-zero entries; an average of about 8 non-zero elements per equation.\sidenote[][-3.0cm]{Bottom Line Up Front: this number of non-zeros per row is typical for two-dimensional systems with linear, triangular elements.  The number of non-zeros per equation for the FEM or FVM depends on a number of factors: a) number of degrees of freedom per node; b) the number of spatial dimensions; c) the number of internal degrees of freedom for each finite element among others.  This will be discussed in detail in later lectures on finite element methods.  } This pattern, which is typical for such matrices, can be exploited by only storing and carrying out arithmetic with the non-zero entries of the matrix.  
+The non-zero structure of this system of equations can be observed using MATLAB's built-in function \lstinline[style=myMatlab]{spy(A)}, and the result is shown in Figure \ref{fig:lec11n-spy1}. The system of equations has 9824 nodes, each with a single degree of freedom.  The resulting $9824 \times 9824$ matrix $A$ has a total of 67,904 non-zero entries; an average of about 8 non-zero elements per equation.\sidenote[][-3.0cm]{Bottom Line Up Front: this number of non-zeros per row is typical for two-dimensional systems with linear, triangular elements.  The number of non-zeros per equation for the FEM or FVM depends on a number of factors: a) number of degrees of freedom per node; b) the number of spatial dimensions; c) the number of internal degrees of freedom for each finite element, among other factors.  This will be discussed in detail in later lectures on finite element methods.  } This pattern, which is typical for such matrices, can be exploited by only storing and carrying out arithmetic with the non-zero entries of the matrix.  
 
 There are a number of sparse-matrix storage formats in use.  MATLAB uses the compressed-sparse-column (CSC) storage format.\cite{gilbert1992sparse}  If there are $nnz$ non-zero entries in a $n \times n$ sparse array, MATLAB stores one (double precision) vector of length $nnz$ with the non-zero values---call this vector: \lstinline[style=myMatlab]{ENTRY}; another vector of integers of length $nnz$---call this vector: \lstinline[style=myMatlab]{ROW}---with the row-number for each non-zero; and a third vector of integers of length $n+1$---call this vector: \lstinline[style=myMatlab]{COL}---that stores the index (from the \lstinline[style=myMatlab]{ENTRY} array) of the first non-zero from each column and terminated with $nnz+1$.  An example of this format is shown in Figure \ref{fig:lec11n-csc}. \begin{marginfigure}
 \includegraphics{CSC-example.png}
 \caption{Example sparse matrix in Compressed Sparse Column format.}
 \label{fig:lec11n-csc}
-\end{marginfigure} The total storage required is $nnz \times 8$ bytes for the \lstinline[style=myMatlab]{ENTRY} array + $nnz \times 4$ bytes for the \lstinline[style=myMatlab]{ROW} array + $(n+1) \times 4$ bytes for the \lstinline[style=myMatlab]{COL} array.  In asymptotic notation, $\mathcal{O}(nnz+n)$ bytes of storage are required.  Contrast this with $\mathcal{O}(n^2)$ for dense matrices.  If $nnz << n$ the savings with sparse matrices is huge.  The key issues to keep in mind are these:\marginnote{In terms of FLOPs, sparse matrix calculations are slower.  Dense matrix algorithms are heavily optimized to make best use of the memory hierarchy of common CPUs resulting in high computational intensity---calculations performed for each byte loaded from memory---and consequently achieve high performance.  Sparse matrix algorithms have lower computational intensity and the memory access patterns are harder to optimize for multi-threaded execution.  As a result, sparse matrix operations are relatively slow.  Readers are encouraged to experiment with MATLAB to get a better feel for the relative performance of dense and sparse matrix operations.}
+\end{marginfigure} The total storage required is $nnz \times 8$ bytes for the \lstinline[style=myMatlab]{ENTRY} array + $nnz \times 4$ bytes for the \lstinline[style=myMatlab]{ROW} array + $(n+1) \times 4$ bytes for the \lstinline[style=myMatlab]{COL} array.  In asymptotic notation, $\mathcal{O}(nnz+n)$ bytes of storage are required.  Contrast this with $\mathcal{O}(n^2)$ for dense matrices.  If $nnz << n$ the savings with sparse matrices is huge.  The key issues to keep in mind are these:\marginnote{In terms of FLOPs, sparse matrix calculations are slower.  Dense matrix algorithms are heavily optimized to make best use of the memory hierarchy of common computer architectures resulting in high computational intensity---calculations performed for each byte loaded from memory---and consequently achieve high performance.  Sparse matrix algorithms have lower computational intensity and the memory access patterns are harder to optimize for multi-threaded execution.  As a result, sparse matrix operations are relatively slow.  Readers are encouraged to experiment with MATLAB to get a better feel for the relative performance of dense and sparse matrix operations.}
 \begin{enumerate}
 \item Exploiting the sparsity of these matrices is not a performance enhancement, it is a necessity.  Simulations of practical interest often result in systems of equations that can \emph{only} be stored as a sparse matrix.
-\item The resulting matrix, if it is to be solved, \emph{cannot} be solved by Gauss elimination or LU factorization.
+\item The resulting matrix, if it is to be solved, \emph{cannot} be solved by Gauss elimination related algorithms like LU-factorization.
 \end{enumerate}
 
-The reason for the second point is that, even for matrices that are sparse, the LU-factorization for that matrix usually is not sparse.  The forward elimination process common to both of the aforementioned techniques systematically destroys the sparsity pattern.  This effect is shown in Figure \ref{fig:lec11n-LandU}.
+The reason for the second point is that, even for matrices that are sparse, the LU-factorization (or modified coefficient array for Gauss elimination) for that matrix usually is not sparse.  The forward elimination process common to both of the aforementioned techniques systematically destroys the sparsity pattern.  This effect is shown in Figure \ref{fig:lec11n-LandU}.
 \begin{figure}[h!]
 \subfloat[]{\includegraphics[width=2in]{Non_zero_L_thermal.eps}}
 \subfloat[]{\includegraphics[width=2in]{Non_zero_U_thermal.eps}}
@@ -61,18 +61,18 @@ The reason for the second point is that, even for matrices that are sparse, the 
 \caption[][3.0cm]{Sparsity pattern of L and U matrices from decomposition of A.}
 \end{figure}
 
-\noindent For the larger systems of equations that we want to solve for more interesting problems, this kind of fill-in is unacceptable.
+\noindent For the larger systems of equations that we want to solve for more interesting problems, this kind of fill-in defeats any benefit obtainable through use of sparse matrices.
 
 \section{Iterative Solution Methods}
 
-The fundamental idea of iterative methods for solving linear systems of equations is this: given an estimate of the solution, $x^(k)$, find a method to generate a new estimate, $x^{(k+1)}$, that is easy to compute and that ultimately converges to the solution of $Ax=b$.  Some of the methods that we will discuss in this lecture all involve \emph{splitting} the matrix $A$ into a decomposition $A=M-K$ with $M$ non-singular and very easy to invert.  If this is done, the iterative scheme is as follows:
+The fundamental idea of iterative methods for solving linear systems of equations is this: given an estimate of the solution, $x^{(k)}$, find a method to generate a new estimate, $x^{(k+1)}$, that is easy to compute and that ultimately converges to the solution of $Ax=b$.  Some of the methods that we will discuss in this lecture all involve \emph{splitting} the matrix $A$ into a decomposition $A=M-K$ with $M$ non-singular and very easy to invert.  If this is done, the iterative scheme is as follows:
 \begin{align*}
 Ax &= b \\
 (M-K)x &= b \\
 \rightarrow Mx &= Kx + b \\
 \rightarrow x &= M^{-1}(Kx + b) \\
 &= \underbrace{M^{-1}K}_{R}x + \underbrace{M^{-1}b}_{c}
-\end{align*} 
+\end{align*} \marginnote[-3.0cm]{\textbf{Note:} The matrix $R$ plays an important part in the mathematical theory of iterative methods. One relevent result is that if $$||R|| < 1$$ in some matrix norm, then the iterative method will converge. To the best of my knowledge, this is \emph{why} we carry out this business with splitting.}
 The resulting iterative method is shown in Equation \ref{eq:lec11n-iterative-gen}:
 \begin{equation}
 x^{(k+1)} = Rx^{k} + c
@@ -84,7 +84,7 @@ Instead of solving a system of equations by factoring the coefficient matrix, we
 
 \subsection{Jacobi Iteration}
 
-In this method, $M$ is defined to be the diagonal of $A$, and $K$ is the sum of the strictly lower and upper triangular portion of $A$.
+In this method, $M$ is defined to be the diagonal of $A$, and $K$ is the sum of the strictly lower and upper triangular portion of $A$.\cite{demmel1997applied}
 \begin{align}
 M &= \text{diag}(A) \\
 K &= \tilde{L} + \tilde{U}
@@ -171,19 +171,19 @@ M_inv = sparse(diag(1./diag(A))); /*!\annotation{lst:ann11n-5}!*/
     x_new = M_inv*(K*x_in + b);
 
 \end{lstlisting}
-The performance improvement from using the vectorized implementation will depend on $A$ but for large matrices will run faster.  A performance comparison is shown in Figure \ref{fig:jacobi-performance} for $900 \times 900$ matrix run on a typical workstation using MATLAB R2022a.  The vectorized version obtains the same answer but was more than 700 times faster.  How you write your MATLAB matters a great deal.
+The performance improvement from using the vectorized implementation will depend on $A$ but for large matrices, each iteration will run much faster.  A performance comparison is shown in Figure \ref{fig:jacobi-performance} for $900 \times 900$ matrix run on a typical workstation using MATLAB R2022a.  The vectorized version obtains the same answer but was more than 700 times faster.  An important take-away from this example is: \emph{how you write your MATLAB code can \textbf{greatly} impact performance.}
 \begin{marginfigure}
 \includegraphics{jacobi-performance-comparison.png}
 \caption{Jacobi method performance comparison for $900 \times 900$ test matrix.}
 \label{fig:jacobi-performance}
 \end{marginfigure}
 
-The main disadvantage of the Jacobi method is \emph{slow convergence}; it typically takes many iterations to achieve a good solution.
+The main disadvantage of the Jacobi method is \emph{slow convergence}; compared to other methods, it typically takes many iterations to achieve a solution within a specified error tolerance.
 
 \section{MATLAB Implementation of Jacobi Method}
 In this section we will present a full implementation of the Jacobi method.
 
-As usual, we start by clearing out the workspace memory and command window output and close any figures.  We use a \lstinline[style=myMatlab]{switch...case} construct to allow selection between two linear systems.
+As usual, we start by clearing out the workspace memory and command window output and close any figures.  We use a \lstinline[style=myMatlab]{switch...case} construct to allow selection between different linear systems.
 
 \setcounter{lstannotation}{0}
 
@@ -247,10 +247,10 @@ We need to specify stopping criteria.  For iterative methods such as those under
 \text{Estimated Relative Error} = \frac{|| x^{(k+1)} - x^{(k)}||_{\infty}}{||x^{(k)}||_{\infty}}
 \label{eq:lec11n-iter-converge}
 \end{equation}
-This stopping criteria has the disadvantage that it does not provide any real assurance that $x^{(k+1)}$ is close to $x^{\star}$.  It only says that $x^{(k+1)}$ is close to $x^{(k)}$.  When evaluating the solution, you should also verify that the residual is small.\sidenote[][-4.0cm]{You might ask: why not just use the relative residual, $\sfrac{||Ax^{(k+1)} - b||}{||b||}$, as a stopping criteria?  My wan answer is: a lot of people use estimated relative error instead.  A somewhat better reason is that if the estimated relative error from Equation \ref{eq:lec11n-iter-converge} is very small, then $x^{(k)}$ is changing only slightly with more iterations and, if the answer is bad at that point, it probably will not get better any time soon.  My only advice is that you should check the relative residual when you are done to make sure your iteration did not converge to a garbage solution.}
+This stopping criteria has the disadvantage that it does not provide any real assurance that $x^{(k+1)}$ is close to $x^{\star}$.  It only says that $x^{(k+1)}$ is close to $x^{(k)}$.  When evaluating the solution, you should also verify that the residual is small.\sidenote[][-2.0cm]{You might ask: why not just use the relative residual, $\sfrac{||Ax^{(k+1)} - b||}{||b||}$, as a stopping criteria?  My wan answer is: a lot of people use estimated relative error instead.  A somewhat better reason is that if the estimated relative error from Equation \ref{eq:lec11n-iter-converge} is very small, then $x^{(k)}$ is changing only slightly with more iterations and, if the answer is bad at that point, it probably will not get better any time soon.  My only advice is that you should check the relative residual when you are done to make sure your iteration did not converge to a garbage solution.}
 
 The code listing below sets stopping criteria, invokes the Jacobi solver, and evaluates performance.
-\marginnote[1.0cm]{
+\marginnote[0.0cm]{
 
 \noindent \ref{lst:ann11n-5} The MATLAB functions \lstinline[style=myMatlab]{tic} and \lstinline[style=myMatlab]{toc} act as a simple timing tool.  The call to \lstinline[style=myMatlab]{tic} starts the clock; when we call \lstinline[style=myMatlab]{toc} the clock is stopped and the elapsed time (in seconds) is returned and, in this case, assigned to the variable \lstinline[style=myMatlab]{time_jac}.
 
@@ -390,3 +390,24 @@ norm_res = norm(A*x_new - b,2)/norm(x_new,2);
 num_iter = iter;
 end
 \end{lstlisting}
+
+\subsection{Gauss-Seidel Method}
+The Gauss-Seidel method is a minor modification of the Jacobi method.  Recall the basic update scheme for the Jacobi iteration:
+\begin{equation*}
+x_i^{(k+1)} = \frac{1}{a_{ii}}\left[b_{i} - \sum\limits_{j=1}^{i-1}a_{ij}x_{j}^{(k)} - \sum\limits_{j=i+1}^{n}a_{ij}x_j^{(k)} \right]
+%\label{eq:lec11n-Jacobi}
+\end{equation*}
+and notice that, when we are computing the update for $x_i^{(k+1)}$, if we are indeed carrying out these calculations sequentially for increasing values of $i$, we already have updated values of $x^{(k+1)}_j$ on-hand for $1 \le j < i$.  Why not use them?  Answer: there is no reason why not; let us use them.  The update scheme for Gauss Seidel is given in Equation \ref{eq:lec11n-GS}.
+\begin{equation}
+x_i^{(k+1)} = \frac{1}{a_{ii}}\left[b_{i} - \sum\limits_{j=1}^{i-1}a_{ij}x_{j}^{(k+1)} - \sum\limits_{j=i+1}^{n}a_{ij}x_j^{(k)} \right]
+\label{eq:lec11n-GS}
+\end{equation}
+The good news is that use of updated values in this way results in the Gauss-Seidel method converging in roughly half as many iterations as the Jacobi method.  The bad news is that the order in which we calculate $x_{i}^{(k+1)}$ matters; we cannot do them in parallel like we could with the Jacobi method.\sidenote{And, perhaps it does not need to be mentioned, given that the vectorized Jacobi method is hundreds of times faster than the non-vectorized version, one may be hard-pressed to give up such an advantage.}  Still, the performance improvement from the vectorized implementation of Jacobi was \emph{heavily} dependent on the fact that we are working in a MATLAB environment.  It would be quite difficult to replicate an equivalent implementation if you were using, for example, C++ or FORTRAN.  So, if you \emph{could not} make use of the inherent parallelism of the Jacobi method, Gauss-Seidel would offer you a significant performance benefit.  
+
+\subsection{Method of Successive Over-Relaxation}
+If using updated values of $x^{(k+1)}$ as we do in Gauss-Seidel provides some convergence benefit, maybe we could get more benefit if we used \emph{more} of the updated value.  The method of successive over-relaxation (SOR) does this as shown in Equation \ref{eq:lec11n-sor}:
+\begin{equation}
+x_{i}^{(k+1)} = (1-\omega) x_{i}^{(k)} + \frac{\omega}{a_{ii}}\left[b_{i} - \sum\limits_{j=1}^{i-1}a_{ij}x_{j}^{(k+1)} - \sum\limits_{j=i+1}^{n}a_{ij}x_j^{(k)} \right]
+\label{eq:lec11n-sor}
+\end{equation}
+where $\omega$ is called a \emph{relaxation parameter}.  It can be shown that, in order to converge, $0 < \omega < 2$; if $\omega<1$, the iteration is referred to as \emph{under-relaxation}; if $1 < \omega < 2$, the iteration is referred as \emph{over-relaxation}.\sidenote{If $\omega = 1$, then SOR is equivalent to Guass-Seidel.}  The convergence benefits obtained through SOR is heavily dependent upon properties of the matrix $A$ of the linear system you are trying to solve.  Readers are encouraged to work through the exercises in the next assignment to get some hands-on experience with this behavior.  
