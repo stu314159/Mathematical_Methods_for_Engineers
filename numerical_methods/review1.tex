@@ -1,0 +1,104 @@
+\chapter{Review \#1}
+\label{ch:rev1n}
+\begin{fullwidth}
+
+\section{List of Topics}
+\begin{enumerate}
+\item Mathematical preliminaries:
+\begin{enumerate}
+\item Number representation.
+\begin{enumerate}
+\item Unsigned integer representations.
+\item IEEE-754 floating point representation.
+\end{enumerate}
+\item Sources of error.
+
+\item Background of Linear Algebra.
+\begin{enumerate}
+\item matrix/vector operations.
+\item matrix properties.
+\end{enumerate}
+\end{enumerate}
+
+\item Solution of Non-linear Equations.
+\begin{enumerate}
+\item Bisection method.
+\item Newton's method (single equation and system of equations).
+\item Secant method.
+\item Steffen's method.
+\item MATLAB built-in methods (single equation and system of equations).
+\end{enumerate}
+
+\item Solution of Linear System of Equations.
+
+\begin{enumerate}
+\item Gauss elimination with and without pivoting.
+\item LU factorization with and without pivoting.
+\item MATLAB built-in methods.
+\item Error bounds for solution of linear systems of equations.
+\item Iterative methods:
+\begin{enumerate}
+\item Jacobi, Gauss-Seidel, SOR.
+\item MATLAB built-in methods including: \lstinline[style=myMatlab]{pcg} and \lstinline[style=myMatlab]{gmres} with preconditioning.
+\end{enumerate}
+\end{enumerate}
+
+\end{enumerate}
+
+\section{Review Questions}
+
+\begin{enumerate}
+\item Write down the sign bit, exponent bits, and first 6 bits of the mantissa for IEEE-754 double precision floating point representation of the number 2023.
+
+\vspace{5.0cm}
+
+\item Write down the number 81 in 32-bit unsigned integer format (little-endian layout).
+
+\vspace{5.0cm}
+
+\item Carry out 2 iterations of the secant method to find the root of $f(x) = x - 2e^{-x}$ starting with $x_1 = 0$ and $x_2 = 1$. (i.e. find $x_3$ and $x_4$)
+
+\vspace{15.0cm}
+
+\item Consider the following system of nonlinear equations:
+\begin{align*}
+-2x^3 + 3y^2 + 42 &= 0 \\
+5x^2 + 3y^3 - 69 &= 0
+\end{align*}
+Using Newton's method for a system of equations and starting at $x=y=1$ write the linear system of equations you would need to solve to find $\Delta x$ and $\Delta y$ to update the estimated solution.
+
+
+\vspace{4.0cm}
+
+\item Using MATLAB's built-in function: \lstinline[style=myMatlab]{[L,U,P] = lu(A)} function, find the solution to the linear system of equations shown below:
+
+\begin{equation*}
+\bracketMatrixstack{
+0 & 3 & 8 & -5 & -1 & 6 \\
+3 & 12 & -4 & 8 & 5 & -2 \\
+8 & 0 & 0 & 10 & -3 & 7 \\
+3 & 1 & 0 & 0 & 0 & 4 \\
+0 & 0 & 4 & -6 & 0 & 2 \\
+3 & 0 & 5 & 0 & 0 & -6 
+}
+\bracketVectorstack{
+x_1 \\
+x_2 \\
+x_3 \\
+x_4 \\
+x_5 \\
+x_6
+}
+=
+\bracketVectorstack{
+34 \\
+20 \\
+45 \\
+36 \\
+60 \\
+28
+}
+\end{equation*}
+\end{enumerate}
+
+\end{fullwidth}

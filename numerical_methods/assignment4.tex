@@ -2,6 +2,116 @@
 \label{ch:ass4n}
 
 \begin{fullwidth}
+\begin{enumerate}
+\item Determine the LU decomposition of the matrix below by hand.
+\begin{equation*}
+A = 
+\bracketMatrixstack{
+2 & 4 & 6 \\
+3 & 5 & 1 \\
+6 & -2 & 2 
+}
+\end{equation*}
 
+\vspace{4.0cm}
+
+\item Carry out (by hand) the first three iterations of the solution of the following system of equations using the Gauss-Seidel iterative method.  For the first guess of the solution, take the value of all unknowns to be zero.
+\begin{align*}
+8x_1 + 2x_2 + 3x_3 &= 51 \\
+2 x_1 + 5x_2 + x_3 &= 23 \\
+-3x_1 + x_2 + 6x_3 &= 20
+\end{align*} 
+
+
+\vspace{4.0cm}
+
+\item Consider the linear system given below:
+\begin{equation*}
+\bracketMatrixstack{
+4 & 0 & 1 & 0 & 1 \\
+2 & 5 & -1 & 1 & 0 \\
+1 & 0 & 3 & -1 & 0 \\
+0 & 1 & 0 & 4 & -2 \\
+1 & 0 & -1 & 0 & 5
+}
+\bracketVectorstack{
+x_1 \\
+x_2 \\
+x_3 \\
+x_4 \\
+x_5
+}
+=
+\bracketVectorstack{
+32 \\
+19 \\
+14 \\
+-2 \\
+41
+}
+\end{equation*}
+
+\begin{enumerate}
+\item Find the solution using the built-in MATLAB function \lstinline[style=myMatlab]{[L,U,P] = lu(A)}---be sure to get and use the permutation matrix \lstinline[style=myMatlab]{P}.
+\item Find the relative residual for your solution.
+\item Find the inverse of the matrix, $A^{-1}$, using the built-in MATLAB function \lstinline[style=myMatlab]{inv(A)}, and compute the 2-norm of $A$ and $A^{-1}$ using the built-in MATLAB function \lstinline[style=myMatlab]{norm(A,p)}, where \lstinline[style=myMatlab]{p} should be set to 2 for the 2-norm.
+
+\item Calculate the size of the error bound:
+\begin{equation*}
+\frac{1}{\kappa(A)}\frac{||r||}{||b||} \le \frac{||e||}{||x^{\star}||} \le \kappa(A) \frac{||r||}{||b||}
+\end{equation*}
+where $\kappa(A)$ is the condition number of $A$, and $r$ is the residual.
+
+\item Repeat steps a) through d) for the test matrix BCSSTK26 from the Matrix Market.  Once you have read the matrix into MATLAB, convert the matrix to a ``full'' (non-sparse) format using the MATLAB built-in function \lstinline[style=myMatlab]{A_full = full(A_sparse)}.  or the right-hand-side vector $b$, use a vector of all ones.  Note how different the error bound is in this case.
+
+\end{enumerate}
+
+\vspace{8.0cm}
+
+\item Using Jacobi, Gauss-Seidel, and SOR $(\omega = 1.4)$ iterative methods, write and run code to solve the following linear system of equations:
+\begin{equation*}
+\bracketMatrixstack{
+7 & 3 & -1 & 2 \\
+3 & 8 & 1 & -4 \\
+-1 & 1 & 4 & -1 \\
+2 & -4 & -1 & 6
+}
+\bracketVectorstack{
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+}
+=
+\bracketVectorstack{
+-1 \\
+0 \\
+-3 \\
+1
+}
+\end{equation*}
+The stopping criterion should be the relative change of the estimated solution in the 2-norm:
+\begin{equation*}
+\text{tolerance} = \frac{||x^{(k+1)} - x^{(k)}||_2}{||x^{(k)}||_2}
+\end{equation*}
+with tolerance set to $10^{-9}$.  Compare the number of iterations required in each case.
+
+
+\vspace{3.0cm}
+
+\item For this problem we will compare two iterative methods to solve BCSSTK26---a test matrix derived from a seismic simulation of a nuclear power plant structure.  For the right-hand-side vector $b$, use a vector of all ones.
+
+\begin{enumerate}
+\item Use the SOR method with an estimated relative error tolerance of $10^{-3}$.  Vary the relaxation parameter over the range $\omega \in [1.25,2.0)$.  Make a plot of the number of iterations required as a function of $\omega$ and approximate the best value of $\omega$ for this system.
+
+\item Use the MATLAB built-in function \lstinline[style=myMatlab]{gmres} without a preconditioner to solve this problem.  
+
+\item Use \lstinline[style=myMatlab]{gmres} again but with an incomplete LU preconditioner.  Use \lstinline[style=myMatlab]{opts_ilu.type='ilutp'} and \lstinline[style=myMatlab]{opts_ilu.droptol=dtol} and vary the value of \lstinline[style=myMatlab]{dtol} over the range $\text{dtol} \in [10^{-7},10^{-3}]$.  What happens as \lstinline[style=myMatlab]{dtol} gets larger? \emph{\textbf{Hint:} Use the built-in function \lstinline[style=myMatlab]{spy(L)} to show the sparsity pattern of \lstinline[style=myMatlab]{L} and note the number of non-zeros of \lstinline[style=myMatlab]{L}.  How does \lstinline[style=myMatlab]{nna(L)} change as \lstinline[style=myMatlab]{dtol} is changed?}
+
+\item This is a relatively small sparse system and can be solved using direct methods.  Use the MATLAB built-in function \lstinline[style=myMatlab]{timeit} to estimate the time required to solve the system of equations using the built-in \lstinline[style=myMatlab]{mldivide()}---``backslash''---function.
+\end{enumerate}
+Organize your findings from part a), b) and c) into a short written document.  A couple of paragraphs should be sufficient.  Include the plot you created from part a) and any other graphics/tables that you find helpful to communicate what you observed in parts b) through d).
+
+\end{enumerate}
 
 \end{fullwidth}
