@@ -3,7 +3,7 @@ clear
 clc
 close 'all'
 
-sys_choice = 5;
+sys_choice = 6;
 
 switch sys_choice
     
@@ -68,16 +68,22 @@ switch sys_choice
         title('Sparsity Pattern of Test Matrix')
         show_x = 0;
         x_in = zeros(cols,1);
+
+    case 6
+        A = delsq(numgrid('S',102));
+        b = ones(size(A,1),1);
+        
+
     otherwise
-        error('Invalide system choice!\n');
+        error('Invalid system choice!\n');
 end
 
 
 
 
 %% Solve using Built-in Iterative Methods
-imax = 20000;
-tol = 1e-4;
+imax = 100;
+tol = 1e-8;
 
 % without preconditioning
 [x0,fl0,rr0,it0,rv0] = pcg(A,b,tol,imax);
@@ -92,12 +98,13 @@ if (fl0 == 1)
     fprintf('pcg without preconditionging failed to converge. \n');
 end
 
-% preconditioned conjugate gradient
-
+%% preconditioned conjugate gradient
+opts.type = 'ict';
+opts.droptol = 1e-4;
 opts.michol = 'on';
 L = ichol(A,opts);
+%L = ichol(A);
 [x1,fl1,rr1,it1,rv1] = pcg(A,b,tol,imax,L,L');
-
 
 if fl1 == 0
     fprintf('pcg with ichol preconditioner solution successful!\n');
@@ -116,7 +123,7 @@ if fl3 == 0
     fprintf('and %d inner iterations.\n',it3(2));
 end
 
-% add incomplete lu factorization preconditioner
+%% GMRES with Incomplete LU Preconditioner
 opts_ilu.type='ilutp';
 opts_ilu.droptol=1e-3;
 % opts_ilu.type='crout';

@@ -3,7 +3,7 @@ clear
 clc
 close 'all'
 
-sys_choice = 2;
+sys_choice = 3;
 
 switch sys_choice
     
@@ -31,10 +31,24 @@ switch sys_choice
         title('Sparsity Pattern of Test Matrix')
         show_x = 0;
 
-    otherwise
-        error('Invalide system choice!\n');
-end
+    case 3
+        [A,rows,cols,entries] = mmread('bcsstk15.mtx');
+        fprintf('Test matrix with %d rows, %d cols \n',...
+            rows,cols);
+        b = rand(cols,1);
+        x_in = zeros(rows,1);
+        figure
+        spy(A)
+        title('Sparsity Pattern of Test Matrix')
+        show_x = 0;
 
+        
+        
+
+    otherwise
+        error('Invalid system choice!\n');
+end
+%%
 imax = 2000;
 tol = 1e-7;
 % without preconditioning
@@ -46,6 +60,7 @@ if exit_code1 == 1
    fprintf('tol = %g \n',norm_res1);
 end
 
+%%
 % suppose we use the LU factorization of A and inverted it.
 [L,U] = lu(A);
 nnzL = nnz(L); nnzU = nnz(U);
@@ -60,9 +75,10 @@ if exit_code2 == 1
    fprintf('tol = %g \n',norm_res2);
 end
 
-
+%%
 opts_ilu.type='ilutp';
-opts_ilu.droptol=1e-1;
+opts_ilu.droptol=5e-4;
+opts_ilu.udiag=1;
 [iL,iU] = ilu(A,opts_ilu);
 nnz_iL = nnz(iL); nnz_iU = nnz(iU);
 
@@ -77,34 +93,43 @@ if exit_code3 == 1
 end
 
 %% Local Functions
-function [x,norm_res,num_iter,exit_code] = ...
+function [x_new,norm_res,num_iter,exit_code] = ...
     jacobi_solver(A,b,x_in,tol,imax)
-[rows,~] = size(A);
 rel_update = inf;
-x = x_in;
+x_new = x_in; % initialize x_new
+K = -(A - diag(diag(A)));
+M_inv = sparse(diag(1./diag(A)));
+
+rho = abs(eigs(M_inv*K,1));
+fprintf('Spectral radius of R: %g \n',rho);
+
 for iter = 1:imax
-    for i = 1:rows
-       x(i) = (b(i) - A(i,:)*x_in)/A(i,i);
-       x(i) = x(i) + x_in(i); %add back j=i term
-    end  
-    
-    if norm(x_in,2) ~= 0 % prevent nan
-        rel_update = norm(x - x_in,2)/norm(x_in,2);
+    if (iter > 1) && (mod(iter,500) == 0)
+        fprintf('Iteration: %d, relative update:%g. \n',...
+            iter,rel_update);
+    end
+
+    x_new = M_inv*(K*x_in + b);
+
+    if norm(x_in,"inf") ~= 0 % prevent nan
+        rel_update = ...
+            norm(x_new - x_in,"inf")/norm(x_in,"inf");
     end
     
-    % check exit criteria; if applicable set answer and exit function
+    % check exit criteria
     if rel_update < tol
         exit_code = 1; % success
         break; % "break out" of the for loop
     end
     
     if iter == imax
-        exit_code = 0; % maximum iterations reached
+        % maximum iterations reached
+        exit_code = 0; 
     end
-    x_in = x;
+    x_in = x_new;
     
 end
-norm_res = rel_update;
+norm_res = norm(A*x_new - b,2)/norm(x_new,2);
 num_iter = iter;
 end
 
