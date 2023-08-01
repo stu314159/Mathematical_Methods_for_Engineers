@@ -371,12 +371,80 @@ The resulting curve, along with the linear estimator is shown in Figure \ref{mod
 \end{marginfigure}  
 
 
-As we can see, the residual squared for the theoretical model estimator is larger
-than the residual squared for the linear estimator shown previously.
-Remember, the purpose of fitting a curve through the data points in this
-context is to gain insight as to how well the recorded experimental data can
-fit against a known (or proposed) theoretical model.  If we wanted a residual of zero, we could have gotten it through the mechanical process of providing an exact interpolant through the data; but that would hardly yield a reasonable model.  Even though the residual
-of this new model is higher than for a linear estimator, we gain the benefit
-of seeing how well the theoretical model stands up in the face of experimental
-evidence.  
+As we can see, the residual squared for the theoretical model estimator is larger than the residual squared for the linear estimator shown previously. Remember, the purpose of fitting a curve through the data points in this context is to gain insight as to how well the recorded experimental data can fit against a known (or proposed) theoretical model.  If we wanted a residual of zero, we could have gotten it through the mechanical process of providing an exact interpolant through the data; but that would hardly yield a reasonable model.  Even though the residual of this new model is higher than for a linear estimator, we gain the benefit of seeing how well the theoretical model stands up in the face of experimental evidence.  
+
+\section{MATLAB Example}
+
+In an electrophoretic fiber-making process, the diameter of the fiber, $d$, is related to the current flow, $I$.  The following measurements are made during production:
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+\hline
+$I$ (nA) & 300 & 300 & 350 & 400 & 400 & 500 & 500 & 650 & 650 \\ \hline
+$d$ ($\mu$m) & 22 & 26 & 27 & 30 & 34 & 33 & 33.5 & 37 & 42 \\ \hline
+\end{tabular}
+\caption{Process data from electrophoretic fiber-making process.}
+\end{table}
+
+\begin{enumerate}
+\item Use linear least-squares regression to determine the coefficients $m$ and $b$ in the function $y=mx+b$ that best fits the data.
+\item Use least-squares regression to determine the coefficients $a$, $b$, and $c$ in the function $y = a + bx + cx^2$.
+\item Use least-squares regression to determine the coefficients $a$ and $b$ in the function $y = a + b\sqrt{I}$.
+\end{enumerate}
+
+We start, as always, by clearing out the workspace and command window and closing any open figure windows.  We will also input the given data.
+\begin{lstlisting}[style=myMatlab,name=lec13n-ex1]
+clear
+clc
+close 'all'
+
+%% Input Data
+I = [300 300 350 400 400 500 500 650 650]';
+d = [22 26 27 30 34 33 33.5 37 42]';
+
+\end{lstlisting}
+
+The linear least-squres regression is carried out in the following code; the best fit line is shown in Figure \ref{fig:lec13n-ex1-linear-fit}
+\begin{marginfigure}
+\includegraphics{lec13n-ex1-linear-fit.png}
+\caption{Linear fit, $m=0.416$, $b=12.913$.}
+\label{fig:lec13n-ex1-linear-fit}
+\end{marginfigure}
+\begin{lstlisting}[name=lec13n-ex1, style=myMatlab]
+X = [ I.^0 I.^1];
+b = d;
+
+c = (X'*X)\(X'*b);
+
+linEst = @(x) c(1) + c(2)*x;
+\end{lstlisting}
+A least-squares regression to fit a second-order polynomial to the data is carried out in the next listing.
+\begin{lstlisting}[name=lec13n-ex1,style=myMatlab]
+X = [I.^0 I.^1 I.^2];
+b = d;
+
+c = (X'*X)\(X'*b);
+
+quadEst = @(x) c(1) + c(2)*x + c(3)*x.^2;
+\end{lstlisting}
+A plot of the resulting estimator is shown in Figure \ref{fig:lec13n-ex1-second-order-fit}.
+\begin{marginfigure}
+\includegraphics{lec13n-ex1-second-order-fit.png}
+\caption{Second-order polynomial fit. $a=0.436$, $b=0.0979$, and $c=-5.89e-5$.}
+\label{fig:lec13n-ex1-second-order-fit}  
+\end{marginfigure}
+Using an estimator like $y = a + b\sqrt{I}$ is accomodated in exactly the same way; there is a constant term---proportional to $I^{0}$---and a term proportional to $I^{\sfrac{1}{2}}$.  The MATLAB code is shown in the listing below and the resulting estimator, along with the previously found estimators, is shown in Figure \ref{fig:lec13n-ex1-model-fit}.
+
+\begin{marginfigure}
+\includegraphics{lec13n-ex1-model-fit.png}
+\caption{Model fit of data.  $a = -6.20$, $b=1.80$.} 
+\label{fig:lec13n-ex1-model-fit}
+\end{marginfigure}
+
+\begin{lstlisting}[style=myMatlab,name=lec13n-ex1]
+X = [I.^0 I.^0.5];
+b = d;
+c = (X'*X)\(X'*b);
+
+est3 = @(x) c(1) + c(2)*x.^0.5;
+\end{lstlisting}
 
