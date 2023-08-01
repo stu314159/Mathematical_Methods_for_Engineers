@@ -1,0 +1,100 @@
+\chapter{Assignment \#5}
+\label{ch:ass5n}
+
+\begin{fullwidth}
+\begin{enumerate}
+\item Create a user-defined function for linear regression.  The signature should be: \lstinline[style=myMatlab]{[a,Er] = LinReg(x,y)}.  In addition to determining the constants $a_0$ and $a_1$ for a linear least-squares fit to the data, the function should also calculate the squared residual:
+\begin{equation*}
+\text{Er} = \sum\limits_{i=1}^{n}\left[y_i - \left(a_1 x_i + a_0\right) \right]^2
+\end{equation*}
+The input arguments \lstinline[style=myMatlab]{x}, and \lstinline[style=myMatlab]{y} are vectors with the values of the data points.  Use the function to find the coefficients for a linear least squares fit to the following data and find the error.
+
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+$x$ & 1 & 3 & 4 & 6 & 9 & 12 & 14 \\ \hline
+$y$ & 2 & 4 & 5 & 6 & 7 & 8 & 11 \\ \hline
+\end{tabular}
+\end{table}
+
+
+\vspace{3.0cm}
+
+\item The following are measurements of the rate coefficient, $k$, for the reaction $\text{CH}_{4} + \text{O} \rightarrow \text{CH}_3 + \text{OH}$ at different temperatures $T$.
+
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+$T \ (K)$ & 595 & 623 & 761 & 849 & 989 & 1076 & 1146 & 1202 & 1382 & 1445 & 1562 \\ \hline
+$k\times 10^20 \ (\text{m}^3 \cdot s)$ & 2.12 & 3.12 & 14.4 & 30.6 & 80.3 & 131 & 186 & 240 & 489 & 604 & 868 \\ \hline  
+\end{tabular}
+\end{table}
+
+\vspace{0.25cm}
+
+\noindent Use the method of least squares to best fit a function of the form: 
+\begin{equation*}
+\ln{(k)} = A + b\ln{(T)} - \frac{E_a}{RT}
+\end{equation*}
+This is derived as a linearization of the Arrhenius equation:
+\begin{equation*}
+k = AT^be^{-\sfrac{E_a}{RT}}
+\end{equation*}
+where $A$ and $b$ are constants, $R=8.314$ J/mole/K is the universal gas constant, and $E_a$ is the activation energy for the reaction.  Determine the values of $A \ (\text{m}^3/\text{s})$ and $E_a \ (\text{J/mole})$ in the Arrhenius expression.
+
+\vspace{3.0cm}
+
+\item The following data is given:
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x$ & 0.2 & 0.5 & 1 & 2 & 3 \\ \hline
+$y$ & 3 & 2 & 1.4 & 1 & 0.6 \\ \hline
+\end{tabular}
+\end{table}
+
+\vspace{0.2cm}
+
+\noindent By hand, determine the coefficients $m$ and $b$ in the function $y = \frac{1}{mx + b}$ that best fit the data using linear least squares fit.
+
+\vspace{3.0cm}
+
+\item The resistance, $R$, of a tungsten wire as a function of temperature can be modeled with the equation:
+\begin{equation*}
+R = R_0 \left[ 1 + \alpha \left( T - T_0\right) \right]
+\end{equation*}
+where $R_0$ is the resistance corresponding to temperature $T_0$, and $\alpha$ is the temperature coefficient of resistance.  Determine $R_0$ and $\alpha$ such that the equation will best fit the data presented below.  Use $T_0 = 20^{\circ} \ $C.  
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+$T \ (^{\circ} \text{C})$ & 20 & 100 & 180 & 260 & 340 & 420 & 500 \\ \hline
+$R \ (\Omega)$ & 500 & 676 & 870 & 1060 & 1205 & 1410 & 1565 \\ \hline
+\end{tabular}
+\end{table}
+
+\vspace{3.0cm}
+
+\item In a uni-axial tension test, a dog-bone-shaped specimen is pulled in a machine.  During the test, the force applied to the specimen, $F$, and the length of a gage section, $L$, are measured.  The true stress, $\sigma_t$, and the true strain, $\epsilon_t$, are defined by:
+\begin{equation*}
+\sigma_t = \frac{F}{A_o}\frac{L}{L_0} \ \ \text{ and } \ \ \epsilon_t = \ln{\frac{L}{L_0}}
+\end{equation*}
+where $A_0$ and $L_0$ are the initial cross-sectional area and gage length, respectively.  The true stress-strain curve in the region beyond the yield stress is often modeled by:
+\begin{equation*}
+\sigma_t = K\epsilon_t^m
+\end{equation*}
+The following are values of $F$ and $L$ measured in an experiment.  Determine the values of the coefficients $K$ and $m$ that best fit the data.  The initial cross-sectional area and gage length are $A_0 = 1.25 \times 10^{-4} \ \text{m}^2$, and $L_0 = 0.0125$ m.
+
+\begin{table}[h!]
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$F$ (kN) & 24.6 & 29.3 & 31.5 & 33.3 & 34.8 & 35.7 & 36.6 & 37.5 & 38.8 & 39.6 & 40.4 \\ \hline
+$L$ (mm) & 12.58 & 12.82 & 12.91 & 12.95 & 13.05 & 13.21 & 13.35 & 13.49 & 14.08 & 14.21 & 14.48 \\ \hline
+\end{tabular}
+\end{table}
+
+
+\end{enumerate}
+
+\end{fullwidth}
