@@ -161,8 +161,8 @@ Recall from your introductory calculus courses that the way to minimize a
 function is to take the first and second derivative of the function; solve for
 the values of the free parameter $(\mathbf{c})$ so that the first derivative
 is equal to zero; and verify that the second derivative is positive.  When the
-first derivative is zero, the function is at an extrema; when the second
-derivative is positive, that extrema is a minimum.
+first derivative is zero, the function is at an extremum; when the second
+derivative is positive, that extremum is a minimum.
 
 Carrying out this idea, we will take the derivative of Equation
 \ref{residSquared} and set the first derivative equal to zero:
@@ -321,7 +321,7 @@ ySixth = cSixth(1)*x.^6 + cSixth(2)*x.^5 + ...
 
 \section{Model Estimators}
 
-As can be seen from Figure \ref{HighOrderFitPlot}, it is possible to find estimators that greatly reduce the squared residual.\sidenote[][-2.5cm]{In general it is possible to find a polynomial that exactly interpolates any number of data points with the resulting residual equal to zero.  It turns out, doing this with polynomial interpolants is usually a very bad idea---at least with ordinary monomials and with equally spaced data points---and when using non-exact floating point arithmetic, and a large number of data points is involved, it is practically impossible.  Better interpolation methods with non-equally-spaced points are almost always used where very accurate interpolation is necessary (for example: when implementing high order finite element methods).}  As higher order estimators are used, the resulting curve through the data becomes problematic.  For example, how would one justify the ``curvy'' nature of the 6th-order approximator?  If we re-performed the experiment with improved instrumentation and made our measurements more carefully, do we \emph{actually} expect the data to follow the 6th ordercurve?  Probably not.  
+As can be seen from Figure \ref{HighOrderFitPlot}, it is possible to find estimators that greatly reduce the squared residual.\sidenote[][-2.5cm]{In general it is possible to find a polynomial that exactly interpolates any number of data points with the resulting residual equal to zero.  It turns out, doing this with polynomial interpolants is usually a very bad idea---at least with ordinary monomials and with equally spaced data points---and when using non-exact floating point arithmetic, and a large number of data points is involved, it is practically impossible.  Better interpolation methods with non-equally-spaced points are almost always used where very accurate interpolation is necessary (for example: when implementing high order finite element methods).}  As higher order estimators are used, the resulting curve through the data becomes problematic.  For example, how would one justify the ``curvy'' nature of the 6th-order approximator?  If we re-performed the experiment with improved instrumentation and made our measurements more carefully, do we \emph{actually} expect the data to follow the 6th order curve?  Probably not.  
 
 It is also worthwhile to consider that the purpose of doing all of this least squares estimation is \emph{not} always to find some curve that comes close to interpolating all of the data.  Rather, the purpose may be to fit the data to a rational scientific model where the experimental data either confirms and strengthens the proposed model for the phenomena under consideration, or serves as the basis for creation of a new model.\cite{trefethen2}
 
@@ -403,7 +403,7 @@ d = [22 26 27 30 34 33 33.5 37 42]';
 
 \end{lstlisting}
 
-The linear least-squres regression is carried out in the following code; the best fit line is shown in Figure \ref{fig:lec13n-ex1-linear-fit}
+The linear least-squares regression is carried out in the following code; the best fit line is shown in Figure \ref{fig:lec13n-ex1-linear-fit}
 \begin{marginfigure}
 \includegraphics{lec13n-ex1-linear-fit.png}
 \caption{Linear fit, $m=0.416$, $b=12.913$.}
@@ -432,7 +432,7 @@ A plot of the resulting estimator is shown in Figure \ref{fig:lec13n-ex1-second-
 \caption{Second-order polynomial fit. $a=0.436$, $b=0.0979$, and $c=-5.89e-5$.}
 \label{fig:lec13n-ex1-second-order-fit}  
 \end{marginfigure}
-Using an estimator like $y = a + b\sqrt{I}$ is accomodated in exactly the same way; there is a constant term---proportional to $I^{0}$---and a term proportional to $I^{\sfrac{1}{2}}$.  The MATLAB code is shown in the listing below and the resulting estimator, along with the previously found estimators, is shown in Figure \ref{fig:lec13n-ex1-model-fit}.
+Using an estimator like $y = a + b\sqrt{I}$ is accommodated in exactly the same way; there is a constant term---proportional to $I^{0}$---and a term proportional to $I^{\sfrac{1}{2}}$.  The MATLAB code is shown in the listing below and the resulting estimator, along with the previously found estimators, is shown in Figure \ref{fig:lec13n-ex1-model-fit}.
 
 \begin{marginfigure}
 \includegraphics{lec13n-ex1-model-fit.png}
