@@ -148,6 +148,18 @@ deletekeywords={axis,length,error,colormap, colorbar,ceil,meshgrid,zlabel,surf,r
 
 % example usage for code: \begin{lstlisting}[caption=< caption text >, label=<label>]
 
+
+% Reset the sidenote number each chapter
+\let\oldchapter\chapter
+\def\chapter{%
+  \setcounter{footnote}{0}%
+  \oldchapter
+}
+
+
+
+
+
 %%% end packages added by Stu
 %%
 % Some shortcuts for Tufte's book titles.  The lowercase commands will
@@ -433,6 +445,7 @@ What distinguishes this course from Prof Zill's work is the explicit incorporati
 
 \part{Curve Fitting and Interpolation}
 \input{numerical_methods/lecture13.tex}
+\input{numerical_methods/lecture14.tex}
 
 %%
 % The back matter contains appendices, bibliographies, indices, glossaries, etc.
