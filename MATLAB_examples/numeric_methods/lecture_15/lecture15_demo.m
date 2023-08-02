@@ -132,7 +132,8 @@ Strain = [0 0.4 0.8 1.2 1.6 2.0 2.4 2.8 3.2...
 Stress = [0 3.0 4.5 5.8 5.9 5.8 6.2 7.4 9.6...
     15.6 20.7 26.7 31.1 35.6 39.3 41.5]'; % MPa
 
-strplt = linspace(min(Strain),max(Strain),1000);
+Nplt = 1000;
+strplt = linspace(min(Strain),max(Strain),Nplt);
 strplt = strplt';
 
 %% Make a Basic Plot of the Data
@@ -163,7 +164,7 @@ set(gca,'fontsize',12,'fontweight','bold');
 
 %% N-th order Interpolation (monomials)
 
-N = 15;
+N = length(Strain);
 X = Strain.^(0:N);
 c = (X'*X)\(X'*Stress);
 nthInterp = @(x) (x.^(0:N))*c;
@@ -173,17 +174,65 @@ plot(Strain, Stress,'sr',...
     strplt,nthInterp(strplt),'-r','markersize',10,'linewidth',3);
 xlabel('Strain','fontsize',16,'fontweight','bold');
 ylabel('Stress (MPa)','fontsize',16,'fontweight','bold');
-title('Stress-Strain Curve','fontsize',18,'fontweight','bold');
+title('Monomial Interpolant','fontsize',18,'fontweight','bold');
 grid on
 set(gca,'fontsize',12,'fontweight','bold');
 
 r = Stress - nthInterp(Strain);
 fprintf('Residual Squared = %g \n',r'*r);
 
+%% Witch of Agnesi problem.
+
+a = 0.15;
+f_exact = @(x) (8*a^3)./(x.^2 + 4*a^2);
+
+a = -1; b = 1; Nplt = 1000;
+x_plt = linspace(a,b,Nplt);
+
+n = 25;
+k_pts = (2*(1:n) - 1)./(2*n);
+x_k = cos(k_pts.*pi);
+x_uniform = linspace(a,b,n);
+
+F_cheb = genLagrangePolyInterp(x_k,f_exact(x_k));
+F_uniform = genLagrangePolyInterp(x_uniform,...
+    f_exact(x_uniform));
+
+figure(5);
+plot(x_plt,F_uniform(x_plt),'-k',...
+    x_uniform,f_exact(x_uniform),'rs',...
+    x_plt,f_exact(x_plt),'--r',...
+    'linewidth',2,...
+    'markersize',8);
+grid on
+title('Uniform Sample Points',...
+    'FontSize',16,'FontWeight','bold');
+xlabel('X','FontSize',14,...
+    'FontWeight','bold');
+ylabel('f(x)','FontSize',14,...
+    'FontWeight','bold');
+legend('Interpolant','Sample Points','Exact');
+set(gca,'fontsize',12,'fontweight','bold');
+
+figure(6);
+plot(x_plt,F_cheb(x_plt),'-k',...
+    x_k,f_exact(x_k),'rs',...
+    x_plt,f_exact(x_plt),'--r',...
+    'linewidth',2,...
+    'markersize',8);
+grid on
+title('Chebyshev Nodes',...
+    'FontSize',16,'FontWeight','bold');
+xlabel('X','FontSize',14,...
+    'FontWeight','bold');
+ylabel('f(x)','FontSize',14,...
+    'FontWeight','bold');
+legend('Interpolant','Sample Points','Exact');
+set(gca,'fontsize',12,'fontweight','bold');
+
+
 %% Lagrange Interpolation
 F = genLagrangePolyInterp(Strain,Stress);
-
-
 
 figure(4)
 plot(Strain,Stress,'sr',...
@@ -191,7 +240,7 @@ plot(Strain,Stress,'sr',...
 
 xlabel('Strain','fontsize',16,'fontweight','bold');
 ylabel('Stress (MPa)','fontsize',16,'fontweight','bold');
-title('Stress-Strain Curve','fontsize',18,'fontweight','bold');
+title('Lagrange Interpolant','fontsize',18,'fontweight','bold');
 grid on
 set(gca,'fontsize',12,'fontweight','bold');
 r = Stress - F(Strain);
