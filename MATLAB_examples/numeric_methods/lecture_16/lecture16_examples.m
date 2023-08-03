@@ -21,9 +21,9 @@ xlabel('Year','fontsize',12,'fontweight','bold');
 ylabel('% Households with Computers','fontsize',12,...
     'fontweight','bold');
 
-year = year-base_year;%get better conditioned fit.
-n = 3;
-p1 = polyfit(year,pct_w_comp,n);
+year = year-base_year;
+m = 3;
+p1 = polyfit(year,pct_w_comp,m);
 
 x1 = 2008 - base_year; x2 = 2013 - base_year;
 
@@ -85,10 +85,11 @@ figure(4)
 plot(x,y,'ro',...
     X_space,f_int(X_space),'-b',...
     'linewidth',3)
-title('Interpolation Methods','fontsize',16,...
+title('MATLAB Interpolation','fontsize',16,...
     'fontweight','bold');
-xlabel('X','fontsize',14,'fontweight','bold');
-ylabel('Y','fontsize',14,'fontweight','bold');
+xlabel('Engine Speed [RPM]','fontsize',14,'fontweight','bold');
+ylabel('Power [hp]','fontsize',14,'fontweight','bold');
+grid on;
 set(gca,'fontsize',12,'fontweight','bold');
 axis([xMin xMax 0.5*min(y) 1.25*max(y)]);
 
@@ -100,6 +101,7 @@ fprintf('Estimated hp at %d rpm: %g \n',...
     x2,f_int(x2));
 
 %% Example 4
+% load data from FEM analysis
 load('fem_data.mat');
 
 figure(5)
@@ -117,3 +119,9 @@ Y = linspace(yMin,yMax,Ny);
 [XX,YY] = meshgrid(X,Y);
 figure(6)
 surf(XX,YY,TempField(XX,YY),'edgecolor','none');
+title('Temperature Field','fontsize',16,...
+    'fontweight','bold')
+xlabel('X','fontsize',14,'fontweight','bold');
+ylabel('Y','FontSize',14, 'FontWeight','bold');
+zlabel('T ^{\circ}C','FontSize',14,'FontWeight','bold');
+axis([xMin xMax yMin yMax 400 700]);
