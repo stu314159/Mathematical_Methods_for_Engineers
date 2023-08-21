@@ -10,11 +10,11 @@ n = 6;
 xMin = 0; xMax = 5;
 
 %% Call a local Function to Generate Partial Series Solution
-y = generate_series(n);
+u = generate_series(n);
 
 %% Plot the Power Series
 figure(1)
-fplot(y,[xMin, xMax],'linewidth',2);
+fplot(u,[xMin, xMax],'linewidth',2);
 title_str = sprintf('Lecture 9 Series n = %d',n);
 title(title_str,'fontsize',18,'fontweight','bold');
 xlabel('X','fontsize',16,'fontweight','bold');
@@ -23,12 +23,12 @@ set(gca,'fontsize',12,'fontweight','bold');
 grid on
 
 %% Numeric solution with ODE45
-y0 = [5,1]; % y(0) and y'(0)
+u0 = [5,1]; % y(0) and y'(0)
 tSpan = [0,5]; % think of "x" as time ("t")
-[t,y_num] = ode45(@lec9_example,tSpan,y0);
+[t,u_num] = ode45(@lec9_example,tSpan,u0);
 
 figure(2)
-plot(t,y_num(:,1),'linewidth',2);
+plot(t,u_num(:,1),'linewidth',2);
 title('Numeric Solution','fontsize',18,'fontweight','bold');
 xlabel('X','fontsize',16,'fontweight','bold');
 ylabel('Y(X)','fontsize',16,'fontweight','bold');
@@ -36,9 +36,9 @@ set(gca,'fontsize',12,'fontweight','bold');
 grid on
 
 figure(3)
-fplot(y,[xMin,xMax],'-b','linewidth',2);
+fplot(u,[xMin,xMax],'-b','linewidth',2);
 hold on
-plot(t,y_num(:,1),'--r','linewidth',2);
+plot(t,u_num(:,1),'--r','linewidth',2);
 hold off
 title_str = sprintf('Power Series Comparison n = %d',n);
 title(title_str,'fontsize',18,'fontweight','bold');
@@ -49,7 +49,7 @@ legend('Power Series','ODE45');
 grid on
 
 %% Compute difference between y_num and y
-sol_rel_err = (y_num(:,1) - y(t))./y(t);
+sol_rel_err = (u_num(:,1) - u(t))./u(t);
 figure(4)
 plot(t,sol_rel_err,'-c','LineWidth',3);
 title('Relative Error','fontsize',14,'fontweight','bold');
@@ -71,7 +71,7 @@ plot(xPlt,u5(xPlt),'-b',...
     xPlt,u10(xPlt),'-c',...
     xPlt,u15(xPlt),'-k',...
     xPlt,u20(xPlt),'-g',...
-    t,y_num(:,1),'--r','linewidth',3);
+    t,u_num(:,1),'--r','linewidth',3);
 title('Power Series Solution Accuracy',...
     'fontsize',16,'fontweight','bold');
 xlabel("X");
@@ -83,7 +83,7 @@ set(gca,'fontsize',12,'fontweight','bold')
 
 n_vals = [5 10 15 20];
 rel_err_vals = nan(1,4);
-re_fun = @(u,t) norm(u(t) - y_num(:,1),2)/norm(y_num(:,1),2);
+re_fun = @(u,t) norm(u(t) - u_num(:,1),2)/norm(u_num(:,1),2);
 rel_err_vals(1) = re_fun(u5,t);
 rel_err_vals(2) = re_fun(u10,t);
 rel_err_vals(3) = re_fun(u15,t);
@@ -104,12 +104,12 @@ set(gca,'fontsize',10,'fontweight','bold');
 
 
 %% Local function to generate the series
-function  y = generate_series(n)
+function  u = generate_series(n)
 
 C1 = nan(1,n);
 C2 = nan(1,n);
 
-y1 = @(t) 0;
+u1 = @(t) 0;
 c1_0 = 5;
 C1(1) = 0;
 C1(2) = c1_0/2; % c2 = c0/2
@@ -123,9 +123,9 @@ for k = 2:(n-2)
 end
 
 % construct y1 from the coefficients
-y1 = @(t) y1(5) + c1_0;
+u1 = @(t) u1(5) + c1_0;
 for k = 1:(n-1)
-    y1 = @(t) y1(t) + C1(k)*t.^k;
+    u1 = @(t) u1(t) + C1(k)*t.^k;
 end
 % for y2(t), c0 = 0, c1 = 1
 
@@ -142,12 +142,12 @@ for k = 2:(n-2)
 end
 
 % construct y2 from the coefficients
-y2 = @(t) c2_0;
+u2 = @(t) c2_0;
 for k = 1:(n-1)
-    y2 = @(t) y2(t) + C2(k)*t.^k;
+    u2 = @(t) u2(t) + C2(k)*t.^k;
 end
 
-y = @(t) y1(t) + y2(t);
+u = @(t) u1(t) + u2(t);
 
 
 end
