@@ -3,10 +3,8 @@ clear
 clc
 close 'all'
 
-% this version will try and do without symbolic series
-
 %% Parameters
-n = 6;
+n = 6; % number of terms in each solution
 xMin = 0; xMax = 5;
 
 %% Call a local Function to Generate Partial Series Solution
@@ -23,7 +21,7 @@ set(gca,'fontsize',12,'fontweight','bold');
 grid on
 
 %% Numeric solution with ODE45
-u0 = [5,1]; % y(0) and y'(0)
+u0 = [5,1]; % u(0) and u'(0)
 tSpan = [0,5]; % think of "x" as time ("t")
 [t,u_num] = ode45(@lec9_example,tSpan,u0);
 
@@ -48,8 +46,8 @@ set(gca,'fontsize',12,'fontweight','bold');
 legend('Power Series','ODE45');
 grid on
 
-%% Compute difference between y_num and y
-sol_rel_err = (u_num(:,1) - u(t))./u(t);
+%% Compute difference between u_num and u
+sol_rel_err = (u_num(:,1) - u(t))./u_num(:,1);
 figure(4)
 plot(t,sol_rel_err,'-c','LineWidth',3);
 title('Relative Error','fontsize',14,'fontweight','bold');
@@ -59,7 +57,7 @@ sol_rel_err_norm = norm(sol_rel_err,2);
 fprintf('The 2-norm of the relative error = %g \n',...
     sol_rel_err_norm);
 
-%%
+%% Observe convergence as number of terms increase
 u5 = generate_series(5);
 u10 = generate_series(10);
 u15 = generate_series(15);
@@ -122,14 +120,14 @@ for k = 2:(n-2)
     C1(k+2) = (C1(k) + C1(k-1))/((k+1)*(k+2));
 end
 
-% construct y1 from the coefficients
+% construct u1 from the coefficients
 u1 = @(t) u1(5) + c1_0;
 for k = 1:(n-1)
     u1 = @(t) u1(t) + C1(k)*t.^k;
 end
-% for y2(t), c0 = 0, c1 = 1
+% for u2(t), c0 = 0, c1 = 1
 
-% set coefficients for y2(t)
+% set coefficients for u2(t)
 c2_0 = 0;
 C2(1) = 1;
 C2(2) = c2_0/2; % again, c2 = c0/2
@@ -141,7 +139,7 @@ for k = 2:(n-2)
    C2(k+2)= (C2(k) + C2(k-1))/((k+1)*(k+2)); 
 end
 
-% construct y2 from the coefficients
+% construct u2 from the coefficients
 u2 = @(t) c2_0;
 for k = 1:(n-1)
     u2 = @(t) u2(t) + C2(k)*t.^k;
