@@ -158,7 +158,7 @@ where $h$ is the convective heat transfer coefficient.
 \noindent\textbf{Example: } Consider a rod of length $L$ that is insulated along its lateral surfaces.  There is heat transfer from the left end of the rod into a surrounding medium at temperature $20^{\circ}$ and the right end is insulated.  The initial temperature is $f(x)$ throughout.  We would like to know what the temperature distribution is as a function of time and space.  The corresponding BVP is:
 \begin{table}
 \begin{tabular}{l l}
-PDE: & $\frac{\partial u}{\partial t}, \ \ 0<x<L, \ t>0 $ \\
+PDE: & $\frac{\partial u}{\partial t}=k\frac{\partial^2 u}{\partial x^2}, \ \ 0<x<L, \ t>0 $ \\
 & \\
 BCs: & $\frac{\partial u}{\partial x}\Bigl|_{x=0} = -h(u(0,t)-20), \ \  \frac{\partial u}{\partial x}\Bigl|_{x=L} = 0, \ \ t>0$ \\
 & \\
