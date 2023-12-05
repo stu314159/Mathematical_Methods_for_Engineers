@@ -64,7 +64,7 @@ x_{\text{NS}} = \frac{(a+b)}{2}
 \end{itemize}
 Except in the edge case that $f(x_{\text{NS}})=0$, only one of the above conditions will be true.\sidenote[][-1.5cm]{\textbf{Health Warning:} You should definitely test this edge case.}
 
-\item Select the subinterval that contains the solution---either $[a,x_{\text{NS}},b]$ or $[x_{\text{NS}},b]$ as determined in step 3---as the new $a$ and $b$ and return to step 2.
+\item Select the subinterval that contains the solution---either $[a,x_{\text{NS}}]$ or $[x_{\text{NS}},b]$ as determined in step 3---as the new $a$ and $b$ and return to step 2.
 \end{enumerate}
 Three iterations of the bisection method are illustrated in Figure \ref{fig:lec3n-bisection-first-three}.
 \begin{marginfigure}
@@ -77,7 +77,7 @@ Three iterations of the bisection method are illustrated in Figure \ref{fig:lec3
 
 \begin{enumerate}
 \item If $f(x)$ is continuous and exactly one root is contained in the initial interval $[a,b]$, the bisection method is guaranteed to converge with the error in $x_{\text{NS}}$ reduced by a factor of two with each iteration of the algorithm.
-\item The convergence rate is steady but slow relative to other methods.\sidenote{Since the error is reduced by a constant fraction with each iteration, the bisection method is said to exhibit \emph{linear convergence}.}
+\item The convergence rate is steady but slow relative to other methods.\sidenote[][-1.5cm]{Since the error is reduced by a constant fraction with each iteration, the bisection method is said to exhibit \emph{linear convergence}.}
 \item The test $f(a)f(b)<0$ is a \emph{sufficient} condition for a root to exist between $[a,b]$ but is not a \emph{necessary} condition.  For example, the function $f(x)=\left(x-3\right)^2$ has two roots at $x=3$, but with $a=1$ and $b=4$, we find that $f(1)f(4)>0$ and the test fails.
 \item The algorithm is tailored to find just one root.  If multiple roots are desired, one must change the algorithm accordingly.
 \end{enumerate}
@@ -177,7 +177,7 @@ Now we are ready to commence the bisection method.  In this listing we provide c
 \ref{lst:ann3n-3}  This is step \#2 of the bisection method.
 
 
-\vspace{1.75 cm}  
+\vspace{1.25 cm}  
 
 \ref{lst:ann3n-4} Check the edge case where the root was exactly at the midpoint of the interval.
 
