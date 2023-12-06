@@ -3,7 +3,7 @@
 \section{Objectives}
 The objectives of this lecture are to:
 \begin{itemize}
-\item Describe the goals for more advanced root-finding algorithms and generally how they may be achieved.
+\item Describe the goals for more advanced root-finding algorithms and generally outline how they may be achieved.
 \item Discuss MATLAB's built-in function \lstinline[style=myMatlab]{fzero} for finding roots of non-linear functions.
 \item Illustrate how to use the advanced features of fzero.
 \end{itemize}
@@ -43,7 +43,7 @@ The algorithm for the regula falsi method is as follows:
 \item If $f(a)f(x_{\text{NS}}) < 0$, the root is in $[a,x_{\text{NS}}]$.
 \item If $f(x_{\text{NS}})f(b) < 0$, the root is in $[x_{\text{NS}},b]$.
 \end{itemize}
-\item Select the subinterval that contains the solution---either $[a,x_{\text{NS}},b]$ or $[x_{\text{NS}},b]$ as determined in step 3---as the new $a$ and $b$ and return to step 2.
+\item Select the subinterval that contains the solution---either $[a,x_{\text{NS}}]$ or $[x_{\text{NS}},b]$ as determined in step 3---as the new $a$ and $b$ and return to step 2.
 \end{enumerate}
 The iteration should be stopped when the estimated error is smaller than the pre-determined tolerance.  Some notes on this method:
 \begin{itemize}
@@ -62,7 +62,7 @@ x = fzero(f,x0)
 \end{lstlisting}
 \end{tabular}
 \end{center}
-where \lstinline[style=myMatlab]{x} is the root, \lstinline[style=myMatlab]{fun} is a handle to the non-linear function, and \lstinline[style=myMatlab]{x0} is either a point (close to the solution) or a vector \lstinline[style=myMatlab]{x0 = [a b]} whose entries indicate the left and right boundary of an interval that brackets a solution.\sidenote{MATLAB checks to see if \lstinline[style=myMatlab]{[a b]} contains a root---i.e. by checking $f(a)f(b)<0$---and returns an error if it does not.}
+where \lstinline[style=myMatlab]{x} is the root, \lstinline[style=myMatlab]{f} is a handle to the non-linear function, and \lstinline[style=myMatlab]{x0} is either a point (close to the solution) or a vector \lstinline[style=myMatlab]{x0 = [a b]} whose entries indicate the left and right boundary of an interval that brackets a solution.\sidenote{MATLAB checks to see if \lstinline[style=myMatlab]{[a b]} contains a root---i.e. by checking $f(a)f(b)<0$---and returns an error if it does not.}
 
 You can specify options and get more information about the solution by using optional input and output variables as shown below:
 \begin{center}
