@@ -135,7 +135,7 @@ Gauss elimination is the most basic \emph{direct} method\sidenote{In later lectu
 \bracketMatrixstack{
 a_{11} &  a_{12} & \cdots & a_{1n} \\
 a_{21} & a_{22} & \cdots & a_{2n} \\
-\cdots & \ddots & \ddots & \vdots \\
+\vdots & \ddots & \ddots & \vdots \\
 a_{n1} & a_{n2} & \cdots & a_{nn} 
 }
 \bracketVectorstack{
@@ -258,7 +258,7 @@ b^{\prime \prime}_3 \\
 b^{\prime}_4
 }
 }_{
-\substack{ \text{eliminate } a_{32} \text{ by subtracting } m_{32}=\sfrac{a_{32}}{a_{22}} \\ \text{of 2\textsuperscript{nd} row from 3\textsuperscript{rd} row}
+\substack{ \text{eliminate } a^{\prime}_{32} \text{ by subtracting } m_{32}=\sfrac{a^{\prime}_{32}}{a^{\prime}_{22}} \\ \text{of 2\textsuperscript{nd} row from 3\textsuperscript{rd} row}
 }
 }
 \rightarrow
@@ -283,7 +283,7 @@ b^{\prime \prime}_3 \\
 b^{\prime \prime}_4
 }
 }_{
-\substack{ \text{eliminate } a_{42} \text{ by subtracting } m_{42}=\sfrac{a_{42}}{a_{22}} \\ \text{of 2\textsuperscript{nd} row from 4\textsuperscript{th} row}
+\substack{ \text{eliminate } a^{\prime}_{42} \text{ by subtracting } m_{42}=\sfrac{a^{\prime}_{42}}{a^{\prime}_{22}} \\ \text{of 2\textsuperscript{nd} row from 4\textsuperscript{th} row}
 }
 }
 \rightarrow
@@ -308,7 +308,7 @@ b^{\prime \prime}_3 \\
 b^{\prime \prime \prime}_4
 }
 }_{
-\substack{ \text{eliminate } a_{43} \text{ by subtracting } m_{43}=\sfrac{a_{43}}{a_{33}} \\ \text{of 3\textsuperscript{rd} row from 4\textsuperscript{th} row}
+\substack{ \text{eliminate } a^{\prime \prime}_{43} \text{ by subtracting } m_{43}=\sfrac{a^{\prime \prime}_{43}}{a^{\prime \prime}_{33}} \\ \text{of 3\textsuperscript{rd} row from 4\textsuperscript{th} row}
 }
 }
 \end{equation*}
@@ -404,7 +404,7 @@ fprintf('Relative difference: %g \n',rel_error);
 
 \vspace{0.1cm}
 
-\ref{lst:ann7n-3}  This loop ends on the second-to-last row since the last row is not a pivot row for any eliminatin operations.
+\ref{lst:ann7n-3}  This loop ends on the second-to-last row since the last row is not a pivot row for any elimination operations.
 
 \vspace{0.1cm}
 
@@ -428,7 +428,7 @@ end
 \end{lstlisting}
 At this point, the matrix \lstinline[style=myMatlab]{A} should be in upper-triangular form.  Now we commence back-substitution.\marginnote[0.25cm]{
 
-\ref{lst:ann7n-5} The variable \lstinline[style=myMatlab]{x} is constructed as a \emph{column vector}.  This is important since it is required for the semantics of the matrix-vector multiplication carried out in line 45 to be correct.
+\ref{lst:ann7n-5} The variable \lstinline[style=myMatlab]{x} is constructed as a \emph{column vector}.  This is important since it is required for the semantics of the matrix-vector multiplication carried out three lines down to be correct.
 
 \vspace{0.1cm}
 
