@@ -1,4 +1,4 @@
-\chapter{Lecture 8 - Gauss Elimination}
+\chapter{Lecture 8 - Gauss Elimination with Pivoting}
 \label{ch:lec8n}
 \section{Objectives}
 The objectives of this lecture are to:
@@ -266,7 +266,7 @@ end
 
 \section{Matrix Market Test Repository}
 
-The Matrix Market is an online repository of matrices that can be used to test and benchmark algorithms for solving linear systems of equations.\cite{MatrixMarket}  Example matrices that we have used so far are helpful in illustrating an algorithm and performing simple tests to make sure everything is working.  MATLAB also has tools for generation of random matrices that can also be helpful.  But, if you want to know if the algorithm you have developed will work well on \emph{relevant} matrices, you need a resource like the Matrix Market.  With the Matrix Market you can browse through and select from a selection of hundreds of \emph{actual} linear systems of equations created as part of a real system.  The Matrix Market also includes information about test matrices such as whether or not it is symmetric, positive definite, has real or complex entries, and for sparse matrices, the total number of non-zero entries.  Matrix Market provides utility routines to allow automatically loading matrix data into the MATLAB environment.
+The Matrix Market is an online repository of matrices that can be used to test and benchmark algorithms for solving linear systems of equations.\cite{MatrixMarket}  Example matrices that we have used so far are helpful in illustrating an algorithm and performing simple tests to make sure everything is working.  MATLAB also has tools for generation of random matrices that can also be helpful but, if you want to know if the algorithm you have developed will work well on \emph{relevant} matrices, you need a resource like the Matrix Market.  With the Matrix Market you can browse through and choose from a selection of hundreds of \emph{actual} linear systems of equations created as part of a real system.  The Matrix Market also includes information about test matrices such as whether or not it is symmetric, positive definite, has real or complex entries, and for sparse matrices, the total number of non-zero entries.  Matrix Market provides utility routines to allow automatically loading matrix data into the MATLAB environment.
 
 \newthought{We will use} some matrices obtained from the Matrix Market to compare the performance of the Gauss elimination and Gauss elimination with pivoting algorithms.  The metric we will use to measure performance will be the \emph{relative residual}.  The residual is calculated from Equation \ref{eq:lec8n-residual}.
 
