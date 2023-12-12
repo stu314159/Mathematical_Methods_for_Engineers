@@ -38,7 +38,7 @@ We can similarly define a two-point backward difference formula:
 f(x_{i-1}) &= f(x_i) - f^{\prime}(x_i)h + \frac{f^{\prime \prime}(x_i)}{2!}h^2 - \cdots \\
 \Rightarrow f^{\prime}(x_{i}) &= \frac{f(x_i) - f(x_{i-1})}{h} + \mathcal{O}(h)
 \end{align*}
-These equations are simple to use and effective, however they have a significant drawback in that the error term is proportional to $h$.  For every extra decimal place we need to gain in accuracy, we need to reduce $h$ by a factor of 10.  This adds up quickly.  The good news is that we can do better.  
+These equations are simple to use and effective, however they have a significant drawback in that the error term is proportional to $h$.  For every extra decimal place we need to gain in accuracy, we must to reduce $h$ by a factor of 10.  This adds up quickly.  The good news is that we can do better.  
 
 For first derivative formulas, we can try a centered difference scheme:\marginnote{
 
@@ -188,4 +188,15 @@ If we use the 2\textsuperscript{nd}-order 3-point forward and backward different
 \end{marginfigure}
 
 \section{Second Derivative Formulas}
+
+We can use finite difference equations to approximate the second derivative (and higher-order derivatives) as well.  As with first-order differentiation, we derive the formula from Taylor-series expansion.
+
+\begin{align*}
+f(x_{i+1})=f(x_i)+f^{\prime}(x_i)h+\frac{f^{\prime \prime}(x_i)h^2}{2!}+\frac{f^{\prime\prime\prime}(x_i)h^3}{3!}+ \cdots \\
+f(x_{i-1})=f(x_i)-f^{\prime}(x_i)h+\frac{f^{\prime \prime}(x_i)h^2}{2!}-\frac{f^{\prime\prime\prime}(x_i)h^3}{3!}+ \cdots
+\end{align*}
+If we add the two equations above and solve for $f^{\prime \prime}(x_i)$, we get:
+\begin{equation}
+f^{\prime \prime}(x_i) = \frac{2f(x_{i-1})-2f(x_{i})+f(x_{i+1})}{h^2}+\mathcal{O}(h^2)
+\end{equation}
 
