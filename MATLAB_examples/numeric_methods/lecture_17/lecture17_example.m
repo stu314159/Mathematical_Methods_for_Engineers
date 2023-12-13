@@ -185,13 +185,15 @@ legend('Analytic','Numeric','location','best')
 
 %% Example 3 Boundary Value Problem Example
 
-N = 10;
+% discretize the spatial domain
+N = 9;
 Nx = 2^N;
 xMin = 0; xMax = pi;
 X = linspace(xMin,xMax,Nx);
 h = X(2) - X(1);
 
-A = zeros(Nx,Nx); % matrix for 2nd derivative operator
+% Create a matrix for 2nd derivative operator
+A = zeros(Nx,Nx); 
 
 % set coefficients for first equation
 A(1,1) = 2/h^2; A(1,2) = -5/h^2;
@@ -207,24 +209,32 @@ end
 A(Nx,Nx) = 2/h^2; A(Nx,Nx-1) = -5/h^2;
 A(Nx,Nx-2) = 4/h^2; A(Nx,Nx-3) = -1/h^2;
 
-% Set boundary conditions on first and last equation
-A(1,:) = 0; A(1,1) = 1;
-A(end,:) = 0; A(end,end) = 1;
+% Set boundary conditions 
+A(1,:) = 0; A(:,1) = 0; A(1,1) = 1;
+A(end,:) = 0; A(:,end) = 0; A(end,end) = 1;
 
 
-%  use MATLAB tools to get eigenvalues and eigenvectors of A
-[V,D] = eigs(A);
+%  Get the four smallest eigenvalues and eigenvectors of A
+[V,D] = eigs(A(2:(end-1),2:(end-1)),4,'smallestabs');
 
-
+% reduce the X domain to exclude the boundaries
+X_red = X(2:(end-1));
 figure(5)
-subplot(4,1,1)
-plot(X,(V(:,1))/norm(V(:,1),2),'.b')
 
+subplot(4,1,1)
+plot(X_red,(V(:,1))/norm(V(:,1),2),'.b')
+title('First Four Eigenvectors of A',...
+    'FontSize',14,'FontWeight','bold');
 subplot(4,1,2)
-plot(X,(V(:,2))/norm(V(:,2),2),'.b')
+plot(X_red,(V(:,2))/norm(V(:,2),2),'.b')
 
 subplot(4,1,3)
-plot(X,(V(:,3))/norm(V(:,3),2),'.b')
+plot(X_red,(V(:,3))/norm(V(:,3),2),'.b')
 
 subplot(4,1,4)
-plot(X,(V(:,4))/norm(V(:,4),2),'.b')
+plot(X_red,(V(:,4))/norm(V(:,4),2),'.b')
+xlabel('X','FontSize',12,'FontWeight','bold');
+
+% Display the eigenvalues
+fprintf('D = \n');
+disp(D);
