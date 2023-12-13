@@ -23,7 +23,7 @@ The strategy we will explore in this lecture is straight-forward.  In order to e
 \begin{equation*}
 f_{\text{interp}}(x) = \frac{(x - x_2)(x - x_3)y_1}{(x_1 - x_2)(x_1 - x_3)} + \frac{(x - x_1)(x-x_3)y_2}{(x_2 - x_1)(x_2 - x_3)} + \frac{(x - x_1)(x-x_2)y_3}{(x_3-x_1)(x_3 - x_2)}
 \end{equation*}
-The derivative of this function is not too diffiult, but it is somewhat messy:
+The derivative of this function is not too difficult, but it is somewhat messy:
 \begin{fullwidth}
 \begin{multline*}
 \frac{df_{\text{interp}}}{dx} = y_1\left[\frac{1}{x_1 - x_2}\left(\frac{x - x_3}{x_1 - x_3}\right) + \frac{1}{x_1-x_3}\left(\frac{x - x_2}{x_1 - x_2} \right)\right] + \\ y_2\left[\frac{1}{x_2 - x_1}\left(\frac{x - x_3}{x_2 - x_3}\right) + \frac{1}{x_2 - x_3}\left(\frac{x - x_1}{x_2 - x_1}\right) \right] + y_3 \left[\frac{1}{x_3 - x_1}\left(\frac{x - x_2}{x_3 - x_2}\right) + \frac{1}{x_3 - x_2}\left(\frac{x - x_1}{x_3 - x_1}\right) \right]
@@ -43,7 +43,7 @@ This formulation is admittedly messy, but with some patient MATLAB coding, it ca
 
 \vspace{0.5cm}
 
-\noindent\ref{lst:ann18n-2} Similarly here, we initialize the derivate of the Lagrange function with \lstinline[style=myMatlab]{dLp = @(x) 1}, which is the multiplicative identity, so a special case is not needed on line 23 and 24 where we include the next term of the product.
+\noindent\ref{lst:ann18n-2} Similarly here, we initialize the derivative of the Lagrange function with \lstinline[style=myMatlab]{dLp = @(x) 1}, which is the multiplicative identity, so a special case is not needed on line 23 and 24 where we include the next term of the product.
 }
 \begin{lstlisting}[style=myMatlab,name=lec18n-ex1]
 function dF = genLagrangeInterpDeriv(X,Y)
@@ -111,11 +111,11 @@ Using $n=11$ uniformly spaced sample points, the function and its numerical deri
 \caption{Numeric differentiation with $n=21$ non-uniformly spaced points.}
 \label{fig:lec18n-ex1-woa-n21-cheb}
 \end{marginfigure}
-In contrast, if we use non-uniformy spaced Chebychev points, as we did in Lecture 15, the quality of the numeric derivative is markedly better as we see in Figure \ref{fig:lec18n-ex1-woa-n21-cheb}.  Furthermore, if we increase the number of interpolation points, the quality of the numeric derivative improves still further as is shown in Figure \ref{fig:lec18n-ex1-woa-n51-cheb}.
+In contrast, if we use non-uniformly spaced Chebychev points, as we did in Lecture 15, the quality of the numeric derivative is markedly better as we see in Figure \ref{fig:lec18n-ex1-woa-n21-cheb}.  Furthermore, if we increase the number of interpolation points, the quality of the numeric derivative improves still further as is shown in Figure \ref{fig:lec18n-ex1-woa-n51-cheb}.
 \begin{marginfigure}[0.0cm]
 \includegraphics{lec18n-ex1-woa-n51-cheb.png}
 \caption{Numeric differentiation with $n=51$ non-uniformly spaced points.}
 \label{fig:lec18n-ex1-woa-n51-cheb}
 \end{marginfigure}
-When we study Finite Element Methods in future lectures, we will find numeric differentiation with Lagrange Polynomials using non-uniform sample points to be a very important and powerfull tool.
+When we study Finite Element Methods in future lectures, we will find numeric differentiation with Lagrange Polynomials using non-uniform sample points to be a very important and powerful tool.
 

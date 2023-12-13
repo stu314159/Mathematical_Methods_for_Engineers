@@ -2,6 +2,93 @@
 \label{ch:ass6n}
 
 \begin{fullwidth}
+\begin{enumerate}
+\item Measurements of thermal conductivity, $k$ (W/m-K), of silicon at various temperatures are given in the table below.
 
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+$\text{T} [K]$ & 50 & 100 & 150 & 200 & 400 & 600 & 800 & 1000 \\ \hline
+$k$ [W/m-K] & 28 & 9.1 & 4.0 & 2.7 & 1.1 & 0.6 & 0.4 & 0.3 \\ \hline
+\end{tabular}
+\end{table}
 
+The data is to be fitted with a function of the form $k=f(T)$.  Determine which of the nonlinear equations presented in Lecture 14 can best fit the data and determine its coefficients.  Make a plot that shows the data points (asterisk marker) and the equation (solid line).
+
+\vspace{3.0cm}
+
+\item The following data are given:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$x$ & 1 & 2.2 & 3.4 & 4.8 & 6 & 7 \\ \hline
+$y$ & 2 & 2.8 & 3 & 3.2 & 4 & 5 \\ \hline
+\end{tabular}
+\end{table}
+
+Write the polynomial in Lagrange form that passes through the points.
+
+\pagebreak
+
+\item Values of enthalpy per unit mass, $h$, of an equilibrium Argon plasma (Ar, $\text{Ar}^{+}$, $\text{Ar}^{++}$, $\text{Ar}^{+++}$ ions and electrons) versus temperature are given in the table below.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$T \times 10^3$ [K] & 5 & 7.5 & 10 & 12.5 & 15 & 17.5 & 20 & 22.5 & 25 & 27.5 & 30 \\ \hline
+$h$ [MJ/kg] & 3.3 & 7.5 & 41.8 & 51.8 & 61 & 101.1 & 132.9 & 145.5 & 171.4 & 225.8 & 260.9 \\ \hline
+\end{tabular}
+\end{table}
+
+Write a script that uses interpolation to calculate $h$ at temperatures ranging from 5000 K to 30000 K in increments of 500 K.  The program should generate a plot that shows the interpolated points and the data points from the table (use an asterisk marker).  
+\begin{enumerate}
+\item For interpolation use Lagrange polynomials as demonstrated in Lecture 15.
+\item For interpolation use MATLAB's built-in tool \lstinline[style=myMatlab]{interp1} with \lstinline[style=myMatlab]{method='spline'}.
+\end{enumerate}
+
+\vspace{2.0cm}
+
+\item Given the following data:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x$ & 1.1 & 1.2 & 1.3 & 1.4 & 1.5 \\ \hline
+$f(x)$ & 0.6133 & 0.7822 & 0.9716 & 1.1814 & 1.4117 \\ \hline
+\end{tabular}
+\end{table}
+
+Find the first derivative, $f^{\prime}(x)$, at the point $x=1.3$.
+\begin{enumerate}
+\item Use the three-point forward-difference formula.
+\item Use the three-point backward-difference formula.
+\item Use the two-point centered difference formula.
+\end{enumerate}
+
+\vspace{2.0cm}
+
+\item Given the following data:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x$ & 0.6 & 0.7 & 0.8 & 0.9 & 1.0 \\ \hline
+$f(x)$ & 5.2296 & 3.6155 & 2.7531 & 2.2717 & 2 \\ \hline
+\end{tabular}
+\end{table}
+
+Find the second derivative, $f^{\prime \prime}(x)$, at the point $x=0.8$.
+\begin{enumerate}
+\item Use the three-point forward-difference formula.
+\item Use the three-point backward-difference formula.
+\item Use the two-point centered difference formula.
+\end{enumerate}
+
+\end{enumerate}
 \end{fullwidth}
