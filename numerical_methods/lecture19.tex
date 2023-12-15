@@ -16,7 +16,7 @@ Suppose you have a function, $f(x)$, that you want to integrate but, for some re
 \item If $g(x)$ is in some sense ``close'' to $f(x)$, you might hope that the integral of $g(x)$ would serve as a decent approximation to the integral of $f(x)$.
 \end{enumerate}
 
-This is exactly the strategy followed for the Newton-Cotes integration formulas.  Each of the formulas in this class is distinguished from the others by the function $g(x)$ that the method uses to approximate $f(x)$.  What is common among these formulas is the manner in which $g(x)$ is forced to be ``close'' to $f(x)$ and it is this: for each of the Newton-Cotes integration formulas, the simple and easily integrated function $g(x)$ is forced to be exactly equal to $f(x)$ at some finite number of discrete points.
+This is the strategy followed for the Newton-Cotes integration formulas.  Each of the formulas in this class is distinguished from the others by the function $g(x)$ that the method used to approximate $f(x)$.  What is common among these formulas is the manner in which $g(x)$ is forced to be ``close'' to $f(x)$ and it is this: for each of the Newton-Cotes integration formulas, the simple and easily integrated function $g(x)$ is forced to be exactly equal to $f(x)$ at some finite number of discrete points.
 
 \subsection{Midpoint Rule}
  
@@ -26,12 +26,11 @@ This is exactly the strategy followed for the Newton-Cotes integration formulas.
  \label{fig:midpoint}
  \end{marginfigure}
  
- Figure \ref{fig:midpoint} gives a simple illustration of the midpoint rule.  For the midpoint rule, the function $f(x)$ is approximated as a piece wise constant.  Each piece of the piece wise constant function is set to be equal to $f(x)$ at the midpoint of each sub-interval.\sidenote{These methods are only applicable for \emph{definite} integrals over $x\in(a,b)$. Unless otherwise noted, you should assume $a$ and $b$ are finite.}  It is not necessary that the sub-intervals be the same width, but in order to ease the implementation and to be consistent with common theoretical analysis, we will assume the sub-intervals are of equal length, which we will denote: $(x_i - x_{i-1})=h$.
+ Figure \ref{fig:midpoint} gives a simple illustration of the midpoint rule.  For the midpoint rule, the function $f(x)$ is approximated as a piece-wise constant.  Each piece of the piece-wise constant function is set to be equal to $f(x)$ at the midpoint of each sub-interval.\sidenote{These methods are only applicable for \emph{definite} integrals over $x\in(a,b)$. Also, unless otherwise noted, you should assume $a$ and $b$ are finite.}  It is not necessary that the sub-intervals be the same width but, in order to ease the implementation and to be consistent with common theoretical analysis, we will assume the sub-intervals are of equal length, which we will denote: $(x_i - x_{i-1})=h$.
  
  The integration formula is:
  \begin{align*}
- \int_{a}^{b} f(x) \ dx \approx \int_{a}^{b} g(x) \ dx &= \int_{x_0}^{x_1}f\left(\frac{x_1 + x_0}{2}\right)(x_1 - x_0) + \cdots \\
- & \cdots + \int_{x_{n-1}}^{x_n}f\left(\frac{x_n + x_{n-1}}{2} \right)(x_n - x_{n-1})  \\
+ \int_{a}^{b} f(x) \ dx \approx \int_{a}^{b} g(x) \ dx &= \int_{x_0}^{x_1}f\left(\frac{x_1 + x_0}{2}\right) \ dx + \cdots + \int_{x_{n-1}}^{x_n}f\left(\frac{x_n + x_{n-1}}{2} \right) \ dx \\
  &= h \sum\limits_{i=1}^{n} f(m_i), \ \ m_i = \frac{x_i+x_{i-1}}{2} 
  \end{align*}
  
@@ -66,13 +65,12 @@ end
  \label{fig:lec19n-trapezoidal-rule}
  \end{marginfigure}
  \subsection{Trapezoidal Rule}
- A schematic of the trapezoidal rule is shown in Figure \ref{fig:lec19n-trapezoidal-rule}.  The domain $[a,b]$ is broken into $n-1$ sub-intervals and the function $f(x)$ is approximated by a linear function within each sub-interval; the linear function $g(x)$ matches $f(x)$ at the end-points. As promised, integrating each of the simple functions within the domain is easy; each sub-interval is a trapezoid whose area can be calculated with a simple formula:
- \begin{fullwidth}
- \begin{align*}
- \int_{a}^{b} f(x) \ dx \approx \int_{a}^{b} g(x) \ dx &= \int_{x_0}^{x_1} \frac{g(x_0)+g(x_1)}{2}(x_1 - x_0) + \cdots + \frac{g(x_{n-1})+ g(x_{n})}{2}(x_n - x_{n-1}) \\
- &= \int_{x_0}^{x_1} \frac{f(x_0)+f(x_1)}{2}(x_1 - x_0) + \cdots + \frac{f(x_{n-1})+ f(x_{n})}{2}(x_n - x_{n-1})
- \end{align*} 
- \end{fullwidth}
+ A schematic of the trapezoidal rule is shown in Figure \ref{fig:lec19n-trapezoidal-rule}.  The domain $[a,b]$ is broken into $n$ sub-intervals and the function $f(x)$ is approximated by a linear function within each sub-interval; the linear function $g(x)$ matches $f(x)$ at the end-points. As promised, integrating each of the simple functions within the domain is easy; each sub-interval is a trapezoid whose area can be calculated with a simple formula:
+ %\begin{fullwidth}
+ \begin{equation*}
+ \int_{a}^{b} f(x) \ dx \approx \int_{a}^{b} g(x) \ dx = \int_{x_0}^{x_1} \frac{f(x_0)+f(x_1)}{2} \ dx + \cdots + \frac{f(x_{n-1})+ f(x_{n})}{2} \ dx
+ \end{equation*} 
+ %\end{fullwidth}
  
  As with the midpoint rule we will use equally-spaced sub-intervals: $x_{i}-x_{i-1}=h, \ i=1,2,\dots,n$ which results in the final form given in Equation \ref{eq:trapezoidal-rule}.
  \begin{equation}
@@ -97,7 +95,7 @@ In much the same way as with the midpoint and trapezoidal rules, Simpson's rule 
 \begin{equation*}
 g(x) = c_0 + c_1x + c_2 x^2
 \end{equation*}
-We make $g(x)$ ``close'' to $f(x)$ by requiring $g(x)=f(a)$, $g(b) = f(b)$, and $g(\sfrac{(a+b)}{2}) = f(\sfrac{(a+b)}{2})$.  With some tedious algebra and calculus it can be shown that a unique function $g(x)$ meeting these conditions can be found and that its integral over the subdomain is:
+We make $g(x)$ ``close'' to $f(x)$ by requiring $g(x_i) = f(x_i)$ at each partitioning point, $x_i$.  With some tedious algebra and calculus it can be shown that a unique function $g(x)$ meeting these conditions can be found and that its integral over a subdomain is:
 \begin{equation*}
 \int_{x_{i-1}}^{x_{i+1}} f(x) \ dx \approx \int_{x_{i-1}}^{x_{i+1}} g(x) \ dx = \frac{h}{3}\left[f(x_{i-1})+4f(x_i)+f(x_{i+1})\right] 
 \end{equation*}
@@ -138,7 +136,7 @@ Where $w_i$ are the weights, and $x_i$ are the sample points.  Our quadrature ru
 \end{align*}
 Which results in the following nonlinear system of equations:
 \begin{equation}
-\bracketMatrixstack{1 & 1 & 1 \\ x_1 & x_2 & x_3 \\ x_1^2 & x_2^2 & x_3^2 \\ x_1^3 & x_2^3 & x_3^3}\bracketVectorstack{w_1 \\ w_2 \\ w_3} = \bracketMatrixstack{c_1 & c_1 & c_2 & c_3}\bracketVectorstack{1 \\ \sfrac{1}{2} \\ \sfrac{1}{3} \\ \sfrac{1}{4}}
+\bracketMatrixstack{1 & 1 & 1 \\ x_1 & x_2 & x_3 \\ x_1^2 & x_2^2 & x_3^2 \\ x_1^3 & x_2^3 & x_3^3}\bracketVectorstack{w_1 \\ w_2 \\ w_3} = \bracketVectorstack{1 \\ \sfrac{1}{2} \\ \sfrac{1}{3} \\ \sfrac{1}{4}}
 \label{eq:lec19n-Simpson-Quad}
 \end{equation}
 In principle, the sample points and the weights are all unknown.  Let us simplify the problem and move a step closer to Simpson's rule by stipulating, at least, that $x_1 = 0$ and $x_3 = 1$.  This then leaves the middle sample point, $x_2$, and all of the are weights unknown.
@@ -162,6 +160,9 @@ fprintf('The weights are: \n');
 format long
 disp(w(2:end))
 format short
+
+
+
 
 %% Local function for 
 function w = quadRule(xW)
@@ -188,7 +189,7 @@ Other quadrature formulas can be obtained using the exact same procedure.  For e
 \begin{equation}
 \bracketMatrixstack{1 & 1 & 1 \\ x_1 & x_2 & x_3 \\ x_1^2 & x_2^2 & x_3 ^2 \\ x_1^3 & x_2^3 & x_3^3 \\ x_1^4 & x_2^4 & x_3^4 \\ x_1^5 & x_2^5 & x_3^5 }\bracketVectorstack{w_1 \\ w_2 \\ w_3} = \bracketVectorstack{1 \\ \sfrac{1}{2} \\ \sfrac{1}{3} \\ \sfrac{1}{4} \\ \sfrac{1}{5} \\ \sfrac{1}{6}}
 \end{equation}
-where all of the sample points and weights are unknown.  This system of equations has a unique solution; the sample points and weights are shown in Table \ref{tab:lec19n-3pt6th}. Convergence behavior is shown in Figure \ref{fig:lec19n-3p6o-convergence}.
+where all of the sample points and weights are unknown.  This system of equations can be solved to obtain the sample points and weights that are shown in Table \ref{tab:lec19n-3pt6th}. Convergence behavior is shown in Figure \ref{fig:lec19n-3p6o-convergence}.
 \begin{margintable}
 \begin{tabular}{|c|c|c|}
 \hline
