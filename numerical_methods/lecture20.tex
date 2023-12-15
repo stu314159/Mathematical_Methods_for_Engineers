@@ -73,7 +73,7 @@ where, as before, $w_i$ are the weights and $x_i$ are the sample points.  We are
 
 With these $2n$ degrees of freedom, we might hope to \emph{exactly} integrate any polynomial up to degree $2n-1$ much like in the trapezoidal and Simpson's rule.  The key is to choose the sample points and weights carefully so that we can achieve this goal.
 
-For Gauss-Legendre quadrature, we will choose the functions $g(x)$ to be Legendre polynomials.  Legendre polynomials were first introduced in Lecture 9 of the analytical methods portion of this text.  As a review, Legendre polynomials,$P_n(x)$, are solutions to Legendre's differential equation:
+For Gauss-Legendre quadrature, we will choose the functions $g(x)$ to be Legendre polynomials.\sidenote{This is why our method is called \emph{Gauss-Legendre} quadrature. There are several other variations of Gauss quadrature that use other sets of orthogonal polynomials but the theory presented in this lecture is typical.}  Legendre polynomials were first introduced in Lecture 9 of the analytical methods portion of this text.  As a review, Legendre polynomials, $P_n(x)$, are solutions to Legendre's differential equation:
 \begin{equation}
 \frac{d}{dx}\left[\left(1-x^2\right)\frac{d}{dx}P_n(x)\right] + n(n+1)P_n(x) = 0, \ \ n=0,1,2,\dots
 \end{equation}
@@ -94,7 +94,7 @@ Legendre polynomials are chosen because they have the following important proper
 This makes the representation of $f(x)$ with a linear combination of Legendre polynomials relatively easy.\sidenote{The representation is ``easy'' in much the same way that it is easier to represent vectors in 3-dimensional space by using linear combinations of vectors $[1,0,0],[0,1,0]$ and $[0,0,1]$ as opposed to any other linear combination of independent but non-orthogonal vectors.}
 \item They are \emph{complete}, meaning that any ``reasonable'' function within the interval $x\in[-1,1]$ can be approximated to arbitrary accuracy by taking a large enough linear combination of Legendre polynomials.
 \end{enumerate}
-Since we are using Legendre polynomials:
+We approximate $f(x)$ as a linear combination of Legendre Polynomials:
 \begin{align*}
 f(x) &\approx \overbrace{c_0 P_0(x) + c_1P_1(x) + \cdots + c_{n-1}P_{n-1}(x)}^{\text{low order terms}} \\ 
 &\cdots + \underbrace{c_{n}P_0(x)P_{n}(x) + c_{n+1}P_1(x)P_n(x) + \cdots + c_{2n-1}P_{n-1}(x)P_{n}(x)}_{\text{high order terms}} \\
@@ -105,7 +105,7 @@ We hope to integrate $g(x)$ \emph{exactly}, just as with the Newton-Cotes formul
 \item We will choose the sample points to be the $n$ roots to the $n$-th order Legendre polynomial; and
 \item The orthogonality property of Legendre polynomials.
 \end{enumerate}
-Note below:
+Let us carry out the details of this integration:
 \begin{align*}
 \int_{a}^{b}f(x) \ dx &= \int_{-1}^{1}f(x(t))\ dt \frac{b-a}{2} \approx \int_{-1}^{1} g(t) \ dt \\
 \int_{-1}^{1}g(t) \ dt &= \underbrace{c_0\int_{-1}^{1}P_0(t) \ dt + c_1\int_{-1}^{1}P_1(t) \ dt + \cdots + c_{n-1}\int_{-1}^{1} P_{n-1}(t) \ dt}_{\text{low order terms}} \\
