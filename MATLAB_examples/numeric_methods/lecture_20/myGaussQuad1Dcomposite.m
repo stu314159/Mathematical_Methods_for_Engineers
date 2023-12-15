@@ -1,5 +1,6 @@
 function intF = myGaussQuad1Dcomposite(F,a,b,P,N)
-%myGaussQuad1D(f,a,b,P) performs P-point Gaussian Quadrature of function F
+%myGaussQuad1Dcomposite(f,a,b,P,N) performs P-point 
+%Gaussian Quadrature of function F
 %over interval [a,b]
 %   input:  F - function handle 
 %           a - lower limit of integration

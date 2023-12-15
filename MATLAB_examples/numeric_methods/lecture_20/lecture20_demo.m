@@ -4,9 +4,9 @@ clc
 close 'all'
 
 f = @(x) exp(-x.^2);
-a = -2; b = 2;
+a = -3; b = 3;
 
-N = 5;
+N = 16;
 
 % you can  pick and choose which outputs you want
 % to keep.
