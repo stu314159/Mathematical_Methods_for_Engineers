@@ -25,7 +25,7 @@ The main differences are:
 \item Gauss quadrature does not require $g(x)$ to match $f(x)$ at any pre-determined number of locations in the interval, but it does call for sampling $f(x)$ at a number of discrete points throughout the interval much like trapezoidal and Simpson's rule does.  The location of these sample points (often called \emph{integration points} or \emph{Gauss points}) is a key factor to the accuracy that Gauss quadrature can achieve.
 \end{enumerate}
 
-In this lecture we will discuss two versions of the Gauss quadrature algorithm.  First, we will describe the algorithm in a recipe-like way without any discussion regarding the theory as to why it all works.  After that is out of the way, a full derivation will be presented so that readers will know exactly how and why the method works.
+In this lecture we will discuss two versions of the Gauss quadrature algorithm.  First, we will describe the algorithm in a recipe-like way without any discussion regarding the theory or why it all works.  After that is out of the way, a full derivation will be presented so that readers will know exactly how and why the method works.
 
 \section{The Short Version}
 In Gauss quadrature, the definite integral of a function $f(x)$ over an interval $[-1,1]$ is approximated by Equation \ref{eq:lec20n-gq-short}.
@@ -33,7 +33,7 @@ In Gauss quadrature, the definite integral of a function $f(x)$ over an interval
 \int_{-1}^{1} f(x) \ dx \approx \sum\limits_{i=1}^{N}w_i f(x_i)
 \label{eq:lec20n-gq-short}
 \end{equation}
-Since we generally do not want to integrate functions only from $x\in[-1,1]$, we will linearly map the desired domain, $[a,b]$ onto the reference domain, $t \in [-1,1]$ as follows:\marginnote{Notice that at $x(t=-1) = a$, and $x(t=1) = b$.}
+Since we generally do not want to integrate functions only from $x\in[-1,1]$, we will linearly map the desired domain, $[a,b]$, onto the reference domain, $t \in [-1,1]$, as follows:\marginnote{Notice that at $x(t=-1) = a$, and $x(t=1) = b$.}
 \begin{align*}
 x(t) &= \frac{1}{2}\left[(b-a)t + a + b \right] \\
 dx &= \frac{1}{2}(b-a) \ dt

@@ -41,7 +41,7 @@ The ``Hit or Miss'' algorithm is probably the simplest example of a Monte Carlo 
 
 \item Use MATLAB to determine if $y_{\text{sample}} < f(x_{\text{sample}})$.  If it is, then the point lies ``under'' the curve to be integrated.  Do this for each sample point and calculate the total fraction under the curve.
 
-\item Multiply the fraction by 6 to obtain the estimated integral.
+\item Multiply the fraction by 6 (area of the bounding box) to obtain the estimated integral.
 \end{enumerate}
 
 MATLAB code to carry out such a calculation is shown in the listing below.
@@ -88,7 +88,7 @@ fprintf('Hit or Miss estimated integral = %g \n',MCInt);
 Naturally, we expect that our approximation of the integral will improve if we take more random samples.  This turns out to be true and the convergence behavior is illustrated in Figure \ref{fig:lec21n-hom-convergence}.  Notice that the rate of convergence is quite slow with ``half''-order convergence; to reduce error by a factor of 10, you need to do 100 times as much work. 
 
 \section{Mean Value Algorithm}
-One simple optimization will allow us to cut the amount of work we need to do in half.  We know from calculus that there is a relationship between the definite integral of a function and its mean value over the interval $x \in [a,v]$.
+One simple optimization will allow us to cut the amount of work we need to do in half.  We know from calculus that there is a relationship between the definite integral of a function and its mean value over the interval $x \in [a,b]$.
 
 \begin{equation}
 f_{\text{AVG}} = \frac{1}{b-a}\int_{a}^{b} f(x) \ dx
@@ -118,12 +118,12 @@ For simple one-dimensional integrals of smooth ``well-behaved'' functions, Monte
 
 
 \begin{enumerate}
-\item \textbf{Monte Carlo quadrature works well for non-smooth, non-``well-behaved'' functions.}  Consider the ``wiggly'' function shown in Equation \ref{eq:lec21n-wiggly} and plotted in Figure \ref{fig:lec21n-wiggly}.  Newton-Cotes and Gaussian quadrature algorithms perform very poorly on functions like this.    
-
+\item \textbf{Monte Carlo quadrature works well for non-smooth, non-``well-behaved'' functions.}  Consider the ``wiggly'' function shown in Equation \ref{eq:lec21n-wiggly} and plotted in Figure \ref{fig:lec21n-wiggly}.    
 \begin{equation}
 f(t) = \sin^2{\left(\frac{1}{t} \right)}
 \label{eq:lec21n-wiggly}
 \end{equation}
+Newton-Cotes and Gaussian quadrature algorithms perform very poorly on functions like this since the spacing of sample points must be very tight if the oscillatory behavior of the function is to be captured.  The accuracy of Monte Carlo methods, on the other hand, do not depend on being able to construct a suitable approximation of the integrand.  
 
 \item \textbf{The rate of convergence is independent of the dimensions of integration.} We have not discussed 2D, 3D or more generally N-dimensional integration in any of the last three lectures.  Still, these are important problems both for you as well as your friends in other disciplines.  For Monte Carlo quadrature, the integraation error is always proportional to $\sfrac{1}{\sqrt{n}}$.  The convergence of Newton-Cotes or Gaussian quadrature is actually dependent on the dimensionality.  For example, the error the trapezoidal rule is actually proportional to $\sfrac{1}{\left(n^{\sfrac{2}{D}}\right)}$ where $D$ is the number of spatial dimensions.  This ``curse of dimensionality'' is especially important, for example, for certain problems of statistical physics where the integrations must be performed over billions of dimensions; each ``dimension'' representing an interaction between a pair of bodies.  In this case, use of any method \emph{other} than Monte Carlo is a practical impossibility.
 
@@ -138,9 +138,9 @@ Given the variety of integraion method discussed over the last three lectures, y
 
 \noindent\textbf{Guidelines:}
 \begin{enumerate}
-\item For integrations where you must sample the functions at regular intervals---e.g. if the function you are integrating is known to you only through th edata provided by lab instrumentation---then the trapezoidal or Simpson's rule may be the only choices that are reasonable.  Pick one.
+\item For integrations where you must sample the functions at regular intervals---e.g. if the function you are integrating is known to you only through the data provided by lab instrumentation---then the trapezoidal or Simpson's rule may be the only choices that are reasonable.  Pick one.
 
-\item For low-dimension integrations where the function is reasonably smooth and you can sample the function in any place you wish, use Gauss quadrature.  Finite element methods that we will discuss in future lectures use variations of Gauss quadrature extensively because they achieve high accuracy with relatively little work.
+\item For low-dimensional integrations where the function is reasonably smooth and you can sample the function in any place you wish, use Gauss quadrature.  Finite element methods that we will discuss in future lectures use variations of Gauss quadrature extensively because they achieve high accuracy with relatively little work.
 
-\item For high-dimension and/or highly non-smooth functions thatyou can sample in any place you wish, use Monte Carlo methods.  
+\item For high-dimension and/or highly non-smooth functions that you can sample in any place you wish, use Monte Carlo methods.  
 \end{enumerate}
