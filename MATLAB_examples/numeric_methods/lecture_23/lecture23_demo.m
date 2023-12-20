@@ -150,20 +150,19 @@ legend('Euler Implicit','Exact Solution');
 %% Modified Euler's Method
 
 N = 30;
-x = linspace(xMin,xMax,N);
-y_ns = nan(1,N);
+x = linspace(xMin,xMax,N+1);
+y_ns = nan(1,N+1);
 y_ns(1) = 2;
 h = x(2)-x(1);
 
-for t = 1:(N-1)
+for t = 1:N
    f_xy = f(x(t),y_ns(t));
    % initial Euler step
    y_ns_EU = y_ns(t) + f_xy*h;
    
    % Apply Mod Euler
    y_ns(t+1) = y_ns(t) + ...
-       (f_xy + f(x(t+1),y_ns_EU))*h/2;
-   
+       (f_xy + f(x(t+1),y_ns_EU))*h/2;   
 end
 
 figure(6)
@@ -208,7 +207,7 @@ loglog(h_array,err_array,'-b',...
     h_array,err_gage,'--r','linewidth',2);
 title("Convergence Modified Euler's Method",...
     'fontsize',14,'fontweight','bold');
-xlabel('X','fontsize',12,'fontweight','bold');
-ylabel('f(X)','fontsize',12,'fontweight','bold');
+xlabel('h','fontsize',12,'fontweight','bold');
+ylabel('Relative Error','fontsize',12,'fontweight','bold');
 grid on
 legend('Convergence Rate','h^2');

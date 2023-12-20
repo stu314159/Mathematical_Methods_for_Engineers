@@ -245,7 +245,7 @@ This method relies on the same theoretical development as the explicit Euler met
 
 \noindent\textbf{Algorithm:}
 \begin{enumerate}
-\item Discretize the independent variable, $x \in [a,b]$ into $N$ intervals of equal size: $h = (x_{i+1}-x_i) = \frac{b-a}{N}$.\sidenote{Often the problem statement for initial value problems will identify one end of the domain but leave the other end unspecified---e.g. $x>0$.  For practical purposes we will always assume a finite domain for the indpendent variable.}
+\item Discretize the independent variable, $x \in [a,b]$ into $N$ intervals of equal size: $h = (x_{i+1}-x_i) = \frac{b-a}{N}$.
 \item Set $y(x_0) = y_0$ where both $x_0$ and $y_0$ are given in the problem statement.
 \item Set $x_{i+1} = x_i + h$
 \item Evaluate: $y_{i+1} = y_i + hf(x_{i+1},y_{i+1})$
@@ -307,9 +307,43 @@ legend('Euler Implicit','Exact Solution');
 \end{marginfigure}
 The resulting solution is shown in Figure \ref{fig:lec23n-ex2-implicit}.  The performance trade-offs are hard to measure in general. Depending on how many evaluations of $f(x,y)$ are required to solve the nonlinear equations and depending on how stiff the equation is, implicit Euler's method may be less attractive than simply increasing $N$ and trying again with Euler's explicit method.  This trade-off will be different for each problem.
 
+\section{Modified Euler's Method}
 
+Whether you are using the implicit or explicit version of Euler's method, they both exhibit 1\textsuperscript{st}-order convergence which is slow.  Can we do better?  The answer is: of course.  The main assumption in Euler's method is that the slope remains constant throughout each interval.  This is the major source of error and the modified Euler's method partially corrects for this error.
 
+\vspace{0.2cm}
 
+\noindent\textbf{Algorithm:}
+\begin{enumerate}
+\item Discretize the independent variable, $x \in [a,b]$ into $N$ intervals of equal size: $h = (x_{i+1}-x_i) = \frac{b-a}{N}$.
+\item Set $y(x_0) = y_0$ where both $x_0$ and $y_0$ are given in the problem statement.
+\item Set $x_{i+1} = x_i + h$
+\item Calculate $f(x_i,y_i)$
+\item Estimate $y_{i+1}$ using Euler's explicit method: $y^{\text{EE}}_{i+1} = y_i + hf(x_{i},y_{i})$
+\item Calculate $f(x_{i+1},y^{\text{EE}}_{i+1})$
+\item Find better estimate of $y_{i+1}$ by averaging the two slopes:
+\begin{equation*}
+y_{i+1} = y_i + \frac{f(x_i,y_i) + f(x_{i+1},y^{\text{EE}}_{i+1})}{2}h
+\end{equation*}
+\item Repeat steps 3 through 7, $N$ times.
+\end{enumerate}
+One can show that this algorithm reduces local truncation error to $\mathcal{O}(h^3)$ and the corresponding global truncation error is $\mathcal{O}(h^2)$, thereby obtaining quadratic convergence. The listing below shows a MATLAB implementation of steps 3 through 7 and Figure \ref{fig:lec23n-ex1-modified-convergence} shows the 2\textsuperscript{nd}-order convergence behavior.
+\begin{marginfigure}
+\includegraphics{lec23n-ex1-modified-convergence.png}
+\caption{Quadratic convergence of the modified Euler method.}
+\label{fig:lec23n-ex1-modified-convergence}
+\end{marginfigure}
+\begin{lstlisting}[style=myMatlab,name=lec23n-modified]
+for t = 1:N
+   f_xy = f(x(t),y_ns(t));
+   % initial Euler step
+   y_ns_EU = y_ns(t) + f_xy*h;
+   
+   % Apply Mod Euler
+   y_ns(t+1) = y_ns(t) + ...
+       (f_xy + f(x(t+1),y_ns_EU))*h/2;   
+end
+\end{lstlisting}
 
 
 
