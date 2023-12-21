@@ -11,7 +11,7 @@ The objectives of this lecture are to:
 
 \section{Ordinary Differential Equations (ODEs) Review}
 
-It almost seems appropriate to begin this section with a brief apology.  Elementary differential equations, such as what most undergraduate engineering majors study, are more fully reviewed in lectures 1 through 6 in the analytical methods portion of this text.  I indend in this section only a brief reminder of selected categories by which a given ordinary differential equation can be classified.  So from that perspective, the discussion I am about to begin will be redundant.
+It almost seems appropriate to begin this section with a brief apology.  Elementary differential equations, such as what most undergraduate engineering majors study, are more fully reviewed in lectures 1 through 6 in the analytical methods portion of this text.  I intend in this section only a brief reminder of selected categories by which a given ordinary differential equation can be classified.  So from that perspective, the discussion I am about to begin will be redundant.
 
 In addition to being redundant, the classification schemes I will present---which inherently smack of pedantry---will turn out to be of limited relevance in the context of the \emph{numerical} methods we are about to study; for most classes of ODEs many numerical methods will suffice and differ only in their complexity and convergence properties.  Nonetheless, when learning these new methods, it will be important to select problems that we \emph{can} solve analytically so we know whether or not the solution our numerical method produces is correct.  Thus we will review our classification of ODEs so we can discriminate between problems we can and cannot solve analytically; we will choose the former for our test cases to validate implementation of the numerical method.
 
@@ -41,7 +41,7 @@ and that, by contrast:
 \end{enumerate}
 are both nonlinear.  If an equation is nonlinear, we usually cannot solve it analytically unless it also happens to be separable.  
 
-\item \emph{homogeneity}.  An ODE is \emph{homogeneous} if each non-zero term in the equation involves the dependent variable or one of its derivatives.  Otherwise it is \emph{nonhomogeneous}.  Thus:
+\item \emph{homogeneity}.  An ODE is \emph{homogeneous} if each non-zero term in the equation involves the dependent variable or one of its derivatives.  Otherwise it is \emph{non-homogeneous}.  Thus:
 \begin{enumerate}
 \item $u^{\prime} - xu = 0$; and
 \item $u u^{\prime \prime} = u^{\prime} + 5u$
@@ -51,7 +51,7 @@ are homogeneous, while
 \item $u^{prime} - 3x = 0$; and
 \item $u^{\prime \prime} - x^2u^{\prime} = \sin{(x)}$
 \end{enumerate}
-are nonhomogeneous.
+are non-homogeneous.
 
 \end{enumerate}
 
@@ -69,15 +69,15 @@ are nonhomogeneous.
 
 \noindent\textbf{Answers:}
 \begin{enumerate}
-\item 2nd order, ordinary, linear, nonhomogeneous
-\item 2nd order, ordinary, nonlinear, homogeneous
-\item 2nd order, partial, linear, nonhomogeneous
+\item 2\textsuperscript{nd}-order, ordinary, linear, non-homogeneous
+\item 2\textsuperscript{nd}-order, ordinary, nonlinear, homogeneous
+\item 2\textsuperscript{nd}-order, partial, linear, non-homogeneous
 \end{enumerate}
 
 }
 
 \section{Initial Value Problems (IVPs) and Boundary Value Problems (BVPs)}
-From now until further notice, we will restrict our attention to ordinary differential equations.  As readers are most likely aware, in order to find a unique solution for, say, a 2nd order ODE, two conditions---values for the dependent variable and/or its derivative---must also be provided.  We will further classify a problem based on the manner in which these conditions are provided.
+From now until further notice, we will restrict our attention to ordinary differential equations.  As readers are most likely aware, in order to find a unique solution for, say, a 2\textsuperscript{nd}-order ODE, two conditions---values for the dependent variable and/or its derivative---must also be provided.  We will further classify a problem based on the manner in which these conditions are provided.
 
 \subsection{Initial Value Problem}
 An initial value problem is generally of the form:
@@ -108,7 +108,7 @@ Initial value problems will be the subject of Lectures 23 - 27.  Most numerical 
 
 \section{Euler's Explicit Method for 1\textsuperscript{st}-Order IVPs}
 
-Consider the probem below:
+Consider the problem below:
 \begin{equation}
 y^{\prime} = f(x,y), \ \ y(x_0) = y_0
 \label{eq:first-order-linear-ivp}
@@ -127,15 +127,15 @@ y(x_{(i+1)}) = y(x_i)+f(x,y)h + \frac{y^{\prime \prime}(\xi)}{2}h^2
 \end{equation*}
 which we shorten somewhat for notational simplicity as:
 \begin{equation}
-y_{i+1} = y_i + hf(x_i,y_i) + \underbrace{\frac{y^{\prime \prime}(\xi)}{2}h^2}_{\substack{\text{local trucation} \\ \text{error}}}
+y_{i+1} = y_i + hf(x_i,y_i) + \underbrace{\frac{y^{\prime \prime}(\xi)}{2}h^2}_{\substack{\text{local truncation} \\ \text{error}}}
 \end{equation}
-Note that the local trucation error is incurred on every interval and accumulates; since $y_{i+1}$ is not exact, $f(x_{i+1},y_{i+1})$ is different from $f(x_{i+1},y^{\star}_{i+1})$, where $y^{\star}_{i+1}$ is the exact solution at $x_{i+1}$.  This introduces additional error as the algorithm progresses. Consequently the \emph{global} truncation error is $\mathcal{O}(h)$ and we say that the method is 1\textsuperscript{st}-order convergent.\sidenote{This is an admittedly ``hand-wavy'' explanation even though it happens to be correct.  Dissatisfied readers are encouraged to dig deeper in the references.}
+Note that the local truncation error is incurred on every interval and accumulates; since $y_{i+1}$ is not exact, $f(x_{i+1},y_{i+1})$ is different from $f(x_{i+1},y^{\star}_{i+1})$, where $y^{\star}_{i+1}$ is the exact solution at $x_{i+1}$.  This introduces additional error as the algorithm progresses. Consequently the \emph{global} truncation error is $\mathcal{O}(h)$ and we say that the method is 1\textsuperscript{st}-order convergent.\sidenote{This is an admittedly ``hand-wavy'' explanation even though it happens to be correct.  Dissatisfied readers are encouraged to dig deeper in the references.}
 
 \vspace{0.2cm}
 
 \noindent\textbf{Algorithm:}
 \begin{enumerate}
-\item Discretize the independent variable, $x \in [a,b]$ into $N$ intervals of equal size: $h = (x_{i+1}-x_i) = \frac{b-a}{N}$.\sidenote{Often the problem statement for initial value problems will identify one end of the domain but leave the other end unspecified---e.g. $x>0$.  For practical purposes we will always assume a finite domain for the indpendent variable.}
+\item Discretize the independent variable, $x \in [a,b]$ into $N$ intervals of equal size: $h = (x_{i+1}-x_i) = \frac{b-a}{N}$.\sidenote{Often the problem statement for initial value problems will identify one end of the domain but leave the other end unspecified---e.g. $x>0$.  For practical purposes we will always assume a finite domain for the independent variable.}
 \item Set $y(x_0) = y_0$ where both $x_0$ and $y_0$ are given in the problem statement.
 \item Set $x_{i+1} = x_i + h$
 \item Evaluate: $y_{i+1} = y_i + hf(x_i,y_i)$
@@ -222,7 +222,7 @@ A plot of the numeric solution along with the exact solution is shown in Figure 
 
 \subsection{Stiff Equations}
 
-\newthought{One disadvantage} of Euler's explicit method for solving IVPs is that for some problems local trucation error, instead of building up steadily, amplify exponentially and the solution ``blows up.''  As an example, consider the following IVP:
+\newthought{One disadvantage} of Euler's explicit method for solving IVPs is that for some problems local truncation error, instead of building up steadily, amplify exponentially and the solution ``blows up.''  As an example, consider the following IVP:
 
 \begin{equation}
 y^{\prime} = -100[y-\cos{(x)}]- \sin{(x)}, \ \ y(1) = 1, \ \ 0<x<2
@@ -234,9 +234,9 @@ The reader is encouraged to verify that the exact solution to this problem is $y
 \caption{Result of attempting to solve a ``stiff'' differential equation with Euler's explicit method, $N=95$.}
 \label{fig:lec23n-ex1-unstable}
 \end{marginfigure}
-You should look at that figure and recognize that whatever is going wrong, it is more than just the accumulation of local trucation error, but instead signs of incipient instability.  If you reduce $N$ further the numeric result blows up and produces a meaningless result.
+You should look at that figure and recognize that whatever is going wrong, it is more than just the accumulation of local truncation error, but instead signs of incipient instability.  If you reduce $N$ further the numeric result blows up and produces a meaningless result.
 
-The example given in Equation \ref{eq:lec23n-stiff-ivp} is referred to as a ``stiff'' differential equation.  Even though the actual solution is quite smooth, a large number of intervals is required in order to obtain a reasonable numeric solution.  Often it is the case, as it is now, that we can address the stiffness problem by simply increasing $N$ and thereby reducing our stepsize.  Eventually a threshold is passed where the numeric solution is stable and converges as expected.  In some cases, however, evaluating $f(x,y)$ is computationally expensive and ``simply'' reducing the step size has unacceptable costs.  A conceptually simple change to the algorithm can fix this problem.
+The example given in Equation \ref{eq:lec23n-stiff-ivp} is referred to as a ``stiff'' differential equation.  Even though the actual solution is quite smooth, a large number of intervals is required in order to obtain a reasonable numeric solution.  Often it is the case, as it is now, that we can address the stiffness problem by simply increasing $N$ and thereby reducing our step size.  Eventually a threshold is passed where the numeric solution is stable and converges as expected.  In some cases, however, evaluating $f(x,y)$ is computationally expensive and ``simply'' reducing the step size has unacceptable costs.  A conceptually simple change to the algorithm can fix this problem.
 
 \section{Euler's Implicit Method for 1\textsuperscript{st}-Order IVPs}
 This method relies on the same theoretical development as the explicit Euler method.  The difference is that, when we solve for $y_{i+1}$, we will use $f(x_{i+1},y_{i+1})$:
@@ -302,7 +302,7 @@ legend('Euler Implicit','Exact Solution');
 \end{lstlisting}
 \begin{marginfigure}
 \includegraphics{lec23n-ex2-implicit.png}
-\caption{Solotion of a stiff IVP with Euler's implicit method with $N=10$.}
+\caption{Solution of a stiff IVP with Euler's implicit method with $N=10$.}
 \label{fig:lec23n-ex2-implicit}
 \end{marginfigure}
 The resulting solution is shown in Figure \ref{fig:lec23n-ex2-implicit}.  The performance trade-offs are hard to measure in general. Depending on how many evaluations of $f(x,y)$ are required to solve the nonlinear equations and depending on how stiff the equation is, implicit Euler's method may be less attractive than simply increasing $N$ and trying again with Euler's explicit method.  This trade-off will be different for each problem.

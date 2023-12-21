@@ -99,7 +99,7 @@ $x$:& $8K_2 - 2K_1$ &$= -3$ \\
 $1$:&$2K_2+4K_1-2K_0$ &$= 6$
 \end{tabular}
 \end{table*}
-Luckily for us, this system of equations is structured such that it can easily be solved.  We see by inspection that $K_2 = 2/-2 = -1$; this can be plugged into the second equation to find $K_1 = -5/2$ and then we can solve the last equation to find that $K_0 = -9$.\marginnote[-4.0cm]{In general you cannot expect this to go so nicely.  What you \emph{can} hope for is that the equations you derive will have a unique solution.  We could re-write the system in the form of a matrix-vector equation:
+\noindent Luckily for us, this system of equations is structured such that it can easily be solved.  We see by inspection that $K_2 = 2/-2 = -1$; this can be plugged into the second equation to find $K_1 = -5/2$ and then we can solve the last equation to find that $K_0 = -9$.\marginnote[-4.0cm]{In general you cannot expect this to go so nicely.  What you \emph{can} hope for is that the equations you derive will have a unique solution.  We could re-write the system in the form of a matrix-vector equation:
 \begin{equation*}
 \begin{bmatrix}
 0 & 0 & -2 \\
@@ -118,9 +118,7 @@ K_2
 6
 \end{bmatrix}
 \end{equation*}
-If the solution of such a matrix cannot be done by inspection and simple algebra as it was in this case, we could use tools like MATLAB to solve the linear system of equations.  This topic and much more is covered in the numerical methods portion of this text.}
-
-Thus the particular solution is:
+If the solution of such a matrix cannot be done by inspection and simple algebra as it was in this case, we could use tools like MATLAB to solve the linear system of equations.  This topic and much more is covered in the numerical methods portion of this text.}  Thus the particular solution is:
 \begin{equation*}
 u_p(x) = -x^2-\frac{5}{2}x -9
 \end{equation*}
