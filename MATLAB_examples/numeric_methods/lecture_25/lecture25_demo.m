@@ -135,12 +135,12 @@ legend('Relative Error','h^2','location','best');
 
 
 %% Local Functions
-function y = odeRK2(ODE,a,b,N,yINI)
-% function y = odeRK2(ODE,a,b,h,yINI)
+function y = odeRK2(f,a,b,N,yINI)
+% function y = odeRK2(f,a,b,h,yINI)
 % y = solution
-% ODE = function handle for y'
+% f = function handle for y'
 % a,b = interval for solution
-% N = number of steps between a and b
+% N = number of steps between a and b (inclusive)
 % yINI = initial value for the solution
 
 A = [0 0;
@@ -159,25 +159,25 @@ for t = 1:(N-1)
     for s = 1:stages
        Xi(s) = y(t);
        for i = 1:(s-1)
-          Xi(s) = Xi(s) + h*A(s,i)*ODE(x(t)+c(i)*h,Xi(i)); 
+          Xi(s) = Xi(s) + ...
+              h*A(s,i)*f(x(t)+c(i)*h,Xi(i)); 
        end
     end
     
     y(t+1) = y(t);
     for i = 1:stages
-       y(t+1) = y(t+1) + h*B(i)*ODE(x(t)+c(i)*h,Xi(i)); 
-    end
-    
+       y(t+1) = y(t+1) + ...
+           h*B(i)*f(x(t)+c(i)*h,Xi(i)); 
+    end    
+end
 end
 
-end
-
-function y = odeExplicitRK(ODE,a,b,N,yINI,BT)
-% function y = odeExplicitRK(ODE,a,b,h,yINI,BT)
+function y = odeExplicitRK(f,a,b,N,yINI,BT)
+% function y = odeExplicitRK(f,a,b,h,yINI,BT)
 % y = solution
-% ODE = function handle for y'
+% f = function handle for y'
 % a,b = interval for solution
-% N = number of steps between a and b
+% N = number of steps between a and b (inclusive)
 % yINI = initial value for the solution
 % BT = Butcher Tableau
 
@@ -199,24 +199,24 @@ for t = 1:(N-1)
        Xi(s) = y(t);
        for i = 1:(s-1)
           Xi(s) = Xi(s) + ...
-              h*A(s,i)*ODE(x(t)+c(i)*h,Xi(i)); 
+              h*A(s,i)*f(x(t)+c(i)*h,Xi(i)); 
        end
     end
     
     y(t+1) = y(t);
     for i = 1:stages
-       y(t+1) = y(t+1) + h*B(i)*ODE(x(t)+c(i)*h,Xi(i)); 
+       y(t+1) = y(t+1) + h*B(i)*f(x(t)+c(i)*h,Xi(i)); 
     end
     
 end
 end
 
-function y = odesExplicitRK(ODE,a,b,N,yINI,BT)
-% function y = odeExplicitRK(ODE,a,b,h,yINI,BT)
+function y = odesExplicitRK(f,a,b,N,yINI,BT)
+% function y = odeExplicitRK(f,a,b,h,yINI,BT)
 % y = solution (vector)
-% ODE = function handle for y'
+% f = function handle for y'
 % a,b = interval for solution
-% N = number of steps between a and b
+% N = number of steps between a and b (inclusive)
 % yINI = initial value for the solution
 % BT = Butcher Tableau
 
@@ -239,14 +239,14 @@ for t = 1:(N-1)
        Xi(:,s) = y(:,t);
        for i = 1:(s-1)
           Xi(:,s) = Xi(:,s) + ...
-              h*A(s,i)*ODE(x(t)+c(i)*h,Xi(:,i)); 
+              h*A(s,i)*f(x(t)+c(i)*h,Xi(:,i)); 
        end
     end
     
     y(:,t+1) = y(:,t);
     for i = 1:stages
        y(:,t+1) = y(:,t+1) + ...
-           h*B(i)*ODE(x(t)+c(i)*h,Xi(:,i)); 
+           h*B(i)*f(x(t)+c(i)*h,Xi(:,i)); 
     end
     
 end

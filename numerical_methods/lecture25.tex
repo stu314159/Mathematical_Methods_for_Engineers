@@ -81,8 +81,72 @@ and the Butcher Tableau is shown in Table \ref{tab:lec25n-mem-tableau}.
 \label{tab:lec25n-mem-tableau}
 \end{margintable}
 
+\section{MATLAB Implementation of RK Methods}
 
+In this section I will present and explain three successive MATLAB implementations of an RK method.  The goal for this implementation is clarity and generality, not performance.  Students who are interested in achieving greater performance are encouraged to find optimizations sometime \emph{after} they fully understand what is shown here.
 
+\subsection{2\textsuperscript{nd}-Order RK Method, Scalar 1\textsuperscript{st}-Order Equation}
+We will start with an implementation of the modified Euler's method cast as an RK method for a scalar differential equation of 1\textsuperscript{st}-order.  The first portion of the function is shown in the listing below. Here we document the input and output variables; define variables to hold the RK matrix, RK weights, and RK nodes; and allocate a vector for the solution.
+
+\begin{lstlisting}[style=myMatlab,name=lec25n-1]
+function y = odeRK2(f,a,b,N,yINI)
+% function y = odeRK2(f,a,b,h,yINI)
+% y = solution
+% f = function handle for y'
+% a,b = interval for solution
+% N = number of steps between a and b (inclusive)
+% yINI = initial value for the solution
+
+A = [0 0;
+    1 0]; % RK matrix
+B = [0.5 0.5]; % weights
+c = [0 1]';% sample points
+stages = 2;
+
+x = linspace(a,b,N);
+y = nan(1,N);
+y(1) = yINI;
+h = x(2)-x(1);
+\end{lstlisting}
+
+\noindent Now we will calculate RK solution process:\marginnote{
+
+\vspace{0.5cm}
+
+\noindent\ref{lst:ann25n-1} A new array of slopes, one element for each stage, will ne needed at each time step.
+
+\vspace{0.3cm}
+
+\noindent\ref{lst:ann25n-2} This nested for loop calculates:
+$$\xi_{s} = y_n + h\sum\limits_{i=1}^{s-1} a_{s,i}f(t_n+c_ih,\xi_{i})$$
+for each value of $s$.  The upper limit of the summation index,$s-1$, is due to the fact that this is an explicit method and the RK matrix is strictly lower triangular.
+
+\vspace{0.2cm}
+
+\noindent\ref{lst:ann25n-3} This loop calculates:
+$$y_{n+1} = y_n + h\sum\limits_{i=1}^{s}b_if(t_n+c_ih,\xi_i)$$
+
+}
+\begin{lstlisting}[style=myMatlab,name=lec25n-1]
+for t = 1:(N-1)
+    Xi = nan(1,stages); /*!\annotation{lst:ann25n-1}!*/
+    
+    for s = 1:stages
+       Xi(s) = y(t); /*!\annotation{lst:ann25n-2}!*/
+       for i = 1:(s-1)
+          Xi(s) = Xi(s) + ...
+              h*A(s,i)*f(x(t)+c(i)*h,Xi(i)); 
+       end
+    end
+    
+    y(t+1) = y(t);
+    for i = 1:stages
+       y(t+1) = y(t+1) + ...
+           h*B(i)*f(x(t)+c(i)*h,Xi(i)); /*!\annotation{lst:ann25n-3}!*/
+    end    
+end
+end
+\end{lstlisting}
 
 
 
