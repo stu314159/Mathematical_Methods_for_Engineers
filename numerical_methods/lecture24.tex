@@ -13,7 +13,7 @@ So far we have only addressed scalar first-order equations.  There are many phys
 
 \subsection{Xenon-135 Background}
 
-Most nuclear reactors in the world today generate power through the fission of $^{235}\text{U}$.  Each fission results in the release of approximately 185 MeV of recoverable energy,\sidenote{MeV stands for ``mega-electron-volt'', or $1\times 10^6$ eV.  1eV is equivalent to $1.6 \times 10^{-19}$ Joules. It takes a lot of fissions to produce a discernable amount of power.} two or three neutrons, one or more of which is expected to also cause a fission thus propagating the chain reaction, and two fission products.  Almost all of the resulting fission products are radioactive, needing to undergo a series of beta- and alpha-decay processes to achieve a nuclear configuration that is stable.  This process is depicted in Figure \ref{fig:FissionProductDecayChain}.
+Most nuclear reactors in the world today generate power through the fission of $^{235}\text{U}$.  Each fission results in the release of approximately 185 MeV of recoverable energy,\sidenote{MeV stands for ``mega-electron-volt'', or $1\times 10^6$ eV.  1eV is equivalent to $1.6 \times 10^{-19}$ Joules. It takes a lot of fissions to produce a discernible amount of power.} two or three neutrons, one or more of which is expected to also cause a fission thus propagating the chain reaction, and two fission products.  Almost all of the resulting fission products are radioactive, needing to undergo a series of beta- and alpha-decay processes to achieve a nuclear configuration that is stable.  This process is depicted in Figure \ref{fig:FissionProductDecayChain}.
 \begin{marginfigure}
 \includegraphics{FissionProductDecayChain.eps}
 \caption{Schematic of representative fission product decay process.}
@@ -32,7 +32,7 @@ The particular fission product decay chain that produces $^{135}$Xe is illustrat
 
 \subsection{Model of $^{135}$Xe Concentration}
 We can model the atom density of $^{135}$I and $^{135}$Xe with a first-order system of differential equations.
-\marginnote{Owing to the short halflife of $^{135}$Te we assume that it immediately decays and thus, effectively, is a direct production term for $^{135}$I.
+\marginnote{Owing to the short half-life of $^{135}$Te we assume that it immediately decays and thus, effectively, is a direct production term for $^{135}$I.
 
 \vspace{0.15cm}
 
@@ -66,7 +66,7 @@ An analysis of $^{135}$Xe concentration through a typical power transient compri
 
 \vspace{0.5cm}
 
-\noindent We start by clearning the environment and providing necessary nuclear data. \marginnote{
+\noindent We start by clearing the environment and providing necessary nuclear data. \marginnote{
 
 \vspace{2.5cm} 
 
@@ -185,4 +185,114 @@ end
 \end{lstlisting}
 
 \section{Convert High-Order IVPs into a System of 1\textsuperscript{st}-Order IVPs}
-Now that we have introduced a few methods for numerically solving initial value problems, some readers may be starting to wonder when we will include methods taylored to solve IVPs of 2\textsuperscript{nd}-, 3\textsuperscript{rd}-, or 4\textsuperscript{th}-order.  The (possibly) surprising answer is that we will \emph{not} present new methods for solving higher-order IVPs.  Instead, \emph{all} of the numerical methods we present for IVPs will be for 1\textsuperscript{st}-order IVPs; higher-order IVPs will simply be re-stated in terms of a system of 1\textsuperscript{st}-order IVPs.
+Now that we have introduced a few methods for numerically solving initial value problems, some readers may be starting to wonder when we will include methods tailored to solve higher order IVPs.  The (possibly) surprising answer is that we will \emph{not} present new methods for solving higher-order IVPs.  Instead, \emph{all} of the numerical methods we present for IVPs will be for 1\textsuperscript{st}-order IVPs; higher-order IVPs will simply be re-stated in terms of a \emph{system} of 1\textsuperscript{st}-order IVPs.
+\begin{marginfigure}
+\includegraphics{lec24n-ex2-schematic.png}
+\caption{A rocket test facility idealized as a spring-mass system.}
+\label{fig:lec24n-ex2-schematic}
+\end{marginfigure}
+Consider the following 2\textsuperscript{nd}-order IVP that captures Newton's laws of motion for a rocket test facility, idealized as a simple spring-mass system as shown in Figure \ref{fig:lec24n-ex2-schematic}.
+\begin{align*}
+m(t)\frac{d^2x}{dt^2}+c\frac{dx}{dt} + kx &= T \\
+m(t) = m_0-\dot{m}t, & \ \ x_0 = 0, \ \ v_0 = x^{\prime}(0) = 0
+\end{align*}
+In this expression, $c$ is a constant damping coefficient and $k$ the spring constant.  Since the rocket consumes fuel while operating, the mass of the rocket is a function of time as shown.  Lastly, initial displacement,$x_0$, and velocity,$x^{\prime}$, are given. By inspection we can see that so long as $m(t) \ne 0$, this IVP will have a unique solution. 
+
+\noindent We will convert this 2\textsuperscript{nd}-order IVP to a system of two 1\textsuperscript{st}-order IVPs as follows:
+
+\begin{enumerate}
+\item Write the governing equation in the form shown below:
+\begin{equation*}
+x^{\prime \prime} = -\frac{c}{m}x^{\prime} - \frac{k}{m}x + \frac{T}{m}
+\end{equation*}
+
+\item Define a new vector of dependent variables:
+\begin{equation*}
+w = \bracketVectorstack{x \\ x^{\prime}}
+\end{equation*}
+
+\item Write higher-order equation in terms of new vector of dependent variables:
+\begin{equation*}
+w^{\prime} = \bracketVectorstack{x \\ x^{\prime}}^{\prime} = \bracketVectorstack{x^{\prime} \\ x^{\prime \prime}} = \bracketVectorstack{w(2) \\ -\frac{c}{m}w(2) - \frac{k}{m}w(1) + \frac{T}{m}}
+\end{equation*}
+
+\item Solve for $w$ with your favorite method.
+\end{enumerate}
+
+A MATLAB script to solve this problem is shown in the listings below. We start by clearing out the environment and defining necessary variables.
+\begin{lstlisting}[style=myMatlab,name=lec24n-ex2]
+clear
+clc
+close 'all'
+
+%% Example #2
+x0 = 0; % initial displacement
+v0 = 0; % initial velocity
+
+tMax = 5; % seconds
+nT = 100000;
+T = linspace(0,tMax,nT);
+w = nan(2,nT);
+w(:,1) = [x0;v0]; % set initial conditions
+dt = T(2)-T(1);
+
+\end{lstlisting}
+We will use Euler's explicit method to solve for $w(t)$.  The results are plotted and shown in Figure \ref{fig:lec24n-ex2-plot}. 
+\begin{marginfigure}[5.0cm]
+\includegraphics{lec24n-ex2-plot.png}
+\caption{Displacement of the rocket during a simulated powered test.}
+\label{fig:lec24n-ex2-plot}
+\end{marginfigure}
+\begin{lstlisting}[style=myMatlab,name=lec24n-ex2]
+for t = 1:(nT-1)
+    % say something comforting about program progress
+    if mod(t,10000)==0
+        fprintf('Commencing time step %i.\n',t);
+    end
+    dw = ex2(T(t),w(:,t));
+    w(:,t+1) = w(:,t) + dw*dt;
+end
+
+x = w(1,:); %ft, displacement
+v = w(2,:); %ft/s, velocity
+
+%% plot the results
+figure(2)
+plot(T,x,'-c','linewidth',2);
+xlabel('Time [sec]','fontsize',14,'fontweight','bold');
+ylabel('Displacement [ft]','fontsize',14,...
+    'fontweight','bold');
+title('Rocket Displacement vs. Time',...
+    'fontsize',16,'fontweight','bold');
+grid on
+set(gca,'fontsize',10,'fontweight','bold');
+\end{lstlisting}
+The equation defining $w^{\prime}(t)$ is implemented as a local function.\marginnote{
+
+\vspace{0.25cm}
+
+\noindent\ref{lst:ann24n-4} For this equation, $w^{\prime}$ is dependent on both $t$ and $w$.  Equations of this type are called \emph{non-autonomous}.  Even if the equation is \emph{autonomous}---i.e. not a function of the independent variable---you should still define your local function as $w^{\prime} = f(t,w)$.  This is because MATLAB's built-in tools for solving IVPs expect it to be defined that way.
+
+\vspace{0.75cm}
+
+\noindent\ref{lst:ann24n-5} The semantics of our main solver routine above expect that the output will be in the form of a column vector.   
+
+}
+\begin{lstlisting}[style=myMatlab,name=lec24n-ex2]
+function dw = ex2(t,w) /*!\annotation{lst:ann24n-4}!*/
+% define m(t)
+mo = 100; % slugs, initial mass of fuel
+m_dot = 1; % slug/s, fuel burn rate
+m = @(t) mo - m_dot*t;% slugs, fuel mass
+
+k = 2e5; % lb/ft, spring coefficent
+c = 500; % slug/s, damping coefficient
+T = 10000; % lb, thrust
+
+% initialize and compute the output
+dw = nan(2,1);    /*!\annotation{lst:ann24n-5}!*/
+dw(1) = w(2);
+dw(2) = T./m(t) - c*w(2)./m(t) - k*w(1)./m(t);
+end
+\end{lstlisting}
+
