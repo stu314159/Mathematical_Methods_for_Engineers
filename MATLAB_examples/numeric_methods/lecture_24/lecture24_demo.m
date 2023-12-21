@@ -16,7 +16,7 @@ Sigma_F = .0452; %1/cm -- Macroscopic Fission Cross-Section in the core.
 %(based on typical U-235 atomic density atomic density and microscopic
 %thermal neutron fission cross section for U-235)
 
-% Iodine-135  and Tellurium-135 Nuclear datat
+% Iodine-135  and Tellurium-135 Nuclear data
 gamma_Te = 0.061; % fission yield for Tellurium-135 (decays with 19-second half life to I-135)
 lambda_I = 2.9173e-5; % 1/sec -- decay constant for I-135. Corresponds to a 6.6 hour half-life
 
@@ -38,6 +38,7 @@ dT = tSpace(2)-tSpace(1);
 P = nan(2,numTs+1); % an extra column for the initial data
 P(1,1) = 0; % initial I-135 concentration;
 P(2,1) = 0; % initial Xe-135 concentration;
+pfrac = nan(1,numTs); % power fraction
 
 %% Describe power history
 % a start-up, run, then shutdown.
@@ -46,7 +47,7 @@ flux = @(t) nominalFlux*power_profile_Xe(t);
 for ts = 1:numTs
     
     % say something comforting about program progress
-    if mod(ts,1000)==0
+    if mod(ts,10000)==0
         fprintf('Commencing time step %i.\n',ts);
     end
     
@@ -54,6 +55,7 @@ for ts = 1:numTs
     % use a simple Forward-Euler time-stepping scheme
     dP = nan(2,1);
     T = tSpace(ts);
+    pfrac(ts) = power_profile_Xe(T);
     % update Iodine concentration
     dP(1) = gamma_Te*Sigma_F*flux(T) - lambda_I*P(1,ts);  
     
@@ -67,17 +69,25 @@ for ts = 1:numTs
 end
 
 %% Plot your results
-% plot Xenon-135 concentration as a function of time.
 figure(1)
+subplot(2,1,1)
+plot(tSpace/3600,pfrac,'linewidth',2);
+axis([0 160 -0.1 1.1]);
+title('Power Profile')
+set(gca,'fontsize',14,'fontweight','bold');
+ylabel('Power Fraction',...
+    'FontWeight','bold','FontSize',14);
+
+subplot(2,1,2)
 h = semilogy(tSpace/3600,P(2,1:(end-1)));
 set(h,'linewidth',2);
 set(gca,'fontsize',14,'fontweight','bold');
 axis([0 160 2*10^14 2*10^16])
 grid on
 xlabel('Time (h)','FontWeight','bold','FontSize',14)
-ylabel('Xenon-135 Concentration (at/cm^3)',...
+ylabel('Xenon-135 (at/cm^3)',...
     'FontWeight','bold','FontSize',14);
-title('Xenon-135 Behavior in Core','FontSize',16,'FontWeight','bold')
+title('Xenon-135 Concentration','FontSize',14,'FontWeight','bold')
 
 %% Example #2
 x0 = 0; % initial displacement
