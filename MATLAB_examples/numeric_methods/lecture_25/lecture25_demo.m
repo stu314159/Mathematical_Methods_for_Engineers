@@ -139,7 +139,7 @@ function y = odeRK2(ODE,a,b,N,yINI)
 % function y = odeRK2(ODE,a,b,h,yINI)
 % y = solution
 % ODE = function handle for y'
-% a,b = begining and end of the interval for solution
+% a,b = interval for solution
 % N = number of steps between a and b
 % yINI = initial value for the solution
 
@@ -176,7 +176,7 @@ function y = odeExplicitRK(ODE,a,b,N,yINI,BT)
 % function y = odeExplicitRK(ODE,a,b,h,yINI,BT)
 % y = solution
 % ODE = function handle for y'
-% a,b = begining and end of the interval for solution
+% a,b = interval for solution
 % N = number of steps between a and b
 % yINI = initial value for the solution
 % BT = Butcher Tableau
@@ -198,7 +198,8 @@ for t = 1:(N-1)
     for s = 1:stages
        Xi(s) = y(t);
        for i = 1:(s-1)
-          Xi(s) = Xi(s) + h*A(s,i)*ODE(x(t)+c(i)*h,Xi(i)); 
+          Xi(s) = Xi(s) + ...
+              h*A(s,i)*ODE(x(t)+c(i)*h,Xi(i)); 
        end
     end
     
@@ -214,7 +215,7 @@ function y = odesExplicitRK(ODE,a,b,N,yINI,BT)
 % function y = odeExplicitRK(ODE,a,b,h,yINI,BT)
 % y = solution (vector)
 % ODE = function handle for y'
-% a,b = begining and end of the interval for solution
+% a,b = interval for solution
 % N = number of steps between a and b
 % yINI = initial value for the solution
 % BT = Butcher Tableau
@@ -237,13 +238,15 @@ for t = 1:(N-1)
     for s = 1:stages
        Xi(:,s) = y(:,t);
        for i = 1:(s-1)
-          Xi(:,s) = Xi(:,s) + h*A(s,i)*ODE(x(t)+c(i)*h,Xi(:,i)); 
+          Xi(:,s) = Xi(:,s) + ...
+              h*A(s,i)*ODE(x(t)+c(i)*h,Xi(:,i)); 
        end
     end
     
     y(:,t+1) = y(:,t);
     for i = 1:stages
-       y(:,t+1) = y(:,t+1) + h*B(i)*ODE(x(t)+c(i)*h,Xi(:,i)); 
+       y(:,t+1) = y(:,t+1) + ...
+           h*B(i)*ODE(x(t)+c(i)*h,Xi(:,i)); 
     end
     
 end
