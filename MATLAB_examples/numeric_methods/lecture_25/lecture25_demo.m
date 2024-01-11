@@ -8,20 +8,20 @@ close 'all'
 % 
 % $$y^{\prime} = x^2/y, \ \ y(0)=2$$
 % 
-f = @(x,y) (x.^2)./y;
+f = @(x,y) (x.^2)./y; % y' = f(x,y)
+yINI = 2; % y(0) = 2
 y_exact = @(x) sqrt((2/3)*x.^3 + 4);
-xMin = 0; xMax = 2.1;
+xMin = 0; xMax = 2.0;
 x_gold = linspace(xMin,xMax,1000);
 
 %% Second-Order Runge-Kutta
 N = 30;
-yINI = 2;
 x = linspace(xMin,xMax,N);
 y_RK2 = odeRK2(f,xMin,xMax,N,yINI);
 
 figure(1)
 plot(x,y_RK2,'-b',...
-    x_gold,y_exact(x_gold),'-.r',...
+    x_gold,y_exact(x_gold),'--r',...
     'linewidth',3);
 title("Solution with RK2 Method",'fontsize',14,...
     'fontweight','bold');
@@ -76,7 +76,7 @@ y_RK2 = odeExplicitRK(f,xMin,xMax,N,yINI,BT);
 
 figure(3)
 plot(x,y_RK2,'-b',...
-    x_gold,y_exact(x_gold),'-.r',...
+    x_gold,y_exact(x_gold),'--r',...
     'linewidth',3);
 title("Solution with RK2 Method",'fontsize',14,...
     'fontweight','bold');
@@ -96,7 +96,7 @@ y_exact = @(x) exp(-x./2).*(-cos(2*x)+0.75*sin(2*x));
 
 figure(4)
 plot(x,ys_RK2(1,:),'-b',...
-    x_gold,y_exact(x_gold),'-.r',...
+    x_gold,y_exact(x_gold),'--r',...
     'linewidth',3);
 title("Solution with RK2 Method",'fontsize',14,...
     'fontweight','bold');
@@ -120,7 +120,7 @@ for s = 1:t
        norm(y_exact(x),2);
 end
 
-err_gage = h_array.^2;
+err_gage = 0.25*h_array.^2;
 
 figure(5)
 loglog(h_array,err_array,'-b',...
@@ -252,7 +252,8 @@ for t = 1:(N-1)
 end
 end
 
-function dw = ex2(~,w) % generally expect 2 arguments for solvers (IV first)
+function dw = ex2(~,w) 
+% generally expect 2 arguments for solvers (IV first)
 dw = nan(2,1);
 dw(1) = w(2);
 dw(2) = -0.25*(4*w(2) + 17*w(1));
