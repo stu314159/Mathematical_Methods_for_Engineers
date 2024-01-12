@@ -39,7 +39,7 @@ and propose that we use \emph{quadrature} instead of exact integration.  Now we 
 \begin{equation}
 y_{n+1} = y_n + h \sum\limits_{i=1}^{s} b_i f(t_n + c_ih,y(t_n+c_ih))
 \end{equation}
-where $h$ is like the scaling term, $\sfrac{b-a}{2}$, in Gauss quadrature, $b_i$ are the weights, and $c_i$ are the sample points.  We constrain $c_i \in [0,1]$ so that $t_n \le (t_n+c_ih) \le t_{n+1}$. \marginnote[-0.5cm]{\textbf{Note:} To prevent confusion with Guass quadrature, from now on, we will refer to $c_i$ as the \emph{RK nodes} and $b_i$ as the \emph{RK weights}.}
+where $h$ is like the scaling term, $\sfrac{b-a}{2}$, in Gauss quadrature, $b_i$ are the weights, and $c_i$ are the sample points.  We constrain $c_i \in [0,1]$ so that $t_n \le (t_n+c_ih) \le t_{n+1}$. \marginnote[-0.5cm]{\textbf{Note:} To prevent confusion with Gauss quadrature, from now on, we will refer to $c_i$ as the \emph{RK nodes} and $b_i$ as the \emph{RK weights}.}
 
 \newthought{One problem with} this approach is that we do not know the value of $y(t_n+c_jh)$.  In RK methods, we will approximate these points between $y_n$ and $y_{n+1}$ as follows:
 \begin{align*}
@@ -113,7 +113,7 @@ h = x(2)-x(1);
 
 \vspace{0.5cm}
 
-\noindent\ref{lst:ann25n-1} A new array of slopes, one element for each stage, will ne needed at each time step.
+\noindent\ref{lst:ann25n-1} A new array of slopes, one element for each stage, will be needed at each time step.
 
 \vspace{0.3cm}
 
