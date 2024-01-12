@@ -1,0 +1,45 @@
+\chapter{Lecture 26 - High Order and Implicit Runge-Kutta Methods}
+\label{ch:lec26n}
+\section{Objectives}
+The objectives of this lecture are to:
+\begin{itemize}
+\item Introduce some high order RK methods useful for IVPs
+\item Demonstrate how to use implicit RK methods
+\item Demonstrate the convergence behavior of various RK methods for a variety of problems.
+\end{itemize}
+\setcounter{lstannotation}{0}
+
+\section{High Order RK Methods}
+So far in this class we have only discussed Runge-Kutta Methods that exhibit 1\textsuperscript{st}- or 2\textsuperscript{nd}-order convergence.  Given how we employed integration methods with much higher order convergence properties, it stands to reason that we can do better.
+
+In general, to obtain higher order convergence behavior, we need more stages.  In allegience to our committment to avoid \emph{deriving} RK schemes, in this section we will simply list the higher order methods and list their Butcher tableau.
+
+\subsection{Classical 3\textsuperscript{rd}-Order, 3-stage RK}
+The Butcher tableau for this method is shown in Table \ref{tab:lec26n-3-3-RKe}.
+\begin{margintable}
+\begin{tabular}{c|ccc}
+0 & 0 & 0 & 0 \\
+$\sfrac{1}{2}$ & $\sfrac{1}{2}$ & 0 & 0 \\
+1 & -1 & 2 & 0 \\ \hline
+  & $\sfrac{1}{6}$ & $\sfrac{2}{3}$ & $\sfrac{1}{6}$ \\
+\end{tabular}
+\caption{Butcher tableau for classical 3\textsuperscript{rd}-order, 3-stage explicit RK method.}
+\label{tab:lec26n-3-3-RKe}
+\end{margintable}
+
+\subsection{Classical 4\textsuperscript{th}-Order, 4-stage RK}
+The Butcher tableau for this method is shown in Table \ref{tab:lec26n-4-4-RKe}.
+\begin{margintable}
+\begin{tabular}{c|cccc}
+0 & 0 & 0 & 0 & 0 \\
+$\sfrac{1}{2}$ & $\sfrac{1}{2}$ & 0 & 0 & 0 \\
+$\sfrac{1}{2}$ & 0 & $\sfrac{1}{2}$ & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 \\ \hline
+  & $\sfrac{1}{6}$ & $\sfrac{1}{3}$ & $\sfrac{1}{3}$ & $\sfrac{1}{6}$
+\end{tabular}
+\caption{Butcher tableau for classical 4\textsuperscript{th}-order, 4-stage explicit RK method.}
+\label{tab:lec26n-4-4-RKe}
+\end{margintable} 
+
+\newthought{Implementation of these} RK methods within the framework described in Lecture 25 is straight-forward; simply encode the Butcher tableau as a matrix and pass to \lstinline[style=myMatlab]{odesExplicitRK}.
+\section{Implicit Runge-Kutta Methods}
