@@ -4,7 +4,7 @@ clc
 close 'all'
 
 %% Select Solver
-Solver_choice = 10;
+Solver_choice = 13;
 
 % Explicit Methods
 % 1 = explicit Euler

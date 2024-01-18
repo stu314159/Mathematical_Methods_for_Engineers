@@ -20,7 +20,7 @@ xlabel('X','fontsize',12,'fontweight','bold');
 ylabel('Y(X)','fontsize',12,'fontweight','bold');
 
 %% Solve with ODE23
-myRT = 1e-5;
+myRT = 1e-10;
 options = odeset('RelTol',myRT);
 [t_ode23,y_ode23] = ode23(F,[xMin xMax],yINI,options);
 
@@ -164,6 +164,31 @@ grid on
 xlabel('T','fontsize',14,'fontweight','bold');
 ylabel('Y(T)','fontsize',14,'fontweight','bold');
 set(gca,'fontsize',12,'fontweight','bold');
+
+%% Use MATLAB ODE object (R2023b and later)
+
+M = ode;
+M.ODEFcn = F;
+M.InitialValue = yINI;
+M.RelativeTolerance = myRT; 
+
+sol_M_ode = solve(M,xMin,xMax);
+
+rel_err_ODE = norm(y_gold(sol_M_ode.Time)-sol_M_ode.Solution(1,:),2)/...
+    norm(y_gold(sol_M_ode.Time),2);
+
+fprintf('Relative error ODE: %g \n',rel_err_ODE);
+%% Plot the result
+
+figure(9)
+plot(sol_M_ode.Time,sol_M_ode.Solution(1,:),...
+    '-sr','linewidth',3,'markersize',4);
+title('Solution with ODE','fontsize',16,'fontweight','bold');
+grid on
+xlabel('T','fontsize',14,'fontweight','bold');
+ylabel('Y(T)','fontsize',14,'fontweight','bold');
+set(gca,'fontsize',12,'fontweight','bold');
+
 
 %% Local Functions
 function [t,y] = embeddedRK(F,tspan,y0,RTOL,EBT)

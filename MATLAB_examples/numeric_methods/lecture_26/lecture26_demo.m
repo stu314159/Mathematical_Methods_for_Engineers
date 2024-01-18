@@ -5,7 +5,7 @@ clc
 close 'all'
 
 %% Pick an ODE
-ODE_choice = 1;
+ODE_choice = 2;
 
 
 switch ODE_choice
@@ -44,10 +44,10 @@ x = linspace(a,b,N);
 
 
 %% Pick a Solver
-Solver_choice = 7;
+Solver_choice = 8;
 
 % Explicit Methods
-% 1 = explicit Euler
+% 1 = 1st order, explicit Euler
 % 2 = 2nd order RK - Heun's Method (10.5.1)
 % 3 = 3rd order RK - "Classical third-order RK" (10.5.2)
 % 4 = 3rd order RK - "Nystrom Scheme" (Iserles 3.2 pg 40-41)
@@ -58,13 +58,13 @@ Solver_choice = 7;
 % 8 = 4/5th order RK - "Dormand-Prince Scheme" (see Wiki - default ode45 for MATLAB)
 
 % Implicit Methods
-% 9 = 2-stage implicit RK
-% 10 = 4-stage implicit RK "Radeau IIA"
-% 11 = 4th order Lobatto IIIC (try for stiff problems)
-% 12 = 1 stage Backward Euler
-% 13 = implicit midpoint
-% 14 = Gauss Legendre method of order 6
-% 15 = 4th order IRK from Butcher, Eq 237c
+% 9 = 2-stage, 3rd order implicit RK 
+% 10 = 5th order, 3-stage implicit RK "Radeau IIA" 
+% 11 = 4th order Lobatto IIIC (try for stiff problems) 
+% 12 = 1 stage Backward Euler 
+% 13 = 2nd-order, implicit midpoint 
+% 14 = Gauss Legendre method of order 6 (looks good)
+% 15 = 4th order IRK from Butcher, Eq 237c (looks good)
 
 switch Solver_choice
     
@@ -146,6 +146,7 @@ switch Solver_choice
         BT = zeros(s+1,s+1);
         C = [0; 1/4; 3/8; 12/13; 1; 1/2; 0];
         B = [0 16/135 0 6656/12825 28561/56430 -9/50 2/55];
+        %B = [0 25/216 0 1408/2565 2197/4104 -1/5 0];
         A = [0 0 0 0 0 0;
             1/4 0 0 0 0 0;
             3/32 9/32 0 0 0 0;
@@ -186,11 +187,12 @@ switch Solver_choice
         BT(1:s,2:end) = A;
         
     case 10
+        % 4-stage implicit RK "Radeau IIA" 
         solver = @odesImplicitRK;
         s = 3;
         BT = zeros(s+1,s+1);
         C = [2/5 - sqrt(6)/10; 2/5+sqrt(6)/10; 1; 0];
-        B = [0, 4/9 - sqrt(6)/36, 4/9 - sqrt(6)/36, 1/9];
+        B = [0, 4/9 - sqrt(6)/36, 4/9 + sqrt(6)/36, 1/9];
         A = [11/45 - 7*sqrt(6)/360, 37/225 - 169*sqrt(6)/1800, -2/225+sqrt(6)/75;
             37/225+169*sqrt(6)/1800, 11/45+7*sqrt(6)/360, -2/225-sqrt(6)/75;
             4/9 - sqrt(6)/36, 4/9+sqrt(6)/36, 1/9];
@@ -298,6 +300,37 @@ xlabel('X','fontsize',14,'fontweight','bold');
 ylabel('Y','fontsize',14,'fontweight','bold');
 set(gca,'fontsize',12,'fontweight','bold');
 
+%% Compare with MATLAB Built-in Method
+
+M_RT = 1e-13;  M_AT = 1e-11;
+M = ode; M.ODEFcn = ODE; M.InitialValue = yINI;
+M.InitialTime = a;
+M.RelativeTolerance = M_RT;
+M.AbsoluteTolerance = M_AT;
+
+refSol = solve(M,x);
+
+figure(2)
+plot(refSol.Time,refSol.Solution(1,:),...
+    '-r',...
+    refSol.Time,refSol.Solution(2,:),'-g',...
+    'linewidth',3,'markersize',4);
+title('Solution with ODE','fontsize',16,'fontweight','bold');
+grid on
+xlabel('T','fontsize',14,'fontweight','bold');
+ylabel('Y(T)','fontsize',14,'fontweight','bold');
+set(gca,'fontsize',12,'fontweight','bold');
+
+%% Compare Selected Method with MATLAB Method
+M1_interp = interp1(refSol.Time,refSol.Solution(1,:),x);
+M2_interp = interp1(refSol.Time,refSol.Solution(2,:),x);
+
+rel_err1 = norm(M1_interp - y(1,:),2)./norm(M1_interp,2);
+rel_err2 = norm(M2_interp - y(2,:),2)./norm(M2_interp,2);
+
+fprintf('Relative error for y1: %g \n',rel_err1);
+fprintf('Relative error for y2: %g \n',rel_err2);
+
 %% Local Functions
 function y = odesExplicitRK(ODE,a,b,N,yINI,BT)
 % function y = odeExplicitRK(ODE,a,b,h,yINI,BT)
@@ -395,28 +428,29 @@ c = BT(1:s,1);
 b_t = BT(s+1,2:end);
 A = BT(1:s,2:end);
 [sys_size,~] = size(yINI);
-h = (b-a)/N;
+%h = (b-a)/N;
 x = linspace(a,b,N);
+h = x(2) - x(1);
 y = zeros(sys_size,N);
 y(:,1) = yINI;
 
 % SecantRootSys arguments
 imax = 10000;
 Err = 1e-14;
-Ka = ones(sys_size,s)*.1; %<-- maybe zero is a bad choice...
+Ka = ones(sys_size,s)*.01; %<-- maybe zero is a bad choice...
 Kb = ones(sys_size,s).*ODE(x(1),y(:,1));
 for t = 1:(N-1)
     
-   y(:,t+1) = y(:,t);
-   
-   % need to solve for the Ks
-   F = @(iv,k) IRK_Ksol(ODE,iv,y(:,t),h,k,c,A);   
-   K = SecantRootSys(F,x(t),Ka,Kb,imax,Err);
-%    options = optimoptions('fsolve',...
-%        'Display','None',...
-%        'FunctionTolerance',1e-10);
-%    K = fsolve(F,Kb,options);
-      
+    y(:,t+1) = y(:,t);
+
+    % need to solve for the Ks
+    F = @(iv,k) IRK_Ksol(ODE,iv,y(:,t),h,k,c,A);
+    K = SecantRootSys(F,x(t),Ka,Kb,imax,Err);
+    % options = optimoptions('fsolve',...
+    %     'Display','None',...
+    %     'FunctionTolerance',1e-10);
+    % K = fsolve(F,Kb,options);
+
    for i = 1:s
        y(:,t+1) = y(:,t+1) + h*b_t(i)*ODE(x(t)+c(s)*h,K(:,i));
    end
