@@ -244,11 +244,11 @@ end
 \end{lstlisting}
 \index{permutation matrix} 
 \section{LU Factorization with Pivoting}
-As we saw in the last lecture, pivoting is an essential operation if you want to accurately solve relevant matrices. Pivot operations can be captured in a \emph{permutation matrix}.  Switching rows in a vector or a matrix is equivalent to multiplying by the identiy matrix with columns switched.  For example, when pivoting is performed on the matrix example from Lecture 8, the final permuted row ordering is: 
+As we saw in the last lecture, pivoting is an essential operation if you want to accurately solve relevant matrices. Pivot operations can be captured in a \emph{permutation matrix}.  Switching rows in a vector or a matrix is equivalent to multiplying by the identiy matrix with rows switched.  For example, when pivoting is performed on the matrix example from Lecture 8, the final permuted row ordering is: 
 \begin{equation*}
 \left[ \begin{matrix} 1 & 2 & 3 & 4 \end{matrix} \right] \rightarrow \substack{\text{ Swapped } \\ \text{1\&4}} \rightarrow \substack{\text{ Swapped } \\ \text{2\&3}} \rightarrow \substack{\text{ Swapped } \\ \text{3\&4}} \rightarrow \left[\begin{matrix}4 & 3 & 1 & 2 \end{matrix} \right]
 \end{equation*}
-We can represent this as a permutation matrix, $P$, constructed as the idenitty matrix with columns correspondingly reordered.
+We can represent this as a permutation matrix, $P$, constructed as the idenitty matrix with rows correspondingly reordered.
 \begin{equation*}
 P = 
 \bracketMatrixstack{
