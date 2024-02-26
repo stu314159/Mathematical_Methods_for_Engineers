@@ -31,7 +31,7 @@ The derivative of this function is not too difficult, but it is somewhat messy:
 \end{fullwidth}
 We generalize this and encode in the notation used to describe Lagrange polynomials:
 \begin{align}
-\frac{df_{\text{interp}}}{dx} &= \sum\limits_{i=1}^{n}y_i \frac{d}{dx}L_{i}(x) = \frac{d}{dx}\prod_{\substack{j=1 \\ j \ne i}}^{n} \frac{x - x_j}{x_i - x_j} \\ \nonumber
+\frac{df_{\text{interp}}}{dx} &= \sum\limits_{i=1}^{n}y_i \frac{d}{dx}L_{i}(x) = \sum\limits_{i=1}^{n}y_i\frac{d}{dx}\prod_{\substack{j=1 \\ j \ne i}}^{n} \frac{x - x_j}{x_i - x_j} \\ \nonumber
 &= \sum\limits_{i=1}^{n}y_i\left[\sum\limits_{\substack{k = 1 \\ k \ne i}}^{n}\frac{1}{\left(x_i - x_k\right)} \prod_{\substack{j=1 \\ j \ne i \\ j \ne k}}^{n} \frac{\left(x - x_j\right)}{\left(x_i - x_j\right)} \right]
 \end{align}
 This formulation is admittedly messy, but with some patient MATLAB coding, it can be implemented without undue difficulty. A sample implementation is provided in the listing below.
