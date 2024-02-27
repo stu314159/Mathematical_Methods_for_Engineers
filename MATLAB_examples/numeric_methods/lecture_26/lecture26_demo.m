@@ -44,7 +44,7 @@ x = linspace(a,b,N);
 
 
 %% Pick a Solver
-Solver_choice = 8;
+Solver_choice = 9;
 
 % Explicit Methods
 % 1 = 1st order, explicit Euler
@@ -486,10 +486,12 @@ d = length(y); % number of dependent variables
 R = nan(d,s);
 
 for stage = 1:s
-    R(:,stage) = y - K_g(:,stage);
+    R(:,stage) = y; 
     for i = 1:s
-        R(:,stage) = R(:,stage) + h*(A(stage,i)*F(t+c(i)*h,K_g(:,i)));
-    end    
+        R(:,stage) = R(:,stage) + ...
+            h*(A(stage,i)*F(t+c(i)*h,K_g(:,i)));
+    end
+    R(:,stage) = R(:,stage) - K_g(:,stage);
 end
 
 % if K_g has all of the right K's for each stage and dependent variable,
@@ -505,7 +507,7 @@ function Xs = SecantRootSys(Fun,t,Xa,Xb,imax,Err)
 % representing the current value of the independent variable; and Xa is a vector containing the initial value for all dependent
 % variables.
 %
-% 5 - scalar - initial value of independent variable
+% t - scalar - initial value of independent variable
 % Xa - vector - inital values
 % Xb - vector - a second set of values
 % imax - maximum number of iterations

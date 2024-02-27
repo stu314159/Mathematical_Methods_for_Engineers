@@ -43,3 +43,180 @@ $\sfrac{1}{2}$ & 0 & $\sfrac{1}{2}$ & 0 & 0 \\
 
 \newthought{Implementation of these} RK methods within the framework described in Lecture 25 is straight-forward; simply encode the Butcher tableau as a matrix and pass to \lstinline[style=myMatlab]{odesExplicitRK}.
 \section{Implicit Runge-Kutta Methods}
+
+If we allow the RK matrix to be full, Runge-Kutta methods with higher order convergence and better stability properties can be derived.\sidenote{Up to order $2s$ where $s$ is the number of stages.} Butcher tableaus for a 2-stage, 3\textsuperscript{rd}-order IRK is shown in Table \ref{tab:lec26n-2-3-RKi} and a 2-stage, 4\textsuperscript{th}-order IRK is shown in Table \ref{tab:lec26n-2-4-RKi}.
+
+\begin{margintable}
+\begin{tabular}{c|cc}
+0 & $\sfrac{1}{4}$ & $-\sfrac{1}{4}$ \\
+$\sfrac{2}{3}$ & $\sfrac{1}{4}$ & $\sfrac{5}{12}$ \\ \hline
+0 & $\sfrac{1}{4}$ & $\sfrac{3}{4}$ 
+\end{tabular}
+\caption{Butcher tableau for a 2-stage, 3\textsuperscript{rd}-order implicit RK method.}
+\label{tab:lec26n-2-3-RKi}
+\end{margintable}
+
+\begin{margintable}
+\begin{tabular}{c|cc}
+$\sfrac{1}{2}-\sfrac{\sqrt{3}}{6}$ & $\sfrac{1}{4}$ & $\sfrac{1}{4}-\sfrac{\sqrt{3}}{6}$ \\
+$\sfrac{1}{2}+\sfrac{\sqrt{3}}{6}$ & $\sfrac{1}{4}+\sfrac{\sqrt{3}}{6}$ & $\sfrac{1}{4}$ \\ \hline
+0 & $\sfrac{1}{2}$ & $\sfrac{1}{2}$
+\end{tabular}
+\caption{Butcher tableau for a 2-stage, 4\textsuperscript{th}-order implicit RK method.}
+\label{tab:lec26n-2-4-RKi}
+\end{margintable}
+
+\newthought{The real issue} that must be dealt with for implicit RK methods is the need to solve a system of non-linear equations.  For a first-order, scalar IVP, we might write the equations as shown below:
+
+\begin{align*}
+\bracketVectorstack{\xi_1 \\ \xi_{2}} &= y_n + h\bracketMatrixstack{a_{11} & a_{12} \\ a_{21} & a_{22}} \bracketVectorstack{f(t_n+c_1h,\xi_1) \\ f(t_n+c_2h,\xi_2)} \\
+y_{n+1} &= y_n + h \bracketMatrixstack{b_1 & b_2}\bracketVectorstack{f(t_n+c_1h_1,\xi_1) \\ f(t_n+c_2h,\xi_2)}
+\end{align*}
+To find values for $\xi_i$, we need to solve the non-linear system of equations:
+\begin{equation}
+\bracketVectorstack{R_1 \\ R_2} = y_n + h\bracketMatrixstack{a_{11} & a_{12} \\ a_{21} & a_{22}} \bracketVectorstack{f(t_n+c_1h,\xi_1) \\ f(t_n+c_2h,\xi_2)} - \bracketVectorstack{\xi_1 \\ \xi_2 }
+\label{eq:lec26n-residual}
+\end{equation}
+
+\newthought{This is a} good start, but what we really need is the ability to solve higher-order IVPs.  This means that our non-linear system of equations must accomodate separate values of $\xi_i$ for multiple dependent values.  To accomplish this, we will arrange our values of $\xi$ as shown below:
+\begin{equation*}
+\bracketMatrixstack{\xi_{1,1} & \cdots & \xi_{1,s} \\ \vdots & \ddots & \vdots \\ \xi_{n,1} & \cdots & \xi_{n,s}} 
+\end{equation*}
+where now we place all of the sample points of all stages of a given dependent variable along each row; with $n$ rows, one for each dependent variable in a system of $n$ equations.
+ 
+Somehow, we need a function that does the equivalent of Equation \ref{eq:lec26n-residual} for the array of $\xi$ values for each equation and for each stage.  This is shown in the MATLAB listing below:
+
+\begin{lstlisting}[style=myMatlab,name=lec26n-1]
+function R = IRK_Ksol(F,t,y,h,K_g,c,A)
+% F - the ODE to be solved
+% t - the independent variable
+% y - the dependent variable for the current time step
+% K_g - matrix of guessed values for xi.
+% c - the RK nodes
+% A - the RK matrix
+
+[s,~] = size(A); % number of stages for the IRK scheme
+d = length(y); % number of dependent variables
+
+R = nan(d,s);
+
+for stage = 1:s
+    R(:,stage) = y; 
+    for i = 1:s
+        R(:,stage) = R(:,stage) + ...
+            h*(A(stage,i)*F(t+c(i)*h,K_g(:,i))); /*!\annotation{lst:ann26n-1}!*/
+    end
+    R(:,stage) = R(:,stage) - K_g(:,stage);
+end
+end
+\end{lstlisting}
+\marginnote[-2.2cm]{
+
+\noindent\ref{lst:ann26n-1} These lines collectively compute the residual as shown in Equation \ref{eq:lec26n-residual} except that now the residual is a $n \times s$ array.
+
+
+}
+We will use the secant method to solve this system of equations.
+\marginnote{
+
+\vspace{7.0cm}
+\noindent\ref{lst:ann26n-2}  Here we need to address the problem: what do we do if any element of  \lstinline{denom} is equal to 0?  Our answer: just change that element of the matrix to 1.  This sounds crazy but one might hope that such perturbations would not always be necessary and would effectively be fixed on the next iteration.  Convergence will be delayed but overall execution would become more reliable.  At least that is the hope.
+
+\vspace{0.5cm}
+
+\noindent\ref{lst:ann26n-3} We take a slightly different approach here and set any offending values to a random number.  Suffice it to say, these measures were arrived at on an ad hoc experimental basis.  
+}
+\begin{lstlisting}[style=myMatlab,name=lec26n-2]
+function Xs = SecantRootSys(Fun,t,Xa,Xb,imax,Err)
+% function Xs = SecantRootSys(Fun,Xa,imax,Err) 
+% solves a system of non-linear equations using 
+% the Secant Method.
+% 
+% Inputs:
+% Fun - input function (must take 2 arguments: F(t,Xa) 
+% where t is a scalar % representing the current value 
+% of the independent variable; and Xa is a vector 
+% containing the initial value for all dependent
+% variables.
+%
+% t - scalar - initial value of independent variable
+% Xa - vector - inital values
+% Xb - vector - a second set of values
+% imax - maximum number of iterations
+% Err - error tolerance (relative 1-norm)
+
+for i = 1:imax
+   FunXb = Fun(t,Xb);
+   denom = Fun(t,Xa)-FunXb;
+   
+   
+   denom(denom==0) = 1;  /*!\annotation{lst:ann26n-2}!*/
+   
+   Xi = Xb - FunXb.*(Xa - Xb)./(denom);
+   
+   % prevent further problems with zeros
+   Xi(Xi==0) = rand;  /*!\annotation{lst:ann26n-3}!*/
+   
+   
+   if(norm(Xi - Xb,inf)/norm(Xb,inf)) < Err
+       Xs = Xi;
+       break;
+   end
+   
+   Xa = Xb;
+   Xb = Xi;
+end
+
+if i == imax
+    error('Error! Solution was not obtained at t=%g within %i iterations.',t,imax);
+end
+end
+\end{lstlisting}
+
+Once we have found the sample points that satisfy all of the non-linear equations, we can evaluate the ODE at the RK nodes and sample points and apply the RK weights to solve for the dependent variables for the next time step.  The entire process is orchestrated by the MATLAB function shown below.
+
+\begin{lstlisting}[style=myMatlab,name=lec26n-3]
+function y = odesImplicitRK(ODE,a,b,N,yINI,BT)
+% y = solution (vector)
+% ODE = function handle for y'
+% a,b = begining and end of the interval for solution
+% N = number of steps between a and b
+% yINI = initial value for the solution
+% BT = Butcher Tableau
+
+% get Butcher Tableau Parameters
+s = length(BT) - 1;
+c = BT(1:s,1);
+b_t = BT(s+1,2:end);
+A = BT(1:s,2:end);
+[sys_size,~] = size(yINI);
+%h = (b-a)/N;
+x = linspace(a,b,N);
+h = x(2) - x(1);
+y = zeros(sys_size,N);
+y(:,1) = yINI;
+
+% SecantRootSys arguments
+imax = 10000;
+Err = 1e-14;
+Ka = ones(sys_size,s)*.01; %<-- maybe zero is a bad choice...
+Kb = ones(sys_size,s).*ODE(x(1),y(:,1));
+for t = 1:(N-1)    
+   y(:,t+1) = y(:,t);
+   % need to solve for the Ks
+   F = @(iv,k) IRK_Ksol(ODE,iv,y(:,t),h,k,c,A);
+   K = SecantRootSys(F,x(t),Ka,Kb,imax,Err);
+    
+   for i = 1:s
+       y(:,t+1) = y(:,t+1) + h*b_t(i)*ODE(x(t)+c(s)*h,K(:,i));
+   end
+   
+   % update these for the secant solver for next time step
+   Ka = Kb;
+   Kb = K;
+       
+end
+end
+\end{lstlisting}
+
+
