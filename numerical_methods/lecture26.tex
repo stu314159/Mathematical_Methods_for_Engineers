@@ -12,7 +12,7 @@ The objectives of this lecture are to:
 \section{High Order RK Methods}
 So far in this class we have only discussed Runge-Kutta Methods that exhibit 1\textsuperscript{st}- or 2\textsuperscript{nd}-order convergence.  Given how we employed integration methods with much higher order convergence properties, it stands to reason that we can do better.
 
-In general, to obtain higher order convergence behavior, we need more stages.  In allegience to our committment to avoid \emph{deriving} RK schemes, in this section we will simply list the higher order methods and list their Butcher tableau.
+In general, to obtain higher order convergence behavior, we need more stages.  In allegiance to our commitment to avoid \emph{deriving} RK schemes, in this section we will simply list the higher order methods and list their Butcher tableau.
 
 \subsection{Classical 3\textsuperscript{rd}-Order, 3-stage RK}
 The Butcher tableau for this method is shown in Table \ref{tab:lec26n-3-3-RKe}.
@@ -44,7 +44,7 @@ $\sfrac{1}{2}$ & 0 & $\sfrac{1}{2}$ & 0 & 0 \\
 \newthought{Implementation of these} RK methods within the framework described in Lecture 25 is straight-forward; simply encode the Butcher tableau as a matrix and pass to \lstinline[style=myMatlab]{odesExplicitRK}.
 \section{Implicit Runge-Kutta Methods}
 
-If we allow the RK matrix to be full, Runge-Kutta methods with higher order convergence and better stability properties can be derived.\sidenote{Up to order $2s$ where $s$ is the number of stages.} Butcher tableaus for a 2-stage, 3\textsuperscript{rd}-order IRK is shown in Table \ref{tab:lec26n-2-3-RKi} and a 2-stage, 4\textsuperscript{th}-order IRK is shown in Table \ref{tab:lec26n-2-4-RKi}.
+If we allow the RK matrix to be full, Runge-Kutta methods with higher order convergence and better stability properties can be derived.\sidenote{Up to order $2s$ where $s$ is the number of stages.} Butcher tableaux for a 2-stage, 3\textsuperscript{rd}-order IRK is shown in Table \ref{tab:lec26n-2-3-RKi} and a 2-stage, 4\textsuperscript{th}-order IRK is shown in Table \ref{tab:lec26n-2-4-RKi}.
 
 \begin{margintable}
 \begin{tabular}{c|cc}
@@ -78,7 +78,7 @@ To find values for $\xi_i$, we need to solve the non-linear system of equations:
 \label{eq:lec26n-residual}
 \end{equation}
 
-\newthought{This is a} good start, but what we really need is the ability to solve higher-order IVPs.  This means that our non-linear system of equations must accomodate separate values of $\xi_i$ for multiple dependent values.  To accomplish this, we will arrange our values of $\xi$ as shown below:
+\newthought{This is a} good start, but what we really need is the ability to solve higher-order IVPs.  This means that our non-linear system of equations must accommodate separate values of $\xi_i$ for multiple dependent values.  To accomplish this, we will arrange our values of $\xi$ as shown below:
 \begin{equation*}
 \bracketMatrixstack{\xi_{1,1} & \cdots & \xi_{1,s} \\ \vdots & \ddots & \vdots \\ \xi_{n,1} & \cdots & \xi_{n,s}} 
 \end{equation*}
@@ -118,7 +118,7 @@ end
 }
 We will use the secant method to solve this nonlinear system of equations.
 \marginnote{
-\noindent\textbf{Note:} Recall that the secant method is like Newton's method except derivatives are replaced by the slope of the secant line.  For a \emph{system} of equations, in general, one needs to create a Jacobian and update each independent variable by solving a linear system of equations as described in Lecture 6.  Even though this is really a system of equations, the method employed here is analagous to what one would do with an array of individual equations.  The implementation is ugly but nonetheless works and achieves the expected convergence rate for all IRK methods tested.
+\noindent\textbf{Note:} Recall that the secant method is like Newton's method except derivatives are replaced by the slope of the secant line.  For a \emph{system} of equations, in general, one needs to create a Jacobian and update each independent variable by solving a linear system of equations as described in Lecture 6.  Even though this is really a system of equations, the method employed here is analogous to what one would do with an array of individual equations.  The implementation is ugly but nonetheless works and achieves the expected convergence rate for all IRK methods tested.
 
 \vspace{2.0cm}
 
