@@ -1,4 +1,4 @@
-\chapter{Lecture 26 - High Order and Implicit Runge-Kutta Methods}
+\chapter{Lecture 26 - High Order \& Implicit Runge-Kutta Methods}
 \label{ch:lec26n}
 \section{Objectives}
 The objectives of this lecture are to:
@@ -84,7 +84,7 @@ To find values for $\xi_i$, we need to solve the non-linear system of equations:
 \end{equation*}
 where now we place all of the sample points of all stages of a given dependent variable along each row; with $n$ rows, one for each dependent variable in a system of $n$ equations.
  
-Somehow, we need a function that does the equivalent of Equation \ref{eq:lec26n-residual} for the array of $\xi$ values for each equation and for each stage.  This is shown in the MATLAB listing below:
+Somehow, we need a function that does the equivalent of Equation \ref{eq:lec26n-residual} for the array of $\xi$ values for each equation and for each stage.  Such a function is shown in the MATLAB listing below:
 
 \begin{lstlisting}[style=myMatlab,name=lec26n-1]
 function R = IRK_Ksol(F,t,y,h,K_g,c,A)
@@ -116,10 +116,12 @@ end
 
 
 }
-We will use the secant method to solve this system of equations.
+We will use the secant method to solve this nonlinear system of equations.
 \marginnote{
+\noindent\textbf{Note:} Recall that the secant method is like Newton's method except derivatives are replaced by the slope of the secant line.  For a \emph{system} of equations, in general, one needs to create a Jacobian and update each independent variable by solving a linear system of equations as described in Lecture 6.  Even though this is really a system of equations, the method employed here is analagous to what one would do with an array of individual equations.  The implementation is ugly but nonetheless works and achieves the expected convergence rate for all IRK methods tested.
 
-\vspace{7.0cm}
+\vspace{2.0cm}
+
 \noindent\ref{lst:ann26n-2}  Here we need to address the problem: what do we do if any element of  \lstinline{denom} is equal to 0?  Our answer: just change that element of the matrix to 1.  This sounds crazy but one might hope that such perturbations would not always be necessary and would effectively be fixed on the next iteration.  Convergence will be delayed but overall execution would become more reliable.  At least that is the hope.
 
 \vspace{0.5cm}
