@@ -237,7 +237,7 @@ if ~(isQuadSet)
     Tch = @(n) cos(((2*(1:n)) - 1)*pi./(2*n)); /*!\annotation{lst:ann20n-3}!*/
     xEst = Tch(P);
     
-    xgl = NaN(1,P);
+    xgl = nan(1,P);
     for r = 1:P
         xgl(r) = fzero(Pn{P+1},xEst(r)); /*!\annotation{lst:ann20n-4}!*/
     end
@@ -246,7 +246,7 @@ if ~(isQuadSet)
     if P == 1
         A = xgl(1);
     else
-        A = NaN(P,P);
+        A = nan(P,P);
         for n = 0:(P-1)
             A((n+1),:) = Pn{n+1}(xgl); /*!\annotation{lst:ann20n-5}!*/
         end
