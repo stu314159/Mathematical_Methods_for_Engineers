@@ -11,7 +11,10 @@ def odeCRK4(F,a,b,N,yINI):
     stages = 4
     c = np.array([0., 0.5, 0.5, 1.0],dtype=np.float64)
     B = np.array([1./6., 1./3.,1./3.,1./6.],dtype=np.float64)
-    A = np.array([[0, 0, 0, 0],[0.5,0,0,0],[0,0.5,0,0],[0,0,1.0,0]],
+    A = np.array([[0, 0, 0, 0],
+                  [0.5,0,0,0],
+                  [0,0.5,0,0],
+                  [0,0,1.0,0]],
                  dtype=np.float64)
     x = np.linspace(a, b,N,dtype=np.float64)
     #sys_size = 1 # for now, just solve scalar systems
