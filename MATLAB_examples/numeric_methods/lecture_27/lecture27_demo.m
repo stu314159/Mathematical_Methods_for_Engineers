@@ -20,7 +20,7 @@ xlabel('X','fontsize',12,'fontweight','bold');
 ylabel('Y(X)','fontsize',12,'fontweight','bold');
 
 %% Solve with ODE23
-myRT = 1e-10;
+myRT = 1e-6;
 options = odeset('RelTol',myRT);
 [t_ode23,y_ode23] = ode23(F,[xMin xMax],yINI,options);
 

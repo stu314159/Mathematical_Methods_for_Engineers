@@ -1,0 +1,46 @@
+\chapter{Lecture 27 - Embedded RK and MATLAB Built-in RK Methods}
+\label{ch:lec27n}
+\section{Objectives}
+The objectives of this lecture are to:
+\begin{itemize}
+\item Describe an demonstrate embedded Runge-Kutta methods as they relate to adaptive step-sizing
+\item Introduce MATLAB Built-in RK Methods
+\item Illustrate their use through example problems.
+\end{itemize}
+\setcounter{lstannotation}{0}
+
+\section{Embedded Runge-Kutta Methods}
+Besides developing methods to achieve higher order accuracy, there is also an incentive to minimize the required number of time steps while also achieving a specified absolute or relative error.  In the preceding examples, the user has been called upon to input the desired time step size and interval over which the calculation is to be made and it was left for the user to decide if the time step size is appropriate.  But if we consider the problem from a somewhat higher level, we would not expect the user to be focused on the time step size but rather whether or not the solution is accurate enough.  The user should input the expected relative or absolute error tolerance instead of details about how many time steps to make or how big those steps should be.
+
+What we need are:
+\begin{enumerate}
+\item A way to estimate the error in a solution; and
+\item the means of making this estimate should not require a lot more work.
+\end{enumerate}  
+
+Embedded Runge-Kutta methods provide for those needs.  Consider the Bogacki-Shampine method that is used in MATLAB's built-in function \lstinline[style=myMatlab]{ode23}.\cite{bogacki19893} The Butcher tableau is shown in Table \ref{tab:lec27n-bs-bt}.
+
+
+\begin{margintable}[-8.0cm]
+\begin{tabular}{c|cccc}
+0 & 0 & 0 & 0 & 0 \\
+\sfrac{1}{2} & \sfrac{1}{2} & 0 & 0 & 0 \\
+\sfrac{3}{4} & 0 & \sfrac{3}{4} & 0 & 0 \\
+1 & \sfrac{2}{9} & \sfrac{1}{3} & \sfrac{4}{9} & 0 \\ \hline
+(2) & \sfrac{7}{24} & \sfrac{1}{4} & \sfrac{1}{3} & \sfrac{1}{8} \\
+(3) & \sfrac{2}{9} & \sfrac{1}{3} & \sfrac{4}{9} & 0
+\end{tabular}
+\caption{Butcher tableau for the Bogacki-Shampine embedded Runge-Kutta method.}
+\label{tab:lec27n-bs-bt}
+\end{margintable}
+In this Butcher tableau, there are two sets of weights: one for a 2\textsuperscript{nd}-order convergent RK method and the other is for a 3\textsuperscript{rd}-order convergent scheme. Note that the numbers to the left of the weights in the Butcher tableau are not standard and added to indicate the order of convergence for the corresponding set of weights.
+
+This can form the basis for a step-size adaptation method.  Suppose we specify a relative error tolerance and compute $y_{n+1}$ given $y_n$.  
+\begin{itemize}
+\item If the relative error fails to meet the specified error tolerance, we reduce the step size---for instance, $h_{new} = \sfrac{h}{2}$---and re-compute.
+\item If the relative error tolerance is satisfied, we specify a larger step size for the next time step. One equation for doing this is shown in Equation \ref{eq:lec27n-step-size-change} where $p$ is the order of the solver, $h$ is the time step size, $e_i$ is the error measure, and SF is a chosen \emph{safety factor} that, by setting to a value between 0 and 1, prevents changing the time step size too aggressively.\cite{sauer2011numerical}
+\end{itemize}
+\begin{equation}
+h_{\text{new}}=(SF)\left(\frac{\text{TOL}}{e_i}\right)^{\frac{1}{p+1}}h_{\text{old}}
+\label{eq:lec27n-step-size-change}
+\end{equation}
