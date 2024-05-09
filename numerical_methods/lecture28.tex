@@ -1,0 +1,25 @@
+\chapter{Lecture 28 - Solving Boundary value Problems Using the Shooting Method}
+\label{ch:lec28n}
+\section{Objectives}
+The objectives of this lecture are to:
+\begin{itemize}
+\item Review basic concepts for Boundary Value Problems.
+\item Describe the Shooting Method.
+\item Do an example problem.
+\end{itemize}
+\setcounter{lstannotation}{0}
+
+\section{Boundary Value Problems}
+A boundary value problem (BVP) consists of a governing equation and boundary conditions.  For a second-order boundary value problem in one spatial dimension, the governing equation is as given in Equation \ref{eq:lec28n-bvp-gov-eq}:
+\begin{equation}
+\frac{d^2 u}{dx^2} = f\left(x,u,\frac{du}{dx}\right), \ \ a\le x \le b
+\label{eq:lec28n-bvp-gov-eq}
+\end{equation}
+where it is understood that $a<b$.  
+
+In order to obtain a unique solution, suitable boundary conditions must be provided.  Linear boundary conditions for the second-order problem take the form shown below:
+\begin{align*}
+A_1u(a)+B_1u^{\prime}(a)&=C_1 \\
+A_2u(b)+B_2u^{\prime}(b)&=C_2
+\end{align*}
+where $A_i$, $B_i$, and $C_i$ are not \emph{all} zero for any value of $i$.

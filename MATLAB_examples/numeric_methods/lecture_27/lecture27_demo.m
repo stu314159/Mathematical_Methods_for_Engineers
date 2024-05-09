@@ -210,20 +210,20 @@ BW = EBT(s+1,2:end);
 BZ = EBT(s+2,2:end);
 p = EBT((end-1),1);
 
-SF = 0.99; % "safety factor"
-theta = 1e-14; % factor protects against small values of w.
-
+SF = 0.9; % "safety factor"
+theta = 1e-14; 
 tStart = tspan(1);
 tEnd = tspan(2);
 h = (tEnd-tStart)/10; % initial step size
 h_new = h;
-stopFlag = 0;
+stopFlag = 0; % flag to end on last time step
 
 for ts = 1:tsMax
     cT = t(ts); % current time
+    
     % find acceptable time step size
     int_it_count = 0; % limit iterations in error control.
-    while 1
+    while int_it_count < 10
         int_it_count = int_it_count + 1;
         h = h_new; % update with new step-size
         
@@ -237,7 +237,7 @@ for ts = 1:tsMax
         K = getSlopeEst(F,t(ts),y(:,ts),h,C,A);
         [w,z] = getWZ(y(:,ts),h,K,BW,BZ);
         err_ts = abs(w-z); % error vector (length = # dofs)
-        rel_err_ts = err_ts./max(abs(w),theta); % relative error vector
+        rel_err_ts = err_ts./max(abs(z),theta); % relative error vector
         max_rel_err_ts = norm(rel_err_ts,inf);
         if max_rel_err_ts < RTOL % time step accepted, compute new (bigger) h
             h_new = SF*(RTOL/max_rel_err_ts)^(1/(p+1))*h;  
@@ -258,9 +258,8 @@ for ts = 1:tsMax
         end
         
         
-    end % while 1
-    
-    % here I should have updated solution and step size for next time step.
+    end % while 
+        
     if stopFlag == 1 % end of time stepping.  exit loop.
         break;
     end
