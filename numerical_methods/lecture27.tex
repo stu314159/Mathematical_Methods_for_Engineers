@@ -233,4 +233,23 @@ A plot of the solution is shown in Figure \ref{fig:lec27n-ex1}.  Note the shorte
 
 \section{MATLAB Built-in Runge-Kutta Methods}
 
-MATLAB has a number of built-in methods for solving initial value problems.  
+MATLAB has a number of built-in methods for solving initial value problems.  Most of the built-in methods are based on embedded Runge-Kutta methods.  A partial list of recommended methods is given in Table \ref{tab:lec27n-1}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{1.25in}|p{3.0in}|}
+\hline
+\textbf{Solver Name} & \textbf{Description} \\
+\hline
+ode45 & For nonstiff problems, best to apply as a first try for most problems. Single-step method based on fourth and fifth order explicit RK methods \\ \hline
+ode78 & For nonstiff problems where high accuracy is required.  Based on 7th and 8th order explicit RK methods \\ \hline
+ode89 & For nonstiff problems where high accuracy is required over very long time intervals. Based on 8th and 9th order explicit RK methods\\ \hline
+ode23 & Consider this function if the problem is moderately stiff and/or if you have crude error tolerances. The algorithm is based on 2nd and 3rd order explicit RK methods\\ \hline
+ode15s & Try this method if ode45 fails or if you think your equation is stiff. Based on numeric differentiation formulas of order 1 through 5. \\ \hline
+\end{tabular}
+\caption[][-0.0cm]{A partial list of built-in IVP solvers for MATLAB.}
+\label{tab:lec27n-1}
+\end{table}
+
+Note that it is not necessarily better to simply use the method with the highest-possible order of convergence.  If we define the \emph{"best"} method as that method which reliably converges to an answer of acceptable accuracy the fastest, then higher-order methods are not always the best.  A more detailed performance analysis would take into consideration the number of function evaluations and computation time needed to obtain a solution of the desired accuracy.  Problems where the behavior of the solution varies significantly over a range of time scales\sidenote{This is the best intuitive description I have of what it means for a problem to be \emph{"stiff."}} can result in extra work adapting the time step-size and overall poorer performance.
+
