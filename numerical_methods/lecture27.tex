@@ -251,5 +251,56 @@ ode15s & Try this method if ode45 fails or if you think your equation is stiff. 
 \label{tab:lec27n-1}
 \end{table}
 
-Note that it is not necessarily better to simply use the method with the highest-possible order of convergence.  If we define the \emph{"best"} method as that method which reliably converges to an answer of acceptable accuracy the fastest, then higher-order methods are not always the best.  A more detailed performance analysis would take into consideration the number of function evaluations and computation time needed to obtain a solution of the desired accuracy.  Problems where the behavior of the solution varies significantly over a range of time scales\sidenote{This is the best intuitive description I have of what it means for a problem to be \emph{"stiff."}} can result in extra work adapting the time step-size and overall poorer performance.
+\newthought{Note that it} is not necessarily better to simply use the method with the highest-possible order of convergence.  If we define the \emph{"best"} method as that method which reliably converges to an answer of acceptable accuracy the fastest, then higher-order methods are not always the best.  A more detailed performance analysis would take into consideration the number of function evaluations and computation time needed to obtain a solution of the desired accuracy.  Problems where the behavior of the solution varies significantly over a range of time scales\sidenote{This is the best intuitive description I have of what it means for a problem to be \emph{"stiff."}} can result in extra work adapting the time step-size and overall poorer performance.
 
+To use, for example, \lstinline[style=myMatlab]{ode45}, the syntax is as follows:
+
+
+\vspace{0.25cm}
+
+\noindent\parbox{\textwidth}{
+\centering
+\lstinline[style=myMatlab]{[tSol,ySol]=ode45(odeFun,tSpan,Y0)}
+}
+
+\vspace{0.25cm}
+
+
+\noindent where \lstinline[style=myMatlab]{odeFun}\sidenote{Note that this function must take two inputs; the first is the independent variable, and the second is a vector of dependent variables. Even if the governing equation is not a function of the independent variable, the function you send to \lstinline[style=myMatlab]{ode45} and other built-in MATLAB initial value problem solvers, must accept it as its first argument.} is a handle to the function implementing the governing equation, \lstinline[style=myMatlab]{tSpan} is either a vector with two elements indicating the range of the independent variable or a vector specifying time-steps at which the solution is desired. The argument \lstinline[style=myMatlab]{Y0} is a vector with initial conditions.  The return variable \lstinline[style=myMatlab]{tSol} is a $1xN$ vector where $N$ is the number of time steps ultimately taken by \lstinline[style=myMatlab]{ode45}; \lstinline[style=myMatlab]{ySol} is a $N x s$ array where $s$ is the number of dependent variables in the system of equations.
+
+\newthought{Each of the} methods listed are of variable time step-size; unless the user specifies the time steps through the \lstinline[style=myMatlab]{tSpan} variable, the built-in methods will adaptively adjust the time step size to meet error tolerances.  Optional parameters (like absolute and relative error tolerances) can be set by providing an optional argument by using the \lstinline[style=myMatlab]{odeset} function as shown below:
+
+\vspace{0.25cm}
+
+\noindent\parbox{\textwidth}{
+\centering
+\lstinline[style=myMatlab]{optStruct = odeset('RelTol',1e-5,'AbsTol',1e-8,'Stats','on')} 
+
+}
+
+\vspace{0.25cm}
+
+\noindent where some possible name/value pairs are provided for common options.  Readers are encouraged to consult the MATLAB documentation on available options and default values for those optional parameters for each built-in function.  The output variable \lstinline[style=myMatlab]{optStruct} is a structure containing the optional information.  The output structure is provided to the built-in function as shown below:
+
+\vspace{0.25cm}
+
+\noindent\parbox{\textwidth}{
+\centering
+\lstinline[style=myMatlab]{tSol,ySol}=ode45(odeFun,tSpan,Y0,optStruct)
+
+}
+
+\vspace{0.25cm}
+
+\newthought An alternative way of getting the outputs from the built-in solver is to use a return structure:
+
+\vspace{0.25cm}
+
+\noindent\parbox{\textwidth}{
+\centering
+\lstinline[style=myMatlab]{sol = ode45(odeFun,tSpan,Y0,optStruct)}
+}
+
+\vspace{0.25cm}
+
+\noindent Now \lstinline[style=myMatlab]{sol} is a MATLAB structure that contains all of the output data for the dependent and independent variable in one object.  Readers are encouraged to consult the MATLAB documentation for way in which the solution structure object should be used.
