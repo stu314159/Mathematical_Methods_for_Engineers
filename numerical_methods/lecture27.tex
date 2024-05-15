@@ -18,7 +18,7 @@ What we need are:
 \item the means of making this estimate should not require a lot more work.
 \end{enumerate}  
 
-Embedded Runge-Kutta methods provide for those needs.  Consider the Bogacki-Shampine method that is used in MATLAB's built-in function \lstinline[style=myMatlab]{ode23}.\cite{bogacki19893} The Butcher tableau is shown in Table \ref{tab:lec27n-bs-bt}.
+\newthought{Embedded Runge-Kutta methods} provide for those needs.  Consider the Bogacki-Shampine method\cite{bogacki19893} that is used in MATLAB's built-in function \lstinline[style=myMatlab]{ode23}. The Butcher tableau is shown in Table \ref{tab:lec27n-bs-bt}.
 
 
 \begin{margintable}[-8.0cm]
@@ -266,7 +266,7 @@ To use, for example, \lstinline[style=myMatlab]{ode45}, the syntax is as follows
 \vspace{0.25cm}
 
 
-\noindent where \lstinline[style=myMatlab]{odeFun}\sidenote{Note that this function must take two inputs; the first is the independent variable, and the second is a vector of dependent variables. Even if the governing equation is not a function of the independent variable, the function you send to \lstinline[style=myMatlab]{ode45} and other built-in MATLAB initial value problem solvers, must accept it as its first argument.} is a handle to the function implementing the governing equation, \lstinline[style=myMatlab]{tSpan} is either a vector with two elements indicating the range of the independent variable or a vector specifying time-steps at which the solution is desired. The argument \lstinline[style=myMatlab]{Y0} is a vector with initial conditions.  The return variable \lstinline[style=myMatlab]{tSol} is a $1xN$ vector where $N$ is the number of time steps ultimately taken by \lstinline[style=myMatlab]{ode45}; \lstinline[style=myMatlab]{ySol} is a $N x s$ array where $s$ is the number of dependent variables in the system of equations.
+\noindent where \lstinline[style=myMatlab]{odeFun}\sidenote{Note that this function must take two inputs; the first is the independent variable, and the second is a vector of dependent variables. Even if the governing equation is not a function of the independent variable, the function you send to \lstinline[style=myMatlab]{ode45} and other built-in MATLAB initial value problem solvers, must accept it as its first argument.} is a handle to the function implementing the governing equation, \lstinline[style=myMatlab]{tSpan} is either a vector with two elements indicating the range of the independent variable or a vector specifying time-steps at which the solution is desired. The argument \lstinline[style=myMatlab]{Y0} is a vector with initial conditions.  The return variable \lstinline[style=myMatlab]{tSol} is a $1 \times N$ vector where $N$ is the number of time steps ultimately taken by \lstinline[style=myMatlab]{ode45}; \lstinline[style=myMatlab]{ySol} is a $N \times s$ array where $s$ is the number of dependent variables in the system of equations.
 
 \newthought{Each of the} methods listed are of variable time step-size; unless the user specifies the time steps through the \lstinline[style=myMatlab]{tSpan} variable, the built-in methods will adaptively adjust the time step size to meet error tolerances.  Optional parameters (like absolute and relative error tolerances) can be set by providing an optional argument by using the \lstinline[style=myMatlab]{odeset} function as shown below:
 
