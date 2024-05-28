@@ -57,8 +57,37 @@ We will introduce and illustrate our first method for solving BVPs, the shooting
 \vspace{0.1cm}
 
 \noindent A pin fin is a slender extension attached to increase the surface area and enable greater heat transfer.  When convection and radiation are included in the analysis, the steady-state temperature distribution, $T(x)$, along a pin fin can be caluclated from the solution of the equation below:
-
 \begin{equation}
 \frac{d^2T}{dx^2} - \frac{h_cP}{kA_c}\left(T - T_s\right)-\frac{\epsilon \sigma_{SB}P}{k A_c}\left(T^4 - T_s^4 \right) = 0, \ \ 0 \le x \le 1
 \end{equation}
+with boundary conditions $T(0)=T_A$ and $T(0.1)=T_B$.  A schematic of the system is shown in Figure \ref{fig:lec28n-ex1-schematic}.  There are a number of parameters given in the equation.  These are specified in Table \ref{tab:lec28n-ex1-parameters}.
+\begin{marginfigure}[-4.5cm]
+\includegraphics{lec28n-ex1-schematic.png}
+\caption{Pin Fin Boundary Value Problem Schematic.}
+\label{fig:lec28n-ex1-schematic}
+\end{marginfigure}
+
+\begin{table}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Parameter} & \textbf{Value} \\ \hline
+Convective heat transfer coefficient ($h_c$) & 40 $\text{W}/\text{m}^2\text{-K}$ \\ \hline
+Perimeter of the pin ($P$) & 0.016 m \\ \hline
+Radiative emissivity of the surface ($\epsilon$) & 0.4 \\ \hline
+Thermal conductivity of the pin material ($k$) & 240 $\text{W}/\text{m-K}$ \\ \hline
+Cross-sectional area of the fin ($A_c$) & $1.6 \times 10^{-5} \text{m}^2$ \\ \hline
+Temperature of surrounding air ($T_S$) & 293 K \\ \hline
+Stefan-Boltzmann constant ($\sigma_{SB}$) & $5.67 \times 10^{-8} \text{W}/\text{m}^2\text{-K}^4$ \\ \hline
+Temperature of fin at base ($T_A$) & 473 K \\ \hline
+Temperature of fin at end ($T_B$) & 293 K \\ \hline
+\end{tabular}
+\caption{Example problem parameters.}
+\label{tab:lec28n-ex1-parameters}
+\end{table}
+
+\newthought{It is worth} taking a moment to classify the given problem.  This is a 2\textsuperscript{nd}-order, non-homogeneous, non-linear, boundary value problem with non-homogeneous type-1 boundary conditions.  Since it is non-linear and also not separable, none of the analytical methods we learned in the first portion of this book are applicable.  We need to solve the problem numerically.  Since we just finished a long section describing numerical methods for initial value problems, maybe there is a way we can use one those tools---like an explicit Runge-Kutta method---to solve this problem.  With the Shooting method, we do exactly that.
+
+\subsection{The Shooting Method}
+
+
 
