@@ -1,0 +1,71 @@
+\chapter{Lecture 29 - Solving Boundary Value Problems, MATLAB Built-in Methods}
+\label{ch:lec29n}
+\section{Objectives}
+The objectives of this lecture are to:
+\begin{itemize}
+\item Introduce MATLAB built-in functions \lstinline[style=myMatlab]{bvp4c} and \lstinline[style=myMatlab]{bvp5c} and show how to use them.
+\item Do an example problem.
+\end{itemize}
+\setcounter{lstannotation}{0}
+
+\section{BVP4C and BVP5C}
+
+Both of these built-in solvers use variations of the finite difference method.  For this lecture, we will \emph{not} delve into any of the inner working details of the functions.  Rather, I will seek only to show you how to \emph{use} the functions.  The interface for both functions are the same so, for all intents and purposes relevant for this class, you can use them interchangeably.  This is not to say that the differences between the two functions are trivial.  Interested readers are advised to consult the MATLAB documentation to learn more.
+
+\newthought{To get a solution} to a BVP using \lstinline[style=myMatlab]{bvp4c} or \lstinline[style=myMatlab]{bvp5c}, the user has to provide the typical information:
+\begin{enumerate}
+\item \emph{The governing equation.} As with other built-in ODE solvers, this is provided as a function that returns the value for:
+\begin{equation*}
+\frac{dw}{dx} = f(x,w)
+\end{equation*}
+where here we indicate the dependent variable with $w$.  Since the BVPs of interest to us are 2\textsuperscript{nd}-order and higher, the dependent variable $w$ will be a vector and the governing equation for an $n$\textsuperscript{th}-order BVP will be a system with $n$ equations.  In the examples presented here, this function will ordinarily be implemented as a local function.  For particularly simple govering equations, an inline ``anonymous'' function may be used.
+\begin{lstlisting}[style=myMatlab]
+function dw = fun(x,w)
+.
+. % implemented here %
+.
+end
+\end{lstlisting}
+
+\item \emph{Boundary conditions}.  Recall with IVP solvers like \lstinline[style=myMatlab]{ode45} or \lstinline[style=myMatlab]{ode78} initial conditions were simply given as vectors.\sidenote{This reflects the difference in what types of conditions are given for IVPs compared to BVPs.  For IVPs, the only option presented for initial conditions was to make a direct assignment to the dependent variable and its derivative at one end of the domain.}  This is roughly equivalent to having only type 1 and type 2 boundary conditions.  In order to gain the expressiveness that we need a different approach is taken for BVP solvers.  We provide a \emph{residual function} that accepts as arguments the dependent variable and its derivatives at each boundary; the function returns the boundary condition in \emph{residual} form.\sidenote{Basically this is just the boundary condition as it is stated but with all of the terms moved to the left-hand-side of the equation.}  Using the example from Lecture 28 where the boundary conditions were:
+\begin{equation*}
+T(0) = T_A, \ \ T(0.1) = T_B
+\end{equation*}
+we could encode these as follows:
+\begin{lstlisting}[style=myMatlab]
+bcfun = @(wa,wb) [wa(1) - Ta; wb(1) - Tb];
+\end{lstlisting}
+where \lstinline[style=myMatlab]{wa(1)-Ta} is equivalent to $T(0)-T_A$; and \lstinline[style=myMatlab]{wb(1)-Tb} is equivalnet to $T(0.1)-T_B$.\sidenote{If I need to refer to the derivative of the dependent variable at either boundary, I would refer to them as \lstinline[style=myMatlab]{wa(2)} or \lstinline[style=myMatlab]{wb(2)}, respectively.}
+
+\item \emph{Initial mesh and solution guess.} Like other built-in MATLAB functions for solving ODEs, \lstinline[style=myMatlab]{bvp5c} will adapt the mesh as needed to provide a solution that satisfies the specified error tolerances.\sidenote{As with other solvers, absolute and relative error tolerances are provided by default and can be changed by the user as desired.} To specify the mesh and initial solution guess, we use the built-in function \lstinline[style=myMatlab]{bvpinit} as shown in the listing below:
+\begin{lstlisting}[style=myMatlab]
+a = 0; b = 1; % domain 0 < x < 1
+Yguess = [1 0]; % guess constant solution
+initial_mesh = [a b]; % as coarse as possible /*!\annotation{lst:ann29n-1}!*/
+solinit = bvpinit(initial_mesh,Yguess);
+\end{lstlisting}
+\marginnote[-0.8cm]{
+
+\noindent \ref{lst:ann29n-1} \lstinline[style=myMatlab]{bvp5c} will adapt this mesh as needed.  Note that the final mesh will not generally be uniform.
+}
+Alternatively, you may specify a more refined initial mesh using a tool like \lstinline[style=myMatlab]{linspace}. 
+\marginnote{
+
+\vspace{0.85cm}
+
+\noindent \ref{lst:ann29n-2} I have yet to encounter a BVP where it was necessary to provide an initial solution guess more detailed than a constant value.
+
+}
+\begin{lstlisting}[style=myMatlab]
+a = 0; b = 1; N = 100;
+Yguess = [1 0];/*!\annotation{lst:ann29n-2}!*/
+initial_mesh = linspace(a,b,N);
+solinit = bvpinit(initial_mesh,Yguess);
+\end{lstlisting}
+
+\item \emph{Provide any options.}  Default values are provided for all needed options.  Any named parameter can be set using the built-in function \lstinline[style=myMatlab]{bvpset(name1,value1,name2,value2,...)}.  An example is shown in the listing below.
+\begin{lstlisting}[style=myMatlab]
+options = bvpset('RelTol',1e-3,'AbsTol',1e-6,'Nmax',1000);
+\end{lstlisting} 
+
+\end{enumerate}
