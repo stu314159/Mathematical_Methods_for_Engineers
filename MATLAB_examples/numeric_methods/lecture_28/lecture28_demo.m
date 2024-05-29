@@ -8,7 +8,7 @@ Ta = 473; % K, temperature at base of fin
 Tb = 293; % K, temperature at the tip of the fin
 N = 1000; %
 ode = @(x,T) pin_fin(x,T);
-x = linspace(a,b,N);
+
 
 %% set RK4 solver tableau parameters
 % note: any other ODE solver would also suffice.
@@ -60,6 +60,7 @@ end
 %% Solve one last time with converged dT_a
 T = odeWithSolver(dT_a);
 
+x = linspace(a,b,N);
 figure(1)
 plot(x,T(1,:),'-b','linewidth',3);
 title('Pin Fin Temperature Profile',...
@@ -81,7 +82,7 @@ function F = pin_fin(~,T)
 % two args so it can work with ode45
 Ac = 1.6e-5; % m^2, fin cross sectional area
 P = 0.016; % m, perimeter of pin cross section
-h_c = 40; % W/m^2-K, convective heat transfer coefficient of air around pin
+h_c = 150; % W/m^2-K, convective heat transfer coefficient of air around pin
 k = 250; % W/m-K, thermal conductivity of pin material
 emiss = 0.5; % emissivity of pin material
 sigma_sb = 5.67e-8; % W/m^2-K^4, Stefan-Boltzmann constant
