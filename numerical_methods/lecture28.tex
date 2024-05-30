@@ -248,7 +248,7 @@ The resulting temperature profile through the pin fin is shown in Figure \ref{fi
 \noindent It is not against the law also to critically consider the given boundary conditions.  How realistic is it to specify the temperatures at both ends of the pin fin?  What aspects of the solution should you look at to evaluate the \emph{performance} of the pin fin as a heat management device?
 }
 
-Local functions defined above are included here.  The functions \lstinline[style=myMatlab]{odesExplicit}, \lstinline[style=myMatlab]{SecantRoot}, and \lstinline[style=myMatlab]{BisectionRoot} are not shown in this listing for the sake of brevity.
+Local functions defined above are included here.  %The functions \lstinline[style=myMatlab]{odesExplicit}, \lstinline[style=myMatlab]{SecantRoot}, and \lstinline[style=myMatlab]{BisectionRoot} are not shown in this listing for the sake of brevity.
 \begin{lstlisting}[style=myMatlab,name=lec28n-ex1]
 %% Local Functions
 function Tb = shot_function(odeWithSolver,dT_a)
@@ -273,6 +273,101 @@ F = nan(2,1);
 F(1) = T(2);
 F(2) = ((h_c*P)/(k*Ac))*(T(1) - Ts) + ...
     ((emiss*sigma_sb*P)/(k*Ac))*(T(1).^4 - Ts^4);
+
+end
+
+function y = odesExplicitRK(ODE,a,b,N,yINI,BT)
+% function y = odeExplicitRK(ODE,a,b,h,yINI,BT)
+% y = solution (vector)
+% ODE = function handle for y'
+% a,b = begining and end of the interval for solution
+% N = number of steps between a and b
+% yINI = initial value for the solution
+% BT = Butcher Tableau
+
+% get Butcher Tableau Parameters
+s = length(BT)-1;
+c = BT(1:s,1);
+B = BT(s+1,2:end);
+A = BT(1:s,2:end);
+stages = s;
+
+x = linspace(a,b,N);
+sys_size = length(yINI);
+y = nan(sys_size,N);
+y(:,1) = yINI;
+h = x(2)-x(1);
+for t = 1:(N-1)
+    Xi = nan(sys_size,stages);
+    
+    for s = 1:stages
+       Xi(:,s) = y(:,t);
+       for i = 1:(s-1)
+          Xi(:,s) = Xi(:,s) + h*A(s,i)*ODE(x(t)+c(i)*h,Xi(:,i)); 
+       end
+    end
+    
+    y(:,t+1) = y(:,t);
+    for i = 1:stages
+       y(:,t+1) = y(:,t+1) + h*B(i)*ODE(x(t)+c(i)*h,Xi(:,i)); 
+    end
+    
+end
+end
+
+function x_bi = BisectionRoot(fun,a,b,TOL)
+
+tol = TOL;
+x_bi = (a+b)/2;
+% verify that fun(a) and fun(b) have different sign
+if(fun(a)*fun(b)>0)
+   error('No root lies between %g and %g!\n',a,b); 
+end
+
+maxIt = 1e2;
+for k = 1:maxIt
+    FxNS = fun(x_bi);
+    
+    % check if FxNS is within the tolerance
+    if (abs(FxNS) < tol)
+        return;
+    end
+    
+    % update brackets
+    if (fun(a)*FxNS < 0)
+        b = x_bi;
+    else
+        a = x_bi;
+    end
+    
+    % update estimated x_bi based on new bracket
+    x_bi = (a+b)/2;
+       
+end
+
+% if I ever get here, then I failed to meet the tolerance 
+% within the maximum number of iterations
+fprintf('Warning: failed to find root within specified tolerance.\n');
+fprintf('Current root: %g, fun(x_bi) = %g. \n',x_bi,fun(x_bi));
+
+
+end
+
+function Xs = SecantRoot(Fun,Xa,Xb,Err,imax)
+
+for i = 1:imax
+   FXb = Fun(Xb);
+   Xi = Xb - FXb*(Xa - Xb)/(Fun(Xa) - FXb);
+   
+   if abs((Xi - Xb)/Xb) < Err
+       Xs = Xi;
+       break;
+   end
+   Xa = Xb;
+   Xb = Xi;
+     
+        
+end
 
 end
 

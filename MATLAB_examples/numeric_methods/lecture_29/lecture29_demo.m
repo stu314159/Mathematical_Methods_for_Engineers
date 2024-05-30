@@ -74,18 +74,18 @@ To = 300; % K, temperature at x=0
 bcfun = @(ya,yb) [ya(1)- To; yb(2) - 0];
 
 Tguess = [To 0]; % second entry is dT/dx
-solinit = bvpinit(x,Tguess);
-options = bvpset('RelTol',1e-5,'AbsTol',1e-5,'NMax',5000);
+solinit = bvpinit([xMin xMax],Tguess);
+options = bvpset('RelTol',1e-10,'AbsTol',1e-8,'NMax',5000);
 sol2 = bvp5c(F,bcfun,solinit,options);
 
 figure(4)
-plot(sol2.x,sol2.y(1,:),'-b','linewidth',3);
+plot(sol2.x,sol2.y(1,:),'-sb','linewidth',3);
 grid on
-title('Example 2 Solution','fontsize',14,...
+title('Example 2 Solution','fontsize',16,...
     'fontweight','bold');
-xlabel('X [m]','fontsize',12,'fontweight','bold');
-ylabel('T(X) [K]','fontsize',12,'fontweight','bold');
-set(gca,'fontsize',10,'fontweight','bold');
+xlabel('X [m]','fontsize',14,'fontweight','bold');
+ylabel('T(X) [K]','fontsize',14,'fontweight','bold');
+set(gca,'fontsize',12,'fontweight','bold');
 
 
 %% Local Functions
