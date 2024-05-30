@@ -25,28 +25,10 @@ We will use MATLAB's built-in function \lstinline[style=myMatlab]{bvp5c} to solv
 
 First, we must transform the governing equation:
 \begin{align*}
-\frac{1}{r}\frac{d}{dr}\left(rk\frac{dT}{dr}\right) &=-10^8\frac{e^{-r/R}}{r} \\
-\frac{d}{dr}\left(rk\frac{dT}{dr}\right)&=-10^8e^{-r/R} \\
-k\frac{dT}{dr}+rk\frac{d^2T}{dr^2} &= -10^8e^{-r/R} \\
-\frac{d^2T}{dr^2}+\frac{1}{r}\frac{dT}{dr} &= -\frac{10^8e^{-r/R}}{rk}
+\frac{1}{r}\frac{d}{dr}\left(rk\frac{dT}{dr}\right) &=-10^8\frac{e^{-r/R}}{r}, \ \ \text{The original governing equation.}\\
+\frac{d}{dr}\left(rk\frac{dT}{dr}\right)&=-10^8e^{-r/R}, \ \ \text{Multiply both sides by } r. \\
+k\frac{dT}{dr}+rk\frac{d^2T}{dr^2} &= -10^8e^{-r/R}, \ \ \text{Apply the product rule to the left-hand side.}\\
+\frac{d^2T}{dr^2}+\frac{1}{r}\frac{dT}{dr} &= -\frac{10^8e^{-r/R}}{rk}, \ \ \text{Divide both sides by }rk\text{ and re-arrange terms.}
 \end{align*}
-\marginnote[-4.0cm]{
 
-\vspace{0.1cm}
-
-\noindent The original governing equation.
-
-\vspace{0.5cm}
-
-\noindent Multiply both sides by $r$.
-
-\vspace{0.5cm}
-
-\noindent Apply the product rule to the left-hand side.
-
-\vspace{0.5cm}
-
-\noindent Divide both sides by $rk$ and re-arrange terms.
-
-}
 
