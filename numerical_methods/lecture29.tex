@@ -179,7 +179,7 @@ BCs: & $T(x=0)=300K, \ \ \frac{dT}{dx}\Bigl|_{x=\sfrac{L}{2}}=0$ \\
 
 \vspace{0.4cm}
 
-\noindent \ref{lst:ann29n-ex2-2} Obviously we could have omitted the zero in \lstinline[style=myMatlab]{yb(2)-0}, but for the sake of readability it is not a horrible idea to include that term.
+\noindent \ref{lst:ann29n-ex2-2} Obviously we could have omitted the zero in the expression `\lstinline[style=myMatlab]{yb(2)-0}', but for the sake of clarity it is not a horrible idea to include that term.  The point of this example is to illustrate a problem with a type 2 boundary condition.
 
 }
 \begin{lstlisting}[style=myMatlab,name=lec29n-ex2]
@@ -193,5 +193,47 @@ Tguess = [To 0]; % second entry is dT/dx
 solinit = bvpinit([xMin xMax],Tguess);
 options = bvpset('RelTol',1e-10,'AbsTol',1e-8,'NMax',5000);
 sol2 = bvp5c(F,bcfun,solinit,options);
+
+figure(1)
+plot(sol2.x,sol2.y(1,:),'-sb','linewidth',3);
+grid on
+title('Example 2 Solution','fontsize',16,...
+    'fontweight','bold');
+xlabel('X [m]','fontsize',14,'fontweight','bold');
+ylabel('T(X) [K]','fontsize',14,'fontweight','bold');
+set(gca,'fontsize',12,'fontweight','bold');
 \end{lstlisting}
+
+\noindent The solution is shown in Figure \ref{fig:lec29n-ex2-sol}.  The local function used to implement the governing equation is shown in the next listing.
+\begin{marginfigure}
+\includegraphics{lec29n-ex2-sol.png}
+\caption{Solution for Example \#2.}
+\label{fig:lec29n-ex2-sol}
+\end{marginfigure}
+
+\begin{lstlisting}[style=myMatlab,name=lec29n-ex2]
+%% Local Functions
+function dTdx = ex2(~,T) /*!\annotation{lst:ann29n-ex2-3}!*/
+k = 72; % W/m-K
+h = 2000; % W/m^2-K
+emiss = 0.1;
+sigma_sb = 5.67e-8; % W/(m^2-K^4)
+I = 2; % amps
+rho_e = 32e-8; % Ohm-m
+Tinf = 300; % K
+D = 7.62e-5; % m
+
+% make some terms to simplify the equation
+c1 = 4*h/(k*D);
+c2 = 4*emiss*sigma_sb/(k*D);
+c3 = -I^2*rho_e/(k*(0.25*pi*D^2)^2);
+dTdx = [T(2);
+    c1*(T(1) - Tinf) + c2*(T(1).^4 - Tinf^4) + c3];
+end
+\end{lstlisting}
+
+\marginnote[-6.0cm]{
+
+\noindent \ref{lst:ann29n-ex2-3} Reminder that, since the governing equation is not a function of the independent variable---it is \emph{autonomous}, in the language of ODEs---we can (and should) use a tilde to take the place of the first argument of the function.
+}
 
