@@ -6,7 +6,7 @@ The first course is focused on analytical methods for linear ordinary and partia
 
 The materials presented are based heavily on Professor Dennis Zill's excellent book, Advanced Engineering Mathematics, 7th Edition. We lightly select from chapters 1-3 for review; chapter 5 for series solution methods; and chapters 12-14 for Fourier Series and solutions to linear boundary value problems.  
 
-What distinguishes this course from Prof Zill's work is the explicit incorporation of computational tools in the solution process.  These ``semi-analytical methods'' are presented here in MATLABowing to the students preparation with that tool.  Other open-source tools like Octave and Python, of course, could be used.
+What distinguishes this course from Prof Zill's work is the explicit incorporation of computational tools in the solution process.  These ``semi-analytical methods'' are presented here in MATLAB owing to the students preparation with that tool.  Other open-source tools like Octave and Python, of course, could be used.
 
 ## Numerical Methods
 The second course is focused on numerical methods for a variety of applications relevant to the physical sciences.  Prerequisites for this course include a three-semester sequence of calculus followed by a course in ordinary differential equations. Students also are required to have taken an introductory programming course where they have gained experience using the MATLAB programming environment.  A majority of the students who have taken this course have also taken the Analytical Methods course previously, although it is not a requirement.  
