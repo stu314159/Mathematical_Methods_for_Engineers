@@ -402,10 +402,16 @@ BCs: & $y(1) = 0, \ \ y(2) = 0$ \\
 
 \vspace{0.25cm}
 
-\noindent The exact solution is: $y(x) = 12x-15x^3 + 3x^5$.\marginnote{\textbf{Note:} This result was arrived at using the, very handy, method of \emph{``manufactured solutions.''} This is where you devise of a solution first, $y_s(x)$, then plug it into the differential operator, $L(y_s)$.  The result, $L(y_s)=p(x)$ becomes the source term and you evaluate $y_s$ at the boundaries to get the Dirichlet boundary conditions.  This is a well-accepted technique for validating your solver.}
+\noindent The exact solution is: $y(x) = 12x-15x^3 + 3x^5$.\marginnote{\textbf{Note:} This result was arrived at using the (very handy) method of \emph{``manufactured solutions.''} This is where you devise of a solution first, $y_s(x)$, then plug it into the differential operator, $L(y_s)$.  The result, $L(y_s)=p(x)$ becomes the source term and you evaluate $y_s$ at the boundaries to get the Dirichlet boundary conditions.  This is a well-accepted technique for validating your solver.}
 
 The MATLAB code to solve this equation is presented in the listing below:
+\marginnote{
 
+\vspace{2.0cm}
+
+\noindent \ref{lst:ann31n-ex-2} Compare these lines of code to the governing equation.  Does the syntax make sense? As an example, the nested functions \lstinline[style=myMatlab]{sparse(diag(x.^2))}, where \lstinline[style=myMatlab]{x} is a vector, results in a diagonal matrix with the values of $x^2$ along the diagonal stored in a sparse matrix representation.
+
+}
 \begin{lstlisting}[style=myMatlab,name=lec31n-ex2]
 a = 1; b = 2;
 N = 100;
@@ -419,7 +425,7 @@ x = linspace(a,b,N); x = x';
 y_exact = @(x) 12*x - 15*(x.^3) + 3*(x.^5);
 
 L = (sparse(diag(x.^2)))*Dxx_op - ...
-    3*sparse(diag(x))*Dx_op + ...
+    3*sparse(diag(x))*Dx_op + ...     /*!\annotation{lst:ann31n-ex-2}!*/
     3*speye(N,N);
 rhs = 24*(x.^5);
 
