@@ -98,4 +98,108 @@ This is a form of \emph{fixed point iteration}. Looking again at the equation in
 \begin{equation*}
 T_{i+1} = L^{-1}\left[b-\phi(T_{i})\right] = g(T_i)
 \end{equation*}
-The solution we are looking for is when $g(T_i) \rightarrow T_i$; this is called a \emph{fixed point}.  The conditions under which $g(T)$ will \emph{have} a fixed point are beyond the scope of this class and will not be discussed further in this lecture.
+The solution we are looking for is when $g(T_i) \rightarrow T_i$; this is called a \emph{fixed point}.  The conditions under which $g(T)$ will \emph{have} a fixed point are beyond the scope of this class and will not be discussed further in this lecture.\sidenote{Interested readers can learn more about the Banach fixed point theorm which says, roughly, that if $g(T)$ is a \emph{contraction mapping} (at least in some region ``close'' to a fixed point) then the fixed point iteration will succeed. This is, suffice it to say, a loose statement.}
+
+\section{MATLAB Implementation}
+A listing of MATLAB code that implements the method described above for our example problem is provided below.
+
+\noindent We begin by clearing the workspace and defining constants.
+\begin{lstlisting}[style=myMatlab,name=lec32n-ex]
+clear
+clc
+close 'all'
+
+%% Define constants
+a = 0; b = 0.1;
+N = 2000;
+Ac = 1.6e-5; % m^2, fin cross sectional area
+P = 0.016; % m, perimeter of pin cross section
+h_c = 40; % W/m^2-K, convective heat transfer coefficient 
+k = 250; % W/m-K, thermal conductivity of pin material
+emiss = 0.5; % emissivity of pin material
+sigma_sb = 5.67e-8; % W/m^2-K^4, Stefan-Boltzmann constant
+Ts = 293; % K, temperature of surrounding air
+
+% Boundary Conditions
+Ta = 473;  Tb = 293;
+\end{lstlisting}
+
+
+\noindent Next we construct the differential operators and apply boundary conditions to them.
+\begin{lstlisting}[style=myMatlab,name=lec32n-ex]
+% Discretize the space and get Operators
+x = linspace(a,b,N); x = x';
+
+Dx_op = Dx(a,b,N);
+Dxx_op = Dxx(a,b,N);
+alpha_1 = h_c*P/(k*Ac);
+alpha_2 = emiss*sigma_sb*P/(k*Ac);
+L = Dxx_op - alpha_1*speye(N,N);
+
+% apply boundary condition to L
+L(1,:) = 0; L(1,1) = 1; 
+L(N,:) = 0; L(N,N) = 1;
+
+\end{lstlisting}
+
+In order to form the right-hand side of our system of equations, we need to estimate the temperature distribution.  It's probably not fair since we have solved this problem before but, given the boundary conditions, a linear initial guess between the fin root and tip makes a lot of sense.
+
+\begin{lstlisting}[style=myMatlab,name=lec32n-ex]
+% Estimate initial temperature distribution
+To = linspace(Ta,Tb,N); To = To';
+
+% Form RHS
+b = -ones(N,1)*Ts*alpha_1 - ones(N,1)*(Ts^4)*alpha_2;
+phi = (To.^4)*alpha_2;
+RHS = b - phi;
+
+% apply BC to RHS
+RHS(1) = Ta; RHS(N) = Tb;
+
+\end{lstlisting}
+
+Now we are ready to apply the fixed-point iteration scheme.
+\begin{lstlisting}[style=myMatlab,name=lec32n-ex]
+tol = 1e-7; imax = 100; T = To;
+
+for i = 1:imax
+
+    %solve the system of equations for new estimate of temperature
+    Tnew = L\RHS;     
+    % obtain convergence criterion "error estimate"
+    Err = norm(T - Tnew,Inf)/norm(T,Inf);    
+    % exit loop if error is within tolerance
+    if Err <tol
+        fprintf('Success!! Iteration converged after %d iterations.\n',i);
+        fprintf('Error estimate: %g \n',Err);
+        break;
+    end    
+    % error tolerance not met, prepare for next iteration
+    phi = (Tnew.^4)*alpha_2;
+    RHS = b - phi;
+    RHS(1) = Ta; RHS(N) = Tb; %re-apply BC   
+    T = Tnew;
+    
+end
+
+if i == imax
+    fprintf('Error! Solution not converged after %i iterations.\n',imax);
+    fprintf('Last residual = %g \n',Err);
+end
+
+fprintf('\n\n Plotting Last Solution: \n\n');
+figure(1)
+plot(x,T,'-r','linewidth',3);
+title('Solution of Non-linear BVP with Finite Difference Method',...
+    'fontsize',16,'fontweight','bold');
+xlabel('X (m) ','fontsize',14,'fontweight','bold');
+ylabel('T (K) ','fontsize',14,'fontweight','bold');
+set(gca,'fontsize',12,'fontweight','bold');
+grid on
+\end{lstlisting}
+\begin{marginfigure}
+\includegraphics{lec32n-ex-sol.png}
+\caption{Solution of example problem with Finite Difference Methods}
+\label{fig:lec32n-ex-sol}
+\end{marginfigure}
+The temperature distribution obtained using this method is shown in Figure \ref{fig:lec32n-ex-sol}.  The result required 5 iterations with a relative error of $5.8\times 10^{-9}$.
