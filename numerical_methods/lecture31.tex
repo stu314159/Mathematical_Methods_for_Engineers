@@ -195,7 +195,11 @@ Two key points that may influence your decision, that I want to highlight now ar
 Before we move along to example problems, we will present functions that we will use to construct the 1\textsuperscript{st}- and 2\textsuperscript{nd}-order differentiation matrices.  We will take advantage of MATLAB's tools for constructing sparse matrices.
 
 A MATLAB function for constructing the 1\textsuperscript{st}-order differentiation matrix is shown in the listing below:
-\marginnote[6.0cm]{
+\marginnote{
+
+\vspace{1.5cm}
+
+\noindent\textbf{Note:} The discrete represenatations of the differential operators will be represented as sparse matrices.  The idea is that, based on the chosen finite difference equations, we can determine in advance all of the non-zeros of the matrix.  We will store the row and column number along with the value of all the non-zeros into vectors.  Those vectors will then be supplied to a MATLAB built-in function to construct the sparse matrix. 
 
 \vspace{1.0cm}
 
@@ -203,7 +207,7 @@ A MATLAB function for constructing the 1\textsuperscript{st}-order differentiati
 
 \vspace{8.0cm}
 
-\noindent\ref{lst:ann31n-diff-mat-2} See the MATLAB documentation for the sparse matrix constructor: \lstinline[style=myMatlab]{sparse}.  
+\noindent\ref{lst:ann31n-diff-mat-2} We provide the row and column number and the value for all non-zeros along with the overall dimensions of the array.  See the MATLAB documentation for the sparse matrix constructor, \lstinline[style=myMatlab]{sparse}, for more details.  
 }
 \begin{lstlisting}[style=myMatlab,name=lec31n-yp-mat]
 function dx_sp = Dx(a,b,N)
@@ -332,7 +336,7 @@ BCs: & $y(0) = 0, \ \ y(1) = 5$ \\
 
 \marginnote[3.0cm]{
 
-\vspace{2.2cm}
+\vspace{1.9cm}
 
 \noindent\ref{lst:ann31n-ex-1} The constructor \lstinline[style=myMatlab]{speye(N,N)} creates a sparse $N \times N$ identity matrix.
 
