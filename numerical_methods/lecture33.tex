@@ -9,3 +9,15 @@ The objectives of this lecture are to:
 \setcounter{lstannotation}{0}
 
 \section{Example BVP}
+Consider the following boundary value problem:
+\begin{equation*}
+\frac{d^2u}{dx^2}-u = -x, \ \ \ 0 < x < 1 
+\end{equation*}
+with homogeneous Dirichlet boundary conditions: $u(0)=u(1) = 0$.
+
+\newthought{This is a} second-order, linear, non-homogeneous, equation with constant coefficients.  The complementary solution is: $u_c(x) = c_1\cosh{(x)}+c_2\sinh{(x)}$.  Using the method of undetermined coefficients, one can show that a particular solution is: $u_p = x$.  Combining the two gives us the general solution: $u(x) = u_c + u_p = x + c_1\cosh{(x)}+c_2\sinh{(x)}$. Applying boundary conditions gives us the solution:
+
+\begin{equation}
+u(x) = x - \frac{\sinh{(x)}}{\sinh{(1)}}
+\label{eq:lec33n-ex-analytic}
+\end{equation}
