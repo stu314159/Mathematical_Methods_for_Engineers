@@ -6,6 +6,17 @@ close 'all'
 %%
 u_exact = @(x) x - sinh(x)/sinh(1);
 
+%% Plot the exact solution
+x = linspace(0,1,1000);
+figure(1)
+plot(x,u_exact(x),'-b','linewidth',3)
+title('Exact Solution','FontSize',16,...
+    'FontWeight','bold');
+xlabel('x','fontsize',14,'fontweight','bold');
+ylabel('u(x)','fontsize',14,'fontweight','bold');
+grid on
+set(gca,'fontsize',12,'fontweight','bold');
+%%
 u_trial = @(x,a) a.*(x - x.^2);
 %% Compute the Residual
 
@@ -29,7 +40,7 @@ fprintf('a_CL = %12.11f \n',a_CL);
 
 %% Galerkin Method
 
-Weight_Galerkin = @(x) x - x.^2;
+Weight_Galerkin = @(x) x.*(1-x);
 F = @(a) integral(@(x) Weight_Galerkin(x).*Resid(x,a),0,1);
 a = fzero(F,1);
 fprintf('a = %12.11f \n',a);
@@ -42,7 +53,7 @@ a = 0; b = 1;
 Nx = 100;
 X = linspace(a,b,Nx);
 
-figure(1)
+figure(2)
 plot(X,u_exact(X),'--r',...
     X, u_LS(X),'-k',...
     X, u_CL(X),'-g',...)
@@ -54,6 +65,16 @@ grid on
 set(gca,'fontsize',12,'fontweight','bold')
 legend('Exact','Least Squares','Co-location','Galerkin')
 
+figure(3)
+plot(X,u_exact(X),'-b',...
+    X,u_galerkin(X),'--r','linewidth',2);
+title('Exact vs. MWR','fontsize',16,'fontweight','bold');
+xlabel('X','fontsize',14,'fontweight','bold');
+ylabel('u(X)','fontsize',14,'fontweight','bold');
+grid on
+set(gca,'fontsize',12,'fontweight','bold')
+legend('Exact','Galerkin')
+
 %% Weak Form
 W = @(x) x - x.^2;
 Ut = @(x,a) a.*(x - x.^2);
@@ -61,7 +82,7 @@ dW_dx = @(x) 1 - 2*x;
 dUt_dx = @(x,a) a.*(1-2*x);
 
 Weak_Form = @(a) W(1)*dUt_dx(1,a) - W(0)*dUt_dx(0,a) - ... % boundary term
-    integral(@(x) dUt_dx(x,a).*dW_dx(x),0,1) - ...
+    integral(@(x) dW_dx(x).*dUt_dx(x,a),0,1) - ...
     integral(@(x) W(x).*Ut(x,a),0,1) + ...
     integral(@(x) W(x).*x,0,1);
 
