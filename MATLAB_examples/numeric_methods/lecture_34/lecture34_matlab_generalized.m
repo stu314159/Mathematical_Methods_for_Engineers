@@ -10,8 +10,8 @@ x_gold = linspace(a,b,1000);
 
 Ua = 0; Ub = 0; % Boundary Conditions
 %% Finite Element Parameters and Data Structures
-nelem = 3; % select # of elements
-order = 1;
+nelem = 30; % select # of elements
+order = 9;
 
 [gcoord,nodes] = genMesh1D(a,b,nelem,order);
 
@@ -19,7 +19,6 @@ order = 1;
 nldofs = order+1;
 
 % global x-coordinate of each node
-%gcoord = linspace(a,b,nelem+1); % x-coordinates of all nodes
 nnodes = length(gcoord);
 
 % sample points for Gauss Quadrature
@@ -41,7 +40,7 @@ for ele = 1:nelem
     
     % local mapping for GQ
     aL = gcoord(nodes(ele,1));
-    bL = gcoord(nodes(ele,end));
+    bL = gcoord(nodes(ele,nldofs));
     xT = @(t) ((bL - aL)*t + aL + bL)/2;
     Jac = (bL - aL)/2;
 
@@ -57,17 +56,17 @@ for ele = 1:nelem
         % sum weighted contribution at Gauss Points
         for i = 1:nldofs
             for j = 1:nldofs
-                k1(i,j) = k1(i,j) + Hp{i}(xT(q(qp)))*Hp{j}(xT(q(qp)))*w(qp);
-                k2(i,j) = k2(i,j) + H{i}(xT(q(qp)))*H{j}(xT(q(qp)))*w(qp);
+                k1(i,j) = k1(i,j) + ...
+                    Hp{i}(xT(q(qp)))*Hp{j}(xT(q(qp)))*w(qp);
+                k2(i,j) = k2(i,j) + ...
+                    H{i}(xT(q(qp)))*H{j}(xT(q(qp)))*w(qp);
             end % j
             r(i) = r(i) + xT(q(qp))*H{i}(xT(q(qp)))*w(qp);
         end % i
      
     end % qp
     % apply Jacobian to map to physical coordinates
-    k1 = k1*Jac;
-    k2 = k2*Jac;
-    r = r*Jac;
+    k1 = k1*Jac; k2 = k2*Jac; r = r*Jac;
 
     % add local arrays to global arrays "assembly"
     for i = 1:nldofs
@@ -109,6 +108,7 @@ err = u' - u_exact(x);
 subplot(2,1,2)
 plot(x,err,'-b','linewidth',2);
 xlabel('X','FontSize',12,'FontWeight','bold');
+ylabel('Absolute Error','FontSize',12,'FontWeight','bold');
 grid on
 
 rel_err = norm(err,2)/norm(u_exact(x),2);
@@ -139,7 +139,9 @@ else
     for n = 2:P
         % use recurrence relation to generate higher order Legendre
         % Polynomials ("Pn functions")
-        Pn{n+1} = @(x) (2*(n-1)+1)*x.*Pn{n}(x)./((n-1)+1) - (n-1)*Pn{n-1}(x)./((n-1)+1);
+        Pn{n+1} = @(x) ...
+            (2*(n-1)+1)*x.*Pn{n}(x)./((n-1)+1)...
+            - (n-1)*Pn{n-1}(x)./((n-1)+1);
     end
 end
 
@@ -206,8 +208,8 @@ end
 function dH = getLagrangeInterpDeriv(Xi)
 %function dH = getLagrangeInterpDerive(Xi)
 % input: Xi - vector of sample points
-% output dH - cell array containing the derivative of Lagrange Interpolant
-% functions.
+% output dH - cell array containing the derivative 
+% of Lagrange Interpolant functions.
 n = length(Xi);
 dH = cell(n,1);
 
@@ -218,10 +220,12 @@ for i = 1:n
             dLp = @(x) 1;
             for j = 1:n
                 if ((j ~= i) && (j ~= k))
-                    dLp = @(x) dLp(x).* (x - Xi(j))./(Xi(i) - Xi(j));
+                    dLp = @(x) dLp(x).*...
+                        (x - Xi(j))./(Xi(i) - Xi(j));
                 end
             end
-            dLi = @(x) dLi(x) + (1./(Xi(i) - Xi(k))).*dLp(x);
+            dLi = @(x) dLi(x) + ...
+                (1./(Xi(i) - Xi(k))).*dLp(x);
         end
         
     end
@@ -272,7 +276,8 @@ for i=1:ph
    x=cos( (2*i-1)*pi/(2*p+1) );
    for k=1:20
       % evaluate L, dL, ddL
-      [L0,L0_1,L0_2]=legendre_poly(p,x); %Compute Nth order Derivatives of Legendre Polys
+      [L0,L0_1,L0_2]=legendre_poly(p,x); 
+      %Compute Nth order Derivatives of Legendre Polys
       
       %Get new Newton Iteration
       dx=-(1-x^2)*L0_1/(-2*x*L0_1 + (1-x^2)*L0_2);

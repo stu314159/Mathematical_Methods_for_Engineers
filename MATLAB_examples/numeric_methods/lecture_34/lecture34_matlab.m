@@ -8,7 +8,7 @@ u_exact = @(x) x - sinh(x)./sinh(1);
 a = 0; b = 1;
 x_gold = linspace(a,b,1000);
 
-Ua = 0; Ub = 0;
+Ua = 0; Ub = 0; % boundary conditions
 %% Finite Element Parameters and Data Structures
 nelem = 3; % select # of elements
 
@@ -38,7 +38,6 @@ R = zeros(nnodes,1);
 
 % carry out assembly process
 for ele = 1:nelem
-
     % local arrays to be populated
     k1 = zeros(2,2);
     k2 = zeros(2,2);
@@ -61,19 +60,25 @@ for ele = 1:nelem
     Hp{1} = @(x) -1/hi;
     Hp{2} = @(x) 1/hi;
 
-
-    for qp = 1:nqp
-        
+    for qp = 1:nqp        
         % sum weighted contribution at Gauss Points
-        k1(1,1) = k1(1,1) + Hp{1}(xT(q(qp)))*Hp{1}(xT(q(qp)))*w(qp);
-        k1(1,2) = k1(1,2) + Hp{1}(xT(q(qp)))*Hp{2}(xT(q(qp)))*w(qp);
-        k1(2,1) = k1(2,1) + Hp{2}(xT(q(qp)))*Hp{1}(xT(q(qp)))*w(qp);
-        k1(2,2) = k1(2,2) + Hp{2}(xT(q(qp)))*Hp{2}(xT(q(qp)))*w(qp);
+        k1(1,1) = k1(1,1) + ...
+            Hp{1}(xT(q(qp)))*Hp{1}(xT(q(qp)))*w(qp);
+        k1(1,2) = k1(1,2) + ...
+            Hp{1}(xT(q(qp)))*Hp{2}(xT(q(qp)))*w(qp);
+        k1(2,1) = k1(2,1) + ...
+            Hp{2}(xT(q(qp)))*Hp{1}(xT(q(qp)))*w(qp);
+        k1(2,2) = k1(2,2) + ...
+            Hp{2}(xT(q(qp)))*Hp{2}(xT(q(qp)))*w(qp);
         
-        k2(1,1) = k2(1,1) + H{1}(xT(q(qp)))*H{1}(xT(q(qp)))*w(qp);
-        k2(1,2) = k2(1,2) + H{1}(xT(q(qp)))*H{2}(xT(q(qp)))*w(qp);
-        k2(2,1) = k2(2,1) + H{2}(xT(q(qp)))*H{1}(xT(q(qp)))*w(qp);
-        k2(2,2) = k2(2,2) + H{2}(xT(q(qp)))*H{2}(xT(q(qp)))*w(qp);
+        k2(1,1) = k2(1,1) + ...
+            H{1}(xT(q(qp)))*H{1}(xT(q(qp)))*w(qp);
+        k2(1,2) = k2(1,2) + ...
+            H{1}(xT(q(qp)))*H{2}(xT(q(qp)))*w(qp);
+        k2(2,1) = k2(2,1) + ...
+            H{2}(xT(q(qp)))*H{1}(xT(q(qp)))*w(qp);
+        k2(2,2) = k2(2,2) + ...
+            H{2}(xT(q(qp)))*H{2}(xT(q(qp)))*w(qp);
         
         r(1) = r(1) + xT(q(qp))*H{1}(xT(q(qp)))*w(qp);
         r(2) = r(2) + xT(q(qp))*H{2}(xT(q(qp)))*w(qp);        
