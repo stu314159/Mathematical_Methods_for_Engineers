@@ -10,7 +10,7 @@
 \begin{equation*}
 \frac{d^2y}{dx^2}+f(x)\frac{dy}{dx} + g(x)y = h(x)
 \end{equation*}
-for $a \le x \le b$ with $y(a)=Y_a$ and $y(b)=Y_b$, where $Y_a$ and $Y_b$ are constants.  For the function name and arguments use: \lstinline[style=myMatlab]{[x,y] = BVPShootSecant(Fx,Gx,Hx,a,b,n,Ya,Yb,Wa,Wb)}.  The input arguments \lstinline[style=myMatlab]{Fx}, \lstinline[style=myMatlab]{Gx}, and \lstinline[style=myMatlab]{Hx} are names for the functions that calculate $f(x)$, $g(x)$, and $h(x)$ respectively.  The arguments \lstinline[style=myMatlab]{a} and \lstinline[style=myMatlab]{b} define the domain if the solution, \lstinline[style=myMatlab]{n} is the number of subintervals, \lstinline[style=myMatlab]{Ya} and \lstinline[style=myMatlab]{Yb} are the boundary conditions, and \lstinline[style=myMatlab]{Wa} and \lstinline[style=myMatlab]{Wb} are the assumed slopes at $x=a$ that are used in the first two iterations of the Secant Methad.  Within the user-defined function \lstinline[style=myMatlab]{BVPShootSecant}, use the function \lstinline[style=myMatlab]{odesCRK4} that you created in Assignment \#8.  The secant method should be carried out until the absolute value of the true error at $x=b$ is smaller than 0.001.
+for $a \le x \le b$ with $y(a)=Y_a$ and $y(b)=Y_b$, where $Y_a$ and $Y_b$ are constants.  For the function name and arguments use: \lstinline[style=myMatlab]{[x,y] = BVPShootSecant(Fx,Gx,Hx,a,b,n,Ya,Yb,Wa,Wb)}.  The input arguments \lstinline[style=myMatlab]{Fx}, \lstinline[style=myMatlab]{Gx}, and \lstinline[style=myMatlab]{Hx} are names for the functions that calculate $f(x)$, $g(x)$, and $h(x)$ respectively.  The arguments \lstinline[style=myMatlab]{a} and \lstinline[style=myMatlab]{b} define the domain if the solution, \lstinline[style=myMatlab]{n} is the number of subintervals, \lstinline[style=myMatlab]{Ya} and \lstinline[style=myMatlab]{Yb} are the boundary conditions, and \lstinline[style=myMatlab]{Wa} and \lstinline[style=myMatlab]{Wb} are the assumed slopes at $x=a$ that are used in the first two iterations of the Secant Method.  Within the user-defined function \lstinline[style=myMatlab]{BVPShootSecant}, use the function \lstinline[style=myMatlab]{odesCRK4} that you created in Assignment \#8.  The secant method should be carried out until the absolute value of the true error at $x=b$ is smaller than 0.001.
 
 \vspace{0.5cm}
 
@@ -23,7 +23,7 @@ with boundary conditions: $y(0)=1.5$, and $y(\pi)=0$.  Use $n=100$, $W_a=-5$, an
 
 \pagebreak
 
-\item A cylindrical pipe with inner radius 1 cm and the wall thickness 2.5 cm carries a fluid at a temperature of 600$^{\circ}$C. The outer wall of the pipe is at 25$^{\circ}$C.  The govering equation for the temperature distribution in the pipe wall is:
+\item A cylindrical pipe with inner radius 1 cm and the wall thickness 2.5 cm carries a fluid at a temperature of 600$^{\circ}$C. The outer wall of the pipe is at 25$^{\circ}$C.  The governing equation for the temperature distribution in the pipe wall is:
 \begin{equation*}
 r\frac{d^2T}{dr^2}+\frac{dT}{dr}=-500
 \end{equation*}
@@ -75,7 +75,7 @@ where $T$ is the temperature in K, $r$ is the radial coordinate in meters, $k=72
 
 \vspace{0.25cm}
 
-\noindent For both parts a) and b), plot the temperature profiles and output the difference in temperature between the centerline of the wire and the outer surface of the wire.  Give a brief physical explanation for the differences in the temperature profiles for part a) and b).  
+\noindent For both parts a) and b), plot the temperature profiles and output the difference in temperature between the center-line of the wire and the outer surface of the wire.  Give a brief physical explanation for the differences in the temperature profiles for part a) and b).  
 
 \end{enumerate}
 

@@ -3,8 +3,8 @@
 \section{Objectives}
 The objectives of this lecture are to:
 \begin{itemize}
-\item Define Gauss-Legendre quadrature and illustrate its convergence properties
-\item Provide a derivation to explain how and why Gauss quadrature works
+\item Define Gauss-Legendre quadrature and illustrate its convergence properties.
+\item Provide a derivation to explain how and why Gauss quadrature works. 
 \end{itemize}
 \setcounter{lstannotation}{0}
 
@@ -49,7 +49,7 @@ Substituting this into the equation above gives us:
 \caption{Published Gauss points and weights up to $n=6$.}
 \label{fig:lec20n-gp-and-weights}
 \end{marginfigure}
-Values for Gauss points and weights are commonly tabulated, as shown in Figure \ref{fig:lec20n-gp-and-weights}. Engineers wanting to use Gauss quadrature incorporate those values into their code in some appropriate way and carry out the numeric integration.
+Values for Gauss points and weights are commonly tabulated as shown in Figure \ref{fig:lec20n-gp-and-weights}. Engineers wanting to use Gauss quadrature incorporate those values into their code in some appropriate way and carry out the numeric integration.
 
 The convergence of Gauss quadrature depends on the number of Gauss points used: order $2n-1$ for $n$ points.  If you want faster convergence, simply add more points.\sidenote{This is referred to as \emph{exponential convergence.}}  Figure \ref{fig:lec20n-gq-convergence} shows the convergence behavior of Gauss quadrature for calculating the integral:
 \begin{equation*}
@@ -91,7 +91,7 @@ Legendre polynomials are chosen because they have the following important proper
 \begin{equation*}
 \int_{-1}^{1}P_i(x)P_j(x) \ dx = 0 \ \ \text{if } i \ne j
 \end{equation*}
-This makes the representation of $f(x)$ with a linear combination of Legendre polynomials relatively easy.\sidenote{The representation is ``easy'' in much the same way that it is easier to represent vectors in 3-dimensional space by using linear combinations of vectors $[1,0,0],[0,1,0]$ and $[0,0,1]$ as opposed to any other linear combination of independent but non-orthogonal vectors.}
+This makes the representation of $f(x)$ with a linear combination of Legendre polynomials relatively easy.\sidenote{The representation is ``easy'' in much the same way that it is easier to represent vectors in 3-dimensional space by using linear combinations of vectors $[1,0,0],[0,1,0]$ and $[0,0,1]$ as opposed to any other linear combination of independent but non-orthonormal vectors.}
 \item They are \emph{complete}, meaning that any ``reasonable'' function within the interval $x\in[-1,1]$ can be approximated to arbitrary accuracy by taking a large enough linear combination of Legendre polynomials.
 \end{enumerate}
 We approximate $f(x)$ as a linear combination of Legendre Polynomials:
@@ -155,7 +155,7 @@ w_{n-1}}
 \int_{-1}^{1} P_{n-1}(t) \ dt}
 \label{eq:lec20n-gq-final}
 \end{equation}
-Each row of the matrix on the left hand side of Equation \ref{eq:lec20n-gq-final} consists of the 0 through $(n-1)$-th order Legendre polynomials sampled at the integration points\sidenote{Which, as a reminder, are equal to the roots of $P_n(t)$} and are easy to calculate once you know the values for $t_i$.  The vector on the right hand side is can be shown to be: $\bracketMatrixstack{2,0,0,\dots,0}^{\text{T}}$.\sidenote{The first one is easy: $\int_{-1}^{1} 1 \ dt = 2$.  You can convince yourself that the others must all be zero by expressing each Legendre polynomial as:$P_i(t) = P_0(t)P_i(t)$, since $P_0(t)=1$.  The integrals are now $\int_{-1}^{1}P_0(t)P_1(t) \ dt$, $\int_{-1}^{1}P_0(t)P_2(t)\ dt$, and so on; all of which are equal to zero due to the orthogonality property of the Legendre polynomials.} Readers who carefully followed the discussion on quadrature formulas in Lecture 19 will recognize Equation \ref{eq:lec20n-gq-final}.  The difference in this case is that, since we have already specified all of the sample points and those sample points are roots of $P_n(t)$, the set of equations is now linear and a unique solution can be found using standard methods of linear algebra.
+Each row of the matrix on the left hand side of Equation \ref{eq:lec20n-gq-final} consists of the 0\textsuperscript{th}- through $(n-1)$\textsuperscript{th}-order Legendre polynomials sampled at the integration points\sidenote{Which, as a reminder, are equal to the roots of $P_n(t)$} and are easy to calculate once you know the values for $t_i$.  The vector on the right hand side is can be shown to be: $\bracketMatrixstack{2,0,0,\dots,0}^{\text{T}}$.\sidenote{The first one is easy: $\int_{-1}^{1} 1 \ dt = 2$.  You can convince yourself that the others must all be zero by expressing each Legendre polynomial as:$P_i(t) = P_0(t)P_i(t)$, since $P_0(t)=1$.  The integrals are now $\int_{-1}^{1}P_0(t)P_1(t) \ dt$, $\int_{-1}^{1}P_0(t)P_2(t)\ dt$, and so on; all of which are equal to zero due to the orthogonality property of the Legendre polynomials.} Readers who carefully followed the discussion on quadrature formulas in Lecture 19 will recognize Equation \ref{eq:lec20n-gq-final}.  The difference in this case is that, since we have already specified all of the sample points and those sample points are roots of $P_n(t)$, the set of equations is now linear and a unique solution can be found using standard methods of linear algebra.
 
 A MATLAB implementation of the full Gauss quadrature algorithm is shown in the listings below.
 \marginnote{

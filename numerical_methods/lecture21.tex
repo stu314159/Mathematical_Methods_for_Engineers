@@ -4,13 +4,13 @@
 The objectives of this lecture are to:
 \begin{itemize}
 \item Describe two simple algorithms for carrying out numerical integration with the Monte Carlo method.
-\item Provide some suggestions as to when different numerical integration algorithms are appropriate
+\item Provide some suggestions as to when different numerical integration algorithms are appropriate.
 \end{itemize}
 \setcounter{lstannotation}{0}
 \section{Introduction}
 Most every integration problem that you are likely to encounter in your time as an engineer can be solved by one of the methods described in the last two lectures---possibly with some extensions or modification.\sidenote{Notably, we have not yet discussed integration over more than one dimension and we have side-stepped issues such as infinite domains of integration or integrals over intervals in which the integrand has one or more singularities.  We have ways of dealing with these problems that have been omitted in sympathy for your endurance.  We walk before we run.}  Still, in the spirit of skinning the cat in as many ways as we can, and to help us acknowledge that some problems can be approached from many different ways, in this lecture we introduce Monte Carlo quadrature.
 
-Monte Carlo quadrature involvs solving the integral at hand by changing the problem into a game of chance.  There are several textbooks that introduce this method along with Monte Carlo methods for solving a variety of other problems.For an engineer-friendly introduction, see chapter 42 and 43 of the excellent book by Farlow.\cite{farlow1993partial}.  For a more in-depth treatment that includes important applications for nuclear engineers, see the text by Dunn.\cite{dunn2022exploring}
+Monte Carlo quadrature involves solving the integral at hand by changing the problem into a game of chance.  There are several textbooks that introduce this method along with Monte Carlo methods for solving a variety of other problems.  For an engineer-friendly introduction, see chapter 42 and 43 of the excellent book by Farlow.\cite{farlow1993partial}  For a more in-depth treatment that includes important applications for nuclear engineers, see the text by Dunn.\cite{dunn2022exploring}
 
 \section{Hit or Miss Algorithm}
 The ``Hit or Miss'' algorithm is probably the simplest example of a Monte Carlo method for quadrature.  The algorithm is as follows:
@@ -30,7 +30,7 @@ The ``Hit or Miss'' algorithm is probably the simplest example of a Monte Carlo 
 
 \begin{marginfigure}
 \includegraphics{lec21n-hit-or-miss-schematic.png}
-\caption{Sample of 1000 uniformly distributed random points from withn the box $[-3,3]\times[0,1]$.}
+\caption{Sample of 1000 uniformly distributed random points from within the box $[-3,3]\times[0,1]$.}
 \label{fig:lec21n-hit-or-miss-schematic}
 \end{marginfigure}
 
@@ -125,14 +125,14 @@ f(t) = \sin^2{\left(\frac{1}{t} \right)}
 \end{equation}
 Newton-Cotes and Gaussian quadrature algorithms perform very poorly on functions like this since the spacing of sample points must be very tight if the oscillatory behavior of the function is to be captured.  The accuracy of Monte Carlo methods, on the other hand, do not depend on being able to construct a suitable approximation of the integrand.  
 
-\item \textbf{The rate of convergence is independent of the dimensions of integration.} We have not discussed 2D, 3D or more generally N-dimensional integration in any of the last three lectures.  Still, these are important problems both for you as well as your friends in other disciplines.  For Monte Carlo quadrature, the integraation error is always proportional to $\sfrac{1}{\sqrt{n}}$.  The convergence of Newton-Cotes or Gaussian quadrature is actually dependent on the dimensionality.  For example, the error the trapezoidal rule is actually proportional to $\sfrac{1}{\left(n^{\sfrac{2}{D}}\right)}$ where $D$ is the number of spatial dimensions.  This ``curse of dimensionality'' is especially important, for example, for certain problems of statistical physics where the integrations must be performed over billions of dimensions; each ``dimension'' representing an interaction between a pair of bodies.  In this case, use of any method \emph{other} than Monte Carlo is a practical impossibility.
+\item \textbf{The rate of convergence is independent of the dimensions of integration.} We have not discussed 2D, 3D or more generally N-dimensional integration in any of the last three lectures.  Still, these are important problems both for you as well as your friends in other disciplines.  For Monte Carlo quadrature, the integration error is always proportional to $\sfrac{1}{\sqrt{n}}$.  The convergence of Newton-Cotes or Gaussian quadrature is actually dependent on the dimensionality.  For example, the error the trapezoidal rule is actually proportional to $\sfrac{1}{\left(n^{\sfrac{2}{D}}\right)}$ where $D$ is the number of spatial dimensions.  This ``curse of dimensionality'' is especially important, for example, for certain problems of statistical physics where the integration must be performed over billions of dimensions; each ``dimension'' representing an interaction between a pair of bodies.  In this case, use of any method \emph{other} than Monte Carlo is a practical impossibility.
 
 \item \textbf{Monte Carlo methods are very easy to parallelize.} This is important in a day and age when nearly every computer has multiple cores.  Devising algorithms that can efficiently use large parallel computers is a difficult task.\sidenote{And, sadly, a task that is not addressed in this text.}  Monte Carlo methods fit well in a computational ecosystem adaptable to supercomputers.
 
 \end{enumerate}
 
 \section{Which Method to Use?}
-Given the variety of integraion method discussed over the last three lectures, you might be wondering why we do not simply pick the best one and always use it.  The reason, of course, is that which one is best depends on your problem.  
+Given the variety of integration method discussed over the last three lectures, you might be wondering why we do not simply pick the best one and always use it.  The reason, of course, is that which one is best depends on your problem.  
 
 \vspace{0.1cm}
 
