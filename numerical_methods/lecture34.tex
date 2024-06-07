@@ -3,9 +3,9 @@
 \section{Objectives}
 The objectives of this lecture are to:
 \begin{itemize}
-\item Describe a simple Galerkin FEM for solving a simple BVP.
+\item Describe a Galerkin FEM for solving a simple BVP.
 \item Illustrate the method with a MATLAB implementation.
-\item Demonstrate $hp$-refinement.
+\item Demonstrate $hp$-refinement and introduce the tools required to accomplish this task.
 \end{itemize}
 \setcounter{lstannotation}{0}
 
@@ -27,9 +27,10 @@ Recall the boundary value problem that we addressed in Lecture 33:
 \vspace{0.25cm}
 
 \noindent The strong form of the method of weighted residuals resulted in the following problem:
-\begin{equation*}
-\int_{0}^{1} w R \ dx = \int_{0}^{1} x(1-x) \left[-2a - ax(1-x) + x\right] \ dx = 0
-\end{equation*}
+\begin{align*}
+\int_{0}^{1} w R \ dx &= \int_{0}^{1} w\frac{d^2u}{dx^2} \  dx - \int_{0}^{1} w u \ dx + \int_{0}^{1} wx \ dx = 0 \\
+&=\int_{0}^{1} x(1-x) \left[-2a - ax(1-x) + x\right] \ dx = 0
+\end{align*}
 that we would solve for the unknown parameter $a$.
 
 \vspace{0.25cm}
@@ -41,18 +42,18 @@ that we would solve for the unknown parameter $a$.
 \begin{equation*}
 w \frac{d \tilde u}{dx}\Bigl|_{0}^{1}-\int_{0}^{1}\frac{dw}{dx}\frac{d\tilde{u}}{dx} \ dx - \int_{0}^{1}w \tilde{u} \ dx + \int_{0}^{1} wx \ dx = 0
 \end{equation*}
-
+which we would solve in a similar fashion but, in this case, with a wider range of suitable trial and test functions available---in particular piece-wise linear functions would work nicely---and with the helpful presence of the boundary term in the statement which is needed for handling type-2 boundary conditions.
 \vspace{0.25cm}
 
 \noindent In this lecture we seek to describe the Finite Element Method (FEM) as a procedure by which this weak form is solved to obtain a solution that is as accurate as we would like.
 
 \section{Galerkin Finite Element Method}
 
-In the finite element method, in addition to converting the strong form of the governing equation into the weak form of the minimum weighted residual statement, we will discretize the domain into a finite number of elements. For example, let us consider the one-dimensional domain divided into 3 elements, using piecewise continuous trial functions and test functions as shown in Figure \ref{fig:lec34n-discretization}.
+In the finite element method, in addition to converting the strong form of the governing equation into the weak form of the minimum weighted residual statement, we will discretize the domain into a finite number of elements. For example, let us consider the one-dimensional domain divided into 3 elements, using piece-wise continuous trial functions and test functions as shown in Figure \ref{fig:lec34n-discretization}.
 
 \begin{figure}[h!]
 \includegraphics{lec34n-discretization.png}
-\caption{Discretization of problem domain with piecewise linear elements.}
+\caption{Discretization of problem domain with piece-wise linear elements.}
 \label{fig:lec34n-discretization}
 \end{figure}
 \noindent Both the trial and test functions are constructed from $H_1(x)$ and $H_2(x)$ which are commonly referred to as \emph{shape functions} that are defined on each element.\marginnote[-6.0cm]{
@@ -83,9 +84,9 @@ where $h_i = x_{i+1}-x_i$.
 
 \vspace{0.25cm}
 
-\noindent So to recap and relate to the previous discussion about the method of minimum weighted residuals: we have a piecewise linear trial and test functions; the unknown parameters are $\left\{u_1,u_2,u_3,u_4\right\}$; the test functions are ``the same'' as the trial functions insofar as that the are the same as the trial functions but without the unknown parameters.  Our goal is to solve for the unknown parameters, $\left\{u_1,u_2,u_3,u_4\right\}$, so that the weighted residual is minimized.
+\noindent So to recap and relate to the previous discussion about the method of minimum weighted residuals: we have a piece-wise linear trial and test functions; the unknown parameters are $\left\{u_1,u_2,u_3,u_4\right\}$; the test functions are ``the same'' as the trial functions insofar as that the are the same as the trial functions but without the unknown parameters.  Our goal is to solve for the unknown parameters, $\left\{u_1,u_2,u_3,u_4\right\}$, so that the weighted residual is minimized.
 
-\newthought{Now we will} insert our newly defined trial functions and test functions into the residual:
+\newthought{Now we will} insert our newly defined trial functions and test functions into the weak form of the residual:\marginnote{\noindent\textbf{Note:} We have left off the boundary term.  When we eventually apply boundary conditions, we will force both the trial and test function to be equal to zero on the boundary.  Thus: $w\frac{du}{dx}\Bigl|_{0}^{1} = \cancelto{0}{w(1)}\frac{du}{dx}\Bigl|_{x=1}-\cancelto{0}{w(0)}\frac{du}{dx}\Bigl|_{x=0} = 0$.}
 %\begin{fullwidth}
 \begin{equation*}
 -\int_{0}^{1}\frac{dw}{dx}\frac{du}{dx} \ dx - \int_{0}^{1} w u \ dx + \int_{0}^{1} wx \ dx = 0 
@@ -99,7 +100,7 @@ Breaking this down one component at a time, on a per-element basis:
 & wu = \underbrace{\bracketVectorstack{H_1 \\ H_2}}_{w}\underbrace{\bracketMatrixstack{H_1 & H_2}\bracketVectorstack{u_i \\ u_{i+1}}}_{u} = \bracketMatrixstack{\left(H_1 H_1\right) & \left(H_1 H_2\right) \\ \left(H_2 H_1\right) & \left(H_2 H_2 \right)}\bracketVectorstack{u_i \\ u_{i+1}} = \left[K_2\right]\bracketVectorstack{u_i \\ u_{i+1}} \\
 & xw = \bracketMatrixstack{x_{i} & 0 \\ 0 & x_{i+1}}\bracketVectorstack{H_1 \\ H_2} = r 
 \end{align*}
-where, for clarity, the matrices $\left[K_1\right]$, $\left[K_2\right]$, and the vector $r$ are all functions of $x$.  Putting this all together for all 3 elements gives us:
+where, readers should bear in mind, the matrices $\left[K_1\right]$, $\left[K_2\right]$, and the vector $r$ are all functions of $x$.  Putting this all together for all 3 elements gives us:
 \marginnote{
 \noindent\textbf{Note:} the index $i$ corresponds to each of the 3 elements.
 }
@@ -113,7 +114,7 @@ We also need to deal with the integrals.  For some problems and element types, t
 \end{equation*}
 
 \subsection{Assembly into a Linear System}
-Once the quadrature has been completed on all elements, the matrices $K_1$, $K_2$ and the vector $r$ calculated on each element needs to be assembled into the system matrix.  We say ``assembly'' but this is merely the natural result of carrying out the summation of the integrals across all elements.  The output of the process is depiced in Figure \ref{fig:lec34n-system-assembly-schematic}.    
+Once the quadrature has been completed, the matrices $K_1$, $K_2$ and the vector $r$ calculated on each element needs to be assembled into the system matrix.  We say ``assembly'' but this is merely the natural result of carrying out the summation of the integrals across all elements.  The output of the process is depicted in Figure \ref{fig:lec34n-system-assembly-schematic}.    
 \begin{figure}[h!]
 \includegraphics{lec34n-system-assembly-schematic.png}
 \caption{Schematic of system assembly.}
@@ -121,11 +122,11 @@ Once the quadrature has been completed on all elements, the matrices $K_1$, $K_2
 \end{figure}
 The matrices $K_1$ and $K_2$ of element \#1 contribute to the first two rows and columns of the system matrix; the matrices from element \#2 contribute to the second and third rows and columns; the matrices from element \#3 to the third and fourth rows and columns.  For entries where there is overlap, the results are added.  The same process is carried out for the vector $r$ that is placed on the right-hand-side.
 
-\newthought{Once the system} matrix is assembled, all that remains is to apply boundary conditions and solve by some convenient method.  The resulting coefficient values: $\left\{U_1, U_2, U_3, U_4\right\}$ are the parameters for our approximate solution.  
+\newthought{Once the system} matrix is assembled, all that remains is to apply the Dirichlet boundary conditions and solve by some convenient method.  The resulting coefficient values: $\left\{U_1, U_2, U_3, U_4\right\}$ are the parameters for our approximate solution.  
 
 \section{MATLAB Implementation}
 
-Code for a simple MATLAB implementation of the Finite Element Method with linear shape functions is given below.  We start by cleaning out the workspace and initializing a representation of the exact solution.
+Code for an example MATLAB implementation of the Finite Element Method with linear shape functions is given below.  We start by cleaning out the workspace and initializing a representation of the exact solution.
 
 \marginnote{
 
@@ -173,9 +174,9 @@ nodes(:,2) = 2:(nelem+1);%x_i+1 node number
 
 \vspace{0.75cm}
 
-\noindent\ref{lst:ann34n-5} These are the elemental sub-arrays.
+\noindent\ref{lst:ann34n-5} These are the elemental sub-arrays.  Alternatively, you can write your code so that these elemental values are stored directly in the system array.
 
-\vspace{1.5cm}
+\vspace{0.75cm}
 
 \noindent\ref{lst:ann34n-6} The \lstinline[style=myMatlab]{nodes} array is used to get the coordinates of the local nodes for the current element.  This allows us to map the quadrature points to the correct physical location with each element.
 
@@ -183,13 +184,10 @@ nodes(:,2) = 2:(nelem+1);%x_i+1 node number
 
 \noindent\ref{lst:ann34n-7} Cell arrays are used to store the shape functions, $H(x)$, and the derivatives of shape functions, $\sfrac{dH}{dx}$, since cell arrays allow the array members to be function handles. 
 
-\vspace{5.0cm}
+\vspace{4.3cm}
 
 \noindent\ref{lst:ann34n-8} Here we accumulate the weighted contribution from each quadrature point for the $K_1$ and $K_2$ matrices and the $r$ vector.   
 
-\vspace{4.0cm}
-
-\noindent\ref{lst:ann34n-9} Finally the Jacobian is applied to complete the numerical quadrature.
 }
 \begin{lstlisting}[style=myMatlab,name=lec34n-ex1]
 % sample points for Gauss Quadrature
@@ -253,6 +251,13 @@ for ele = 1:nelem
     % apply Jacobian
     k1 = k1*Jac; k2 = k2*Jac; r = r*Jac;  /*!\annotation{lst:ann34n-9}!*/
 \end{lstlisting}
+\marginnote[-1.5cm]{
+
+\vspace{1.0cm}
+
+\noindent\ref{lst:ann34n-9} Finally the Jacobian is applied to complete the numerical quadrature.
+
+}
 \begin{lstlisting}[style=myMatlab,name=lec34n-ex1]
     % add local arrays to global arrays ("assembly")
     for i = 1:2
@@ -305,12 +310,15 @@ ylabel('U(X)','FontSize',12,'FontWeight','bold');
 grid on
 legend('U - FEM','U - Exact','Location','best');
 \end{lstlisting}
+
 Of course we would not normally just use three elements; if we increase the number of finite elements to 30, the solution is much improved.  This solution along with a plot of absolute error is shown in Figure \ref{fig:lec34n-ex1-sol-refined}.  If greater precision is needed, we can simply increase the number of elements.
-\begin{marginfigure}[-5.0cm]
+
+\begin{marginfigure}[1.0cm]
 \includegraphics{lec34n-ex1-sol-refined.png}
 \caption{FEM solution with 30 elements.}
 \label{fig:lec34n-ex1-sol-refined}
 \end{marginfigure}
+
 
 \subsection{FEM with P-refinement}
 So far we have not taken advantage of the generality of the FEM approach to finding approximate solutions to boundary value problems.  We have presented the mathematical analysis and an accompanying MATLAB script that solves one problem with FEM using linear shape functions on an arbitrary number of elements.  This allowed us to carry out h-refinement to improve our solution.  In the section we will slightly generalize the structure of the MATLAB code and incorporate the ability to increase the polynomial order of the shape functions used within each element.  A few notes before we begin to present the code:
@@ -323,7 +331,7 @@ Now for the code:
 \setcounter{lstannotation}{0}
 \marginnote{
 
-\vspace{3.5cm}
+\vspace{1.5cm}
 
 \noindent\ref{lst:ann34n-ex2-1} Notice that we are, again, going to solve a problem that we've done before.  Here we will confirm that we get the same result that we did with the less generalized implementation.
 
@@ -362,12 +370,13 @@ nnodes = length(gcoord);
 nqp = order+1; % number of sample points requested
 [q,w] = getGPandWeights(nqp); /*!\annotation{lst:ann34n-ex2-3}!*/
 
+
 % initialize global arrays
 K1 = zeros(nnodes,nnodes);
 K2 = zeros(nnodes,nnodes);
 R = zeros(nnodes,1);
 \end{lstlisting}
-The next task will be to carry out the numeric integration and element assembly process.  Since we allowthe user to specify the order of interpolation, we will need to generate appropriate shape functions and their derivatives.  Leveraging the work we did earlier in the course we will use Lagrange polynomials (Lecture 15) for the shape functions and the derivatives of those Lagrange polynomials (Lecture 18).
+The next task will be to carry out the numeric integration and element assembly process.  Since we allow the user to specify the order of interpolation, we will need to generate appropriate shape functions and their derivatives.  Leveraging the work we did earlier in the course we will use Lagrange polynomials (Lecture 15) for the shape functions and the derivatives of those Lagrange polynomials (Lecture 18).
 \marginnote{
 
 \vspace{1.5cm}
@@ -440,13 +449,13 @@ A(nnodes,:) = 0; A(nnodes,nnodes) = 1; RHS(nnodes) = Ub;
 % solve the system of equations
 u = A\RHS;
 \end{lstlisting}
-\begin{marginfigure}[-13.0cm]
+\begin{marginfigure}[-3.0cm]
 \includegraphics{lec34n-ex2-sol-1-3.png}
 \caption{FEM Solution for 3 linear elements, revisited.}
 \label{fig:lec34n-ex2-sol-1-3}
 \end{marginfigure}
 
-\begin{marginfigure}[-4.0cm]
+\begin{marginfigure}[1.0cm]
 \includegraphics{lec34n-ex2-sol-9-3.png}
 \caption{FEM Solution for 3 elements with 9\textsuperscript{th}-order shape functions.}
 \label{fig:lec34n-ex2-sol-9-3}
@@ -494,9 +503,9 @@ end
 \vspace{0.25cm}
 
 \noindent\textbf{getGPandWeights}
-This function, as the name indicates, gets the Gauss points and weights for the specified number of points.  This function implements the theory described in Lecture 20 for Gauss quadrature.  That lecture should be reviewed if you want to understand how this function works.
+This function, as the name indicates, gets the Gauss points and weights for the specified number of points.  This function implements the theory described in Lecture 20 for Gauss quadrature.  
 
-\vspace{0.5cm}
+\vspace{0.1cm}
 
 
 \begin{lstlisting}[style=myMatlab,name=lec34n-ex2]
@@ -568,7 +577,7 @@ end
 end
 \end{lstlisting}
 
-\vspace{1.5cm}
+\vspace{0.5cm}
 
 \noindent\textbf{genLagrangeInterp}
 
