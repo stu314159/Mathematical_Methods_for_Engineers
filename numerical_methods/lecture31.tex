@@ -10,7 +10,7 @@ The objectives of this lecture are to:
 
 \section{Finite Difference Method for Boundary Value Problems}
 
-In the Finite Difference Method, the derivatives in the differential equation are replaced with \emph{finite difference approximations.}  The domain is divided into finite intervals defined by grid points as shown in Figure \ref{fig:lec31-fd-schematic}
+In the Finite Difference Method, the derivatives in the differential equation are replaced with \emph{finite difference approximations.}  The domain is divided into finite intervals defined by grid points as shown in Figure \ref{fig:lec31-fd-schematic}.
 \begin{figure}[h!]
 \includegraphics{lec31n-fd-schematic.png}
 \caption{Function discretized into a finite number of intervals for the FDM.}
@@ -24,7 +24,7 @@ The solution is approximated by the value of the dependent variable at each grid
 
 \begin{table}
 \begin{tabular}{l l}
-Govering Equation: & $y^{\prime \prime} + f(x)y^{\prime} + g(x)y = P(x), \ \ a < x < b$ \\
+Governing Equation: & $y^{\prime \prime} + f(x)y^{\prime} + g(x)y = P(x), \ \ a < x < b$ \\
 BCs: & $y(a) = Y_a, \ \ y(b) = Y_b$ \\
 \end{tabular}
 \end{table}
@@ -85,6 +85,7 @@ y_6
 \end{equation*}
 
 \item Second term:
+
 \begin{equation*}
 f(x)y^{\prime} \approx
 \underbrace{
@@ -115,8 +116,10 @@ y_5 \\
 y_6
 }
 \end{equation*}
+Note that this second term is an approximation both because of the finite differnce approximation for $y^{\prime}$ but also because we are representing the function $f(x)$ by its value at the grid points only.  This will similarly be the case for the two remaining terms.
 
 \item Third term:
+
 \begin{equation*}
 g(x)y \approx
 \underbrace{
@@ -171,22 +174,22 @@ For this course, we will only consider Dirichlet (type-1) boundary conditions fo
 \item Replace the last entry on the right-hand side to $Y_b$.
 \end{enumerate}
 The resulting system of equations is illustrated schematically in Figure \ref{fig:lec31n-fd-bc}.
-\begin{marginfigure}
+\begin{marginfigure}[1.5cm]
 \includegraphics{lec31n-fd-bc.png}
 \caption{Linear system after applying Dirichlet boundary conditions.}
 \label{fig:lec31n-fd-bc}
 \end{marginfigure}
 
 \subsection{Solving the System of Equations}
-Since this is a linear system of equations, readers who have been following the book from the beginning should immediately know that the answer is either:
+How shall we solve this linear system of equations? Readers who have been following the book from the beginning should immediately know that the answer is either:
 \begin{enumerate}
-\item A direct method like Gauss elimination, LU decomposition, or whatever method \lstinline[style=myMatlab]{mldivide} chooses if you are working in a MATLAB environment and have MATLAB built-in solvers available to you.
-\item An iterative method like Jacobi, Gauss-Seidel, successive-overrelaxation or MATLAB built-in methods like \lstinline[style=myMatlab]{pcg}, or \lstinline[style=myMatlab]{gmres}
+\item A direct method like Gauss elimination, LU decomposition, or whatever method \lstinline[style=myMatlab]{mldivide} chooses if you are working in a MATLAB environment.
+\item An iterative method like Jacobi, Gauss-Seidel, successive-over-relaxation or MATLAB built-in methods like \lstinline[style=myMatlab]{pcg}, or \lstinline[style=myMatlab]{gmres}.
 \end{enumerate}
-Two key points that may influence your decision, that I want to highlight now are as follows:
+Two key points that may influence your decision that I want to highlight now are as follows:
 
 \begin{enumerate}
-\item \emph{Most of the entries of $L$ are zero}.  For this small system, it may not be as obvious. If we instead discretized the domain into, for example, 10,000 grid points, the structure of the matrices would be the same.  Namely that, while each row would now have a total of 10,000 entries, only 3 or 4 of the entries in each row would be non-zero.  If high accuracy is demanded users may be motivated to use $10^5$ or $10^6$ grid points.  In such cases it is essential that sparse matrix data structures are used and algorithms that avoid fill-in are chosen for the solution process.\sidenote{Of course, for this example we have chosen finite difference formulas with $\mathcal{O}(h^2)$ convergence.  If we had chosen formulas with higher-order convergence behavior, the sparsity of $L$ would be reduced but, except in cases where high-order spectral methods are used (not discussed in this class), the matrix $L$ remains sparse.}
+\item \emph{Most of the entries of $L$ are zero}.  For this small system it may not be very obvious. If we instead discretized the domain into, for example, ten thousand grid points, the structure of the matrices would be the same.  Namely that, while each row would now have a total of $10^4$ entries, only 3 or 4 of the entries in each row would be non-zero.  If high accuracy is demanded users may be motivated to use $10^5$ or $10^6$ grid points.  In such cases it is essential that sparse matrix data structures are used and algorithms that avoid fill-in are chosen for the solution process.\sidenote{Of course, for this example we have chosen finite difference formulas with $\mathcal{O}(h^2)$ convergence.  If we had chosen formulas with higher-order convergence behavior, the sparsity of $L$ would be reduced but, except in cases where high-order spectral methods are used (not discussed in this class), the matrix $L$ remains sparse.}
 
 \item \emph{The matrix $L$ is nearly symmetric}.  Indeed, alternative methods for applying Dirichlet boundary conditions have been devised specifically to preserve symmetry of the linear system of equations.  In this case, direct algorithms like \lstinline[style=myMatlab]{chol} or iterative methods like \lstinline[style=myMatlab]{pcg} that are designed for symmetric matrices may be used and generally result in obtaining a solution with less computational work.  
 \end{enumerate}
@@ -199,7 +202,7 @@ A MATLAB function for constructing the 1\textsuperscript{st}-order differentiati
 
 \vspace{1.5cm}
 
-\noindent\textbf{Note:} The discrete represenatations of the differential operators will be represented as sparse matrices.  The idea is that, based on the chosen finite difference equations, we can determine in advance all of the non-zeros of the matrix.  We will store the row and column number along with the value of all the non-zeros into vectors.  Those vectors will then be supplied to a MATLAB built-in function to construct the sparse matrix. 
+\noindent\textbf{Note:} The discrete representations of the differential operators will be represented as sparse matrices.  The idea is that, based on the chosen finite difference equations, we can determine in advance all of the non-zeros of the matrix.  We will store the row and column number along with the value of all the non-zeros into vectors.  Those vectors will then be supplied to a MATLAB built-in function to construct the sparse matrix. 
 
 \vspace{1.0cm}
 
@@ -323,7 +326,7 @@ Consider the following boundary value problem:
 
 \begin{table}
 \begin{tabular}{l l}
-Govering Equation: & $y^{\prime \prime} -4y = 0, \ \ 0 < x < 1$ \\
+Governing Equation: & $y^{\prime \prime} -4y = 0, \ \ 0 < x < 1$ \\
 BCs: & $y(0) = 0, \ \ y(1) = 5$ \\
 \end{tabular}
 \end{table}
@@ -399,7 +402,7 @@ As a somewhat more difficult example, consider the boundary value problem below:
 
 \begin{table}
 \begin{tabular}{l l}
-Govering Equation: & $x^2y^{\prime \prime} - 3xy^{\prime} + 3y = 0, \ \ 1 < x < 2$ \\
+Governing Equation: & $x^2y^{\prime \prime} - 3xy^{\prime} + 3y = 0, \ \ 1 < x < 2$ \\
 BCs: & $y(1) = 0, \ \ y(2) = 0$ \\
 \end{tabular}
 \end{table}
