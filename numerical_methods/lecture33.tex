@@ -29,7 +29,7 @@ which is plotted in Figure \ref{fig:lec33n-ex1-exact}.
 \end{marginfigure}
 
 \section{Method of Weighted Residuals}
-In the past few lectures, we have explored a couple of different ways to approximately solve this problem.  All of them, in one way or another, have been based on a discrete approximation of the differential operator.  Today we will explore a method that takes a completely different approach.
+In the past few lectures, we have explored a couple of different ways to approximately solve this problem.  All of them, in one way or another, have been based on a discrete approximation of the differential operator.  Today we will explore a method that takes a different approach.
 
 \vspace{0.25cm}
 
@@ -47,11 +47,11 @@ Not coincidentally, the trial function given in Equation \ref{eq:lec33n-ex1-tria
 
 \vspace{0.25cm}
 
-\noindent\textbf{Step \#2:} Compute the residual.  By \emph{residual}, we mean that we arrange the governing equation so all of the terms are on one side of the equation and we insert our trial function as the tentative solution as shown below:
+\noindent\textbf{Step \#2:} Compute the residual.  By \emph{residual}, we mean that we arrange the governing equation so all of the terms are placed on one side and we insert our trial function as the tentative solution as shown below:
 
 \begin{align*}
 R &= \frac{d^2\tilde{u}}{dx^2}-\tilde{u}+x \\
-  &=-2a - ax(1-x) + x \\
+  &=\underbrace{-2a}_{\sfrac{d^2\tilde{u}}{dx^2}} - \underbrace{ax(1-x)}_{\tilde{u}} + x \\
 \end{align*}
 
 If we happened to  pick the exact solution as the trial function, the residual would be zero.  Since the exact solution involves the hyperbolic sine function, we cannot expect our 2\textsuperscript{nd}-order polynomial trial function to yield a zero residual.\sidenote{Recall that $\sinh{(x)} = \frac{e^{x}-e^{-x}}{2}$ and that exponentials are, essentially, infinite-order polynomials.  No finite-order polynomial can represent the exact solution.}
@@ -66,13 +66,13 @@ If we happened to  pick the exact solution as the trial function, the residual w
 \left(w,R\right) = \int_{a}^{b} wR\ dx
 \end{equation*}
 
-Among the several choices available for the weight function, we will describe three:
+Among the several choices for the weight function that, over time, have become standard, we will describe three:
 \begin{enumerate}
-\item Set the weight function equal to the dereivative of the residual with respect to the unknown parameter $a$.  Specifically: $w=\frac{dR}{da} = -2 - x(1-x^2)$.  This is equivalent to what we did back in Lecture 13 of this text when we used Least Squares curve fitting except, in this case, we only have one equation.
+\item Set the weight function equal to the derivative of the residual with respect to the unknown parameter $a$.  Specifically: $w=\frac{dR}{da} = -2 - x(1-x^2)$.  This is equivalent to what we did back in Lecture 13 of this text when we used Least Squares curve fitting except, in this case, we only have one equation.
 
-\item Use the Dirac delta function, $w = \delta(x-x_0)$.\marginnote{\textbf{Note:} As any pedant worth his pounds in salt will quickly point out, the ``Dirac delta function'' is not a function in the usual sense but technically is a \emph{generalized function}. You should think of it in the same way you consider symbols such as $\infty$ to represent the somewhat abstract concept of infinity.  Whereas one might consider $\infty$ to represent a number that can increase without bound so that may be arbitrarily large, $\delta(x)$ is a ``function'' where $\delta(0)=\infty$ and $\delta(a)=0$ if $a\ne 0$.  The relevant property of $\delta(x)$ is when it is used in an integral where, if $a\le x_1 \le b$, then: $\int_{a}^{b} f(x)\delta{(x-x_1)} \ dx = f(x_1)$ if $x_1 \in [a,b]$.  If $x_1 \not\in [a,b]$, then $\int_{a}^{b} f(x) \delta{(x-x_1)} \ dx = 0$.}  This is known as the \emph{Colocation method}.  From the properties of the Dirac delta function, $\int_{a}^{b} \delta{(x-x_1)}R(x) \ dx = R(x_1)$, where, $x_1 \in [a,b]$, is known as a colocation point.   
+\item Use the Dirac delta function, $w = \delta(x-x_0)$.\marginnote{\textbf{Note:} As any pedant worth his pounds in salt will quickly point out, the ``Dirac delta function'' is not a function in the usual sense but technically is a \emph{generalized function}. You should think of it in the same way you consider symbols such as $\infty$ to represent the somewhat abstract concept of infinity.  Whereas one might consider $\infty$ to represent a number that can increase without bound so that it may be arbitrarily large, $\delta(x)$ is a ``function'' where $\delta(0)=\infty$ and $\delta(a)=0$ if $a\ne 0$.  The relevant property of $\delta(x)$ is when it is used in an integral where, if $a\le x_1 \le b$, then: $\int_{a}^{b} f(x)\delta{(x-x_1)} \ dx = f(x_1)$ if $x_1 \in [a,b]$.  Effectively you \emph{sample} the function at $x_1$. If $x_1 \not\in [a,b]$, then $\int_{a}^{b} f(x) \delta{(x-x_1)} \ dx = 0$.}  This is known as the \emph{Collocation method}.  From the properties of the Dirac delta function, $\int_{a}^{b} \delta{(x-x_1)}R(x) \ dx = R(x_1)$, where, $x_1 \in [a,b]$, is known as a collocation point.   
 
-\item Set the weight function equal to the derivative of the trial function with respect to the unknown parameter, $a$, so that: $w = \frac{d\tilde{u}}{da} = x(1-x)$. This is called the Galerkin method.\sidenote{Named after Boris Galerkin who was a Russian engineer and mathematician.  Interestingly, he wrote his first published paper while an inmate in the ``Kresty'' prison.}
+\item Set the weight function equal to the derivative of the trial function with respect to the unknown parameter, $a$, so that: $w = \frac{d\tilde{u}}{da} = x(1-x)$. This is called the Galerkin method.\sidenote{Named after Boris Galerkin who was a Russian engineer and mathematician.  Interestingly, he wrote his first published paper while an inmate in the ``Kresty'' prison; a fact that might shame undergraduate students and junior tenure-track faculty members.}
 \end{enumerate}
 
 There are pros and cons to each of these approaches, a detailed discussion of which is beyond the scope of this text.  For reasons that will be discussed later, we will choose to use the Galerkin method for this example.
@@ -83,7 +83,7 @@ There are pros and cons to each of these approaches, a detailed discussion of wh
 \begin{equation*}
 \left(w,R\right)=\int_{0}^{1} x(1-x)\left[-2a - ax(1-x) + x\right] \ dx = 0
 \end{equation*}
-In so doing, we will then, in a sense, have the value of $a$ such that $\tilde{u(x)}$ best represents the exact solution.  MATLAB code to carry out this task is shown in the listing below.
+In so doing, we will then, in a sense, have the value of $a$ such that $\tilde{u}(x)$ best represents the exact solution.  MATLAB code to carry out this task is shown in the listing below.
 \marginnote{
 
 \vspace{4.5cm}
@@ -118,14 +118,14 @@ For this example problem, $a = 0.227272727$ is the resulting parameter value.  T
 \begin{enumerate}
 \item Choose a more complex trial and test function.  For example, one might choose higher-order polynomials or even trigonometric functions. This is the approach taken in Chebyshev and Fourier spectral methods as described in, for example, the amazing textbook by Boyd.\cite{boyd}  This is often referred to as $p$-refinement, where $p$ is meant to represent the order of polynomial used for the trial and test functions.
 
-\item Subdivide the domain with trial and test functions defined on each of the sub-domains.  This approach is referred to as $h$-refinement.  Finite Element Methods (FEM), that will be introduced in the next lecture take, this approach.  
+\item Subdivide the domain with trial and test functions defined on each of the sub-domains.  This approach is referred to as $h$-refinement.  Finite Element Methods (FEM), that will be introduced in the next lecture, take this approach.  
 
 \item Do a combination of \#1 and \#2 above.  This is sometimes called $hp$-refinement.
 \end{enumerate}  
 All of these approaches will be illustrated in the next lecture on FEM.
 
 \section{Weak Formulation}
-Before we finish this lecture, there is one more detail that I would like to address.  There is at least one drawback to the method of weighted residuals as we have described it so far.  That is that the trial function really needs to have two non-zero derivatives to be useful for the second-order differential operator.  We could not, therefore, choose piecewise-linear functions for our trial or test functions if we pursued an $h$-refinement approach.  The problem is that we \emph{really want} to choose piecewise-linear functions.  They're so simple to use and, with enough pieces, they can describe pretty much any function with arbitrary precision.  
+Before we finish this lecture, there is one more detail that I would like to address.  There is at least one drawback to the method of weighted residuals as we have described it so far.  That is that the trial function really needs to have two non-zero derivatives to be useful for the second-order differential operator.  We could not, therefore, choose piece-wise linear functions for our trial or test functions if we pursued an $h$-refinement approach.  The problem is that we \emph{really want} to choose piece-wise linear functions.  They're so simple to use and, with enough pieces, they can describe pretty much any function with arbitrary precision.  
 
 \newthought{On the surface} it would seem that there is nothing to be done about our little problem.  It is, after all, a second-order differential operator and we can't change that, right?  Well, actually we can.  That is what the weak form is all about.  Let us re-visit the method of weighted residuals in, what we will now call, its ``strong form'':
 
@@ -140,7 +140,7 @@ Before we finish this lecture, there is one more detail that I would like to add
 \underbrace{\int_{0}^{1} w \frac{d^2 \tilde{u}}{dx^2} \ dx}_{\text{integrate by parts}} - \int_{0}^{1} w \tilde{u} \ dx + \int_{0}^{1}wx \ dx &= 0 \\
 w \frac{d\tilde{u}}{dx}\Bigl|_0^1 - \int_{0}^{1}\frac{dw}{dx}\frac{d\tilde{u}}{dx}\ dx - \int_{0}^{1} w \tilde{u} \ dx + \int_{0}^{1}wx \ dx &= 0 \\
 \end{align*}
-The last line is what we call the ``weak form'' of the governing equation.  Notice that now both the trial and test function need have only one non-zero derivative.  We can solve this to find $a$.  This process is shown in the MATLAB listing below.
+The last line is what we call the ``weak form'' of the minimization statement.  Notice that now both the trial and test function need have only one non-zero derivative.  We can solve this to find $a$.  This process is shown in the MATLAB listing below.
 
 \begin{lstlisting}[style=myMatlab,name=lec33n-weak-form]
 %% Weak Form
@@ -156,9 +156,9 @@ Weak_Form = @(a) W(1)*dUt_dx(1,a) - W(0)*dUt_dx(0,a) - ...
 
 a_weak = fzero(Weak_Form,1);
 \end{lstlisting}
-The resut is: \lstinline[style=myMatlab]{a_week} = 0.22727272727, just as with the strong form.
+The result is: \lstinline[style=myMatlab]{a_weak} = 0.22727272727, just as with the strong form.
 
-\newthought{The fact that} the trial and test functions can now be piecewise linear is not the only advantage of the weak form.  Another advantage lies with the inclusion of the derivative of the trial function at the boundary in our formulation. Recall that we chose the trial function in part for the fact that it satisfied the Dirichlet boundary conditions.  Satisfying the type-1 boundary condition is, in this sense, ``essential'' and, for some expositions on FEM, is why such boundary conditions are often referred to as \emph{essential boundary conditions.}  In the weak form, we also expose type-2 boundary conditions within the residual that we are minimizing.  It is here where we now have the opportunity to specify a type-2 boundary condition directly within the formulation.  In the literature, type-2 boundary conditions are often referred to as \emph{natural boundary conditions} and it is in this sense that they appear ``naturally'' within the formulation. 
+\newthought{The fact that} the trial and test functions can now be piece-wise linear is not the only advantage of the weak form.  Another advantage lies with the inclusion of the derivative of the trial function at the boundary in our formulation. Recall that we chose the trial function in part for the fact that it satisfied the Dirichlet boundary conditions.  Satisfying the type-1 boundary condition is, in this sense, ``essential'' and, for some expositions on FEM, is why such boundary conditions are often referred to as \emph{essential boundary conditions.}  In the weak form, we also expose type-2 boundary conditions within the residual that we are minimizing.  It is here where we now have the opportunity to specify a type-2 boundary condition directly within the formulation.  In the literature, type-2 boundary conditions are often referred to as \emph{natural boundary conditions} and it is in this sense that they appear ``naturally'' within the formulation. 
  
 
 
