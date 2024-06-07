@@ -17,7 +17,7 @@ We will use the Finite Difference Method to solve the same problem that we tackl
 
 \vspace{0.1cm}
 
-\noindent A pin fin is a slender extension attached to increase the surface area and enable greater heat transfer.  When convection and radiation are included in the analysis, the steady-state temperature distribution, $T(x)$, along a pin fin can be caluclated from the solution of the equation below:
+\noindent A pin fin is a slender extension attached to increase the surface area and enable greater heat transfer.  When convection and radiation are included in the analysis, the steady-state temperature distribution, $T(x)$, along a pin fin can be calculated from the solution of the equation below:
 \begin{equation}
 \frac{d^2T}{dx^2} - \frac{h_cP}{kA_c}\left(T - T_s\right)-\frac{\epsilon \sigma_{SB}P}{k A_c}\left(T^4 - T_s^4 \right) = 0, \ \ 0 \le x \le 0.1
 \end{equation}
@@ -84,26 +84,24 @@ LT &= b - \underbrace{\alpha_2 \left[I\right]T^4}_{\phi(T)}
 LT = b - \phi(T_i)
 \end{equation*}
 
-\item \textbf{Step \#4:} Solve the lineary system of equations and evaluate the relative change in the dependent variable.
+\item \textbf{Step \#4:} Solve the linear system of equations and evaluate the relative change in the dependent variable.
 
 \begin{align*}
 T_{i+1} &= L^{-1} \left[b - \phi(T_i)\right] \\
 \epsilon &= \frac{||T_{i+1} - T_i||}{||T_i||}
 \end{align*}
 
-\item Repeate Steps \#3 and \#4 until $\epsilon < \text{TOL}$ for some specified tolerance.
+\item Repeat Steps \#3 and \#4 until $\epsilon < \text{TOL}$ for some specified tolerance.
 
 \end{enumerate}
 This is a form of \emph{fixed point iteration}. Looking again at the equation in Step \#4 above:
 \begin{equation*}
 T_{i+1} = L^{-1}\left[b-\phi(T_{i})\right] = g(T_i)
 \end{equation*}
-The solution we are looking for is when $g(T_i) \rightarrow T_i$; this is called a \emph{fixed point}.  The conditions under which $g(T)$ will \emph{have} a fixed point are beyond the scope of this class and will not be discussed further in this lecture.\sidenote{Interested readers can learn more about the Banach fixed point theorm which says, roughly, that if $g(T)$ is a \emph{contraction mapping} (at least in some region ``close'' to a fixed point) then the fixed point iteration will succeed. This is, suffice it to say, a loose statement.}
+The solution we are looking for is when $g(T_i) \rightarrow T_i$; this is called a \emph{fixed point}.  The conditions under which $g(T)$ will \emph{have} a fixed point are beyond the scope of this class and will not be discussed further in this lecture.\sidenote{Interested readers can learn more about the Banach fixed point theorem which says, roughly, that if $g(T)$ is a \emph{contraction mapping} (at least in some region ``close'' to a fixed point) then $g(T)$ has a fixed point and the fixed point iteration will succeed. This is, it goes without saying, a loose statement.}
 
 \section{MATLAB Implementation}
-A listing of MATLAB code that implements the method described above for our example problem is provided below.
-
-\noindent We begin by clearing the workspace and defining constants.
+A listing of MATLAB code that implements the method described above for our example problem is provided below.  We begin by clearing the workspace and defining constants.
 \begin{lstlisting}[style=myMatlab,name=lec32n-ex]
 clear
 clc
@@ -158,7 +156,7 @@ RHS(1) = Ta; RHS(N) = Tb;
 
 \end{lstlisting}
 
-Now we are ready to apply the fixed-point iteration scheme.
+\noindent Now we are ready to apply the fixed-point iteration scheme.
 \begin{lstlisting}[style=myMatlab,name=lec32n-ex]
 tol = 1e-7; imax = 100; T = To;
 
