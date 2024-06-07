@@ -21,7 +21,7 @@ What we need are:
 \newthought{Embedded Runge-Kutta methods} provide for those needs.  Consider the Bogacki-Shampine method\cite{bogacki19893} that is used in MATLAB's built-in function \lstinline[style=myMatlab]{ode23}. The Butcher tableau is shown in Table \ref{tab:lec27n-bs-bt}.
 
 
-\begin{margintable}[-8.0cm]
+\begin{margintable}[-1.0cm]
 \begin{tabular}{c|cccc}
 0 & 0 & 0 & 0 & 0 \\
 \sfrac{1}{2} & \sfrac{1}{2} & 0 & 0 & 0 \\
@@ -35,7 +35,7 @@ What we need are:
 \end{margintable}
 In this Butcher tableau, there are two sets of weights: one for a 2\textsuperscript{nd}-order convergent RK method and the other is for a 3\textsuperscript{rd}-order convergent scheme. Note that the numbers to the left of the weights in the Butcher tableau are not standard and added to indicate the order of convergence for the corresponding set of weights.
 
-This can form the basis for a step-size adaptation method.  Suppose we specify a relative error tolerance and compute $y_{n+1}$ given $y_n$.  
+A Runge-Kutta scheme of this type can form the basis for a method that includes step-size adaptation.  Suppose we specify a relative error tolerance and compute $y_{n+1}$ given $y_n$.  
 \begin{itemize}
 \item Start with a default initial step size.  This might be input by the user or may be set by the algorithm, for example, as a fixed fraction of the interval length. 
 \item Compute the numeric solution for the $(i+1)$-th time-step using both lower-order and higher-order weights ($w_{i+1}$ and $z_{i+1}$, respectively)
@@ -64,7 +64,7 @@ One possible implementation of this method is shown in the set of listings below
 
 \vspace{0.25cm}
 
-\noindent\ref{lst:ann27n-2} For this method we do not know in advance how many timesteps will be taken but we also want to pre-allocate arrays for our variables.  Consequently we will make a conservative guess at the number of timesteps necessary.  At the end of the array we will trim away unused portions of the array.
+\noindent\ref{lst:ann27n-2} For this method we do not know in advance how many time steps will be taken but we also want to pre-allocate arrays for our variables.  Consequently we will make a conservative guess at the number of time steps necessary.  At the end of the calculation we will trim away unused portions of the array.
 }
 \begin{lstlisting}[style=myMatlab, name=lec27n-1]
 function [t,y] = embeddedRK(F,tspan,y0,RTOL,EBT) /*!\annotation{lst:ann27n-1}!*/
@@ -94,11 +94,11 @@ p = EBT((end-1),1);
 
 \noindent\ref{lst:ann27n-3} Here we unpack the Butcher tableau with the only difference being that we have two sets of weights to use in the low order $w$ and high order $z$ approximation.
 }
-\noindent The rest of the implementation follows; the local function \lstinline{style=myMatlab}{getWZ()} will be shown in the next listing.
+\noindent The rest of the implementation follows; the local function \lstinline[style=myMatlab]{getWZ()} will be shown in the next listing.
 
 \marginnote{
 
-\vspace{0.35cm}
+\vspace{0.6cm}
 
 \noindent\ref{lst:ann27n-4} This is the small factor to ensure the normalization used in calculating relative error is not too close to zero.
 
@@ -120,9 +120,9 @@ p = EBT((end-1),1);
 
 \vspace{0.5cm}
 
-\noindent\ref{lst:ann27n-9} If the relative error tolerance is not met, cut the time stepsize in half and try again.
+\noindent\ref{lst:ann27n-9} If the relative error tolerance is not met, cut the time step size in half and try again.
 
-\vspace{0.5cm}
+\vspace{1.3cm}
 
 \noindent\ref{lst:ann27n-10} If it takes more than a couple of iterations, something has went wrong; stop the program and try to figure it out.
 }
@@ -186,7 +186,7 @@ t = t(1:(ts+1));
 end % function
 \end{lstlisting}
 \marginnote[-1.5cm]{
-\noindent\ref{lst:ann27n-11} Recall, the variable arrays were over-sized to accomodate an unknown number of time steps.  Trim-off any unused time steps here.
+\noindent\ref{lst:ann27n-11} Recall, the variable arrays were over-sized to accommodate an unknown number of time steps.  Trim-off any unused time steps here.
 
 }
 The local functions used above are shown here for completeness.
@@ -229,7 +229,7 @@ y(x)=e^{-\sfrac{x}{2}}\left[-\cos{(2x)}+\frac{3}{4}\sin{(2x)} \right]
 \caption{Solution of example problem with an embedded Runge-Kutta method.}
 \label{fig:lec27n-ex1}
 \end{marginfigure}
-A plot of the solution is shown in Figure \ref{fig:lec27n-ex1}.  Note the shorter timesteps in the vicinity of rapid solution variation or inflection points.
+A plot of the solution is shown in Figure \ref{fig:lec27n-ex1}.  Note the shorter time steps in the vicinity of rapid solution variation or inflection points.
 
 \section{MATLAB Built-in Runge-Kutta Methods}
 
@@ -241,9 +241,9 @@ MATLAB has a number of built-in methods for solving initial value problems.  Mos
 \hline
 \textbf{Solver Name} & \textbf{Description} \\
 \hline
-ode45 & For nonstiff problems, best to apply as a first try for most problems. Single-step method based on fourth and fifth order explicit RK methods \\ \hline
-ode78 & For nonstiff problems where high accuracy is required.  Based on 7th and 8th order explicit RK methods \\ \hline
-ode89 & For nonstiff problems where high accuracy is required over very long time intervals. Based on 8th and 9th order explicit RK methods\\ \hline
+ode45 & For non-stiff problems, best to apply as a first try for most problems. Single-step method based on fourth and fifth order explicit RK methods \\ \hline
+ode78 & For non-stiff problems where high accuracy is required.  Based on 7th and 8th order explicit RK methods \\ \hline
+ode89 & For non-stiff problems where high accuracy is required over very long time intervals. Based on 8th and 9th order explicit RK methods\\ \hline
 ode23 & Consider this function if the problem is moderately stiff and/or if you have crude error tolerances. The algorithm is based on 2nd and 3rd order explicit RK methods\\ \hline
 ode15s & Try this method if ode45 fails or if you think your equation is stiff. Based on numeric differentiation formulas of order 1 through 5. \\ \hline
 \end{tabular}
@@ -253,7 +253,7 @@ ode15s & Try this method if ode45 fails or if you think your equation is stiff. 
 
 \newthought{Note that it} is not necessarily better to simply use the method with the highest-possible order of convergence.  If we define the \emph{"best"} method as that method which reliably converges to an answer of acceptable accuracy the fastest, then higher-order methods are not always the best.  A more detailed performance analysis would take into consideration the number of function evaluations and computation time needed to obtain a solution of the desired accuracy.  Problems where the behavior of the solution varies significantly over a range of time scales\sidenote{This is the best intuitive description I have of what it means for a problem to be \emph{"stiff."}} can result in extra work adapting the time step-size and overall poorer performance.
 
-To use, for example, \lstinline[style=myMatlab]{ode45}, the syntax is as follows:
+\newthought{To use,} for example, \lstinline[style=myMatlab]{ode45}, the syntax is as follows:
 
 
 \vspace{0.25cm}
@@ -268,7 +268,7 @@ To use, for example, \lstinline[style=myMatlab]{ode45}, the syntax is as follows
 
 \noindent where \lstinline[style=myMatlab]{odeFun}\sidenote{Note that this function must take two inputs; the first is the independent variable, and the second is a vector of dependent variables. Even if the governing equation is not a function of the independent variable, the function you send to \lstinline[style=myMatlab]{ode45} and other built-in MATLAB initial value problem solvers, must accept it as its first argument.} is a handle to the function implementing the governing equation, \lstinline[style=myMatlab]{tSpan} is either a vector with two elements indicating the range of the independent variable or a vector specifying time-steps at which the solution is desired. The argument \lstinline[style=myMatlab]{Y0} is a vector with initial conditions.  The return variable \lstinline[style=myMatlab]{tSol} is a $1 \times N$ vector where $N$ is the number of time steps ultimately taken by \lstinline[style=myMatlab]{ode45}; \lstinline[style=myMatlab]{ySol} is a $N \times s$ array where $s$ is the number of dependent variables in the system of equations.
 
-\newthought{Each of the} methods listed are of variable time step-size; unless the user specifies the time steps through the \lstinline[style=myMatlab]{tSpan} variable, the built-in methods will adaptively adjust the time step size to meet error tolerances.  Optional parameters (like absolute and relative error tolerances) can be set by providing an optional argument by using the \lstinline[style=myMatlab]{odeset} function as shown below:
+\newthought{Each of the} methods listed are of variable time step-size; unless the user specifies the time steps through the \lstinline[style=myMatlab]{tSpan} variable, the built-in methods will adaptively adjust the time step size to meet error tolerances.  Optional parameters---like absolute and relative error tolerances---can be set by providing an options structure by using the \lstinline[style=myMatlab]{odeset} function as shown below:
 
 \vspace{0.25cm}
 
@@ -286,7 +286,7 @@ To use, for example, \lstinline[style=myMatlab]{ode45}, the syntax is as follows
 
 \noindent\parbox{\textwidth}{
 \centering
-\lstinline[style=myMatlab]{tSol,ySol}=ode45(odeFun,tSpan,Y0,optStruct)
+\lstinline[style=myMatlab]{tSol,ySol}=ode45(odeFun, tSpan, Y0, optStruct)
 
 }
 
@@ -298,7 +298,7 @@ To use, for example, \lstinline[style=myMatlab]{ode45}, the syntax is as follows
 
 \noindent\parbox{\textwidth}{
 \centering
-\lstinline[style=myMatlab]{sol = ode45(odeFun,tSpan,Y0,optStruct)}
+\lstinline[style=myMatlab]{sol = ode45(odeFun, tSpan, Y0, optStruct)}
 }
 
 \vspace{0.25cm}

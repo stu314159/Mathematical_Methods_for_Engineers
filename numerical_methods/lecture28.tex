@@ -24,7 +24,7 @@ A_2u(b)+B_2u^{\prime}(b)&=C_2
 \end{align*}
 where $A_i$, $B_i$, and $C_i$ are constants and are not \emph{all} zero for any value of $i$.
 
-\newthought{Knowing what constitutes} a \emph{suitable} set of boundary conditions is part of your job as an engineer.  Depending on the given boundary conditions, the BVP may have one unique solution, no solution, or infinitely many solutions. Somtimes it is hard to tell in advance which of these will turn out to be the case.  Physical insight and intuition can play an important role in predicting these outcomes so it is essential that one understands the physical interpretation of a proposed set of boundary conditions.
+\newthought{Knowing what constitutes} a \emph{suitable} set of boundary conditions is part of your job as an engineer.  Depending on the given boundary conditions, the BVP may have one unique solution, no solution, or infinitely many solutions. Sometimes it is hard to tell in advance which of these will turn out to be the case.  Physical insight and intuition can play an important role in predicting these outcomes so it is essential that one understands the physical interpretation of a proposed set of boundary conditions.
 
 There are three basic types of boundary conditions:\marginnote{\textbf{Note:}This classification scheme is also discussed in Lecture 22 of the Analytical Methods portion of this text.}
 \begin{itemize}
@@ -37,13 +37,13 @@ For a BVP related to the heat equation, for instance, this is equivalent to spec
 \begin{equation*}
 \frac{du}{dx}\Bigl|_{x=b} = 0
 \end{equation*}
-For a BVP related to the heat equation where the dependent variable is temperature, this is equivalent to specifying the heat flux on a boundary.  For the example given, if we set the heat flux equal to zero, that is interpreted as an \emph{insulated} boundary condtion.
+For a BVP related to the heat equation where the dependent variable is temperature, this is equivalent to specifying the heat flux on a boundary.  For the example given, if we set the heat flux equal to zero, that is interpreted as an \emph{insulated} boundary condition.
 
-\item \textbf{Type 3} or \emph{Robin}\sidenote{Named for Victor Gustave Robin who was a French matematician who lectured at the Sorbonne in Paris. To the best of this author's knowledge, he was not associated in any way with Batman.} or just \emph{mixed} boundary conditions. As the reader may have deduced by now, boundary conditions of this type involve both the dependent variable and its derivative.  For example:
+\item \textbf{Type 3} or \emph{Robin}\sidenote{Named for Victor Gustave Robin who was a French mathematician who lectured at the Sorbonne in Paris. To the best of this author's knowledge, he was not associated in any way with Batman.} or just \emph{mixed} boundary conditions. As the reader may have deduced by now, boundary conditions of this type involve both the dependent variable and its derivative.  For example:
 \begin{equation*}
 \frac{du}{dx}\Bigl|_{x=a} = -h\left(u(a) - T_{\text{env}}\right)
 \end{equation*} 
-where $T_{\text{env}}$ refers to the environmental temperature near the boundary and $h$ is a non-negative constant. This example corresponds to heat transfer by convection.  The constant $h$ is the convective heat transfer coefficient and relates heat flux at the boundary to the difference between the temperature at the boundary of the domain ($u(a)$) and $T_{\text{env}}$.  If $h$ is high then a large heat flux can be passed through the boundary with only a small temperature difference; if $h$ is low then the surface temperature must be much higher than the surrounding environment to transmit significant amounts of heat.  In the limit of $h\to 0$, the boundary becomes insulated.
+where $T_{\text{env}}$ refers to the environmental temperature near the boundary and $h$ is a non-negative constant. This example corresponds to heat transfer by convection.  The constant $h$ is the convective heat transfer coefficient and relates heat flux at the boundary to the difference between the temperature at the boundary of the domain, $u(a)$, and $T_{\text{env}}$.  If $h$ is high then a large heat flux can be passed through the boundary with only a small temperature difference; if $h$ is low then the surface temperature must be much higher than the surrounding environment to transmit significant amounts of heat.  In the limit of $h\to 0$, the boundary becomes insulated.
 
 \end{itemize}
 
@@ -56,7 +56,7 @@ We will introduce and illustrate our first method for solving BVPs, the shooting
 
 \vspace{0.1cm}
 
-\noindent A pin fin is a slender extension attached to increase the surface area and enable greater heat transfer.  When convection and radiation are included in the analysis, the steady-state temperature distribution, $T(x)$, along a pin fin can be caluclated from the solution of the equation below:
+\noindent A pin fin is a slender extension attached to increase the surface area and enable greater heat transfer.  When convection and radiation are included in the analysis, the steady-state temperature distribution, $T(x)$, along a pin fin can be calculated from the solution of the equation below:
 \begin{equation}
 \frac{d^2T}{dx^2} - \frac{h_cP}{kA_c}\left(T - T_s\right)-\frac{\epsilon \sigma_{SB}P}{k A_c}\left(T^4 - T_s^4 \right) = 0, \ \ 0 \le x \le 0.1
 \end{equation}
@@ -111,7 +111,7 @@ dw &= \bracketVectorstack{T^{\prime} \\ T^{\prime \prime}} \\
 \item \textbf{Evaluate $T(b)$ and compare with $T_B$}.  If our aim was true, we would ``hit'' $T(b)=T_B$ with our ``shot.''  In MATLAB you might do this as follows:
 
 \begin{enumerate}
-\item Define a function that takes the estimate for $T^{\prime}(0)$ as an argument and retuns the resulting value of $T(b)$.
+\item Define a function that takes the estimate for $T^{\prime}(0)$ as an argument and returns the resulting value of $T(b)$.
 \item Create a second function that returns the difference between the function described above, and $T_B$.  For example:
 \begin{lstlisting}[style=myMatlab]
 tgt_err_fun = @(dTa) fun(dTa) - Tb
@@ -167,6 +167,8 @@ BT(1:s,2:end) = A;
 
 \marginnote{
 
+\vspace{0.5cm}
+
 \noindent \ref{lst:ann28n-3} Here we define a function that will take the ODE, a solve, and a guessed value for the initial conditions as needed for the shooting method.
 
 \vspace{0.1cm}
@@ -182,7 +184,7 @@ tgt_err_fun = @(dTa_g) shot_function(odeWithSolver,dTa_g)
                                                    - Tb; /*!\annotation{lst:ann28n-4}!*/
 \end{lstlisting}
 
-Since some of the root-finding methods that we can choose from require two estiimates of the slope and, for bisection method, the estimates must bracket the actual slope, we will propose a ``high'' and ``low'' estimate for the initial slope.
+Since some of the root-finding methods that we can choose from require two estimates of the slope and, for bisection method, the estimates must bracket the actual slope, we will propose a ``high'' and ``low'' estimate for the initial slope.
 \begin{lstlisting}[style=myMatlab,name=lec28n-ex1]
 % need two guesses at the slope
 dT_a_H = 0; % slope = 0 at x=a means no heat transfer out.
@@ -241,7 +243,7 @@ The resulting temperature profile through the pin fin is shown in Figure \ref{fi
 
 \vspace{0.25cm}
 
-\noindent\textbf{Note:} Take a few moments to think about this figure.  Does the shape match your expecation?  How do you think the shape of the curve would change if $h_c$ were much larger or smaller?  Readers are strongly encouraged to solve this problem and test these hypotheses. 
+\noindent\textbf{Note:} Take a few moments to think about this figure.  Does the shape match your expectation?  How do you think the shape of the curve would change if $h_c$ were much larger or smaller?  Readers are strongly encouraged to solve this problem and test these hypotheses. 
 
 \vspace{0.25cm}
 

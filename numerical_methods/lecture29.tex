@@ -18,7 +18,7 @@ Both of these built-in solvers use variations of the finite difference method.  
 \begin{equation*}
 \frac{dw}{dx} = f(x,w)
 \end{equation*}
-where here we indicate the dependent variable with $w$.  Since the BVPs of interest to us are 2\textsuperscript{nd}-order and higher, the dependent variable $w$ will be a vector and the governing equation for an $n$\textsuperscript{th}-order BVP will be a system with $n$ equations.  In the examples presented here, this function will ordinarily be implemented as a local function.  For particularly simple govering equations, an inline ``anonymous'' function may be used.
+where here we indicate the dependent variable with $w$.  Since the BVPs of interest to us are 2\textsuperscript{nd}-order and higher, the dependent variable $w$ will be a vector and the governing equation for an $n$\textsuperscript{th}-order BVP will be a system with $n$ equations.  In the examples presented here, this function will ordinarily be implemented as a local function.  For particularly simple governing equations, an inline ``anonymous'' function may be used.
 \begin{lstlisting}[style=myMatlab]
 function dw = fun(x,w)
 .
@@ -27,7 +27,7 @@ function dw = fun(x,w)
 end
 \end{lstlisting}
 
-\item \emph{Boundary conditions}.  Recall with IVP solvers like \lstinline[style=myMatlab]{ode45} or \lstinline[style=myMatlab]{ode78} initial conditions were simply given as vectors.\sidenote{This reflects the difference in what types of conditions are given for IVPs compared to BVPs.  For IVPs, the only option presented for initial conditions was to make a direct assignment to the dependent variable and its derivative at one end of the domain.}  This is roughly equivalent to having only type 1 and type 2 boundary conditions.  In order to gain the expressiveness that we need, a different approach is taken for BVP solvers.  We provide a \emph{residual function} that accepts as arguments the dependent variable and its derivatives at each boundary; the function returns the boundary condition in \emph{residual} form.\sidenote{Basically this is just the boundary condition as it is stated but with all of the terms moved to the left-hand-side of the equation.}  Using the example from Lecture 28 where the boundary conditions were:
+\item \emph{Boundary conditions}.  Recall with IVP solvers like \lstinline[style=myMatlab]{ode45} or \lstinline[style=myMatlab]{ode78} initial conditions were simply given as vectors.\sidenote{This reflects the difference in what types of conditions are given for IVPs compared to BVPs.  For IVPs, the only option presented for initial conditions was to make a direct assignment to the dependent variable and its derivative at one end of the domain.}  This is roughly equivalent to having only type 1 and type 2 boundary conditions.  In order to gain the expressiveness that we need, a different approach is taken for BVP solvers.  We provide a \emph{residual function} that accepts as arguments the dependent variable and its derivatives at each boundary; the function returns the boundary condition in \emph{residual} form.\sidenote{By \emph{residual form} we just mean that the boundary condition is used as it is stated but with all of the terms moved to the left-hand-side of the equation.}  Using the example from Lecture 28 where the boundary conditions were:
 \begin{equation*}
 T(0) = T_A, \ \ T(0.1) = T_B
 \end{equation*}
@@ -35,7 +35,7 @@ we could encode these as follows:
 \begin{lstlisting}[style=myMatlab]
 bcfun = @(wa,wb) [wa(1) - Ta; wb(1) - Tb];
 \end{lstlisting}
-where \lstinline[style=myMatlab]{wa(1)-Ta} is equivalent to $T(0)-T_A$; and \lstinline[style=myMatlab]{wb(1)-Tb} is equivalnet to $T(0.1)-T_B$.\sidenote{If I need to refer to the derivative of the dependent variable at either boundary, I would refer to them as \lstinline[style=myMatlab]{wa(2)} or \lstinline[style=myMatlab]{wb(2)}, respectively.}
+where \lstinline[style=myMatlab]{wa(1)-Ta} is equivalent to $T(0)-T_A$; and \lstinline[style=myMatlab]{wb(1)-Tb} is equivalent to $T(0.1)-T_B$.\sidenote{If I need to refer to the derivative of the dependent variable at either boundary, I would refer to them as \lstinline[style=myMatlab]{wa(2)} or \lstinline[style=myMatlab]{wb(2)}, respectively.}
 
 \item \emph{Initial mesh and solution guess.} Like other built-in MATLAB functions for solving ODEs, \lstinline[style=myMatlab]{bvp5c} will adapt the mesh as needed to provide a solution that satisfies the specified error tolerances.\sidenote{As with other solvers, absolute and relative error tolerances are provided by default and can be changed by the user as desired.} To specify the mesh and initial solution guess, we use the built-in function \lstinline[style=myMatlab]{bvpinit} as shown in the listing below:
 \begin{lstlisting}[style=myMatlab]
@@ -74,14 +74,14 @@ options = bvpset('RelTol',1e-3,'AbsTol',1e-6,'NMax',1000);
 \begin{lstlisting}[style=myMatlab]
 sol = bvp5c(fun,bcfun,solinit,options);
 \end{lstlisting}
-The return value \lstinline[style=myMatlab]{sol} is a structure that contains, among other information, fields for the solution, \lstinline[style=myMatlab]{sol.y}, at discrete gridpoints, \lstinline[style=myMatlab]{sol.x}.\sidenote{Once again, the reader is encouraged to review the MATLAB documentation to learn what other useful information is packed into the other fields of the output solution structure.}
+The return value \lstinline[style=myMatlab]{sol} is a structure that contains, among other information, fields for the solution, \lstinline[style=myMatlab]{sol.y}, at discrete grid points, \lstinline[style=myMatlab]{sol.x}.\sidenote{Once again, the reader is encouraged to review the MATLAB documentation to learn what other useful information is packed into the other fields of the output solution structure.}
 
 \subsection{Example \#1}
 
 \noindent Consider the following boundary value problem:
 \begin{table}
 \begin{tabular}{l l}
-Govering Equation: & $\frac{d^2y}{dx^2}-y=sin(x), \ \ 0 < x < 2$ \\
+Governing Equation: & $\frac{d^2y}{dx^2}-y=sin(x), \ \ 0 < x < 2$ \\
 BCs: & $y(0) = 1, \ \ y(2) = 0$ \\
 \end{tabular}
 \end{table}
@@ -168,7 +168,7 @@ ODE: & $\frac{d^2T}{dx^2}-\frac{4h}{kD}\left(T-T_{\infty}\right)-\frac{4\epsilon
 BCs: & $T(x=0)=300K, \ \ \frac{dT}{dx}\Bigl|_{x=\sfrac{L}{2}}=0$ \\
 \end{tabular}
 \end{table}
-\marginnote[0.5cm]{\textbf{Note:} This is a 2\textsuperscript{nd}-order, non-linear, non-homogeneus boundary value problem.  This author is not aware of any analytic technique that would work to find an exact solution.  Nonetheless, we will be able to solve this problem using \lstinline[style=myMatlab]{bvp5c} with not much more effort than what was required for the last example; the difference lies mainly in implementing the govering equation.}
+\marginnote[0.5cm]{\textbf{Note:} This is a 2\textsuperscript{nd}-order, non-linear, non-homogeneous boundary value problem.  This author is not aware of any analytic technique that would work to find an exact solution.  Nonetheless, we will be able to solve this problem using \lstinline[style=myMatlab]{bvp5c} with not much more effort than what was required for the last example; the difference lies mainly in implementing the governing equation.}
 \noindent where $T$ is the temperature in Kelvin, $x$ is the coordinate along the wire, $k = 72 \text{W/m-K}$ is the thermal conductivity, $h=2000 \text{W/m}^2\text{-K}$ is the convective heat transfer coefficient, $\epsilon=0.1$ is the radiative emissivity, $\sigma_{\text{SB}}=5.67\times 10^{-8} \text{W/m}^2\text{-K}^4$ is the Stefan-Boltzmann constant, $I=2$ amps is the current, $\rho_e=32\times 10^{-8}$ Ohm-m is the electrical resistivity, $T_{\infty}=300$ K is the ambient temperature, $D=7.62\times 10^{-5}$m is the wire diameter, and $L=4.0\times 10^{-3}$m is the length of the wire.
 \setcounter{lstannotation}{0} % reset the counter.
 \marginnote{
