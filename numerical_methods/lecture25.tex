@@ -3,8 +3,8 @@
 \section{Objectives}
 The objectives of this lecture are to:
 \begin{itemize}
-\item Qualitatively motivate and describe the derivation of Runge-Kutta methods
-\item Do some example problems
+\item Qualitatively motivate and describe the derivation of Runge-Kutta methods.
+\item Do some example problems.
 \end{itemize}
 \setcounter{lstannotation}{0}
 
@@ -109,7 +109,7 @@ y(1) = yINI;
 h = x(2)-x(1);
 \end{lstlisting}
 
-\noindent Now we will calculate RK solution process:\marginnote{
+\noindent Now we use the RK method to compute the solution:\marginnote{
 
 \vspace{0.5cm}
 
@@ -415,7 +415,7 @@ end
 
 \vspace{-10.0cm}
 
-\noindent \textbf{Note:} Readers are strongly encouraged to compare this implementation with the explicit RK solver for 1\textsuperscript{st}-order equations.  The dependent variable, $y$, is now a two-dimentional array; one row for each equation in the system; the columns correspond to time-steps.}
+\noindent \textbf{Note:} Readers are strongly encouraged to compare this implementation with the explicit RK solver for 1\textsuperscript{st}-order equations.  The dependent variable, $y$, is now a two-dimensional array; one row for each equation in the system; the columns correspond to time-steps.}
 
 \noindent We can use a local function to implement the 1\textsuperscript{st}-order system of ODEs:
 \marginnote{

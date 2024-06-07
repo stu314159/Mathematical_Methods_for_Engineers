@@ -3,15 +3,15 @@
 \section{Objectives}
 The objectives of this lecture are to:
 \begin{itemize}
-\item Review some terminology and concepts regarding differential equations
-\item Describe Euler's method for 1st order initial value problems (IVPs) and demonstrate convergence behavior
-\item Describe and demonstrate the modified Euler's method
+\item Review some terminology and concepts regarding differential equations.
+\item Describe Euler's method for 1st order initial value problems (IVPs) and demonstrate convergence behavior.
+\item Describe and demonstrate the modified Euler's method.
 \end{itemize}
 \setcounter{lstannotation}{0}
 
 \section{Ordinary Differential Equations (ODEs) Review}
 
-It almost seems appropriate to begin this section with a brief apology.  Elementary differential equations, such as what most undergraduate engineering majors study, are more fully reviewed in lectures 1 through 6 in the analytical methods portion of this text.  I intend in this section only a brief reminder of selected categories by which a given ordinary differential equation can be classified.  So from that perspective, the discussion I am about to begin will be redundant.
+It almost seems appropriate to begin this section with a brief apology.  Elementary differential equations, such as what most undergraduate engineering majors study, are more fully reviewed in lectures 1 through 6 in the analytical methods portion of this text.  I intend in this section only a brief reminder of selected categories by which a given ordinary differential equation can be classified.  So from that perspective, the discussion I am about to begin will be redundant and I apologize for that.
 
 In addition to being redundant, the classification schemes I will present---which inherently smack of pedantry---will turn out to be of limited relevance in the context of the \emph{numerical} methods we are about to study; for most classes of ODEs many numerical methods will suffice and differ only in their complexity and convergence properties.  Nonetheless, when learning these new methods, it will be important to select problems that we \emph{can} solve analytically so we know whether or not the solution our numerical method produces is correct.  Thus we will review our classification of ODEs so we can discriminate between problems we can and cannot solve analytically; we will choose the former for our test cases to validate implementation of the numerical method.
 
@@ -88,14 +88,14 @@ along with the following conditions:
 \begin{equation*}
 y(x_0) = y_0, \ \ y^{\prime}(x_0) = y_1, \cdots,y^{(n-1)}(x_0)=y_{n-1}
 \end{equation*}
-where $x_0$ is within the domain of interest.  This is called an \emph{initial value problem}.  It is not required, but it is customary that $x_0$ is at one boundary of the domain, typically $x_0=0$.\sidenote{Of course, it is also very common that the independent variable for initial value problems is \emph{time}, denoted by $t$ and that $t_0 = 0$.} The coefficients $a_n$ can be constants, functions of the independent variable, or, in the general non-linear case, functions of both the dependent and independent variable.  In the case where $a_n$ are constant or functions only of the independent variable, where $a_n$ and $g(x)$ are continuous, and $a_n \ne 0$ throughout the interval of interest, then a unique solution is assured.
+where $x_0$ is within the domain of interest.  It is not required, but it is customary that $x_0$ is at one boundary of the domain, typically $x_0=0$.\sidenote{Of course, it is also very common that the independent variable for initial value problems is \emph{time}, denoted by $t$ and that $t_0 = 0$.} The coefficients $a_n$ can be constants, functions of the independent variable, or, in the general non-linear case, functions of both the dependent and independent variable.  In the case where $a_n$ are constant or functions only of the independent variable, where $a_n$ and $g(x)$ are continuous, and $a_n \ne 0$ throughout the interval of interest, then a unique solution is assured.
 
 For the lectures that follow, we will restrict our attention to initial value problems of the form given in Equation \ref{eq:lec23n-ivp}.
 \begin{equation}
 y^{\prime} = f(x,y) \ \ y(x_0) = y_0
 \label{eq:lec23n-ivp}
 \end{equation}
-It will be shown that this formulation is sufficiently general to capture all problems of interest for this class.
+This formulation is sufficiently general to capture all problems of interest for this class.
 
 \subsection{Boundary Value Problem}
 For the purposes of this discussion, we will restrict ourselves to linear 2\textsuperscript{nd}-order boundary value problems of the form given in Equation \ref{eq:lec23n-bvp}.
@@ -104,7 +104,7 @@ a_2(x)y^{\prime \prime} + a_1(x)y^{\prime} + a_0(x)y = g(x), \ \ y(a) = y_1, \ y
 \label{eq:lec23n-bvp}
 \end{equation}
 
-Initial value problems will be the subject of Lectures 23 - 27.  Most numerical methods for IVPs can be broken down into \emph{single-step} methods or \emph{multi-step} methods.  In this class, we will focus exclusively on single-step methods.  We will study a range of different numerical methods for solving BVPs starting in Lecture 28 and continuing through the end of the course.\sidenote{Alert readers may be wondering: \emph{``But what about initial boundary value problems?''}  Fear not.  We will address those as well among our BVP lectures.}
+Initial value problems will be the subject of Lectures 23 - 27.  Most numerical methods for IVPs can be broken down into \emph{single-step} methods or \emph{multi-step} methods.  In this class, we will focus exclusively on single-step methods.  We will study a range of different numerical methods for solving BVPs starting in Lecture 28 and continuing through the end of the course.\sidenote{Alert readers may be wondering: \emph{``But what about initial boundary value problems?''}  I am sorry to say that we will not be addressing problems of that type in this class. }
 
 \section{Euler's Explicit Method for 1\textsuperscript{st}-Order IVPs}
 
@@ -220,6 +220,8 @@ A plot of the numeric solution along with the exact solution is shown in Figure 
 \label{fig:lec23n-ex1-converge}
 \end{marginfigure}
 
+\vspace{2.0cm}
+
 \subsection{Stiff Equations}
 
 \newthought{One disadvantage} of Euler's explicit method for solving IVPs is that for some problems local truncation error, instead of building up steadily, amplify exponentially and the solution ``blows up.''  As an example, consider the following IVP:
@@ -234,7 +236,7 @@ The reader is encouraged to verify that the exact solution to this problem is $y
 \caption{Result of attempting to solve a ``stiff'' differential equation with Euler's explicit method, $N=95$.}
 \label{fig:lec23n-ex1-unstable}
 \end{marginfigure}
-You should look at that figure and recognize that whatever is going wrong, it is more than just the accumulation of local truncation error, but instead signs of incipient instability.  If you reduce $N$ further the numeric result blows up and produces a meaningless result.
+You should look at that figure and recognize that whatever is going wrong, it is more than just the accumulation of local truncation error, but is instead a sign of incipient instability.  If you reduce $N$ further the numeric result blows up and produces a meaningless result.
 
 The example given in Equation \ref{eq:lec23n-stiff-ivp} is referred to as a ``stiff'' differential equation.  Even though the actual solution is quite smooth, a large number of intervals is required in order to obtain a reasonable numeric solution.  Often it is the case, as it is now, that we can address the stiffness problem by simply increasing $N$ and thereby reducing our step size.  Eventually a threshold is passed where the numeric solution is stable and converges as expected.  In some cases, however, evaluating $f(x,y)$ is computationally expensive and ``simply'' reducing the step size has unacceptable costs.  A conceptually simple change to the algorithm can fix this problem.
 

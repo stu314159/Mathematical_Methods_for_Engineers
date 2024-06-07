@@ -3,8 +3,8 @@
 \section{Objectives}
 The objectives of this lecture are to:
 \begin{itemize}
-\item Describe and demonstrate the use of \lstinline[style=myMatlab]{trapz}
-\item Describe and demonstrate the use of \lstinline[style=myMatlab]{integral},\lstinline[style=myMatlab]{integral2}, and \lstinline[style=myMatlab]{integral3}.
+\item Describe and demonstrate the use of \lstinline[style=myMatlab]{trapz}.
+\item Describe and demonstrate the use of \lstinline[style=myMatlab]{integral}, \lstinline[style=myMatlab]{integral2}, and \lstinline[style=myMatlab]{integral3}.
 \end{itemize}
 \setcounter{lstannotation}{0}
 
@@ -87,9 +87,9 @@ fprintf('I = %g \n',int_f);
 
 As with many of MATLAB's built-in function, a user can further control behavior of the function by specifying name/value pairs for optional arguments, \lstinline[style=myMatlab]{I = integral(fun,a,b,Name,Value)}. Two important name/value pairs are:
 \begin{enumerate}
-\item \lstinline[style=myMatlab]{'RelTol'}. The corresponding argument should be a non-negative real number; the default value is $1e-6$.  The algorithm estimates the relative error of the computed integral---$|q - Q|/|Q|$, where $q$ is the computed result and $Q$ is the (unknown) exact value.  
+\item \lstinline[style=myMatlab]{'RelTol'}. The corresponding argument should be a non-negative real number; the default value is $10^{-6}$.  The algorithm estimates the relative error of the computed integral---$|q - Q|/|Q|$, where $q$ is the computed result and $Q$ is the (unknown) exact value.  
 
-\item \lstinline[style=myMatlab]{'AbsTol'}.  The corresponding argument should be a non-negative real number; the default value is $1e-10$.
+\item \lstinline[style=myMatlab]{'AbsTol'}.  The corresponding argument should be a non-negative real number; the default value is $10^{-10}$.
 \end{enumerate}
 Note that MATLAB uses both the absolute and relative error tolerance as stopping criteria in the \lstinline[style=myMatlab]{integral} implementation.  You should generally specify both absolute and relative tolerances if is important that you obtain greater precision in your results.
 

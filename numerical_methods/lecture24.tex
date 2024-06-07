@@ -3,8 +3,8 @@
 \section{Objectives}
 The objectives of this lecture are to:
 \begin{itemize}
-\item Apply Euler's explicit method to solve systems of 1\textsuperscript{st}-order IVPs
-\item Show how to convert higher order IVPs into systems of 1\textsuperscript{st}-order IVPs
+\item Apply Euler's explicit method to solve systems of 1\textsuperscript{st}-order IVPs.
+\item Show how to convert higher order IVPs into systems of 1\textsuperscript{st}-order IVPs.
 \end{itemize}
 \setcounter{lstannotation}{0}
 
@@ -23,7 +23,7 @@ Most nuclear reactors in the world today generate power through the fission of $
 Some of these fission products (and their subsequent decay offspring) have a significant impact on the nuclear chain reaction that goes on around them.  One class of fission products very influential in this way are those that have a strong tendency to absorb neutrons without undergoing fission.  These fission products are sometimes referred to as \emph{poisons}, owing to the fact that neutron absorption ``poisons'' the chain reaction process by preventing the absorbed neutron from going on to cause fission of an atom of fuel.
 
 
-The particular fission product decay chain that produces $^{135}$Xe is illustrated in Figure \ref{fig:decayChain}.  Tellurium-135 $\left(^{135}\text{Te}\right)$ is produced directly from fission.  It undergoes beta-decay to iodine-135 $\left(^{135}\text{I}\right)$ with a 19-second half-life.  $^{135}\text{I}$ in turn decays to xenon-135 $\left(^{135}\text{Xe}\right)$ with a slower half-life of 6.6 hours. $^{135}\text{Xe}$ is also produced in significant quantities as a fission product. $^{135}\text{Xe}$ undergoes both beta-decay to cesium-135 $\left(^{135}\text{Cs}\right)$ as well as neutron absorption---denoted with the $(n,\gamma)$ symbol for radiative capture---to become $^{136}\text{Xe}$ which is stable but a very weak neutron absorber.  $^{135}\text{Cs}$ decays to barium-135 $\left(^{135}\text{Ba}\right)$ which is a strong neutron absorber, but since the half-life is 2.3 million years, not enough $^{135}\text{Ba}$ builds up in the core to have an impact on the kinetic behavior of the fission process.
+The particular fission product decay chain that produces $^{135}$Xe is illustrated in Figure \ref{fig:decayChain}.  Tellurium-135 $\left(^{135}\text{Te}\right)$ is produced directly from fission.  It undergoes beta-decay to iodine-135 $\left(^{135}\text{I}\right)$ with a 19-second half-life.  $^{135}\text{I}$ in turn decays to xenon-135 $\left(^{135}\text{Xe}\right)$ with a slower half-life of 6.6 hours. $^{135}\text{Xe}$ is also produced in significant quantities as a fission product. $^{135}\text{Xe}$ undergoes both beta-decay to cesium-135 $\left(^{135}\text{Cs}\right)$ as well as neutron absorption---denoted with the $(n,\gamma)$ symbol for radiative capture---to become $^{136}\text{Xe}$ which is stable but a very weak neutron absorber.  $^{135}\text{Cs}$ decays to barium-135 $\left(^{135}\text{Ba}\right)$ which is a strong neutron absorber but, since the half-life is 2.3 million years, not enough $^{135}\text{Ba}$ builds up in the core to have an impact on the kinetic behavior of the fission process.
 \begin{marginfigure}[-4.0cm]
 \includegraphics{decayChain.png}
 \caption{Fission product decay chain for generating xenon-135.}
@@ -196,7 +196,7 @@ Consider the following 2\textsuperscript{nd}-order IVP that captures Newton's la
 m(t)\frac{d^2x}{dt^2}+c\frac{dx}{dt} + kx &= T \\
 m(t) = m_0-\dot{m}t, & \ \ x_0 = 0, \ \ v_0 = x^{\prime}(0) = 0
 \end{align*}
-In this expression, $c$ is a constant damping coefficient and $k$ the spring constant.  Since the rocket consumes fuel while operating, the mass of the rocket is a function of time as shown.  Lastly, initial displacement,$x_0$, and velocity,$x^{\prime}$, are given. By inspection we can see that so long as $m(t) \ne 0$, this IVP will have a unique solution. 
+In this expression, $c$ is a constant damping coefficient and $k$ the spring constant.  Since the rocket consumes fuel while operating, the mass of the rocket is a function of time as shown.  Lastly, initial displacement, $x_0$, and velocity, $x^{\prime}$, are given. By inspection we can see that so long as $m(t) \ne 0$ this IVP will have a unique solution. 
 
 \noindent We will convert this 2\textsuperscript{nd}-order IVP to a system of two 1\textsuperscript{st}-order IVPs as follows:
 
