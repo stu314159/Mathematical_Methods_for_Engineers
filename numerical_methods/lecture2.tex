@@ -63,9 +63,9 @@ The output matrix $C$ has the same number of rows as $A$ and the same number of 
 \begin{equation*}
 c_{i,j} = \sum\limits_{k=1}^{n} a_{i,k}b_{k,j}
 \end{equation*}
-where $i=1,\dots,m$ and $j=1,\dots,p$.\sidenote[][-1.5cm]{\textbf{Important Note:} In MATLAB this operation would be written: \lstinline[style=myMatlab]{C = A*B.}  Notice that we do \emph{not} use the $.*$ notation in this case because that would imply element-by-element multiplication which: a) may not be possible since $A$ and $B$ do not necessarily have the same number of elements; and b) is not the same mathematical operation as matrix multiplication.}
+where $i=1,\dots,m$ and $j=1,\dots,p$.\sidenote[][-1.5cm]{\textbf{Important Note:} In MATLAB this operation would be written: \lstinline[style=myMatlab]{C = A*B.}  Notice that we do \emph{not} use the $.*$ notation in this case because that would imply element-by-element multiplication which: a) may not be possible since $A$ and $B$ are not necessarily of the same size; and b) is not the same mathematical operation as matrix multiplication.}
 
-Note that matrix multiplication, in general, is not cummutative.  The operations: $C = AB$ and $D=BA$ may or may not both be defined but they are only equal under very specific circumstances.\sidenote{If $A$ is of size $[m, n]$ and $B$ is $[p,q]$:
+Note that matrix multiplication, in general, is not commutative.  The operations: $C = AB$ and $D=BA$ may or may not both be defined but they are only equal under very specific circumstances.\sidenote{If $A$ is of size $[m, n]$ and $B$ is $[p,q]$:
 \begin{enumerate}
 \item $C = AB$ is valid if $n=p$.  $C$ will be of size $[m,q]$.
 \item $D = BA$ is valid if $q=m$.  $D$ will be of size $[p,n]$.
@@ -111,7 +111,7 @@ There are several matrices that are special owing to very specific structural pr
 
 \item \emph{Diagonal matrix}.  A diagonal matrix is one that is zero except along the main diagonal. In mathematical notation: $a_{i,i} \ne 0 $ and $a_{i,j} = 0$ where $i \ne j$.
 
-\item \emph{Identity matrix}.  The identity matrix, denoted $I$, is a diagonal matrix with ones along the main diagonal.  This matrix serves as the multiplicative identiy in matrix algebra.  For example, for $n=3$, the identity matrix is:
+\item \emph{Identity matrix}.  The identity matrix, denoted $I$, is a diagonal matrix with ones along the main diagonal.  This matrix serves as the multiplicative identity in matrix algebra.  For example, for $n=3$, the identity matrix is:
 \begin{equation*}
 I = \left[
 \begin{matrix}
@@ -160,7 +160,7 @@ We have already mentioned some of the structural properties of a matrix.  There 
 \begin{equation*}
 \alpha_1 a_1 + \alpha_2 a_2 + \cdots + \alpha_n a_n = 0, \iff \alpha_i = 0, \ \forall i \in \{1,\dots,n\}
 \end{equation*}
-Which means that a linear combinations of the rows/columns can only be equal to zero (a vector of all zeros) \emph{if, and only if, all} of the coefficients in the linear combination are equal to zero.\sidenote{This is completely analogous to the concept of linear independence of functions described in Lecture 3 of the anlytical methods part of this text.}  
+Which means that a linear combinations of the rows/columns can only be equal to zero (a vector of all zeros) \emph{if, and only if, all} of the coefficients in the linear combination are equal to zero.\sidenote{This is completely analogous to the concept of linear independence of functions described in Lecture 3 of the analytical methods part of this text.}  
 
 \vspace{0.1cm}
 
@@ -192,10 +192,10 @@ is full rank since no linear combination of the rows or columns is equal to the 
 
 \vspace{0.1cm}
 
-\noindent If $A$ is an $[m,n]$ matrix, the matrix rank is \emph{at most} the minimum of $m$, and $n$.  If $A$ is a square matrix and rank = $m$, we say the matrix is \emph{full rank}.  If $A$ is a rectangular $[m,n]$ matrix and rank = min($m$,$n$), then $A^{\text{T}}A$ is full rank.
+\noindent If $A$ is an $[m,n]$ matrix, the matrix rank is \emph{at most} the minimum of $m$, and $n$.  If $A$ is a square matrix and rank = $m$, we say the matrix is \emph{full rank}.  If $A$ is a rectangular $[m,n]$ matrix with independent columns, then $A^{T}A$ is full rank.
 
 
-\item \emph{Invertibility.} If the square matrix $A$ is invertible, there exists a square matrix of the same size, denoted $A^{-1}$, such that:
+\item \emph{Invertibility.} If the square matrix $A$ is invertible, then there exists a square matrix of the same size, denoted $A^{-1}$, such that:
 \begin{equation*}
 A A^{-1} = A^{-1}A = I
 \end{equation*}
@@ -221,7 +221,7 @@ Au = \lambda u
 \end{equation*}
 for the matrix $A$ and vector $u$ where $A$ and $u$ are conformable in multiplication and $\lambda$ is a constant.  This is called an \emph{eigenvalue equation}.  The vector $u$ is called an \emph{eigenvector} and the constant $\lambda$ is called an \emph{eigenvalue}.  
 
-If $A$ is an invertible matrix with $m$ rows and columns then it has a full set of $m$ linearly independent eigenvectors; if $A$ is symmetric then the eigenvectors are orthogonal.\sidenote{Students who have taken the analytical methods class should find this language to be eerily familiar: exchange \emph{eigenvector} with \emph{eigenfunction} and replace $A$ with \emph{``a linear differential operator''} and you would be forgiven for thinking we have accidentally skipped back to lecture 18 from the analytical methods class.} In either case, all of the eigenvalues are non-zero.  Most square matrices can be \emph{``diagonalized''} in this way:
+If $A$ is an invertible matrix with $m$ rows and columns then it has a full set of $m$ linearly independent eigenvectors; if $A$ is symmetric then the eigenvectors are orthogonal.\sidenote{Students who have taken the analytical methods class should find this language to be eerily familiar: exchange \emph{eigenvector} with \emph{eigenfunction} and replace the matrix $A$ with \emph{``a linear differential operator''} and you would be forgiven for thinking we have accidentally skipped back to lecture 18 from the analytical methods class.} In either case, all of the eigenvalues are non-zero.  Most square matrices can be \emph{``diagonalized''} in this way:
 \begin{equation*}
 A = U \Lambda U^{-1}
 \end{equation*}
@@ -233,7 +233,7 @@ x^{\text{T}}Ax \ge 0, \ \text{ and } x^{\text{T}}Ax = 0 \Rightarrow x=0
 \end{equation*}
 If this equation is true, it implies that all of the eigenvalues of $A$ are positive.  Apart from implying that $A$ is thus invertible (all eigenvalues non-zero), and square (only square matrices are invertible), if a matrix is positive definite there are significant impacts in which methods one should use to solve a system of equations involving that matrix.  We will revisit this property when discussing solution methods for linear systems of equations.
 
-\item \emph{Matrix determinant}.  The determinant is \emph{a useful property of a matrix}.\sidenote{\textbf{Personal aside: } As a young ensign in the navy nuclear power training progam I remember being taught an operational definition of (the thermodynamic property) entropy.  \emph{``entropy: a useful thermodynamic property.''}  A determinant is like that: it is hard to have a \emph{short} conversation about all of its implications so nobody wants to get into exactly what it means, but it is useful and you may need to calculate it.}  The operation of taking the determinant is denoted:
+\item \emph{Matrix determinant}.  The determinant is \emph{a useful property of a matrix}.\sidenote{\textbf{Personal aside: } As a young ensign in the navy nuclear power training program I remember being taught an operational definition of (the thermodynamic property) entropy.  \emph{``entropy: a useful thermodynamic property.''}  A determinant is like that: it is hard to have a \emph{short} conversation about all of its implications so nobody wants to get into exactly what it means, but it is useful and you may need to calculate it.}  The operation of taking the determinant is denoted:
 \begin{equation*}
 \text{det}(A) = \left| A \right| 
 \end{equation*}
