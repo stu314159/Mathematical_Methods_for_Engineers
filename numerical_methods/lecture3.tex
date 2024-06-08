@@ -21,7 +21,7 @@ A solution to such an equation is called a \emph{root}.  In past lectures, in th
 \item In lecture 28 we needed to find roots of $f(x) = \tan{x} + \sfrac{x}{h}$ for a given value of $h$.
 \end{itemize}
 }
-The case that this lecture will address is when such roots cannot be found analytically.  As an example, suppose we wish to find the area marked $A_s$ as shown in Figure \ref{fig:lec3n-ex1} which is given in Equation \ref{eq:lec3n-ex1}.
+The case that this lecture will address is when such roots cannot be found algebraically.  As an example, suppose we wish to find the area marked $A_s$ as shown in Figure \ref{fig:lec3n-ex1} which is given in Equation \ref{eq:lec3n-ex1}.
 \begin{marginfigure}
 \includegraphics{Chapter3_fig3_2.jpg}
 \caption{Schematic of example.}
@@ -38,7 +38,7 @@ where $A_s$ and $r$ are given.  This is a non-linear equation and we wish to sol
 \item bracketing methods; and
 \item open methods.
 \end{enumerate}
-In bracketing methods, we start with an interval in which we know a root to lie.  Each step of the algorithm seeks to reduce the size of the interval while always maintaining the root inside.  When the interval is small enough, we have effectively found the root.  In open methods no such bounding interval is maintained.  We start with an estimate of the root and, through successive iterations of the algorithm, attempt to improve our estimate.  The iteration stops when our estimation of the root meets a specified termination criterion.  
+In bracketing methods, we start with an interval in which we know a root to exist.  Each step of the algorithm seeks to reduce the size of the interval while always maintaining the root inside.  When the interval is small enough, we have effectively found the root.  In open methods, no such bounding interval is maintained.  We start with an estimate of the root and, through successive iterations of the algorithm, attempt to improve our estimate.  The iteration stops when our estimation of the root meets a specified termination criterion.  
 
 \section{Bisection Method}
 The bisection method is a bracketing method for finding a root of a \emph{continuous} function when it is known that the root lies within a specified interval: $x \in [a,b]$.  The bisection method consists of the following steps:
@@ -130,7 +130,7 @@ Refinements on these stopping criteria will be discussed, as appropriate, throug
 
 \section{MATLAB Implementation}
 
-\textbf{Example:} You are tasked to estimate the pressure drop in a 0.1-m long section of a tube ($D=4.0$ mm diameter) that is used to transfer air with an average velocity of 50 m/s.  Under these conditions, the Reynolds number (Re)\marginnote[-1.5cm]{\textbf{Note:} Reynolds number is a non-dimensional parameter that relates the relative magnitude of inertial and viscous forces.  It is used to predict fluid flow patters.  The value of the Reynolds number is given by the equation:
+\textbf{Example:} You are tasked to estimate the pressure drop in a 0.1-m long section of a tube ($D=4.0$ mm diameter) that is used to transfer air with an average velocity of 50 m/s.  Under these conditions, the Reynolds number (Re)\marginnote[-1.5cm]{\textbf{Note:} Reynolds number is a non-dimensional parameter that relates the relative magnitude of inertial and viscous forces.  It is used to predict fluid flow patterns.  The value of the Reynolds number is given by the equation:
 $$\text{Re} = \frac{\rho \bar{v} \text{D}_c}{\mu}$$ where $\rho$ is fluid density, $\bar{v}$ is a characteristic---e.g. average---velocity, $\text{D}_c$ is some characteristic length, such as in this case the diameter of the tube, and $\mu$ is the fluid viscosity.  Higher Reynolds numbers (such as is given in this example) correspond to turbulent flow fields, low Reynolds number correspond to laminar flow.} of the air in the tube is approximately 13,700.  Assume the drawn tubing has an equivalent roughness $(\epsilon)$ of $0.0015$ mm.  As the first step, you plan to use the Colebrook equation to estimate the friction factor.  The Colebrook equation is given by:
 \begin{equation*}
 \frac{1}{\sqrt{f}} = -2.0 \log_{10}\left(\frac{\sfrac{\epsilon}{D}}{3.7} + \frac{2.51}{\text{Re}\sqrt{f}} \right)

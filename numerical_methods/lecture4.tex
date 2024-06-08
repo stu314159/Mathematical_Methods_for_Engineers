@@ -18,7 +18,7 @@ The bisection method described in the previous lecture had at least two issues:
 \end{enumerate}
 The open methods to be described in this lecture eliminate the first drawback of bracketing methods; open methods need no bracket containing a root, only an initial starting point.  Also, it will be shown, that the open methods described in this note converge more quickly than bracketing methods such as the bisection algorithm thereby clarifying the impact of the second drawback. 
 
-On the other hand, these open methods will introduce additional complications that offset some of their advantages.  These issues will be described and options for mitigating these complications will be presented.
+On the other hand, open methods will introduce additional complications that offset some of their advantages.  These issues will be described and options for mitigating these complications will be presented.
 
 \section{Newton's Method}
 
@@ -131,12 +131,12 @@ e_{i+1} \approx \frac{f^{\prime \prime}(x^{\star})}{2 f^{\prime}(x^{\star})}e_{i
 In words: the relative error at step $i+1$ is proportional to the error at step $i$ \emph{squared}.  This is referred to as \emph{quadratic convergence}.
 
 \section{Convergence Issues with Newton's Method}
-Alas, not all is well with Newton's method.  When the method works, it converges very rapidly.  Frequently, however, the method does not converge.  Convergence problems can happen when:
+Alas, not all is well with Newton's method.  When the method works, it converges very rapidly.  Frequently, however, the method does not converge.  Convergence problems can happen under the following conditions:
 \begin{enumerate}
 \item When the value of $f^{\prime}(x)$ is close to zero in the vicinity of the solution.  When that happens, the update from $x_i$ to $x_{i+1}$ as given by Equation \ref{eq:lec4n-newton-update2} is very large.  If $x_i$ was close to the solution initially, $x_{i+1}$ may be very far from the solution.  Depending on how $f(x)$ varies between $x_i$ and $x_{i+1}$ this may result in convergence to a different root, for example, or other unpredictable behavior.
 
 \item When the function has a local minimum (i.e. $f^{\prime} \approx 0$) in which case, again, the next iteration can be projected very far from the current value of $x_i$.  This condition is illustrated in Figure \ref{fig:lec4n-newton-troubles-a}.
-\begin{marginfigure}
+\begin{marginfigure}[-4.0cm]
 \includegraphics{Chapter3_Fig3_12a.eps}
 \caption{Newton's method convergence issue due to a local minimum.}
 \label{fig:lec4n-newton-troubles-a}
@@ -233,7 +233,7 @@ x_7 &= \mathbf{1.414213562373095}
 Clearly the convergence rate for the secant method is inferior to Newton's method\sidenote{It should be noted that the exact convergence behavior depends, to some extent, on the values chosen for $x_1$ and $x_2$.} and yet, it is still better than bisection method.
 
 \section{Wrap-up}
-In this lecture we investigated open root-finding methods that, using the derivative of a function or, i the case of the secant method, an estimate of the derivative of a function, to find the root of a non-linear equation.  We found that, for the expense of using the derivative, or estimate of a derivative, of a function, we were able to get quadratic convergence.  If you need to get a very precise solution and/or individual function evaluations are computationally expensive, these methods have strong advantages over bisection.  
+In this lecture we investigated open root-finding methods that, using the derivative of a function or, in the case of the secant method, an estimate of the derivative of a function, to find the root of a non-linear equation.  We found that, for the expense of using the derivative, or estimate of a derivative, of a function, we were able to get quadratic convergence.  If you need to get a very precise solution and/or individual function evaluations are computationally expensive, these methods have strong advantages over bisection.  
 
 \newthought{There are at least} two questions that you should be asking yourself:
 \begin{enumerate}
