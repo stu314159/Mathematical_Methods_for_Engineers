@@ -11,7 +11,7 @@
 
 \vspace{2.0cm}
 
-\item Steffensen's method is a scheme for finding a numerical solution of an equation of the form $f(x)=0$ that is like Newton's method but does not require the derivative of $f(x)$.  The solution process starts by choosing a point $x_1$, near the solution, as the first estimate fo the root.  The subsequent estimates of the solution, $x_{i+1}$, are calculated by:
+\item Steffensen's method is a scheme for finding a numerical solution of an equation of the form $f(x)=0$ that is like Newton's method but does not require the derivative of $f(x)$.  The solution process starts by choosing a point $x_1$, near the solution, as the first estimate of the root.  The subsequent estimates of the solution, $x_{i+1}$, are calculated by:
 \begin{equation*}
 x_{i+1} = x_i - \frac{f(x_i)^2}{f(x_i + f(x_i)) - f(x_i)}
 \end{equation*}
@@ -28,11 +28,11 @@ where $L=4$ m is the length, $E=70$ GPa is the elastic modulus, $I=52.9\times 10
 
 \vspace{0.25cm}
 
-\noindent Find the position $x$ where the deflection of the beam is maximum and determine the deflection at this point. [\textbf{Hint:} The maximum delfection is at the point where $y_x = 0$.]
+\noindent Find the position $x$ where the deflection of the beam is maximum and determine the deflection at this point. [\textbf{Hint:} The maximum deflection is at the point where $y_x = 0$.]
 \begin{enumerate}
-\item Write a MATLAB function that solvs this non-linear equation using the secant method.  The function signature should be \lstinline[style=myMatlab]{Xs = SecantRoot(Fun,Xa,Xb,Err,imax)} where \lstinline[style=myMatlab]{Err} is the estimated relative error, a tolerance for which you should set at $10^{-9}$.  Use 1.5 for \lstinline[style=myMatlab]{Xa} and 2.5 for \lstinline[style=myMatlab]{Xb}.
+\item Write a MATLAB function that solves this non-linear equation using the secant method.  The function signature should be \lstinline[style=myMatlab]{Xs = SecantRoot(Fun,Xa,Xb,Err,imax)} where \lstinline[style=myMatlab]{Err} is the estimated relative error, a tolerance for which you should set at $10^{-9}$.  Use 1.5 for \lstinline[style=myMatlab]{Xa} and 2.5 for \lstinline[style=myMatlab]{Xb}.
 
-\item Repeate the solution of this equation with \lstinline[style=myMatlab]{NewtonSol} and \lstinline[style=myMatlab]{SteffensonRoot}.
+\item Repeat the solution of this equation with \lstinline[style=myMatlab]{NewtonSol} and \lstinline[style=myMatlab]{SteffensonRoot}.
 
 \end{enumerate}
 

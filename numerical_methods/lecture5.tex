@@ -15,10 +15,10 @@ The bisection method that we studied in Lecture 3 is reliable but convergence is
 \begin{equation}
 e_{i+1} = \frac{1}{2}e_{i}
 \end{equation}
-Newton's method, that we learned about in Lecture 4, converges fast when everything works as hoped, but is relatively unreliable.  What we want, of course, is an algorithm that converges \emph{superlinearly} and \emph{almost} never fails.
+Newton's method, that we learned about in Lecture 4, converges fast when everything works as hoped, but is relatively unreliable.  What we want, of course, is an algorithm that converges \emph{super-linearly} and \emph{almost} never fails.
 
 \section{Regula Falsi Method}
-The regula falsi method is a simple alternative to the bisection method that holds the promise (potentially) for faster convergence.  The method starts witha bracket $[a,b]$ like the bisection method but, instead of using the midpoint of the bracket for the next estimate of the solution, the regula falsi method uses the point in $[a,b]$ where the \emph{secant line} between $f(a)$ and $f(b)$ is equal to zero.  A schematic of the first two iterations is illustrated in Figure \ref{fig:lec3n-regula-falsi}.
+The regula falsi method is a simple alternative to the bisection method that holds the promise (potentially) for faster convergence.  The method starts with a bracket $[a,b]$ like the bisection method but, instead of using the midpoint of the bracket for the next estimate of the solution, the regula falsi method uses the point in $[a,b]$ where the \emph{secant line} between $f(a)$ and $f(b)$ is equal to zero.  A schematic of the first two iterations is illustrated in Figure \ref{fig:lec3n-regula-falsi}.
 \begin{marginfigure}
 \includegraphics{Chapter3_Fig3_9.eps}
 \caption{The first two iterations of the regula falsi method.}
@@ -48,7 +48,7 @@ The algorithm for the regula falsi method is as follows:
 The iteration should be stopped when the estimated error is smaller than the pre-determined tolerance.  Some notes on this method:
 \begin{itemize}
 \item Like the bisection method, the regula falsi method \emph{will} converge.  One can hope that, given the small added complexity, the rate of convergence would be somewhat faster using the regula falsi method.
-\item For a given function, it is typically the case that only one endpoint will ``move towards'' the solution.  Modifications to the algorithm can be made to address this issue and will be considered in the assignments.  An example of this, that will be included in the homework assignment, is to combine a step of the bisection method along with the regula falsi method.  This measure helps ensure that the interval around the root is consistently reduced from both directions. 
+\item For a given function, it is typically the case that only one endpoint will ``move towards'' the solution.  Modifications to the algorithm can be made to address this issue.  An example of this, that will be included in the homework assignment, is to combine a step of the bisection method along with the regula falsi method.  This measure helps ensure that the interval around the root is consistently reduced from both directions. 
 \item Newton's method, the secant method, and regula falsi method all, in one way or another, use linear interpolation to estimate the location of the root.  We might hope to get a better approximation of the root if we used a higher-order interpolant.\sidenote{This is an idea that we will return to in our lectures on interpolation.} Brent's method combines root-bracketing, secant method, and \emph{inverse quadratic interpolation} methods and is the basis of MATLAB's \lstinline[style=myMatlab]{fzero} function.\cite{forsythe1977computer}
 \end{itemize}
 
@@ -91,7 +91,7 @@ where, in addition to the root, \lstinline[style=myMatlab]{x}, the function retu
 \hline
 \end{tabular}
 \end{center} 
-Notice that all of these conditions are bad except for \lstinline[style=myMatlab]{exitflag=1}.
+Notice that all of these conditions are bad except for \lstinline[style=myMatlab]{exitflag=1}.  This is one example where MATLAB seems to buck computing trends; it is customary for a wide range of codes to return a value of zero (0) to indicate that all is well.  
 
 \vspace{5.0cm}
 
