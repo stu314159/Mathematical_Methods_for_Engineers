@@ -14,7 +14,7 @@ In the last lecture we discussed three iterative methods based on a matrix split
 \begin{equation*}
 x^{(k+1)} = \underbrace{M^{-1}K}_{R}x^{(k)} + \underbrace{M^{-1}b}_{c}
 \end{equation*}
-were $x^{(0)}$ is an initial guess.
+where $x^{(0)}$ is an initial guess.
 
 It will probably not come as a surprise to learn that we cannot hope to do this successfully for just any matrix $A$, resulting $R$, or initial guess $x^{(0)}$.
 
@@ -51,13 +51,13 @@ The basic idea of preconditioning is to transform $A$ so that $\rho(R)$ is made 
 Ax &= b \\
 P^{-1}Ax &= P^{-1}b
 \end{align*}
-And so we ask: what choices of $P$ would make $\rho(R)$ smaller?  As an extreme choice, set $P$ = $A^{-1}$; then by definition: $P^{-1}A = I$.  If this is the case, our matrix splitting is: $P^{-1}A = I = M - K$, where $M=I$, $M^{-1}=I$ and $K=0$.  The corresponding iteration would be:
+And so we ask: what choices of $P$ would make $\rho(R)$---where now $R$ is based on a splitting of $P^{-1}A$---smaller?  As an extreme choice, set $P$ = $A^{-1}$; then by definition: $P^{-1}A = I$.  If this is the case, our matrix splitting is: $P^{-1}A = I = M - K$, where $M=I$, $M^{-1}=I$ and $K=0$.  The corresponding iteration would be:
 \begin{align*}
 x^{(k+1)} &= Rx^{(k)} + c \\
 &= M^{-1}Kx^{(k)} + M^{-1}Pb \\
 &= \underbrace{I[0]}_{R = 0}x^{(k)} + \underbrace{IA^{-1}b}_{A^{-1}b = x}
 \end{align*}
-The spectral radius of $R$ is zero and we converge in one step for any choice of $x^{(0)}$.
+The spectral radius of $R$ is now zero and we converge in one step for any choice of $x^{(0)}$.
 
 Obviously this is not a practical method; if we knew what $A^{-1}$ was, we would not be playing with an iterative method.  A more practical approach is to find a $P$ that is \emph{nearly} equal to $A^{-1}$ but easier to compute and store.  When working in a MATLAB environment, our main choice for preconditioner will be the \emph{incomplete LU factorization} given by the built-in function \lstinline[style=myMatlab]{ilu(A,options)}.  
 
@@ -99,7 +99,7 @@ if exit_code2 == 1
    fprintf('tol = %g \n',norm_res2);
 end
 \end{lstlisting}
-The output is shown in Figure \ref{fig:lec12n-ex1-lu-precon-out}.  Note the spectral radius of $R$ is near zero and we converged to the solution right away.\sidenote{The only reason 2 iterations were used is because the stopping criterion was based on $|x^{(k+1)}-x^{(k)}|$ and $x^{(0)}$ was far from the solution.}
+The output is shown in Figure \ref{fig:lec12n-ex1-lu-precon-out}.  Note the spectral radius of $R$ is near zero and we converged to the solution right away.\sidenote[][-2.5cm]{The only reason 2 iterations were used is because the stopping criterion was based on $|x^{(k+1)}-x^{(k)}|$ and $x^{(0)}$ was far from the solution.}
 \begin{marginfigure}
 \includegraphics{lec12n-ex1-lu-precon-out.png}
 \caption{Output for preconditioning with \emph{complete} LU factorization.}
@@ -107,7 +107,7 @@ The output is shown in Figure \ref{fig:lec12n-ex1-lu-precon-out}.  Note the spec
 \end{marginfigure}
 The bad news for this example is that, while \lstinline[style=myMatlab]{A} has 117,816 non-zero entries, \lstinline[style=myMatlab]{L} and \lstinline[style=myMatlab]{U} both have on the order of a million non-zeros.  On top of that, we just performed a full LU factorization of $A$ so time spent on Jacobi iterations were wasted.
 
-Let us now, instead us an incomplete LU factorization.\marginnote[0.25cm]{
+Let us now instead use an incomplete LU factorization.\marginnote[0.25cm]{
 \ref{lst:ann12n-3} Use these options for \lstinline[style=myMatlab]{ilu(A,options)}. The \lstinline[style=myMatlab]{type='ilutp'} refers to incomplete LU with \emph{threshold} and \emph{pivoting} which improves the reliability of the algorithm.  The \lstinline[style=myMatlab]{droptol} is the \emph{drop tolerance} of the incomplete LU factorization.  The \emph{higher} your value of \lstinline[style=myMatlab]{droptol}, the \emph{more sparse} the resulting \lstinline[style=myMatlab]{L} and \lstinline[style=myMatlab]{U} will be; if \lstinline[style=myMatlab]{droptol} is lower, \lstinline[style=myMatlab]{L} and \lstinline[style=myMatlab]{U} will be less sparse.  In the limit, if \lstinline[style=myMatlab]{droptol=0}, then the complete LU factorization is produced. Setting \lstinline[style=myMatlab]{udiag=1} results in replacing zero diagonal entries of \lstinline[style=myMatlab]{U} with the local drop tolerance.  Selection of this option makes the \lstinline[style=myMatlab]{ilu} algorithm more reliable.  See the MATLAB documentation for \lstinline[style=myMatlab]{ilu} for a more complete description of all available options.
 }
 \begin{lstlisting}[style=myMatlab]
