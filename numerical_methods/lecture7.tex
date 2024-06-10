@@ -11,7 +11,7 @@ The objectives of this lecture are to:
 
 \section{Background}
 
-Linear systems of equations arise in a variety of contexts.  For example, consider a simple analysis of a truss structure as shown in Figure \ref{fig:lec7n-truss}.  If you are to conduct a simple static analysis of this structure, you would need to derive equilibrium equations to show that the sum of forces at each point---A, B, C, D, E, and F---in the $x$- and $y$-direction equals zero.  A total of eight equations are drived in this way and shown below.
+Linear systems of equations arise in a variety of contexts.  For example, consider a simple analysis of a truss structure as shown in Figure \ref{fig:lec7n-truss}.  If you are to conduct a simple static analysis of this structure, you would need to derive equilibrium equations to show that the sum of forces at each point---A, B, C, D, E, and F---in the $x$- and $y$-direction equals zero.  A total of eight equations are derived in this way and shown below.
 \begin{marginfigure}
 \includegraphics{Chapter4Example4_3.jpg}
 \caption{Two-dimensional truss structure.}
@@ -79,10 +79,10 @@ A second, and perhaps more generally relevant case, is when a linear differentia
 \frac{d^2 u}{d x^2} = f(x), \ \ 0 < x < L, \ \ u(0) = u(L) = 0
 \label{eq:lec7n-bvp-ex}
 \end{equation}
-As we will study later in this course, the spatial domain $x \in [0,L]$ can be discretized into uniform segements, the differential operator $\sfrac{d^2}{dx^2}$, the solution $u(x)$, and the input function $f(x)$ can all be expressed in a discrete form and assembled into a system of linear equations.  This is shown in Equation \ref{eq:lec7n-bvp-ex-discrete}:
+As we will study later in this course, the spatial domain $x \in [0,L]$ can be discretized into uniform segments, the differential operator $\sfrac{d^2}{dx^2}$, the solution $u(x)$, and the input function $f(x)$ can all be expressed in a discrete form and assembled into a system of linear equations.  This is shown in Equation \ref{eq:lec7n-bvp-ex-discrete}:
 \marginnote{In this expression we use the second-order central difference approximation to $\sfrac{d^2u}{dx^2}$ which is:
 $$ \frac{d^2u}{dx^2} = \frac{u(x_{i-1}) - 2u(x_i) + u(x_{i+1})}{h^2}$$
-and a matrix is formed from the resulting system of equations.  The first and last row of the matrix along with the first and last element of $f(x_i)$ are modified to satisfy the given boundary conditions. These techniques will be discussed more fully when we present finite difference methods for solving boundary value problems.
+and a matrix is formed from the resulting system of equations.  The first and last row of the matrix along with the first and last element of $f(x_i)$ are modified to satisfy the given boundary conditions. These techniques will be discussed more fully when we present finite difference methods for solving boundary value problems in Lecture 31.
 }
 \begin{equation}
 \underbrace{
@@ -128,7 +128,7 @@ f(x_{n-1}) \\
 where $h = x_{i+1} - x_i$.  Depending on how accurate of a solution is desired, the system illustrated in Equation \ref{eq:lec7n-bvp-ex-discrete} can have thousands of equations or more.  For a known $f(x)$, we can use the methods we will describe in this and the next few lectures to solve the equations to find $u(x)$.
 
 \section{Gauss Elimination}
-Gauss elimination is the most basic \emph{direct} method\sidenote{In later lectures we will describe \emph{iterative} methods for solving linear systems of equaions.  In iterative methods we start with an initial guess of the solution vector and iteratively improve upon it.  Eventually a solution is obtained but the number of operations required cannot be determined in advance.} for solving systems of linear equations.  When it succeeds, the system of equations is solved within a pre-determined number of mathematical operations.
+Gauss elimination is the most basic \emph{direct} method\sidenote{In later lectures we will describe \emph{iterative} methods for solving linear systems of equations.  In iterative methods we start with an initial guess of the solution vector and iteratively improve upon it.  Eventually a solution is obtained but the number of operations required cannot be determined in advance.} for solving systems of linear equations.  When it succeeds, the system of equations is solved within a pre-determined number of mathematical operations.
 
 \newthought{The basic procedure} is done in two steps.  First we start with a system of equations that includes a square, invertible matrix:
 \begin{equation*}
@@ -151,7 +151,7 @@ b_2 \\
 b_n
 }
 \end{equation*} 
-and convert it to an upper-tringular matrix using a process called \emph{forward elimination}.
+and convert it to an upper-triangular matrix using a process called \emph{forward elimination}.
 
 \vspace{0.25cm}
 
@@ -183,7 +183,7 @@ In this process, the first row is unchanged and, for the first step, is referred
 a_{21}x_1 + a_{22}x_2 + a_{23}x_3 + a_{24}x_4 &= b_2 & \leftarrow \text{ row 2} \\
 -\underbrace{\frac{a_{21}}{a_{11}}}_{m_{21}}(a_{11}x_1 + a_{12}x_2 + a_{13}x_3 + a_{14}x_4) &= m_{21}b & \leftarrow -m_{21} \times \text{ row 1}
 \end{align*}
-which equals:\marginnote[0.8cm]{The term $a^{\prime}_{21} = a_{21} - \sfrac{a_{21}}{a_{11}}a_{11} = 0$.}
+which equals:\marginnote[0.8cm]{The term $a^{\prime}_{21} = a_{21} - (\sfrac{a_{21}}{a_{11}})a_{11} = 0$.}
 \begin{equation*}
 0 + \underbrace{(a_{22} - m_{21}a_{12})}_{a^{\prime}_{22}}x_2 + \underbrace{(a_{23} - m_{21}a_{13})}_{a^{\prime}_{23}}x_3 + \underbrace{(a_{24} - m_{21}a_{14})}_{a^{\prime}_{24}}x_4 = \underbrace{b_2 - m_{21}b_1}_{b^{\prime}_1}
 \end{equation*}
@@ -234,7 +234,7 @@ b^{\prime}_3 \\
 b^{\prime}_4
 }
 \end{equation*}
-We will repeate the process for the next column and rows and continue until all entries below the main diagonal are set to zero in this process.
+We will repeat the process for the next column and rows and continue until all entries below the main diagonal are set to zero in this process.
 \begin{fullwidth}
 \begin{equation*}
 \underbrace{
@@ -313,9 +313,9 @@ b^{\prime \prime \prime}_4
 }
 \end{equation*}
 \end{fullwidth}
-The first phase of Gauss Elimination is complete and the system of equations is in upper triangular form.  
+The first phase of Gauss elimination is complete and the system of equations is in upper triangular form.  
 
-\newthought{The second step} of Gauss elimination is back substitution.  With the equations in upper triangular form, we can solve the system of equations one variable at a time starting with the last variable, $x_4$:  
+\newthought{The second step} of Gauss elimination is back substitution.  With the equations in upper triangular form, we can solve the system of equations one variable at a time, starting with the last variable, $x_4$:  
 \begin{equation*}
 x_{4} = \frac{b^{\prime \prime \prime}}{a^{\prime \prime \prime}_{44}}
 \end{equation*}
@@ -393,7 +393,7 @@ fprintf('Relative difference: %g \n',rel_error);
 
 \vspace{0.1cm}
 
-\noindent \ref{lst:ann7n-1} In this calculation of the relative error, we make use of a MATLAB built-in function: \lstinline[style=myMatlab]{norm(v,p)} where \lstinline[style=myMatlab]{v} is a vector.  We do not have space to go into detail here, but a vector norm has the same purpose as a function norm described in Lecture 15 in Section III of this book. The argument \lstinline[style=myMatlab]{p} specifies which norm to use.  Our choice of \lstinline[style=myMatlab]{p=2} results in use of the Euclidian norm, which many engineers are familiar with as the vector magnitude.
+\noindent \ref{lst:ann7n-1} In this calculation of the relative error, we make use of a MATLAB built-in function: \lstinline[style=myMatlab]{norm(v,p)} where \lstinline[style=myMatlab]{v} is a vector.  We do not have space to go into detail here, but a vector norm has the same purpose as a function norm described in Lecture 15 in Section III of this book. The argument \lstinline[style=myMatlab]{p} specifies which norm to use.  Our choice of \lstinline[style=myMatlab]{p=2} results in use of the Euclidean norm, which many engineers are familiar with as the vector magnitude.
 
 \vspace{0.25cm}
 
@@ -477,7 +477,7 @@ x =
 
 I hasten to add that the values of the pivots, other than the first one, are not apparent right away since, in general, the values of the soon-to-be-pivots change with each step of forward elimination.  You cannot usually tell if a pivot will be zero just by looking at a matrix.  Thus, zero-pivots can pop up unexpectedly like a land-mine and derail the algorithm.
 
-\item A pivot does not have to be zero to cause problems.  Pivots that are \emph{much smaller} than other entries in a matrix can exacerbate floating point roundoff.  It can be shown that collectively these errors can cause the Gauss elimination procedure to be numerically unstable.\cite{trefethen2022numerical}
+\item A pivot does not have to be zero to cause problems.  Pivots that are \emph{much smaller} than other entries in a matrix can exacerbate floating point round-off.  It can be shown that collectively these errors can cause the Gauss elimination procedure to be numerically unstable.\cite{trefethen2022numerical}
 \end{enumerate}  
 
 A resolution to both of these issues will be presented in the next lecture.

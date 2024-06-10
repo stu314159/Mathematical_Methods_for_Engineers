@@ -32,7 +32,7 @@ For the first step of forward-elimination, the pivot element is: 0.0003 and $m_{
 \begin{equation*}
 A(i,j:n) = A(i,j:n) - m*A(j,j:n)
 \end{equation*}
-the value of $m$ is very large compared to any entry in $A$, and, for lack of a more precise way of putting it, this aggravates roundoff errors in the result. 
+the value of $m$ is very large compared to any entry in $A$, and, for lack of a more precise way of putting it, this aggravates round-off errors in the result. 
 
 The basic idea is: if the pivot is small or zero, why not just exchange the pivot row with a different row?  In order to avoid un-doing any of the forward elimination steps, the row to be exchanged must be ``below'' the current pivot row.  Also, if we want to execute such an exchange, we need to have some criteria by which to decide which row we want to exchange.  The criteria we will use is this: \emph{select the row corresponding to the element in the pivot column with the largest absolute value.} This is most easily clarified with an example.\marginnote[-1.0cm]{For step \lstinline[style=myMatlab]{i} of forward elimination, \lstinline[style=myMatlab]{A(i,i)} is the pivot.  \lstinline[style=myMatlab]{A(i,i:n)} is the pivot row, and \lstinline[style=myMatlab]{A(i:n,i)} is the pivot column.}
 
@@ -279,7 +279,7 @@ The \emph{relative residual} is just the residual divided by the norm of \lstinl
 \text{Relative Residual} = \frac{||b - Ax||_{2}}{||b||_2}
 \end{equation}
 
-If you have the exact solution, $x^{\star}$, the resdual will be zero:
+If you have the exact solution, $x^{\star}$, the residual will be zero:
 \begin{equation*}
 Ax^{\star} = b \Rightarrow r = b - Ax^{\star} = 0
 \end{equation*}
@@ -326,7 +326,7 @@ Backslash & 1.118e-7 \\ \hline
 \caption{Comparison for LNS 131 from the Matrix Market.}
 \label{tab:lec8n-comp3}
 \end{margintable}
-What you see in the table is not a typo.  The relative residual from the answer we obtained from Gauss elimination without pivoting is \emph{greater than one}.  This means our answer is essentially worthless.  The relative residual from Gauss elimination with pivoting and backslash are nearly the same and 8 orders of magnitude smaller.  This is a relavant matrix and this should help illustrate why pivoting is so essential.  
+What you see in the table is not a typo.  The relative residual from the answer we obtained from Gauss elimination without pivoting is \emph{greater than one}.  This means our answer is essentially worthless.  The relative residual from Gauss elimination with pivoting and backslash are nearly the same and 8 orders of magnitude smaller.  This is a relevant matrix and this should help illustrate why pivoting is so essential.  
 
 \item LNS 511.  This matrix is also from the Harwell-Boeing Collection.  It is, as you may guess, a $511 \times 511$ unsymmetric matrix with real entries.  The results are shown in Table \ref{tab:lec8n-comp4}.
 \begin{margintable}

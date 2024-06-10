@@ -11,9 +11,9 @@ The objectives of this lecture are to:
 
 \section{Computational Work of Gauss Elimination}
 
-Throughout this course we have taken a rather crass approach to the amount of work done by the computer.  This reflects, in part, a basic reality that for many undergraduate students of engineering, most of the computer-based work comprises time that students spend writing and debugging code.  The amount of time that the computer actually spends executing the program, in many cases, is trivial.  
+Throughout this course we have taken a rather crass approach to the amount of work done by the computer.  This reflects, in part, a basic reality that for many undergraduate students of engineering, most of the computer-based work comprises time that students spend writing and debugging code.  The amount of time that the computer actually spends executing the program in many cases is trivial.  
 
-Looking ahead to some of the numerical methods that will be learned in this course, the situation will change.  Programs that analyze initial boundary value problems based on the finite difference method or finite element method will need to solve large systems of linear or non-linear equations.  These systems of equations are often large---it is not unusual to have millions of equations and unknowns---and the time that the computer spends assembling and solving these equations becomes significant.  Applications of this type are so important that modern high performance computing systems are regularly benchmarked based on how fast they can solve such problems.\cite{HPL,top500}     
+Looking ahead to some of the numerical methods that will be studied in this course, the situation will change.  Programs that analyze initial boundary value problems based on the finite difference method or finite element method will need to solve systems of linear or non-linear equations.  These systems of equations are often large---it is not unusual to have millions of equations and unknowns---and the time that the computer spends assembling and solving these equations becomes significant.  Applications of this type are so important that modern high performance computing systems are regularly benchmarked based on how fast they can solve such problems.\cite{HPL,top500}     
 
 In this section will will undertake a high-level analysis of the computational work required to perform Gauss elimination.  We will break this analysis into two parts: a) the forward elimination phase; and b) the back-substitution phase.
 
@@ -32,7 +32,7 @@ end
 
 \vspace{0.1cm}
 
-\noindent \ref{lst:ann9n-1} The outer loop, \lstinline[style=myMatlab]{for j=1:n-1...end}, will be traversed $\mathcal{O}(n)$ times.\sidenote{Here we adopt \emph{``Big oh''} notation.  It is used to charactarize the complexity and running time of an algorithm in asymptotic fashion.  So in this case, $\mathcal{O}(n)$ means that, as $n\to\infty$, the running time of this part of the code increases linearly with $n$.  Small details like constant factors are ignored.  It also means that lower order terms get ignored.  For example, a function that requires $n^3 + n^2 + n$ calculations would be characterized as $\mathcal{O}(n^3)$ since, as $n\to\infty$, the $n^2$ and $n$ terms become insignificant relative to $n^3$.}
+\noindent \ref{lst:ann9n-1} The outer loop, \lstinline[style=myMatlab]{for j=1:n-1...end}, will be traversed $\mathcal{O}(n)$ times.\sidenote{Here we adopt \emph{``Big oh''} notation.  It is used to characterize the complexity and running time of an algorithm in asymptotic fashion.  So in this case, $\mathcal{O}(n)$ means that, as $n\to\infty$, the running time of this part of the code increases linearly with $n$.  Small details like constant factors are ignored.  It also means that lower order terms get ignored.  For example, a function that requires $n^3 + n^2 + n$ calculations would be characterized as $\mathcal{O}(n^3)$ since, as $n\to\infty$, the $n^2$ and $n$ terms become insignificant relative to $n^3$.}
 
 \vspace{0.25cm} 
 
@@ -97,7 +97,7 @@ Ix &= A^{-1}b \\
 As asymptotic analysis will readily show, matrix multiplication has $\mathcal{O}(n^2)$ complexity, so we can re-compute $x$ for any new $b$ in a small fraction of the time that it would take to re-perform Gauss elimination.  
 We will not do this, however.  Instead we will perform a \emph{factorization} of $A$ in such a way that we can solve the linear system, $Ax=b$, with $\mathcal{O}(n^2)$ operations, for any new right hand side, $b$. This is called the \emph{LU factorization} and it is both faster and more-accurate (in floating point arithmetic) than finding the matrix inverse.\cite{higham-matrix-inverse} 
 
-The LU factorization decomposes an invertible matrix into:
+\newthought{The LU factorization} decomposes an invertible matrix into:
 \begin{itemize}
 \item A lower triangular matrix L; and
 \item an upper triangular matrix U
@@ -136,13 +136,13 @@ a_{11} & a_{12} & a_{13} & a_{14} \\
 U
 }
 \end{equation*}
-Where the pivots comprise the elements of $L$ and the transformed coefficient matrix after Guass elimination is $U$. In a sense, all we have to do is ``write down what we are doing'' during the forward elimination portion of Gauss elimination in order to obtain the LU factorization.  This is illustrated in the MATLAB code below: \marginnote[2.0cm]{
+Where the pivots comprise the elements of $L$ and the transformed coefficient matrix after Gauss elimination is $U$. In a sense, all we have to do is ``write down what we are doing'' during the forward elimination portion of Gauss elimination in order to obtain the LU factorization.  This is illustrated in the MATLAB code below: \marginnote[2.0cm]{
 
 \ref{lst:ann9n-1} Initialize $U = A$. Carry out operations on $U$ just as you did for $A$ in forward elimination phase of Gauss elimination.
 
 \vspace{0.25cm}
 
-\ref{lst:ann9n-2} Compute the privot and store in $L$.
+\ref{lst:ann9n-2} Compute the pivot and store in $L$.
 
 \vspace{0.15cm}
 
@@ -244,11 +244,11 @@ end
 \end{lstlisting}
 \index{permutation matrix} 
 \section{LU Factorization with Pivoting}
-As we saw in the last lecture, pivoting is an essential operation if you want to accurately solve relevant matrices. Pivot operations can be captured in a \emph{permutation matrix}.  Switching rows in a vector or a matrix is equivalent to multiplying by the identiy matrix with rows switched.  For example, when pivoting is performed on the matrix example from Lecture 8, the final permuted row ordering is: 
+As we saw in the last lecture, pivoting is an essential operation if you want to accurately solve relevant matrices. Pivot operations can be captured in a \emph{permutation matrix}.  Switching rows in a vector or a matrix is equivalent to multiplying by the identity matrix with rows switched.  For example, when pivoting is performed on the matrix example from Lecture 8, the final permuted row ordering is: 
 \begin{equation*}
 \left[ \begin{matrix} 1 & 2 & 3 & 4 \end{matrix} \right] \rightarrow \substack{\text{ Swapped } \\ \text{1\&4}} \rightarrow \substack{\text{ Swapped } \\ \text{2\&3}} \rightarrow \substack{\text{ Swapped } \\ \text{3\&4}} \rightarrow \left[\begin{matrix}4 & 3 & 1 & 2 \end{matrix} \right]
 \end{equation*}
-We can represent this as a permutation matrix, $P$, constructed as the idenitty matrix with rows correspondingly reordered.
+We can represent this as a permutation matrix, $P$, constructed as the identity matrix with rows correspondingly reordered.
 \begin{equation*}
 P = 
 \bracketMatrixstack{

@@ -33,9 +33,7 @@
 f(x,y) &= x^2 + y^2 - 25 = 0 \\
 g(x,y) &= x^2 - y - 2 = 0
 \end{align*}
-Create a function to carry out Newton's method for finding a root for this system of non-linear equations.  The function should have the signature: \lstinline[style=myMatlab]{Xs = NewtonSystemSol(Fun, Jac, Xo, Tol, MaxIt)} where \lstinline[style=myMatlab]{Xs} is a root, \lstinline[style=myMatlab]{Fun} and \lstinline[style=myMatlab]{Jac} are handles to the system of functions to be solved and the Jacobian matrix, respectively.  \lstinline[style=myMatlab]{Xo} is an initial estiimate of the root, \lstinline[style=myMatlab]{Tol} is the error tolerance and \lstinline[style=myMatlab]{MaxIt} is the maximum number of iterations to perform.  
-
-The error tolerance should be based on the relative change of each component of the estimated root. \lstinline[style=myMatlab]{Tol} should be set to $1 \times 10^{-9}$, \lstinline[style=myMatlab]{MaxIt} should be set to 25, and you should use \lstinline[style=myMatlab]{Xa = [2.5,2.5]} to find the root in the upper right-hand quadrant of the coordinate system.
+Create a function to carry out Newton's method for finding a root for this system of non-linear equations.  The function should have the signature: \lstinline[style=myMatlab]{Xs = NewtonSystemSol(Fun, Jac, Xo, Tol, MaxIt)} where \lstinline[style=myMatlab]{Xs} is a root, \lstinline[style=myMatlab]{Fun} and \lstinline[style=myMatlab]{Jac} are handles to the system of functions to be solved and the Jacobian matrix, respectively.  \lstinline[style=myMatlab]{Xo} is an initial estimate of the root, \lstinline[style=myMatlab]{Tol} is the error tolerance and \lstinline[style=myMatlab]{MaxIt} is the maximum number of iterations to perform.  The error tolerance should be based on the relative change of each component of the estimated root. \lstinline[style=myMatlab]{Tol} should be set to $1 \times 10^{-9}$, \lstinline[style=myMatlab]{MaxIt} should be set to 25, and you should use \lstinline[style=myMatlab]{Xa = [2.5,2.5]} to find the root in the upper right-hand quadrant of the coordinate system.
 
 
 
@@ -45,7 +43,7 @@ The error tolerance should be based on the relative change of each component of 
 
 
 \begin{enumerate}[resume]
-\item A coating on a panel surface is cured by radieant energy from a heater. The temperature of the coating is determined by radiative and convective heat transfer processes.  If the radiation is treated as diffuse and gray, the following non-linear system of equations determine the unknowns: $J_h$, $T_h$, $J_c$, and $T_c$.
+\item A coating on a panel surface is cured by radiant energy from a heater. The temperature of the coating is determined by radiative and convective heat transfer processes.  If the radiation is treated as diffuse and gray, the following non-linear system of equations determine the unknowns: $J_h$, $T_h$, $J_c$, and $T_c$.
 \begin{align*}
 5.67 \times 10^{-8} T^4_{c} + 17.41 T_c - J_c &= 5188.18 \\
 J_c - 0.71 J_h + 7.46 T_c &= 2352.71 \\

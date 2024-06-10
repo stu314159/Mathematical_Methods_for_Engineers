@@ -46,8 +46,8 @@ MATLAB's function \lstinline[style=myMatlab]{mldivide(A,b)} selects from an arra
 
 \newthought{As should be apparent}, a \emph{lot} of technology is crammed into the innocent-looking \lstinline[style=myMatlab]{mldivide} function.  We cannot hope to investigate all of these methods in this course.  I refer interested readers to an outstanding text by one of my favorite mathematical authors for a more thorough (and rigorous) overview of methods of numerical linear algebra.\cite{trefethen2022numerical}  Instead, I offer the following advice:
 \begin{enumerate}
-\item If the full matrix fits in memory and you only need to solve it once, use \lstinline[style=myMatlab]{mldivide(A,b)}---or just \lstinline[style=myMatlab]{'A\b'}.
-\item Use a factorization, or \emph{decomposition}, if you must solve the system multiple times for different values of \lstinline[style=myMatlab]{b}. MATLAB offers a built-in function to do this: \lstinline[style=myMatlab]{decomposition{A,type)}, where the second (optional) argument is a string to specify the type of decomposition that is desired.  These types include: \lstinline[style=myMatlab]{'lu'}, \lstinline[style=myMatlab]{'qr'}, \lstinline[style=myMatlab]{'chol'}, and \lstinline[style=myMatlab]{'auto'} among others.\sidenote{When you select \lstinline[style=myMatlab]{type='auto'}, which also happens to be the default if no type is specified, MATLAB determines which decomposition is best.} 
+\item If the full matrix fits in memory and you only need to solve it once, use \lstinline[style=myMatlab]{mldivide(A,b)}---or just \lstinline[style=myMatlab]{A\b}.
+\item Use a factorization, or \emph{decomposition}, if you must solve the system multiple times for different values of \lstinline[style=myMatlab]{b} where you do not know the values of \lstinline[style=myMatlab]{b} in advance.\sidenote{If you have multiple right-hand-sides and you know them in advance, you can simply arrange them into a matrix, \lstinline[style=myMatlab]{B}, and use \lstinline[style=myMatlab]{mydivide(A,B)}.} MATLAB offers a built-in function to do this: \lstinline[style=myMatlab]{decomposition{A,type)}, where the second (optional) argument is a string to specify the type of decomposition that is desired.  These types include: \lstinline[style=myMatlab]{'lu'}, \lstinline[style=myMatlab]{'qr'}, \lstinline[style=myMatlab]{'chol'}, and \lstinline[style=myMatlab]{'auto'} among others.\sidenote{When you select \lstinline[style=myMatlab]{type='auto'}, which also happens to be the default if no type is specified, MATLAB determines which decomposition is best.} 
 An example listing using this feature is given below.
 \begin{lstlisting}[style=myMatlab]
 n = 5;
@@ -112,7 +112,7 @@ where $|| \cdot ||$ refers to any valid matrix norm.  Some important condition n
 \item The numerical value of $\kappa(A)$ depends on the norm used in calculating it but, generally speaking, a matrix that has a very large condition number is said to be \emph{ill conditioned}.
 \item In the matrix 2-norm, the matrix condition number is equal to:\marginnote{The singular value decomposition (SVD) of a matrix $A$ is given by:
 $$A = U\Sigma V^{*}  $$
-where $U$ and $V^{*}$ are orthonormal matrices in which the columns are referred to as left singular vectors and right singular vectors respectively and $\Sigma$ is a diagonal matrix with the singular values of $A$.  The SVD of a real symmetric matrix is related to the eigenvalue decomposition:
+where $U$ and $V^{*}$ are orthonormal matrices in which the columns are referred to as left singular vectors and right singular vectors respectively and $\Sigma$ is a diagonal matrix with the \emph{singular values} of $A$.  The SVD of a real symmetric matrix is related to the eigenvalue decomposition:
 $$A^{*}A = V\Sigma^{*}\Sigma V^{*}  $$
 where $\Sigma$ is a diagonal matrix with the eigenvalues along the diagonal.
 } 
