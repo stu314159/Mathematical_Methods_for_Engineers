@@ -337,7 +337,7 @@ Now for the code:
 
 \vspace{0.1cm}
 
-\noindent\ref{lst:ann34n-ex2-2} This local function will be presented later but you should note right away that the \emph{outputs} from \lstinline[style=myMatlab]{genMesh1D}, the \lstinline[style=myMatlab]{gcoord} and \lstinline[style=myMatlab]{nodes} arrays fulfill the same purpose as they did in the previous code; provide the x-coordinate for all nodes and provide the local-to-global node number mapping for each element.  It is a good idea to establish standardized data structures when implementing FEM codes and this is intended to be an example of this type of standardization.
+\noindent\ref{lst:ann34n-ex2-2} This local function will be presented later but you should note right away that the \emph{outputs} from \lstinline[style=myMatlab]{genMesh1D}, the \lstinline[style=myMatlab]{gcoord} and \lstinline[style=myMatlab]{nodes} arrays, fulfill the same purpose as they did in the previous code; provide the x-coordinate for all nodes and provide the local-to-global node number mapping for each element.  It is a good idea to establish standardized data structures when implementing FEM codes and this is intended to be an example of this type of standardization.
 
 \vspace{0.1cm} 
 
@@ -467,7 +467,22 @@ The several local functions that were used for the generalized MATLAB implementa
 
 \vspace{0.25cm}
 
+\setcounter{lstannotation}{0}
+
 \noindent\textbf{genMesh1D}
+
+\marginnote{
+
+\vspace{4.0cm}
+
+\noindent\ref{lst:ann34n-lf-1} As we learned in Lecture 15, high-order interpolation is much improved if you use non-uniformly spaced points.  Here we use Lobatto points which are similar to Chebychev points.  The trait they have in common is their clustering towards the interval endpoints.   
+
+\vspace{0.1cm}
+
+\noindent It should be pointed out here that this entire process is greatly simplified by the fact that the domain is one-dimensional and thus very easy to describe.
+
+
+}
 \begin{lstlisting}[style=myMatlab,name=lec34n-ex2]
 function [gcoord,nodes] = genMesh1D(a,b,nelem,order)
 %generates the global coordinates of all mesh points and 
@@ -485,7 +500,7 @@ for e = 1:nelem
     aL = ele_boundaries(e);
     bL = ele_boundaries(e+1);
     xT = @(t) ((bL - aL)*t + aL + bL)/2;
-    [xgl,~]=legendre_gauss_lobatto(ldofs);
+    [xgl,~]=legendre_gauss_lobatto(ldofs); /*!\annotation{lst:ann34n-lf-1}!*/
     xgl = xT(xgl); % translate to current element
 
     for ld = 1:ldofs
