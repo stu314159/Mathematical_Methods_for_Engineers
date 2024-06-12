@@ -108,6 +108,8 @@ for ele = 1:nelem
     Hp = getLagrangeInterpDeriv(xgl);
 \end{lstlisting}
 
+In this next section, we carry out the calculations for the elements of the weak form of the minimum weighted residual statement.
+
 \marginnote{
 
 \vspace{1.4cm}
@@ -150,6 +152,10 @@ for ele = 1:nelem
     k2 = k2*Jac;
     s1 = s1*Jac;
 
+\end{lstlisting}
+Now that the subarrays for the kernels and source term are computed for the element, we add them to the global arrays.
+
+\begin{lstlisting}[style=myMatlab,name=lec35n-ex]
     % add local arrays to global arrays "assembly"
     for i = 1:nldofs
         for j = 1:nldofs
@@ -167,10 +173,6 @@ end % numel
 A = -K1 + K2;
 RHS = -S1;
 
-
-% A(1,:) = 0; A(1,1) = 1; RHS(1) = Ua;
-% A(nnodes,:) = 0; A(nnodes,nnodes) = 1; RHS(nnodes) = Ub;
-
 % provide contributions from boundary conditions
 c1 = Q2/k;
 RHS(1)=RHS(1)-c1;
@@ -178,7 +180,6 @@ RHS(1)=RHS(1)-c1;
 c2 = h/k;
 RHS(nnodes)=RHS(nnodes)-c2*(T_inf);
 A(nnodes,nnodes) = A(nnodes,nnodes)-c2;
-
 
 % solve the system of equations
 u = A\RHS;
