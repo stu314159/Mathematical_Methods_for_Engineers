@@ -1,10 +1,10 @@
-\chapter{Lecture 35 - Galerkin FEM in 1D with Conduction and Convection Boundary conditions}
+\chapter{Lecture 35 - More General Galerkin Finite Element Methods}
 \label{ch:lec35n}
 \section{Objectives}
 The objectives of this lecture are to:
 \begin{itemize}
 \item Illustrate the application of the FEM for problems with type-2 and type-3 boundary conditions.
-\item Discuss issues relevant for more analysis of more general partial differential equations with the FEM.
+\item Discuss issues relevant for analysis of more general partial differential equations with the FEM.
 \end{itemize}
 \setcounter{lstannotation}{0}
 
@@ -45,6 +45,13 @@ We convert this to the weak form by carrying out integration by parts on the fir
 \end{multline*}
 
 \noindent We can substitute the given boundary conditions into the boundary terms of the weak form:
+\marginnote{
+\noindent\textbf{Note:} the result of evaluating each boundary term will be a scalar so they ultimately will be placed on the right-hand side (RHS) vector.  The term evaluated at $r=R$ will be added to the first element of the RHS since it is associated with the first equation; the term evaluated at $r=R+w$ will be added to the last RHS element since it is associated with the last degree of freedom (and hence last equation).  
+
+\vspace{0.2cm}
+
+\noindent The terms ``kernel \#1'' and ``kernel \#2'' are so labeled because they involve both the trial function and test function; the resulting submatrices will be added to the system matrix.  The term labeled ``source'' is so named because it does not involve the trial function; the integral will result in a vector that will be incorporated into the RHS.  
+}
 \begin{multline*}
 \underbrace{v(R+w) \left[-\frac{6.32\times 10^5}{k} \right] - v(R)\left[-\frac{h}{k}\left(T(r+w)-T_{\infty}\right) \right]}_{\text{boundary terms}} \\
 -\underbrace{\int_{R}^{R+w} \frac{dv}{dr}\frac{dT}{dr} \ dr}_{\text{kernel \#1}} +\underbrace{\int_{R}^{R+w} v \frac{1}{r}\frac{dT}{dr} \ dr}_{\text{kernel \#2}} +\underbrace{\int_{R}^{R+w} v \frac{10^8e^{-r/R}}{rk} \ dr}_{\text{source term}} = 0
@@ -100,7 +107,7 @@ for ele = 1:nelem
     xT = @(t) ((bL - aL)*t + aL + bL)/2;
     Jac = (bL - aL)/2;
 
-    % Get sample points for shape functions
+    % Get vector of sample points for shape functions
     xgl = gcoord(nodes(ele,:));
     
     % get Lagrange Interpolant of requested order
@@ -155,6 +162,20 @@ In this next section, we carry out the calculations for the elements of the weak
 \end{lstlisting}
 Now that the subarrays for the kernels and source term are computed for the element, we add them to the global arrays.
 
+\marginnote{
+
+\vspace{3.85cm}
+
+\noindent\ref{lst:ann35n-6} For loops that extend over longer code segments, it is a good practice to leave a comment like this to help clarify which loop is being ended.
+
+\vspace{0.25cm}
+
+\noindent\ref{lst:ann35n-7} The signs used here are from the weak form. Alternatively the signs could be incorporated into the calculation of each kernel element.  For the source term, the negative sign comes from moving it to the RHS.
+
+\vspace{0.25cm}
+
+\noindent\ref{lst:ann35n-8} Be very careful with signs here as well.  Both terms get moved to the RHS and placed in the element of the RHS vector based on the degree of freedom on which they operate.  The part of the type-3 boundary condition that multiplies by the dependent variable, needs to be added to the system matrix.
+}
 \begin{lstlisting}[style=myMatlab,name=lec35n-ex]
     % add local arrays to global arrays "assembly"
     for i = 1:nldofs
@@ -167,17 +188,17 @@ Now that the subarrays for the kernels and source term are computed for the elem
         S1(dof) = S1(dof) + s1(i);
     end % i
 
-end % numel
+end % numel /*!\annotation{lst:ann35n-6}!*/
 
 % apply boundary conditions
-A = -K1 + K2;
+A = -K1 + K2;  /*!\annotation{lst:ann35n-7}!*/
 RHS = -S1;
 
 % provide contributions from boundary conditions
 c1 = Q2/k;
 RHS(1)=RHS(1)-c1;
 
-c2 = h/k;
+c2 = h/k;       /*!\annotation{lst:ann35n-8}!*/
 RHS(nnodes)=RHS(nnodes)-c2*(T_inf);
 A(nnodes,nnodes) = A(nnodes,nnodes)-c2;
 
@@ -185,5 +206,32 @@ A(nnodes,nnodes) = A(nnodes,nnodes)-c2;
 u = A\RHS;
 \end{lstlisting}
 
+The solution computed using the finite element method, as expected, matches the solution we obtained with \lstinline[style=myMatlab]{bvp5c} back in Lecture 30 and is shown in Figure \ref{fig:lec35n-ex-sol}.
+\begin{marginfigure}
+\includegraphics{lec35n-ex-sol.png}
+\caption{Comparison of solutions for the example problem.}
+\label{fig:lec35n-ex-sol}
+\end{marginfigure}
+
+\section{Generalizing Finite Element Methods}
+In the classroom version of this course, the exposition presented here is followed by a sequence of workshops where students learn to use, with a basic level of proficiency, a generalized FEM package like COMSOL.  In this section we will broaden our area of focus and discuss the aspects of FEM technology that are required to address more general classes of problems.
+
+\subsection{The Weak Form for Partial Differential Equations}
+The problems we have solved so far have been greatly simplified by the fact that they are all posed in one spatial dimension.  The geometry is easy to describe, the boundaries are easy to identify and the calculus involved in converting the strong form into the weak form is more simple. 
+
+\newthought{To illustrate the} process of converting from the strong form to the weak form in two dimensions, let us consider a boundary value problem based on the Laplace equation that we solved in Lecture 26 of the analytical methods part of the text:
+\begin{table}[h]
+\begin{tabular}{l l}
+$\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0, \ \ 0<x<a, \ \ 0<y<b $\\
+& \\
+$\substack{\text{Boundary} \\ \text{Conditions}}: $ & $\substack{u(x,0)=0  \ \ \ \ \ \ u_x(0,y) = 0 \\ \\ u(x,b) = f(x) \ \ u_x(a,y) = 0}$ 
+\end{tabular}
+\end{table} 
+where a schematic of the domain and boundary conditions is shown in Figure \ref{fig:lec35n-ex2-schematic}.
+\begin{marginfigure}
+\includegraphics{lec26_fig1.png}
+\caption{Schematic of example Laplace's equation problem.}
+\label{fig:lec35n-ex2-schematic}
+\end{marginfigure}  
 
 

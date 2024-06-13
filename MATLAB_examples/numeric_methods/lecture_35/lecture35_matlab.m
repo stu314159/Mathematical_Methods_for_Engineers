@@ -127,7 +127,15 @@ u = A\RHS;
 x = gcoord;
 figure(1)
 plot(x,u,'-r',...
-    sol.x,sol.y(1,:),'--b'); % let's bow our heads in prayer
+    sol.x,sol.y(1,:),'--b',...
+    'linewidth',3); 
+title('Solution with FEM','fontsize',16,...
+    'fontweight','bold')
+xlabel('R [m]','fontsize',14,'fontweight','bold');
+ylabel('T [K]','fontsize',14,'fontweight','bold');
+grid on
+set(gca,'fontsize',12,'fontweight','bold');
+legend('FEM','BVP5C');
 
 %% Local Functions
 function [xgl, wgl] = getGPandWeights(P)
