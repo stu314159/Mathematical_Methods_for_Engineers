@@ -24,7 +24,7 @@ BCs: & $\frac{dT}{dr}\Bigl|_{r=R}=-\frac{6.32\times 10^5}{k}, \ \ \frac{dT}{dr}\
 \end{tabular}
 \end{table}
 
-\newthought{Recall that in} Lecture 30, we re-expressed the governing equation so it would be ammenable to solution with \lstinline[style=myMatlab]{bvp5c}.  As a result, the governing equation can be equivalently written as shown in Equation \ref{eq:lec35n-gov-eq}.
+\newthought{Recall that in} Lecture 30, we re-expressed the governing equation so it would be amenable to solution with \lstinline[style=myMatlab]{bvp5c}.  As a result, the governing equation can be equivalently written as shown in Equation \ref{eq:lec35n-gov-eq}.
 \begin{equation}
 \frac{d^2T}{dr^2}+\frac{1}{r}\frac{dT}{dr} = -\frac{10^8e^{-r/R}}{rk}
 \label{eq:lec35n-gov-eq}
@@ -50,7 +50,7 @@ We convert this to the weak form by carrying out integration by parts on the fir
 
 \vspace{0.2cm}
 
-\noindent The terms ``kernel \#1'' and ``kernel \#2'' are so labeled because they involve both the trial function and test function; the resulting submatrices will be added to the system matrix.  The term labeled ``source'' is so named because it does not involve the trial function; the integral will result in a vector that will be incorporated into the RHS.  
+\noindent The terms ``kernel \#1'' and ``kernel \#2'' are so labeled because they involve both the trial function and test function; the resulting sub-matrices will be added to the system matrix.  The term labeled ``source'' is so named because it does not involve the trial function; the integral will result in a vector that will be incorporated into the RHS.  
 }
 \begin{multline*}
 \underbrace{v(R+w) \left[-\frac{6.32\times 10^5}{k} \right] - v(R)\left[-\frac{h}{k}\left(T(r+w)-T_{\infty}\right) \right]}_{\text{boundary terms}} \\
@@ -160,7 +160,7 @@ In this next section, we carry out the calculations for the elements of the weak
     s1 = s1*Jac;
 
 \end{lstlisting}
-Now that the subarrays for the kernels and source term are computed for the element, we add them to the global arrays.
+Now that the sub-arrays for the kernels and source term are computed for the element, we add them to the global arrays.
 
 \marginnote{
 
@@ -227,11 +227,66 @@ $\substack{\text{Governing} \\\text{Equation}}: $& $\frac{\partial^2 u}{\partial
 $\substack{\text{Boundary} \\ \text{Conditions}}: $ & $\substack{u(x,0)=0  \ \ \ \ \ \ u_x(0,y) = 0 \\ \\ u(x,b) = f(x) \ \ u_x(a,y) = 0}$ 
 \end{tabular}
 \end{table} 
-where a schematic of the domain and boundary conditions is shown in Figure \ref{fig:lec35n-ex2-schematic}.
 \begin{marginfigure}
 \includegraphics{lec26_fig1.png}
 \caption{Schematic of example Laplace's equation problem.}
 \label{fig:lec35n-ex2-schematic}
 \end{marginfigure}  
+\noindent where a schematic of the domain and boundary conditions is shown in Figure \ref{fig:lec35n-ex2-schematic}.  We need to express this as a minimum weighted residual problem in its weak form.  Let us start by representing the governing equation in a slightly more general form:
+\marginnote{
+
+\noindent\textbf{Reminder:} The symbol $\nabla$, in 2-dimensional Cartesian coordinates, is shorthand for: $\left< \frac{\partial}{\partial x}, \frac{\partial}{\partial y} \right>$. So $\nabla u = \left< \frac{\partial u}{\partial x}, \frac{\partial u}{\partial y}\right>$.  Finally, $\nabla \cdot \left(\nabla u\right) = \left<\frac{\partial}{\partial x},\frac{\partial}{\partial y}\right> \cdot \left< \frac{\partial u}{\partial x}, \frac{\partial u}{\partial y}\right>$ which is equal to $\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}$.
+
+}
+\begin{equation*}
+\nabla \cdot \left( \nabla u \right) = 0
+\end{equation*}
+\noindent To express this as a minimum weighted residual statement, we will multiply by a test function, $w$, and integrate over the domain:
+\begin{equation*}
+\int_{\Omega} w \left[ \nabla \cdot \left( \nabla u \right) \right] \ d\Omega = 0
+\end{equation*}
+where we use the Greek letter $\Omega$ to generically indicate the entire domain. As a higher-dimension generalization of integration by parts we can re-state the equation above:\marginnote{
+
+\noindent\textbf{Note:} I actually find this easier to swallow if I think of this as a generalized form of the Product rule for differentiation:
+
+$$\nabla \cdot \left(w\nabla u \right) = \nabla w \cdot \nabla u + w\left[\nabla \cdot (\nabla u) \right]$$
+
+\noindent A re-arranged version of the first equation just wraps that in an integral sign.
+}
+\begin{align*}
+\int_{\Omega} w \left[\nabla \cdot \left(\nabla u \right) \right] \ d\Omega &= \underbrace{\int_{\Omega} \nabla \cdot \left(w \nabla u\right) \ d\Omega}_{\text{apply divergence theorem}} - \int_{\Omega} \nabla w \cdot \nabla u \ d\Omega \\ 
+&= \int_{\Gamma} w \left( \nabla u \cdot \hat{n} \right) \ d\Gamma - \int_{\Omega} \nabla w \cdot \nabla u \ d\Omega 
+\end{align*}
+where the Greek letter $\Gamma$ indicates the domain boundary and $\hat{n}$ is the outward pointing unit normal at each point along the boundary.
+
+\newthought{Our weak form} of the minimum weighted residual statement is, therefore, shown in Equation \ref{eq:lec35n-ex2-weak-form}. \marginnote{I think it is worthwhile to go through this process in as general a form as possible.  In principle it does not matter if the problem is in two or three dimensions or more; the math is the same.  }
+
+\begin{equation}
+\underbrace{\int_{\Gamma} w \left( \nabla u \cdot \hat{n} \right) \ d\Gamma}_{\text{boundary term}} - \underbrace{\int_{\Omega} \nabla w \cdot \nabla u \ d\Omega}_{\text{kernel}} = 0
+\label{eq:lec35n-ex2-weak-form}
+\end{equation}
+If we specialize this equation for the rectangular domain given, we can express this statement in less generalized form:
+
+\begin{multline*}
+\cancelto{0}{\underbrace{\int_{0}^{a} w(x,b)\left(\frac{\partial u(x,b)}{\partial y}\right) \ dx}_{\text{top boundary}}} + \underbrace{\int_{0}^{b} w(a,y) \cancelto{0}{\left(\frac{\partial u(a,y)}{\partial x} \right)} \ dy}_{\text{right boundary}} + \\ \cancelto{0}{\underbrace{\int_{0}^{a} w(x,0) \left(-\frac{\partial u(x,0)}{\partial y} \right) \ dx}_{\text{bottom boundary}}} +  \underbrace{\int_{0}^{b} w(0,y) \cancelto{0}{\left(-\frac{\partial u(0,y)}{\partial x} \right)} \ dy}_{\text{left boundary}} + \\ \underbrace{\int_{0}^{b} \int_{0}^{a} \left(\frac{\partial w}{\partial x}\frac{\partial u}{\partial x} + \frac{dw}{dy}\frac{\partial u}{\partial y} \right) \ dxdy}_{\text{kernel}} = 0
+\end{multline*}
+\marginnote[-5.0cm]{Owing to the homogeneous Neumann boundary conditions on the right and left side, the boundary terms there are zero.
+
+\vspace{0.25cm}
+
+\noindent The integrals for the bottom and top boundary are not evaluated (or, equivalently, evaluated as zero) since the shape functions on that location are taken to be equal to the given essential (Dirichlet) boundary conditions.  Instead, the system matrix is modified (after assembly) to ensure the shape function parameters will satisfy the prescribed boundary condition.
+
+}
+
+\newthought{This lecture is} getting too long.  The goal was to highlight the several difficult tasks that motivate the transition from using MATLAB code that we write ourselves, to relatively specialized tools for carrying out FEM: libraries (like deal.ii), frameworks (like MOOSE), and integrated software packages (like COMSOL or ANSYS).  I will cut this short by simply giving a list of hard tasks that need to be handled for any general FEM analysis tool.
+\begin{enumerate}
+\item The domain must be broken into elements.  For two dimensions these elements are usually either triangular or quadrilateral; for three dimensions the elements are usually either parallelepiped (brick) or tetrahedrons.  Modern mesh generation software must be used for all but the most trivial of problem domains.
+\item Functions must be defined on each element to represent the trial and test functions along with their derivatives. Lagrange polynomials are popular but there are many choices.  
+\item the Gauss quadrature scheme we have used must be generalized to multiple dimensions. 
+\item In general, the resulting system of equations may be too large for representation on a single machine.  Programs must be written to take advantage of distributed parallel systems. 
+\item In order to improve efficiency, mesh adaptation and refinement should be implemented.  
+\item Since \emph{the point} of all of this work is to gain insight, the solution must be processed into a format that can be effectively visualized.
+\end{enumerate}
+
 
 
