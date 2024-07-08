@@ -13,6 +13,8 @@
 *~
 *.asv
 *.*#
+
+# ignore CMake files for deal.II examples
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
@@ -25,3 +27,7 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
+
+# Ignore outputs for deal.II examples
+*.vtk
+lec26a

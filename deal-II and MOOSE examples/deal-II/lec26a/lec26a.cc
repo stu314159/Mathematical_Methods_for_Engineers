@@ -72,14 +72,23 @@ void Lec26a::make_grid()
   GridGenerator::hyper_rectangle(triangulation, lower_left, upper_right);
   triangulation.refine_global(4);
   
-  std::cout << "  Number of active cells: " << triangulation.n_active_cells();
+  std::cout << "  Number of active cells: " << triangulation.n_active_cells()
             << std::endl
             << "  Total number of cells: " << triangulation.n_cells()
             << std::endl;
+            
+  const bool OUTPUT_GRID = true;
+  if(OUTPUT_GRID)
+  {
+    std::ofstream 	out("grid.vtk");
+    GridOut  		grid_out;
+    grid_out.write_vtk(triangulation,out);
+    std::cout << "Grid written to grid.vtk" << std::endl;
+  }
 }
 
 // run the simulation
-Lec26a::run()
+void Lec26a::run()
 {
   make_grid();
   
