@@ -8,8 +8,6 @@ a = 5;
 b = 3;
 N = 15;
 
-
-
 fx_pick = 1;
 %[1 | 2]
 switch fx_pick
