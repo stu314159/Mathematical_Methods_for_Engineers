@@ -13,7 +13,6 @@
 *~
 *.asv
 *.*#
-
 # ignore CMake files for deal.II examples
 CMakeLists.txt.user
 CMakeCache.txt
@@ -30,4 +29,4 @@ CMakeUserPresets.json
 
 # Ignore outputs for deal.II examples
 *.vtk
-lec26a
+# lec26a
