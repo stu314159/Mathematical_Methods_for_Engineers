@@ -34,6 +34,8 @@
 #include <deal.II/numerics/vector_tools.h>
 #include <deal.II/numerics/matrix_tools.h>
 #include <deal.II/numerics/data_out.h>
+#include <deal.II/numerics/data_out_faces.h>
+#include <deal.II/numerics/data_postprocessor.h>
 
 //C++ libraries that I need to use
 #include <iostream>
@@ -43,7 +45,31 @@
 using namespace dealii;
 
 
-// declare the class
+// declare the classes
+
+template <int dim>
+class BoundaryValues : public Function<dim>
+{
+public:
+  virtual double value(const Point<dim> & p,
+                       const unsigned int component = 0) const override;
+};
+
+template <int dim>
+double BoundaryValues<dim>::value(const Point<dim> &p,
+                                  const unsigned int /*component*/) const
+{
+  // crude implementation of ex1 boundary condition
+  // from lecture 26, analytical methods
+  double ret_val = 0;
+  if (p[0]<= 2.5)
+    ret_val = p[0]*p[0];
+  if (p[0] > 2.5)
+    ret_val = 2.5*2.5;
+  
+  
+  return ret_val;
+}
 
 class Lec26a
 {
@@ -57,6 +83,8 @@ class Lec26a
     void assemble_system ();
     void solve ();
     void output_results () const;
+    
+    void output_boundary_data ();
     
     Triangulation<2> 	triangulation;
     FE_Q<2> 		fe;
@@ -79,7 +107,8 @@ Lec26a::Lec26a()
 // make_grid member function
 void Lec26a::make_grid()
 {
-  GridGenerator::hyper_rectangle(triangulation, lower_left, upper_right);
+  GridGenerator::hyper_rectangle(triangulation, lower_left, upper_right,
+                                 true); // colorize the boundary
   triangulation.refine_global(6);
   
   std::cout << "  Number of active cells: " << triangulation.n_active_cells()
@@ -155,7 +184,7 @@ void Lec26a::assemble_system()
              // but for illustration purposes, I'll just go ahead and do this
              for (const unsigned int i : fe_values.dof_indices())
                cell_rhs(i) += (fe_values.shape_value(i,q_index) *
-                               1.0 * // change this later...
+                               0.0 * // can now delete, I guess...
                                fe_values.JxW(q_index));
         
         }
@@ -178,9 +207,15 @@ void Lec26a::assemble_system()
     // handle boundary conditions
   std::map<types::global_dof_index, double> boundary_values;
   VectorTools::interpolate_boundary_values(dof_handler,
-                                           0,
+                                           2, // bottom edge
                                            Functions::ZeroFunction<2>(),
                                            boundary_values);
+  VectorTools::interpolate_boundary_values(dof_handler,
+                                           3, // top edge
+                                           BoundaryValues<2>(),
+                                           boundary_values);
+  
+  // nothing needed for the homogeneous Neumann boundary conditions.
   MatrixTools::apply_boundary_values(boundary_values,
                                      system_matrix,
                                      solution,
@@ -220,6 +255,27 @@ void Lec26a::run()
   assemble_system();
   solve();
   output_results();  
+  output_boundary_data();
+}
+
+void Lec26a::output_boundary_data()
+{
+  std::cout << "  Writing boundary id data. " << std::endl;
+  
+  DataPostprocessors::BoundaryIds<2> 	boundary_ids;
+  DataOutFaces<2> 			data_out_faces;
+  FE_Q<2> 				dummy_fe(1);
+  DoFHandler<2> 			dummy_dof_handler(triangulation);
+  dummy_dof_handler.distribute_dofs(dummy_fe);
+  
+  Vector<double> dummy_solution (dummy_dof_handler.n_dofs());
+  
+  data_out_faces.attach_dof_handler(dummy_dof_handler);
+  data_out_faces.add_data_vector(dummy_solution,boundary_ids);
+  data_out_faces.build_patches();
+  
+  std::ofstream out("boundary_ids.vtu");
+  data_out_faces.write_vtu(out);
 }
 
 int main()
