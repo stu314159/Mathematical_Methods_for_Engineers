@@ -8,7 +8,7 @@ close 'all'
 c = 2;
 N = 50;
 
-fx_pick = 2;
+fx_pick = 1;
 %[1 | 2]
 switch fx_pick
     case 1
