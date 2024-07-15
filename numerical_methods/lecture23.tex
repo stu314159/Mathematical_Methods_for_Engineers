@@ -253,7 +253,7 @@ This method relies on the same theoretical development as the explicit Euler met
 \item Evaluate: $y_{i+1} = y_i + hf(x_{i+1},y_{i+1})$
 \item Repeat steps 3 and 4, $N$ times.
 \end{enumerate}
-Note that step 4 of the algorithm requires solving a nonlinear equation (or system of equations).  We have studied methods of solving nonlinear equations previously in this course and we know it is not a trivial problem.  Also, this method is still only 1\textsuperscript{st}-order convergent like its explicit sibling.  The main benefit is that this algorithm will maintain stability even for stiff problems like the last example.
+Note that step 4 of the algorithm, in general, requires solving a nonlinear equation (or system of equations).\sidenote{Here I hasten to point out that if the ODE happens to be \emph{linear}, we really only need to solve a linear system of equations.}  We have studied methods of solving nonlinear equations previously in this course and we know it is not a trivial problem.  Also, this method is still only 1\textsuperscript{st}-order convergent like its explicit sibling.  The main benefit is that this algorithm will maintain stability even for stiff problems like the last example.
 
 A straight-forward MATLAB implementation is provided in the listing below.
 \marginnote{
