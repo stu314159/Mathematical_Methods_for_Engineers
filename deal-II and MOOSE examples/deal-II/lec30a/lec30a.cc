@@ -132,28 +132,37 @@ Lec30a::Lec30a()
      for (const unsigned int q_index : fe_values.quadrature_point_indices())
      {
        for (const unsigned int i : fe_values.dof_indices())
+       {
          for(const unsigned int j : fe_values.dof_indices())
            cell_matrix(i,j) +=
                (fe_values.shape_grad(i,q_index)* //grad phi_i(x_q)
                 fe_values.shape_grad(j,q_index)* //grad phi_j(x_q)
                 fe_values.JxW(q_index));
+       
+      
        // I do not have a right hand side for this problem
        // but for illustration purposes, I'll just go ahead and do this
-       for (const unsigned int i : fe_values.dof_indices())
+       
          cell_rhs(i) += (fe_values.shape_value(i,q_index) *
                          0.0 * // can now delete, I guess...
-                         fe_values.JxW(q_index));         
+                         fe_values.JxW(q_index));    
+                         
+       }     
      
      } // q_index
      
      // put the cell matrix and cell rhs into the system data structures
+     cell->get_dof_indices(local_dof_indices);
      for (const unsigned int i : fe_values.dof_indices())
+     {
        for (const unsigned int j : fe_values.dof_indices())
          system_matrix.add(local_dof_indices[i],
                            local_dof_indices[j],
                            cell_matrix(i,j));
-     for (const unsigned int i : fe_values.dof_indices())
-       system_rhs(local_dof_indices[i]) += cell_rhs(i);  
+       
+       system_rhs(local_dof_indices[i]) += cell_rhs(i);
+       	  
+     }  
      
      
    } // cell
